@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Ubuntu Component Store, redux</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2014/11/16/ubuntu-component-store-redux/"><time 
+			class="dt-published" datetime="2014-11-16T15:44:00">Nov 16 2014</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2014/11/16/ubuntu-component-store-redux/" title="Permalink to Ubuntu Component Store, redux" rel="bookmark">Ubuntu Component Store,&nbsp;redux</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A while back I proposed an <a href="http://www.kryogenix.org/days/2014/02/15/bad-voltage-apps-and-generic-components-for-ubuntu/">&#8220;Ubuntu Component Store&#8221;</a> and <a href="http://www.kryogenix.org/days/2014/02/16/more-on-an-ubuntu-component-store/">built a noddy implementation of the command line utility for it</a>. Recently, Nekhelesh Ramanathan <a href="http://nik90.com/ubuntu-component-store-lets-collaborate/">revived the idea</a> and did a bunch of work to implement it, and we had <a href="http://summit.ubuntu.com/uos-1411/meeting/22338/ubuntu-touch-component-store/">a discussion session at the Ubuntu Online Summit</a> about it. This was most interesting. In it, I believe we concluded two&nbsp;things:</p>
+<p><strong>Thing 1</strong>: It is a good idea to have a place where developers can publish components for Ubuntu apps and an easy way for other developers to get and use those&nbsp;components.</p>
+<p>We can argue in detail about exactly what &#8220;an easy way&#8221; entails, and there is no more bikesheddable project in existence, but I think we were all agreed that the basic idea is this: there is a <code>ucs</code> command line utility which is roughly like <code>pip</code> or <code>npm</code> or <code>apt</code>, that you can type <code>ucs install SomeComponentName</code>, and that component will be downloaded and installed into the project that your command line directory is in (not into some central repository; this is project-specific). This will be great; there are obviously a bunch of other implied commands here, such as <code>ucs list</code>, <code>ucs search</code>, and <code>ucs update</code> to update components to the latest upstream versions. Everyone agrees on this&nbsp;part.</p>
+<p><strong>Thing 2</strong>: Some people think that a component store should be composed of basically-complete excellently-written well-documented components which are essentially candidates for direct inclusion in the core <span class="caps">SDK</span>. Some people think that a component store should be composed of whatever anyone wants to add, and developers can use or not use components as they&nbsp;choose.</p>
+<p>Specifically, Nekhelesh is in camp 1 (only good components, like the Ubuntu <span class="caps">SDK</span>) and I&#8217;m in camp 2 (anyone can publish anything and market forces sort things out, like PyPI or <span class="caps">NPM</span>). Both of these camps have some pros and cons, which I will <em>attempt</em> to lay out below without bias; I am, as noted, in camp 2, but I&#8217;ll try to be objective here, and please excuse me if I misrepresent camp&nbsp;1.</p>
+<p>First, a brief description of how each of these approaches would work, which will help make sense of the benefits and deficits&nbsp;list. </p>
+<p>Nekhelesh proposes that components are part of one single Launchpad branch; to add a component to the store, propose a merge to that source tree with your component source, tests, and documentation. This will be manually reviewed and if suitable, included; a developer can also apply for membership of the component store team, who own the branch and can make changes to it and accept merges. The component is then available from that Launchpad branch. <a href="http://ubuntu-component-store.readthedocs.org/en/latest/">Documentation from the branch is then published to a central location as a manual</a>, similar to <a href="http://developer.ubuntu.com/api/qml/sdk-14.10/">the core Ubuntu <span class="caps">SDK</span> documentation</a>.</p>
+<p>I propose that a <span class="caps">UCS</span> web <span class="caps">API</span> server is set up which accepts submissions of component metadata (name, version, remote <span class="caps">URL</span>, and similar), and that server provides this info via an <span class="caps">API</span>. Components themselves are not stored on the <span class="caps">UCS</span> server; one puts a component wherever one likes (github, launchpad, one&#8217;s own website) and just tells the <span class="caps">UCS</span> server about the component and where it is. Providing good documentation and tests is obviously encouraged and will make your component more attractive than alternatives, but is not required; developers can choose to not publish such things, and other developers can choose to use or not use an ill-documented component as a&nbsp;result.</p>
+<h3>Curated Component Store:&nbsp;benefits</h3>
+<ul>
+<li>Developers can be sure that every component in the store is&nbsp;decent. </li>
+<li>Components will have good documentation and be&nbsp;well-integrated.</li>
+<li>If a component maintainer disappears, others can take over the&nbsp;component.</li>
+<li>The store is a good &#8220;breeding ground&#8221; for new entrants to the <span class="caps">SDK</span>; indeed, the ultimate destiny of any component in the curated store is to be elevated into the core <span class="caps">SDK</span>&nbsp;eventually.</li>
+</ul>
+<h3>Curated Component Store:&nbsp;deficits</h3>
+<ul>
+<li>Developers publishing components are required to have a Launchpad&nbsp;account.</li>
+<li>Manual review of proposed changes is slow and&nbsp;annoying.</li>
+<li>A component author will have their component manually reviewed for every change, unless they join the component store&nbsp;team.</li>
+<li>Any member of the component store team (i.e., any component author who does not want to be blocked by manual review) can edit any component, meaning that they must be&nbsp;trusted.</li>
+</ul>
+<h3>Community Component Store:&nbsp;benefits</h3>
+<ul>
+<li>Anyone can publish a component instantly without bureaucracy getting in the&nbsp;way.</li>
+<li>Publishing updates to a component is also&nbsp;instant.</li>
+<li>This is how everyone else manages library packages&nbsp;etc.</li>
+</ul>
+<h3>Community Component Store:&nbsp;deficits</h3>
+<ul>
+<li>Developers have no guarantee that components in the store are high-quality or have documentation or&nbsp;tests.</li>
+<li>A server has to be built and&nbsp;run.</li>
+</ul>
+<p>So, there are upsides and downsides to both&nbsp;proposals.</p>
+<p>I think there&#8217;s a progression here. There are community components, which might become curated components, which themselves might become core components. That is: it&#8217;s perfectly reasonable to have both approaches. Here&#8217;s my updated&nbsp;proposal.</p>
+<p>We have those three levels of components: <strong>Core</strong>, <strong>Curated</strong>, and <strong>Community</strong>. </p>
+<p><strong>Core</strong> components are those that are already in the Ubuntu <span class="caps">SDK</span>: you can use them automatically in every Ubuntu <span class="caps">SDK</span>&nbsp;application. </p>
+<p><strong>Curated</strong> components are in the Launchpad branch, exactly as Nekhelesh proposes. To add a curated component, you propose a merge to the <span class="caps">LP</span> branch, and it&#8217;s manually reviewed; your component needs to have good test coverage, good documentation which matches the style and format of the other curated components, and provide a stable <span class="caps">API</span>. Curated components have a component name: <code>BottomEdgeMenu</code>, or <code>WelcomeWizard</code>. They are installed with <code>ucs</code>, as <code>ucs install BottomEdgeMenu</code>.</p>
+<p><strong>Community</strong> components are hosted wherever you want, and you tell the <span class="caps">UCS</span> Community Server about the <span class="caps">URL</span> where they can be obtained. They do not require manual review and approval, and they do not <em>require</em> great test coverage or documentation, although obviously you should provide those things because it makes your component better! Community components have an owner <em>and</em> a name: <code>sil/GenericPodcastWidget</code>. They are installed with <code>ucs</code>, as <code>ucs install sil/ColourSlider</code>, and are published by uploading them somewhere and then using <code>ucs submit username/ComponentName</code>.</p>
+<p>One can tell the difference between a curated component and a community component because community components have the developer&#8217;s name right there in the component name; it shows you that you&#8217;re using something from a particular developer, and so if a component name has a slash in it, it&#8217;s a community component. Components without a developer name are from the curated store, and the curated store team stand behind them and guarantee their&nbsp;quality.</p>
+<p>All components, both curated and community, contain an <code>ubuntu_community_store.json</code> file which lists metadata about the component: its name, licence, description, version number, dependencies, and&nbsp;others.</p>
+<h3>How <span class="caps">UCS</span> works:&nbsp;technical</h3>
+<p>The <span class="caps">UCS</span> system, under this proposal, knows about two &#8220;repositories&#8221; of components: the curated store, and the community store. Saying <code>ucs install ComponentName</code> goes to the curated store and downloads and installs the component; <code>ucs install developer/ComponentName</code> goes to the community store. It will be useful to have two separate &#8220;fetch&#8221; back ends here, one which can resolve a curated ComponentName to a download <span class="caps">URL</span> (essentially by saying <code>downloadurl = CURATED_LP_BRANCH_URL + COMPONENT_NAME</code>), and one which can resolve a community ComponentName to a download <span class="caps">URL</span> (essentially by requesting <code>http://communityserver/api/get/developer/ComponentName</code> and reading the download <span class="caps">URL</span> out of the returned <span class="caps">JSON</span>).</p>
+<p><code>ucs install some-component</code> should write to <code>ubuntu_component_store.json</code> in the project folder, updating it to contain the name and version number of any installed component. It is up to developers whether to commit the downloaded component code to their source tree or not; if they do not, components can be installed at the correct version number with <code>ucs install</code> with no parameters, which reads <code>ubuntu_component_store.json</code> and installs those things mentioned&nbsp;therein.</p>
+<p>The community server needs to provide a collection of <span class="caps">API</span> endpoints that the <code>ucs</code> tool can talk&nbsp;to:</p>
+<pre style="font-size: 80%; overflow-x: auto; width: 100%">
+/api/add
+    input { download_url: url to download whole component,
+        metadata_url: to download ubuntu_component_store.json }, 
+        requires auth
+    output: { success: bool }
+    Adds a component to the store. The server will fetch 
+    ubuntu_component_store.json and parse it to index the metadata. 
+    Future enhancement is allowing "special" URLs such as 
+    "lp:~user/project/branch" or "github:username/project" when 
+    the component is hosted on a well-known service. Adding a 
+    component which already exists requires you to be adding a 
+    higher version of it, and for it to be your component.
+/api/get/developerName/componentName
+    input: none
+    output: <span class="caps">JSON</span> metadata for component (not yet specified)
+    Returns metadata for the most recent version of that specific 
+    component, including a download <span class="caps">URL</span>; ucs install will fetch this 
+    <span class="caps">API</span> entry and then use the contained download <span class="caps">URL</span> to fetch the 
+    component itself.
+/api/get/list
+    input: none
+    output: <span class="caps">JSON</span> list of (some) metadata for all components
+    Returns a list of all components in the community store.
+/api/register
+    input: { username: string, password: string }
+    output: { success: bool }
+    Registers an account. (Note: this is not definite; account registration
+    may be done with email addresses, auth may be OAuth 2, etc. Needs 
+    discussion.)
+/api/get/search?queryfields
+    input: none
+    output: <span class="caps">JSON</span> list of (some) metadata for all components matching search
+    For searching. How searching works, which fields are searchable, etc, 
+    is not yet specified, and until there are many components, /api/list 
+    may be enough.</pre>
+
+<p>There is a trivial example of a server (which is not complete) at <a href="https://code.launchpad.net/~sil/+junk/ucs-server">lp:~sil/+junk/ucs-server</a>; it is in Python and Django, mostly because we expect that many components will be hosted on Launchpad, interacting with Launchpad code hosting is easiest with <code>bzr</code>, and Python has <code>bzrlib</code>. Finding hosting for this should not be too difficult; at least initially traffic will not be high and so one of the existing Django hosting services should be able to easily cope for minimal or zero&nbsp;outlay.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2014/11/12/what-if/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2014/11/18/making-a-static-build-of-sox/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://lh5.googleusercontent.com/-d-6-8vQyh38/AAAAAAAAAAI/AAAAAAAABSs/L2GabuEMpbE/photo.jpg?sz=50">
+			Fabio Colella responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">plus.google.com</a>
+		<span class="wm-summary">			Really agree :)
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			An unnamed person responded at
+		<a href="http://www.kryogenix.org/days/2014/11/18/making-a-static-build-of-sox/">www.kryogenix.org</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://lh6.googleusercontent.com/-9cwCeu4czU4/AAAAAAAAAAI/AAAAAAAAAAA/5GEckPXwvfs/photo.jpg?sz=50">
+			Nekhelesh Ramananthan responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">Nekhelesh Ramananthan reshared this.</a>
+(plus.google.com)		<span class="wm-summary">			reshared this.
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-AZfeaujFjFQ/AAAAAAAAAAI/AAAAAAAAAAA/BrGdVFurNac/photo.jpg?sz=50">
+			Carla Sella responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">Carla Sella reshared this.</a>
+(plus.google.com)		<span class="wm-summary">			reshared this.
+</span></li>
+		<li><img src="https://lh5.googleusercontent.com/-SXZozEk0Vfg/AAAAAAAAAAI/AAAAAAAAAAA/q5JitaLnyuU/photo.jpg?sz=50">
+			Christian Kopp responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">Christian Kopp +1ed this.</a>
+(plus.google.com)		<span class="wm-summary">			+1ed this.
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-x7_meziVzVY/AAAAAAAAAAI/AAAAAAAAAAA/zzmGZZd6rLE/photo.jpg?sz=50">
+			cm-t arudy responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">cm-t arudy +1ed this.</a>
+(plus.google.com)		<span class="wm-summary">			+1ed this.
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-kKYIx-ZLmKE/AAAAAAAAAAI/AAAAAAAAAAA/MoRfiIrHU2M/photo.jpg?sz=50">
+			Trent Schafer responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">Trent Schafer +1ed this.</a>
+(plus.google.com)		<span class="wm-summary">			+1ed this.
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-MC7M2LSjUWM/AAAAAAAAAAI/AAAAAAAAAAA/W2s-dYlHrzA/photo.jpg?sz=50">
+			David Callé responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">David Callé +1ed this.</a>
+(plus.google.com)		<span class="wm-summary">			+1ed this.
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-qZPdzW-7l-g/AAAAAAAAAAI/AAAAAAAAAAA/3r0G82Q430A/photo.jpg?sz=50">
+			Rosa Guillén responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">Rosa Guillén +1ed this.</a>
+(plus.google.com)		<span class="wm-summary">			+1ed this.
+</span></li>
+		<li><img src="https://lh5.googleusercontent.com/-d-6-8vQyh38/AAAAAAAAAAI/AAAAAAAAAAA/XrDDBxCzBAI/photo.jpg?sz=50">
+			Fabio Colella responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">Fabio Colella +1ed this.</a>
+(plus.google.com)		<span class="wm-summary">			+1ed this.
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-6nyuesl6c6I/AAAAAAAAAAI/AAAAAAAAAAA/SZ4Jy3DlRxY/photo.jpg?sz=50">
+			Mark Shuttleworth responded at
+		<a href="https://plus.google.com/108243663090085262773/posts/7ZcejZUVsw6">Mark Shuttleworth +1ed this.</a>
+(plus.google.com)		<span class="wm-summary">			+1ed this.
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2014/11/16/ubuntu-component-store-redux/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/11/16/ubuntu-component-store-redux/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

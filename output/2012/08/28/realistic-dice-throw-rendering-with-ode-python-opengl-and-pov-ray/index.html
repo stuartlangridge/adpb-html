@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Realistic dice throw rendering with ODE, Python, OpenGL, and POV-Ray</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2012/08/28/realistic-dice-throw-rendering-with-ode-python-opengl-and-pov-ray/"><time 
+			class="dt-published" datetime="2012-08-28T21:49:00">Aug 28 2012</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2012/08/28/realistic-dice-throw-rendering-with-ode-python-opengl-and-pov-ray/" title="Permalink to Realistic dice throw rendering with ODE, Python, OpenGL, and POV-Ray" rel="bookmark">Realistic dice throw rendering with <span class="caps">ODE</span>, Python, OpenGL, and <span class="caps">POV</span>-Ray</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I like dice games. I bought <a href="http://www.lybrary.com/scarne-on-dice-p-655.html">Scarne on Dice</a> precisely to read more
+about them. (And, I should note, because I like John Scarne&#8217;s
+mock-didactic style combined with anecdotes about hanging out with Rat
+Pack Vegas gangsters in the 50s; I bought his &#8220;New Complete Guide to
+Gambling&#8221; and &#8220;&#8230;on Cards&#8221; as well for the same reason.) I like the
+idea of letting myself play dice games on Ubuntu and my N9, but all the
+existing ones are graphically a bit iffy: in particular, the dice tend
+to be shown as one single square face which is &#8220;rolled&#8221; by going blurry
+and then showing a&nbsp;number.</p>
+<p>That&#8217;s not how dice work. So, in the great spirit of yak shaving, I
+started thinking about writing a few dice games and then got sidetracked
+into how to draw a realistic dice throw, so the dice arc over the table
+and then roll properly to a halt. Now, there are few guides to how to do
+this in Blender out there (as well as stuff I don&#8217;t have access to like
+3D Studio Max), but Blender confuses the hell out of me. After some
+poking around, I also found a bunch of videos on YouTube: rendering a
+rolling die seems to be a relatively common thing to do for a school
+computer graphics project. One of them mentioned using <span class="caps">POV</span>-Ray to do the
+rendering and <a href="http://ode-wiki.org/wiki"><span class="caps">ODE</span></a> to do the physics. Now, I used <span class="caps">POV</span>-Ray, years and
+years ago, and I quite like the idea of doing this sort of thing by
+writing a little programming language rather than using a <span class="caps">GUI</span> that I
+don&#8217;t understand. So I looked into this a bit. <span class="caps">ODE</span> is a pure physics
+engine: it doesn&#8217;t do graphics at all. Instead, you set up the world by
+setting what gravity is, adding various shapes and explaining how heavy
+they are, etc, and then you tell <span class="caps">ODE</span>: tell me what happens at each clock
+tick. <span class="caps">ODE</span> works it all out and just gives you the numbers back &#8212;
+position and rotation of every object. It&#8217;s then your job to use those
+numbers to draw pictures. (This is probably laughably simple if you&#8217;re
+trying to, say, write Half-Life 5, but I&#8217;m trying to simulate two
+perfect cubes hitting the floor, so my problem is equally&nbsp;simple.)</p>
+<p><span class="caps">ODE</span> has Python bindings, fortunately for me. And those Python bindings
+come with some examples, and <a href="http://pyode.sourceforge.net/tutorials/tutorial3.html">one of those examples</a> shows a bunch of
+cuboid shapes falling to the floor and being rendered with the Python
+OpenGL bindings. It was the work of but a few
+moments<span style="color: red" title="many moments, plus hair-pulling">*</span>
+to turn that into a little program that made two cubes fall. And then I
+added a bunch of keypresses which could alter where the dice were thrown
+from, the force and direction with which they were thrown, how they were
+rotated, that sort of thing. My goal is to get something that looks like
+a realistic throw and which keeps the dice somewhere nice and central,
+rather than them bouncing off one another and then off-screen (rather
+like the bullets in <em>Gunmen of the Apocalypse</em>, for those of you who&#8217;ve
+seen the Red Dwarf <em>Smeg-Ups</em>&nbsp;video).</p>
+<p>Pleasingly for myself, I now have that. You can <a href="http://www.kryogenix.org/code/dicethrow.py">grab the code</a>
+(requires <a href="https://apps.ubuntu.com/cat/applications/python-pyode/">python-pyode</a> and <a href="https://apps.ubuntu.com/cat/applications/python-opengl/">python-opengl</a>) if you&#8217;re looking for
+a trivial example of how to render a dice throw with PyODE and PyOpenGL;
+Space re-throws the dice, and the keys mentioned in brackets tweak the
+parameters listed on screen. Next step is to use it to generate a bunch
+of dice throws I&#8217;m happy with, and then write something similar which
+generates <span class="caps">POV</span>-Ray input files for each frame, and then make the cubes be
+dice in <span class="caps">POV</span>-Ray, and then finally I&#8217;ll have realistic looking animations
+for&nbsp;dice!</p>
+<p>At which point I can get back to actually writing the games, which was
+the point of this. Still, this yak, while not entirely shaved, has a
+considerably closer haircut than&nbsp;before.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2012/08/22/minimal-community/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2012/09/11/accessing-ubuntu-one-file-storage-via-ftp-from-any-os/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2012/08/28/realistic-dice-throw-rendering-with-ode-python-opengl-and-pov-ray/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/08/28/realistic-dice-throw-rendering-with-ode-python-opengl-and-pov-ray/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

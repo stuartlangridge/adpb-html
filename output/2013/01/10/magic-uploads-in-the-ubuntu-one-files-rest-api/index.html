@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Magic uploads in the Ubuntu One files REST API</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/"><time 
+			class="dt-published" datetime="2013-01-10T14:58:00">Jan 10 2013</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/" title="Permalink to Magic uploads in the Ubuntu One files REST API" rel="bookmark">Magic uploads in the Ubuntu One files <span class="caps">REST</span> <span class="caps">API</span></a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Finally I&#8217;ve had a chance to document &#8220;magic uploads&#8221; in the Ubuntu One
+<span class="caps">REST</span> <span class="caps">API</span>. The documentation isn&#8217;t published yet, but it&#8217;s a neat little
+feature &#8212; when uploading a file to U1, you can pass a couple of hashes
+calculated from the file content instead of the actual file content, and
+if that file&#8217;s already in U1, it&#8217;ll &#8220;upload&#8221; without you having to send
+all the content on the wire, which is a lot quicker. I can&#8217;t do better
+in describing it than <a href="http://webm0nk3y.wordpress.com/2011/12/02/introducing-magic-uploads-via-ubuntu-one-rest-api/">jdo did when he first wrote about it</a> (a year
+ago. I know, I know, sorry.) We&#8217;ve had this for ages, and the U1 apps on
+mobile and so on use it, but I haven&#8217;t had a chance to document it so
+everyone can use it. Docs will be at
+<a href="https://one.ubuntu.com/developer/files/store_files/cloud">https://one.ubuntu.com/developer/files/store_files/cloud</a> fairly soon,
+but I thought it might be useful to add a little test Python script I
+wrote to confirm that I understood the thing&nbsp;properly.</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">os</span><span class="p">,</span> <span class="n">json</span>
+<span class="nl">try:</span>
+    <span class="n">from</span> <span class="n">ubuntuone</span><span class="p">.</span><span class="n">platform</span><span class="p">.</span><span class="n">credentials</span> <span class="n">import</span> <span class="n">CredentialsManagementTool</span>
+<span class="n">except</span> <span class="n">ImportError</span><span class="o">:</span>
+    <span class="n">CredentialsManagementTool</span> <span class="o">=</span> <span class="n">None</span>
+<span class="n">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">urllib</span>
+<span class="n">from</span> <span class="n">hashlib</span> <span class="n">import</span> <span class="n">sha1</span>
+<span class="n">from</span> <span class="n">ubuntuone</span><span class="p">.</span><span class="n">couch</span> <span class="n">import</span> <span class="n">auth</span>
+
+<span class="n">CONTENT</span> <span class="o">=</span> <span class="s">&quot;This is the content of the file.</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">*</span> <span class="mi">1000</span>
+
+<span class="n">_u1creds</span> <span class="o">=</span> <span class="n">None</span>
+<span class="n">def</span> <span class="n">get_ubuntuone_credentials_synchronous</span><span class="p">()</span><span class="o">:</span>
+    <span class="s">&quot;find_credentials is async, but be sync here with a temporary mainloop&quot;</span>
+    <span class="n">from</span> <span class="n">gi</span><span class="p">.</span><span class="n">repository</span> <span class="n">import</span> <span class="n">GObject</span>
+    <span class="n">from</span> <span class="n">dbus</span><span class="p">.</span><span class="n">mainloop</span><span class="p">.</span><span class="n">glib</span> <span class="n">import</span> <span class="n">DBusGMainLoop</span>
+    <span class="n">from</span> <span class="n">ubuntuone</span><span class="p">.</span><span class="n">platform</span><span class="p">.</span><span class="n">credentials</span> <span class="n">import</span> <span class="n">CredentialsManagementTool</span>
+
+    <span class="n">global</span> <span class="n">_u1creds</span>
+
+    <span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="n">True</span><span class="p">)</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">GObject</span><span class="p">.</span><span class="n">MainLoop</span><span class="p">()</span>
+
+    <span class="n">def</span> <span class="n">quit</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">global</span> <span class="n">_u1creds</span>
+        <span class="n">loop</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">:</span>
+            <span class="n">_u1creds</span> <span class="o">=</span> <span class="n">result</span>
+
+    <span class="n">cd</span> <span class="o">=</span> <span class="n">CredentialsManagementTool</span><span class="p">()</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">cd</span><span class="p">.</span><span class="n">find_credentials</span><span class="p">()</span>
+    <span class="n">d</span><span class="p">.</span><span class="n">addCallbacks</span><span class="p">(</span><span class="n">quit</span><span class="p">)</span>
+    <span class="n">loop</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">_u1creds</span>
+
+<span class="n">def</span> <span class="n">make_rest_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">creds</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s">&quot;https://one.ubuntu.com/api/file_storage/v1/&quot;</span><span class="p">,</span>
+        <span class="n">urllib</span><span class="p">.</span><span class="n">quote</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="s">&quot;~/&quot;</span><span class="p">))</span>
+    <span class="err">#</span> <span class="n">First</span><span class="p">,</span> <span class="n">create</span> <span class="n">file</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;kind&quot;</span><span class="o">:</span> <span class="s">&quot;file&quot;</span><span class="p">}</span>
+    <span class="n">result_header</span><span class="p">,</span> <span class="n">result_body</span> <span class="o">=</span> <span class="n">auth</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">sigmeth</span><span class="o">=</span><span class="s">&quot;HMAC_SHA1&quot;</span><span class="p">,</span>
+        <span class="n">http_method</span><span class="o">=</span><span class="s">&quot;PUT&quot;</span><span class="p">,</span> <span class="n">request_body</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">),</span> 
+        <span class="n">access_token</span> <span class="o">=</span> <span class="n">creds</span><span class="p">[</span><span class="s">&quot;token&quot;</span><span class="p">],</span> <span class="n">token_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;token_secret&quot;</span><span class="p">],</span> 
+        <span class="n">consumer_key</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;consumer_key&quot;</span><span class="p">],</span>
+        <span class="n">consumer_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;consumer_secret&quot;</span><span class="p">])</span>
+    <span class="n">result_body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result_body</span><span class="p">)</span>
+    <span class="err">#</span> <span class="n">now</span><span class="p">,</span> <span class="n">PUT</span> <span class="n">the</span> <span class="n">body</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span>
+    <span class="n">content_root</span> <span class="o">=</span> <span class="s">&quot;https://files.one.ubuntu.com/&quot;</span>
+    <span class="n">put_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">content_root</span><span class="p">,</span> <span class="n">urllib</span><span class="p">.</span><span class="n">quote</span><span class="p">(</span>
+        <span class="n">result_body</span><span class="p">[</span><span class="s">&quot;content_path&quot;</span><span class="p">],</span> <span class="n">safe</span><span class="o">=</span><span class="s">&quot;~/&quot;</span><span class="p">))</span>
+    <span class="n">put_result_header</span><span class="p">,</span> <span class="n">put_result_body</span> <span class="o">=</span> <span class="n">auth</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">put_url</span><span class="p">,</span> 
+        <span class="n">sigmeth</span><span class="o">=</span><span class="s">&quot;PLAINTEXT&quot;</span><span class="p">,</span> <span class="n">http_method</span><span class="o">=</span><span class="s">&quot;PUT&quot;</span><span class="p">,</span> <span class="n">request_body</span><span class="o">=</span><span class="n">CONTENT</span><span class="p">,</span> 
+        <span class="n">access_token</span> <span class="o">=</span> <span class="n">creds</span><span class="p">[</span><span class="s">&quot;token&quot;</span><span class="p">],</span> <span class="n">token_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;token_secret&quot;</span><span class="p">],</span> 
+        <span class="n">consumer_key</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;consumer_key&quot;</span><span class="p">],</span>
+        <span class="n">consumer_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;consumer_secret&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">put_result_header</span><span class="p">[</span><span class="s">&quot;status&quot;</span><span class="p">]</span> <span class="n">in</span> <span class="p">(</span><span class="s">&quot;200&quot;</span><span class="p">,</span> <span class="s">&quot;201&quot;</span><span class="p">)</span>
+
+<span class="n">def</span> <span class="n">make_rest_file_by_magic</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">creds</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s">&quot;https://one.ubuntu.com/api/file_storage/v1/&quot;</span><span class="p">,</span>
+        <span class="n">urllib</span><span class="p">.</span><span class="n">quote</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="s">&quot;~/&quot;</span><span class="p">))</span>
+    <span class="err">#</span> <span class="n">Note</span> <span class="n">that</span> <span class="n">we</span> <span class="k">do</span> <span class="n">not</span> <span class="n">actually</span> <span class="n">include</span> <span class="n">the</span> <span class="n">CONTENT</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span> 
+    <span class="err">#</span> <span class="n">here</span> <span class="n">in</span> <span class="n">the</span> <span class="n">PUT</span><span class="p">.</span>
+    <span class="err">#</span> <span class="n">We</span> <span class="n">just</span> <span class="n">upload</span> <span class="n">by</span> <span class="n">passing</span> <span class="n">the</span> <span class="n">hash</span> <span class="n">and</span> <span class="n">magic_hash</span><span class="p">.</span>
+    <span class="n">file_hash</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">()</span>
+    <span class="n">magic_hash</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">(</span><span class="s">&quot;Ubuntu One&quot;</span><span class="p">)</span>
+    <span class="n">file_hash</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">magic_hash</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&quot;kind&quot;</span><span class="o">:</span> <span class="s">&quot;file&quot;</span><span class="p">,</span>
+        <span class="s">&quot;hash&quot;</span><span class="o">:</span> <span class="s">&quot;sha1:%s&quot;</span> <span class="o">%</span> <span class="n">file_hash</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">(),</span>
+        <span class="s">&quot;magic_hash&quot;</span><span class="o">:</span> <span class="s">&quot;magic_hash:%s&quot;</span> <span class="o">%</span> <span class="n">magic_hash</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="n">result_header</span><span class="p">,</span> <span class="n">result_body</span> <span class="o">=</span> <span class="n">auth</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">sigmeth</span><span class="o">=</span><span class="s">&quot;HMAC_SHA1&quot;</span><span class="p">,</span>
+        <span class="n">http_method</span><span class="o">=</span><span class="s">&quot;PUT&quot;</span><span class="p">,</span> <span class="n">request_body</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">),</span> 
+        <span class="n">access_token</span> <span class="o">=</span> <span class="n">creds</span><span class="p">[</span><span class="s">&quot;token&quot;</span><span class="p">],</span>
+        <span class="n">token_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;token_secret&quot;</span><span class="p">],</span> 
+        <span class="n">consumer_key</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;consumer_key&quot;</span><span class="p">],</span>
+        <span class="n">consumer_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s">&quot;consumer_secret&quot;</span><span class="p">])</span>
+    <span class="n">result_body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result_body</span><span class="p">)</span>
+    <span class="err">#</span> <span class="k">if</span> <span class="n">failed</span><span class="p">,</span> <span class="n">will</span> <span class="n">be</span> <span class="n">a</span> <span class="mi">400</span> <span class="n">Bad</span> <span class="n">Request</span> <span class="n">with</span> <span class="n">body</span> 
+    <span class="err">#</span> <span class="p">{</span><span class="n">u</span><span class="err">&#39;</span><span class="n">error</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">The</span> <span class="n">content</span> <span class="n">could</span> <span class="n">not</span> <span class="n">be</span> <span class="n">reused</span><span class="p">.</span><span class="err">&#39;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">result_header</span><span class="p">[</span><span class="s">&quot;status&quot;</span><span class="p">]</span> <span class="n">in</span> <span class="p">(</span><span class="s">&quot;200&quot;</span><span class="p">,</span> <span class="s">&quot;201&quot;</span><span class="p">)</span>
+
+
+<span class="n">def</span> <span class="n">main</span><span class="p">()</span><span class="o">:</span>
+    <span class="n">credentials</span> <span class="o">=</span> <span class="n">get_ubuntuone_credentials_synchronous</span><span class="p">()</span>
+    <span class="err">#</span> <span class="n">real</span> <span class="n">strings</span><span class="p">,</span> <span class="n">not</span> <span class="n">dbus</span>
+    <span class="n">credentials</span> <span class="o">=</span> <span class="n">dict</span><span class="p">([(</span><span class="n">str</span><span class="p">(</span><span class="n">k</span><span class="p">),</span><span class="n">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="n">in</span> <span class="n">credentials</span><span class="p">.</span><span class="n">items</span><span class="p">()])</span>
+
+    <span class="n">print</span> <span class="s">&quot;Creating a file with the REST API&quot;</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="n">make_rest_file</span><span class="p">(</span><span class="s">&quot;~/Ubuntu One/u1-test-magic-uploads.txt&quot;</span><span class="p">,</span> 
+        <span class="n">CONTENT</span><span class="p">,</span> <span class="n">credentials</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">not</span> <span class="n">success</span><span class="o">:</span>
+        <span class="n">print</span> <span class="s">&quot;Failed, somehow&quot;</span>
+        <span class="k">return</span>
+    <span class="n">print</span> <span class="s">&quot;Succeeded.&quot;</span>
+    <span class="n">print</span> <span class="p">(</span><span class="s">&quot;Now, try uploading a new file, but by magic, &quot;</span>
+        <span class="s">&quot;so we will not actually upload it.&quot;</span><span class="p">)</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="n">make_rest_file_by_magic</span><span class="p">(</span>
+        <span class="s">&quot;~/Ubuntu One/u1-test-magic-uploads-magic-2.txt&quot;</span><span class="p">,</span>
+        <span class="n">CONTENT</span><span class="p">,</span> <span class="n">credentials</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">success</span><span class="o">:</span>
+        <span class="n">print</span> <span class="s">&quot;Successful magic upload!&quot;</span>
+    <span class="nl">else:</span>
+        <span class="n">print</span> <span class="p">(</span><span class="s">&quot;Magic upload didn&#39;t succeed; you have to &quot;</span>
+            <span class="s">&quot;upload in the normal way.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="o">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2012/12/30/simple-svg-sparklines/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2013/01/21/fuel-pump-arrows/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

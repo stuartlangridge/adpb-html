@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; More on XHTML vs. RSS</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2002/11/25/xhtml/"><time 
+			class="dt-published" datetime="2002-11-25T11:00:00">Nov 25 2002</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2002/11/25/xhtml/" title="Permalink to More on XHTML vs. RSS" rel="bookmark">More on <span class="caps">XHTML</span> vs. <span class="caps">RSS</span></a>
+		</h2>
+		<div class="entry-content e-content">
+			<!--timestamp:1038229141.0:-->
+
+<!--category::-->
+
+<!--author:sil:-->
+
+<p>Tantek
+has <a href="http://tantek.com/log/2002/11.html#blog20021124t1454">commented further</a> on my earlier notes about <a href="/days/000372"><span class="caps">XHTML</span> vs. <span class="caps">CSS</span></a>,
+in which he takes me to task about assumptions like the lowest level
+header on a page being a blog posting title. True enough; it was an
+off-the-top-of-my-head example, rather than anything constructive. And,
+although I still don&#8217;t think it&#8217;s unreasonable to assume that a link
+with a text node containing a single hash is a permalink, that&#8217;s
+certainly no way to catch all (or even most) weblogs&#8217; permalinks — the
+hash is a convention that isn&#8217;t all that closely stuck to. Nonetheless,
+this doesn&#8217;t obscure my main point, and Tantek agrees; that optimising
+everything for machine readability at the expense of humanity is a bad
+plan. Having a machine-readable format (<span class="caps">RSS</span>) and a human-readable format
+(<span class="caps">HTML</span>) is one possible solution, but it comes at the expense of extra
+work (even given that most weblogging systems will &#8220;automatically&#8221;
+create the <span class="caps">RSS</span> for you), but it not being the best possible solution was
+the point of Anil&#8217;s original assertion. Tantek also notes that
+hyperlinks that are permalinks should possibly explicity specify a rel
+attribute of &#8220;bookmark&#8221;, which I didn&#8217;t know at all. That&#8217;s a reasonable
+use of pre-existing <span class="caps">XHTML</span> semantics, rather than overloading a class
+name. Both Rick over at <a href="http://techno-weenie.com/archives/2002/11/24/000058.php#more">techno weenie</a> and <a href="http://simon.incutio.com/archive/2002/11/24/#syndicatingBlogsWithXHTML">Simon Willison</a> thought
+of embedding elements from other namespaces into your <span class="caps">XHTML</span> (so you add
+\&lt;rss:title> tags around your post titles), but, as Rick points out, &#8221;
+that might get a bit messy&#8221;. He&#8217;s not wrong, and it&#8217;s horrifically
+confusing for the average punter, which means that we&#8217;re optimising for
+machines again. If the rel=&#8221;bookmark&#8221; thing takes off then you could
+reverse a post title back from that, I suppose, since every post has
+only one permalink and every post has one or no titles; in essence,
+you&#8217;d find a header level that matched a permalink and assume that
+<em>that</em> was the post title. It&#8217;s a possibility, anyway. This needs more
+thought, but with all those big brains out there working on it I&#8217;m sure
+someone will come up with something revolutionary eventually&#8230;&nbsp;&#8212;&#8212;-</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2002/11/24/hacks/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2002/11/25/visions/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2002/11/25/xhtml/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2002/11/25/xhtml/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

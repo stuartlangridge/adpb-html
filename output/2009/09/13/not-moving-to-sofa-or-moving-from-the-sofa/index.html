@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Not moving to Sofa (or moving from the sofa)</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2009/09/13/not-moving-to-sofa-or-moving-from-the-sofa/"><time 
+			class="dt-published" datetime="2009-09-13T10:22:00">Sep 13 2009</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2009/09/13/not-moving-to-sofa-or-moving-from-the-sofa/" title="Permalink to Not moving to Sofa (or moving from the sofa)" rel="bookmark">Not moving to Sofa (or moving from the&nbsp;sofa)</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>This weekend I&#8217;ve been playing with <a href="http://github.com/jchris/sofa">Sofa</a>, <a href="http://jchrisa.net">jchris</a>&#8216;s CouchDB blog
+software. I like CouchDB, and I&#8217;m increasingly starting to thing that
+although Wordpress is pretty good, it&#8217;s the wrong path; it&#8217;s serious
+evolution running on a dead-end evolutionary path. Like an
+electric-powered go-faster-striped penny farthing. So a move away is
+something worth investigating. Sofa is pretty feature-poor by comparison
+with Wordpress, but I actually don&#8217;t care about almost all of the
+Wordpress features anyway. Sofa&#8217;s not too hard to set up, but then I
+work with CouchDB all the time anyway. It&#8217;d likely be harder for others.
+Importing posts from Wordpress took the longest to do, because I had to
+write a script to do it, and overcome a Wordpress problem. When
+exporting posts from Wordpress (under Tools > Export) the downloaded
+export <span class="caps">XML</span> file ended up being truncated because the export script took
+too long to run (I&#8217;ve been posting here for seven years; it&#8217;s built up.)
+So I added <code>php_value max_execution_time 600</code> to my Wordpress
+<code>.htaccess</code> file and that made it work. After that, and after installing
+Sofa to CouchDB with CouchApp (as per Sofa instructions), a&nbsp;script:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">datetime</span><span class="o">,</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span> <span class="k">as</span> <span class="n">ET</span>
+<span class="kn">import</span> <span class="nn">couchdb.client</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">couchdb</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Server</span><span class="p">(</span><span class="s">&quot;http://localhost:5984&quot;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">add_credentials</span><span class="p">(</span><span class="s">&quot;sil&quot;</span><span class="p">,</span><span class="s">&quot;couchdb&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;Trying to connect to database...&quot;</span><span class="p">,</span>
+<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;#&quot;</span><span class="p">,</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="s">&quot;blogdb&quot;</span><span class="p">]</span>
+        <span class="k">print</span> <span class="s">&quot;succeeded.&quot;</span>
+        <span class="k">break</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">parse_items</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="n">things</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">total_things</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">&quot;channel/item&quot;</span><span class="p">):</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;link&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">8</span><span class="p">:</span> <span class="k">continue</span> <span class="c"># skip ones without proper URLs</span>
+        <span class="n">created</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}post_date_gmt&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">created</span> <span class="o">==</span> <span class="s">&quot;0000-00-00 00:00:00&quot;</span><span class="p">:</span> <span class="n">created</span> <span class="o">=</span> <span class="s">&quot;2000-01-01 00:00:00&quot;</span>
+        <span class="n">created</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">created</span><span class="p">,</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">)</span>
+        <span class="n">pid</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">created</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s">&quot;</span><span class="p">),</span> <span class="n">parts</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+        <span class="n">post</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&quot;_id&quot;</span><span class="p">:</span> <span class="n">pid</span><span class="p">,</span>
+            <span class="s">&quot;format&quot;</span><span class="p">:</span> <span class="s">&quot;html&quot;</span><span class="p">,</span>
+            <span class="s">&quot;body&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://purl.org/rss/1.0/modules/content/}encoded&quot;</span><span class="p">),</span>
+            <span class="s">&quot;html&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://purl.org/rss/1.0/modules/content/}encoded&quot;</span><span class="p">),</span>
+            <span class="s">&quot;author&quot;</span><span class="p">:</span> <span class="s">&quot;sil&quot;</span><span class="p">,</span>
+            <span class="s">&quot;created_at&quot;</span><span class="p">:</span> <span class="n">created</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y/%m/</span><span class="si">%d</span><span class="s"> %H:%M:%S +0000&quot;</span><span class="p">),</span>
+            <span class="s">&quot;type&quot;</span><span class="p">:</span><span class="s">&quot;post&quot;</span><span class="p">,</span>
+            <span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;title&quot;</span><span class="p">),</span>
+            <span class="s">&quot;slug&quot;</span><span class="p">:</span> <span class="n">pid</span><span class="p">,</span>
+            <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">x</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">),</span><span class="s">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">&quot;category&quot;</span><span class="p">)])</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">post</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]:</span> <span class="n">post</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="s">&quot;slug&quot;</span><span class="p">]</span>
+        <span class="n">things</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment&quot;</span><span class="p">):</span>
+            <span class="n">approved</span> <span class="o">=</span> <span class="n">comment</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment_approved&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">approved</span> <span class="o">!=</span> <span class="s">&quot;1&quot;</span><span class="p">:</span> <span class="k">continue</span>
+            <span class="n">c_created</span> <span class="o">=</span> <span class="n">comment</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment_date_gmt&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">c_created</span> <span class="ow">or</span> <span class="n">c_created</span> <span class="o">==</span> <span class="s">&quot;0000-00-00 00:00:00&quot;</span><span class="p">:</span> 
+                <span class="n">c_created</span> <span class="o">=</span> <span class="s">&quot;2000-01-01 00:00:00&quot;</span>
+            <span class="n">comment_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s">&quot;_id&quot;</span><span class="p">:</span> <span class="s">&quot;comment</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">comment</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment_id&quot;</span><span class="p">),</span>
+                <span class="s">&quot;commenter&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment_author&quot;</span><span class="p">),</span>
+                    <span class="s">&quot;email&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment_author_email&quot;</span><span class="p">),</span>
+                    <span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment_author_url&quot;</span><span class="p">),</span>
+                <span class="p">},</span>
+                <span class="s">&quot;created_at&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">c_created</span><span class="p">,</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y/%m/</span><span class="si">%d</span><span class="s"> %H:%M:%S +0000&quot;</span><span class="p">),</span>
+                <span class="s">&quot;format&quot;</span><span class="p">:</span> <span class="s">&quot;html&quot;</span><span class="p">,</span>
+                <span class="s">&quot;html&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment_content&quot;</span><span class="p">),</span>
+                <span class="s">&quot;comment&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&quot;{http://wordpress.org/export/1.0/}comment_content&quot;</span><span class="p">),</span>
+                <span class="s">&quot;post_id&quot;</span><span class="p">:</span> <span class="n">pid</span><span class="p">,</span>
+                <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;comment&quot;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;commenter&quot;</span><span class="p">][</span><span class="s">&quot;name&quot;</span><span class="p">]:</span>
+                <span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;commenter&quot;</span><span class="p">][</span><span class="s">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Anonymous Coward&quot;</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;commenter&quot;</span><span class="p">][</span><span class="s">&quot;email&quot;</span><span class="p">]:</span>
+                <span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;commenter&quot;</span><span class="p">][</span><span class="s">&quot;email&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;unknown@mailinator.com&quot;</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;commenter&quot;</span><span class="p">][</span><span class="s">&quot;url&quot;</span><span class="p">]:</span>
+                <span class="k">del</span><span class="p">(</span><span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;commenter&quot;</span><span class="p">][</span><span class="s">&quot;url&quot;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&quot;^https?://[^.]*..*/&quot;</span><span class="p">,</span> <span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;commenter&quot;</span><span class="p">][</span><span class="s">&quot;url&quot;</span><span class="p">]):</span>
+                    <span class="k">del</span><span class="p">(</span><span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;commenter&quot;</span><span class="p">][</span><span class="s">&quot;url&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">comment_data</span><span class="p">[</span><span class="s">&quot;comment&quot;</span><span class="p">]:</span> <span class="k">continue</span>
+            <span class="n">things</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comment_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">things</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
+            <span class="n">total_things</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">things</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s">&quot;Saving </span><span class="si">%s</span><span class="s"> things (so far </span><span class="si">%s</span><span class="s"> in total)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">things</span><span class="p">),</span> <span class="n">total_things</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">things</span><span class="p">:</span> 
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">d</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&quot;Couldn&#39;t update&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="s">&quot;_id&quot;</span><span class="p">]</span>
+                    <span class="k">raise</span>
+            <span class="n">things</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">things</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Saving final </span><span class="si">%s</span><span class="s"> things&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">things</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">things</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Loading export file&quot;</span>
+    <span class="n">wp_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">wp_file</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;Parsing export file&quot;</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;Creating posts and comments&quot;</span>
+    <span class="n">parse_items</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>This script is totally, totally hardcoded to do the things that I want
+it to do, so you can&#8217;t just run it, you&#8217;ll need to change it. It also
+doesn&#8217;t recover from errors much, either. Anyway, to run the&nbsp;script:</p>
+<div class="highlight"><pre><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">DELETE</span> <span class="n">http</span><span class="o">:</span><span class="c1">//sil:couchdb@localhost:5984/blogdb # delete existing DB </span>
+<span class="n">couchapp</span> <span class="n">push</span> <span class="p">.</span> <span class="n">http</span><span class="o">:</span><span class="c1">//sil:couchdb@127.0.0.1:5984/blogdb # install Sofa</span>
+<span class="n">python</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">import</span><span class="p">.</span><span class="n">py</span> <span class="n">wordpress</span><span class="mf">.2009</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mf">12.</span><span class="n">xml</span> <span class="err">#</span> <span class="n">import</span> <span class="n">all</span> <span class="n">Wordpress</span> <span class="n">posts</span>
+</pre></div>
+
+
+<p>Then, of course, there&#8217;s a problem. If you look at <a href="http://jchrisa.net/drl/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=5">jchris&#8217;s blog</a>,
+the URLs are all horrible: the index page is
+<code>http://jchrisa.net/drl/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=5</code>,
+and an individual post is
+<code>http://jchrisa.net/drl/_design/sofa/_show/post/Book-progress</code>. I want
+my nice Wordpress URLs - <code>/</code> for the index, <code>/2009/09/13/slug-name</code> for
+a post. This is, of course, doable by putting CouchDB behind some sort
+of proxy. Some people would use nginx for this; since I have Apache
+running on our server anyway, I went with mod_rewrite and&nbsp;mod_proxy:</p>
+<div class="highlight"><pre><span class="n">RewriteEngine</span> <span class="n">on</span>
+<span class="cp"># Front page</span>
+<span class="n">RewriteRule</span> <span class="o">^</span><span class="err">$</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:5984/blogdb/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=5 [P]</span>
+<span class="cp"># assets</span>
+<span class="n">RewriteRule</span> <span class="n">assets</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="p">(.</span><span class="o">*</span><span class="p">)</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:5984/_utils/script/$1 [P]</span>
+<span class="n">RewriteRule</span> <span class="n">assets</span><span class="o">/</span><span class="p">(.</span><span class="o">*</span><span class="p">)</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:5984/blogdb/_design/sofa/$1 [P]</span>
+<span class="cp"># feed</span>
+<span class="n">RewriteRule</span> <span class="n">feed</span><span class="o">/</span><span class="n">atom</span> <span class="o">/</span><span class="n">blogdb</span><span class="o">/</span><span class="n">_design</span><span class="o">/</span><span class="n">sofa</span><span class="o">/</span><span class="n">_list</span><span class="o">/</span><span class="n">index</span><span class="o">/</span><span class="n">recent</span><span class="o">-</span><span class="n">posts</span><span class="o">?</span><span class="n">descending</span><span class="o">=</span><span class="nb">true</span><span class="o">&amp;</span><span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="o">&amp;</span><span class="n">format</span><span class="o">=</span><span class="n">atom</span> <span class="p">[</span><span class="n">P</span><span class="p">]</span>
+<span class="cp"># /2009</span>
+<span class="n">RewriteRule</span> <span class="o">^</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/?</span><span class="err">$</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:5984/blogdb/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=500&amp;startkey=&quot;$1/12/32&quot;&amp;endkey=&quot;$1/01/00&quot; [P]</span>
+<span class="cp"># /2009/08</span>
+<span class="n">RewriteRule</span> <span class="o">^</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/?</span><span class="err">$</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:5984/blogdb/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=500&amp;startkey=&quot;$1/$2/32&quot;&amp;endkey=&quot;$1/$2/00&quot; [P]</span>
+<span class="cp"># /2009/08/12</span>
+<span class="n">RewriteRule</span> <span class="o">^</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/?</span><span class="err">$</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:5984/blogdb/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=500&amp;startkey=&quot;$1/$2/$3 24&quot;&amp;endkey=&quot;$1/$2/$3 00&quot; [P]</span>
+<span class="cp"># /2009/08/12/post.html</span>
+<span class="n">RewriteRule</span> <span class="o">^</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/</span><span class="n">post</span><span class="p">.</span><span class="n">html</span><span class="err">$</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:5984/blogdb/_design/sofa/_show/post/post.html</span>
+<span class="cp"># /2009/08/12/slug</span>
+<span class="n">RewriteRule</span> <span class="o">^</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/</span><span class="p">([</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span><span class="o">/?</span><span class="p">(.</span><span class="o">*</span><span class="p">)</span><span class="err">$</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:5984/blogdb/_design/sofa/_show/post/$1-$2-$3-$4 [P]</span>
+</pre></div>
+
+
+<p>All well and good. But&#8230;then we hit the problem, and it&#8217;s not a very
+resolveable problem. You see, Sofa writes out <span class="caps">HTML</span>, and it writes out
+links and so on in the nasty Sofa format. So, you can poke Sofa&#8217;s <span class="caps">JS</span>
+files to write them out differently, which I&#8217;ve done (edit <code>indexPath</code>,
+<code>feedPath</code>, and <code>post.link</code> in <code>sofa/lists/index.js</code>), but changing
+things like the <span class="caps">URL</span> that comments are fetched from is harder. You see,
+the Couch JavaScript files assume they are running <em>on</em> Couch, and can
+therefore do things like inspect the current <span class="caps">URL</span> to work out which
+database they&#8217;re in; using one of jchris&#8217;s URLs, for example, you see
+<code>http://jchrisa.net/drl/_design/sofa/_show/post/Book-progress</code>, with the
+database name, design document name, and post <span class="caps">ID</span> highlighted. If you&#8217;ve
+rewritten your <span class="caps">URL</span> to /2009/09/13/book-progress, that doesn&#8217;t work.
+Fixing this is awkward, because view URLs are calculated by
+<code>jquery.couch.js</code>, which is a stock part of Couch, and so a fix would
+involve forking rather a lot of Sofa. Apparently there&#8217;s work going on
+by the Couch team to do native <span class="caps">URL</span> rewrites inside Couch itself. My
+migration to Sofa will likely have to wait until then, unless I write my
+own CouchDB blogging engine, which is more than a weekend&#8217;s job I fear.
+Shame. At least now I don&#8217;t have to worry about how I get CouchDB 0.10
+running on ancient&nbsp;Debian&#8230;</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2009/09/07/lugradio-live-2009-2/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2009/09/21/zen-coding-for-gedit/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2009/09/13/not-moving-to-sofa-or-moving-from-the-sofa/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2009/09/13/not-moving-to-sofa-or-moving-from-the-sofa/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

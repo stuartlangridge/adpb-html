@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Redesigning thoughts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2004/03/17/redesigning/"><time 
+			class="dt-published" datetime="2004-03-17T11:00:00">Mar 17 2004</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2004/03/17/redesigning/" title="Permalink to Redesigning thoughts" rel="bookmark">Redesigning&nbsp;thoughts</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Got bored of the old design, did a new one. The old one’s still there;
+just switch stylesheets in your browser.<br />
+I’m not totally happy with the new one, for a couple of technical
+reasons and one artistic reason. However, there are some nice little
+tricks in it, I think.<br />
+Nice trick no. 1 is that the date, top right of the <a href="http://www.kryogenix.org/">front page</a>, is
+the date of the most recent post. It’s absolutely positioned up there,
+and that date is identified with the <span class="caps"><span class="caps">CSS</span></span>
+selector div#blog h2.date:first-child. Naturally, this will only work
+in browsers that support such selectors.<br />
+Nice trick no. 2 is that the most recent post looks like a lead story,
+which is to say that it’s bigger than the others. Again, just standard
+use of <span class="caps"><span class="caps">CSS</span></span> selectors, in this case div#blog
+h2.date:first-child + div.item (which <a href="http://gallery.theopalgroup.com/selectoracle/" title="according to the SelectOracle, which is invaluable when doing this sort of thing">means</a> “selects any div element
+with a class attribute that contains the word item that immediately
+follows a h2 element with a class attribute that contains the word date
+and that is a first child that is a descendant of a div element with an
+id attribute that equals blog“, or in plainer (but less rigorous)
+English, “the post item that immediately follows the first date
+displayed in the weblog“, i.e., the first post). Blah blah blah browsers
+that support such selectors.<br />
+I am also, I confess it, childishly pleased at how different it is from
+the last one, given that I’ve just changed the
+<span class="caps"><span class="caps">CSS</span></span>. Yeah, yeah, I <em>know</em> that this is the
+point, and I <em>know</em> the <a href="http://www.csszengarden.com/">Zen garden</a> demonstrates this every day and a
+lot better than I do, but it’s been some time since I’ve had two
+successive designs that were very different and where I was pretty
+pleased with both. Plus, Plato looks cool up there at the top, huh?<br />
+Stuff I’m not happy with:<br />
+You can’t make stuff <em>really</em> take on the irregular column look of a
+newspaper, because you can’t allow arbitrary lengths on the columns and
+still have a space-filling design. That’s why they’re all fixed length.
+Boo hiss to that, I say, but there is no way around it. I could, I
+suppose, work out one single space-filling design and then absolutely
+position stuff to get it, but that wouldn’t be a lot better than this
+and would be a shitload more work with a ruler, so I haven’t done that.
+Fixed-length columns aren’t good because they cut off longer posts,
+obviously, as well as making the design too regular (two rows of
+stories, rather than them all fitting in randomly).<br />
+There’s no way, as far as I can tell, using floats, to have any story
+at all appear on the left of the first story. So it has to be the
+leftmost. The design fudges this a bit by putting the metadata sidebar
+on the left so it looks a bit like a story, but that’s imperfect and
+fudgy.<br />
+You can’t apply float and position:relative to a thing to get it to be
+floated but then get treated as absolutely positioned for the purposes
+of absolutely positioning children relative to it. There is a p.comments
+paragraph at the bottom of every post (so on most posts it would be
+invisible because posts are longer than the allocated length, as above).
+I wanted it to appear below the post title but above the post text, like
+a byline. But you can’t do that; you can’t say “move it up by the length
+of the post” because you don’t know how long the post <em>is</em>. My intention
+was to put position:relative on the div containing a post, and then say
+“position:absolute; top:height-of-title; left:0” on p.comments, which
+would position it height-of-title px below the top of its nearest
+absolutely-positioned ancestor (which would be the post itself, because
+of the position:relative) and lo, that would look like a byline. But it
+doesn’t work; Moz doesn’t seem to recognise it as absolutely positioned,
+and so p.comments styled like that appears at the top of the page
+instead of the top of the post it’s in. Can’t think of a way of doing
+this without JavaScript, which is cheating (although I might do it
+anyway).<br />
+The “Regular Features” bit looks a bit pants. I wish I had one ounce of
+artistic talent.<br />
+I can’t have different columns be different widths without hardcoding
+the widths, which is dead fudgy again.<br />
+You can’t format a post into newspaper columns without doing something
+like <a href="http://markpasc.org/weblog/2001/09/14_ihts_flowing_columns.html">the <span class="caps"><span class="caps">IHT</span></span>’s JavaScript super-complex
+thing</a> or finding a browser which supports the
+<a href="http://www.w3.org/TR/2001/WD-css3-multicol-20010118/"><span class="caps"><span class="caps">CSS3</span></span> multicol spec</a> (none, as far as I can
+tell), so, dammit, I have to just live without it.<br />
+I can’t think of a way of putting a “More >>” thing at the bottom of
+posts if they overflow either, without using <span class="caps"><span class="caps">JS</span>
+</span>(which, again, I am thinking of doing).<br />
+I can see how to fix most of my problems (not the one about having the
+artistic ability of a glass hammer) with <span class="caps">JS</span>, I’m just not sure whether I
+want a huge blizzard of <span class="caps">JS</span> to run when someone loads the front page…<br />
+<strong>Addendum</strong>: I keep doing redesigns, and then you look back at old
+posts which say “done a new design!” and there’s no clue what that
+design was. So, new policy: all new designs get a screenshot stored away
+so I can marvel at them over time. <a href="http://www.kryogenix.org/designs/daily/daily-screenshot.png">This design’s screenshot</a>, <a href="http://www.kryogenix.org/designs/pretty/pretty-screenshot.png">and
+the previous one</a>.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2004/03/16/modemlights/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2004/03/18/whack/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2004/03/17/redesigning/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/03/17/redesigning/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

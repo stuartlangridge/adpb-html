@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Throttling or slowing down network interfaces on Ubuntu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2014/06/25/throttling-or-slowing-down-network-interfaces-on-ubuntu/"><time 
+			class="dt-published" datetime="2014-06-25T09:58:00">Jun 25 2014</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2014/06/25/throttling-or-slowing-down-network-interfaces-on-ubuntu/" title="Permalink to Throttling or slowing down network interfaces on Ubuntu" rel="bookmark">Throttling or slowing down network interfaces on&nbsp;Ubuntu</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Michael Mahemoff, on <a href="https://plus.google.com/u/0/+MichaelMahemoff/posts/1K9fgqfn8zY">Google Plus</a>, 
+points out an <a href="http://www.railsillustrated.com/simulating-a-web-experience.html">idea from the Rails people</a> to slow down your network connection to your local machine in order to simulate the experience of using the web, where slow connections are common (especially on&nbsp;mobile).</p>
+<p>The commands they mention are for <span class="caps">OS</span> X, though. To do this in Ubuntu you want the&nbsp;following:</p>
+<p>Slow down your network connection to localhost by adding a 500ms&nbsp;delay:</p>
+<p><code>sudo tc qdisc add dev lo root handle 1:0 netem delay 500msec</code></p>
+<p>If you do this, then <code>ping localhost</code>, you&#8217;ll see that packets now take a second to return (because the 500ms delay applies on the way out and the way&nbsp;back).</p>
+<p>To remove this&nbsp;delay:</p>
+<p><code>sudo tc qdisc del dev lo root</code></p>
+<p>Since those commands are pretty alarmingly impenetrable, I put together a tiny little app to do it for you instead. Grab the Python code below and run it, and then you can enable throttling by just ticking a box, and drag the sliders to set the amount you want to slow down your connection. Try it next time you&#8217;re building an app which talks to the network &#8212; you may find it enlightening (although depressing) how badly your app (or the framework you&#8217;re using) deals with slow connections&#8230; and half your users will have those slow connections. So we need to get better at dealing with&nbsp;them.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">Gtk</span><span class="p">,</span> <span class="n">GLib</span>
+<span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">fcntl</span><span class="o">,</span> <span class="nn">struct</span><span class="o">,</span> <span class="nn">array</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">which</span><span class="p">(</span><span class="n">program</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="k">def</span> <span class="nf">is_exe</span><span class="p">(</span><span class="n">fpath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">X_OK</span><span class="p">)</span>
+
+    <span class="n">fpath</span><span class="p">,</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">program</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fpath</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_exe</span><span class="p">(</span><span class="n">program</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">program</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&quot;PATH&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="p">):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;&quot;&#39;</span><span class="p">)</span>
+            <span class="n">exe_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">program</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">is_exe</span><span class="p">(</span><span class="n">exe_file</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">exe_file</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">all_interfaces</span><span class="p">():</span>
+    <span class="n">max_possible</span> <span class="o">=</span> <span class="mi">128</span> <span class="c"># arbitrary. raise if needed.</span>
+    <span class="nb">bytes</span> <span class="o">=</span> <span class="n">max_possible</span> <span class="o">*</span> <span class="mi">32</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="se">\0</span><span class="s">&#39;</span> <span class="o">*</span> <span class="nb">bytes</span><span class="p">)</span>
+    <span class="n">outbytes</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;iL&#39;</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">ioctl</span><span class="p">(</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span>
+    <span class="mh">0x8912</span><span class="p">,</span> <span class="c"># SIOCGIFCONF</span>
+    <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;iL&#39;</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">names</span><span class="o">.</span><span class="n">buffer_info</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">namestr</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="n">tostring</span><span class="p">()</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">outbytes</span><span class="p">,</span> <span class="mi">40</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">namestr</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">16</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\0</span><span class="s">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ip</span> <span class="o">=</span> <span class="n">namestr</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">20</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span>
+        <span class="n">friendly</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&quot;lo&quot;</span><span class="p">:</span> <span class="n">friendly</span> <span class="o">=</span> <span class="s">&quot;localhost&quot;</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;eth&quot;</span><span class="p">):</span> <span class="n">friendly</span> <span class="o">=</span> <span class="s">&quot;Wired connection </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;eth&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;wlan&quot;</span><span class="p">):</span> <span class="n">friendly</span> <span class="o">=</span> <span class="s">&quot;Wifi connection </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;eth&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">))</span>
+        <span class="n">lst</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span><span class="p">(</span>
+            <span class="p">{</span><span class="s">&quot;friendly&quot;</span><span class="p">:</span> <span class="n">friendly</span><span class="p">,</span> <span class="s">&quot;action_timer&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;current_real_value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+             <span class="s">&quot;toggled_by_code&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">lst</span>
+
+<span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">win</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Window</span><span class="p">()</span>
+        <span class="n">win</span><span class="o">.</span><span class="n">set_size_request</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+        <span class="n">win</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;destroy&quot;</span><span class="p">,</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">)</span>
+        <span class="n">win</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;Network Throttle&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span> <span class="o">=</span> <span class="n">all_interfaces</span><span class="p">()</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">tbl</span><span class="o">.</span><span class="n">set_row_spacings</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">tbl</span><span class="o">.</span><span class="n">set_col_spacings</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">tbl</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">Gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&quot;Throttled&quot;</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">delay_label</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">)</span>
+        <span class="n">delay_label</span><span class="o">.</span><span class="n">set_size_request</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+        <span class="n">tbl</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">delay_label</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">tbl</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">Gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">tbl</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">Gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s">&quot;friendly&quot;</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">tb</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">CheckButton</span><span class="p">()</span>
+            <span class="n">tbl</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">tb</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">tb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;toggled&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">toggle_button</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s">&quot;checkbox&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tb</span>
+            <span class="n">sl</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">HScale</span><span class="p">()</span>
+            <span class="n">sl</span><span class="o">.</span><span class="n">set_draw_value</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">sl</span><span class="o">.</span><span class="n">set_increments</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="n">sl</span><span class="o">.</span><span class="n">set_range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">980</span><span class="p">)</span>
+            <span class="n">sl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;value_changed&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_changed</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="n">sl</span><span class="o">.</span><span class="n">set_sensitive</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">tbl</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">sl</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s">&quot;slider&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sl</span>
+            <span class="n">row</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">box</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">spacing</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">box</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">tbl</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">win</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+        <span class="n">win</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_tc</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">toggle_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;slider&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_sensitive</span><span class="p">(</span><span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;toggled_by_code&quot;</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">&quot;ignoring toggle button because it was toggled by code, not user&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;toggled_by_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">return</span>
+        <span class="k">print</span> <span class="s">&quot;toggled to&quot;</span><span class="p">,</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">turn_on_throttling</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">turn_off_throttling</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">value_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slider</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;value_changed&quot;</span><span class="p">,</span> <span class="n">slider</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">slider</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;current_real_value&quot;</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">&quot;Not setting if because it already is that value&quot;</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">turn_on_throttling</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_tc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;getting tc&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">def</span> <span class="nf">get_tc_output</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">condition</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">&quot;got tc output&quot;</span><span class="p">,</span> <span class="n">condition</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">print</span> <span class="s">&quot;got tc line&quot;</span><span class="p">,</span> <span class="n">line</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;qdisc&quot;</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;netem&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span><span class="p">[</span><span class="n">parts</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;delay&quot;</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;ms&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)}</span>
+            <span class="k">if</span> <span class="n">condition</span> <span class="o">==</span> <span class="n">GLib</span><span class="o">.</span><span class="n">IO_IN</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">elif</span> <span class="n">condition</span> <span class="o">==</span> <span class="n">GLib</span><span class="o">.</span><span class="n">IO_HUP</span><span class="o">|</span><span class="n">GLib</span><span class="o">.</span><span class="n">IO_IN</span><span class="p">:</span>
+                <span class="n">GLib</span><span class="o">.</span><span class="n">source_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_id</span><span class="p">)</span>
+                <span class="k">print</span> <span class="s">&quot;throttled IFs are&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_throttled_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="n">pid</span><span class="p">,</span> <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">spawn_async</span><span class="p">(</span>
+            <span class="p">[</span><span class="s">&quot;tc&quot;</span><span class="p">,</span> <span class="s">&quot;qdisc&quot;</span><span class="p">],</span>
+            <span class="n">flags</span><span class="o">=</span><span class="n">GLib</span><span class="o">.</span><span class="n">SpawnFlags</span><span class="o">.</span><span class="n">SEARCH_PATH</span><span class="p">,</span>
+            <span class="n">standard_output</span><span class="o">=</span><span class="bp">True</span>
+        <span class="p">)</span>
+        <span class="n">io</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">IOChannel</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_id</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">add_watch</span><span class="p">(</span><span class="n">GLib</span><span class="o">.</span><span class="n">IO_IN</span><span class="o">|</span><span class="n">GLib</span><span class="o">.</span><span class="n">IO_HUP</span><span class="p">,</span> <span class="n">get_tc_output</span><span class="p">,</span> 
+            <span class="n">priority</span><span class="o">=</span><span class="n">GLib</span><span class="o">.</span><span class="n">PRIORITY_HIGH</span><span class="p">)</span>
+        <span class="n">pid</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">actually_turn_on_throttling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;actually throttling&quot;</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="s">&quot;to&quot;</span><span class="p">,</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s">&quot;pkexec tc qdisc replace dev </span><span class="si">%s</span><span class="s"> root handle 1:0 netem delay </span><span class="si">%s</span><span class="s">msec&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">interface</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">),)</span>
+        <span class="k">print</span> <span class="n">cmd</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">turn_on_throttling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;slider&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;action_timer&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;aborting previous throttle request for&quot;</span><span class="p">,</span> <span class="n">interface</span>
+            <span class="n">GLib</span><span class="o">.</span><span class="n">source_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;action_timer&quot;</span><span class="p">])</span>
+        <span class="k">print</span> <span class="s">&quot;throttling&quot;</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="s">&quot;to&quot;</span><span class="p">,</span> <span class="n">val</span>
+        <span class="n">source_id</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">timeout_add_seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">actually_turn_on_throttling</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source_id</span>
+
+    <span class="k">def</span> <span class="nf">actually_turn_off_throttling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;actually unthrottling&quot;</span><span class="p">,</span> <span class="n">interface</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s">&quot;pkexec tc qdisc del dev </span><span class="si">%s</span><span class="s"> root&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">interface</span><span class="p">,)</span>
+        <span class="k">print</span> <span class="n">cmd</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">turn_off_throttling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;action_timer&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;aborting previous throttle request for&quot;</span><span class="p">,</span> <span class="n">interface</span>
+            <span class="n">GLib</span><span class="o">.</span><span class="n">source_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;action_timer&quot;</span><span class="p">])</span>
+        <span class="k">print</span> <span class="s">&quot;unthrottling&quot;</span><span class="p">,</span> <span class="n">interface</span>
+        <span class="n">source_id</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">timeout_add_seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">actually_turn_off_throttling</span><span class="p">,</span> <span class="n">interface</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source_id</span>
+
+    <span class="k">def</span> <span class="nf">update_throttled_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">throttled_ifs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">throttled_ifs</span><span class="p">:</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">current</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s">&quot;toggled_by_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">v</span><span class="p">[</span><span class="s">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+                    <span class="n">delay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">throttled_ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s">&quot;delay&quot;</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s">&quot;current_real_value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">delay</span>
+                    <span class="n">v</span><span class="p">[</span><span class="s">&quot;slider&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+                    <span class="n">v</span><span class="p">[</span><span class="s">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">which</span><span class="p">(</span><span class="s">&quot;pkexec&quot;</span><span class="p">):</span> 
+        <span class="k">print</span> <span class="s">&quot;You need pkexec installed.&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="p">()</span>
+    <span class="n">Gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2014/05/15/mozilla-add-html5-drm-sadly-but-inevitably/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2014/06/30/facebook-and-the-button-of-happiness/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2014/06/25/throttling-or-slowing-down-network-interfaces-on-ubuntu/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/06/25/throttling-or-slowing-down-network-interfaces-on-ubuntu/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Working with the Ubuntu Messaging Menu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2011/01/16/working-with-the-ubuntu-messaging-menu/"><time 
+			class="dt-published" datetime="2011-01-16T14:44:00">Jan 16 2011</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2011/01/16/working-with-the-ubuntu-messaging-menu/" title="Permalink to Working with the Ubuntu Messaging Menu" rel="bookmark">Working with the Ubuntu Messaging&nbsp;Menu</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Today I had a frustrating time working with the Ubuntu Messaging Menu,
+so here are some notes for the next time I hit this problem. Thanks
+awfully to <a href="http://twitter.com/kenvandine">Ken Vandine</a> for clearing up my&nbsp;confusion!</p>
+<p>There is little to no documentation (at the moment) about how to
+properly integrate with the Messaging Menu from a program. The
+specification has an <a href="https://wiki.ubuntu.com/MessagingMenu/#API"><span class="caps">API</span></a> section, which is not programming
+documentation, and it&#8217;s confusing. It says, in&nbsp;part:</p>
+<blockquote>
+<p>While running, a registered application can also provide either a
+single count of new messages, or a set of separate message sources
+(for example, mail folders or syndicated feeds) with their own counts
+or times. For example, a Laconica client may provide only the single
+count, because it presents its updates in a single list and not as
+separately navigable items. A Usenet newsreader, on the other hand,
+may provide an item for each newsgroup that has new&nbsp;messages.</p>
+</blockquote>
+<p>This suggests that an item in the Messaging Menu, for a specific
+program, should be able to provide a count of messages, <em>or</em> have a
+number of &#8220;sub-items&#8221; (message sources) which each have their own count.
+The mockup image on that wiki page also suggests that this is the case:
+see &#8220;GMail Notify&#8221; in the&nbsp;mockup:</p>
+<p><img alt="mockup" src="https://wiki.ubuntu.com/MessagingMenu?action=AttachFile&amp;do=get&amp;target=mockup.jpg" /></p>
+<p>As far as I can tell, this isn&#8217;t possible. First, a little&nbsp;terminology.</p>
+<p><img alt="menu" src="http://www.kryogenix.org/images/messaging-menu-writeup/names.png" /></p>
+<p>A program in the messaging menu can have three types of menu entry. The
+main entry for a program I&#8217;ve called the <strong>server</strong>, because that&#8217;s how
+it&#8217;s referred to in code. If a program is <em>registered</em> with the
+messaging menu, the server item will appear in the
+<abbr title="Messaging Menu"><span class="caps">MM</span></abbr> even if the program isn&#8217;t
+running. A program can also, if registered, add extra <strong>shortcuts</strong> to
+the menu to do specific things. Finally, while the program is running,
+it may add one or more message <strong>sources</strong> to the menu which show a
+count or time for the messages that have arrived for that source; the
+mail application would have one source for each mail account you have,
+for&nbsp;example.</p>
+<p>So, according to the mockup and the spec, and using our new terminology,
+it should be possible to set a message count on a <strong>server</strong>. It is&nbsp;not.</p>
+<p><img alt="count on server" src="http://www.kryogenix.org/images/messaging-menu-writeup/oneline.png" /></p>
+<p>Instead, you have to create both a <strong>server</strong> <em>and</em> at least one
+<strong>source</strong>.</p>
+<p>Here I&#8217;m only going to talk about adding <span class="caps">MM</span> items while your program is
+running. If you want the server item to appear in the <span class="caps">MM</span> even when your
+program is <em>not</em> running (that is, make it so people can start your
+program <em>from</em> the <span class="caps">MM</span>) then <a href="https://wiki.ubuntu.com/MessagingMenu/#API">read up on registration in the spec</a>.</p>
+<p>To create the <strong>server</strong>&nbsp;item:</p>
+<div class="highlight"><pre><span class="c"># get the indicate module, which does all the work</span>
+<span class="kn">import</span> <span class="nn">indicate</span>
+<span class="c"># Create a server item</span>
+<span class="n">mm</span> <span class="o">=</span> <span class="n">indicate</span><span class="o">.</span><span class="n">indicate_server_ref_default</span><span class="p">()</span>
+<span class="c"># If someone clicks your server item in the MM, fire the server-display signal</span>
+<span class="n">mm</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;server-display&quot;</span><span class="p">,</span> <span class="n">show_window_function</span><span class="p">)</span>
+<span class="c"># Set the type of messages that your item uses. It&#39;s not at all clear which types</span>
+<span class="c"># you&#39;re allowed to use, here.</span>
+<span class="n">mm</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="s">&quot;message.im&quot;</span><span class="p">)</span>
+<span class="c"># You must specify a .desktop file: this is where the MM gets the name of your</span>
+<span class="c"># app from.</span>
+<span class="n">mm</span><span class="o">.</span><span class="n">set_desktop_file</span><span class="p">(</span><span class="s">&quot;/usr/share/applications/myapp.desktop&quot;</span><span class="p">)</span>
+<span class="c"># Show the item in the MM.</span>
+<span class="n">mm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Ideally, as mentioned, you&#8217;d now be able to set a count on that server
+item, but you can&#8217;t. So we need to create a source as well. (Some people
+call this an &#8220;indicator&#8221; for this server; the spec calls it a &#8220;message&nbsp;source&#8221;.)</p>
+<div class="highlight"><pre><span class="c"># Create a source item</span>
+<span class="n">mm_source</span> <span class="o">=</span> <span class="n">indicate</span><span class="o">.</span><span class="n">Indicator</span><span class="p">()</span>
+<span class="c"># Again, it&#39;s not clear which subtypes you are allowed to use here.</span>
+<span class="n">mm_source</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;subtype&quot;</span><span class="p">,</span> <span class="s">&quot;im&quot;</span><span class="p">)</span>
+<span class="c"># &quot;Sender&quot; is the text that appears in the source item in the MM</span>
+<span class="n">mm_source</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;sender&quot;</span><span class="p">,</span> <span class="s">&quot;Unread&quot;</span><span class="p">)</span>
+<span class="c"># If someone clicks this source item in the MM, fire the user-display signal</span>
+<span class="n">mm_source</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;user-display&quot;</span><span class="p">,</span> <span class="n">show_window_function</span><span class="p">)</span>
+<span class="c"># Light up the messaging menu so that people know something has changed</span>
+<span class="n">mm_source</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;draw-attention&quot;</span><span class="p">,</span> <span class="s">&quot;true&quot;</span><span class="p">)</span>
+<span class="c"># Set the count of messages in this source.</span>
+<span class="n">mm_source</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;count&quot;</span><span class="p">,</span> <span class="s">&quot;15&quot;</span><span class="p">)</span>
+<span class="c"># If you prefer, you can set the time of the last message from this source,</span>
+<span class="c"># rather than the count. (You can&#39;t set both.) This means that instead of a</span>
+<span class="c"># message count, the MM will show &quot;2m&quot; or similar for the time since this</span>
+<span class="c"># message arrived.</span>
+<span class="c"># mm_source.set_property_time(&quot;time&quot;, time.time())</span>
+<span class="n">mm_source</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Hope this helps someone confused by it; at the least it&#8217;ll help me next
+time I&#8217;m confused by&nbsp;this!</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2011/01/03/packaging-flex-games-for-ubuntu/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2011/01/31/brave-new-age/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2011/01/16/working-with-the-ubuntu-messaging-menu/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/01/16/working-with-the-ubuntu-messaging-menu/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

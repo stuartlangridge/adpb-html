@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Failing to convince</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2003/01/21/convince/"><time 
+			class="dt-published" datetime="2003-01-21T11:00:00">Jan 21 2003</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2003/01/21/convince/" title="Permalink to Failing to convince" rel="bookmark">Failing to&nbsp;convince</a>
+		</h2>
+		<div class="entry-content e-content">
+			<!--timestamp:1043152228.0:-->
+
+<!--category::-->
+
+<!--author:sil:-->
+
+<p>I&#8217;ve been banging on at Sam for ages about moving her to Linux rather
+than Windows, for a number of reasons; easy administration for me, not
+using Windows, stability, etc, etc. Eventually she acquiesced, and I
+bought a new machine and installed Debian Linux on it, dual-boot with
+Windows (for playing games). <span class="caps">KDE</span> on the desktop, because it&#8217;s all about
+non-experienced users (I use <a href="http://rox.sf.net/"><span class="caps">ROX</span></a> myself). So all should have been&nbsp;rosy.</p>
+<p>However, there was immediately a problem. Half the time, on booting, the
+network card doesn&#8217;t work. It&#8217;s an Intel EtherExpressPro, and it&#8217;s fine;
+it works perfectly well when booted to Windows. The kernel detects it on
+bootup fine, but when
+<code title="The file that starts up networking under Debian">/etc/init.d/networking</code>
+tries to start up networking, it&#8217;ll just hang for a bit and then give
+up. No network. It doesn&#8217;t do this all the time, just sometimes.
+Obviously, though, this is a showstopper. I can&#8217;t work out what the
+problem is at all; it works some times and not others. She was
+unimpressed with this, but I made &#8220;I&#8217;ll fix it&#8221; noises and she agreed to&nbsp;wait.</p>
+<p>Second problem: Palm Pilot. I gave her my Palm IIIx when I bought my
+Zaurus, promising that it would make working out the monthly money and
+whatnot a lot easier in comparison with doing it all on paper every
+month. I installed KPilot for syncs. Now, I had some trouble with KPilot
+back when the Palm was mine; it would sometimes hang during a sync, and
+it would (often) drop the connection during a sync. I assumed that this
+was because I wasn&#8217;t running a proper <span class="caps">KDE</span> environment &#8212; I was, sort of,
+but I&#8217;d had loads of window managers installed and thought that I might
+not have <span class="caps">KDE</span> set up right &#8212; and that it would be better on this
+machine, as it was <span class="caps">KDE</span> and only <span class="caps">KDE</span> right from the start. And, guess
+what? It hangs during syncs, and sometimes it drops the connection
+during a sync. Today&#8217;s was the best, though. KPilot scragged the data
+during a sync. It ate the data on the Pilot, causing the spreadsheet
+program to crash when it opened the spreadsheet. So, I thought, I&#8217;ll
+just resync, with &#8220;Local overrides Pilot&#8221;, and that&#8217;ll put the good data
+back on. Nope. And the most recent backup hasn&#8217;t got the data in that
+she needs. So it&#8217;s completely buggered. Now, maybe you&#8217;ll say that this
+is my fault for not taking backups. So, tell me, what&#8217;s the difference
+between a backup and a sync? Why would I want to only transfer my files
+to the <span class="caps">PC</span> <em>some</em> of the time? I expect, when I sync, that it will back
+everything up. I also expect that it won&#8217;t irretrievably scrag the&nbsp;data!</p>
+<p>So she&#8217;s lost that data, which took her ages to put in, and is rather
+upset about it. She wants to switch back to Windows. I think I&#8217;m
+inclined to agree, and I&#8217;m thoroughly pissed off that it has to be&nbsp;so.</p>
+<p>None</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2003/01/21/missing/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2003/01/21/commentsprivate/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2003/01/21/convince/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2003/01/21/convince/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

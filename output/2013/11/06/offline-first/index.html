@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Offline first</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2013/11/06/offline-first/"><time 
+			class="dt-published" datetime="2013-11-06T15:25:00">Nov 06 2013</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2013/11/06/offline-first/" title="Permalink to Offline first" rel="bookmark">Offline&nbsp;first</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p><a href="http://offlinefirst.org/">offlinefirst.org</a>.&nbsp;Absolutely.</p>
+<blockquote>
+<p>We live in a disconnected <span class="amp">&amp;</span> battery powered&nbsp;world.</p>
+</blockquote>
+<p>Build apps which assume that any server they need might not be there.
+Mobile apps which don&#8217;t start being unreliable when you&#8217;ve got dodgy
+connectivity. Save everything locally and then sync&nbsp;it.</p>
+<p>The key word here is &#8220;sync&#8221;. To build a proper modern app, which not
+only copes with inconsistent connectivity but doesn&#8217;t bother the user
+about it, you have to save your data locally and then sync it up to the
+backing store, wherever that is (whether it&#8217;s a server provided by the
+app maker, or your Google account, or <a href="http://remotestorage.io/">remoteStorage</a>, or some
+personal thing like a PogoPlug). This means that the backing store, and
+your app, has to be able to cope with inconsistent and conflicting data.
+This is a hard problem to deal with; when I was working on Ubuntu One,
+we spent a lot of time with it. So&#8230; don&#8217;t try and roll your own
+solution. Really. Use something that&#8217;s already out there to handle data
+with syncing. <a href="http://hood.ie/">Hood.ie</a> can do this for web apps you build, or use
+Pouch; Parse or Firebase are similar public commercial services. The
+Ubuntu <span class="caps">SDK</span> has <span class="caps">U1DB</span>. Apple stuff has iCloud. Android has the <a href="http://developer.android.com/training/cloudsync/index.html">backup
+<span class="caps">API</span></a>. Building an app for offline first means dealing with
+inconsistent data, but there&#8217;s no reason to not have an existing
+framework take on some of that load for&nbsp;you.</p>
+<p>The offlinefirst people are starting a conversation about the user
+experience here. After a few years of working on this, the technology is
+<em>mostly</em> worked out (as you&#8217;ll see above), but we&#8217;ve hardly brushed the
+surface of how to present this to the people using your apps. In my
+heart I believe that there should <em>be</em> no presentation of it: that your
+app should just look and work exactly the same as it does in a world
+with infinite always-on bandwidth. That the &#8220;user experience&#8221; of offline
+first is that people like your app more not because it&#8217;s better, but
+because it&#8217;s not worse: because it never breaks even when you&#8217;re in a
+train tunnel. It&#8217;s not something you&#8217;d notice, unless you sat down and
+thought about it, in exactly the same way that no-one gives out credit
+because your app doesn&#8217;t crash much, unless all its competitors crash
+more. And I fear that exposing this stuff to the user interface is a way
+of saying &#8220;look, we had to do tons of really hard technical work to make
+things this smooth; we deserve a little bit of the <span class="caps">UI</span> which shows that
+this really hard technical stuff is working away in the background&#8221;,
+which is not a good&nbsp;argument.</p>
+<p>But that&#8217;s a naïve thought. Ideally that&#8217;d be the case but clearly it
+isn&#8217;t. There <em>is</em> a difference between &#8220;this is offline&#8221; and &#8220;this is
+online&#8221;, even if only in the edge cases: if I&#8217;m typing my shopping list
+on my laptop before I pick up my phone and run out the door to the
+supermarket, I need to know if that shopping list has actually <em>made it</em>
+to my phone before I turn the laptop off. If the synced status of your
+data is entirely invisible &#8212; that is, we pretend that it&#8217;s all synced,
+all the time &#8212; then you get bitten on the one time when it wasn&#8217;t
+synced but you needed it to be. This sort of thing is what I think the
+offlinefirst.org conversation will be about, and it&#8217;s going to be
+fascinating to be a part of&nbsp;it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2013/11/06/twenty-past-eight/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2013/11/06/offline-first/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/11/06/offline-first/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

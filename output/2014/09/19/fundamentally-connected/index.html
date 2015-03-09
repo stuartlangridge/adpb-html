@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Fundamentally connected</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2014/09/19/fundamentally-connected/"><time 
+			class="dt-published" datetime="2014-09-19T05:11:00">Sep 19 2014</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2014/09/19/fundamentally-connected/" title="Permalink to Fundamentally connected" rel="bookmark">Fundamentally&nbsp;connected</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Aaron Gustafson recently wrote <a href="http://aaron-gustafson.com/notebook/2014/a-fundamental-disconnect/">a very interesting monograph bemoaning a recent trend to view JavaScript as &#8220;a virtual machine in the browser&#8221;</a>. I&#8217;ll quote fairly extensively, because Aaron makes some really strong points here, and I have a lot of sympathy with them. But at bottom I think he&#8217;s wrong, or at the very least he&#8217;s looking at this question from the wrong direction, like trying to divine the purpose of the Taj Mahal by looking at it from&nbsp;underneath.</p>
+<p><span class="dquo">&#8220;</span>The one problem I’ve seen,&#8221; says Aaron, &#8220;is the fundamental disconnect many of these developers [who began taking JavaScript seriously after Ajax became popular] seem to have with the way deploying code on the Web works. In traditional software development, we have some say in the execution environment. On the Web, we don’t.&#8221; He goes on to explain: &#8220;If we’re writing server-side software in Python or Rails or even <span class="caps">PHP</span>, &#8230; we control the server environment [or] we have knowledge of it and can author&#8230; accordingly&#8221;, and &#8220;in the more traditional installed software world, we can similarly control the environment by placing certain restrictions on what operating systems our code can run&nbsp;on&#8221;.</p>
+<p>I believe that this criticism, while essentially valid, misapprehends the real case here. It underestimates the universality of JavaScript implementations, it overestimates the stability of old-fashioned software development, and most importantly it starts from the presumption that building things for one particular computer is actually a good idea. Which it&nbsp;isn&#8217;t.</p>
+<p>Now, nobody is arguing that the web environment is occasionally challengingly different across browsers and devices. But a lot of it isn&#8217;t. No browser ships with a JavaScript implementation in which 1 and 1 add to make 3, or in which Arrays don&#8217;t have a length property, or in which the for keyword doesn&#8217;t exist. If we ignore some of the Mozilla-specific stuff which is becoming <span class="caps">ES6</span> (things such as array comprehensions, which nobody is actually using in actual live code out there in the universe), JavaScript is pretty stable and pretty unchanging across all its implementations. Of course, what we&#8217;re really talking about here is the <span class="caps">DOM</span> model, not JavaScript-the-language, and to claim that &#8220;JavaScript can be the virtual machine&#8221; and then say &#8220;aha I didn&#8217;t mean the <span class="caps">DOM</span>&#8221; is sophistry on a par with a child asking &#8220;can I not not not not <em>not</em> have an ice-cream?&#8221;. But the <span class="caps">DOM</span> model is pretty stable too, let&#8217;s be honest. In things I build, certainly I find myself in murky depths occasionally with JavaScript across different browsers and devices, but those depths are as the sparkling waters of Lake Treviso by comparison with <span class="caps">CSS</span> across different browsers. In fact, when <span class="caps">CSS</span> proves problematic across browsers, JavaScript is the bandage used to fix it and provide a consistent experience &#8212; your keyframed <span class="caps">CSS</span> animation might be unreliable, but jQuery plugins work everywhere. JavaScript is the glue that binds the other bits&nbsp;together.</p>
+<p>Equally, I am not at all sold that &#8220;we have knowledge of [the server environment] and can author your program accordingly so it will execute as anticipated&#8221; when doing server development. Or, at least, that&#8217;s <em>possible</em>, but nobody <em>does</em>. If you doubt this, I invite you to go file a bug on any server-side app you like and say &#8220;this thing doesn&#8217;t work right for me&#8221; and then add at the bottom &#8220;oh, and I&#8217;m running FreeBSD, not Ubuntu&#8221;. The response will occasionally be &#8220;oh really? we had better get that fixed then!&#8221; but is much more likely to be &#8220;we don&#8217;t support that. Use Ubuntu and this git repository.&#8221; Now, that&#8217;s a valid approach &#8212; we only support this specific known configuration! &#8212; but importantly, on the web Aaron sees requiring a specific browser/<span class="caps">OS</span> combination as an impractical impossibility and the wrong thing to do, whereas doing this on the server is positively virtuous. I believe that this is no virtue. Dismissing claims of failure with &#8220;well, you should be using the environment I demand&#8221; is just as large a sin on the server or the desktop as it is in the browser. You, the web developer, can&#8217;t require that I use your choice of browser, but equally you, the server developer, shouldn&#8217;t require that I use your particular exact combination of server packages either. Why do client users deserve more respect than server users? If a developer using your server software should be compelled to go and get a different server, how&#8217;s that different from asking someone to install a different web browser? Sure, I&#8217;m not expecting someone who built a server app running on Linux to necessarily also make it run on Windows (although wise developers will do so), but then I&#8217;m not really expecting someone who&#8217;s built a 3d game with WebGL to make the experience meaningful for someone browsing with Lynx,&nbsp;either.</p>
+<p>Perhaps though you differ there, gentle reader. That the web is the web, and one should have <em>a</em> meaningful experience (although importantly not necessarily the <em>same</em> meaningful experience) which ever class of browser and device and capability one uses to get at the web. That is a very good point, one with which I have a reasonable amount of sympathy, and it leads me on to the final part of the&nbsp;argument. </p>
+<p>It is this. Web developers are actually better than non-web developers. And Aaron explains precisely why. It is because to build a great web app is precisely to build a thing which can be meaningfully experienced by people on any class of browser and device and capability. The absolute tip-top very best &#8220;native&#8221; app can only be enjoyed by those to whom it is native. &#8220;Native apps&#8221; are poetry: undeniably beautiful when done well, but useless if you don&#8217;t speak the language. A great web app, on the other hand, is a painting: beautiful to experience and available to everybody. The Web has trained its developers to attempt to build something that is fundamentally egalitarian, fundamentally available to everyone. That&#8217;s why the Web&#8217;s <em>good</em>. The old software model, of something which only works in one place, isn&#8217;t the baseline against which the Web should be judged; it&#8217;s something that&#8217;s been surpassed. Software development is easiest if it only has to work on your own machine, but that doesn&#8217;t mean that that&#8217;s all we should aim for. We&#8217;re all still collaboratively working out exactly how to build apps this way. Do we always succeed? No. But by any measure the Web is the largest, most widely deployed, most popular and most ubiquitous computing platform the world has ever known. And its programming language is&nbsp;JavaScript.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2014/09/17/responsive-dummies/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2014/09/22/reconnecting/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			Aaron Gustafson responded at
+		<a href="http://aaron-gustafson.com/notebook/2014/missed-connections/">Missed Connections</a>
+(aaron-gustafson.com)		<span class="wm-summary">			Earlier today, Stuart Langridge—who I worked with on WaSP’s DOM Scripting Task Force and have the utmost respect for—published a blog response to my l&hellip;
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="https://adactio.com/journal/7706">Be progressive</a>
+(adactio.com)		<span class="wm-summary">			Aaron wrote a great post a little while back called A Fundamental Disconnect. In it, he points to a worldview amongst many modern web developers, who&hellip;
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2014/09/19/fundamentally-connected/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/09/19/fundamentally-connected/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

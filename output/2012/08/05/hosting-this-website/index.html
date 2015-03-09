@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Hosting this website</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2012/08/05/hosting-this-website/"><time 
+			class="dt-published" datetime="2012-08-05T19:29:00">Aug 05 2012</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2012/08/05/hosting-this-website/" title="Permalink to Hosting this website" rel="bookmark">Hosting this&nbsp;website</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>At the moment this website is hosted on a dedicated machine leased from
+<a href="http://www.bytemark.co.uk">Bytemark</a>. The Bytemark team are superb, and their service is great;
+if you&#8217;re looking to run machines (virtual or physical) that aren&#8217;t in
+your house or company, go and see them. However, if there&#8217;s one thing
+that I&#8217;ve learned in the last fifteen years of running a website, it&#8217;s
+that I hate being a sysadmin (and <a href="http://www.jonobacon.org">Jono</a>, with whom I share the
+dedicated machine, is if possible even worse than me). If the site goes
+down I just bury my head in my hands, and I hate, hate, hate having to
+fix it. Whether it&#8217;s because Apache&#8217;s crashed or the backups have
+stopped working or the machine&#8217;s out of disc space or there was a kernel
+panic or we&#8217;ve been slashdotted again or it&#8217;s not responding or&#8230; man,
+I just don&#8217;t <strong>care</strong>. I used to find this sort of thing fascinating &#8212;
+having my own server, being able to fiddle with it and tweak it and
+deploy what I liked &#8212; and now I just want it to go away. So I&#8217;ve been
+looking for&nbsp;alternatives.</p>
+<p>This site, what with having been running for fifteen years and all, has
+built up a pretty large collection of both stuff and infrastructure. So,
+here are the things that I want, that I need, to&nbsp;preserve.</p>
+<h3>A&nbsp;blog</h3>
+<p>This blog. Lives at kryogenix.org/days. Permalinks at /days/<span class="caps">YYYY</span>/<span class="caps">MM</span>/<span class="caps">DD</span>.
+Can be&nbsp;themed.</p>
+<h3>Comments on the&nbsp;blog</h3>
+<p>People can comment here. The commenting requires JavaScript already, so
+I&#8217;m not averse to continuing to require that for a new&nbsp;thing.</p>
+<h3>Arbitrary files at arbitrary&nbsp;URLs</h3>
+<p>Over these many years, I have written and uploaded a whole bunch of
+stuff here. There are images and random little uploaded things and <span class="caps">HTML</span>
+and <span class="caps">CSS</span> and JavaScript files which are not part of the blog. Take, for
+example, <a href="http://www.kryogenix.org/code/browser/sorttable/">sorttable</a>, probably the most popular thing I&#8217;ve ever
+written. So, these things are not part of the blog at all. I have them
+already: I do not want to have to manually type them all back in again
+to make them &#8220;static pages&#8221; controlled by the blogging&nbsp;engine.</p>
+<h3>Redirect&nbsp;farms</h3>
+<p>Back in the early days, before we (that is: mpt and Mark Pilgrim, both
+of whom have since killed their sites so I&#8217;m not sure how to link to
+them, and others) thought up stable permalink URLs in a standard format
+(/blog/<span class="caps">YYYY</span>/<span class="caps">MM</span>/<span class="caps">DD</span>), and by virtue of this place having been run by about
+six different blogging engines (ones I wrote myself, Moveable Type,
+pyblosxom, Wordpress, the list goes on) posts here have had many, many,
+many different permalinks. Also, the <span class="caps">RSS</span> feed has moved around a number
+of times. I have a forest of redirect rules to make sure that all those
+old links keep working (and 302 redirect to the newest link), and I do
+not want to give that up. (Nor do I want to publish a given thing in all
+possible&nbsp;places.)</p>
+<hr />
+<p>So, how can I host this site with no sysadmin overhead and still do all
+the above? I&#8217;ll list the options I&#8217;ve looked at, and whether there&#8217;s
+some sort of a problem with each (hint: there is) and then you clever
+people can tell me about ways I can fix that or options I&#8217;ve missed.
+<em>Nota bene:</em> I am prepared to pay for whatever I come up with, as long
+as it&#8217;s not too expensive; I get some money back by no longer having the
+server,&nbsp;anyway.</p>
+<h3>Completely static hosting on S3/Rackspace Cloud&nbsp;Files/similar</h3>
+<p>It is possible to host a static website entirely on Amazon S3 and its
+competition, and this seems like a good idea. It would involve using
+Disqus for comments (which I am not keen on: anyone who remembers
+e-net-ation or netcomments should know why (they were disqus, and went
+bust taking everyone&#8217;s comments with them)), but I can live with that if
+I have to. The big problem here is <strong>redirects</strong>: you <em>cannot</em> do them,
+as far as I can tell. So any old links to my site or my resources or my
+<span class="caps">RSS</span> feeds will just break, or I have to multiply-publish everything that
+needs redirecting, which is lame and&nbsp;wrong.</p>
+<h3>Completely managed site, on&nbsp;WordPress.com/SquareSpace/Tumblr/similar</h3>
+<p>I quite like this idea: it overcomes one of the other big weaknesses I
+have, which is that I&#8217;m horseshit at design, by allowing me to
+one-click-choose a new design, yay! However, this is a big problem
+because of arbitrary files. I quite often write a new little JavaScript
+experiment or something &#8212; one <span class="caps">HTML</span> file, with a <span class="caps">CSS</span> file and a
+JavaScript file, in its own folder and scp&#8217;ed to my server. This is
+fourteen million times harder and more annoying if I have to manage
+those pages as &#8220;Pages&#8221; controlled by the <span class="caps">CMS</span>. I don&#8217;t want that. I want
+to be able to store static content by just ftp&#8217;ing it up or something
+similar. As far as I can tell, none of the full-site-management stuff
+lets me do this &#8212; understandable, since they are full-site-management
+and what I&#8217;m asking for is an unmanaged bit, but a problem&nbsp;nonetheless.</p>
+<p>(Extra bonus deficit for SquareSpace: their blog URLs are wrong! They&#8217;re
+/<span class="caps">YYYY</span>/M/D, so 2012/8/5, rather than with the 0s in place, which will
+break every <span class="caps">URL</span> on this blog. <span class="caps">WTF</span>, SquareSpace? Why would you do that?
+Huge&nbsp;disappointment.)</p>
+<p>However, I&#8217;m keen on this method if someone does it in a way I can&nbsp;use.</p>
+<h3>Old-sk00l web&nbsp;hosting</h3>
+<p>You know, a company which gives you a cPanel control panel and <span class="caps">FTP</span>
+access and so on. My annoyance here is that suddenly I&#8217;m a sysadmin
+again, but one level up; when a new version of WordPress comes out, I
+have to upgrade it myself. It would be nice to avoid&nbsp;that.</p>
+<h3>PaaS-style hosting, like Google App&nbsp;Engine/heroku/dotcloud/appfog</h3>
+<p>Also under consideration. I&#8217;d have to be a bit of a sysadmin again &#8212;
+that is, I&#8217;d need to write (or maybe use an existing) blog engine
+designed for these things, and publishing&#8217;s a bit harder (I likely have
+to use their command line app, rather than just <span class="caps">FTP</span> or similar, although
+dotcloud do <span class="caps">SSH</span>, which makes it much harder to do from someone else&#8217;s
+machine), and I&#8217;d need a bunch of complicated redirection to handle all
+the static content, but it&#8217;s doable. One thing here is that they tend to
+be oriented around &#8220;let&#8217;s make it trivially easy for you to horizontally
+or vertically scale your site by spinning up new instances&#8221;, which is
+nice but my site ain&#8217;t gmail. I don&#8217;t need that, really, and so it
+suggests that if they&#8217;re devoting their attention to making that great,
+they&#8217;re not doing other stuff that I do care&nbsp;about.</p>
+<h3>Just have a server, man! it&#8217;s easy,&nbsp;really!</h3>
+<p>Go&nbsp;away.</p>
+<hr />
+<p>So, LazyWeb, here&#8217;s your chance. Fill me with your knowledge and&nbsp;ideas!</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2012/08/04/minor-updates-to-ubuntu-one-for-n9/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2012/08/22/minimal-community/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2012/08/05/hosting-this-website/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/08/05/hosting-this-website/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

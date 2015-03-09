@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; The actual web</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2013/07/09/the-actual-web/"><time 
+			class="dt-published" datetime="2013-07-09T00:20:00">Jul 09 2013</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2013/07/09/the-actual-web/" title="Permalink to The actual web" rel="bookmark">The actual&nbsp;web</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Every now and again I have a weird little idea for an app — a game,
+whatever. And my default position is to build it with <span class="caps">HTML</span> and <span class="caps">CSS</span>. The
+<span class="caps">DOM</span>, that is. Not canvas; not WebGL. Now, I freely admit that you can do
+great things with both; most of the exciting games out there are
+<code>&lt;canvas&gt;</code>, and most of the really impressive demos out there are WebGL.
+<a href="https://github.com/mrdoob/three.js/">three.js</a> is flat-out genius. But they&#8217;re very much &#8220;here is a box,
+draw in it&#8221; do-it-yourself solutions. There would have been a pretty
+similar situation available to everyone had every browser just shipped
+the Unity3D browser plugin. I like having the browser do the heavy
+lifting for me: create a <code>&lt;div&gt;</code> and use <span class="caps">CSS</span> to colour it in with a
+<code>radial-gradient</code>, move it around and distort it with <code>transform</code>,
+handle events with <code>mouseover</code> and <code>touchmove</code>, handle making all my
+elements be textures on the graphics card for fast movement without me
+having to force it. I don&#8217;t want to have to reimplement all that stuff
+by asking the browser for a sectioned-off square to draw in and then
+handling all the hard work&nbsp;myself.</p>
+<p>Of course, this utopia I describe doesn&#8217;t actually <em>work</em> all that well.
+There&#8217;s a fairly large disconnect — it gets smaller all the time, but
+it&#8217;s there, it really is — between using the browser engine to do the
+work and actually getting what you want&nbsp;done.</p>
+<p>Tiny example. I had this idea for a game where you&#8217;d drag a circle
+(think of it as a criminal, viewed top down) through a maze, with
+searchlights around. Now, it&#8217;s perfectly possible to make a
+searchlight-looking thing with pure <span class="caps">CSS</span>. You get a square <code>&lt;div&gt;</code>, skew
+it with <code>transform</code> to give yourself a triangle, fill it with a
+<code>radial-gradient</code> from yellow to transparent, and animate it with a <span class="caps">CSS</span>&nbsp;animation.</p>
+<style>
+div.searchlight {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    background-color:yellow;
+    background: -webkit-radial-gradient(bottom right, circle farthest-side, rgba(255,255,0,1) 0%,rgba(0,0,0,1) 100%);
+    background: -moz-radial-gradient(bottom right, circle farthest-side, rgba(255,255,0,1) 0%,rgba(0,0,0,1) 100%);
+    background: radial-gradient(bottom right, circle farthest-side, rgba(255,255,0,1) 0%,rgba(0,0,0,1) 100%);
+    -webkit-transform: rotate(0deg) skewX(30deg) skewY(30deg);
+    -moz-transform: rotate(0deg) skewX(30deg) skewY(30deg);
+    transform: rotate(0deg) skewX(30deg) skewY(30deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    -webkit-animation: spin 3s linear 0s infinite normal;
+    -moz-animation: spin 3s linear 0s infinite normal;
+    animation: spin 3s linear 0s infinite normal;
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(-30deg) skewX(30deg) skewY(30deg); }
+    50% { -webkit-transform: rotate(55deg) skewX(30deg) skewY(30deg); }
+    to { -webkit-transform: rotate(-30deg) skewX(30deg) skewY(30deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(-30deg) skewX(30deg) skewY(30deg); }
+    50% { -moz-transform: rotate(55deg) skewX(30deg) skewY(30deg); }
+    to { -moz-transform: rotate(-30deg) skewX(30deg) skewY(30deg); }
+}
+@keyframes spin {
+    from { transform: rotate(-30deg) skewX(30deg) skewY(30deg); }
+    50% { transform: rotate(55deg) skewX(30deg) skewY(30deg); }
+    to { transform: rotate(-30deg) skewX(30deg) skewY(30deg); }
+}
+.body {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: black;
+}
+</style>
+
+<div class="body">
+<div class="searchlight">
+</div>
+</div>
+
+<p>And, we have a searchlight. Now, drop a wall in place so that the
+searchlight hits the wall and doesn&#8217;t extend beyond&nbsp;it:</p>
+<style>
+div.wall {
+    background: black;
+    position: absolute;
+    border: 5px solid #333;
+}
+</style>
+
+<div class="body">
+<div class="searchlight">
+</div>
+<div class="wall" style="top: 0; left: 0; width: 200px; height: 200px; border-width: 0 5px 5px 0;">
+</div>
+</div>
+
+<p>All well and good. Now, though, you need to turn it into a game. So, a
+couple of things: be able to ask the question &#8220;is this point here inside
+a searchlight?&#8221; and make the wall look like it&#8217;s reflecting the light a
+bit rather than going under&nbsp;it.</p>
+<p>And, as far as I can tell, you just flat out can&#8217;t do that. If you&#8217;ve
+<code>transform</code>ed an element, how can you work out the pixel position it&#8217;s
+now at? Well… by implementing the matrix transformations that
+<code>transform</code> executes <em>yourself</em> in code, that&#8217;s how. If you&#8217;re going to
+go to all the effort of working out all the maths yourself… what benefit
+is there in having the browser work them out for you as well, eh? Not
+all that much; at that point, if you&#8217;re doing all the work yourself
+anyway, you might as well draw on a <code>&lt;canvas&gt;</code>. Similarly with having
+the wall &#8220;reflect&#8221; light: you want it to look something like&nbsp;this:</p>
+<p><img alt="reflection" src="http://kryogenix.org/days/wp-content/uploads/2013/07/searchlight-wall-reflected.png" /></p>
+<p>and, you know what? You can&#8217;t do that with <span class="caps">CSS</span> at all (maybe Adobe&#8217;s
+blending spec will make it doable, but you can&#8217;t right now). So the
+instant you want to do something a little out-of-the-ordinary, you end
+up thinking… well, I&#8217;ll just draw it on a <code>&lt;canvas&gt;</code>… and then you&#8217;re
+totally outside the browser. All the elements on your canvas have to be
+handled by you. You have to do collision detection yourself. You&#8217;ve got
+no <code>:hover</code>, no <code>touchstart</code>,&nbsp;nothing.</p>
+<p><span class="caps">CSS</span> is great for documents, don&#8217;t get me wrong, and it&#8217;s great for
+adding little <em>frissons</em> to your pages. But if you try and use it for
+games, for things that aren&#8217;t documents… well, you step one inch outside
+what it can do, and suddenly you&#8217;re in a world where you have to do all
+the work yourself, where you get a black box to draw in and you&#8217;re just
+an old-fashioned games programmer writing her own mouse-handling&nbsp;routines.</p>
+<p>The chasm between these two is dark and yawning and it makes me sad.
+It&#8217;s the sheer disconnect here that depresses me: you&#8217;re fine up to a
+point with <span class="caps">CSS</span>, and suddenly you think &#8220;I want to do this one thing that
+<span class="caps">CSS</span> can&#8217;t do&#8221; and then you have to <em>throw away all your existing work</em>
+and reimplement everything from scratch — fonts, pointer events,
+gradients, layout, positioning, colouring, shadows, blurring,
+<em>everything</em> — completely by&nbsp;hand.</p>
+<p>It&#8217;s hard to drum up conversation about this, because most people don&#8217;t
+<em>want</em> to use the <span class="caps">DOM</span> for this stuff: almost every &#8220;<span class="caps">HTML5</span> game&#8221; I&#8217;ve
+seen has been <code>&lt;canvas&gt;</code>-based. People don&#8217;t want to use the <span class="caps">DOM</span>. I&#8217;m
+swimming against the tide,&nbsp;here.</p>
+<p>Should I be swimming against the tide? Is this not what the <span class="caps">DOM</span> is for?
+Is it just for making words bold and for adding neat little effects to
+static websites? For anything more complex should I just be embracing
+canvas and WebGL? And if so… why wouldn&#8217;t I just write a native&nbsp;app?</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2013/07/02/open-for-business/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2013/07/12/all-for-one-one-birmingham-that-is/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2013/07/09/the-actual-web/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/07/09/the-actual-web/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

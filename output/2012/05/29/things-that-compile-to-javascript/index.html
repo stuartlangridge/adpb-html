@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Things that compile to JavaScript</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/"><time 
+			class="dt-published" datetime="2012-05-29T00:02:00">May 29 2012</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/" title="Permalink to Things that compile to JavaScript" rel="bookmark">Things that compile to&nbsp;JavaScript</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Lots of discussion recently about things-that-compile-to-JavaScript. And
+the discussion is forcefully making the point that they&#8217;re a good&nbsp;idea:</p>
+<blockquote>
+<p><span class="caps">JS</span> is a compile target, and that is not only a strength but a feature.
+Not a bug. <span class="caps">JS</span> community needs to embrace diversity. — <a href="https://twitter.com/brianleroux/status/207185628880830464">@brianleroux</a></p>
+</blockquote>
+<p>Brian&#8217;s right, too, and those that battle against this have a little
+flavour of the assembly language hackers who railed against C because
+compilers couldn&#8217;t produce things as tightly rolled as hand-hacking&nbsp;opcodes.</p>
+<p>However, I&#8217;m not sure I like the idea all that much, and I don&#8217;t <em>think</em>
+that my reasoning boils down to &#8220;I don&#8217;t like it so you can&#8217;t have it&#8221;.
+Herewith, my&nbsp;reasoning.</p>
+<p>There are some people who believe that a compiler will produce bad
+JavaScript. The <span class="caps">JS</span> produced by a program will be less elegant, less
+efficient, make less use of the language, than anything hand-written and
+loved and agonised over could be. This is a crock of shit. Sure, when a
+compiler is first built then a super-dedicated super-expert person might
+be able to beat it, but the gap narrows and narrows over time. I do not
+care, in this discussion, about forcing the last clock-cycle of
+efficiency out of your JavaScript by writing it by hand. However, I do
+care, a lot, about the JavaScript I can see being <strong>readable</strong>.</p>
+<blockquote>
+<p>Why don&#8217;t mobile browsers have &#8220;View Source&#8221;? — <a href="https://twitter.com/mrdoob/status/207231612813979649">@mrdoob</a></p>
+</blockquote>
+<p>The Web, unusually, came with a View Source button. Hardly anyone had
+done that before, and hardly anyone&#8217;s done it since. Hands up if you&#8217;ve
+learned at least something by viewing the source of other people&#8217;s
+pages. <span class="caps">OK</span>, everyone, now put your hands down. Hands up if you learned
+everything from books and nothing at all from web pages? <span class="caps">OK</span>, no-one,
+don&#8217;t put your hands down because there is no-one with their hands up,
+because there is <em>no-one like that</em>. What concerns me about JavaScript
+being a <em>target language</em>, a thing which is written by compilers and
+minifiers and compressors, is that we break people&#8217;s ability to learn.
+When you&#8217;re debugging your code, when you&#8217;re debugging someone else&#8217;s
+site, when you&#8217;ve seen a cool trick and want to learn how it&#8217;s done, you
+have to do that by reading code that no human has ever seen; by reading
+code output by a computer program. Computers are excellent tools, but
+they are very bad at <em>teaching</em>. If you&#8217;re trying to learn from code
+that isn&#8217;t the code that the author actually wrote, you&#8217;re always going
+to be at a gargantuan disadvantage. Obviously, when the author&#8217;s
+debugging her own code she&#8217;s got the Real Source to hand, and a bunch of
+sweet tools to work with it and debug it and step through it and
+understand it. Those of us learning from what&#8217;s actually given to the
+browser have no such&nbsp;luxury.</p>
+<p>Obviously, there is a balance here. People don&#8217;t minify their code
+because they want to hide it from prying eyes, they minify it because
+they want to make their site load faster and because Steve Souders has
+proved that it will if they do. (Well. Some people do minify their code
+just because they want to hide it, but I think we can all agree that
+those people can sod off, right?) No-one writes in CoffeeScript because
+they want to hide the secret .coffee magic from browsers; they do it
+because it&#8217;s better for them, and optimising your process to make stuff
+easier for random people to learn from your code is the tail wagging the
+dog a bit,&nbsp;amirite?</p>
+<p>Well, sorta, and sort of not. Remember that View Source thing. This is a
+tragedy of the commons; if we make things better for ourselves right now
+by obfuscating code (for speed, not hiding), by removing View Source
+from browsers (for elegance and simplicity of <span class="caps">UI</span>, not restrictiveness),
+by reviewing applications before they&#8217;re allowed to be run (for
+consistency of experience, not gatekeeping)… where are the next
+brianleroux and mrdoob and dmr and dhh and linus and woz coming from? I
+don&#8217;t say this to suggest that building a language which compiles to
+JavaScript makes you someone who hates openness and the web, not at all.
+But I do ask that we bear in mind that View Source is increasingly
+useless if you&#8217;re not Viewing the Source that was written. There&#8217;s a
+shift to &#8220;I&#8217;ll provide the source if I want to, as an altruistic act&#8221;
+(which most people I know, and certainly everyone on that list, does),
+and away from the Web&#8217;s default position which is &#8220;of course the source
+is there for you to look at and learn from and experiment with and
+improve; why would it not be?&#8221; We aren&#8217;t going to throw that away
+unnecessarily, but I want the next generation to know that it&#8217;s
+important too, and that means we&#8217;ve gotta tell them why&#8230; and telling
+them why is hard if they think of JavaScript as a thing that only
+computers&nbsp;read.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2012/05/12/how-to-make-apis-that-people-like/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2012/06/06/how-i-checked-whether-my-linkedin-password-was-leaked/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/05/29/things-that-compile-to-javascript/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

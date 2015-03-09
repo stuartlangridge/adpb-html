@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Music and movies on the TV</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2009/03/15/music-and-movies-on-the-tv/"><time 
+			class="dt-published" datetime="2009-03-15T14:39:00">Mar 15 2009</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2009/03/15/music-and-movies-on-the-tv/" title="Permalink to Music and movies on the TV" rel="bookmark">Music and movies on the <span class="caps">TV</span></a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I have a reasonably large collection of music and movies. In my lounge,
+there&#8217;s a big computer with a <span class="caps">1TB</span> drive in it, which is where all the
+movies and music live. It&#8217;s running MythTV, and plugged into the
+television. Upstairs, there&#8217;s a second MythTV box, a front-end only,
+which I use for watching <span class="caps">TV</span> in bed. My laptop runs Banshee, and can see
+the music and films through gvfs and <span class="caps">SSH</span> to the main MythTV box. This
+all works fine. But it&#8217;s annoying. I don&#8217;t really like MythTV&#8217;s
+interface much. Creating playlists in Banshee is great and easy, but
+those playlists don&#8217;t appear in MythTV. I have to import new music
+twice, once into Banshee and once into Myth. I want to be able to do it
+all from one place, and have it all work. So: what should I do? I&#8217;m
+happy to change almost everything about the setup, with the one
+hard-and-fast requirement that every component needs to run on Ubuntu,
+and I&#8217;d much rather run stuff that&#8217;s <em>packaged</em> for Ubuntu. I&#8217;d prefer
+to use Gnome apps and GStreamer apps where possible, but if I have to
+step away from that I&#8217;ll think about it. I&#8217;ve had various thoughts about
+this; I don&#8217;t know whether any of these are realistic, and I&#8217;d happily
+hear your thoughts on any of these or on anything else that I haven&#8217;t&nbsp;mentioned:</p>
+<ol>
+<li>Make MythTV a UPnP server, keep Myth on the main machine and the
+    upstairs frontend, and use a UPnP client on my laptop. Flaws with
+    this: I don&#8217;t know whether UPnP does playlists, I don&#8217;t know whether
+    you can <em>edit</em> a playlist over UPnP, Banshee doesn&#8217;t have UPnP
+    support afaik, Rhythmbox does but doesn&#8217;t play&nbsp;videos.</li>
+<li>Investigate the mythtv:// source in GStreamer and build a Banshee
+    plugin for it. Downside: I&#8217;m not very good with Mono stuff, so
+    writing a Banshee plugin is hard. Rhythmbox would be easier (I&#8217;m
+    fine with Python), but again, Rhythmbox doesn&#8217;t do&nbsp;videos</li>
+<li>Use Elisa on the server instead of MythTV. Flaws: not sure how this
+    helps the edit-playlists-on-my-laptop problem; see above issues
+    about UPnP; Elisa doesn&#8217;t actually work very well, or it didn&#8217;t last
+    time I tried it (it was very slow, and the <span class="caps">UI</span> is slickish but
+    doesn&#8217;t actually seem much <em>easier</em> than Myth); Elisa doesn&#8217;t record
+    stuff off <span class="caps">DVB</span> (although I could keep mythbackend running, but how
+    would I configure&nbsp;it?)</li>
+<li>something else I haven&#8217;t thought&nbsp;of</li>
+</ol>
+<p>Lazyweb, tell me what to&nbsp;do&#8230;</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2009/03/13/roman-dates/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2009/03/28/its-a-small-world-after-all/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2009/03/15/music-and-movies-on-the-tv/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2009/03/15/music-and-movies-on-the-tv/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

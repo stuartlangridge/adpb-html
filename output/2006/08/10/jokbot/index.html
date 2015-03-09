@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; The Jokosher IRC bot</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2006/08/10/jokbot/"><time 
+			class="dt-published" datetime="2006-08-10T09:44:00">Aug 10 2006</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2006/08/10/jokbot/" title="Permalink to The Jokosher IRC bot" rel="bookmark">The Jokosher <span class="caps">IRC</span>&nbsp;bot</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Someone said: it would be handy if we had a bot on the <a href="irc://irc.freenode.net/jokosher">jokosher</a>
+irc channel which told us about commits. I thought: I bet that&#8217;s not too
+hard, and it&#8217;ll give me an excuse to learn <a href="http://www.twistedmatrix.com">Twisted</a>.  </p>
+<blockquote>
+<p>\&lt;jokbot> New commit (r574) by laszlop: A better fix for ticket
+#150. This code is more maintainable and replaces the other fix
+committed in r566. <br />
+ \&lt;aquarius> jokbot: help<br />
+ \&lt;jokbot> For help on Jokosher, see http://jokosher.org. You can
+also ask questions here; please be patient for an answer! Commands I
+understand: ticket <ticket number> - shows a bug in the bugtracker &#8230;
+download count - shows count of downloads of Jokosher &#8230; help - This
+message &#8230; revision <revision number> - shows a revision from <span class="caps">SVN</span><br />
+ \&lt;aquarius> jokbot: download count<br />
+ \&lt;jokbot> src:87 deb:281 rpm:74 srcrpm:7<br />
+ \&lt;aquarius> jokbot: ticket 7<br />
+ \&lt;jokbot> Recording quality settings -
+http://jokosher.python-hosting.com/ticket/7</revision></ticket></p>
+</blockquote>
+<p>The bot&#8217;s based on the <a href="http://twistedmatrix.com/projects/words/documentation/examples/ircLogBot.py">Twisted example ircLogBot</a>, and the basic code
+is really, really simple. You can make a noddy bot that responds to
+everything directed at it on the #jokbottest channel with the following
+47 lines of&nbsp;Python:</p>
+<div class="highlight"><pre><span class="n">from</span> <span class="n">twisted</span><span class="p">.</span><span class="n">protocols</span> <span class="n">import</span> <span class="n">irc</span>
+<span class="n">from</span> <span class="n">twisted</span><span class="p">.</span><span class="n">internet</span> <span class="n">import</span> <span class="n">reactor</span><span class="p">,</span> <span class="n">protocol</span>
+<span class="n">import</span> <span class="n">time</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">os</span>
+
+<span class="n">class</span> <span class="n">JokBot</span><span class="p">(</span><span class="n">irc</span><span class="p">.</span><span class="n">IRCClient</span><span class="p">)</span><span class="o">:</span>
+  <span class="err">&#39;&#39;&#39;</span><span class="n">The</span> <span class="n">Jokosher</span> <span class="n">IRC</span> <span class="n">bot</span><span class="p">.</span><span class="err">&#39;&#39;&#39;</span>
+  <span class="n">nickname</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">jokbot</span><span class="err">&#39;</span>
+  <span class="n">channel</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">jokbottest</span><span class="err">&#39;</span>
+
+  <span class="n">def</span> <span class="n">connectionMade</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">irc</span><span class="p">.</span><span class="n">IRCClient</span><span class="p">.</span><span class="n">connectionMade</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+
+  <span class="n">def</span> <span class="n">connectionLost</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">irc</span><span class="p">.</span><span class="n">IRCClient</span><span class="p">.</span><span class="n">connectionLost</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span>
+
+  <span class="n">def</span> <span class="n">signedOn</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">self</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">channel</span><span class="p">)</span>
+
+  <span class="n">def</span> <span class="n">privmsg</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span><span class="o">:</span>
+    <span class="err">&#39;&#39;&#39;</span><span class="n">This</span> <span class="n">will</span> <span class="n">get</span> <span class="n">called</span> <span class="n">when</span> <span class="n">the</span> <span class="n">bot</span> <span class="n">receives</span> <span class="n">a</span> <span class="n">message</span><span class="p">.</span><span class="err">&#39;&#39;&#39;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="sc">&#39;!&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="err">#</span> <span class="n">Check</span> <span class="n">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">they</span><span class="err">&#39;</span><span class="n">re</span> <span class="n">sending</span> <span class="n">me</span> <span class="n">a</span> <span class="n">private</span> <span class="n">message</span>
+    <span class="k">if</span> <span class="n">channel</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">nickname</span><span class="o">:</span>
+      <span class="n">msg</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">I</span> <span class="n">don</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">take</span> <span class="n">commands</span> <span class="n">by</span> <span class="n">message</span><span class="p">.</span><span class="err">&#39;</span>
+      <span class="n">self</span><span class="p">.</span><span class="n">msg</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+      <span class="k">return</span>
+
+    <span class="err">#</span> <span class="n">Otherwise</span> <span class="n">check</span> <span class="n">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">it</span> <span class="n">is</span> <span class="n">a</span> <span class="n">message</span> <span class="n">directed</span> <span class="n">at</span> <span class="n">me</span>
+    <span class="k">if</span> <span class="n">msg</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">nickname</span> <span class="o">+</span> <span class="sc">&#39;:&#39;</span><span class="p">)</span><span class="o">:</span>
+      <span class="n">self</span><span class="p">.</span><span class="n">msg</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="err">&#39;</span><span class="o">%</span><span class="n">s</span> <span class="n">said</span> <span class="o">%</span><span class="n">s</span><span class="err">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">user</span><span class="p">,</span>
+                        <span class="n">msg</span><span class="p">[</span><span class="n">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">nickname</span> <span class="o">+</span> <span class="sc">&#39;:&#39;</span><span class="p">)</span><span class="o">:</span><span class="p">]))</span>
+      <span class="k">return</span>
+
+<span class="n">class</span> <span class="n">JokBotFactory</span><span class="p">(</span><span class="n">protocol</span><span class="p">.</span><span class="n">ClientFactory</span><span class="p">)</span><span class="o">:</span>
+  <span class="n">protocol</span> <span class="o">=</span> <span class="n">JokBot</span>
+  <span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+  <span class="n">def</span> <span class="n">clientConnectionLost</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span><span class="o">:</span> <span class="n">connector</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+
+  <span class="n">def</span> <span class="n">clientConnectionFailed</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span><span class="o">:</span> <span class="n">reactor</span><span class="p">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
+  <span class="n">f</span> <span class="o">=</span> <span class="n">JokBotFactory</span><span class="p">()</span>
+  <span class="n">reactor</span><span class="p">.</span><span class="n">connectTCP</span><span class="p">(</span><span class="err">&#39;</span><span class="n">irc</span><span class="p">.</span><span class="n">freenode</span><span class="p">.</span><span class="n">net</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">6667</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+  <span class="n">reactor</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+
+<p>That&#8217;s all you need for a very simple <span class="caps">IRC</span> bot. The jokbot code does a
+couple of other neat-ish things; it has a plugin structure, so the bot
+itself stays very simple and you implement all the commands via plugins.
+<a href="http://svn.kryogenix.org/svn/jokbot/tags/LATEST/plugins/README.plugins"><span class="caps">README</span>.plugins</a> in the jokbot distribution has all the details, but
+writing a plugin is really easy. It&#8217;s also reloadable: you can send it
+<span class="caps">SIGHUP</span> to make it reload plugins without quitting and restarting it,
+using the Python <code>signal</code> module. Grab <a href="http://svn.kryogenix.org/dl.php?repname=kryogenix.org&amp;path=%2Fjokbot%2Ftags%2FLATEST%2F&amp;rev=0&amp;isdir=1">the latest release of jokbot</a>,
+or you can <a href="http://svn.kryogenix.org/listing.php?repname=kryogenix.org&amp;path=%2Fjokbot%2Ftrunk%2F&amp;rev=0&amp;sc=0">browse the Subversion repository for the very very latest code</a>.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2006/08/09/amd-is-strongly-considering-open-sourcing-at-least-a-functional-subset-of-atis-graphics-drivers/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2006/08/12/lock-table-is-out-of-available-locker-entries/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2006/08/10/jokbot/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2006/08/10/jokbot/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

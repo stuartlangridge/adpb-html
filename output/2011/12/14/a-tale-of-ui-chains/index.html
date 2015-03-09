@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; A tale of UI chains</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/"><time 
+			class="dt-published" datetime="2011-12-14T08:57:00">Dec 14 2011</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/" title="Permalink to A tale of UI chains" rel="bookmark">A tale of <span class="caps">UI</span>&nbsp;chains</a>
+		</h2>
+		<div class="entry-content e-content">
+			<h3 style="display:block">or, big <span class="caps">UI</span> oaks do from little tech decisions&nbsp;grow</h3>
+<h3 style="display:block">or, how Thunderbird screwed me a bit, although it might be my own&nbsp;fault</h3>
+<p>I have five levels of caring about
+email.<span style="color:red" title="Those of you who have one level which is 'email? who uses email?' are cordially invited to bugger off and check your Facebook">*</span>
+They&nbsp;are:</p>
+<ol>
+<li>Don&#8217;t&nbsp;care</li>
+<li>I&#8217;ve dealt with&nbsp;this</li>
+<li>I probably ought to deal with this, or it prompts a thought, or&nbsp;something</li>
+<li>I need to deal with&nbsp;this</li>
+<li>I really, really need to deal with&nbsp;this</li>
+</ol>
+<p>These levels get mapped to my inbox in the following&nbsp;ways:</p>
+<ol>
+<li>Deleted</li>
+<li>Archived (in an Archive&nbsp;folder)</li>
+<li>In the inbox,&nbsp;read</li>
+<li>In the inbox,&nbsp;unread</li>
+<li>In the inbox, flagged Important (and probably marked unread&nbsp;too)</li>
+</ol>
+<p>In four years of dealing with my work inbox through Evolution, this
+scheme has stood me in good stead. However, at the weekend I moved to
+Thunderbird 9, and two days later it screwed me. Or I screwed myself
+while it stood by and laughed. Or something. And it&#8217;s all because my
+work <span class="caps">IMAP</span> account doesn&#8217;t seem to have a Trash folder. Follow the
+bouncing&nbsp;ball&#8230;</p>
+<p>When you set up a new <span class="caps">IMAP</span> account in Thunderbird, it asks where you
+want deleted messages to go. The default setting is &#8220;Move it to this
+folder: Deleted&#8221;, which is what I have set for my gmail&nbsp;account.</p>
+<p><img alt="thunderbird settings" src="http://www.kryogenix.org/images/thunderbird-delete-email.png" /></p>
+<p>However, for my work account, this complained that there was no such
+folder. Now, there&#8217;s a Deleted folder, with little green rubbish bin
+icon<span style="color:red" title="that's an icon of a rubbish bin, not a bin icon that's rubbish">*</span>,
+in the left-hand sidebar under my work account as well. Clicking on that
+also says that &#8220;The current operation on &#8216;Deleted&#8217; did not succeed. The
+mail server for account (myworkemail) responded: Mailbox doesn&#8217;t exist:&nbsp;Trash.&#8221;</p>
+<p><span class="caps">OK</span>, thought I&#8230; maybe that&#8217;s not meant to work. Perhaps Canonical <span class="caps">IS</span>
+don&#8217;t want me storing all my deleted emails on the server or something.
+However, I can&#8217;t find a way of specifying a local folder as the Deleted
+folder for my <span class="caps">IMAP</span>&nbsp;account.</p>
+<p>Now, I delete mail by accident all the time. So I was rather too scared
+to set &#8220;Remove [the mail] immediately&#8221; as my
+what-happens-when-I-press-delete-by-accident thing. Hence, the other
+option is to &#8220;just mark [the email] as deleted&#8221;. What this does is it
+~~strikes through~~ the line describing the email in my inbox, so I can
+later on &#8220;undelete&#8221; it if I want. That seemed <span class="caps">OK</span> for a couple of days.
+However (this is the second level of however), what that actually means
+is that you end up with the list of emails you can see in the window all
+being struck through, which is annoying. So I need a way of saying
+&#8220;fine, all those deleted emails are actually deleted and not just me
+hitting delete by accident&#8221;, and that&#8217;s &#8220;Compact&#8221; on the folder context&nbsp;menu.</p>
+<p><img alt="thunderbird context menu" src="http://www.kryogenix.org/images/thunderbird-context-menu.png" /></p>
+<p>However (third however level), immediately below &#8220;Compact&#8221; is &#8220;Mark
+Folder Read&#8221;. So you can see that an inept person might accidentally
+click on the wrong menu item, and that&#8217;s exactly what I did. And now I
+can&#8217;t tell the difference between the 200 emails that I need to deal
+with and the other 200 that I might want to think about at some point,
+which is extremely irritating. All because I don&#8217;t understand why my
+work email doesn&#8217;t have a Trash&nbsp;folder.</p>
+<p>I can&#8217;t really <em>blame</em> the Thunderbird team for this. (Not that that
+stopped me when I did it, but I calmed down.) &#8220;Mark Folder Read&#8221; and
+&#8220;Compact&#8221; are both <em>destructive</em>, <em>non-reversible</em> actions. They&#8217;re both
+hidden on a folder context menu, a place for experts. If I bitch that I
+ought to be able to undo making a folder read, then I should also bitch
+that I ought to be able to undo compacting, and that defeats the point:
+compacting is itself the undo mechanism for deleting! So I&#8217;m screwed and
+it&#8217;s no-one else&#8217;s fault, which normally means (reluctantly) that it&#8217;s
+my&nbsp;fault.</p>
+<p>Some of you will now be thinking: that&#8217;s what you get for indicating a
+permanent state (&#8220;I need to deal with this&#8221;) with an ephemeral marker
+(read status). And you&#8217;re right, I suppose. However, email has an
+Important flag and that&#8217;s it. There isn&#8217;t an Important and a Very
+Important flag. Oh, there might be extensions to add that, but I&#8217;d want
+the status to show up, and be changeable, from the folder list (not just
+from an individual email). So clearly I need to change my habits.
+Perhaps there&#8217;s an extension which colours the lines in the folder list
+differently depending on a flag I add? If I can change that colour from
+the folder list then that might be a good approach. How do you deal with
+differing levels of importance in email? Your thoughts are&nbsp;invited.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2011/11/08/box-diagrams-in-html-and-unicode/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2012/01/15/collaborative-photo-blogs/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/12/14/a-tale-of-ui-chains/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

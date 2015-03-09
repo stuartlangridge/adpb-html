@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Guy Fawkes and Ubuntu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2004/11/05/fawkes/"><time 
+			class="dt-published" datetime="2004-11-05T11:00:00">Nov 05 2004</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2004/11/05/fawkes/" title="Permalink to Guy Fawkes and Ubuntu" rel="bookmark">Guy Fawkes and&nbsp;Ubuntu</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>
+Today is Guy Fawkes Day, also known as Bonfire Night, the day in which
+we, the citizens of the <span class="caps">UK</span>, celebrate the life and death of the only man
+in history to enter Parliament with completely honest intentions. Guy
+Fawkes: tried to blow up the House of Commons. Now, that sort of thing
+is, admittedly, Not Cricket, but you’ve gotta admire the largeness of
+the bloke’s thoughts.
+
+> “This thrice-damnéd Government perpetuates itself at the expense of
+> the people! What say you, Alcazar?”  
+>  “Verily, I cannot but agree, Tobias. How shall we, as True Catholic
+> Men of England, put an end to their villany?”  
+>  “Mayhaps we should rouse the common Man to our cause? With silvered
+> words might we not educate those beneath us to a more depthful
+> understanding of their lot? How say you, Guy?”  
+>  “No.”  
+>  “But Guy! What manner of persuasion propose you to use to shew the
+> men of Parliament their errors?”  
+>  “Gunpowder. A shitload of it, too; I’ve got 36 barrels lying around
+> here someplace. Incidentally, don’t tell King James that I said that.”
+> </p>
+
+<p>&#8230;and the rest, as the man said, is history. I wonder what dear old
+perfidious Albion would be like if he’d succeeded? The view from
+Westminster Bridge would be quite a bit crapper, I expect, as would the
+opening credits of News at Ten. Still, we can’t have everything. Can’t
+even have anything, some days.<br />
+Which is a neat segue away from the topic of politics (of which
+everyone is bored anyway) and into Ubuntu Linux, which has also been
+failing me recently (much as did Fawkes 399 years ago: big celebrations
+next year!). In particular, while I’ve been impressed with Ubuntu’s
+looks and easy installation and basic stuff, I recently actually tried
+to <em>do</em> something with it. Two things, in fact: plug in a
+<span class="caps"><span class="caps">USB</span></span> pen drive, and browse to a Windows share.
+Neither worked. Plugging in teh pen drive did, apparently, nothing.
+Reading @/var/log/messages@ made it clear that the kernel had recognised
+it and identified it as @/dev/sda@, but Ubuntu utterly failed to then
+mount this device. The “Removable Storage” applet (which is actually
+<code>gnome-volume-manager</code>, as far as I’m aware) has “mount removable media
+when inserted” and so on, and it didn’t happen. What I’d expect to
+happen is for a mount point to be created for the drive and the drive to
+be mounted on that mount point, and then (at base) for a new drive to
+appear in “Drives“, or (better) that <em>and</em> an icon appear on the
+desktop, and (best of all) the drive to be called “<span class="caps">USB</span> Pen Drive” or the
+name of the manufacturer or something rather than “sda” or
+“hal-disk-3-1” or something equally meaningless. In fact, none of these
+things happened. That’s not very good, and it’s obviously not a fault
+with the kernel setup because that <em>worked</em>. Yes, it might be a fault
+with hotplug or something, but Ubuntu and Gnome 2.8 are meant to make
+this sort of thing Just Work, and they failed dismally. In the end I had
+to create a mount point and mount it myself from the command line, which
+is pretty alarmingly arse. Perhaps I didn’t have something installed,
+but I can’t see why this shouldn’t work as part of the install,
+especially since I was upgraded to the Warty release.<br />
+Secondly, browsing to Windows shares in Nautilus doesn’t work. Not even
+a little bit. It doesn’t even seem to understand smb:// URLs, let alone
+show anything under “Windows Network” in “Network“. This is also very
+pants indeed. PLus it means that I can’t print anything from my laptop,
+because I can’t find the printer (which is connected to a Windows box).
+Again, maybe I’ve not installed something (smbfs wasn’t installed, and I
+wondered if installing that would fix it, but it didn’t) but I shouldn’t
+have to; isn’t this sort of thing pretty basic functionality?<br />
+So, Ubuntu fails on the “actually do something” test rather than the
+“start it up and browse the web a bit” test, which isn’t good. Plus,
+there seems to be something wrong with the applet that lets me configure
+my network cards; half the time it locks up, and it refused to configure
+the wireless card to come up at boot, so I had to edit
+@/etc/network/interfaces@. Now, I’m aware that warty is an early
+release, and I have no major problem with stuff not working; it just
+means that (and the Ubuntu team might well entirely agree here) that
+it’s perhaps not as ready for prime-time just yet as I have been
+thinking it&nbsp;was.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2004/11/05/supported/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2004/11/07/fireworks/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2004/11/05/fawkes/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/11/05/fawkes/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

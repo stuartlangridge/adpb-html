@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Identi.ca, Twitter, and posting between the two</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2008/07/03/identica-twitter-and-posting-between-the-two/"><time 
+			class="dt-published" datetime="2008-07-03T10:33:00">Jul 03 2008</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2008/07/03/identica-twitter-and-posting-between-the-two/" title="Permalink to Identi.ca, Twitter, and posting between the two" rel="bookmark">Identi.ca, Twitter, and posting between the&nbsp;two</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>It&#8217;s now the trendy thing to write an essay about why Twitter is doomed,
+or why it&#8217;s not doomed and all its competitors are doomed instead. And
+god knows I wouldn&#8217;t want to break the back of that trend. I&#8217;ve been
+playing with <a href="http://identi.ca">Identi.ca</a>, a Twitter clone written in <span class="caps">PHP</span>. Lots of
+Twitter people are becoming frustrated with seeing the famous Fail Whale
+on Twitter&#8217;s &#8220;we are currently down&#8221; page, and people are starting to
+look elsewhere. There are lots (and lots and lots) of alterni-Twitters
+(which is a problem I&#8217;ll come back to in a moment), but identi.ca is
+attracting one of the communities I operate in, open source people. This
+is because identi.ca is entirely open source: the codebase is called
+<a href="http://laconi.ca/">Laconica</a>. This is a nice idea. First things first, though: I don&#8217;t
+want to update two places at once.
+Identica<span style="color:red" title="It's not clear whether it's called Identica or Identi.ca">*</span>
+doesn&#8217;t have an <span class="caps">API</span> (yet), but I wanted to post things to Twitter and
+have them appear on Identica too. So, I present the Twitter Identi.ca
+Reflector. <a href="http://www.kryogenix.org/code/twitter-identica.tar.gz">Download as a tarball</a> or <a href="http://svn.kryogenix.org/svn/twitter-identica">check it out from Subversion</a>
+or <a href="http://svn.kryogenix.org/listing.php?repname=kryogenix.org&amp;path=%2Ftwitter-identica%2F&amp;rev=0&amp;sc=0">browse the source</a>. The <a href="http://svn.kryogenix.org/svn/twitter-identica/README"><span class="caps">README</span></a> tells you how to set it up. It
+uses Jabber to post to Identica, which isn&#8217;t ideal, but (as mentioned)
+there&#8217;s no <span class="caps">API</span>. So now you can send Twitter posts to Identi.ca, which is
+helpful. Now, why Twitter is good, why Identi.ca is good, and why
+everything else isn&#8217;t. If you just wanted to post Twitter comments to
+Identi.ca then you can stop reading now. Twitter looks like it ought to
+be easy to clone, and it isn&#8217;t. This is why there are lots of Twitter
+clones, and why none of them have taken off. The basic principle of
+microblogging is indeed an easy one, I agree. But all the other
+Twitter-alikes are missing something. They don&#8217;t have <span class="caps">SMS</span> sending, or
+<span class="caps">SMS</span> following, or they don&#8217;t have an <span class="caps">API</span>, or they don&#8217;t have lots of
+desktop clients, or they have one desktop client that doesn&#8217;t run on
+everyone&#8217;s machine, or they don&#8217;t do <span class="caps">IM</span>. What makes Twitter good is two
+things: the first is that you can get at it in <em>so many ways</em>. And
+because there are so many ways, people can build lots of things on top
+of it. For example, if you want to do the reverse of what the above
+reflector does (post your messages to Identi.ca and have them show up on
+Twitter) then you don&#8217;t need an extra program, because it already
+exists: <a href="http://twitterfeed.com">Twitterfeed</a>. Simply sign up at Twitterfeed, and use it to
+send posts from your Identica feed to Twitter, and it&#8217;s all done. That&#8217;s
+the power of having an expressive and complete set of APIs. It can&#8217;t be
+underestimated. The second reason Twitter is good is that everyone&#8217;s
+already there. They got first-mover advantage. There&#8217;s no point going to
+an alternative because <em>none of your friends are there</em>. This is also
+the reason that Twitter has fifty desktop clients and that things like
+Twitterfeed exist; it&#8217;s worth the investment. It does mean that if
+people leave Twitter they&#8217;ll all leave together and the bottom drops out
+of their market, but that&#8217;s the way the internet cookie crumbles. Photo
+sharing sites have the same issue &#8212; it&#8217;s difficult to build a Flickr
+competitor because everyone&#8217;s already at Flickr, so none of the &#8220;social&#8221;
+stuff happens elsewhere because you never hit a critical mass of people.
+So, what&#8217;s good about Identi.ca then? Well, for me, the big things are
+open-sourceness and federation. The underlying codebase being open
+source is a huge win, from my perspective. It means people other than
+the Identi.ca team can work on adding new features, it means that we can
+see what&#8217;s going on, and it means that there are more open source
+programs in the world. I like this. Other people may not, but what the
+hell. The other advantage is federation. This is all about the
+<a href="http://www.openmicroblogging.org/">OpenMicroBlogging</a> specification; it basically blows away the &#8220;all my
+friends are at Twitter so I must be too&#8221; point. It means that you can
+subscribe on one microblogging service to people <em>on other microblogging
+services</em>. I could be at Identi.ca, you could be at Twitter, someone
+else could be at Jaiku or Pownce or wherever else, and we all read one
+another&#8217;s messages, happy as Larry. It levels the playing field. I can
+subscribe Identi.ca to Twitter without problems. This is a great idea
+which is rather hampered by the fact that basically no-one has
+implemented it yet. It&#8217;s in Laconica, though, so Identica has it. It
+helps get around the scaling problems that Twitter are having, too: you
+don&#8217;t need one centralised Twitter service any more. There can be lots
+of little islands, all of which talk to one another. No more scaling
+problems. No more Fail Whale. People who need the extras that Twitter
+provides can use Twitter quite happily (as I&#8217;m doing; I like <span class="caps">SMS</span>!),
+people who don&#8217;t need that but do need other services can use something
+else that provides those other services. The basic concept of
+microblogging has been commoditised thanks to <a href="http://www.openmicroblogging.org">OpenMicroBlogging</a> &#8212;
+it&#8217;s become a simple thing to implement anywhere. Microblogging services
+can now compete on which extras they offer. That&#8217;s why I like Identi.ca.
+Oh, and they let you create your account with OpenID, which I did. It&#8217;s
+a win all round. Development&#8217;s going on at a fast pace on the Laconica
+codebase, so expect to see more and more appear over there. Blizzard&#8217;s
+already added identi.ca support to <a href="http://whoisi.com">Whoisi</a>, so things are moving
+quickly. I don&#8217;t know whether the trickle of Twitterites in Identi.ca&#8217;s
+direction will continue, but thanks to the reflector code above, I&#8217;m now
+on Identi.ca without putting in any extra effort. That&#8217;s
+<a href="http://identi.ca/sil">identi.ca/sil</a> for those of you who want to track&nbsp;it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2008/07/01/controlling-banshee-over-d-bus/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2008/07/04/blah-blah-new-design-blah/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2008/07/03/identica-twitter-and-posting-between-the-two/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2008/07/03/identica-twitter-and-posting-between-the-two/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

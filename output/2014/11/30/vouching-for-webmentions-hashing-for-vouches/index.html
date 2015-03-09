@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Vouching for webmentions; hashing for vouches</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2014/11/30/vouching-for-webmentions-hashing-for-vouches/"><time 
+			class="dt-published" datetime="2014-11-30T15:55:00">Nov 30 2014</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2014/11/30/vouching-for-webmentions-hashing-for-vouches/" title="Permalink to Vouching for webmentions; hashing for vouches" rel="bookmark">Vouching for webmentions; hashing for&nbsp;vouches</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>As mentioned <a href="http://www.kryogenix.org/days/2014/11/29/enabling-webmentions/">yesterday</a> I’ve 
+enabled <a href="http://indiewebcamp.com/Webmention">webmentions</a> on this site. Now, webmentions could have the 
+same spam problem that Pingback has, and so one of the proposed solutions is <a href="http://indiewebcamp.com/Vouch">Vouch</a>, 
+where when you send a webmention you also include with it a “vouch <span class="caps">URL</span>”. That <span class="caps">URL</span> is
+a page which (a) links to <em>you</em>, and (b) is trusted by the person you’re linking <em>to</em>. That way, the receiver can say: <span class="caps">OK</span>, I 
+don’t know this person who’s linking to me, but I do know this other person, and she knows the first person, so I reckon 
+they’re probably <span class="caps">OK</span>. You can see an example of this on <a href="http://aaronparecki.com/replies/2014/10/17/1/vouch">Aaron Parecki’s “replies” site</a>; one of the comments says 
+“(vouched for by <a href="https://waterpigs.co.uk/notes/4VUFr4/">waterpigs.co.uk</a>)”.</p>
+<p>Put your hand up if you can see a problem with this approach.</p>
+<p>I think there are two problems; neither are insurmountable, but both are problems. The first is: how do you find a person
+who will vouch for you and whom the recipient trusts? I think of this like, say, the problem of you, gentle reader, finding
+out what my mobile phone number is. If you’re reading this, then we’re probably vaguely connected; we both work on the web,
+or on Ubuntu, or both like Portishead, or something; we probably have some friends in common; there are lots of people out
+there who know my mobile number; therefore, if you really wanted my number, you could play the “six degrees of 
+<s>Kevin Bacon</s>Stuart Langridge” game and find someone who knows that number and trusts <em>you</em> enough to give it over. But
+it’s a really annoying task, because you don’t know who to ask; all you can do is basically ping friends at random. In
+particular, if there is actually <em>nobody</em> you know who knows my phone number, then you can’t tell that; all you can do is
+keep asking people and you’ll never know whether you haven’t found anyone because you haven’t looked hard enough, or
+because we’re not good enough friends and so there’s nobody out there to find. You could look for an unlimited time.</p>
+<p>I do not like things that could make me work for an unlimited amount of time.</p>
+<p>Second issue: the <em>clique problem</em>. If you only accept vouches from people you trust, then there’s no easy way to <em>get</em> 
+trusted. It makes it much, much harder for an outsider with something to say to get themselves heard. Now, some people
+like that: they want discussions to be among known people only, and that’s fine. But I don’t really like the idea of
+institutionalising that by baking it into the core protocol.</p>
+<p>Since Vouch exists in large part to avoid spam, I thought: hey, what if we build a thing which will vouch for you if you
+prove you’re not a spammer?<sup id="sf-vouching-for-webmentions-hashing-for-vouches-1-back"><a title="Actually, I didn’t quite think of this. I thought: why not prove you’re not a spammer  directly? And Michiel de Jong thought of the idea of proving it to a service which then  vouches for you, which is super clever because it piggybacks on the existing Vouch network, it allows people to trust “autovouched” mentions differently from “personally vouched” mentions, and it doesn’t require everyone with an endpoint to update it." href="#sf-vouching-for-webmentions-hashing-for-vouches-1" class="simple-footnote">1</a></sup> And then people will hopefully learn over time that being thus vouched 
+for is valid, and then everyone wins. If you know someone who will vouch for you, then use them to do so; if you don’t,
+prove you’re not a spammer and have the service vouch for you. If you receive a vouched for webmention from someone you
+trust, great; if you receive one vouched for by the service, then satisfy yourself that the service works and then you
+can give it some limited degree of trust. So it’s not <em>necessary</em> to use this sort of service, but it
+can help to make a bridge from one “circle of trust” to another, or to help someone get involved in the conversation
+even if they’re new to the group. We had a <a href="http://indiewebcamp.com/irc/2014-11-29#t1417292682908">really interesting discussion</a>
+about all this on the <a href="http://indiewebcamp.com/IRC">#indiewebcamp <span class="caps">IRC</span> channel</a> yesterday.</p>
+<p>So I built <a href="https://hash-for-vouch.herokuapp.com">Hash for Vouch</a>. A simple service: you do a little bit of computational work 
+(a <a href="http://hashcash.org">hashcash</a>-style algorithm), and the service verifies that you did the work and then puts up a page 
+which vouches for you, which you can send along with your webmention. There’s an <span class="caps">API</span> so you can do the work and then prove 
+it to get a vouch <span class="caps">URL</span> programmatically, or you can use the form on the front page to do that work in your browser and get 
+a vouch <span class="caps">URL</span> that way. Spammers can’t do the work because it makes spam uneconomical if each one takes five seconds to send.
+And anyone real can join the conversation.</p>
+<p>I’m now sending webmentions which are vouched for by <a href="https://hash-for-vouch.herokuapp.com">Hash for Vouch</a> when I link to
+URLs on this site. Feel free to do the same!</p><ol class="simple-footnotes"><li id="sf-vouching-for-webmentions-hashing-for-vouches-1">Actually, I didn’t quite think of this. I thought: why not prove you’re not a spammer 
+directly? And <a href="https://michielbdejong.com">Michiel de Jong</a> thought of the idea of proving it to a service which then 
+vouches for you, which is super clever because it piggybacks on the existing Vouch network, it allows people to trust
+“autovouched” mentions differently from “personally vouched” mentions, and it doesn’t require everyone with an endpoint
+to update it. <a href="#sf-vouching-for-webmentions-hashing-for-vouches-1-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2014/11/29/enabling-webmentions/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2014/12/17/the-matasano-crypto-challenges/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/1616983109/dans_avatar.jpg">
+			Daniel Newns responded at
+		<a href="https://twitter.com/dnewns/status/539094137199689730">Daniel Newns retweeted this.</a>
+(twitter.com)		<span class="wm-summary">			retweeted this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1616983109/dans_avatar.jpg">
+			Daniel Newns responded at
+		<a href="https://twitter.com/dnewns/status/539094444998664192">twitter.com</a>
+		<span class="wm-summary">			@sil love the styling ;)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/539094656156712961">twitter.com</a>
+		<span class="wm-summary">			@dnewns I don't know why designers go on so much about how hard their job is, it's easy :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1447098455/small.jpg">
+			Gary Fleming responded at
+		<a href="https://twitter.com/garyfleming/status/539099724599799808">Gary Fleming retweeted this.</a>
+(twitter.com)		<span class="wm-summary">			retweeted this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1413139340/2011-06-25-182213.jpg">
+			James Westby responded at
+		<a href="https://twitter.com/jdwestby/status/539107284413337601">twitter.com</a>
+		<span class="wm-summary">			@sil what stops me, as a spammer, getting vouched in 5s then using that to send a million spam?
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/530883407631241216/rVLLopIs.jpeg">
+			Kyle Mahan responded at
+		<a href="https://twitter.com/sil/status/539093414747574272">Kyle Mahan favorited this.</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/539113659147227136">twitter.com</a>
+		<span class="wm-summary">			@jdwestby the page that is being vouched for won't contain links to each of the things you're spamming. Now, it *could*, but that's harder
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/531555821432631297/ObayPR2b.jpeg">
+			Paul Freeman responded at
+		<a href="https://twitter.com/sil/status/539093414747574272">Paul Freeman favorited this.</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			Giovanni P responded at
+		<a href="http://questo.email/view/www.kryogenix.org::fiatjaf@gmail.com::14176346/">http://www.kryogenix.org/days/2014/11/30/vouching-for-webmentions-hashing-for-vouches/</a>
+(questo.email)		<span class="wm-summary">			Just to clarify things on my mind: why not other anti-spam things, like CAPTCHA-for-Vouch?
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2014/11/30/vouching-for-webmentions-hashing-for-vouches/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/11/30/vouching-for-webmentions-hashing-for-vouches/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Cutting down on spam (part XXXVII)</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/"><time 
+			class="dt-published" datetime="2007-03-23T13:43:00">Mar 23 2007</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/" title="Permalink to Cutting down on spam (part XXXVII)" rel="bookmark">Cutting down on spam (part <span class="caps">XXXVII</span>)</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>It occurs to me that I very rarely get useful comments on older posts,
+but I do occasionally (so just turning off comments isn&#8217;t the answer).
+On the other hand, I don&#8217;t want to put any road blocks in the way of
+most commenters. So what I decided to do was add a little bit of extra
+spam-avoidance to older posts. The <a href="http://sw-guide.de/wordpress/math-comment-spam-protection-plugin/">Math s Comment Spam Protection</a>
+plugin for Wordpress is ideal for this, but it adds the question (a
+simple one, like &#8220;Add 3 and 4&#8221;) to every post. I didn&#8217;t want that, so a
+tiny bit of hacking. After installing the plugin into <span class="caps">WP</span>, I edited my
+comments.php file in my theme and added this below the existing comment
+entry&nbsp;boxes:</p>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+
+<span class="cp"># For old posts, display math-comment-spam-protection&#39;s &quot;add these</span>
+<span class="cp"># numbers&quot; question.</span>
+
+<span class="cp">if (function_exists(&#39;math_comment_spam_protection&#39;)) {</span>
+<span class="cp">    $mcsp_info = math_comment_spam_protection();</span>
+<span class="cp">  if ((date(&#39;U&#39;) - get_the_time(&#39;U&#39;)) &gt; 2592000) { # 30 days ?&gt;</span>
+<span class="nt">&lt;p&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;mcspvalue&quot;</span> <span class="na">id=</span><span class="s">&quot;mcspvalue&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span>
+<span class="na">size=</span><span class="s">&quot;22&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;mcspvalue&quot;</span><span class="nt">&gt;&lt;small&gt;</span>Spam protection for older posts: Add
+together
+<span class="cp">&lt;?php echo $mcsp_info[</span><span class="s1">&#39;operand1&#39;</span><span class="cp">].&#39; and &#39;.$mcsp_info[</span><span class="s1">&#39;operand2&#39;</span><span class="cp">].&#39;&#39; ?&gt;</span>
+<span class="nt">&lt;/small&gt;&lt;/label&gt;</span> <span class="cp">&lt;?php</span>
+<span class="cp">  } else {</span>
+<span class="cp">    # it&#39;s not an old comment, so write the answer ourselves!</span>
+<span class="cp">    $vv = $mcsp_info[</span><span class="s1">&#39;operand1&#39;</span><span class="cp">]+$mcsp_info[</span><span class="s1">&#39;operand2&#39;</span><span class="cp">];</span>
+<span class="cp">    echo &#39;&lt;input type=&quot;hidden&quot; name=&quot;mcspvalue&quot; value=&quot;&#39; . $vv . &#39;&quot;&gt;&#39;;</span>
+<span class="cp">  } ?&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name=</span><span class="s">&quot;mcspinfo&quot;</span>
+<span class="na">value=</span><span class="s">&quot;&lt;?php echo $mcsp_info</span><span class="cp">[</span><span class="s1">&#39;result&#39;</span><span class="cp">]</span><span class="s">; ?&gt;&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span>
+<span class="cp">}</span>
+<span class="cp">?&gt;</span>
+</pre></div>
+
+
+<p>Basically, what this does is work out whether a post is over 30 days
+old, and then if it is display the maths question. Since the plugin
+assumes it&#8217;s on every post, it checks for the answer being correct on
+every post. So on posts that *aren&#8217;t* more than 30 days old, we
+calculate the answer ourselves and fill it in! Seems to work so far. If
+I&#8217;ve got something wrong and it&#8217;s stopping you commenting, please <a href="http://www.kryogenix.org/contact">let
+me know</a> through some non-commenty means&nbsp;:)</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2007/03/21/this-is-not-the-way-the-web-works/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2007/03/24/what-if-google-crashed/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2007/03/23/cutting-down-on-spam-part-xxxvii/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

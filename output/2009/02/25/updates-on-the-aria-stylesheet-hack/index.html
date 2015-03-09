@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Updates on the “ARIA stylesheet” hack</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2009/02/25/updates-on-the-aria-stylesheet-hack/"><time 
+			class="dt-published" datetime="2009-02-25T10:51:00">Feb 25 2009</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2009/02/25/updates-on-the-aria-stylesheet-hack/" title="Permalink to Updates on the “ARIA stylesheet” hack" rel="bookmark">Updates on the &#8220;<span class="caps">ARIA</span> stylesheet&#8221;&nbsp;hack</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>My <a href="http://www.kryogenix.org/days/2009/02/22/a-wai-aria-stylesheet"><span class="caps">ARIA</span> &#8220;stylesheet&#8221; hack</a> came up on the <a href="http://lists.w3.org/Archives/Public/wai-xtech/2009Feb/0076.html"><span class="caps">WAI</span>-XTech</a> mailing list.
+Some of my commenters here, and some of the people on the list, seem to
+have misapprehended what the proposal was designed to do; I&#8217;ve mailed
+the list, but it seems useful to post these clarifications here&nbsp;too.</p>
+<ol>
+<li>I am not proposing adding <span class="caps">ARIA</span> to <span class="caps">CSS</span>. An &#8220;<span class="caps">ARIA</span> stylesheet&#8221; looks
+    like a <span class="caps">CSS</span> stylesheet because that&#8217;s a convenient way to apply
+    properties to elements, but they aren&#8217;t the same&nbsp;thing.</li>
+<li>I&#8217;m not proposing that the technique requires JavaScript. My
+    suggestion is that browsers natively understand how to retrieve an
+    &#8220;<span class="caps">ARIA</span> stylesheet&#8221; and apply the <span class="caps">ARIA</span> attributes defined therein to
+    elements, as per the selectors in the &#8220;stylesheet&#8221;. The JavaScript
+    implementation was just to demonstrate how it would work, and a
+    prototype for how people might support older browsers which don&#8217;t
+    have this native &#8220;<span class="caps">ARIA</span> parsing&#8221;, in the same way that there are
+    JavaScript libraries which mimic <span class="caps">HTML5</span> WebForms handling for older
+    browsers that don&#8217;t yet support <code>&lt;input type="range"&gt;</code>.</li>
+<li>The &#8220;<span class="caps">ARIA</span> stylesheet&#8221; only dictates the initial setup of a page, in
+    much the same way that a <span class="caps">CSS</span> stylesheet does for presentation. If I
+    use JavaScript to alter the style of an element, that change is not
+    reflected in the <span class="caps">CSS</span> stylesheet text, but it is obtainable through
+    <code>element.style</code> or <code>getComputedStyle()</code>. In the same way, altering
+    an <span class="caps">ARIA</span> attribute on an element through JavaScript would work
+    perfectly well, and the current value is obtainable through
+    <code>element.getAttribute("aria-role")</code> or&nbsp;similar.</li>
+<li>I understand that <span class="caps">ARIA</span> is semantic and therefore belongs more
+    directly in the <span class="caps">HTML</span> than mere presentation does. However, distinct
+    advantages to moving <span class="caps">ARIA</span> information out into a separate document
+    do exist:<ol>
+<li>It allows me to &#8220;ARIAify&#8221; an entire website very easily, much as
+    having <span class="caps">CSS</span> in a separate stylesheet allows me to change the
+    design of a site very easily. At the moment, to &#8220;ARIAify&#8221; a
+    website I have to edit every single page in great detail. If a
+    site is already properly marked up and relatively consistent in
+    the way it uses that markup, adding <span class="caps">ARIA</span> roles and attributes
+    could be done relatively easily by adding one file, the <span class="caps">ARIA</span>
+    stylesheet, and a <code>&lt;link rel="aria" href="..."&gt;</code> element to the
+    <code>head</code> of each&nbsp;page.</li>
+<li>It avoids the validation problem, that <span class="caps">ARIA</span> attributes will
+    currently cause a document to fail&nbsp;validation</li>
+<li>It reduces bandwidth required to serve a site, meaning that
+    sites load faster and servers work faster and cheaper, in two
+    ways:<ol>
+<li>The &#8220;<span class="caps">ARIA</span> stylesheet&#8221; can be cached by browsers, meaning
+    that it needs only be served once per site; embedding
+    attributes in the markup means that every page gets larger
+    and the attributes are not&nbsp;cached</li>
+<li>User agents that are not tied into native accessiblity APIs
+    (for example, users who do not have the accessibility APIs
+    switched on because they don&#8217;t need them) do not need to
+    fetch the <span class="caps">ARIA</span> stylesheet at all, saving even more&nbsp;bandwidth</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>Hope this helps clarify my thinking. Comments are&nbsp;welcomed.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2009/02/25/jif-lemon-day-2/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2009/03/13/roman-dates/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2009/02/25/updates-on-the-aria-stylesheet-hack/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2009/02/25/updates-on-the-aria-stylesheet-hack/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

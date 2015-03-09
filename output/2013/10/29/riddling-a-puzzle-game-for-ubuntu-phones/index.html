@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Riddling: a puzzle game for Ubuntu phones</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2013/10/29/riddling-a-puzzle-game-for-ubuntu-phones/"><time 
+			class="dt-published" datetime="2013-10-29T19:22:00">Oct 29 2013</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2013/10/29/riddling-a-puzzle-game-for-ubuntu-phones/" title="Permalink to Riddling: a puzzle game for Ubuntu phones" rel="bookmark">Riddling: a puzzle game for Ubuntu&nbsp;phones</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>My first app for Ubuntu phones is in the Ubuntu phone app&nbsp;store!</p>
+<p>It&#8217;s called &#8220;<a href="http://www.kryogenix.org/code/riddling">Riddling</a>&#8220;, and it&#8217;s a puzzle game involving
+intelligence, psychology, lateral thinking, research, and&nbsp;guesswork.</p>
+<p>If you have an Ubuntu phone, you can get it right now: just search for
+&#8220;Riddling&#8221; in the Applications scope and install it. Let me know what
+you&nbsp;think.</p>
+<p><a href="http://kryogenix.org/days/wp-content/uploads/2013/10/device-2013-10-28-200608.png"><img alt="The main Riddling screen, level 3" src="http://kryogenix.org/days/wp-content/uploads/2013/10/device-2013-10-28-200608-180x300.png" /></a></p>
+<h2>Behind the&nbsp;scenes</h2>
+<p>If you just want to play the game, the rest of this post will not be of
+interest to you. I wrote Riddling partially because I think it&#8217;s a good
+idea for a game, but also to get some more detailed experience of the
+whole process of creating a completed application for Ubuntu phones:
+everything from the app review process to all the work you need to do
+outside core gameplay to make a decent app, and including the tools for
+building and checking applications, how to test them on the phone, and
+so on. So below I&#8217;ll outline some thoughts on this whole process. The
+basic summary is that building apps for Ubuntu is great and you should
+do it. There are still a few rough edges in the whole process, and so
+I&#8217;m writing them down in the hope that it&#8217;s useful feedback. Your
+thoughts, links to Launchpad bugs, disagreements, improvements, and war
+stories are&nbsp;invited.</p>
+<h3>App&nbsp;Creation</h3>
+<p>Apps for Ubuntu are created with <span class="caps">QML</span>. I personally, to make my biases
+clear, think it ought to be possible to develop almost any app using
+pure <span class="caps">QML</span> and JavaScript without any C++ involved. I don&#8217;t want to have
+to compile things, to think about different architectures, to ship more
+than one binary, to have to <em>care</em> about any of that stuff at all. You
+may feel differently, and you are welcome to do so, but be aware of my
+biases here: if your proposal for fixing issues that I bring up is
+&#8220;write C++&#8221;, &#8220;everyone should be compiling their apps from C++ anyway&#8221;,
+or something similar, then I&#8217;m going to disagree on those&nbsp;grounds.</p>
+<p>On with the&nbsp;show.</p>
+<p><a href="http://kryogenix.org/days/wp-content/uploads/2013/10/device-2013-10-28-201308.png"><img alt="Riddling's About screen" src="http://kryogenix.org/days/wp-content/uploads/2013/10/device-2013-10-28-201308-180x300.png" /></a></p>
+<h4><span class="dquo">&#8220;</span>Ubuntu <span class="caps">SDK</span>&#8221;</h4>
+<p>One creates an Ubuntu app with the Ubuntu <span class="caps">SDK</span>. That makes sense: an <span class="caps">SDK</span>
+is a collection of APIs which your app can use. For Ubuntu, though,
+&#8220;Ubuntu <span class="caps">SDK</span>&#8221; is also the name of the <span class="caps">IDE</span>, the development environment:
+to make an app, you open the Dash and search for &#8220;Ubuntu <span class="caps">SDK</span>&#8221; and then
+run it. That makes a certain amount of sense, but it makes this really
+hard to talk about: questions such as &#8220;how do I run my app in Ubuntu
+<span class="caps">SDK</span>&#8221; sound strange, because it&#8217;s entirely unclear whether you&#8217;re talking
+about the APIs or the <span class="caps">IDE</span>. This is why developer environments have
+names: Visual Studio, Xcode, Eclipse. I wish the &#8220;Ubuntu <span class="caps">SDK</span>&#8221; was called
+an actual&nbsp;name.</p>
+<p><span class="dquo">&#8220;</span>But it&#8217;s got a name!&#8221;, some of you will be saying. &#8220;It is Qt Creator.&#8221;
+Ah, but it isn&#8217;t. It is Qt Creator <em>with extra stuff</em>. I can&#8217;t just say
+to people &#8220;to make an Ubuntu app, run Qt Creator&#8221; because they won&#8217;t
+have the extra stuff. &#8220;To make an Ubuntu app, run Qt Creator and then
+install this other thing and this other thing and configure this thing
+and this other thing&#8230;&#8221; is the way to having people say, that sounds
+really hard so I&#8217;m not going to do that. This is why I wish that &#8220;Ubuntu
+<span class="caps">SDK</span>&#8221; was called something. Branding is important. The Ubuntu app
+development experience is <em>not</em> just &#8220;Qt Creator with an Ubuntu plugin&#8221;,
+or at least it can&#8217;t be if it&#8217;s going to be&nbsp;successful.</p>
+<h4>Custom build&nbsp;steps</h4>
+<p>Riddling is basically a game where you have to type in an answer for
+each level to proceed to the next level. Ubuntu users being what they
+are, a reasonable proportion of them will think, I can&#8217;t work out the
+answer for level 11, so I&#8217;ll just look in the source and get the answer
+from there. This would, obviously, spoil the game somewhat &#8212; the
+challenge is to research and think laterally, not to be a developer who
+knows what source code is &#8212; and so the game does not directly contain
+the answers; the game contains <em>hashes</em> of the answers and your entered
+answer is compared against that, in a similar way to how web services
+and Ubuntu itself check that your login password is correct without ever
+having a plain-text copy of that password around to check against. This
+is all well and good, but obviously I can&#8217;t be writing hashes all the
+time by hand. So my copy of the game contains the real plain-text
+answers, and when I build the game I take those plain-text answers and
+create the hashes of them to store in the released version. What this
+requires is a <em>custom build step</em> &#8212; a way to add an extra step to the
+build process as run by &#8220;Ubuntu <span class="caps">SDK</span>&#8221;, so I can add a step which does
+this answer&nbsp;encryption.</p>
+<p>It is not possible to add a custom build step to the build process for
+Ubuntu <span class="caps">SDK</span> apps, at the moment. What this means in practice is that I
+have to write my own build process. I have a little shell script which
+does all the things I need: does the answer encryption, creates icon
+images from my original <span class="caps">SVG</span> icon, builds a click package. And I run that
+shell script <em>instead</em> of using the Ubuntu <span class="caps">SDK</span> thing. That&#8217;s quite
+annoying: it means that I&#8217;ve stepped almost entirely outside the Ubuntu
+<span class="caps">SDK</span> <span class="caps">IDE</span> at that point. (And indeed I&#8217;ve found myself doing most of my
+editing in my normal editor, Sublime Text.) To be clear, it is a credit
+to the Ubuntu <span class="caps">SDK</span> team that it&#8217;s perfectly possible to make Ubuntu apps
+without being forced to use the Ubuntu team&#8217;s choice of <span class="caps">IDE</span>. But I
+<em>want</em> to use their <span class="caps">IDE</span> &#8212; it&#8217;s all nicely integrated, it provides a
+whole bunch of stuff like device connection and code completion and
+debugging that others don&#8217;t &#8212; but I can&#8217;t because of this one blocker
+about custom build steps. All I&#8217;d need is some way to add a step which
+runs an arbitrary command: with that, I&#8217;d be golden. I spoke to some Qt
+Creator experts and it isn&#8217;t doable at the moment, but apparently it
+might be: this is exacerbated by how Qt Creator documentation basically
+assumes that you&#8217;re a C++ person and therefore &#8220;I want a custom build
+step&#8221; is &#8220;add something to your cmake file&#8221;, which doesn&#8217;t even exist if
+you&#8217;re writing a pure <span class="caps">QML</span> app as I think apps should be (and this one
+certainly should be, even if others shouldn&#8217;t). This feeling that &#8220;well,
+you&#8217;ll be writing C++ anyway, or you&#8217;re not a real programmer&#8221; does seem
+to rather pervade the community; it&#8217;s something that I hope Ubuntu can
+help&nbsp;fix.</p>
+<h4>Lint</h4>
+<p><span class="dquo">&#8220;</span>Linting&#8221; is the process of checking some code for accuracy and
+completeness. In this example, it&#8217;s about checking your built click
+package to confirm that it&#8217;s correct. <a href="http://popey.com/">Alan Pope</a> pointed me in the
+direction of the excellent <a href="https://launchpad.net/click-reviewers-tools">click reviewers tools</a>: once I&#8217;ve built my
+click package, I do
+<code>click-reviewers-tools/bin/click-run-checks com.ubuntu.developer.whoever_1.0_all.click</code>
+and it gives me a bunch of information about the package and catches a
+bunch of errors. It&#8217;s incredibly handy: I was, for example, providing a
+full path to the <code>qmlscene</code> binary, and that works fine on my computer
+and also when running my app by hand on the phone, but it <em>doesn&#8217;t</em> work
+when running the app on the phone from the Dash. The
+click-reviewers-tools caught that error and I fixed it. That&#8217;s great.
+These tools need more publicity. I understand that they&#8217;re supposed to
+be integrated into the <span class="caps">IDE</span> build process at some point, which will be
+excellent (although it wouldn&#8217;t have helped me because of my custom
+build script, as&nbsp;above).</p>
+<p><a href="http://kryogenix.org/days/wp-content/uploads/2013/10/device-2013-10-28-192223.png"><img alt="An answer in Riddling" src="http://kryogenix.org/days/wp-content/uploads/2013/10/device-2013-10-28-192223-180x300.png" /></a></p>
+<h4>Documentation of <span class="caps">QML</span></h4>
+<p><a href="http://qt-project.org/doc/qt-5.1/qtdoc/modules-qml.html"><span class="caps">QML</span> is quite well documented</a> by the Qt project. The <a href="http://developer.ubuntu.com/api/qml/sdk-1.0/">Ubuntu <span class="caps">SDK</span>
+components are mediumly-well documented</a> by the Ubuntu team, and that
+documentation improves and gets more detailed every day, so I&#8217;m not
+worried about that. What is both confusing and annoying is that those
+two bits of documentation are in different places and are unconnected.
+For example, <a href="http://developer.ubuntu.com/api/qml/sdk-1.0/Ubuntu.Components.Label/">the documentation for an Ubuntu.Components.Label</a>
+shows that the only thing you can customise about a Label is its
+fontSize. The example then sets <code>text</code> on it. What&#8217;s <code>text</code>? That&#8217;s
+undocumented? And how do I set the colour of the text? What about rich
+formatted&nbsp;text?</p>
+<p>Well, an <code>Ubuntu.Components.Label</code> is <em>actually</em> an augmented <span class="caps">QML</span>
+<a href="http://qt-project.org/doc/qt-5.0/qtquick/qml-qtquick2-text.html">Text</a> item. The <span class="caps">QML</span> documentation for <code>Text</code> shows a zillion other
+properties that are settable, and to make any use of a <code>Label</code> at all
+you need to know that it&#8217;s really a <code>Text</code> but with extra stuff. The
+<code>Label</code> documentation doesn&#8217;t help with this at all. I only know that a
+<code>Label</code> is really a <code>Text</code> because I asked someone and looked in the
+source for the Ubuntu <span class="caps">SDK</span> itself. And if I look at the <code>Text</code> docs they
+say I can set <code>font.pixelSize</code>&#8230; but if I&#8217;m really a <code>Label</code> then I&#8217;m
+not supposed to do that; I&#8217;m supposed to set <code>fontSize</code> to one of the
+chosen Ubuntu sizes, for consistency across the&nbsp;platform.</p>
+<p>The documentation being split like this makes it way harder to work out
+what to do. I think my proposed solution is that the Ubuntu
+documentation site ought to include the <span class="caps">QML</span> documentation too, so a
+<code>Label</code> lists all its properties, not just the ones that differ from
+<code>Text</code>, and explains why you should use <code>fontSize</code> rather than
+<code>font.pixelSize</code>.</p>
+<p>This is a fairly mammoth undertaking, and I&#8217;m sure that the Ubuntu
+documentation team are aware of it and are working on it. For the moment
+it&#8217;s doable &#8212; as I say, I have successfully written an app &#8212; but I
+think it will confuse new app developers who are unaware that the Ubuntu
+<span class="caps">SDK</span> documentation only tells half the story, and the Qt <span class="caps">QML</span>
+documentation isn&#8217;t necessarily the best way to build Ubuntu&nbsp;apps.</p>
+<h3>Making a decent&nbsp;app</h3>
+<p>Part of the goal in writing Riddling was to really nail down the
+difference between &#8220;core gameplay&#8221; and &#8220;a finished app&#8221;. Riddling is
+ridiculously simple in concept: as mentioned, it&#8217;s just &#8220;allow the user
+to type in an answer and then check it against the list of answers&#8221;. I
+had the basics of the game implemented in, not kidding, 15 minutes.
+Everything else I did is bridging the gap between &#8220;prove the basic
+principle&#8221; and &#8220;make a game that people want to play&#8221;. All this bridging
+stuff is <em>critical</em>; it&#8217;s what makes the difference between a good idea
+and a good app. The idea (and the implementation of the idea) is about
+5% of what makes an app good. Many open source apps haven&#8217;t quite
+grasped this and are just a bare implementation of the idea without the
+other 95% which takes it from idea to app. The Ubuntu philosophy is to
+do the other 95% too (whether that&#8217;s always succeeded is a different
+question, of course). So, for reference, here&#8217;s the list of other stuff
+I had to do to make Riddling once I&#8217;d made the core game in 15&nbsp;minutes.</p>
+<p>Work out how to encrypt the answers and encrypt them; add the &#8220;universal
+answer&#8221; which is accepted for every question so that I can test the
+game; choose a background gradient; choose font sizes; adjust the
+spacing between the clue, the text box, and the submission button on the
+front screen; work out how to convey the current level number; make the
+text box accept Enter to submit as well as pressing the button; add the
+list of previous answers; add an about page; have the app remember your
+current position when it&#8217;s closed and restarted; add a way to reset the
+game so you can hand the phone to your kids and they can play; add
+subtle sound effects for correct and incorrect answers; credit the
+freesound creators of those sound effects; add an animation transition
+to show a correct or incorrect answer; decide on the proper easing for
+those animations; write a one-line description of the game; write a
+longer description of the game; design an icon; make icons in various
+different sizes; decide on a licence; make a website of the game; take
+screenshots of the game; test the game on a phone; test the game on a
+desktop; decide how big the window should be on a desktop; upload new
+versions of the click package to the website; work out how to tell
+people about the app; post to G+, to reddit, to&nbsp;twitter.</p>
+<p>None of that is to applaud myself for work; it&#8217;s to illustrate how much
+stuff still remains to be done once you&#8217;ve come up with an idea and then
+built a rough implementation of that idea. None of it is specific to
+building Ubuntu apps, either. I personally am enormously guilty of
+having an idea, knocking out a rough implementation of that idea, and
+then thinking to myself &#8220;cool, that works; turning that into an actual
+game is just a small matter of programming and is quite boring, so maybe
+I&#8217;ll just release this as it is&#8221;. That&#8217;s not acceptable now; I&#8217;m
+gradually starting to understand&nbsp;that.</p>
+<p>Also: get a designer. My graphical guy (who would probably be called an
+&#8220;art director&#8221; if we were, say, Electronic Arts rather than just two
+blokes) went on and on about getting the typography and spacing right,
+and we went backwards and forwards on it repeatedly. And he&#8217;s right: it
+all feels better now. Thank you, Mike. If you need someone who&#8217;s great
+at this stuff, let me know and I&#8217;ll put you in&nbsp;touch.</p>
+<p><img alt="Riddling@64" src="http://kryogenix.org/days/wp-content/uploads/2013/10/Riddling@64.png" /></p>
+<h3>Submitting the&nbsp;app</h3>
+<p>At this point, I&#8217;ve built an app, I&#8217;m happy with it, and I&#8217;ve got a
+click package for it. Time to add it to the store so other people can
+play it! This will therefore be a laundry list of little complaints
+about the smoothness of the app submission process. Before I start,
+though, I should say this: it is fantastic that I can make an app and
+submit it and have it show up in the store after about 20 minutes. The
+team who built this and who do the reviews deserve congratulation:
+everything I outline below is merely a slightly roughened corner on an
+otherwise good process, and I&#8217;m confident that most of these issues are
+already known and that all of them will be fixed. In particular, I
+believe that it should be possible soon to submit an app direct from
+&#8220;Ubuntu <span class="caps">SDK</span>&#8221;, meaning that this whole web-based submission process will
+largely go away (although for people doing custom builds it will still
+need to stay around, of course). I should say that even if
+submission-from-the-<span class="caps">IDE</span> becomes a reality, there should be a
+<code>submit-to-the-app-store</code> command line tool to do it as well (which
+would do all the same stuff), so people with custom builds can use it
+and you&#8217;re not wholly tied to the <span class="caps">IDE</span>.</p>
+<p>On the first screen of submitting an app, you&#8217;re asked for an
+&#8220;application name&#8221; and a &#8220;package name&#8221;. I at first thought that the
+&#8220;application name&#8221; was the human name for my app (&#8220;Riddling&#8221;) and the
+&#8220;package name&#8221; was the techie computer name which the click package is
+called (<code>org.kryogenix.riddling</code>). However, the &#8220;package name&#8221; doesn&#8217;t
+allow dots in it. After being hugely baffled by this, I asked on <span class="caps">IRC</span>,
+and popey confirmed that the &#8220;package name&#8221; is the <em>last bit</em> of the
+techie computer name: that is, <em>all</em> my apps are
+&#8220;org.kryogenix.<em>something</em>&#8221; and the &#8220;package name&#8221; is the <em>something</em>.
+The &#8220;org.kryogenix.&#8221; bit is called your &#8220;namespace&#8221;, and you select it
+when you first sign up for app submission; the &#8220;package name&#8221; is then
+glued onto the end of your namespace to make the name that the click
+package is&nbsp;called.</p>
+<p>You&#8217;re asked for a &#8220;tagline&#8221;, a one-line description of your app. There
+are four different places to describe your app: the &#8220;tagline&#8221; in the
+submission process, the &#8220;description&#8221; in the submission process, the
+&#8220;description&#8221; in your <code>manifest.json</code> file, and the &#8220;Comment&#8221; in your
+<code>appname.desktop</code> file. It is not at all clear what the difference
+between these is. This, I think, could be solved by showing, as part of
+the app submission process, what the app preview in the Dash will look
+like for users once the app is submitted. What I discovered is that the
+<code>manifest.json</code> <span class="dquo">&#8220;</span>description&#8221; is currently ignored (but will presumably
+become important once submission is done from the <span class="caps">IDE</span>), the
+<code>appname.desktop</code> <span class="dquo">&#8220;</span>Comment&#8221; is also ignored, and the &#8220;tagline&#8221; and
+&#8220;description&#8221; are shown one after the other in the Dash app preview when
+installing an app. So if you have a paragraph which describes your app,
+the &#8220;tagline&#8221; should be the first sentence of it and the &#8220;description&#8221;
+should be the&nbsp;remainder.</p>
+<p>The submission process asks for a 256x256px <span class="caps">PNG</span> icon. This icon is used
+by the Dash when looking at an uninstalled app, but it is <em>not</em> used as
+the icon for your app once the app is installed. Instead, the icon used
+once the app is installed is the one named as <code>Icon</code> in
+<code>appname.desktop</code>. There&#8217;s no guidance as to the size that this icon
+should be (I have emailed the Canonical design team asking for such
+guidance as part of the ongoing App Design Clinics), but I can tell you
+that 64x64 is too small and your icon will be zoomed up and look blurry.
+I used the same 256x256 icon that I added in the submission process, and
+that worked fine: nice sharp icon on the&nbsp;phone.</p>
+<p>The &#8220;required hardware&#8221; option in the submission process says &#8220;<span class="caps">PC</span> Only&#8221;,
+and that&#8217;s all you can choose. That puzzled me for a while &#8212; surely
+there should be a &#8220;phone&#8221; option? What&#8217;s the point of providing a
+dropdown for this if there&#8217;s only one entry in it? &#8212; but I assume that
+this will change later, so just choose &#8220;<span class="caps">PC</span> Only&#8221; for&nbsp;now.</p>
+<p>Sadly, there is currently no way to install a click package on the
+Ubuntu desktop. The process of developing an app, making a click
+package, and submitting it is rather excellent, but it&#8217;s close to
+impossible to make your app also available to Ubuntu desktop users,
+which would massively increase the number of people who are able to use
+it. Even if an app is built with convergence in mind &#8212; if it alters its
+display for more screen real estate, as Karma Machine does, or if it&#8217;s
+happy running in a small window and there&#8217;s no need to change, as
+Riddling is &#8212; actually getting the app to desktop users can&#8217;t really be
+done right now. I understand the reasoning here; click packages will be
+able to be installed on the desktop in the next release, and that&#8217;ll be
+fantastic. Right now, though, apps you build are to all intents and
+purposes phone only, unless you&#8217;re prepared to provide a bunch of techie
+instructions about installing dependencies and checking out bzr
+branches, or you&#8217;re prepared to build a <code>.deb</code> package. This will be
+cool once it&#8217;s improved, but right now it&#8217;s&nbsp;annoying.</p>
+<h3>In&nbsp;summary</h3>
+<p>I&#8217;ve really enjoyed making Riddling (and from the feedback, people are
+enjoying playing it). It&#8217;s clear to me that all the moving parts of &#8220;the
+Ubuntu platform&#8221; are coming together to make something which is great to
+write apps for and <em>easy</em> to write and distribute apps for, and that&#8217;s
+what I want from my <span class="caps">OS</span> of choice. All the stuff I mention above will be
+fixed soon, I&#8217;m sure. Meanwhile, while you&#8217;re waiting for that, open up
+the Dash on your phone and search for &#8220;Riddling&#8221;. Maybe you&#8217;ll be the
+first to get to the&nbsp;end!</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2013/10/17/ubuntu-phone-apps-images/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2013/11/06/twenty-past-eight/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2013/10/29/riddling-a-puzzle-game-for-ubuntu-phones/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/10/29/riddling-a-puzzle-game-for-ubuntu-phones/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

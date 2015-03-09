@@ -1,0 +1,21 @@
+a.simple-footnote {
+    text-decoration: none;
+    position: relative;
+    color: rgba(255,0,0,0.7);
+}
+
+a.simple-footnote::after {
+    content: " ";
+    position: absolute;
+    display: inline-block;
+    padding: 1.3em;
+    margin-left: -1.5em;
+    margin-top: -.2em;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+a.simple-footnote:hover::after {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(0,0,0,0.4);
+}

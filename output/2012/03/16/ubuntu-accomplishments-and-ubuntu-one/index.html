@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Ubuntu Accomplishments and Ubuntu One</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2012/03/16/ubuntu-accomplishments-and-ubuntu-one/"><time 
+			class="dt-published" datetime="2012-03-16T09:32:00">Mar 16 2012</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2012/03/16/ubuntu-accomplishments-and-ubuntu-one/" title="Permalink to Ubuntu Accomplishments and Ubuntu One" rel="bookmark">Ubuntu Accomplishments and Ubuntu&nbsp;One</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Those of you who read <a href="http://planet.ubuntu.com/">Planet Ubuntu</a> will doubtless have seen Jono
+Bacon talking about the <a href="https://wiki.ubuntu.com/Accomplishments">Ubuntu Accomplishments</a> system that he&#8217;s been
+working on along with a growing community of developers and testers.
+That system uses <a href="https://one.ubuntu.com">Ubuntu One</a> to communicate your accomplishments to
+the central server that signs them off, and today I&#8217;d like to talk about
+why it does&nbsp;that.</p>
+<p>There are a bunch of little reasons why the Accomplishments system uses
+Ubuntu One, and one big reason. The big reason is this: <strong>running a
+service that serves lots of people is hard</strong>. Ask anyone in a startup;
+ask Twitter; ask anyone who has seen a webpage saying
+<code>504 Gateway  Timeout</code> or &#8220;We&#8217;re experiencing a lot of traffic at the
+moment&#8221;. If your service becomes popular, making it able to cope with
+the number of people using it is a difficult job. You need to have
+servers for the web service itself, servers to fail over onto if those
+get too busy or crash, servers to load-balance between them, servers to
+run haproxy, servers to be the front-end, servers to cope with
+unwrapping <span class="caps">SSL</span>, servers to run the underlying database, servers,
+servers, servers. It&#8217;s hard work, and the state of the art evolves every
+single day. And this is because a web service is <em>synchronous</em>.</p>
+<p>You may think here, &#8220;huh?&#8221;. Take a step back. The Ubuntu Accomplishments
+system lets you get
+two<span style="color:red" title="three, actually, but the third is sort of theoretical at the moment">*</span>
+types of accomplishments: <em>local</em> and <em>machine-verified</em>. Local
+accomplishments are things that only occur on your machine: you&#8217;ve just
+beaten Solitaire, for example. We need not talk further of those here.
+Machine-verified accomplishments are those which you are awarded (by a
+script running on your machine which checks whether you&#8217;ve accomplished
+them) and then that award is verified by another machine, so you can&#8217;t
+lie about having them; this is things like filing your first Launchpad
+bug, joining your Ubuntu loco team, and so on. The obvious way to build
+this system would be to have the script which runs on your machine check
+whether you&#8217;ve filed your first Launchpad bug, and then if you <em>have</em>,
+to request
+<code>http://ubuntuac.com/verify?email=me@example.com&amp;accom=first-launchpad-bug</code>
+and have that server verify that you have indeed got it. However,
+imagine a world in which many many people have installed the
+accomplishments system; our poor ubuntuac.com server would be
+overwhelmed. We&#8217;d have to care about haproxy and load-balancing and
+front-ends and nagios and so on. Now, this might actually be <span class="caps">OK</span> for an
+Ubuntu service — the Canonical sysadmins are excellent at their jobs —
+but it ought to be possible to build things without needing a whole
+sysadmin&nbsp;team.</p>
+<p>This is exactly the same issue that desktop programs have; if you try
+and do something which might take a long time, and then block waiting
+for the result, your application hangs. Reading a file will make your
+app go grey if it turns out to be a long file. The way to fix this is to
+be <em>asynchronous</em>, to request the file and have it load in the
+background and then call you back when it&#8217;s done. Building a popular
+service is similar. The way to build such a service isn&#8217;t to hit some
+verify <span class="caps">URL</span> and then wait for the result, because then the service has to
+rush to give you an answer, conscious that you&#8217;re waiting for it. Be
+asynchronous. And that&#8217;s what Ubuntu One brings to the Accomplishments
+system. Instead of verifying an accomplishment immediately, the
+Accomplishments system stores it in Ubuntu One, in a folder which is
+shared with the Accomplishments server. It&#8217;ll then be synced to Ubuntu
+One, and then to the Accomplishments server; the server can verify it at
+its leisure and then sign the accomplishment, and that signature is then
+synced back to Ubuntu One and then down to your machine. None of these
+steps are harmed by waiting. If your computer goes offline halfway
+through the process, no problem: your accomplishment will be synced when
+you go back online. If the Accomplishments server has a million things
+to do, no problem; it works through them as fast as it can manage and
+each will be done in turn. If Ubuntu One itself crashes, no problem;
+your accomplishments will sync when it recovers. If the Accomplishments
+server dies, no problem; you&#8217;re not waiting for a <span class="caps">URL</span> from it, so you&#8217;ll
+not get a Gateway Timeout; instead, the server will be fixed from
+crashing and then just carry on with its list of files, and any
+accomplishments that were sent to it while it was dead will still&nbsp;arrive.</p>
+<p>Of course, it would be possible to build a web service and an
+Accomplishments client which achieved this in other ways. Have the
+Accomplishments client detect whether you&#8217;re online and queue up
+requests if you&#8217;re not; have it detect if the connection drops while
+it&#8217;s asking for verification; have the Accomplishments server receive a
+verify request <span class="caps">URL</span> and then return an &#8220;it&#8217;s in my queue, here&#8217;s your
+claim ticket&#8221; token and have the client periodically poll for that
+ticket or wait on a Comet connection. But that&#8217;s still a lot of effort,
+and it&#8217;s a lot of effort that Ubuntu One <em>already does for you</em>. The
+Accomplishments client can get all this network-y retries-y queue-y
+cleverness just by dropping a file in a folder, and doing it that way
+means that services can be built by normal mortals rather than
+super-network-experts. Go asynchronous and let someone else do the
+really difficult work for you. That&#8217;s why the Accomplishments system
+uses Ubuntu One, and it&#8217;s why it&#8217;s able to exist and scale without
+having an army of sysadmins keeping it going, no matter how many people
+use&nbsp;it.</p>
+<p>If you&#8217;re interested in building services which work like this, chat to
+me, because I run the Ubuntu One app developer&nbsp;programme.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2012/03/11/monkey-island-2-for-about-the-fifth-time/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2012/03/20/step-away-from-the-localstorage/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2012/03/16/ubuntu-accomplishments-and-ubuntu-one/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/03/16/ubuntu-accomplishments-and-ubuntu-one/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

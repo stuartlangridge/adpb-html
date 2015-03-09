@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Zoomed page designs</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2005/01/11/designszoomed/"><time 
+			class="dt-published" datetime="2005-01-11T11:00:00">Jan 11 2005</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2005/01/11/designszoomed/" title="Permalink to Zoomed page designs" rel="bookmark">Zoomed page&nbsp;designs</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Over at <cite>A List Apart</cite>, Joe Clark has published <a href="http://www.alistapart.com/articles/lowvision/">Big, Stark, <span class="amp">&amp;</span> Chunky</a> , a new article which deals with delivering web designs to
+low-vision users. By contrast to the canonical “blind user with a screen
+reader” test case to whom we’ve become accustomed (and rather smug that
+are catered for without too much work by our all-<span class="caps">CSS</span>-no-tables designs
+with a “skip navigation” link), low-vision users need a radical change
+to a site design. And this is a <em>design</em>, too. Flatten multi-column
+sites into a single column. Allow text zooming, but ensure that your
+design is still great when the text is large, larger than you’d think of
+zooming it, but that it doesn’t require a 50” plasma screen to display
+the design properly at high text zoom levels. Make sure there are plenty
+of headings, and plenty of bold. This is no small challenge. Clark
+suggests making one of the styles your site offers (either through the
+built-in style switcher in Mozilla <em>et al</em>. or a JavaScript style
+switcher or similar) a “low vision” style. Actually doing the design is
+beyond me; for that, you want to talk to <a href="http://www.hicksdesign.co.uk/">Jon Hicks</a> or <a href="http://www.andybudd.com/">Andy Budd</a>
+or <a href="http://www.adactio.com/">Jeremy Keith</a> or <a href="http://www.mezzoblue.com/">Dave Shea</a>. But I was thinking about how we
+can offer this kind of thing automatically. Joe’s proposal is the most
+pure: offer a new “zoomed” media type, so that adding a new low-vision
+style to your website is as simple as adding to your&nbsp;stylesheet:</p>
+<div class="highlight"><pre><span class="err">@</span><span class="n">media</span> <span class="n">zoomed</span> <span class="p">{</span>
+  <span class="p">...</span> <span class="n">add</span> <span class="n">your</span> <span class="n">low</span><span class="o">-</span><span class="n">vision</span> <span class="n">declarations</span> <span class="n">here</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>but the <span class="caps"><span class="caps">W3C</span></span>’s <span class="caps"><span class="caps">CSS</span>
+</span>Working Group have rejected all such suggestions thus far. I
+suggest, then, that the best approach might be to use something like the
+<a href="http://greasemonkey.mozdev.org/">Greasemonkey</a> tool in Mozilla and add a simple user script that adds
+class=“lowvision” to&nbsp;all</p>
+<p>tags in your browser. Low-vision users can then install this simple user
+script (alternatively, it might be encapsulated in its own “lowvision”
+extension for Firefox), and all those designers out there can instead
+style their pages for low-vision users with declarations <em>a la</em>:</p>
+<div class="highlight"><pre><span class="n">body</span><span class="p">.</span><span class="n">lowvision</span> <span class="n">div</span><span class="p">.</span><span class="n">whatever</span> <span class="p">{</span>
+  <span class="p">...</span><span class="n">style</span> <span class="n">declarations</span> <span class="k">for</span> <span class="n">this</span> <span class="n">div</span><span class="p">...</span>
+<span class="p">}</span>
+    <span class="p">...</span> <span class="n">etc</span> <span class="p">...</span>
+</pre></div>
+
+
+<p>This does rely somewhat on being able to get the word out to low-vision
+users that installing the extension is a good idea, and then we hit the
+typical chicken-and-egg problem: people won’t install the extension
+until sites use it, but sites won’t code for it until users <em>have</em> it.
+Nonetheless, making it easy for site designers to build in low-vision
+extensions or alternative styles which don’t affect the main style, and
+giving low-vision users the concept of browsing around a “low-vision
+optimised Web” without having to <em>do</em> anything sounds like a laudable&nbsp;goal.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2005/01/11/trackbackvellum/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2005/01/11/alrightmake/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2005/01/11/designszoomed/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/01/11/designszoomed/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

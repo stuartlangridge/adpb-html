@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Mozilla add HTML5 DRM, sadly but inevitably</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2014/05/15/mozilla-add-html5-drm-sadly-but-inevitably/"><time 
+			class="dt-published" datetime="2014-05-15T11:34:00">May 15 2014</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2014/05/15/mozilla-add-html5-drm-sadly-but-inevitably/" title="Permalink to Mozilla add HTML5 DRM, sadly but inevitably" rel="bookmark">Mozilla add <span class="caps">HTML5</span> <span class="caps">DRM</span>, sadly but&nbsp;inevitably</a>
+		</h2>
+		<div class="entry-content e-content">
+			<blockquote>
+<p><span class="dquo">&#8220;</span>If all your friends jumped off a bridge, would you jump too?&#8221;<br>
+&#8220;Oh jeez. Probably.&#8221;<br>
+&#8220;What!? Why!?&#8221;<br>
+&#8220;Because all my friends&nbsp;did.&#8221;</p>
+<p>&mdash; xkcd, <a href="http://xkcd.com/1170/">Bridge</a></p>
+</blockquote>
+<p><a href="https://blog.mozilla.org/blog/2014/05/14/drm-and-the-challenge-of-serving-users/">Mozilla have decided to implement the <span class="caps">HTML5</span> <span class="caps">EME</span> <span class="caps">DRM</span> for videos.</a> This&nbsp;sucks.</p>
+<p>I don&#8217;t like the <span class="caps">EME</span> stuff. It&#8217;s contrary to the whole idea of the web. It&#8217;s potentially the beginning of a slippery slope of web pages being locked off because that&#8217;s what the ebook people want. I <a href="http://www.kryogenix.org/days/2013/06/06/the-thing-and-the-whole-of-the-thing-on-drm-in-html/">wrote about this last year</a>. Jeremy says that <a href="http://adactio.com/journal/6748/">it is precisely because other technologies are locked down that it’s important to keep the web open</a>, and he&#8217;s&nbsp;right.</p>
+<p>But&hellip; that didn&#8217;t happen. The web is not open. Google and Microsoft and Apple have already started implementing <span class="caps">EME</span>, over the complaints of precisely nobody. The argument that adding DRMed video divides the web into haves and have-nots apparently didn&#8217;t cut any ice with those browser vendors. So Mozilla reluctantly fall in line, and are castigated for it in a way that the others&nbsp;weren&#8217;t.</p>
+<p>Now, there&#8217;s a reasonable argument that Mozilla should be held to a higher standard, because their goal actually embodies the Open Web and the others are primarily about profits and market share. Mozilla should stand on principle, precisely because they <em>have</em> principles. I admire this argument, but unfortunately it&#8217;s like perpetual motion machines, the 200mpg carburettor, and the rehydrateable pizza from <em>Back to the Future</em> &mdash; it doesn&#8217;t work. The world isn&#8217;t nice just because you wish real hard. Mozilla have stood on principle in the past, by refusing to implement H.264 format video. It made no difference. They were laughed at for not being &#8220;modern&#8221;, their users just found that some videos mysteriously wouldn&#8217;t play, they were told that standing on principle made them irrelevant, and it <em>made no difference</em> to the market. They have a voice at the table, but it&#8217;s not loud enough to move the industry when the industry want something&nbsp;else.</p>
+<p>The last people to try this other than Mozilla were Opera. The Opera team devoted their time to being standards compliant, working to improve those standards where possible, taking the decision to be correct rather than compatible in most cases, and what happened? Nobody used their browser because it didn&#8217;t work, and now they use Blink as their renderer&nbsp;instead.</p>
+<p>I like the warm fuzzy feeling I get from knowing that Mozilla are out there doing the right thing. But there&#8217;s always been an edge of, well, they&#8217;re doing the right thing which means that I don&#8217;t have to. Firefox should stand on principle here and refuse to play DRMed videos&hellip; but of course I&#8217;m not going to <em>stop</em> using DRMed video, I&#8217;ll just use Safari for that. The warm fuzzy feeling is jolly nice, but it&#8217;s not enough to actually keep the Mozilla organisation running. If you dislike Mozilla doing this (which I do, too), then where&#8217;s the outcry against Apple and Microsoft and Google for doing the same thing? Where&#8217;s the outcry against them for doing it <em>first</em>? Mozilla helps keep the web open for us, but in return we have to help keep the web open for Mozilla. And we&nbsp;aren&#8217;t.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2014/06/25/throttling-or-slowing-down-network-interfaces-on-ubuntu/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			An unnamed person responded at
+		<a href="http://mozillazine-fr.org/drm-dans-firefox-quelle-affaire/">mozillazine-fr.org</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2014/05/15/mozilla-add-html5-drm-sadly-but-inevitably/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/05/15/mozilla-add-html5-drm-sadly-but-inevitably/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

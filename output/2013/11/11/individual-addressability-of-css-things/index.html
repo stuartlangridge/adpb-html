@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Individual addressability of CSS things</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/"><time 
+			class="dt-published" datetime="2013-11-11T09:50:00">Nov 11 2013</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/" title="Permalink to Individual addressability of CSS things" rel="bookmark">Individual addressability of <span class="caps">CSS</span>&nbsp;things</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>One of the things that I find valuable about <span class="caps">CSS</span>, but is being
+considered a little less often these days, is individual addressability
+of parts of a <span class="caps">CSS</span>&nbsp;declaration.</p>
+<p>An example. You have an element, with a&nbsp;background:</p>
+<div class="highlight"><pre><span class="n">p</span><span class="err">#</span><span class="n">myelement1</span> <span class="p">{</span> 
+  <span class="n">background</span><span class="o">:</span> <span class="n">url</span><span class="p">(</span><span class="n">http</span><span class="o">:</span><span class="c1">//kryogenix.org/images/hackergotchi-simpler.png) top left repeat-x;</span>
+  <span class="n">min</span><span class="o">-</span><span class="n">height</span><span class="o">:</span> <span class="mi">100</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>and then at run time you want to change the background image to
+something else. Having to set the whole <code>background</code> property would be
+really irritating here: how would you do it? You&#8217;d have to do something
+horrible like read the whole background property and then perform a
+textual <code>.replace()</code> on it in JavaScript. Fortunately, the <span class="caps">CSS</span> people
+thought of that: a property like <code>background</code> is actually also broken up
+into a zillion smaller properties: <code>background-image</code>,
+<code>background-size</code>, <code>background-position</code>, <code>background-repeat</code> and so on.
+Changing the image (but <em>not</em> changing the remainder of the property) is
+now easy: just set <code>myElement.style.backgroundImage</code> from JavaScript,
+and Robert&#8217;s your mother&#8217;s brother.&nbsp;Done.</p>
+<p>This neat feature of <span class="caps">CSS</span>, of being able to set not only the totality of
+a property but also all its parts individually, seems to be being
+weakened by more advanced properties (ones where the value is not just
+something primitive but is instead its own tiny domain-specific
+language). Take, for example,&nbsp;gradients.</p>
+<div class="highlight"><pre><span class="n">p</span><span class="err">#</span><span class="n">myelement2</span> <span class="p">{</span> 
+  <span class="n">background</span><span class="o">:</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="n">to</span> <span class="n">bottom</span><span class="p">,</span> <span class="err">#</span><span class="mf">1e5799</span> <span class="mi">0</span><span class="o">%</span><span class="p">,</span><span class="err">#</span><span class="mi">7</span><span class="n">db9e8</span> <span class="mi">100</span><span class="o">%</span><span class="p">);</span>
+  <span class="n">min</span><span class="o">-</span><span class="n">height</span><span class="o">:</span> <span class="mi">100</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>[raw]</p>
+<p>[/raw]</p>
+<p>Here we have a gradient, from darkish blue to lightish blue. I would
+like this gradient to change to be darkish <em>red</em> to the same lightish
+blue. In order to make that change at runtime, I have to change the
+whole <code>background-image</code> property. I can&#8217;t just change the first colour
+stop and not the rest. In essence, this means one of two approaches if I
+want to change this property at run&nbsp;time.</p>
+<p><strong>1.</strong> The first is that I have to hardcode my <span class="caps">CSS</span> into my JavaScript as
+well. So my <span class="caps">JS</span> has, written into it, that the second colour stop is
+<code>#7db9e8 100%</code>, and I&nbsp;say</p>
+<p><code>myElement.style.backgroundImage = "linear-gradient(to bottom, " + myDarkishRedColour + " 0%,#7db9e8 100%)";</code></p>
+<p>This is hopelessly irritating. It almost wholly defeats the point of
+<em>having</em> a <span class="caps">CSS</span> stylesheet; I can&#8217;t change anything in the <span class="caps">CSS</span> without
+also checking whether the thing I&#8217;ve changed is in my <span class="caps">JS</span> somewhere too
+as&nbsp;well.</p>
+<p><strong>2.</strong> So then there&#8217;s the second approach, which is that I read the
+existing value of the property and parse it myself, and just change the
+bit I want. In other words, that I write a <span class="caps">CSS</span> parser in JavaScript.
+This is an unbrilliant suggestion. It is so unbrilliant that other
+stupid ideas come and pray at the foot of it. We did this once &#8212; this
+is what <a href="http://sizzlejs.com/">Sizzle</a> was for <span class="caps">CSS</span> selectors &#8212; and then
+<code>document.querySelector</code> came along and obsoleted it, because the
+browser already has to know how to parse this stuff and can do it more
+reliably and faster, so it should expose that to <span class="caps">JS</span>.</p>
+<p>Obviously, if I only ever want to change from dark-blue-gradient to
+dark-red-gradient, I just define a <code>class</code> and set the <code>class</code> from
+JavaScript. However, if I&#8217;m doing anything dynamic at all, this doesn&#8217;t
+work. Well, perhaps it does, because there&nbsp;is&#8230;</p>
+<p><strong>3.</strong> dynamically add stuff to my stylesheet and then use it. So I add
+a new selector for <code>p#myelement2.something</code> to the stylesheet at runtime
+and then set the <code>something</code> class on the element. But this does not
+help: I still need to parse or hardcode the values in the&nbsp;gradient!</p>
+<p>Class names used to be like this in JavaScript. If you wanted to add
+<code>class="happy"</code> to an element, you couldn&#8217;t just say
+<code>element.className = "happy"</code> because that element might already <em>have</em>
+a class and you&#8217;d wipe it out. So you had to do
+<code>element.className += " happy"</code>, and then removing classes became a
+complex little regexp exercise with <code>\b</code> escapes for end of word&#8230; and
+then <code>element.classList</code> came to save us, and now each class is
+individually&nbsp;addressable.</p>
+<p>Making things individually addressable does lead to a large
+proliferation of properties: <code>border-radius</code> is actually
+<code>border-bottom-left-radius</code> and <code>border-top-right-radius</code> and
+<code>border-top-left-radius</code> and <code>border-bottom-right-radius</code>. But it
+<em>works</em>; when you need it, the individual properties are there, and when
+you don&#8217;t, you can just set the aggregate property and not think about
+the hordes on which its&nbsp;built.</p>
+<p>I wish this happened for new things in <span class="caps">CSS</span>. Changing the second
+background-size in a multi-valued background-size, or just the
+higher-<span class="caps">DPI</span> image in a responsive image, or one of the colour stops in a
+gradient. Individual addressability of things is a lovely property of
+<span class="caps">CSS</span>, and we shouldn&#8217;t just abandon&nbsp;it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2013/11/25/my-daughters-in-the-paper/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/11/11/individual-addressability-of-css-things/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

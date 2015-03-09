@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Living life online</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2006/01/22/living-life-online/"><time 
+			class="dt-published" datetime="2006-01-22T01:00:00">Jan 22 2006</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2006/01/22/living-life-online/" title="Permalink to Living life online" rel="bookmark">Living life&nbsp;online</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I&#8217;m increasingly <a href="http://www.mercurytide.com/knowledge/white-papers/life-online/">living my life online</a>. I moved from hosting my own
+mailserver to throwing mail at Gmail and POPping it off right through to
+just using the Gmail web interface. I may have to start doing more of
+that with documents and the like. One of the big things missing there is
+a presentation package which lets me create <a href="http://www.meyerweb.com/eric/tools/s5/">S5</a> presentations in a
+graphical way. No, <a href="http://s5presents.com/">s5presents</a> is not good enough. I want a <span class="caps">GUI</span>,
+<span class="caps">WYSIWYG</span> presentation editor. A second thing that&#8217;s missing is a word
+processor like <a href="http://www.lyx.org/">LyX</a>. I am more and more becoming convinced that the
+LyX <span title="What you see is what you mean"><span class="caps">WYSIWYM</span></span> approach
+to document creation is better than the Word/OpenOffice/AbiWord <span class="caps">WYSIWYG</span>
+way of doing things. I <a href="http://forums.lugradio.org/viewtopic.php?t=1137&amp;highlight=lyx">rambled about this a little more on the LugRadio
+forums</a> a while back. The main thing that&#8217;s missing, though, is
+storage. At the moment, every online application makes you store created
+documents <em>there</em>, or on the machine you&#8217;re on by downloading them.
+What&#8217;s needed is the&nbsp;following:</p>
+<ol>
+<li>A shared storage server. It should be possible to run your own, or
+    sign up for an account with someone else who&#8217;s running it (imagine
+    someone setting up the server at onlinedrive.org or something, and
+    charging £10/month for accounts or&nbsp;similar).</li>
+<li>A JavaScript and server side library which makes it really, really,
+    really easy to save files to a specified shared storage server. This
+    isn&#8217;t designed for users; instead, it&#8217;s designed for people building
+    Web 2.0 online apps like <a href="http://www.writely.com/">Writely</a> or <a href="http://numsum.com/">Num Sum</a> or
+    <a href="http://s5presents.com/">s5presents</a>, to make it fantastically trivially easy for them to
+    integrate sharedstorage support into their applications, so instead
+    of saving your files on their server you can save them on your
+    choice of onlinedrive&nbsp;server.</li>
+<li>Authentication to onlinedrive servers should work very much like
+    <a href="http://openid.net/">OpenID</a>.</li>
+</ol>
+<p>This should mean, in theory, that when you go off to your choice of
+online office app, or anything that saves files, and you click the Save
+button, it says &#8220;where do you want to save it to?&#8221; I then say
+&#8220;kryogenix.org&#8221;, exactly as I do with OpenID, and it finds my
+onlinedrive (which might be <em>on</em> kryogenix.org, or might be delegated to
+onlinedrive.com or online-disc-space.myisp.net or wherever, exactly as
+OpenID can be), and it then goes through some kind of handshake thing
+and saves my file to my onlinedrive. This is sort of like .Mac is, as I
+understand it, except it&#8217;s designed to be easily integrable with other
+people&#8217;s applications; you publish the specs and so on. Allowing people
+to run their own servers is critical; a lot of people won&#8217;t, and there&#8217;s
+then a business model for doing it for them, but if you <em>have</em> to use
+onlinedrives.kryogenix.org or wherever to do this then it&#8217;s a power grab
+by the people who think it up, and people won&#8217;t use it (and it won&#8217;t get
+integrated into apps). I think this really could work. The OpenID people
+have done most of the hard work as regards shipping stuff around and how
+to specify delegation and so on, and everyone wins. <a href="http://jeremy.zawodny.com/blog/archives/005720.html">Jeremy Zawodny was
+musing about something similar</a>, but doesn&#8217;t mention integration,
+which I think is the critical part. Note that if the specs are published
+it would be trivial to also integrate onlinedrive handling into desktop
+apps; you could do it in the major office apps (OpenOffice, <span class="caps">MS</span> Office,
+etc) with macros. If it&#8217;s all open it&#8217;d all work. A project for someone
+to pick up,&nbsp;perhaps.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2006/01/22/loads-of-stuff-on-the-go/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2006/01/22/jackfield-apples-dashboard-for-the-linux-gnome-desktop/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2006/01/22/living-life-online/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2006/01/22/living-life-online/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; A “presenter view” for OpenOffice presentations on Linux</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2007/11/21/a-presenter-view-for-openoffice-presentations-on-linux/"><time 
+			class="dt-published" datetime="2007-11-21T23:41:00">Nov 21 2007</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2007/11/21/a-presenter-view-for-openoffice-presentations-on-linux/" title="Permalink to A “presenter view” for OpenOffice presentations on Linux" rel="bookmark">A &#8220;presenter view&#8221; for OpenOffice presentations on&nbsp;Linux</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Earlier this week I was at <a href="http://www.vivabit.com/atmediaAjax/">@media Ajax</a>, and it was great &#8212; more in
+an upcoming post. First, though, a quick bit of scripting I did. You
+see, it&#8217;s become apparent to me that I need a &#8220;presenter view&#8221; when I&#8217;m
+presenting; I have my laptop running dualscreen, so that the view I get
+on the laptop screen is not the view that appears on the projector. I
+need this, because I&#8217;m not Derek Featherstone; I can&#8217;t just see the
+slides and remember everything that I need to say. My slides are often
+just a single word, or a picture, and I can&#8217;t remember the thread of
+what I&#8217;m aiming at without
+notes.<span style="color: red" title="Derek's are too, but he can remember his whole presentation and I can't, because he's better at this than me">*</span>
+So, I used to have notes on a bit of paper. The way I create
+presentations&nbsp;is:</p>
+<ol>
+<li>Write out, longhand, everything I intend to say, word-for-word, like
+    it&#8217;s an essay or a&nbsp;playscript</li>
+<li>Go through my longhand script and identify all the slides I want to
+    put in to bolster the&nbsp;points</li>
+<li>Spend some time with <a href="http://flickr.com/creativecommons">Flickr&#8217;s Creative Commons image search</a>
+    finding the images that I want for&nbsp;slides</li>
+<li>Put together a&nbsp;presentation</li>
+<li>Make notes for each slide expressing the bullet points of what I
+    want to say, with notes to myself to remind me of any particular
+    phrases I want to specifically&nbsp;remember</li>
+<li>Throw away the longhand&nbsp;script</li>
+</ol>
+<p>The final step, after that lot, used to be &#8220;write out all of the notes
+in big writing on bits of A4 paper&#8221;. Then it occurred to me: why not use
+the presenter view to put my notes on? I used <a href="http://meyerweb.com/eric/tools/s5/">S5</a>, Eric Meyer&#8217;s
+in-browser <span class="caps">HTML</span>/<span class="caps">CSS</span>/JavaScript based presentation system, for a long
+time to make my talks, and it has a presenter view. However, I got
+increasingly hacked off with it being slow and annoying, and so I
+resolved to use OpenOffice for presentations; it&#8217;s just easier.
+OpenOffice, though, doesn&#8217;t have a presenter view (<a href="http://wiki.services.openoffice.org/wiki/Impress_presenter_mode_specification">there&#8217;s a spec for
+it</a>, but it doesn&#8217;t yet exist). After a bit of casting about, I
+discovered that (a) OpenOffice will export presentations to <span class="caps">PDF</span>, and (b)
+Evince, the Gnome document viewer, has a presentation mode. So, thought
+I, I could use that instead. OpenOffice allows you to export the notes
+pages too into your <span class="caps">PDF</span>: if you&#8217;ve got three slides in your
+presentation<span style="color: red" title="I refuse to call it a 'slide deck'">*</span>,
+each with notes, and you elect to include notes pages in the <span class="caps">PDF</span> export,
+then you get <em>six</em> pages in the resultant <span class="caps">PDF</span> — the first three are just
+the slides, and the second three are the slides at the top of the page
+with the notes below. So the idea appeared in my head: why not open the
+<span class="caps">PDF</span> <em>twice</em>, put <span class="caps">PDF</span>-1 on page 1 and display it on the projector, and
+<span class="caps">PDF</span>-2 on page 4 (the first notes page) and display it on my screen? Then
+just get them to advance in lockstep — when I advance the projector <span class="caps">PDF</span>
+by one page, it advances the notes view on my laptop screen by one page
+as well — and lo, I have a presenter view. Those of you with (a) modern
+versions of PowerPoint or (b) whatever the Mac presentation thing is
+called are doubtless laughing your heads off right now, and rightfully
+so. I can&#8217;t wait for the OpenOffice people to make this happen properly.
+Anyway, to do the advancing, you need a little script. This little
+script uses <a href="http://people.redhat.com/zcerza/dogtail/">dogtail</a> to provide the presenter view, and I used it on
+Monday and it worked perfectly. Be warned: this is not a proper
+solution. It&#8217;s a crappy hack, and if it de-bones your cat and deletes
+everything on your hard drive, don&#8217;t come crying to me. Almost certainly
+requires Linux, requires dogtail (and accessibility mode turned on in
+Gnome (<span class="caps">NFI</span> whether <span class="caps">KDE</span> has the same features, but it probably does; if
+you use something other than Gnome or <span class="caps">KDE</span> then you&#8217;re on your own, you
+freak)), requires Python and PyGtk, requires Evince (which should be
+called &#8220;Document Viewer&#8221;), requires a <span class="caps">PDF</span> (that has been exported from
+OpenOffice.org Impress with notes page included) on the command line,
+requires a laptop that can do dualhead (mine seems to set up the two
+screens as One Big Screen, so I don&#8217;t know what happens if you have
+something that actually does it properly), probably requires the phase
+of the moon to be right as well.&nbsp;Enjoy.  </p>
+<h3><a href="http://www.kryogenix.org/code/evince-presenter-view.py">Evince presenter&nbsp;view</a></h3>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">gtk</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">random</span><span class="p">,</span> <span class="n">shutil</span><span class="p">,</span> <span class="n">os</span><span class="p">,</span> <span class="n">time</span>
+<span class="n">from</span> <span class="n">dogtail</span><span class="p">.</span><span class="n">tree</span> <span class="n">import</span> <span class="n">root</span>
+
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="cp"># copy pdf to /tmp</span>
+<span class="n">pdfcopyname</span> <span class="o">=</span> <span class="s">&quot;pdf.%s.pdf&quot;</span> <span class="o">%</span> <span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span>
+<span class="n">pdfcopy</span> <span class="o">=</span> <span class="s">&quot;/tmp/&quot;</span> <span class="o">+</span> <span class="n">pdfcopyname</span>
+<span class="n">shutil</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="n">pdfcopy</span><span class="p">)</span>
+
+<span class="cp"># start two evinces</span>
+<span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;evince --presentation --page-label=1 %s &amp;&quot;</span> <span class="o">%</span> <span class="n">pdf</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;evince %s &amp;&quot;</span> <span class="o">%</span> <span class="n">pdfcopy</span><span class="p">)</span>
+
+<span class="cp"># find them with dogtail</span>
+<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">from</span> <span class="n">dogtail</span><span class="p">.</span><span class="n">tree</span> <span class="n">import</span> <span class="n">root</span>
+<span class="n">evince</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="n">application</span><span class="p">(</span><span class="s">&quot;evince&quot;</span><span class="p">)</span>
+<span class="n">pdfw</span> <span class="o">=</span> <span class="n">evince</span><span class="p">.</span><span class="n">window</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">pdf</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pdfcopyw</span> <span class="o">=</span> <span class="n">evince</span><span class="p">.</span><span class="n">window</span><span class="p">(</span><span class="n">pdfcopyname</span><span class="p">)</span>
+<span class="n">halfpages</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">pdfw</span><span class="p">.</span><span class="n">child</span><span class="p">(</span><span class="n">roleName</span><span class="o">=</span><span class="s">&quot;tool bar&quot;</span><span class="p">).</span><span class="n">child</span><span class="p">(</span><span class="n">roleName</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="p">).</span><span class="n">text</span><span class="p">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">pdfpageel</span> <span class="o">=</span> <span class="n">pdfw</span><span class="p">.</span><span class="n">child</span><span class="p">(</span><span class="n">roleName</span><span class="o">=</span><span class="s">&quot;tool bar&quot;</span><span class="p">).</span><span class="n">child</span><span class="p">(</span><span class="n">roleName</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">)</span>
+<span class="n">pdfcopypageel</span> <span class="o">=</span> <span class="n">pdfcopyw</span><span class="p">.</span><span class="n">child</span><span class="p">(</span><span class="n">roleName</span><span class="o">=</span><span class="s">&quot;tool bar&quot;</span><span class="p">).</span><span class="n">child</span><span class="p">(</span><span class="n">roleName</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">)</span>
+
+<span class="n">def</span> <span class="n">ping</span><span class="p">()</span><span class="o">:</span>
+  <span class="n">global</span> <span class="n">pdfw</span><span class="p">,</span> <span class="n">pdfcopyw</span><span class="p">,</span> <span class="n">halfpages</span><span class="p">,</span> <span class="n">pdfpageel</span><span class="p">,</span> <span class="n">pdfcopypageel</span>
+  <span class="nl">try:</span>
+    <span class="n">pdfpage</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">pdfpageel</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">pdfcopypage</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">pdfcopypageel</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+  <span class="n">except</span> <span class="n">ValueError</span><span class="o">:</span>
+    <span class="err">#</span> <span class="n">pdf</span> <span class="n">window</span> <span class="n">has</span> <span class="n">been</span> <span class="n">destroyed</span><span class="p">,</span> <span class="n">probably</span>
+    <span class="n">raise</span> <span class="s">&quot;die&quot;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pdfpage</span> <span class="o">+</span> <span class="n">halfpages</span><span class="p">)</span> <span class="o">!=</span> <span class="n">pdfcopypage</span><span class="o">:</span>
+    <span class="n">pdfcopypage</span> <span class="o">=</span> <span class="n">pdfpage</span> <span class="o">+</span> <span class="n">halfpages</span>
+    <span class="n">pdfcopypageel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">pdfcopypage</span><span class="p">)</span>
+    <span class="n">pdfcopypageel</span><span class="p">.</span><span class="n">doAction</span><span class="p">(</span><span class="s">&quot;activate&quot;</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">True</span>
+
+
+<span class="n">pingobj</span> <span class="o">=</span> <span class="n">gtk</span><span class="p">.</span><span class="n">timeout_add</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">ping</span><span class="p">)</span>
+<span class="nl">try:</span>
+  <span class="n">gtk</span><span class="p">.</span><span class="n">main</span><span class="p">()</span>
+<span class="nl">except:</span>
+  <span class="n">os</span><span class="p">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">pdfcopy</span><span class="p">)</span>
+</pre></div>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2007/11/11/cruciforum-v124/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2007/11/22/media-ajax-2007/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2007/11/21/a-presenter-view-for-openoffice-presentations-on-linux/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2007/11/21/a-presenter-view-for-openoffice-presentations-on-linux/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

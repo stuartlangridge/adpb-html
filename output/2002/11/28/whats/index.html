@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; What’s the point in XHTML?</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2002/11/28/whats/"><time 
+			class="dt-published" datetime="2002-11-28T11:00:00">Nov 28 2002</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2002/11/28/whats/" title="Permalink to What’s the point in XHTML?" rel="bookmark">What&#8217;s the point in <span class="caps">XHTML</span>?</a>
+		</h2>
+		<div class="entry-content e-content">
+			<!--timestamp:1038461376.0:-->
+
+<!--category::-->
+
+<!--author:sil:-->
+
+<p>So, why do people use <span class="caps">XHTML</span>?</p>
+<p>Mark talks about the <span class="caps">XHTML</span> vs. <span class="caps">RSS</span> debate, in somewhat disparaging
+terms, stating that &#8220;<a href="http://diveintomark.org/archives/2002/11/26.html#syndication_is_not_publication">Syndication is not Publication</a>&#8220;.</p>
+<blockquote>
+<p>The entire success of <span class="caps">RSS</span> is predicated on the principle that &#8220;you can
+keep doing whatever messed up stuff you&#8217;ve always done on your web
+pages&#8230; oh, and do this other thing too. Look, it&#8217;s simple, you can
+code it up in an hour with a few print statements and an escape
+function.&#8221; By contrast, this latest <span class="caps">XHTML</span>-as-syndication movement
+seems to be based on the principle that &#8220;syndication is so incredibly
+important that you must immediately stop whatever you&#8217;re doing with
+your web pages, upgrade to <span class="caps">XHTML</span>, validate your markup, restructure
+your home page to include all and only the content you&#8217;re willing to
+syndicate, and by the way, would you please unlearn that ugly nasty
+presentational page layout language you&#8217;ve been using for years and
+learn this wonderful happy structured semantic markup language
+instead?&#8221;<br />
+ It should be obvious to any rational observer that this will go
+nowhere fast. A syndication format that requires valid semantic <span class="caps">XHTML</span>
+markup? Spare me. 9 out of 10 bloggers can&#8217;t even spell <span class="caps">XHTML</span>.</p>
+</blockquote>
+<p>One of the issues here is that 9 out of 10 bloggers can&#8217;t spell <span class="caps">RSS</span>
+either. In fact, a reasonable propertion of bloggers don&#8217;t even know
+what <span class="caps">RSS</span> <em>is</em>, or that their weblogging tool generates it for them. That
+so many pages are invalid is not the fault of these 9 out of 10
+bloggers, it&#8217;s the fault of their tool of choice. Imagine if a
+weblogging tool checked your built pages for <span class="caps">XML</span> well-formedness.
+(Obviously this only works for <a href="http://philringnalda.com/archives/002388.php" title="Baked pages are built statically at save time, fried pages are built on-the-fly with every request">baked</a> systems, rather than fried.)
+Not validation against a <span class="caps">DTD</span> or anything, just well-formedness. It&#8217;s not
+going to solve all problems overnight, I admit, but being able to use
+<span class="caps">XHTML</span> in pursuit of one of its major wins &#8212; that it&#8217;s <span class="caps">XML</span> as well, and
+therefore can be parsed by the vast suite of <span class="caps">XML</span> tools which insist on a
+minimum level of compliance (by which I mean well-formedness) and then
+derive power from that (or are there, say, XPath tools for <span class="caps">HTML</span> 4.01
+that I don&#8217;t know about? &#8212; would make life a lot easier. If your
+intention, O <span class="caps">XHTML</span> user, is to have your pages marked up in <span class="caps">XHTML</span> in
+pursuit of this goal, then why do you need <span class="caps">RSS</span> or similar formats? If
+your aim is <em>not</em> to use <span class="caps">XHTML</span> for this purpose, what is your purpose?
+Mark&#8217;s &#8220;It&#8217;s like&#8230;semantic and stuff&#8221; remark isn&#8217;t a flappy-handed
+meaningless contention on the part of <span class="caps">XHTML</span> pushers, it&#8217;s the point of
+the whole&nbsp;exercise.</p>
+<p>He does make a good point about bandwidth, I freely admit. That,
+however, reduces <span class="caps">RSS</span> from being the Right Thing to being an optimisation
+away from correctness in order to live in the real world. <span class="caps">RSS</span> makes your
+bandwidth bill cheaper; true. And that&#8217;s quite possibly a major
+motivating factor for almost everyone, because real world issues come
+above principles to some extent. It doesn&#8217;t make <span class="caps">RSS</span> <em>right</em>,&nbsp;though.</p>
+<p>Moreover, the further points about corner cases such as Dorothea&#8217;s Latin
+dates are entirely valid. That backs up the core contention that
+publication and syndication are not the same thing, assuming that you
+actually <em>need</em> an accurate date on a post for anything. Those of you
+who use <span class="caps">RSS</span> newsreaders, do you tend to look at &#8220;all the latest posts
+from all my feeds&#8221; (in which case a date is obviously vital) or &#8220;all
+feeds with new content&#8221; and then read that feed in isolation (in which
+case you don&#8217;t need a date at all, although the newsreader does need to
+cache what it last saw to check for updates rather than caching the last
+time you read a feed to see whether there are posts since &#8212; an <span class="caps">MD5</span> hash
+of the feed contents is not much larger than a stored date). Quoting
+Dean Allen&#8217;s use of hand-crafted descriptions in <span class="caps">RSS</span> misses the point; I
+fail to see how any hand-crafted description could be a better
+description of the post than the post itself is! I&#8217;m open to correction
+on this point; Mark quotes Shelley&#8217;s desire to not have her whole feed
+in <span class="caps">RSS</span> to avoid republication &#8212; I can&#8217;t see how those who would want to
+republish her content couldn&#8217;t just rip it off her website, so I&#8217;m
+unclear on the point of&nbsp;this.</p>
+<p>I mean, I&#8217;ve set explicit excerpts on posts just for my <span class="caps">RSS</span> feed. But
+not because I think that this is a great way to summarise my message.
+Because I want to use entities like &mdash; in my <span class="caps">HTML</span>, and it doesn&#8217;t
+work in <span class="caps">RSS</span>. I have to remember to use &quot; instead of &#8221; in all my
+posts to avoid breaking my <span class="caps">RSS</span> feed. This is a hindrance, not the easy
+path to&nbsp;syndication.</p>
+<p>This is in danger of descending into the age old argument between
+attempting to change the world to make the Right Thing the thing that
+works, and stepping away from the Right Thing so that your
+implementation works in the world. Pushing the former too far leads to
+zealotry. Pushing the latter too far leads to Internet Explorer v 4. The
+real truth is somewhere in the middle, and once again some people are
+trying to decide where that line which they won&#8217;t step over actually&nbsp;lies.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2002/11/25/entities/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2002/11/29/technorati/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2002/11/28/whats/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2002/11/28/whats/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Promises, promises</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2013/12/12/promises-promises/"><time 
+			class="dt-published" datetime="2013-12-12T14:02:00">Dec 12 2013</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2013/12/12/promises-promises/" title="Permalink to Promises, promises" rel="bookmark">Promises,&nbsp;promises</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Discussion last night at the Opera/Mozilla/Left Logic/Kryogenix
+Christmas Strategy Summit about <a href="http://promises-aplus.github.io/promises-spec/">JavaScript Promises</a><sup id="sf-promises-promises-1-back"><a title="warning: official spec! also dense, difficult terminology!" href="#sf-promises-promises-1" class="simple-footnote">1</a></sup>, where by
+“discussion” I mean <a href="http://remysharp.com/">Remy</a> tried to explain it to <a href="http://www.brucelawson.co.uk/">Bruce</a> and
+<a href="https://twitter.com/chrisdavidmills">Chris</a> with me chipping in “helpfully” during the discussion. Anyway,
+Bruce has tried to con me into saying that I promised<sup id="sf-promises-promises-2-back"><a title="ha! ba-dump tish" href="#sf-promises-promises-2" class="simple-footnote">2</a></sup> an explanation.</p>
+<p>I am not going to explain exactly what promises are, other than to say:
+they’re a way of making your asynchronous code look like it’s
+synchronous, because async code is hard to write, hard to understand,
+and hard to debug<sup id="sf-promises-promises-3-back"><a title="See Shot of Jaq podcast episode “Going Async” for more on this from 2010; my opinion has not changed" href="#sf-promises-promises-3" class="simple-footnote">3</a></sup>. The
+important point to take away is: you can start using promises now, and
+<em>hardly anything will change</em> in your code. So you should do that.</p>
+<h3>Asynchronously doing a thing</h3>
+<p>Let’s say you want to load an image, and then when that image is loaded,
+update the page to say it was loaded. Pretty trivial code:</p>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">imgsrc</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+      <span class="nx">i</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">callback</span><span class="p">;</span>
+      <span class="nx">i</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgsrc</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"The image is loaded"</span><span class="p">;</span>
+    <span class="p">});</span>
+</pre></div>
+
+
+<p><a href="http://jsbin.com/EZowuDO/1/edit">live example in jsbin</a></p>
+<p>We create a little helper function which loads the image and then calls
+our callback; in our callback, we update the text of the page.</p>
+<h3>The Promises version</h3>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">imgsrc</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span> <span class="c1">// using the Q promises library; see below</span>
+      <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+      <span class="nx">i</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span> <span class="p">}</span>
+      <span class="nx">i</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgsrc</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="p">);</span>
+    <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"The image is loaded"</span><span class="p">;</span>
+    <span class="p">});</span>
+</pre></div>
+
+
+<p><a href="http://jsbin.com/EZowuDO/2/edit">live example in jsbin</a></p>
+<p>Promises are a tiny little bit more complicated, but not much. Instead
+of having the helper function call our callback directly, the helper
+function returns a Promise (straight away, synchronously) and the
+promise’s <code>then</code> function calls our callback. There are a few little
+wrinkles in there, like what <code>resolve</code> means (in this case, it basically
+means: run the promise’s <code>then</code> function<sup id="sf-promises-promises-4-back"><a title="yes, if you know about this stuff then that’s not what it means. Also, I have ignored error checking in all examples" href="#sf-promises-promises-4" class="simple-footnote">4</a></sup>), but if you’ve written any <span class="caps">JS</span>, you can
+probably read that code and understand roughly what it’s doing. You
+could start doing that today, right?<sup id="sf-promises-promises-5-back"><a title="obviously this doesn’t just apply to image loading, but to anything async; you could XHR with     function xhr(url) {        var x = new XMLHttpRequest(), d=Q.defer();        x.open(“GET”, url);        x.onreadystatechange=function() {          if (x.readyState==4) d.resolve(x.responseText);        }       x.send();       return d.promise;     } " href="#sf-promises-promises-5" class="simple-footnote">5</a></sup> Just mechanically start returning promises and using their <code>then</code>
+functions instead of using callbacks. You don’t really need to grasp the
+complexity underlying all this stuff. (Note: there are about a zillion
+Promises implementations<sup id="sf-promises-promises-6-back"><a title="and actual native browser support with no library at all is coming. See MDN on Promises for details - mdn. " href="#sf-promises-promises-6" class="simple-footnote">6</a></sup>.
+I’m using here (and generally use) <a href="https://github.com/kriskowal/q">Kris Kowal’s Q</a>, and that’s why
+the code says <code>Q.defer</code>, but if you prefer another one, go ahead.)</p>
+<p>But there’s an obvious question: why should I bother to use these
+promise things? Well, here’s a second example. What we want to do now is
+load two images, and then update the page when <em>both</em> of them are loaded.</p>
+<h3>A second example, with callbacks</h3>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">imgsrc</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+      <span class="nx">i</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">callback</span><span class="p">;</span>
+      <span class="nx">i</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgsrc</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">image1loaded</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">image2loaded</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">showTheyAreLoaded</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"The images are loaded"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">image1loaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">image1loaded</span> <span class="o">&amp;&amp;</span> <span class="nx">image2loaded</span><span class="p">)</span> <span class="nx">showTheyAreLoaded</span><span class="p">();</span>
+    <span class="p">});</span>
+    <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/hackergotchi-simpler.png"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">image2loaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">image1loaded</span> <span class="o">&amp;&amp;</span> <span class="nx">image2loaded</span><span class="p">)</span> <span class="nx">showTheyAreLoaded</span><span class="p">();</span>
+    <span class="p">});</span>
+</pre></div>
+
+
+<p><a href="http://jsbin.com/EZowuDO/3/edit">live example in jsbin</a></p>
+<p>You will notice here that our <code>loadImage</code> function hasn’t changed from
+the previous async version. What we do now is we have one flag per image
+(<code>image1loaded</code> and <code>image2loaded</code>); when a specific image loads, we set
+its flag, and then check if all the flags are set. If they are all set,
+then we update the page.</p>
+<h3>That second example, with promises</h3>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">imgsrc</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+      <span class="nx">i</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span> <span class="p">}</span>
+      <span class="nx">i</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgsrc</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/hackergotchi-simpler.png"</span><span class="p">);</span>
+    <span class="nx">Q</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="cp">[</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="cp">]</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"The images are loaded"</span><span class="p">;</span>
+    <span class="p">});</span>
+</pre></div>
+
+
+<p><a href="http://jsbin.com/EZowuDO/4/edit">live example in jsbin</a></p>
+<p>Again, our <code>loadImage</code> function hasn’t changed from the previous
+promises version. Now, though, because we’re using promises, we have
+this rather handy <code>all</code> function; you pass it a list of promises, and
+then the <code>all</code> function fires <code>all</code><span class="quo">‘</span>s own <code>then</code> callback when all the
+promises are done.</p>
+<p>The two item version isn’t that complicated, but you can imagine that
+it’d be quite a lot more annoying to do the async version with three or
+four or fifty images<sup id="sf-promises-promises-7-back"><a title="yes, of course you’d write a little helper which puts all the loaded image flags into a dict keyed on the img src, and ticks them all off when they arrive. Congratulations. You’ve just written the first 4% of your own promises library. Wouldn’t it have been easier to just use someone else’s so that you can get on with real work?" href="#sf-promises-promises-7" class="simple-footnote">7</a></sup>; the promises version hardly gets any more difficult at all.</p>
+<h3>You can’t handle the truth</h3>
+<p>You see, that’s it, for promises. If you start using them today, almost
+everything you do with them will be like the very first example: instead
+of passing a callback function around, you’ll pass around a promise and
+do things in its <code>then</code> function instead. And <em>that’s all</em>. Your life is
+no more complicated. And when occasionally you need something like
+<code>all</code>, it’ll be there for you and you can use it trivially.</p>
+<p>Promises are capable of a lot, lot, lot more than this. However, what
+this means is that everyone talking about them also tries to explain all
+the complicated whizzy stuff you can do with them too, and how they
+work, and how clever the implementation is. Don’t listen. If you decide
+to become a hardcore person and write massive complex things, then sure
+it’s useful. But in practice most developers, most of the time, can just
+use a promise instead of a callback, and then occasionally use either
+<code>all</code> or <code>any</code> when you hit those “but I need to do two things at once
+and wait for both” situations. Do not be put off by the complexity. You
+don’t care about the complexity, and you probably don’t need it. Just
+start using them now, and the hard stuff will wait patiently for you to
+get to it.</p><ol class="simple-footnotes"><li id="sf-promises-promises-1">warning:
+official spec! also dense, difficult terminology! <a href="#sf-promises-promises-1-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-2">ha! ba-dump
+tish <a href="#sf-promises-promises-2-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-3">See <a href="http://www.kryogenix.org/shotofjaq.html">Shot of Jaq podcast episode “Going Async”</a> for more on this from 2010; my opinion has not changed <a href="#sf-promises-promises-3-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-4">yes, if you know about this
+stuff then that’s <em>not</em> what it means. Also, I have ignored error
+checking in all examples <a href="#sf-promises-promises-4-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-5">obviously this doesn’t just
+apply to image loading, but to anything async; you could <span class="caps">XHR</span> with
+    function xhr(url) { 
+      var x = new XMLHttpRequest(), d=Q.defer(); 
+      x.open(“<span class="caps">GET</span>”, url); 
+      x.onreadystatechange=function() { 
+        if (x.readyState==4) d.resolve(x.responseText); 
+      }
+      x.send();
+      return d.promise;
+    }
+ <a href="#sf-promises-promises-5-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-6">and actual native browser support with no
+library at all is coming. See <span class="caps">MDN</span> on Promises for details - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">mdn</a>.  <a href="#sf-promises-promises-6-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-7">yes, of course you’d write a little helper
+which puts all the loaded image flags into a dict keyed on the img src,
+and ticks them all off when they arrive. Congratulations. You’ve just
+written the first 4% of your own promises library. Wouldn’t it have been
+easier to just use someone else’s so that you can get on with real
+work? <a href="#sf-promises-promises-7-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2013/12/08/lenovo-u300s-and-ssds/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2013/12/18/the-royal-institution-christmas-lectures/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2013/12/12/promises-promises/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/12/12/promises-promises/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

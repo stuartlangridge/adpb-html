@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Reading ebooks on a SonyEricsson K700i</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2004/11/30/sonyericsson/"><time 
+			class="dt-published" datetime="2004-11-30T11:00:00">Nov 30 2004</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2004/11/30/sonyericsson/" title="Permalink to Reading ebooks on a SonyEricsson K700i" rel="bookmark">Reading ebooks on a SonyEricsson&nbsp;K700i</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Since my Zaurus seems to have died the Final Death (although I will be
+getting a replacement), and I can’t do without my reading fix, I need a
+way of reading books. Fortunately, help is at hand, in the form of an
+ebook reader for <a href="http://www.kryogenix.org/days/2004/11/17/ki">my K700i phone</a>. It’s called <a href="http://tequilacat.nm.ru/dev/br/index-en.html">BookReader</a>, and
+it’s nicely free. (Not Free Software, though, as far as I can tell.)
+It’s a bit awkward, because it doesn’t just get loaded once and then
+merrily allow you to display ebooks that are uploaded separately.
+Instead, it comes as a <span class="caps"><span class="caps">JAR</span></span> file (not
+unreasonable, since it’s a Java app) and you unpack the
+<span class="caps"><span class="caps">JAR</span> </span>(<span class="caps">JAR</span> files are just zip archives with a
+different extension), stick your ebook(s) inside it (calling them
+textfile.txt, textfile1.txt, textfile2.txt, etc.), save the jarfile, and
+then upload that jarfile to your phone. A little bit awkward, but not
+incredibly so, and it’ll certainly tide me over until I can get a
+replacement. The tiny font is surprisingly readable on the nice bright
+screen of the phone, and you can add your own font if you feel so
+inclined (which means it could be <em>really</em> minute if you were
+hawk-eyed).<br />
+Those of you with Bluetooth will have read “upload that jar file to
+your phone” and thought “yep, I can do that“. (In fact, <a href="http://www.jonobacon.org/">Jono</a> and I
+were experimenting with Bluetooth this very evening, <a href="http://aquariusoft.org/?section=palm&amp;page=bluetooth_linux">synchronising a
+Palm Tungsten with Linux using pilot-link</a> most successfully. Except
+that Evolution won’t do it, because it (well, gnome-pilot-daemon)
+doesn’t understand network syncs, but Jono can tell you more about that
+himself.) Those of you without Bluetooth may well think: how do I upload
+stuff? Easy. Just upload the jar file to your web server and then bang
+the <span class="caps"><span class="caps">URL</span></span> into the browser (I use Orange World;
+don’t know how to do this on other networks, but it’ll be pretty
+simple). A word of warning: make sure your webserver serves it as
+content-type application/java-archive. Apache on Debian stable seems to
+have application/x-java-archive by default, and it doesn’t work if you
+serve it with that: the phone won’t recognise it as an application.
+Anyway, I’m off to read some books. And possibly investigate
+<span class="caps"><span class="caps">MIDP</span></span> and MIDlets and how to make a Java MIDlet
+application display some arbitrary text files you have on your phone
+(rather than just its own <span class="caps"><span class="caps">JAR</span></span> file contents),
+assuming that you can do&nbsp;that.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2004/11/29/antidistinctly/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2004/12/02/single/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2004/11/30/sonyericsson/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/11/30/sonyericsson/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

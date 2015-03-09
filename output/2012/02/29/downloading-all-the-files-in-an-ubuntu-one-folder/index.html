@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Downloading all the files in an Ubuntu One folder</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2012/02/29/downloading-all-the-files-in-an-ubuntu-one-folder/"><time 
+			class="dt-published" datetime="2012-02-29T23:20:00">Feb 29 2012</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2012/02/29/downloading-all-the-files-in-an-ubuntu-one-folder/" title="Permalink to Downloading all the files in an Ubuntu One folder" rel="bookmark">Downloading all the files in an Ubuntu One&nbsp;folder</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Ubuntu One syncs your files and folders. However, sometimes you don&#8217;t,
+or can&#8217;t, sync your files; you&#8217;re using the web <span class="caps">UI</span> on someone else&#8217;s
+computer, you&#8217;re on a machine we don&#8217;t support, that sort of thing. You
+can always use the web interface, of course, but as yet the web <span class="caps">UI</span>
+doesn&#8217;t support downloading a whole folder in one go, and that can be a
+pain if you want to download many files at once. To alleviate that for
+myself, I have a quick bookmarklet. As usual, just right-click the link
+and &#8220;Add to bookmarks&#8221; (or however you normally do that), and then when
+you&#8217;re looking at a folder in the Ubuntu One web <span class="caps">UI</span>, you can click the
+bookmark and it&#8217;ll download all the files in that&nbsp;folder.</p>
+<p>First, the caveats: it <strong>only works in Chrome</strong> (and only recent Chrome,
+at that; sorry; if you care why, see the explanation below), and it will
+download all the files in this folder to your Downloads folder (that is:
+it will not create a new folder and download them into&nbsp;that).</p>
+<p>Second, the bookmarklet&nbsp;itself:</p>
+<p><a href="javascript:(function(){var%20a=document.createElement('a');%20if%20(!('download'%20in%20a))%20return;%20var%20files=document.querySelectorAll('.files-td-name%20a');%20if%20(confirm('Download%20'%20+%20files.length%20+%20'%20files?'))%20{%20Array.prototype.slice.call(files).forEach(function(f)%20{%20var%20a=document.createElement('a');%20a.href%20=%20f.href;%20a.download%20=%20f.textContent;%20var%20event%20=%20document.createEvent('MouseEvents');%20event.initMouseEvent('click',%20true,%20false,%20window,%200,%200,%200,%200,%200,%20false,%20false,%20false,%20false,%200,%20null);%20a.dispatchEvent(event);%20})%20}%20})()">Download U1&nbsp;folder</a></p>
+<p>Third, a brief explanation, for those of you who are technical people
+who want it and can&#8217;t decipher the&nbsp;code:</p>
+<ul>
+<li>First, we look for <a href="http://updates.html5rocks.com/2011/08/Downloading-resources-in-HTML5-a-download">a download support</a> (currently only in
+    Chrome), which allows an ordinary <span class="caps">HTML</span> link to specify that when
+    clicked its destination should be downloaded (with a specific name)
+    rather than&nbsp;opened.</li>
+<li>Then we grab all the links to files on the page you&#8217;re looking at;
+    we assume this is an Ubuntu One page, so we look for links with
+    <code>querySelectorAll('.files-td-name a')</code>.</li>
+<li>That&#8217;s a NodeList, not an array, which means we can&#8217;t use forEach on
+    it; we convert it to an array with
+    <code>Array.prototype.slice.call(nodelist)</code>, which is a trick I use a
+    <em>lot</em> (can&#8217;t remember who I first learned this from, but it&#8217;s&nbsp;neat)</li>
+<li>and for each of the links, construct a new link, set the new link&#8217;s
+    <code>href</code> to the existing link&#8217;s <code>href</code> and its <code>download</code> attribute to
+    the filename, and then fake a mouse click on the new link with
+    <code>event.initMouseEvent</code>. (We construct a new link because the
+    existing links in the page have onclick handlers, which we don&#8217;t
+    want to&nbsp;fire.)</li>
+<li>ta daah, the link downloads without further prompting, to your
+    Downloads folder (because that&#8217;s where Chrome puts&nbsp;it).</li>
+</ul>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2012/02/19/there-is-a-lesson-here/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2012/03/04/my-new-phone-2012-edition/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2012/02/29/downloading-all-the-files-in-an-ubuntu-one-folder/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/02/29/downloading-all-the-files-in-an-ubuntu-one-folder/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

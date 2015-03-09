@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Ubuntu and Android, sitting in a tree (nearly)</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2011/04/05/ubuntu-and-android-sitting-in-a-tree-nearly/"><time 
+			class="dt-published" datetime="2011-04-05T08:48:00">Apr 05 2011</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2011/04/05/ubuntu-and-android-sitting-in-a-tree-nearly/" title="Permalink to Ubuntu and Android, sitting in a tree (nearly)" rel="bookmark">Ubuntu and Android, sitting in a tree&nbsp;(nearly)</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Today I helped <a href="http://www.brucelawson.co.uk">Bruce</a> be able to screencast his Android phone, so
+that he could easily do a presentation showing something on his phone.
+That is: plug the phone into his laptop, and show, on the laptop&#8217;s
+screen, what&#8217;s on the phone&#8217;s&nbsp;screen.</p>
+<p>An app exists for this: <a href="http://code.google.com/p/androidscreencast/">androidscreencast</a>. The
+<abbr title="too long; didn't read">tl;dr</abbr> summary of this whole
+thing is: use androidscreencast, it&#8217;s cool. The rest of this is really
+about&nbsp;Ubuntu.</p>
+<p>Here is how this installation process should have worked for Bruce on
+his Ubuntu machine, in an ideal&nbsp;world.</p>
+<ol>
+<li>Click the link on the androidscreencast page saying &#8220;Install the
+    Android <span class="caps">SDK</span>&#8221;, which would have asked for his password and then
+    immediately installed that <span class="caps">SDK</span> on Ubuntu, no further interaction&nbsp;required.</li>
+<li>Click on the &#8220;Click <span class="caps">HERE</span>&#8221; link on the androidscreencast page, which
+    would have immediately launched the androidscreencast application
+    and shown his phone&#8217;s screen on his&nbsp;laptop.</li>
+</ol>
+<p>It wasn&#8217;t quite that smooth. However, pretty much all of the reasons
+that it wasn&#8217;t that smooth are fixable. I&#8217;ve tried to find bugs for all
+of these; specifically, I suspect that what these bugs need is someone
+to think, &#8220;I want Ubuntu to be a brilliant environment for developing
+Android applications&#8221;, and so take them in hand. Maybe that&#8217;s&nbsp;you?</p>
+<p>So&#8230;</p>
+<p>Clicking the link on the androidscreencast page saying &#8220;Install the
+Android <span class="caps">SDK</span>&#8221; and having that immediately start installing it would
+require the&nbsp;following:</p>
+<ol>
+<li>That link should be to apt.ubuntu.com, referencing an Android <span class="caps">SDK</span>
+    package. This would be fairly easy to convince the androidscreencast
+    team to do, if the rest of this list existed, I think, and failing
+    that the Android <span class="caps">SDK</span> site itself could and should point at the
+    Ubuntu package for Ubuntu&nbsp;users.</li>
+<li>The Android <span class="caps">SDK</span> would need packaging for Ubuntu. Someone seems to
+    have filed an <abbr title="Intent To Package"><span class="caps">ITP</span></abbr> for the
+    Android <span class="caps">SDK</span> in Debian (<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=459219">Debian bug 459219</a>, but that was in 2008
+    and I don&#8217;t think anyone&#8217;s picked it up&nbsp;since.)</li>
+<li>Since the Android <span class="caps">SDK</span> isn&#8217;t likely to end up in the main section of
+    the Ubuntu archive (although: could it? I don&#8217;t want to get into
+    lawyerly discussions, but it seems to be open source, no?), it&#8217;d
+    need to be in the Canonical partner&nbsp;repository.</li>
+<li>The Canonical partner repository does not seem to be enabled by
+    default, at least on Bruce&#8217;s Ubuntu 10.10 machine, and it should be
+    so enabled. (This seems to be <a href="https://bugs.launchpad.net/ubuntu/+source/software-center/+bug/635003">Ubuntu bug 635003</a>, although I&#8217;m a
+    bit confused by that&nbsp;bug.)</li>
+<li>The Android <span class="caps">SDK</span> applications won&#8217;t work as a normal user, because
+    you need to add a special udev rule to give the user permission.
+    This is <a href="https://bugs.launchpad.net/ubuntu/+source/udev/+bug/316215">Ubuntu bug 316215</a> and is fixed in the upcoming Ubuntu
+    11.04,&nbsp;hooray!</li>
+</ol>
+<p>With all those things done, clicking a link on the androidscreencast
+website would pop up an &#8220;enter your password&#8221; dialog and then install
+the Android <span class="caps">SDK</span>.&nbsp;Excellent.</p>
+<p>Clicking the &#8220;Click <span class="caps">HERE</span>&#8221; link should launch the androidscreencast&nbsp;application.</p>
+<p>That link is a <em>Java Web Start</em> link. <a href="http://en.wikipedia.org/wiki/Java_Web_Start">Java Web Start</a> is a fairly
+neat Java thing; you click on a simple link in a web page, that link
+leads to a file describing a Java application, your computer gets that
+file and then uses the description to download and run the Java
+application itself. To make this work in&nbsp;Ubuntu:</p>
+<ol>
+<li>Clicking a Java Web Start (jnlp) link should do something when you
+    don&#8217;t have Java installed. This is much like the idea that when you
+    first hit a Flash-using website in Ubuntu, you get the &#8220;plugin
+    finder&#8221; window which leads you through installing Flash. It ought to
+    be possible to write a very tiny .jnlp handler which informs the
+    user that they&#8217;ve tried to run a Java Web Start application and
+    helps them install Java, and ship that handler by default. (Note:
+    I&#8217;m sure there are plenty of people who will now say: why is Java so
+    special? If we do that, then why don&#8217;t we ship something to handle
+    AutoCAD files by default and offer to install DraftSight, or handle
+    <span class="caps">PPT</span> files by default and offer to install LibreOffice Impress. Well:
+    why don&#8217;t we? Sounds like a good idea to me. I mean, running a
+    command in the terminal will offer to install the package it&#8217;s in.
+    Why not help normal users as well as terminal users? According to
+    <a href="http://brainstorm.ubuntu.com/idea/2347/">Ubuntu Brainstorm suggestion 2347</a> and its duplicates, this
+    already <em>exists</em> in Ubuntu (which is weird because I&#8217;ve never, ever
+    seen it) but if it does then we should add jnlp files to it. It
+    seems to have existed in gnome-app-install, which no longer exists;
+    does Software Centre do this? It seems&nbsp;not.)</li>
+<li>Java is not installed by default (which is fine), and it&#8217;s already
+    in the Canonical partner repository. However, the partner repository
+    is not installed by default (as&nbsp;above).</li>
+<li>If a user wants to install Java, and they know enough technically to
+    know that what they want is to install Java, then they might take
+    the approach of searching for &#8220;java&#8221; in the Ubuntu Software Centre.
+    However, that brings up &#8220;OpenJDK Java 6 Runtime&#8221; as the top hit,
+    then something named &#8220;IcedTea&#8221;, and the actual &#8220;Sun&#8221; official Java
+    nowhere. (To find the real Java, you have to look in the &#8220;technical
+    items&#8221;, and then <em>know</em> that you want the Java from Sun (who are now
+    Oracle anyway!), and then find packages named <code>sun-java-something</code>.
+    Even I barely know how to do this.) I mean, I&#8217;m all in favour of
+    suggesting that people try the open-source flavours of Java, but in
+    my experience they hardly ever work for existing Java apps that
+    weren&#8217;t written with them in mind; we&#8217;re currently promoting them
+    not only over the real &#8220;Sun&#8221; Java, but exclusively <em>instead of</em> the
+    real Java. This will not make people wanting to use Java apps very
+    happy. (If you&#8217;re about to write a comment saying that OpenJDK is
+    the real Java and I&#8217;m wrong: try and resist&nbsp;it.)</li>
+</ol>
+<p>Fixing those few things would make Java Web Start applications work
+really neatly on Ubuntu, which would be pretty cool. It would also make
+Android screencasting work really neatly on Ubuntu, which would also be
+pretty cool. Good work to the androidscreencast people: once all the
+jigsaw pieces were in place, your app Just Worked, and the jigsaw being
+so complex isn&#8217;t your&nbsp;fault.</p>
+<p>So&#8230; sorry, Bruce: as you note, what I had to do was <a href="https://twitter.com/brucel/status/55036048564162560"><em>terminal magic
+followed by editing some weird java xml shit</em></a>. I would have liked to
+not have to do it, especially since if I hadn&#8217;t been through all this
+before for myself it would have taken hours rather than minutes. I&#8217;ll
+cross my fingers that someone would like to make Ubuntu the best
+platform to build phone apps for Android&nbsp;on.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2011/03/11/adding-tasks-to-evolution-from-python/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2011/04/10/web-dev-stacks-and-operating-systems/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2011/04/05/ubuntu-and-android-sitting-in-a-tree-nearly/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/04/05/ubuntu-and-android-sitting-in-a-tree-nearly/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

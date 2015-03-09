@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; JavaScript meetup</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2005/06/12/javascriptmeetup/"><time 
+			class="dt-published" datetime="2005-06-12T11:00:00">Jun 12 2005</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2005/06/12/javascriptmeetup/" title="Permalink to JavaScript meetup" rel="bookmark">JavaScript&nbsp;meetup</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Yesterday, as previously mentioned, <a href="http://www.kryogenix.org/days/2005/06/05/javascriptLove">lots of people met up to talk about
+JavaScript</a>. I got to meet <a href="http://www.quirksmode.org/">ppk</a> and <a href="http://dean.edwards.name/">Dean Edwards</a> for the first
+time, which was great. And we talked about things. The original idea was
+to talk about some <a href="http://www.quirksmode.org/blog/archives/2005/06/11_june_london.html#link2">fairly heavy technical stuff</a> like what to do
+about the onload handler, but after <a href="http://atmedia2005.co.uk/programme.php#behaviour">Jeremy’s presentation at @media
+2005</a> it became clear that we need less effort going into solving
+minor technical minutiae and lots more effort going into <span class="caps">PR</span> for&nbsp;JavaScript.</p>
+<p>You see, developers out there seem to fall into the following&nbsp;categories:</p>
+<ol>
+<li>People who already know about the power of the
+    <span class="caps"><span class="caps">DOM</span></span> and unobtrusive scripting. A good
+    proportion of whom were in the pub yesterday talking about&nbsp;this.</li>
+<li>People who have bought into web standards, are using tableless
+    design with <span class="caps"><span class="caps">CSS</span></span>, don’t really know about
+    JavaScript, but <em>want</em> to know more. This is a large proportion, we
+    think, of current <span class="caps"><span class="caps">CSS</span></span>&nbsp;hackers.</li>
+<li>People who used JavaScript a while ago and have since dismissed it
+    because it was a pointless language that let you do image rollovers
+    and make websites that <em>depended</em> on&nbsp;it.</li>
+<li>People who haven’t bought into the web standards deal at&nbsp;all.</li>
+</ol>
+<p>Clearly we can’t target everyone at once, and the consensus was that the
+people to target are category 2, experienced
+<span class="caps"><span class="caps">CSS</span></span> hackers. The advantage here is that they
+are <em>already</em> using clean markup and modern techniques; since
+<span class="caps"><span class="caps">DOM</span></span> scripting pretty much requires this
+approach, we don’t have to sell these people on the benefits of web
+standards, because they’re already doing&nbsp;it.</p>
+<p>The major flaw, it seems, is that if you’re not a programmer then
+JavaScript is a bit difficult to get to grips with, and
+<span class="caps"><span class="caps">CSS</span></span> designers are, in the main, not
+programmers. For people like me, it’s easy to gloss over the basics:
+what a variable is, what an array is, what an object is, what a function
+is. You see, all the power and elegance in JavaScript, the thing that
+makes it really great for putting together <span class="caps"><span class="caps">DOM</span></span>
+applications, is that objects and functions and arrays are <em>all the same
+thing</em>. When you realise this then a whole vista of power opens before
+you; if you get this and how the <span class="caps"><span class="caps">DOM</span></span> works
+then everything else that’s doable, all the cool scripts and techniques,
+becomes obvious. Pretty much,&nbsp;anyway.</p>
+<p>So, what we need is things that explain how the basics work. The issue
+with that, though, which Dean Edwards pointed out, is that you’re not
+trying to teach people JavaScript, you’re trying to teach them
+programming. And that’s not all that easy. If you write a guide to what
+variables and functions and objects and arrays are then <em>no-one will
+read it</em> because that stuff is very, very, very boring. The approach we
+kicked around was to carry on writing demonstrations of cool techniques,
+but, when doing that, throw in a bit of a “basics” explanation on one
+point. So, next time you write a reusable library to make tooltips
+appear or something, in the explanation don’t just say “and we build a
+list of all the tooltips”: explain what a list is and how it works.
+Don’t try and explain <em>everything</em> from first principles, just one
+thing. And over time, people can pick up cool reusable techniques, which
+everyone likes, and learn about one important building block <em>at the
+same time</em>. Look for articles along these lines from various&nbsp;people.</p>
+<p>The <a href="http://webstandards.org/">WaSP</a> are also going to hopefully get on board; there were four
+WaSPs at the meeting, which helps (<a href="http://www.setmajer.com/">Chris Kaminski</a> being one I hadn’t
+met before), and they have a lot of mindshare in the community, which
+should&nbsp;help.</p>
+<p>The brave new future we’ve talked about is coming. It’s time to show
+everyone else how they can be part of&nbsp;it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2005/06/10/utopiareview/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2005/06/14/installing372457021727/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2005/06/12/javascriptmeetup/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/06/12/javascriptmeetup/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

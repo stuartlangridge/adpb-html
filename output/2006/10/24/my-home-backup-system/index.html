@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; My home backup system</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2006/10/24/my-home-backup-system/"><time 
+			class="dt-published" datetime="2006-10-24T23:08:00">Oct 24 2006</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2006/10/24/my-home-backup-system/" title="Permalink to My home backup system" rel="bookmark">My home backup&nbsp;system</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>After having spent the last five years feeling guilty, I now, finally,
+have my laptop backing up the data I care about to another machine on my
+network. Here&#8217;s how I did it. This is a relatively long and complicated
+process, but it means that it all happens automatically and by magic,
+and I don&#8217;t ever have to interact with it, which is what I want. The
+first component I needed was some backup space: a machine on my network
+that I could send the backups to. I did look at online backup space
+(Amazon&#8217;s S3 and similar) like all the cool kids, but I just can&#8217;t get
+on with it, and I resent paying because I&#8217;m a cheapskate. So, it was to
+be a box on my network. Now, there are useful <span class="caps">NAS</span> machines around, which
+just get plugged in and automatically export their disc space (normally
+as a Windows share, with Samba), and I looked at those too (there&#8217;s the
+Terastation, etc, etc). However, I needed an always-on server for
+another purpose anyway, so I decided to go with a real machine. A
+machine cobbled together out of the Big Box Of Machine Bits, of&nbsp;course.</p>
+<h2>Setting up the&nbsp;server</h2>
+<p>It&#8217;s got two disc drives in it, and I divided the first disc into two
+partitions, one with <span class="caps">1GB</span> and the other with all the rest. Install Ubuntu
+Linux 6.10 Edgy, server edition, on the <span class="caps">1GB</span> partition. (I actually
+installed dapper and then upgraded it to edgy, for that bleeding edge
+greatness; at this writing, edgy is only at <span class="caps">RC</span> stage.) After that, we
+want to take all the remaining space on the machine (one big partition
+on disc 1, and all of disc 2) and make them one big block of disc space;
+this is what <span class="caps">LVM</span>, the Linux Volume Manager, is for. Note that all this
+stuff can be done with proper <span class="caps">GUI</span> tools, but I don&#8217;t have a <span class="caps">GUI</span> on this
+machine because it&#8217;s a server and I&#8217;m trying to converse disc space.
+This bit&#8217;s also from memory, so be very careful and don&#8217;t just slavishly
+follow&nbsp;it.</p>
+<div class="highlight"><pre><span class="cp"># First, make the partition available to LVM, by </span>
+<span class="cp"># making it a &quot;physical volume&quot;. This is LVM-speak for </span>
+<span class="cp"># &quot;a bit of a disk that I can use&quot;</span>
+<span class="n">pvcreate</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda3</span> <span class="err">#</span> <span class="n">the</span> <span class="n">big</span> <span class="n">partition</span> <span class="n">on</span> <span class="n">the</span> <span class="n">first</span> <span class="n">disc</span>
+<span class="n">pvcreate</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hdb</span> <span class="err">#</span> <span class="n">and</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">second</span> <span class="n">disc</span>
+
+<span class="cp"># Now, create a &quot;volume group&quot;. This is LVM-speak for </span>
+<span class="cp"># &quot;a big block of disc space all managed together&quot;</span>
+<span class="n">vgcreate</span> <span class="n">volumegroup</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda3</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hdb</span>
+
+<span class="cp"># Next, create a &quot;logical volume&quot;. LVM-speak: &quot;something</span>
+<span class="cp"># that looks like a disc drive, so you can mount it&quot;</span>
+<span class="cp"># First, find out how big it can be</span>
+<span class="n">vgdisplay</span> <span class="o">|</span> <span class="n">grep</span> <span class="s">&quot;Total PE&quot;</span>
+  <span class="n">Total</span> <span class="n">PE</span>              <span class="mi">11833</span>
+<span class="cp"># now create the logical volume at that size</span>
+<span class="n">lvcreate</span> <span class="o">-</span><span class="n">l</span> <span class="mi">11833</span> <span class="n">volumegroup</span> <span class="o">-</span><span class="n">n</span> <span class="n">logical1</span>
+
+<span class="cp"># You now have a device /dev/volumegroup/logical1</span>
+<span class="cp"># which you can treat as if it were a disc</span>
+<span class="cp"># Create a dir to put it in</span>
+<span class="n">mkdir</span> <span class="o">/</span><span class="n">space</span>
+<span class="cp"># and add it to /etc/fstab so it gets mounted. Add the line:</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">volumegroup</span><span class="o">/</span><span class="n">logical1</span> <span class="o">/</span><span class="n">space</span> <span class="k">auto</span>   <span class="n">defaults</span>        <span class="mi">0</span>       <span class="mi">0</span>
+</pre></div>
+
+
+<p>After that complex little bit (again, if you aren&#8217;t tight like me, do it
+with the <span class="caps">GUI</span>, it&#8217;s easier), you will have a directory <code>/space</code> on the
+machine with loads of space in it. Install <code>openssh-server</code> and <code>rsync</code>,
+because we&#8217;ll need them&nbsp;later.  </p>
+<h2>Rotating&nbsp;backups</h2>
+<p>The way I want my backups to work is as follows. Every night, each
+machine on my network should connect, and send everything that&#8217;s changed
+since yesterday. When I look on the backup server, there should be a
+folder for each machine, and there should be in there a folder per day.
+Each folder should look like a complete backup, but if a file hasn&#8217;t
+changed since yesterday it shouldn&#8217;t take up any more disc space. So,
+the folder structure should look, say, like&nbsp;this:</p>
+<div class="highlight"><pre><span class="o">/</span><span class="n">space</span>
+  <span class="o">/</span><span class="n">stuart</span>
+    <span class="o">/</span><span class="mi">2006</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">24</span>
+      <span class="o">/</span><span class="n">folder1</span>
+        <span class="o">/</span><span class="n">file1</span>
+        <span class="o">/</span><span class="n">file2</span>
+        <span class="o">/</span><span class="n">newfile1</span>
+      <span class="o">/</span><span class="n">folder2</span>
+        <span class="o">/</span><span class="n">file3</span>
+    <span class="o">/</span><span class="mi">2006</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">23</span>
+      <span class="o">/</span><span class="n">folder1</span>
+        <span class="o">/</span><span class="n">file1</span>
+        <span class="o">/</span><span class="n">file2</span>
+      <span class="o">/</span><span class="n">folder2</span>
+        <span class="o">/</span><span class="n">file3</span>
+</pre></div>
+
+
+<p>and the <code>2006-10-24</code> folder should have all the files in it but only
+take up as much space as <code>newfile1</code>. Complicated, but part of the reason
+I specified this is because I know it&#8217;s possible. (The main reason, of
+course, is that I&#8217;m tight and want to save disc space.) Making this
+happens involves two stages: making a <em>hardlink tree</em>, and using
+<code>rsync</code>.  </p>
+<h3>The hardlink&nbsp;tree</h3>
+<p>If you can get over how much this sounds like something out of an Enid
+Blyton book, it&#8217;s a cool technique. I&#8217;m not going to explain hardlinks
+and inodes and things like that here, because there are <a href="http://www.google.co.uk/search?q=hard+links">many other descriptions elsewhere</a>. Suffice to say that, if you have a folder,
+you can make a duplicate of that folder with <code>cp -al folder newfolder</code>,
+and that duplicate will look the same and be full of real files but not
+take up any disc space. My nightly backup therefore needs to do the&nbsp;following:</p>
+<ol>
+<li>Copy last night&#8217;s backup to a new folder, named for the current&nbsp;date</li>
+<li>Change the data in the new folder to look like my laptop, so it&#8217;s
+    got all yesterday&#8217;s data but with any changes I&#8217;ve made&nbsp;today</li>
+</ol>
+<p>The issue here is: how do you know what last night&#8217;s backup is called?
+I&#8217;ve solved this by making sure there&#8217;s a symbolic link called <code>current</code>
+which always points to the most recent backup. So, the above process
+actually&nbsp;becomes:</p>
+<ol>
+<li>Copy the <code>current</code> folder to a new folder, named for the current&nbsp;date</li>
+<li>Change the data in the new folder to look like my laptop, so it&#8217;s
+    got all yesterday&#8217;s data but with any changes I&#8217;ve made&nbsp;today</li>
+<li>Change the <code>current</code> link so it points to the newly created most
+    recent&nbsp;backup</li>
+</ol>
+<p>The script that does this is stored in <code>/space/begin-backup</code>, made
+executable with <code>chmod +x /space/begin-backup</code>, and looks like&nbsp;this:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="nv">PERSON</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">BROOT</span><span class="o">=</span>/space
+
+<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;$PERSON&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+<span class="k">  </span><span class="nb">echo </span>You must pass the name of a backup dir
+  <span class="nb">exit </span>1
+<span class="k">fi</span>
+
+<span class="nv">PDIR</span><span class="o">=</span><span class="nv">$BROOT</span>/<span class="nv">$PERSON</span>/
+
+<span class="c"># If person dir doesn&#39;t exist, create it</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PDIR</span> <span class="o">]</span>; <span class="k">then </span>mkdir <span class="nv">$PDIR</span>; <span class="k">fi</span>
+
+<span class="c"># If there&#39;s no current dir, create an empty one and link it</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PDIR</span>/current <span class="o">]</span>; <span class="k">then</span>
+<span class="k">  </span>mkdir <span class="nv">$PDIR</span>/first
+  ln -s first <span class="nv">$PDIR</span>/current
+<span class="k">fi</span>
+
+<span class="nv">DT</span><span class="o">=</span><span class="k">$(</span>date -Iseconds<span class="k">)</span>
+
+<span class="c"># Hardlink-tree the existing recent dir</span>
+cp -al <span class="s2">&quot;$(readlink -f $PDIR/current)&quot;</span> <span class="nv">$PDIR</span>/<span class="nv">$DT</span>
+<span class="c"># and link current to the new hardlink tree</span>
+rm <span class="nv">$PDIR</span>/current
+ln -s <span class="nv">$DT</span> <span class="nv">$PDIR</span>/current
+</pre></div>
+</td></tr></table>
+
+<p>We&#8217;ll come back to how you run this in a&nbsp;minute.  </p>
+<h3>Rsync</h3>
+<p>The <em>change the data in the new folder to look like my laptop</em> bit is
+done with <code>rsync</code>, which is complex but brilliantly clever. In essence,
+rsync is like <code>copy</code> (or <code>cp</code>), except that it compares the source and
+the destination and only sends the changes over. On my laptop, I can&nbsp;do</p>
+<div class="highlight"><pre><span class="n">rsync</span> <span class="o">-</span><span class="n">avz</span> <span class="o">--</span><span class="n">delete</span> <span class="o">-</span><span class="n">e</span> <span class="n">ssh</span> 
+    <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">folder</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">back</span><span class="o">/</span><span class="n">up</span> 
+    <span class="n">myserver</span><span class="o">:/</span><span class="n">space</span><span class="o">/</span><span class="n">stuart</span><span class="o">/</span><span class="n">current</span><span class="o">/</span>
+</pre></div>
+
+
+<p>and that will copy <code>/some/folder/to/back/up</code> over to the server.
+Importantly, if that folder is <em>already</em> in the backup space, in the
+<code>current</code> folder (because we backed it up yesterday) then it&#8217;ll only
+copy the changes over. This is why we make sure that there&#8217;s a folder
+called <code>current</code> with the contents of last night&#8217;s backup! Exactly how
+we run this rsync command we&#8217;ll come on to in a minute. Patience,&nbsp;Iago.  </p>
+<h2>Choosing what gets backed&nbsp;up</h2>
+<p>I don&#8217;t want to back up everything. I don&#8217;t have the space, and to be
+frank I have a lot of crap lying around on my machine. So I need a very
+easy way of tagging something for backups. This is a perfect use of
+emblems; I can &#8220;tag&#8221; a file or a folder in the file manager with a
+special &#8220;backup&#8221; emblem, and that should indicate to my backup process
+that that file or folder wants to be included in the backup. Ubuntu
+doesn&#8217;t have a backup emblem included by default, but adding one is
+easy, and <a href="http://www.gnome.org/learn/users-guide/latest/gosnautilus-203.html">explained in the docs</a>. Pick yourself an image (I use <a href="http://www.kryogenix.org/days/wp-content/uploads/2006/10/emblem-backup.png">this little tape</a>) and add it as an emblem, and then go through your
+machine and add it to every file or folder that needs backing up. (This
+will, if applied to a folder, back up everything inside it. If you need
+it to back up only some of the stuff inside it then you&#8217;ll have to not
+apply it to the folder. Yes, this is awkward, but I don&#8217;t need to do
+that.) Applying emblems is also <a href="http://www.gnome.org/learn/users-guide/latest/gosnautilus-203.html">in the documentation</a>; a quick way if you&#8217;re doing this a lot is to pop up the <strong>Edit >
+Backgrounds and Emblems</strong> window and just repeatedly drag your new
+backup emblem to&nbsp;everything.  </p>
+<h2><span class="caps">SSH</span> with no&nbsp;password</h2>
+<p>One final preparation step: in order that the backup can run without me
+being around, I need to be able to make an ssh connection from my laptop
+to the server without entering a password. I&#8217;m not going to describe how
+to do this because there are plenty of <a href="http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html">guides out there on the web</a>.  </p>
+<h2>Make it&nbsp;so</h2>
+<p>Now, finally, after lots of setup, it&#8217;s time to actually make it all
+happen. To summarise, then, to do a backup, we need&nbsp;to:</p>
+<ol>
+<li>Run, on the server, the copy-last-night&#8217;s-backup&nbsp;script</li>
+<li>
+<ol>
+<li>Get the list of all the files with the backup&nbsp;emblem</li>
+</ol>
+</li>
+<li>Use rsync to copy all those files into the new backup folder on the&nbsp;server</li>
+</ol>
+<p>To get the list, we can use my <a href="http://www.kryogenix.org/days/2006/10/23/find-files-with-an-emblem">findemblem.py</a> script (and you thought
+I just wrote it for fun!). The final script, <code>dobackup.sh</code>, which
+actually does the work, just does the above steps, and looks like&nbsp;this:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c"># Do backups to the rsync server</span>
+<span class="c"># You must have already set up a passphraseless ssh key to the ssh server</span>
+<span class="c"># so that &quot;ssh servername&quot; just logs you in.</span>
+
+<span class="nv">BK</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>
+<span class="nv">BKNAME</span><span class="o">=</span>stuart
+
+<span class="c"># First, tell it to clock over the backup</span>
+ssh servername /space/begin-backup <span class="nv">$BKNAME</span>
+
+<span class="c"># Now, do the backup</span>
+python <span class="nv">$BK</span>/findemblem.py backup | <span class="k">while </span><span class="nb">read </span>fn; <span class="k">do</span>
+<span class="k">  </span>rsync -avzq --delete -e ssh <span class="s2">&quot;$fn&quot;</span> 
+    servername:/space/<span class="nv">$BKNAME</span>/current
+<span class="k">done</span>
+</pre></div>
+</td></tr></table>
+
+<p>All that remains now is to schedule this script to run every night, by
+editing your tasklist with <code>crontab -e</code> and adding the&nbsp;line</p>
+<div class="highlight"><pre><span class="mi">40</span>  <span class="mi">4</span>  <span class="o">*</span>   <span class="o">*</span>   <span class="o">*</span>     <span class="o">/</span><span class="n">full</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">dobackup</span><span class="p">.</span><span class="n">sh</span>
+</pre></div>
+
+
+<p>And, lo and behold, you have overnight backups. All done and dusted.&nbsp;Phew.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2006/10/23/aol-aim-in-javascript/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2006/10/26/linuxworld-uk/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2006/10/24/my-home-backup-system/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2006/10/24/my-home-backup-system/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

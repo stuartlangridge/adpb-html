@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; An Ubuntu One printer</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2011/11/08/an-ubuntu-one-printer/"><time 
+			class="dt-published" datetime="2011-11-08T16:41:00">Nov 08 2011</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2011/11/08/an-ubuntu-one-printer/" title="Permalink to An Ubuntu One printer" rel="bookmark">An Ubuntu One&nbsp;printer</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>At the Ubuntu Developer Summit in October 2011 there was <a href="https://blueprints.launchpad.net/ubuntu/+spec/desktop-p-ubuntu-one-cloud-printing">a session on
+Ubuntu One cloud printing</a>. That session was about Ubuntu One being a
+gateway to existing cloud printing services, like <span class="caps">HP</span>&#8217;s ePrint and Google
+Cloud Print, and I&#8217;m looking into that. However, the idea of Ubuntu One
+being <em>itself</em> a cloud printing service came up in that discussion:
+specifically, if I&#8217;ve got an Ubuntu machine with a printer plugged into
+it, can I make that printer available from other machines (or other
+devices such as phones) through Ubuntu One itself? Can I take my home
+printer and use Ubuntu One to set it up so that I can print to that
+printer from anywhere in the world and from any device? We (the U1 team)
+won&#8217;t be working on that idea directly, but in the session I suggested
+that it would be relatively easily done. Some people asked how it could
+be done, and suggested that they might be interested in working on it.
+This describes one way to do&nbsp;it.</p>
+<p>Basically, this process involves being able to send documents to the
+machine with the printer connected to it, and then having that machine
+notice the newly-arrived documents and printing them. To do this, we
+need a &#8220;U1 printer daemon&#8221; on the printer machine. I propose the
+following&nbsp;architecture:</p>
+<p>There is a machine, in your house or similar, with a printer connected
+to it. We&#8217;ll call this machine <em>the printer machine</em>. On the printer
+machine, set up the printer so it can be printed to locally. Next, we
+invent a printer daemon. This printer daemon creates a folder and marks
+that folder as synced with Ubuntu One, and subscribes to that folder on
+this machine. The printer daemon then waits for new files in that folder
+(see below for how to do this). When a new file arrives, the printer
+daemon sends the file to the local printer, and then deletes the file
+(so it doesn&#8217;t linger around&nbsp;forever).</p>
+<p>I suggest that the folder that&#8217;s creates is named
+<code>$HOME/.ubuntuone/Print Queues/printer name</code>. It&#8217;s a hidden folder
+because it&#8217;s not really something that should be shown in a user&#8217;s home
+folder; it&#8217;s under <code>.ubuntuone</code> because that&#8217;s a static path across
+machines (putting it in <code>$XDG_DATA_HOME</code> is problematic because that
+path may not be the same on all machines), it&#8217;s a separate synced folder
+(rather than being under <code>$HOME/Ubuntu One</code>) because files for printer A
+only need to be synced to the machine connected to printer A, not to all
+machines you have connected to Ubuntu One, and it&#8217;s under
+<code>.ubuntuone/Print Queues</code> because third party apps which want to offer
+&#8220;print to an Ubuntu One printer&#8221; can then list all your Ubuntu One
+printers by enumerating the contents of that folder via the <a href="https://one.ubuntu.com/developer/files/store_files/cloud/"><span class="caps">REST</span>
+<span class="caps">API</span></a>.</p>
+<p>A third-party app (say, one on a mobile phone) which wants to offer
+&#8220;print to an Ubuntu One printer&#8221; would then take the document to be
+printed, show the user the collection of Ubuntu One printers (by
+enumerating the contents of <code>.ubuntuone/Print Queues</code> using the <span class="caps">REST</span>
+<span class="caps">API</span>) and then upload the document to be printed to the chosen
+<code>.ubuntuone/Print Queues/printer name</code> folder. No-one ever sees the
+existence of the <code>.ubuntuone/Print Queues</code> folder, of course; it&#8217;s all
+transparent to the&nbsp;user.</p>
+<p>Now, how does one monitor an Ubuntu One synced folder for changes? If
+you&#8217;re a Python app (on Ubuntu or Windows) and you&#8217;re running a very
+recent build of Ubuntu One (the shortly-to-be-released Windows build, or
+a nightly build on Ubuntu) you can use the Python <code>SyncDaemonTool</code>, and
+your daemon would look roughly like&nbsp;this:</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">os</span><span class="p">,</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="err">&#39;</span><span class="n">win32</span><span class="err">&#39;</span><span class="o">:</span>
+    <span class="n">from</span> <span class="n">twisted</span><span class="p">.</span><span class="n">internet</span> <span class="n">import</span> <span class="n">glib2reactor</span>
+    <span class="n">glib2reactor</span><span class="p">.</span><span class="n">install</span><span class="p">()</span>
+    <span class="n">from</span> <span class="n">dbus</span><span class="p">.</span><span class="n">mainloop</span><span class="p">.</span><span class="n">glib</span> <span class="n">import</span> <span class="n">DBusGMainLoop</span>
+    <span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="n">True</span><span class="p">)</span>
+
+<span class="n">from</span> <span class="n">twisted</span><span class="p">.</span><span class="n">internet</span> <span class="n">import</span> <span class="n">defer</span><span class="p">,</span> <span class="n">reactor</span>
+<span class="n">from</span> <span class="n">ubuntuone</span><span class="p">.</span><span class="n">platform</span><span class="p">.</span><span class="n">tools</span> <span class="n">import</span> <span class="n">SyncDaemonTool</span>
+<span class="n">EXPECTED</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="err">&#39;</span><span class="o">~/</span><span class="p">.</span><span class="n">ubuntuone</span><span class="o">/</span><span class="n">Print</span> <span class="n">Queues</span><span class="o">/</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="err">@</span><span class="n">defer</span><span class="p">.</span><span class="n">inlineCallbacks</span>
+<span class="n">def</span> <span class="n">track_file_download</span><span class="p">()</span><span class="o">:</span>
+    <span class="n">sd</span> <span class="o">=</span> <span class="n">SyncDaemonTool</span><span class="p">()</span>
+    <span class="n">success_filter</span> <span class="o">=</span> <span class="n">lambda</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span><span class="o">:</span> <span class="n">path</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">EXPECTED</span><span class="p">)</span>
+    <span class="n">path</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">sd</span><span class="p">.</span><span class="n">wait_for_signals</span><span class="p">(</span><span class="n">signal_ok</span><span class="o">=</span><span class="err">&#39;</span><span class="n">DownloadFinished</span><span class="err">&#39;</span><span class="p">,</span>
+                                           <span class="n">success_filter</span><span class="o">=</span><span class="n">success_filter</span><span class="p">)</span>
+    <span class="n">print</span> <span class="err">&#39;</span><span class="o">==========</span><span class="n">n</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
+    <span class="n">reactor</span><span class="p">.</span><span class="n">callWhenRunning</span><span class="p">(</span><span class="n">track_file_download</span><span class="p">)</span>
+    <span class="n">reactor</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+
+<p>This, as noted, requires a very very recent build of Ubuntu One, so it&#8217;s
+probably not useful right now (it will be in the future, though, so if
+you&#8217;re reading this as a result of a Google search, do it this way). The
+other way to do this on Ubuntu is to listen to the <code>DownloadFinished</code>
+signal on the <code>com.ubuntuone.SyncDaemon.Status</code> D-Bus interface: that
+code would look something like&nbsp;this:</p>
+<div class="highlight"><pre><span class="kr">import</span> <span class="nx">dbus</span><span class="p">,</span> <span class="nx">gobject</span>
+<span class="nx">from</span> <span class="nx">dbus</span><span class="p">.</span><span class="nx">mainloop</span><span class="p">.</span><span class="nx">glib</span> <span class="kr">import</span> <span class="nx">DBusGMainLoop</span>
+<span class="nx">DBusGMainLoop</span><span class="p">(</span><span class="nx">set_as_default</span><span class="o">=</span><span class="nx">True</span><span class="p">)</span>
+<span class="nx">def</span> <span class="nx">track_file_download</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">info</span><span class="p">)</span><span class="o">:</span>
+    <span class="nx">print</span> <span class="nx">path</span>
+<span class="nx">dbus</span><span class="p">.</span><span class="nx">SessionBus</span><span class="p">().</span><span class="nx">add_signal_receiver</span><span class="p">(</span><span class="nx">handler_function</span><span class="o">=</span><span class="nx">track_file_download</span><span class="p">,</span>
+    <span class="nx">signal_name</span><span class="o">=</span><span class="s2">&quot;DownloadFinished&quot;</span><span class="p">,</span> 
+    <span class="nx">dbus_interface</span><span class="o">=</span><span class="s2">&quot;com.ubuntuone.SyncDaemon.Status&quot;</span><span class="p">,</span>
+    <span class="nx">bus_name</span><span class="o">=</span><span class="s2">&quot;com.ubuntuone.SyncDaemon&quot;</span><span class="p">,</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/status&quot;</span><span class="p">)</span>
+<span class="nx">loop</span> <span class="o">=</span> <span class="nx">gobject</span><span class="p">.</span><span class="nx">MainLoop</span><span class="p">()</span>
+<span class="nx">loop</span><span class="p">.</span><span class="nx">run</span><span class="p">()</span>
+</pre></div>
+
+
+<p>A note: most files can&#8217;t be printed as is: they need the application
+that generated them to print them. However, printing systems know
+natively how to handle <span class="caps">PDF</span> files. What this means, in practice, is that
+the app which uploads the file for printing to the printer queue folder
+should <em>convert it to <span class="caps">PDF</span></em> before uploading&nbsp;it.</p>
+<p>That&#8217;s my proposal for how this could be done. If you&#8217;re interested in
+hacking on this, I&#8217;d love to hear from&nbsp;you!</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2011/10/18/the-four-personality-types-on-the-spectrum-of-facial-hair/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2011/11/08/box-diagrams-in-html-and-unicode/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2011/11/08/an-ubuntu-one-printer/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/11/08/an-ubuntu-one-printer/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Show applicable styles</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2003/04/22/applicable/"><time 
+			class="dt-published" datetime="2003-04-22T11:00:00">Apr 22 2003</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2003/04/22/applicable/" title="Permalink to Show applicable styles" rel="bookmark">Show applicable&nbsp;styles</a>
+		</h2>
+		<div class="entry-content e-content">
+			<!--timestamp:1051052372.0:-->
+
+<!--category::-->
+
+<!--author:sil:-->
+
+<p>This is far and away and without a shadow of doubt the most complex
+bookmarklet I have ever written. It&#8217;s in response to <a href="http://simon.incutio.com/archive/2003/04/20/#flaminCSS">Simon&#8217;s
+challenge</a> and then <a href="/days/471.html#au129">his further rebuttal</a> that <a href="/days/471.html">my previous
+attempt</a> didn&#8217;t quite do what he was looking for. Jesse at SquareFree
+also came up with <a href="http://www.squarefree.com/bookmarklets/webdevel.html#computed_styles">an implementation</a>, but then went on to say, &#8220;Simon
+actually wanted a bookmarklet that would show the style rules that apply
+to an element, like the <span class="caps">DOM</span> Inspector does, but I don&#8217;t think that can
+be done in a&nbsp;bookmarklet&#8221;.</p>
+<p>Red rag to a bull,&nbsp;that.</p>
+<p>So, the International House of Kryogenix&nbsp;presents:</p>
+<p><a href="javascript:(function(){var%20sAS=document.createElement('script');sAS.setAttribute('src','http://www.kryogenix.org/include/showApplicableStyles.js');sAS.setAttribute('type','text/javascript');document.getElementsByTagName('head')[0].appendChild(sAS);})()">Show applicable&nbsp;styles</a></p>
+<p>What this should do is (eventually) pop up a separate window and then
+display, in that window, all the styles in your stylesheets that affect
+the element you&#8217;re currently hovering&nbsp;over.</p>
+<p>This will almost certainly not work in your browser. Whatever browser
+you&#8217;ve got. It works for me in the latest Phoenix (er, Firebird) nightly
+build. I&#8217;d be profoundly shocked if it worked in <span class="caps">IE</span>, and it will just
+not work in Opera or Safari at all, I&nbsp;imagine.</p>
+<p>Big, big caveat 1: it does not work for sites which have a stylesheet
+which <code>@import</code>s a sheet (to hide styles from <span class="caps">NN4</span>). As far as I can
+tell, @imported stylesheets don&#8217;t appear in the <code>document.styleSheets</code>
+array. Not really a lot I can do about this, I don&#8217;t think. This means
+that Simon&#8217;s site won&#8217;t work, that diveintomark won&#8217;t work, ad&nbsp;nauseam.</p>
+<p>Caveat 2: if you find it doesn&#8217;t pop up the extra window (and throw a
+Javascript error about <code>newwin</code>) then you might want to check that
+you&#8217;re not blocking popup windows, and unblock the site you&#8217;re looking
+at. Took me half an hour to work that&nbsp;out.</p>
+<p>Anyway, if it works for you and you find it useful, good stuff. I might
+write up something on how it works, if I get a&nbsp;chance.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2003/04/21/justified/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2003/04/23/pieces/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2003/04/22/applicable/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2003/04/22/applicable/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Free choice and constrained choices</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2004/06/21/constrained/"><time 
+			class="dt-published" datetime="2004-06-21T11:00:00">Jun 21 2004</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2004/06/21/constrained/" title="Permalink to Free choice and constrained choices" rel="bookmark">Free choice and constrained&nbsp;choices</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Matt <a href="http://www.webeditorblog.com/cgi-bin/blosxom.cgi/2004/06/21#linux_arguments_are_boring_part_2">responded</a> to <a href="http://www.kryogenix.org/days/2004/06/21/boringDoing">my thoughts on Gnome’s approach</a> with a
+discussion of the nature of&nbsp;choice:  </p>
+<blockquote>
+<p>Gnome is free to innovate and show the world that there are better
+ways of doing things, but at the same time, exercise some of their own
+community’s rhetoric and give people a choice. The idea that it’s okay
+for Gnome to deprive their users of choice over the way they use their
+computer, is another reason that the Linux world is annoying me at the
+moment…Why should it be an all or nothing decision, for a user to
+make? &#8230; If Gnome is the best system for a person, corporation or
+whatever, except that the extra training required because of the
+spatial approach makes it unviable, why do people have to ditch an
+entire, very well developed desktop&nbsp;environment?</p>
+</blockquote>
+<p>The notion of choice, that you can combine different bits into a desktop
+of your choice, custom-built by you for you, has been the war-cry of
+Linux since there first <em>was</em> a Linux desktop. I think, though, that
+it’s a pipe-dream, and the quest for this pipe-dream has hurt the
+development of the Linux desktop beyond measure. In an ideal world, a
+utopia of development, we’d have open and defined standards that
+everyone implemented, and those standards would define how individual
+components could slot together to form the perfect desktop.
+<span class="caps"><span class="caps">KDE</span></span> applications would work on a Gnome
+desktop; Gnome applications would work on a
+<span class="caps"><span class="caps">KDE</span></span> desktop. Currently, they do not—while you
+can <em>run</em> them, they use different <span class="caps">UI</span> guidelines, different
+configuration databases, different inter-application
+<span class="caps"><span class="caps">RPC</span></span> methods. The pipe-dream is that
+organisations like <a href="http://freedesktop.org/">freedesktop.org</a> can define these interoperability
+standards and give us our utopia. But I can’t see how that’s going to
+happen. Let’s take the example of a <span class="caps"><span class="caps">KDE</span></span>
+application which needs to interoperate perfectly with a Gnome desktop.
+It should, when a <span class="caps"><span class="caps">URL</span></span> is clicked, start up the
+browser that the user has configured as their browser. Now, it can
+either ask the <span class="caps"><span class="caps">KDE</span></span> configuration mechanism (as
+it currently does), it can ask the Gnome mechanism, it can ask the
+<span class="caps"><span class="caps">KDE</span></span> mechanism which (under the covers) asks
+the Gnome mechanism, or it can ask some kind of abstraction layer which
+knows how to ask both the <span class="caps"><span class="caps">KDE</span></span> and Gnome
+mechanisms. If the freedesktop people specify a One True Config
+Approach, and it’s gconf (which it looks to me like they’re gearing up
+to do), how likely is it that the <span class="caps"><span class="caps">KDE</span></span> people
+will start using it? And that’s just “how to find a web browser“. This
+is why I suggested, in <a href="http://www.lugradio.org/guide.php">LugRadio episode five</a>, that we should abandon
+<span class="caps"><span class="caps">KDE</span></span> and concentrate our development work on
+Gnome. While the ideal of infinitely-pluggable desktop components would
+be great, I really can’t see it ever happening. To put it another way,
+if <span class="caps"><span class="caps">KDE</span></span> applications and Gnome applications and
+non-desktop-integrated-applications all work the same way, to the same
+<span class="caps">UI</span> guidelines, using the same configuration databases and the same
+<span class="caps"><span class="caps">RPC</span></span> technology, haven’t we then essentially
+created one desktop environment anyway?<br />
+Further, <a href="http://www.jonobacon.org/viewcomments.php?id=353">Jono has also weighed in on the debate</a> with some ideas on
+Gnome’s status as a&nbsp;framework:  </p>
+<blockquote>
+<p><span class="caps"><span class="caps">GNOME</span></span> is not written to be installed by the
+regular Joe – it is intended as a framework that distributors assemble
+to target their audience. This may mean tweaking the magic GConf key
+and turning the spatial Nautilus off, but that is the choice of the
+distributor…This is an area where <span class="caps"><span class="caps">GNOME</span></span> and
+<span class="caps"><span class="caps">KDE</span></span> are distinctly different – the
+<span class="caps"><span class="caps">GNOME</span></span> guys are pushing for real and
+different innovative features, whereas the
+<span class="caps"><span class="caps">KDE</span></span> folks are simply taking any feature and
+providing an off switch in the Control Center. I would love to see
+<span class="caps"><span class="caps">KDE</span></span> become more framework orientated such as
+<span class="caps"><span class="caps">GNOME</span></span>…The greatest sound engineers never add
+more bass/mid/treble to a sound, they simply take the other
+frequencies&nbsp;out.</p>
+</blockquote>
+<p>I’m not sure that I view Gnome as a framework in quite the way Jono is
+describing, but I’m in wholehearted agreement about Gnome’s innovative
+approach as opposed to (an apparent) stagnation in
+<span class="caps"><span class="caps">KDE</span></span>.<br />
+I can’t imagine how a preference to turn on and turn off the spatial
+Nautilus, as an example, would be anything other than confusing. (I
+appreciate that Matt isn’t talking about this specific example but more
+the general problem, but the point still stands.) Where would such a
+preference be? It would be confusing if you don’t know what it means,
+and it would encourage people to turn it off without trying it. Jono
+himself has <a href="http://www.jonobacon.org/viewcomments.php?id=347">been complimentary about the spatial Nautilus</a>,
+suggesting off-line that he didn’t think it would be a good idea but has
+since found it to be a better system. This all boils down to the
+problem: if you know better than the users, how much do you enforce
+that? If you enforce it <em>too</em> much, then you’re restricting choice, and
+god help you if you’re wrong. If you don’t enforce it enough, then
+you’re missing a chance to really <em>help</em> your users even though they
+don’t know that they need&nbsp;help.</p>
+<hr />
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2004/06/21/evolution/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2004/06/21/boringdoing/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2004/06/21/constrained/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/06/21/constrained/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

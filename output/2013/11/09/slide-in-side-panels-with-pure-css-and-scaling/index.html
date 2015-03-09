@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; “Slide in” side panels with pure CSS and scaling</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/"><time 
+			class="dt-published" datetime="2013-11-09T16:59:00">Nov 09 2013</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/" title="Permalink to “Slide in” side panels with pure CSS and scaling" rel="bookmark"><span class="dquo">&#8220;</span>Slide in&#8221; side panels with pure <span class="caps">CSS</span> and&nbsp;scaling</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>One rather neat little user interface &#8220;pattern&#8221; that comes up a lot,
+especially in mobile apps, is a side panel which slides in to get at
+extra stuff. There are approximately <a href="https://www.google.co.uk/search?q=slide+in+panel+css">1.5 million people explaining how to do this</a>, most of which do two things: use jQuery, and animate the
+position of the side panel. An interesting alternative is to do neither
+of those&nbsp;things.</p>
+<p>First, pure <span class="caps">CSS</span>. I&#8217;m by no means the first person to suggest this, but
+it&#8217;s a neat trick: the <span class="caps">CSS</span> <code>:target</code> pseudo-selector lets you style the
+thing that the <span class="caps">URL</span> hash fragment is referencing. So if you&#8217;ve got your
+panel as <code>id="panel"</code>, then <code>#panel:target { whatever }</code> in your <span class="caps">CSS</span>
+sets the styles for it when the <span class="caps">URL</span> is <code>thispage.html#panel</code>, which
+means that you can summon your side panel with pure <span class="caps">CSS</span>, excellent.
+(Then dismissing it is clicking a link to some fragment <em>other than</em>
+<code>#panel</code>, so <code>&lt;a href="#"&gt;</code> is&nbsp;fine.)</p>
+<p>The second part is a bit different, though. The way people normally have
+the panel be hidden and then showing is to position it off screen.
+Simple way to do this (remembering that the &#8220;default state&#8221; of our panel
+is &#8220;offscreen&#8221;, and <code>#panel:target</code> is &#8220;on&nbsp;screen&#8221;):</p>
+<div class="highlight"><pre><span class="cp">#panel { </span>
+    <span class="nl">position:</span> <span class="n">absolute</span><span class="p">;</span>
+    <span class="nl">top:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">bottom:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">right:</span> <span class="o">-</span><span class="mi">200</span><span class="n">px</span><span class="p">;</span>
+    <span class="nl">width:</span> <span class="mi">200</span><span class="n">px</span><span class="p">;</span>
+    <span class="nl">transition:</span> <span class="n">right</span> <span class="mf">0.3</span><span class="n">s</span> <span class="n">ease</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">#panel:target {</span>
+    <span class="nl">right:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Of course, we are good people and we know that <a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/">you should only animate transform properties and opacity if you want smooth animations</a>,
+so the obvious response is to change that&nbsp;to</p>
+<div class="highlight"><pre><span class="cp">#panel { </span>
+    <span class="nl">position:</span> <span class="n">absolute</span><span class="p">;</span>
+    <span class="nl">top:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">bottom:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">right:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">width:</span> <span class="mi">200</span><span class="n">px</span><span class="p">;</span>
+    <span class="nl">transform:</span> <span class="n">translateX</span><span class="p">(</span><span class="mi">200</span><span class="n">px</span><span class="p">);</span>
+    <span class="nl">transition:</span> <span class="n">transform</span> <span class="mf">0.3</span><span class="n">s</span> <span class="n">ease</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">#panel:target {</span>
+    <span class="nl">transform:</span> <span class="n">translateX</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>However, then we have a thing: you&#8217;ll get a horizontal scrollbar now
+because there&#8217;s stuff off the right-hand-side of the screen. You can of
+course avoid that by setting <code>overflow: hidden</code> on the container, but
+that&#8217;s potentially annoying, and hiding stuff with overflow always ends
+up screwing me up at some point. One alternative approach is to not move
+the panel around at all, but instead to scale it down to almost nothing
+(animating a scale is fast, because it&#8217;s a transform property) and then
+scale it up. Like&nbsp;this:</p>
+<div class="highlight"><pre><span class="cp">#panel { </span>
+    <span class="nl">position:</span> <span class="n">absolute</span><span class="p">;</span>
+    <span class="nl">top:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">bottom:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">right:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">width:</span> <span class="mi">200</span><span class="n">px</span><span class="p">;</span>
+    <span class="nl">transform:</span> <span class="n">scaleX</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">);</span>
+    <span class="n">transform</span><span class="o">-</span><span class="n">origin</span><span class="o">:</span> <span class="mi">100</span><span class="o">%</span> <span class="mi">50</span><span class="o">%</span><span class="p">;</span>
+    <span class="nl">transition:</span> <span class="n">transform</span> <span class="mf">0.3</span><span class="n">s</span> <span class="n">ease</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">#panel:target {</span>
+    <span class="nl">transform:</span> <span class="n">scaleX</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>See <a href="http://jsbin.com/epuVOVA/1/edit">the jsbin</a> for a simple&nbsp;demo.</p>
+<p>Note that people will expect to be able to swipe the panel away on a
+mobile screen. You need <span class="caps">JS</span> for that, so this is no panacea. Similarly,
+scaling may have an odd appearance depending on what&#8217;s in your side
+panel, and so this idea might not actually work for what you&#8217;re doing.
+Have an experiment with the approach and tell me about&nbsp;it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2013/11/06/offline-first/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

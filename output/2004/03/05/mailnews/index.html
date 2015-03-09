@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Mail and news</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2004/03/05/mailnews/"><time 
+			class="dt-published" datetime="2004-03-05T11:00:00">Mar 05 2004</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2004/03/05/mailnews/" title="Permalink to Mail and news" rel="bookmark">Mail and&nbsp;news</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I read mail, I read mailing lists, and I read Usenet newsgroups. I’m
+trying to decide on the best way to handle these three disparate
+entities. I’d like to use <span class="caps"><span class="caps">GUI</span></span> clients to do
+these things while I’m sitting at my machine, but I need them to be
+accessible through text-mode clients as well, because I spend a lot of
+time sshed in.<br />
+Currently, I do the&nbsp;following:</p>
+<ul>
+<li>Read mail in mutt. My inbox is the default @/var/mail/aquarius@,
+    which is a Unix mailbox. My saved mail is stored in Unix mailboxes
+    in&nbsp;\~/Mail.</li>
+<li>Run inn as a news server, with suck to fetch new news to it from my
+    <span class="caps"><span class="caps">ISP</span></span>’s news server, and tin to read that
+    news from&nbsp;localhost.</li>
+<li>Subscribe a different address to mailing lists, and use <code>groupie</code>,
+    an unreleased newstomail gateway, to turn those mailing lists into
+    local inn-based newsgroups. I then tell tin that these local groups
+    are mailing lists, and what the mailing address of each “newsgroup”
+    is, and tin handles sending my responses to the list when I follow
+    up a post in the “newsgroups“.<br />
+    The big problem here is that I don’t understand inn. So it breaks.
+    All the time. I haven’t actually been reading any newsgroups for
+    about four months because inn broke and I don’t know how to fix it.
+    So, I want to overhaul all this, and I’m looking for suggestions. I
+    need to move away from inn, and I’d like to move away from groupie
+    as well (since it’s not getting any maintenance, although it’s done
+    fine for the last couple of years (nice one Kam!)).<br />
+    Things I could do to solve all this (which are not necessarily
+    mutually exclusive):  <ol>
+<li>Move my mail storage to Maildir, and use a
+<span class="caps"><span class="caps">GUI</span></span> client and mutt to read mail. Poke my
+local exim installation to deliver into Maildirs rather than mboxes
+(should be doable with a forward&nbsp;file).  </li>
+<li>Install <a href="http://leafnode.sourceforge.net/">leafnode and fetch</a> as a news server. Grab news from
+my <span class="caps"><span class="caps">ISP</span></span> with fetch and feed it to leafnode.
+Use any <span class="caps"><span class="caps">GUI</span></span> news client and tin to read&nbsp;news.  </li>
+<li>Move my mail to <span class="caps"><span class="caps">IMAP</span></span>. Use any
+<span class="caps"><span class="caps">GUI</span></span> mail client that understands
+<span class="caps"><span class="caps">IMAP</span></span> and mutt to read my&nbsp;mail.  </li>
+<li>Move my mail to <a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">Cyrus <span class="caps"><span class="caps">IMAP</span></span></a>, and
+feed news into it using its <a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html#news">news features</a>. Send mailing lists to
+Cyrus too. This, however, requires an inn installation, so I don’t
+really want to do&nbsp;it.  </li>
+<li>Move mailing lists to <span class="caps"><span class="caps">IMAP</span> </span>(if mail is
+<span class="caps"><span class="caps">IMAP</span></span>). Either implement rules in Exim to
+deliver mailing lists to different <span class="caps"><span class="caps">IMAP</span></span>
+mailboxes, or rules on the <span class="caps"><span class="caps">IMAP</span></span> server to
+deliver mailing lists to different <span class="caps"><span class="caps">IMAP</span></span>
+mailboxes, or rules in each mail client (both
+<span class="caps"><span class="caps">GUI</span></span> and mutt) to filter mailing lists into
+different <span class="caps"><span class="caps">IMAP</span></span>&nbsp;boxes.  </li>
+<li>Move mailing lists to leafnode (if using leafnode) using
+<a href="http://zigzag.lvk.cs.msu.su/leafnode/">MLGroups</a>.  </li>
+<li>Use a <a href="http://www.news2mail.com/">news2mail service</a> to get all my news as mail. Problem:
+posting is awkward.<br />
+Essentially, I have two clients (mail and news clients) and three
+things (newsgroups, mailing lists, mail), and I need to know where
+to read each. It’s pretty much possible to read them in any
+combination across the clients (I don’t want to read
+non-mailing-list mail in a newsreader), but I don’t know how best to
+do it. It might be nice to use just <strong>one</strong> client to read both mail
+and news, but there has to be two: a <span class="caps"><span class="caps">GUI</span></span>
+one and a commandline one.<br />
+I’m open to suggestions on all this stuff. How do you handle this
+problem? I suspect a lot of people don’t have the
+<span class="caps"><span class="caps">GUI</span></span>/commandline requirement, which makes
+it a lot easier; you just say “I’ll read it all in Thunderbird“, or
+something&nbsp;similar.</li>
+</ol>
+</li>
+</ul>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2004/03/05/slicing/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2004/03/05/desperate/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2004/03/05/mailnews/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/03/05/mailnews/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

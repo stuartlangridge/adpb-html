@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Ubuntu phone screencasting, a minor tip</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/"><time 
+			class="dt-published" datetime="2015-01-11T06:14:00">Jan 11 2015</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/" title="Permalink to Ubuntu phone screencasting, a minor tip" rel="bookmark">Ubuntu phone screencasting, a minor&nbsp;tip</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>An Ubuntu phone has a command-line utility called <code>mirscreencast</code> which dumps screen frames to a file, meaning that in theory it&#8217;s possible to record a video of your phone&#8217;s screen. In practice, though, it doesn&#8217;t work for video; the phone is that busy (a) grabbing frames and (b) writing them to the phone&#8217;s storage that you can&#8217;t actually <em>use</em> it for jerkiness, and the resultant video includes about one frame in ten. I can&#8217;t fix this, but I did come up with a way to make it at least a bit better &#8212; instead of saving the video onto the phone&#8217;s storage, send it over the network to a real&nbsp;machine.</p>
+<p>On your computer: <code>nc -l -p 1234 &gt; out</code>, which uses netcat to listen to port 1234 and send everything that comes in there to a file named <code>out</code>.</p>
+<p>On the phone: <code>mirscreencast -n 600 -m /var/run/mir_socket -s 360 640 --stdout | nc mycomputer 1234</code>, which uses <code>mirscreencast</code> to record frames (at a particular smaller size) and then send them with netcat to port 1234 on the computer. (You may need to put your computer&#8217;s <span class="caps">IP</span> address instead of <em>mycomputer</em>, especially since Ubuntu phone won&#8217;t resolve <em>computername.local</em>&nbsp;names.)</p>
+<p>Then, once recording finishes, <code>mencoder -demuxer rawvideo -rawvideo fps=6:w=360:h=640:format=bgra -ovc x264 -o out.mp4 out</code> makes a proper mp4. (Cheers <a href="http://www.whizzy.org/2014/08/">Bill</a> for the <code>mirscreencast</code> info.)</p>
+<p>It still isn&#8217;t great. But it&#8217;s a bit&nbsp;better.</p>
+<p><strong><span class="caps">UPDATE</span></strong>: using <code>mirscreencast</code><span class="quo">&#8216;</span>s <code>-s</code> option to shrink the size <em>and</em> <code>--cap-interval</code> option to only grab some frames seems to work even better. A command like <code>mirscreencast -n 60 -m /var/run/mir_socket --stdout --cap-interval 4 -s 384 640</code> will record 1/4 of the frames (<code>--cap-interval 4</code>), which is 15fps (rather than the screen&#8217;s 60fps), and resize those frames to half their size (my Nexus 4 has a screen resolution of 768x1280, which halved is 384x640, and each frame is only a quarter of the size). Converting like so: <code>mencoder -demuxer rawvideo -rawvideo fps=15:w=384:h=640:format=rgba -ovc x264 -o out.mp4 out</code> (note the <code>format=rgba</code>, the <code>w</code> and <code>h</code> for screen size, and <code>fps=15</code>) and you get pretty much perfectly smooth&nbsp;video.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2015/01/01/ubuntu-component-store-redux-2/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2015/01/21/live-screencasting-from-ubuntu-phone/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2015/01/11/ubuntu-phone-screencasting-a-minor-tip/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

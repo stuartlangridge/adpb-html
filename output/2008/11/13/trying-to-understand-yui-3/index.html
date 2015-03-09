@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Trying to understand YUI 3</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2008/11/13/trying-to-understand-yui-3/"><time 
+			class="dt-published" datetime="2008-11-13T09:18:00">Nov 13 2008</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2008/11/13/trying-to-understand-yui-3/" title="Permalink to Trying to understand YUI 3" rel="bookmark">Trying to understand <span class="caps">YUI</span>&nbsp;3</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I&#8217;ve been looking at <a href="http://developer.yahoo.com/yui/3/"><span class="caps">YUI</span> 3</a>, because I ought to know about it and I
+currently don&#8217;t. I used <span class="caps">YUI</span> 2 for a few things and found myself
+perpetually frustrated with the documentation and the general feel of
+it, but I figured that maybe that was just me. (Disclosure: I&#8217;m a jQuery
+guy. Use it for everything. So I&#8217;m biased, right out of the gate.)
+Anyway, my frustration with the <span class="caps">YUI</span> documentation doesn&#8217;t seem to have
+been alleviated in version 3. This is a case study in how someone new to
+the <span class="caps">YUI</span> 3 library sees the documentation. (Well, it&#8217;s really a set of
+stream-of-consciousness rants, because that&#8217;s the best way I can think
+of getting my sense of confusion and discombobulation across.) The
+underlying problem I always had with the <span class="caps">YUI</span> 2 documentation was that
+the examples show how to do one specific thing but don&#8217;t explain <em>why</em>
+to do it that specific way, and don&#8217;t seem very generalisable to do
+other similar things. So they&#8217;re hard to learn from. The reference
+manual, on the other hand, is useless. It gives you a textbox and says
+&#8220;Start typing to find a property/method/event/config&#8221;. If you already
+know what you&#8217;re looking for, if you know which function you want to use
+but can&#8217;t remember the order of the parameters that you need to pass to
+it, then that&#8217;s fine. It&#8217;s a dictionary. But you can&#8217;t learn a language
+from a dictionary, and you can&#8217;t learn the <span class="caps">YUI</span> from the reference
+manual. I hardly ever find myself thinking &#8220;I need to use the
+<span class="caps">YUI</span>.Get.script function but I can&#8217;t remember the name of the
+parameters&#8221;. Instead, I find myself thinking &#8220;I want to execute a <span class="caps">JSON</span>-P
+script; how do I do it?&#8221; Now, the jQuery documentation has a similar
+problem, to some extent, but critically it shows you all the functions
+in a list, so I can look through them and work out which is likely to be
+the one I want. The <span class="caps">YUI</span> does not. The jQuery docs also have inline
+executable examples with each function, so I can see working code and
+test it. The <span class="caps">YUI</span> reference manual does not. But I shouldn&#8217;t start with
+the reference manual. The <span class="caps">YUI</span> docs specifically say to <a href="http://developer.yahoo.com/yui/3/#start">, so I did&nbsp;so.</a></p>
+<p><a href="http://developer.yahoo.com/yui/3/examples/event/event-simple.html">The very first example</a> is showing how to attach an event
+handler to a node. Fine as far as it goes (and I like the idea that you
+get passed a full-on event object to your function whether you&#8217;re in a
+browser that supports that or not), but&#8230;the code in the example just
+drifts in space. It&#8217;s not wrapped in an onDOMContentLoaded or anything.
+(I admit it&#8217;s the first example, which means you don&#8217;t want to load
+people down with infrastructure just so they can write a click
+function.) So, since there&#8217;s a working example in the page, I looked in
+the source myself, and we&nbsp;get</p>
+<div class="highlight"><pre><span class="nx">YUI</span><span class="p">({</span><span class="nx">combine</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">timeout</span><span class="o">:</span> <span class="mi">10000</span><span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s2">&quot;node&quot;</span><span class="p">,</span>
+<span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+ <span class="p">...</span> <span class="nx">code</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">example</span><span class="p">...</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>Ah, <span class="caps">OK</span>, so that&#8217;s onDOMContentLoaded, is it? a new <span class="caps">YUI</span> function. I&#8217;m
+sure it&#8217;ll be explained later. Moving on, the next example explains
+onAvailable, onContentReady, and event:ready &#8212; three different &#8220;is the
+thing ready for me to use&#8221; load events. (All of which make sense at
+different times, and are potentially useful.) That&#8217;s all good, but&#8230;the
+previous example, even after I&#8217;d looked in the code, didn&#8217;t use any of
+them! How did that work? Ah, a feeling of doom creeps over me. More
+disclosure: I really, really don&#8217;t like the Yahoo practice of putting
+your <span class="caps">JS</span> inline at the bottom of the page. I think it means that my <span class="caps">JS</span>
+isn&#8217;t separated out into different files where it&#8217;s easy to edit, it
+makes refactoring the page hard because you have to care exactly where
+your script elements are and be careful if you move <span class="caps">HTML</span> elements
+around, and it&#8217;s a lot easier to teach people to make their <span class="caps">JS</span>
+unobtrusive if you can offer the rule &#8220;Put all your JavaScript in
+separate files and don&#8217;t have any anywhere in your <span class="caps">HTML</span>&#8221;. I know there
+are good reasons why Yahoo do it, and I accept those reasons. If I build
+a site which gets as many hits as they do then I&#8217;ll test both ways and
+the extra three milliseconds you get from having the <span class="caps">JS</span> in-page without
+DOMContentLoaded may make a big difference. For most of the stuff I
+write, though, I don&#8217;t like it and try to not use it. So, the first
+example was obviously reliant on that (because it&#8217;s not hooking any load
+event at all), but didn&#8217;t say so. Moving on, the <a href="http://developer.yahoo.com/yui/3/examples/node/basic-node.html">next example I read</a>, about nodes, does the same thing. As far as I can tell, nothing
+anywhere in these examples has said &#8220;make sure you put this example code
+after the things it&#8217;s referring to&#8221;. If you don&#8217;t do that (say, if you
+put it in the head because that&#8217;s where you&#8217;ve been taught that
+JavaScript should go) then it plain won&#8217;t work, and you won&#8217;t know why.
+(Maybe I missed the 72-point red writing which says this? I hope I did.)
+Next example I read (<a href="http://developer.yahoo.com/yui/3/examples/node/node-evt-delegation.html">event delegation</a>, a thing I like very much):
+doesn&#8217;t show why the clicked items turn green (obviously <span class="caps">CSS</span>, and indeed
+it doesn&#8217;t take long to find the link in the source), but also&#8230;when I
+click on one of the items and it turns green, there&#8217;s a subtle animation
+effect to it, as if the green colour expands out from the centre of the
+item. It&#8217;s quite a nice effect. I can&#8217;t for the life of me find what&#8217;s
+doing it, though. (Doesn&#8217;t do it in Midori, a webkit browser, so maybe
+it&#8217;s Firefox?) I spent ten minutes trying to work out why clicking on an
+item sets a class (&#8220;yui-pass&#8221;) on that item and then alters text in all
+non-yui-pass items, rather than just using e.target. Of course, the
+reason is that a <em>second</em> click on a different item should set that
+second item to green and not unset the first green item. Fine and dandy:
+a note about that in the example would have helped, though. Yes, the
+examples are there to demonstrate <span class="caps">YUI</span>, not to explain how to produce a
+specific effect, but&#8230;what people <em>want</em> is a specific effect.
+Explaining how it works would help with that. Explaining the <span class="caps">YUI</span> parts
+of an example but not putting them in the context of the rest of the
+code is like explaining how to build a house with a two-hour lecture on
+bricks without ever mentioning that you need mortar to stick them
+together. &#8220;The rest of the code&#8221; here is a couple of lines, but the
+example would make much more sense if it was all explained. Once I&#8217;d got
+this far, I started thinking, hm, hasn&#8217;t changed, still the docs are
+written for someone who isn&#8217;t me and I don&#8217;t get them. So I started
+dotting around picking and choosing bits to look at rather than going
+through step-by-step. One of the features I like most about jQuery is
+that I can call a <span class="caps">JSON</span>-P script and still specify my callback function
+inline, rather than having to separate it out and give it a name and
+pass that name as callback=myCallback to the <span class="caps">JSON</span>-P script. (It gets
+given a name under-the-covers by jQuery, of course, so that the callback
+does have something to call, but I don&#8217;t have to think about it. I like
+inline functions.) It&#8217;s be useful to me if <span class="caps">YUI</span> 3 could do that, so I
+thought I&#8217;d have a look to see if it&#8217;s possible. I don&#8217;t <em>think</em> it is,
+but&#8230;I can&#8217;t tell. The docs don&#8217;t seem to mention the idea of loading
+scripts that call a callback function at all. Instead, I think you&#8217;re
+supposed to use <a href="http://developer.yahoo.com/yui/3/api/Get.html#method_script"><span class="caps">YUI</span>.Get.script</a> and read the <span class="caps">JSON</span> out of the nodes
+array that you get passed. Perhaps. Here we come back to my problem with
+the <span class="caps">YUI</span> docs: I know what I want to do, but not how to do it, and
+there&#8217;s no way to answer my question. If there isn&#8217;t an example dealing
+with it, I am out of luck. Someone tell me how I ought to be reading the
+documentation. Maybe I&#8217;m missing something. But it does rather feel to
+me like the docs are reference material: they&#8217;re there for people who
+already understand <span class="caps">YUI</span>. The examples are incomplete &#8212; focusing on just
+the part you&#8217;re trying to show is understandable, but if the example
+won&#8217;t work without the other parts then you have to show the other parts
+too! If your example only works if it&#8217;s wrapped with
+<code>YUI().use("node"), function(Y) { ... })</code> then you have to show that. If
+it only works if it&#8217;s wrapped in DOMContentLoaded, or if it&#8217;s placed at
+the bottom of the page in a script element, then you have to say that.
+Yes, it&#8217;s a ballache to have to explain how events work and how loading
+works and not get to any real concrete examples until chapter 3 or 4 of
+your documentation. But <em>people need to know that stuff</em> or your
+examples will not work when someone uses them without knowing the&nbsp;context.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2008/11/10/mythtv-alarm-clock/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2008/11/15/pause-torrents-while-im-using-the-computer/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2008/11/13/trying-to-understand-yui-3/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2008/11/13/trying-to-understand-yui-3/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

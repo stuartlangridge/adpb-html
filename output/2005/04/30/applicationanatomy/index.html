@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Anatomy of a simple web application</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2005/04/30/applicationanatomy/"><time 
+			class="dt-published" datetime="2005-04-30T11:00:00">Apr 30 2005</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2005/04/30/applicationanatomy/" title="Permalink to Anatomy of a simple web application" rel="bookmark">Anatomy of a simple web&nbsp;application</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I thought I’d put together some notes on how the <a href="http://www.kryogenix.org/code/conposter/index.php">Tory poster generator</a> actually works, as an example of how I write a small web
+application. While it is small, a reasonable amount of thought went into
+its design, and those design principles are extendable (in a handwavy
+sort of sense) to larger and more complex web&nbsp;apps.</p>
+<h4>Introduction to the&nbsp;project</h4>
+<p>What the Generator does, for those of you who haven’t tried it, is
+create an image of a poster, by asking the user for some text to go on
+said poster and then creating a downloadable
+<span class="caps"><span class="caps">PNG</span></span> with that text, in a particular font,
+superimposed over an existing image. The font is one of a selection of
+“handwriting” fonts which were available for free download; the user may
+choose any of these fonts, or one will be randomly&nbsp;selected.</p>
+<h4>Too many users spoil the&nbsp;broth</h4>
+<p>The key point I had in mind with this app is that image generation is
+pretty intensive. Since I had an idea in my head that the Generator
+might turn out to be popular, I was worried that it would overwhelm the
+machine that it’s on. The obvious way to build a web app like this would
+be to have the image generation happen “in process“; that is, the
+architecture looks like&nbsp;this:</p>
+<p><img alt="Stage 1: request poster text from user; Stage 2: hang while generating image with PHP image library; Stage 3: Display page and newly created image" src="http://www.kryogenix.org/thumbnails/250/pictures/random/159.png" /></p>
+<p>The problem with that idea, where you generate the image in
+<span class="caps"><span class="caps">PHP</span></span> code, is that the page hangs while you’re
+waiting for the image to be generated. Moreover, if a thousand people
+all request an image at once, then a thousand image generation
+<span class="caps"><span class="caps">PHP</span></span> pages all run at once. That’s certain
+death to the server, unless you’ve got a pretty studly server, which I
+haven’t. So, time for a more efficient&nbsp;approach.</p>
+<h4>A better&nbsp;way</h4>
+<p>Instead of doing the generation “in process“, I decided to do it “out of
+process“. So the bit the user sees and uses and the bit that actually
+generates the images would be entirely different processes. The image
+generation process would just run in the background on the server,
+generating one image at a time, and the front end would just hand
+“requests” for image generation to it, and then wait around until it was
+done. Something like&nbsp;this:</p>
+<p><img alt="Stage 1: request poster text from user; Stage 2: Add a request for image generation to the queue and wait until it's done; Stage 3: Display page and newly created image by retrieving the image from the storage area. Meanwhile, the back end daemon reads requests from the queue and places complete images in the storage area." src="http://www.kryogenix.org/thumbnails/250/pictures/random/160.png" /></p>
+<p>Separating the processes makes each part quick and easy. The front end
+simply adds requests to the queue and then loads a “wait page”: this
+page refreshes itself every five seconds and, on load, checks whether
+its particular request has been completed, by looking for the completed
+image in the storage area. If it has, redirect to the final page, which
+shows the completed image. Meanwhile, the back end, or server process,
+or daemon (call it what you will) checks every five seconds to see if
+there is a new request in the queue. If there is then it stops checking
+the queue and starts generating that request. When finished, it adds the
+completed image to the storage area and then resumes its
+every-five-seconds check. This approach entirely solves the worry of too
+much traffic; if a thousand people all generate an image at once then a
+thousand image requests go into the queue (which is not intensive) and
+then the back end just processes them one by one. This leaves all the
+people near the end of our thousand waiting around a lot at Stage 2,
+but, critically, they’re not killing the server by doing so. Running a
+thousand image generating processes at once would probably leave
+everyone waiting nearly as long, and would not incidentally max out the
+server while it was doing it. Not good for anyone,&nbsp;that.</p>
+<h4>Actually building&nbsp;it</h4>
+<p>So, two separate processes: one web-based, one a background daemon. The
+web-based process is a very simple sequence of web pages; a good
+solution here would be <span class="caps"><span class="caps">PHP</span></span>. The server process
+needs to have good image-creation capabilities; use whatever language
+you feel most comfortable writing real programs in. I chose Python,
+which regular readers will not be surprised to hear, and the <a href="http://www.pythonware.com/products/pil/">Python Imaging Library</a>.</p>
+<h4>The back&nbsp;end</h4>
+<p>The back end daemon’s simple operation is described above; I’m not going
+to go into much detail about how it actually uses
+<span class="caps"><span class="caps">PIL</span></span> and some TrueType fonts to write the
+requested details onto the poster image. You can <a href="http://kryogenix.org/code/conposter/daemon/posterd.py.html">browse the source for the daemon file posterd.py</a> if you’re interested in&nbsp;that.</p>
+<h4>The front&nbsp;end</h4>
+<p>Since I was using <span class="caps"><span class="caps">PHP</span></span>, something I don’t do
+all that often, this seemed a good opportunity to check out the idea of
+<a href="http://www.kryogenix.org/days/2003/06/06/templating" title="why you should use templates, or maybe not">using templates to make <span class="caps">HTML</span> pages</a> by
+using <a href="http://smarty.php.net/" title="Smarty seems to be the most popular template engine, and it wasn't worth reviewing all existing ones for a project this simple">the Smarty template engine</a> for the&nbsp;project.</p>
+<h4>The&nbsp;pages</h4>
+<p></p>
+The front end is composed of three stages, as shown in the diagram; the
+stages correspond to three <span class="caps"><span class="caps">PHP</span></span> files:
+<strong>index.php</strong>, <strong>waitpage.php</strong>, and <strong>display.php</strong>. The design is
+conceptually like that shown in the diagram, but in implementation it
+ended up slightly differently, because of a technique I tend to use for
+multi-page processes on the web. Imagine the simplest of these
+processes: ask the user for some data in a form, save the data in a
+database, and then display a thankyou message. Some people would have a
+two page process as follows: page1 contains the form, which submits to
+page2; Page2 saves the data and then displays the message. I don’t do it
+like that; I have the form on page1 submit <strong>to</strong> page1, and page1 is
+structured as&nbsp;follows:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="n">data</span> <span class="n">has</span> <span class="n">been</span> <span class="n">submitted</span>
+  <span class="n">save</span> <span class="n">the</span> <span class="n">data</span> <span class="n">in</span> <span class="n">the</span> <span class="n">database</span>
+  <span class="n">redirect</span> <span class="n">to</span> <span class="n">page</span> <span class="mi">2</span>
+  <span class="n">end</span> <span class="n">page</span>
+<span class="n">end</span> <span class="k">if</span>
+
+<span class="n">display</span> <span class="n">the</span> <span class="n">form</span>
+</pre></div>
+
+
+<p>So, in actuality, the “add a request for image generation” part is done
+in page1, and page2 doesn’t do anything but go round and round the
+refresh loop until the daemon has completed the&nbsp;request.</p>
+<h4>Smarty</h4>
+<p>Smarty made this process really, really easy. The way it works, for
+those of you not familiar with it, maps very neatly onto simple projects
+like this, because it helps the pages separate out. The actual
+<span class="caps"><span class="caps">PHP</span></span> page that the user visits (take index.php,
+Stage 1, as an example) <em>just contains page logic</em>. It doesn’t contain
+any <span class="caps"><span class="caps">HTML</span></span> at all. This means that, basically,
+it looks exactly like the pseudocode I outlined above; it’s about ten
+lines of code. The <code>display the form</code> bit actually reads
+<code>$smarty-&gt;display('frontpage.tpl');</code>, which picks up <code>frontpage.tpl</code>, a
+plain <span class="caps"><span class="caps">HTML</span></span> file, and displays it. This means
+that your <span class="caps"><span class="caps">HTML</span></span> template files, <code>*.tpl</code>, look
+like <span class="caps"><span class="caps">HTML</span></span>, and aren’t cluttered with code.
+Meanwhile, your <span class="caps"><span class="caps">PHP</span></span> files look like
+<span class="caps"><span class="caps">PHP</span></span>, and aren’t cluttered up with
+<span class="caps"><span class="caps">HTML</span></span>. This separation is fantastic. On more
+complicated projects it’s less easy, because you end up having to create
+little blocks of <span class="caps"><span class="caps">HTML</span></span> in the
+<span class="caps"><span class="caps">PHP</span></span> code ready to be substituted into the
+template, and that’s not good, but for a simple project like this it was
+a real boon to&nbsp;use.</p>
+<h4>Conclusions</h4>
+<p>There’s lots more I could write about this, like how I make sure the
+daemon stays running, and how I clear out old generated images, and how
+index.php randomly picks a font and substitutes it into the template,
+and how everything to do with the queue (adding new requests, seeing if
+a request is completed, <em>ad nauseam</em>) is separated out into a small
+library that other <span class="caps"><span class="caps">PHP</span></span> code (in index.php,
+waitpage.php, etc) can call, but I think I’ll stop here. The point is
+that tiny projects like my poster creator give you a chance to try out
+these techniques; it’s all too common to think that, well, this is a
+quick knock-off application, so I won’t bother to apply technique to it,
+I’ll just code from the hip without structure. But then when you come to
+do a real proper project, applying the techniques is complicated and
+awful and so you don’t do it then either, because you’re not really sure
+how. Hone your skills and your approach by doing all this complex stuff
+on projects that don’t really need it (for example, the Generator has a
+<a href="http://www.kryogenix.org/wiki/Conservativesposter">spec</a> (albeit a pretty simple one)), so that when you <em>do</em> need it
+you’ll be comfortable and confident with the&nbsp;techniques.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2005/04/29/countdown/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2005/05/03/publicnotice/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2005/04/30/applicationanatomy/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/04/30/applicationanatomy/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

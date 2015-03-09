@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Adding Ubuntu One support to your applications, an IRC lecture</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2010/01/26/adding-ubuntu-one-support-to-your-applications-an-irc-lecture/"><time 
+			class="dt-published" datetime="2010-01-26T18:11:00">Jan 26 2010</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2010/01/26/adding-ubuntu-one-support-to-your-applications-an-irc-lecture/" title="Permalink to Adding Ubuntu One support to your applications, an IRC lecture" rel="bookmark">Adding Ubuntu One support to your applications, an <span class="caps">IRC</span>&nbsp;lecture</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>This year, as last year, I did an <span class="caps">IRC</span> talk as part of Ubuntu Developer
+Week. This time, it was about adding Ubuntu One to your applications,
+and what that will bring to your users. (Once again my <a href="http://www.kryogenix.org/days/2009/08/31/delivering-talks-by-irc-an-xchat-plugin">xchat plugin for
+<span class="caps">IRC</span> talks</a> was massively&nbsp;helpful!</p>
+<h3>Introduction</h3>
+<ul>
+<li>Hi! I&#8217;m Stuart Langridge, from the Ubuntu One team, and this talk is
+    called &#8220;Adding Ubuntu One support to your&nbsp;applications&#8221;.</li>
+<li>You can ask questions at any time in #ubuntu-classroom-chat. Please
+    write <span class="caps">QUESTION</span> at the beginning of your question so I can see it
+    more easily. I&#8217;ll stop at the end of a section and answer some&nbsp;questions.</li>
+<li>During this talk I&#8217;m going to explain the different ways your
+    applications can take advantage of Ubuntu&nbsp;One&#8230;</li>
+<li>&#8230;talk about why you&#8217;d want to do&nbsp;that&#8230;</li>
+<li>&#8230;and give a couple of sneak previews of things that you can&#8217;t
+    *quite* do yet but will be able to do for Lucid 10.04, so you can
+    be&nbsp;ready!</li>
+<li>Firstly, though, remember that &#8220;integrating with Ubuntu One&#8221; isn&#8217;t
+    really the point; the point is to give features to your users that
+    make their lives&nbsp;easier.</li>
+<li>Now, obviously, using Ubuntu One will make you taller, it&#8217;ll make
+    you more attractive to the appropriate sex, and it&#8217;ll make the sun
+    shine more brightly, but remember that it&#8217;s all about providing
+    things that your users&nbsp;want&#8230;</li>
+<li>&#8230;and Ubuntu One gives you the infrastructure you need to do that.
+    If it doesn&#8217;t, come talk to&nbsp;us!</li>
+</ul>
+<h3>How to do cool things with file&nbsp;synchronisation</h3>
+<ul>
+<li><span class="caps">OK</span>, so, the first thing is:&nbsp;files.</li>
+<li>As you know, Ubuntu One automatically synchronises files in your
+    Ubuntu One folder to Ubuntu One itself in the cloud and to all your
+    other&nbsp;machines.</li>
+<li>This means that you can take advantage of automatic file backup just
+    by having your application save things to the&nbsp;filesystem!</li>
+<li>Imagine that you want attachments that you receive by email to be
+    stored online and backed up so you can get at them&nbsp;later.</li>
+<li>Most mail clients will already let you do this in some way. So,
+    change the folder that these attachments are saved in to be an
+    Ubuntu One folder and suddenly all your attachments are backed up
+    online and available on every&nbsp;machine!</li>
+<li>For example, there is a Thunderbird attachment called &#8220;Attachment
+    Extractor&#8221;
+    (<a href="https://addons.mozilla.org/en-US/thunderbird/addon/556">https://addons.mozilla.org/en-<span class="caps">US</span>/thunderbird/addon/556</a>)</li>
+<li>Install it, select &#8220;Automatically extract attachments on email
+    receipt&#8221; in Tools > AttachmentExtractor settings > Auto-Extract,
+    and set the &#8220;Save Path for Attachments&#8221; to /home/<span class="caps">YOU</span>/Ubuntu One/Mail
+    Attachments, and that&#8217;s all you&nbsp;need!</li>
+<li>Similarly, if you want off-site backups of your computer, then you
+    can install one of the many simple backup programs, like backintime
+    (<a href="http://backintime.le-web.org/">http://backintime.le-web.org/</a>) and choose the backup folder to be
+    inside your Ubuntu One&nbsp;folder.</li>
+<li>With no extra effort you&#8217;ve got off-site online backups which you
+    can get at from any of your machines or from the&nbsp;web.</li>
+<li>As another example, imagine you&#8217;ve built yourself a digital picture
+    frame out of an old laptop, which is a pretty cool project for your
+    weekends. How do you get the photos on&nbsp;it?</li>
+<li>Well, when I did this, I created a new Ubuntu One user for the
+    picture frame, and then I shared a folder with that picture frame
+    user through Ubuntu&nbsp;One.</li>
+<li>The picture frame just did this: eog &#8212;slideshow
+    &#8220;/home/pictureframe/Ubuntu One/Shared With Me/pictures from Stuart&nbsp;Langridge&#8221;</li>
+<li>and then to add new pictures to the frame, I just copy them into the
+    folder that I&nbsp;shared.</li>
+<li>I could share that folder with anyone else, too, and allow them to
+    write to it, and then they&#8217;d be able to add pictures to the frame&nbsp;too!</li>
+<li>The way I&#8217;ll do this from 10.04 Lucid onwards is to use the new User
+    Defined Folders feature, where any folder, anywhere, can be
+    designated as an Ubuntu One synced&nbsp;folder</li>
+<li>and you can elect to have some folders but not others synced to
+    particular&nbsp;machines</li>
+<li>So I&#8217;d create my &#8220;digital picture frame&#8221; folder in my home folder
+    (or wherever), and then mark it as a <span class="caps">UDF</span>.</li>
+<li>Then on the picture frame itself, I&#8217;d sign into Ubuntu One, and say
+    that I only want to subscribe to that particular <span class="caps">UDF</span> and not any of
+    the&nbsp;others.</li>
+<li>so then files that I put into &#8220;digital picture frame&#8221; on my laptop
+    will be synced to the picture&nbsp;frame</li>
+<li>and the picture frame just displays all the files in that&nbsp;folder</li>
+<li>ta daaah, it Just&nbsp;Works.</li>
+</ul>
+<h3>Publishing files&nbsp;publically</h3>
+<ul>
+<li>A much-requested feature which will be available in Lucid is &#8220;public
+    files&#8221;, the ability to publish an Ubuntu One-synchronised file to a
+    public <span class="caps">URL</span> so anyone can get at&nbsp;it.</li>
+<li>This is useful for the user directly; they can easily make a file
+    available to the&nbsp;world.</li>
+<li>It&#8217;s also really useful for applications, because you can now build
+    one-click publish-to-the-world directly into your&nbsp;apps.</li>
+<li>Imagine that your app is Shutter, which is like the standard Gnome
+    Screenshot tool on&nbsp;steroids.</li>
+<li>If you install Shutter and then hit the Print Screen button, it&#8217;ll
+    take a picture of your&nbsp;screen.</li>
+<li>One of the main reasons people take screenshots of their screen is
+    to show them to other people, which makes this a perfect case for
+    publishing the screenshot to a <span class="caps">URL</span> so anyone can see&nbsp;it.</li>
+<li>So, in Shutter (or your similar app), provide a &#8220;Publish with Ubuntu
+    One&#8221;&nbsp;button.</li>
+<li>That button should do the&nbsp;following:</li>
+<li>
+<ol>
+<li>Save the file into the user&#8217;s Ubuntu One folder (just save, as&nbsp;normal)</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Call the publishing <span class="caps">API</span></li>
+</ol>
+</li>
+<li>The publishing <span class="caps">API</span> will be D-Bus; I can&#8217;t confirm exactly how it
+    will work, yet, because the team are still constructing it, but keep
+    your eyes open for more&nbsp;details!</li>
+<li>This shows a basic principle of Ubuntu One&#8217;s design; pretty much
+    anything you can do explicitly, like publish a file, or share a
+    file, can also be done using the D-Bus <span class="caps">API</span> from&nbsp;applications.</li>
+<li>I&#8217;ll answer some questions here about using Ubuntu One file sync in
+    your&nbsp;apps.</li>
+</ul>
+<h3>Questions</h3>
+<ul>
+<li><em>kklimonda|lernid</em> <span class="caps">QUESTION</span>: Is there a full GObject U1 <span class="caps">API</span> for
+    storing data, settings etc. or do we have to make use of \~/Ubuntu
+    One/ for&nbsp;now?</li>
+<li>Data and settings are best stored in desktopcouch if you want to
+    take advantage of all that lovely synchronization goodness; there
+    are benefits to doing it that way, and I&#8217;ll talk about desktopcouch
+    in a&nbsp;bit.</li>
+<li>But you can certainly store settings files in \~/Ubuntu One if you
+    want&nbsp;to</li>
+<li>and obviously actual data *content* that your apps work on, your
+    documents and so on, are stored in \~/Ubuntu&nbsp;One</li>
+<li><em>mhall119|work</em> <span class="caps">QUESTION</span>: in 10.04 you will be allowed to have
+    multiple sync folders outside of \~/Ubuntu One/&nbsp;?</li>
+<li>mhall119|work, yep, you sure will. UDFs (user defined folders) are a
+    big feature that&#8217;ll land in&nbsp;10.04.</li>
+<li><em>strycore89</em> <span class="caps">QUESTION</span> : will we be able to share single files and
+    not whole directories&nbsp;?</li>
+<li>No. Sharing is done folder-by-folder, and we&#8217;re not planning on
+    changing&nbsp;that.</li>
+<li><em>mhall119|work</em> <span class="caps">QUESTION</span>: right now the local folder names match the
+    online folder names. With the ability to have multiple sync folders,
+    how are naming conflicts&nbsp;resolved?</li>
+<li>I&#8217;m not sure what you mean here by &#8220;naming conflicts&#8221;; maybe we can
+    pick that point up after the session, or later&nbsp;on?</li>
+<li><em>foobob</em> <span class="caps">QUESTION</span>: are you thinking of giving some <span class="caps">GB</span> more to the
+    free&nbsp;plan?</li>
+<li>I don&#8217;t believe we are at the moment,&nbsp;no.</li>
+<li><em>yltsrc</em> <span class="caps">QUESTION</span>: will be ready symlincs in&nbsp;U1?</li>
+<li>yltsrc, UDFs, being able to mark any folder as Ubuntu One
+    synchronized, takes the place of symlinks. If you use, er, some
+    alternative to Ubuntu One and you&#8217;re used to putting a symlink in,
+    say, \~/SyncedFolder which points at \~/SomeOtherFolder to get
+    SomeOtherFolder synced, you don&#8217;t need to do that in Ubuntu One; you
+    just mark SomeOtherFolder as a <span class="caps">UDF</span> and it will be synced for&nbsp;you.</li>
+<li><em>lantash49</em> <span class="caps">QUESTION</span>: Will there be more detailed specification
+    w.r.t storing settings in \~/Ubuntu One? Storing them there directly
+    seems to conflict with the <span class="caps">XDG</span> directory&nbsp;specs.</li>
+<li>lantash49, one obvious approach to this is to mark XDG_CONFIG_DIR
+    and XDG_DATA_DIR as UDFs, so they&#8217;re synchronized across your&nbsp;computers.</li>
+<li><em>yltsrc</em> <span class="caps">QUESTION</span>: i want participate in testing U1, how can I do&nbsp;it?</li>
+<li>Drop into #ubuntuone and talk to the team about what&#8217;s going on and
+    how you can help; we&#8217;ve had some really helpful community members
+    already, like rtgz, who&#8217;s done tons of&nbsp;stuff</li>
+<li><em>taj</em> <span class="caps">QUESTION</span>: Are there any plans to make U1&nbsp;cross-platform?</li>
+<li>There&#8217;s a sprint at PyCon <span class="caps">US</span> to port Ubuntu One file sharing to
+    Windows:
+    <a href=" http://us.pycon.org/2010/sprints/projects/ubuntuone/" http: us.pycon.org 2010 sprints projects ubuntuone < a></li>
+<li>and mandel, another incredible community member, is currently
+    porting desktopcouch to Windows: <a href="http://www.themacaque.com/?p=372">http://www.themacaque.com/?p=372</a></li>
+<li>both of those projects are great, and if you can help that&#8217;d be&nbsp;wonderful</li>
+<li><em>mhall119|work</em> <span class="caps">QUESTION</span>: If I put a symlink inside of a <span class="caps">UDF</span>, that
+    points elsewhere, does U1 sync that as a link, or as a copy of what
+    is linked&nbsp;to?</li>
+<li>it&#8217;s synced as a&nbsp;symlink.</li>
+</ul>
+<h3>Desktop&nbsp;Couch</h3>
+<ul>
+<li>The second leg of Ubuntu One for developers is desktopcouch, the
+    CouchDB on your&nbsp;desktop.</li>
+<li>If you missed my last Ubuntu Developer Week talk about the basics of
+    desktopcouch and what it&#8217;s for, you can read it at
+    <a href="http://www.kryogenix.org/days/2009/09/03/desktop-couch-irc-talk">http://www.kryogenix.org/days/2009/09/03/desktop-couch-irc-talk</a></li>
+<li>In fact, you can read all the desktopcouch documentation at
+    <a href="http://www.freedesktop.org/wiki/Specifications/desktopcouch/Documentation/">http://www.freedesktop.org/wiki/Specifications/desktopcouch/Documentation/</a>,
+    and you should do so&nbsp;:-)</li>
+<li>The bit that&#8217;s most likely to be relevant here is the &#8220;I am a
+    developer, and I want the applications I write to store data in and
+    work with desktopcouch&#8221; section. It contains much that is relevant
+    to this&nbsp;talk!</li>
+<li><a href="http://arstechnica.com/open-source/guides/2009/12/code-tutorial-make-your-application-sync-with-ubuntu-one.ars/1">http://arstechnica.com/open-source/guides/2009/12/code-tutorial-make-your-application-sync-with-ubuntu-one.ars/1</a>
+    is a really great guide, written by segphault, of how to support
+    cloud synchronization of data in your&nbsp;applications.</li>
+<li>Essentially, if you use desktopcouch to store your application&#8217;s
+    data, instead of using sqlite or flat files, then the data will be
+    synchronised between all your machines *without you having to do&nbsp;anything*.</li>
+<li>So your app will work the same on all your machines with no&nbsp;effort.</li>
+<li>To store a record in desktopcouch, simply&nbsp;do:</li>
+<li>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from desktopcouch.records.server import CouchDatabase
+        &gt;&gt;&gt; from desktopcouch.records.record import Record
+        &gt;&gt;&gt; db = CouchDatabase(&#8216;testing&#8217;, create=True)
+        &gt;&gt;&gt; r = Record({&#8216;key&#8217;:&#8217;value&#8217;}, record_type=&#8217;http://example.com/testrecord&#8217;)
+        &gt;&gt;&gt; record_id =&nbsp;db.put_record(r)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<p>and to get it back, by record <span class="caps">ID</span>:</p>
+</li>
+<li>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>fetched = db.get_record(record_id)
+        &gt;&gt;&gt; print fetched[&#8216;key&#8217;]&nbsp;&#8216;value&#8217;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<p>The Quickly project, for writing Ubuntu apps, have created &#8220;widgets&#8221;
+    that use desktopcouch without you having to think about it.
+    CouchGrid, for&nbsp;example:</p>
+</li>
+<li>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from desktopcouch.records.couchgrid import CouchGrid
+        &gt;&gt;&gt; keys=[&#8220;key&#8221;,&#8221;another key&#8221;] # to label the columns
+        &gt;&gt;&gt; couchgrid = CouchGrid(db_name, record_type=record_type, keys=keys)
+        &gt;&gt;&gt;&nbsp;mywindow.pack_start(couchgrid)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<p>and then you have a CouchGrid, which is a data table where all the
+    data is automatically retrieved from desktopcouch and stored back
+    into desktopcouch when&nbsp;changed</p>
+</li>
+<li><a href="http://www.youtube.com/user/calorielookup#p/a/u/0/Vwr5Xw5ZrIE">http://www.youtube.com/user/calorielookup#p/a/u/0/Vwr5Xw5ZrIE</a> has
+    a video demonstrating&nbsp;couchgrids</li>
+<li>You don&#8217;t have to know anything about desktopcouch at all for this!
+    Just use the widget and your data will be saved to the database and
+    synced to your different machines with no effort or code on your
+    part at&nbsp;all.</li>
+<li><a href="https://wiki.ubuntu.com/Quickly/Snippets">https://wiki.ubuntu.com/Quickly/Snippets</a> has a few more examples
+    of using desktopcouch from Python and from Quickly&nbsp;apps.</li>
+<li>So, cloud-enable your apps! Let&#8217;s see my song ratings in Rhythmbox
+    or Banshee or Amarok or Exaile or Quod Libet appear on all of my
+    machines. Let&#8217;s see my Chrome bookmarks appear everywhere, like my
+    Firefox bookmarks already&nbsp;do.</li>
+<li>Remember, too, that apps can share data. If you want to store song
+    ratings for Amarok in desktopcouch, don&#8217;t make that storage
+    Amarok-specific; that way, if I decide to switch to Quod Libet I
+    don&#8217;t have to re-rate all my&nbsp;songs!</li>
+<li>I&#8217;m happy to answer questions about sharing of data between apps if
+    you have&nbsp;them.</li>
+<li>Also, I&#8217;ll stop now to take some questions about desktopcouch&nbsp;generally.</li>
+</ul>
+<h3>Questions</h3>
+<ul>
+<li><em>andypiper</em> <span class="caps">QUESTION</span>: what is&nbsp;Quickly&#8230;.?!</li>
+<li>Quickly is an app that helps you make Ubuntu apps&nbsp;really&#8230;quickly</li>
+<li>it takes care of putting together the framework of an application
+    for you, and it makes a deb package for you and uploads the code to
+    launchpad, etc. All the boring stuff that you don&#8217;t care about when
+    you just want to get your app&nbsp;done</li>
+<li><a href="https://wiki.ubuntu.com/MeetingLogs/devweek1001/I18NYourApp">the next session, by didrocks, is about quickly</a>, so I&#8217;d stick
+    around for that&nbsp;:-)</li>
+<li><a href="https://wiki.ubuntu.com/Quickly">https://wiki.ubuntu.com/Quickly</a> has&nbsp;more</li>
+<li><em>yltsrc</em> <span class="caps">QUESTION</span>: is available any standard for database name? And
+    how resolve conflicts with different&nbsp;application?</li>
+<li>yltsrc, there isn&#8217;t a standard, as such, for database names, because
+    what the desktopcouch project is trying to avoid is laying down lots
+    of standards that you Must Comply&nbsp;With</li>
+<li>we&#8217;re a &#8220;rough consensus and running code&#8221; sort of group&nbsp;:-)</li>
+<li>the best place to have discussions about that sort of thing is at
+    <a href="http://groups.google.com/group/desktop-couchdb">http://groups.google.com/group/desktop-couchdb</a> which is the
+    desktopcouch mailing&nbsp;list</li>
+<li>desktopcouch records are deliberately set up to have two sections, a
+    &#8220;main section&#8221; and an &#8220;application specific&#8221;&nbsp;section</li>
+<li>so the idea is that apps co-operate on the main section and store
+    app-specific data in the app-specific&nbsp;section</li>
+<li>for example, Evolution contacts sync in Ubuntu One is done by
+    Evolution storing your contact data in&nbsp;desktopcouch</li>
+<li>but the format for a contact has been&nbsp;defined</li>
+<li>and the contacts are stored in a database in desktopcouch called&nbsp;&#8220;contacts&#8221;</li>
+<li>so Thunderbird, for example, could *also* sync its contacts to
+    that same database, in the same&nbsp;format</li>
+<li>and Evolution stores Evo-specific data (like, say, an internal <span class="caps">ID</span>)
+    for a contact record in the app-specific part of the contact&nbsp;record</li>
+<li>and Thunderbird would do the&nbsp;same</li>
+<li>what this means is that if you decide to switch from Evolution to
+    Thunderbird, you&#8217;ve still got your addressbook! You don&#8217;t have to
+    export it and re-import it every time you move between&nbsp;applications</li>
+<li><em>yltsrc</em> <span class="caps">QUESTION</span>: U1 require python (2.6). Is any plans to run it
+    on&nbsp;python3?</li>
+<li>I don&#8217;t believe there is, at the moment,&nbsp;no.</li>
+<li><em>b1ackcr0w</em> <span class="caps">QUESTION</span>: SpiderOak is said to be going Open Source
+    soon, are there oppertunities to integrate their services with&nbsp;U1?</li>
+<li>There could be, certainly. I haven&#8217;t looked into that in detail
+    myself, but I&#8217;ll be sure and bring it&nbsp;up!</li>
+<li><em>mhall119|work</em> <span class="caps">QUESTION</span>: I want to hack on the server-part of U1,
+    short of becoming a Canonical employee, what can I&nbsp;do?</li>
+<li>At the moment, you can&#8217;t, I&#8217;m afraid. The source code for the server
+    part of file synchronization is&nbsp;closed.</li>
+<li>The source code for the server part of desktopcouch is CouchDB,
+    though, and work on that is perfectly&nbsp;doable.</li>
+<li>We worked closely with the CouchDB upstream project to make sure
+    that all the changes we needed to use CouchDB in Ubuntu One were
+    part of the main CouchDB&nbsp;trunk.</li>
+<li><em>yltsrc</em> Is avalably any <span class="caps">FEATURE</span> <span class="caps">ROADMAP</span> for&nbsp;U1?</li>
+<li>that&#8217;s&#8230;sorta what this talk is :) I can see how it might be useful
+    to have a more formal statement of &#8220;what&#8217;s coming up&#8221;, though. I&#8217;ll
+    bring that up with the&nbsp;team.</li>
+<li><em>yltsrc</em> <span class="caps">QUESTION</span>: is U1 uses dbus? and how i can extend my
+    application to use&nbsp;it?</li>
+<li>Yes. The syncdaemon, which is the bit that handles file
+    synchronization, exposes D-Bus commands for almost everything it&nbsp;does.</li>
+</ul>
+<h3>Web apps and desktop apps talking via Ubuntu&nbsp;One</h3>
+<ul>
+<li>Since desktopcouch is a CouchDB, and since your data is synchronised
+    not only to your other machines but up to the cloud as well, this
+    opens up the intriguing possibility that you can build a web app
+    that can share data with your desktop&nbsp;app.</li>
+<li>Ubuntu One&#8217;s CouchDB uses OAuth for&nbsp;authentication.</li>
+<li>This means that your web app can ask permission from the user to
+    read your desktop app&#8217;s CouchDB data directly from Ubuntu&nbsp;One.</li>
+<li>So the data that appears in your desktop app can also be available
+    to that user on the&nbsp;web.</li>
+<li>This is a pretty new area, so nobody&#8217;s using it yet, but it&#8217;s&nbsp;possible.</li>
+<li>You use OpenID to log the user in to your web app using Ubuntu One
+    &#8212; you may have seen &#8220;log in with Twitter&#8221; buttons, or &#8220;Facebook
+    Connect&#8221;, which work on the same&nbsp;principle.</li>
+<li>Once that&#8217;s done, your web app can then request permission to read
+    the user&#8217;s CouchDB database to get at the data that your *desktop*
+    app stored&nbsp;there.</li>
+<li>So, if we think about the song ratings example above, you can build
+    a web application that can show all the song ratings that the user
+    has entered and allow them to be&nbsp;edited.</li>
+<li>Your users can then manage their song ratings or playlists or
+    whatever else you&#8217;ve stored directly from a web interface if they&#8217;re
+    not at their actual&nbsp;computer.</li>
+<li>Sharing data between web apps and desktop apps is quite hard, and
+    not many people are doing it, so this is a chance to offer a feature
+    that no-one else&nbsp;has!</li>
+<li>DesktopCouch plus web apps give you the ability to share that data
+    without you having to do any extra&nbsp;work.</li>
+<li>This also gives you the ability to offer mobile apps as a web
+    interface, so people can work with their data from their smartphone
+    and see their work reflected on their desktop when they get back to&nbsp;it.</li>
+<li>Are there any questions about how linking up desktop apps and web
+    apps would&nbsp;work?</li>
+</ul>
+<h3>Questions</h3>
+<ul>
+<li><em>mhall119|work</em> <span class="caps">QUESTION</span>: how does it handle when a file is edited
+    on2 different computers before&nbsp;syncing?</li>
+<li>If that happens, you&#8217;ll get a .u1-conflict file showing you that
+    there was a conflict, for file&nbsp;synchronization.</li>
+<li>In desktopcouch, there will be a conflict record for the&nbsp;data.</li>
+<li>One of the things that we have on our Big List Of Stuff To Do is
+    some sort of graphical conflict management to make dealing with
+    these situations even easier, but that won&#8217;t be done for&nbsp;10.04.</li>
+<li>So at the moment, handling data conflicts is done by the
+    applications that use the data; the applications have a better idea
+    about how to merge/overwrite/handle conflicts than Ubuntu One does
+    most of the time anyway, because Ubuntu One just moves the data
+    around, it doesn&#8217;t always understand&nbsp;it.</li>
+<li><em>qense</em> (late) <span class="caps">QUESTION</span>: When you define a <span class="caps">UDF</span> outside the Ubuntu
+    One directory, where will it be synced to when you enable/install
+    Ubuntu One on a different&nbsp;computer?</li>
+<li>It&#8217;ll be synced to the same path, so if you mark \~/myfolder as a
+    <span class="caps">UDF</span> on computer 1, it&#8217;ll appear as \~/myfolder on computer&nbsp;2.</li>
+<li><em>duanedesign</em> <span class="caps">QUESTION</span>: Where can I find documentation on the U1 <span class="caps">API</span></li>
+<li>the desktopcouch <span class="caps">API</span> is defined (mostly) in the desktopcouch
+    documentation at
+    <a href="http://www.freedesktop.org/wiki/Specifications/desktopcouch/Documentation">http://www.freedesktop.org/wiki/Specifications/desktopcouch/Documentation</a></li>
+<li>the file sync <span class="caps">API</span> isn&#8217;t defined anywhere yet, I don&#8217;t believe,
+    because we haven&#8217;t had a chance to do it, so it&#8217;s reading the
+    source, I&#8217;m afraid. <a href="https://wiki.ubuntu.com/UbuntuOne">https://wiki.ubuntu.com/UbuntuOne</a> has some
+    details,&nbsp;though.</li>
+<li><em>emoreno</em> <span class="caps">QUESTION</span>: Is there any way to use a Private Cloud rather
+    than U1 with the same <span class="caps">API</span></li>
+<li>Not at the moment. The protocol that the syncdaemon uses to talk to
+    the cloud isn&#8217;t secret, though, so it would be possible to implement
+    a private&nbsp;cloud.</li>
+<li><em>mhall119|work</em> <span class="caps">QUESTION</span>: does U1 offer any kind of versioning on
+    it&#8217;s data, like the ability to retrieve an older&nbsp;version?</li>
+<li>Not at the moment, no. We&#8217;ve talked about that, but it isn&#8217;t
+    available&nbsp;now.</li>
+<li><span class="caps">OK</span>, that&#8217;s a brief tour of what services Ubuntu One can bring to
+    your apps. You can make the files your app uses be synchronised, you
+    can publish those files publically, you can store data from your
+    apps that will be available everywhere, and you can share that data
+    with web&nbsp;applications.</li>
+<li><em>nealmcb</em> <span class="caps">QUESTION</span>: Re the question on working on the U1 server end<ul>
+<li>Elliot Murphy recently talked about your open file storage
+protocol, noted his &#8220;build no silos&#8221; policy for U1, and talked about
+e.g. Tomboy integration. Can you expand on the places that people
+can work on servers that integrate with U1&nbsp;protocols?</li>
+</ul>
+</li>
+<li>desktopcouch is a CouchDB, so it can replicate data with any
+    CouchDB, including other desktopcouches on your <span class="caps">LAN</span> &#8212; see the
+    desktopcouch-pair tool for this, in the desktopcouch-tools package
+    &#8212; and so doesn&#8217;t even need a server at&nbsp;all</li>
+<li>Tomboy notes sync was done by us implementing the Snowy <span class="caps">API</span> &#8212; Snowy
+    is a Django server to which you can sync your notes, designed by the
+    Tomboy team, and they&#8217;re looking at doing their own deployment of&nbsp;it</li>
+<li><em>qense</em> <span class="caps">QUESTION</span>: Any change there will be a small collection of
+    snippets showcasing webintegration of Ubuntu&nbsp;One?</li>
+<li>if someone does that I&#8217;ll love them&nbsp;forever.</li>
+<li>I&#8217;d certainly like to, it&#8217;s just finding the time&nbsp;:-)</li>
+<li><span class="caps">OK</span>, if you have other questions, feel free to ping me, or chat on&nbsp;#ubuntuone!</li>
+</ul>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2010/01/22/pycon-sprint-to-get-ubuntu-one-on-windows/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2010/02/01/desktopcouch-talk-at-fosdem/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2010/01/26/adding-ubuntu-one-support-to-your-applications-an-irc-lecture/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2010/01/26/adding-ubuntu-one-support-to-your-applications-an-irc-lecture/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

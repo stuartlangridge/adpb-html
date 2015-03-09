@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Federated uncertainty</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2013/08/12/federated-uncertainty/"><time 
+			class="dt-published" datetime="2013-08-12T08:51:00">Aug 12 2013</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2013/08/12/federated-uncertainty/" title="Permalink to Federated uncertainty" rel="bookmark">Federated&nbsp;uncertainty</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Tim Bray from Google is <a href="https://www.tbray.org/ongoing/When/201x/2013/08/08/FC1-What-is-disclosed">starting a conversation about &#8220;federated
+login&#8221;</a>, the idea of logging into websites using your
+Google/Facebook/Twitter/something identity. It starts well,&nbsp;with</p>
+<blockquote>
+<p>When you click on the dark-blue button to sign in with Facebook (or
+bright red for Google) what does Facebook (or Google) learn about you?
+What does the app you’re signing into learn about you? Uncertainty
+makes people nervous about federated&nbsp;login.</p>
+</blockquote>
+<p>but unfortunately I think Tim&#8217;s missed a reasonable proportion of the
+point here. You see, there are two questions asked&nbsp;there:</p>
+<ol>
+<li>When I log in to GreatNewApp with my Google identity, what does
+    GreatNewApp learn about my Google identity and what can they do with
+    that information?,&nbsp;and</li>
+<li>When I log in to GreatNewApp with my Google identity, what do
+    <strong>Google</strong> learn about me and what can they do with that&nbsp;information?</li>
+</ol>
+<p>and Tim then goes on to only treat the first of those questions. I think
+that the second question is a big part of the reason why people are
+&#8220;nervous about federated&nbsp;login&#8221;.</p>
+<p>When you sign in to an app with Google, you see, as Tim notes, a thing
+showing you what the app can know about your Google identity. At the
+bottom of that thing in tiny writing is &#8220;Google will use this
+information in accordance with their respective terms of service and
+privacy policies&#8221;. Which means <em>nothing</em>.</p>
+<p><img alt="current-google-signin" src="http://kryogenix.org/days/wp-content/uploads/2013/08/current-google-signin.png" /></p>
+<p>I&#8217;ve spoken to a few people about this; most importantly my daughter.
+She&#8217;s not massively technical, and she&#8217;s a <em>heavy</em> Facebook user. We
+talked about &#8220;Sign in with Facebook&#8221; buttons, and what she thinks. And
+she doesn&#8217;t use them. I asked why, and she said &#8220;because then Facebook
+posts on your wall that you&#8217;re using that app and I don&#8217;t want it to&#8221;.
+It&#8217;s similar with other people; as far as I can tell, the biggest worry
+is not that GreatNewApp might do something weird with your Google
+information, it&#8217;s that <em>Google</em> will do something weird with&nbsp;it.</p>
+<p>Perhaps that dialog should look like&nbsp;this.</p>
+<p><img alt="proposed-google-signin" src="http://kryogenix.org/days/wp-content/uploads/2013/08/proposed-google-signin.png" /></p>
+<p>It&#8217;s not about what the <span class="caps">RP</span> (that is: GreatNewApp) can do with your
+information, Tim. That&#8217;s important, but it&#8217;s already taken care of;
+everyone involved in federated identity in any way spends all their time
+worrying about that. In talking to people, the biggest example of this
+is &#8220;sign in with Twitter&#8221;; if you sign in to an app with Twitter and
+Twitter displays &#8220;this app can read your direct messages&#8221; and &#8220;this app
+can tweet as you&#8221;, everyone&#8217;s justifiably worried: this thing is going
+to spam my friends with messages about itself! I don&#8217;t want that! And
+that&#8217;s correct. The existing federated systems deal with this problem —
+with the issue of apps doing things to your Google or Twitter or
+Facebook account — quite well. That&#8217;s now not the&nbsp;concern.</p>
+<p>It&#8217;s about what the <span class="caps">IDP</span> &#8212; Google, Facebook, Twitter &#8212; can do and will
+do with your information, either now or in the future. If someone at
+Google (or at Facebook, or Twitter, or at my OpenID provider) starts
+building a new social network and says &#8220;hey, we know what everyone&#8217;s
+signed in to: why don&#8217;t we add an &#8216;Apps I Like&#8217; column to this new
+network and show it to all the user&#8217;s friends?&#8221;&#8230; is that allowed by
+the current &#8220;terms of service&#8221;? Will the &#8220;terms of service&#8221; change so
+that suddenly it <em>is</em> allowed? When I sign in with Google, what does
+<em>Google</em> do with that information? Are there any constraints at&nbsp;all?</p>
+<p>That&#8217;s what people are worried about, when I&#8217;ve asked them. It&#8217;s not
+just about protecting your Google identity from random applications.
+It&#8217;s about protecting your use of the internet from whatever Google want
+to do with it. Will a new post appear on my Google+ saying &#8220;Stuart just
+signed up with GreatNewApp&#8221;? Not created <em>by</em> GreatNewApp, but created
+by Google+ itself? There will be some who will say, Google will never do
+that. But I bet you&#8217;d believe it of Facebook, wouldn&#8217;t you? As Tim said
+right at the beginning, uncertainty makes people nervous about federated
+login. Let&#8217;s be certain about what all the parties are going to do with
+the information that I&#8217;ve just signed in somewhere, and let&#8217;s help
+everyone else feel certain&nbsp;too.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2013/07/26/why-sorttable-doesnt-handle-colspanned-rows/">Previous post</a></li>
+		<li><a href="http://www.kryogenix.org/days/2013/08/14/seeing-my-home-server-from-my-phone/">Next post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="https://adactio.com/links/6392">Federated uncertainty</a>
+(adactio.com)		<span class="wm-summary">			Stuart nails it: the real problem with delegating identity is not what some new app will do with your identity details, it’s what the identity provide&hellip;
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2013/08/12/federated-uncertainty/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/08/12/federated-uncertainty/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								ga('send', 'event', 'load', 'unknown-host', scr, {'nonInteraction': 1});
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
