@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; A music thing for my parents</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2015/04/06/a-music-thing-for-my-parents/"><time 
+			class="dt-published" datetime="2015-04-06T14:03:00">Apr 06 2015</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2015/04/06/a-music-thing-for-my-parents/" title="Permalink to A music thing for my parents" rel="bookmark">A music thing for my&nbsp;parents</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A while back my parents said: we’ve got a telly in the dining room now. Could we play music through it so we can put songs on while we’re doing things around the house?</p>
+<p>Sure, I said.</p>
+<h2>Dad Music <span class="caps">TV</span></h2>
+<p style="text-align: center"><img alt="For parents everywhere" src="http://www.kryogenix.org/images/dadmusictv-startup.png"></p>
+
+<p>So, we have a set of constraints. We need to find or build a thing which can play music through a telly, and which they can put new music on without my help. I’m sure there are devices out there which can do this, but I thought it might be fun to build something. And I set the biggest constraint of all on the device, which is this: it is not connected to the network. Wifi is annoying to configure, and on the Raspberry Pi it basically requires a powered hub.<sup id="sf-a-music-thing-for-my-parents-1-back"><a title="you will say, no it doesn’t. and I will not believe you. and I’ve tried. A wifi dongle plugged into a powered hub which is then plugged into the Pi works always. A dongle plugged directly into the Pi works sometimes. At best. No network." href="#sf-a-music-thing-for-my-parents-1" class="simple-footnote">1</a></sup> No ethernet network connection while it’s running. Non-negotiable requirement.</p>
+<p>Therefore, there are two complexities here: how do you get music onto this thing? And how do you control it?</p>
+<p>My thought was: we’ll base this on a Raspberry Pi, because they’re nice and standard and you can buy nice looking cases for them. That way, it needs only two wires: power, and <span class="caps">HDMI</span> into the telly, and that’s it. How you put music on it is: you unplug it, put the <span class="caps">SD</span> card into a computer, copy music onto the <span class="caps">SD</span> card, then put the card back in the Pi and turn it on. Ta daaah; easy.<sup id="sf-a-music-thing-for-my-parents-2-back"><a title="actually, that’s probably easier than faffing about copying it over the network, to be honest; no passwords, no hassle, no dodgy wifi" href="#sf-a-music-thing-for-my-parents-2" class="simple-footnote">2</a></sup> This requires something on the Pi which knows how to play music, and knows how to look at a folder of mp3s and index them. Sounds like a job for <a href="http://www.musicpd.org/">mpd</a>!</p>
+<p>And indeed that works. We create a folder named <code>MUSIC</code> at the root of the Pi’s <span class="caps">SD</span> card<sup id="sf-a-music-thing-for-my-parents-3-back"><a title="it’s running Raspbian, obviously; there is now a build of proper Ubuntu (not snappy) for the Pi 2, but Raspbian is fine here and at this level Ubuntu and Debian are pretty much identical" href="#sf-a-music-thing-for-my-parents-3" class="simple-footnote">3</a></sup>, and stick <a href="http://askubuntu.com/questions/143315/how-to-hide-files-and-folders-in-nautilus">a file named <code>.hidden</code> in the root</a> to ensure that only the <code>MUSIC</code> folder shows up. Now, when my dad puts the <span class="caps">SD</span> card into his machine, it’ll pop up a file browser window which only shows the <code>MUSIC</code> folder. Winner. Configure <code>mpd</code> on the Pi to treat <code>/MUSIC</code> as its music root directory, and that all works; whenever the Pi starts up, <code>mpd</code> reindexes all the music in the folder, and you can’t add music without taking out the <span class="caps">SD</span> card which means that you have to restart the Pi. Now we can put music on the device and there’s a daemon which knows how to play it. Step 1: done.</p>
+<p>It should really show something on the screen while it’s playing, though, shouldn’t it? So, a trivial little Python script which (a) uses <span class="caps">SDL</span> to (b) display things on the framebuffer while (c) being an mpd client, so when mpd does anything, the screen display changes. This is pretty easy stuff, thanks to <a href="https://learn.adafruit.com/pi-video-output-using-pygame/pointing-pygame-to-the-framebuffer">an Adafruit writeup about using the framebuffer on the Pi</a>.</p>
+<p style="text-align: center"><img title="Santana. Yes." alt="The main screen" src="http://www.kryogenix.org/images/dadmusictv-running.png"></p>
+
+<p>Now, how do we control it? It has no network. There is a thing named <a href="http://en.wikipedia.org/wiki/HDMI#CEC"><span class="caps">HDMI</span>-<span class="caps">CEC</span></a> which allows a <span class="caps">TV</span> to pass commands down an <span class="caps">HDMI</span> cable to a connected device. This would be the obvious way to do it, and <a href="http://www.instructables.com/id/Raspberry-Pi-Remote-For-Free/">the Pi supports it</a>; just have the <span class="caps">TV</span>’s remote control buttons for left/right/up/down/whatever get sent to the Pi, which then reacts to them appropriately.</p>
+<p>Sadly, their telly doesn’t do <span class="caps">CEC</span>. So that’s that idea kiboshed. Shame; this would have been a good way to do it.</p>
+<p>So, next step. Bluetooth it is! For that, we need a bluetooth <span class="caps">USB</span> dongle for the Pi. I have two, but one of them I couldn’t get to work. The one that does work names itself in lsusb as <code>0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)</code>. So now what we need is some way to control <code>mpd</code> on the Pi over Bluetooth. Well… Bluetooth supports what it calls “<span class="caps">RFCOMM</span>” connections, which basically are a socket, like telnet, but which goes over Bluetooth. So what if we make a little “proxy” server which listens on a Bluetooth socket and connects to <code>mpd</code><span class="quo">‘</span>s socket <span class="caps">API</span>? So when someone connects over Bluetooth to it, they can act just like they’re connected to <code>mpd</code> normally because they send an <code>mpd</code> command to the Bluetooth socket, the little proxy sends it on to <code>mpd</code>, <code>mpd</code> responds, and the proxy sends the output back? That way, all you need is an <code>mpd</code> client where you can switch out its “use a socket to connect” code with “use a Bluetooth socket to connect” code and Robert’s your mother’s brother. And indeed, that works; another relatively trivial bit of Python code to just open the two sockets and shuffle data between them.</p>
+<p>Now we need an mpd client which can connect over Bluetooth. Both my parents have Android phones, so that’s the obvious place to have the client. I don’t like Java, so taking an existing open source Android mpd client and altering it is sadly not on the cards. One way to do this would be something like Cordova/PhoneGap, but nobody seems to have written a Cordova mpd app which makes socket connections itself, sadly.<sup id="sf-a-music-thing-for-my-parents-4-back"><a title="there are a million billion mpd clients where the “client” running on the web is actually talking to a server which then in turn connects to mpd, but we can’t do that here because there’s nowhere to run the server, and making a webview use a bluetooth socket rather than a tcp socket sounds really low-level and difficult" href="#sf-a-music-thing-for-my-parents-4" class="simple-footnote">4</a></sup> So, time to write a relatively noddy mpd client for Android. The ideal here is <a href="http://kivy.org">Kivy</a>; it’s Python, it does all the <span class="caps">GUI</span> stuff, and they have both <a href="http://kivy.org/docs/guide/packaging-android.html">good documentation and the “buildozer” utility for packaging a Kivy app for Android</a>. This also has the advantage that, because it’s in Python and I understand it, I can write the client with a switchable socket back-end, so on Android it uses Bluetooth, and on my desktop it uses an ordinary socket to connect over the network, so I can test the client in a nice convenient environment. I can also have the client connect to <code>mpd</code> running on my actual computer, so I can use other mpd clients to confirm that it does what it’s trying to do, that the screen display thing changes when it’s supposed to, and so on: this makes testing really, really easy because I don’t have to push any of it to the Pi or the Android phone while I’m working on it or to test it out. Having a test environment like this makes life much nicer.</p>
+<p style="text-align: center"><img title="The Beastie Boys!" alt="The Android client" src="http://www.kryogenix.org/images/dadmusictv-client.png"></p>
+
+<p>And, indeed, all of this works! It’s not quite finished yet, but all of this stuff hangs together. I’m quietly pleased with the amount of different stuff that had to come together for this project; Raspbian on a Raspberry Pi, mpd and its pretty-good <span class="caps">API</span>, creating Bluetooth server sockets with PyBluez on the Pi, proxying between two sockets, rendering a screen with <span class="caps">SDL</span> to the framebuffer, supervisord to ensure that all the server-side stuff gets run and keeps running and reports errors, building apps with Kivy, Android packaging for Kivy, using PyJnius from Python to use the underlying Android Java <span class="caps">API</span>, Bluetooth clients… I knew <em>about</em> all of this stuff at a high level, but there’s something satisfying about pulling it all together into a working product. </p>
+<p>Code is at <a href="github:stuartlangridge/dadmusictv">https://github.com/stuartlangridge/dadmusictv</a> for both the Pi server and the Android client if you’re very keen to look at it. I’ve written down instructions, but they’re really for me as reference if I’m honest; setting this up yourself will require some jiggery-pokery, I don’t doubt. Nonetheless, this was a fun project to do. Easter hacking time 2015: 10 marks out of 10.</p><ol class="simple-footnotes"><li id="sf-a-music-thing-for-my-parents-1">you will say, no it doesn’t. and I will not believe you. and I’ve tried. A wifi dongle plugged into a powered hub which is then plugged into the Pi works always. A dongle plugged directly into the Pi works sometimes. At best. No network. <a href="#sf-a-music-thing-for-my-parents-1-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-2">actually, that’s probably easier than faffing about copying it over the network, to be honest; no passwords, no hassle, no dodgy wifi <a href="#sf-a-music-thing-for-my-parents-2-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-3">it’s running Raspbian, obviously; there is now a build of proper Ubuntu (not snappy) for the Pi 2, but Raspbian is fine here and at this level Ubuntu and Debian are pretty much identical <a href="#sf-a-music-thing-for-my-parents-3-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-4">there are a million billion mpd clients where the “client” running on the web is actually talking to a server which then in turn connects to mpd, but we can’t do that here because there’s nowhere to run the server, and making a webview use a bluetooth socket rather than a tcp socket sounds really low-level and difficult <a href="#sf-a-music-thing-for-my-parents-4-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2015/04/03/send-a-url-to-your-ubuntu-phone-with-caxton/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2015/04/06/a-music-thing-for-my-parents/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2015/04/06/a-music-thing-for-my-parents/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
