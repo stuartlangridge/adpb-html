@@ -74,7 +74,7 @@
 <p style="text-align: center"><img title="The Beastie Boys!" alt="The Android client" src="http://www.kryogenix.org/images/dadmusictv-client.png"></p>
 
 <p>And, indeed, all of this works! It’s not quite finished yet, but all of this stuff hangs together. I’m quietly pleased with the amount of different stuff that had to come together for this project; Raspbian on a Raspberry Pi, mpd and its pretty-good <span class="caps">API</span>, creating Bluetooth server sockets with PyBluez on the Pi, proxying between two sockets, rendering a screen with <span class="caps">SDL</span> to the framebuffer, supervisord to ensure that all the server-side stuff gets run and keeps running and reports errors, building apps with Kivy, Android packaging for Kivy, using PyJnius from Python to use the underlying Android Java <span class="caps">API</span>, Bluetooth clients… I knew <em>about</em> all of this stuff at a high level, but there’s something satisfying about pulling it all together into a working product. </p>
-<p>Code is at <a href="github:stuartlangridge/dadmusictv">https://github.com/stuartlangridge/dadmusictv</a> for both the Pi server and the Android client if you’re very keen to look at it. I’ve written down instructions, but they’re really for me as reference if I’m honest; setting this up yourself will require some jiggery-pokery, I don’t doubt. Nonetheless, this was a fun project to do. Easter hacking time 2015: 10 marks out of 10.</p><ol class="simple-footnotes"><li id="sf-a-music-thing-for-my-parents-1">you will say, no it doesn’t. and I will not believe you. and I’ve tried. A wifi dongle plugged into a powered hub which is then plugged into the Pi works always. A dongle plugged directly into the Pi works sometimes. At best. No network. <a href="#sf-a-music-thing-for-my-parents-1-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-2">actually, that’s probably easier than faffing about copying it over the network, to be honest; no passwords, no hassle, no dodgy wifi <a href="#sf-a-music-thing-for-my-parents-2-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-3">it’s running Raspbian, obviously; there is now a build of proper Ubuntu (not snappy) for the Pi 2, but Raspbian is fine here and at this level Ubuntu and Debian are pretty much identical <a href="#sf-a-music-thing-for-my-parents-3-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-4">there are a million billion mpd clients where the “client” running on the web is actually talking to a server which then in turn connects to mpd, but we can’t do that here because there’s nowhere to run the server, and making a webview use a bluetooth socket rather than a tcp socket sounds really low-level and difficult <a href="#sf-a-music-thing-for-my-parents-4-back" class="simple-footnote-back">↩</a></li></ol>
+<p>Code is at <a href="https://github.com/stuartlangridge/dadmusictv">github.com/stuartlangridge/dadmusictv</a> for both the Pi server and the Android client if you’re very keen to look at it. I’ve written down instructions, but they’re really for me as reference if I’m honest; setting this up yourself will require some jiggery-pokery, I don’t doubt. Nonetheless, this was a fun project to do. Easter hacking time 2015: 10 marks out of 10.</p><ol class="simple-footnotes"><li id="sf-a-music-thing-for-my-parents-1">you will say, no it doesn’t. and I will not believe you. and I’ve tried. A wifi dongle plugged into a powered hub which is then plugged into the Pi works always. A dongle plugged directly into the Pi works sometimes. At best. No network. <a href="#sf-a-music-thing-for-my-parents-1-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-2">actually, that’s probably easier than faffing about copying it over the network, to be honest; no passwords, no hassle, no dodgy wifi <a href="#sf-a-music-thing-for-my-parents-2-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-3">it’s running Raspbian, obviously; there is now a build of proper Ubuntu (not snappy) for the Pi 2, but Raspbian is fine here and at this level Ubuntu and Debian are pretty much identical <a href="#sf-a-music-thing-for-my-parents-3-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-4">there are a million billion mpd clients where the “client” running on the web is actually talking to a server which then in turn connects to mpd, but we can’t do that here because there’s nowhere to run the server, and making a webview use a bluetooth socket rather than a tcp socket sounds really low-level and difficult <a href="#sf-a-music-thing-for-my-parents-4-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="http://www.kryogenix.org/days/2015/04/03/send-a-url-to-your-ubuntu-phone-with-caxton/">Previous post</a></li>
@@ -83,7 +83,40 @@
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul><li>(no mentions, yet.)</li></ul>
+	<ul>
+		<li><img src="https://lh3.googleusercontent.com/-qJcUc51gzIs/AAAAAAAAAAI/AAAAAAAAK-c/6MecQUi3VOc/photo.jpg?sz=50">
+			Rich Wareham responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			That's genuinely awesome. Not the end product per se but the collection of existing technologies and software. Also I'm particularly interested that K&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+Rich Wareham yeah, that's what I liked about it -- not that the final product is superb or anything, 'cos it ain't, but the gluing together of many d&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-lfquO4DXjQA/AAAAAAAAAAI/AAAAAAAAAAA/sJi7cfUVZi4/photo.jpg?sz=50">
+			Albert Westra responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-WRvCbfGxTPQ/AAAAAAAAAAI/AAAAAAAAAAA/HEa9wrKL2QM/photo.jpg?sz=50">
+			Adrian Bradshaw responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-qJcUc51gzIs/AAAAAAAAAAI/AAAAAAAAAAA/OrRE3gc4af8/photo.jpg?sz=50">
+			Rich Wareham responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Jw3w0T53N8E/AAAAAAAAAAI/AAAAAAAADYY/Mbsy8G0Y8bw/photo.jpg?sz=50">
+			Matthew Gregg responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			As a project this is cool and awesome, but given the audience(parents), why not something off the shelf, simple and reliable like a Chromecast?
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			Because the wifi in their house is unreliable, I don't want to have to put all their music on both of their phones, they don't want to pay a subscript&hellip;
+</span></li>
+	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
