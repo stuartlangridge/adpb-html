@@ -60,64 +60,40 @@ curiosity about how hard it would be to do, and I&#8217;ve read the comments
 on the previous post with a great deal of interest. Thanks to everyone
 who chimed in with&nbsp;thoughts.</p>
 <h2>First, what Linglish can now&nbsp;do:</h2>
-<p><strong>tell</strong> <span style="color: green;">screensaver</span> <strong>to</strong>
-<span style="color: green;">lock</span></p>
-<p>A simple command: just tell one
-application to do one&nbsp;thing.</p>
-<p>
-**ask** <span style="color: green;">banshee</span>&#8216;s
-<span style="color: green;">engine</span> **for**
-<span style="color: green;">uri</span>
-
-Request the value of something
+<p><strong>tell</strong> <span style="color: green;">screensaver</span> <strong>to</strong> <span style="color: green;">lock</span></p>
+<p>A simple command: just tell one application to do one&nbsp;thing.</p>
+<p><strong>ask</strong> <span style="color: green;">banshee</span>&#8216;s <span style="color: green;">engine</span> <strong>for</strong> <span style="color: green;">uri</span></p>
+<p>Request the value of something
 from an application. If you do this from the command-line, the value is
-printed out:
+printed&nbsp;out:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">python</span> <span class="n">linglish</span><span class="o">/</span><span class="n">runner</span><span class="p">.</span><span class="n">py</span> <span class="o">-</span><span class="n">c</span> <span class="s">&quot;ask banshee&#39;s engine for uri&quot;</span>
+<span class="nl">file:</span><span class="c1">///home/aquarius/Music/New%20Order%20-%20World%20in%20Motion).MP3</span>
+</pre></div>
 
-    $ python linglish/runner.py -c &#8220;ask banshee&#8217;s engine for uri&#8221;
-    file:///home/aquarius/Music/New%20Order%20-%20World%20in%20Motion).<span class="caps">MP3</span>
 
-**tell** <span style="color: green;">banshee</span>&#8216;s
-<span style="color: green;">engine</span> **to**
-<span style="color: green;">pause</span>  
-
-**tell** <span style="color: green;">screensaver</span> **to**
-<span style="color: green;">lock</span>  
-
-Run more than one command in a script
-
-**tell** <span style="color: green;">tomboy</span> **to**
-<span style="color: green;">FindStartHereNote</span>  
-
-**tell** <span style="color: green;">tomboy</span> **to**
-<span style="color: green;">displaynote</span> **with the result**
-
-Call a command which returns something and then do something based on
+<p><strong>tell</strong> <span style="color: green;">banshee</span>&#8216;s <span style="color: green;">engine</span> <strong>to</strong> <span style="color: green;">pause</span>  </p>
+<p><strong>tell</strong> <span style="color: green;">screensaver</span> <strong>to</strong> <span style="color: green;">lock</span>  </p>
+<p>Run more than one command in a&nbsp;script</p>
+<p><strong>tell</strong> <span style="color: green;">tomboy</span> <strong>to</strong> <span style="color: green;">FindStartHereNote</span>  </p>
+<p><strong>tell</strong> <span style="color: green;">tomboy</span> <strong>to</strong> <span style="color: green;">displaynote</span> <strong>with the&nbsp;result</strong></p>
+<p>Call a command which returns something and then do something based on
 that: Tomboy has no &#8220;show the Start Here note&#8221; function, but this does
 it fine by getting a reference to the Start Here note and then
 displaying it. The latter command could also have been written as
-`tell tomboy to displaynote it` or
-`tell tomboy to displaynote FindStartHereNote`
-
-**wait for** <span style="color: green;">banshee</span>&#8216;s
-<span style="color: green;">eventchanged</span> **ask**
-<span style="color: green;">banshee</span> **for**
-<span style="color: green;">currenturi</span>  
-
-**tell** <span style="color: green;">tomboy</span> **to**
-<span style="color: green;">createnote</span> **with it**
-
-Wait for an application (Banshee) to send a signal (a song has stopped
+<code>tell tomboy to displaynote it</code> or
+<code>tell tomboy to displaynote FindStartHereNote</code></p>
+<p><strong>wait for</strong> <span style="color: green;">banshee</span>&#8216;s <span style="color: green;">eventchanged</span></p>
+<p><strong>ask</strong> <span style="color: green;">banshee</span> <strong>for</strong> <span style="color: green;">currenturi</span>  </p>
+<p><strong>tell</strong> <span style="color: green;">tomboy</span> <strong>to</strong> <span style="color: green;">createnote</span> <strong>with&nbsp;it</strong></p>
+<p>Wait for an application (Banshee) to send a signal (a song has stopped
 playing or started), then when it happens ask for the value of a
 property (the path to the currently-playing song), and finally call a
 different app (Tomboy) to create a note with that path as its name. This
-example will then exit: if you want to create a new note *every* time
-the song changes, then `wait repeatedly for` the signal rather than just
-`wait`ing for it.
-
-Next, some musings:
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-
-
-One thing that this has revealed to me is that there are quite a few
+example will then exit: if you want to create a new note <em>every</em> time
+the song changes, then <code>wait repeatedly for</code> the signal rather than just
+<code>wait</code>ing for&nbsp;it.</p>
+<h2>Next, some&nbsp;musings:</h2>
+<p>One thing that this has revealed to me is that there are quite a few
 apps which I&#8217;d like to interact over D-Bus with which don&#8217;t provide an
 <span class="caps">API</span> to do so. The glaringly obvious example here is Nautilus (and indeed
 there is a bug requesting a D-Bus <span class="caps">API</span>), and a part (a small part) of why
@@ -128,11 +104,11 @@ one either, which makes interaction from these little Linglish scripts a
 bit difficult; I suppose I could build &#8220;display dialog&#8221; commands into
 the language but that seems a bit off. On the other hand, one of the
 advantages here is that there&#8217;s nothing stopping someone building a
-thing which is *just* a D-Bus <span class="caps">API</span> and which then calls out to Zenity to
+thing which is <em>just</em> a D-Bus <span class="caps">API</span> and which then calls out to Zenity to
 do the work. A second is that our D-Bus APIs are not necessarily
 brilliant. Picking a silly example, if you want to find Tomboy&#8217;s version
-using Linglish you have to `tell tomboy to version`, which sounds rather
-stupid; it should be &#8220;ask tomboy for version&#8221;, but `Version()` is a
+using Linglish you have to <code>tell tomboy to version</code>, which sounds rather
+stupid; it should be &#8220;ask tomboy for version&#8221;, but <code>Version()</code> is a
 method rather than a property in Tomboy&#8217;s D-Bus <span class="caps">API</span>. (I&#8217;m not picking on
 Tomboy here; they have a pretty comprehensive <span class="caps">API</span>, and I&#8217;ve been testing
 and developing Linglish using primarily Tomboy and Banshee.) Linglish is
@@ -145,67 +121,61 @@ browser. I think this problem is best solved with tools used to create
 the language rather than the language itself, although there&#8217;s more on
 this in the future-development section below. There were plenty of
 comments on the last post saying that this was a stupid idea and that it
-made much more sense to have a syntax like `screensaver/lock` or
-`screensaver.lock()` rather than `tell screensaver to lock`. I,
+made much more sense to have a syntax like <code>screensaver/lock</code> or
+<code>screensaver.lock()</code> rather than <code>tell screensaver to lock</code>. I,
 personally, do not agree with that. I&#8217;m not necessarily suggesting that
 I&#8217;m right and they&#8217;re wrong, or that neophytes will indeed find my way
 easier: just that this is an alternative way. If you think that Python
 or Smalltalk or any one of a dozen others are a better approach, go for
-it: I&#8217;m certainly not stopping you.  
-
-Thirdly, questions about what it might do in the future and whether those things are a good idea:
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-
-
-The original conception I had for this in my head is now basically done.
+it: I&#8217;m certainly not stopping&nbsp;you.  </p>
+<h2>Thirdly, questions about what it might do in the future and whether those things are a good&nbsp;idea:</h2>
+<p>The original conception I had for this in my head is now basically done.
 You can send commands to programs, you can tie programs together, you
 can get info out of a program and print it out. It would be able to do
 half the little scripty tasks I want to do on my desktop (assuming that
 the APIs existed to do them, which they mostly do not). Here are future
-things it could do, in rough order from small to big:
-
-1.  Be cleverer about calling methods on applications with more than one
-    object. At the moment you have to `tell banshee&#8217;s engine to pause`,
+things it could do, in rough order from small to&nbsp;big:</p>
+<ol>
+<li>Be cleverer about calling methods on applications with more than one
+    object. At the moment you have to <code>tell banshee's engine to pause</code>,
     because Banshee exports more than one object. Since only one of
-    those objects actually *has* a Pause() method,
-    `tell banshee to pause` makes more sense.
-2.  Have Linglish be able to document an application.
-    `ask linglish about tomboy` which then prints out Tomboy commands
+    those objects actually <em>has</em> a Pause() method,
+    <code>tell banshee to pause</code> makes more&nbsp;sense.</li>
+<li>Have Linglish be able to document an application.
+    <code>ask linglish about tomboy</code> which then prints out Tomboy commands
     you could use by introspecting Tomboy&#8217;s D-Bus <span class="caps">API</span> would be pretty
     nice. One big problem with this is that for most apps they need to
     be running to find out what <span class="caps">API</span> they offer, so
-    `ask linglish about banshee` would start it up.
-3.  There are currently no control statements. This is a problem if you
+    <code>ask linglish about banshee</code> would start it&nbsp;up.</li>
+<li>There are currently no control statements. This is a problem if you
     want to do anything even semi-complicated in a script, especially
     since the common approach to D-Bus signals in Linux apps seems to be
-    to generate a `SomethingHasChanged` and then pass a `whatchanged`
-    parameter; Banshee fires `StateChanged(&#8216;paused&#8217;)` and
-    `StateChanged(&#8216;playing&#8217;)` rather than `Playing` and `Paused`
+    to generate a <code>SomethingHasChanged</code> and then pass a <code>whatchanged</code>
+    parameter; Banshee fires <code>StateChanged('paused')</code> and
+    <code>StateChanged('playing')</code> rather than <code>Playing</code> and <code>Paused</code>
     signals. NetworkManager has something similar. It&#8217;s understandable
     why: you get one signal in a few different flavours rather than a
     multitude of signals. Inconvenient for this, though, because to vary
-    what the script does based on a parameter you have to have an `if`
+    what the script does based on a parameter you have to have an <code>if</code>
     statement (or something similar). I&#8217;ve been thinking about this: I
     do not want to build a proper language. If you want that, learn
     Python. But&#8230;maybe it needs control statements. I don&#8217;t know. I&#8217;m
     against it, but if this is useless without them then that&#8217;s a strong
-    argument that the effort is not worth it.
-4.  A script editor. This would allow people to write scripts without
+    argument that the effort is not worth&nbsp;it.</li>
+<li>A script editor. This would allow people to write scripts without
     having to know the names of any of the functions you need to call &#8212;
     popup completions and the like. This is even more problematic than
-    `ask linglish about whatever`, since there&#8217;s no way of saying &#8220;which
+    <code>ask linglish about whatever</code>, since there&#8217;s no way of saying &#8220;which
     apps in the world offer a D-Bus <span class="caps">API</span>?&#8221; &#8212; most apps do not install an
     activation file, which means they must be running for any script
     editor to even know they exist. It&#8217;s also a lot of work, although
-    most of the heavy lifting is done by GtkSourceView.
-5.  Packaging and stuff. If this is likely to be useful I should make
-    .debs of it and so on and make it easy for people to install and
-    everything.
-
-And finally&#8230;
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;
-
-The overarching question: is doing more of this a good idea and worth
-the effort? Your comments gratefully&nbsp;accepted.
+    most of the heavy lifting is done by&nbsp;GtkSourceView.</li>
+<li>Packaging and stuff. If this is likely to be useful I should make
+    .debs of it and so on and make it easy for people to install and&nbsp;everything.</li>
+</ol>
+<h2>And&nbsp;finally&#8230;</h2>
+<p>The overarching question: is doing more of this a good idea and worth
+the effort? Your comments gratefully&nbsp;accepted.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="http://www.kryogenix.org/days/2009/02/08/linglish-or-some-thoughts-on-a-scripting-language-for-the-linux-desktop/">Previous post</a></li>
