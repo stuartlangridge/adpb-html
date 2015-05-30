@@ -497,6 +497,11 @@ img.alignright {
 	border-color: #000;
 }
 
+img.centre-shadow {
+	width: 90%;
+	margin: 1em auto;
+	box-shadow: 3px 3px 4px #334;
+}
 
 /* =Comments
 ----------------------------------------------- */
