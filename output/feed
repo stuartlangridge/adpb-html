@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>http://www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="http://www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Fri, 14 Aug 2015 23:33:00 +0100</lastBuildDate><item><title>Fooling the natives</title><link>http://www.kryogenix.org/days/2015/08/14/fooling-the-natives/</link><description>&lt;blockquote&gt;&lt;span class="dquo"&gt;“&lt;/span&gt;It’s not death if you refuse it.” — _The 
-Crow_&lt;/blockquote&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>http://www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="http://www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Fri, 14 Aug 2015 23:33:00 +0100</lastBuildDate><item><title>Fooling the natives</title><link>http://www.kryogenix.org/days/2015/08/14/fooling-the-natives/</link><description>&lt;blockquote&gt;&lt;span class="dquo"&gt;“&lt;/span&gt;It’s not death if you refuse it.” — &lt;em&gt;The 
+Crow&lt;/em&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Over the last two weeks I have, inadvertently, 
 conducted a very enlightening experiment on myself. I don’t think 
@@ -43,8 +43,8 @@ G+ web app give me cause to suspect or even question that it was
 anything other than the native app. &lt;/p&gt;
 &lt;p&gt;Now, this is not always the 
 case, by any stretch of the imagination. The Google team put a 
-&lt;em&gt;lot_of effort into their web stuff. Most “web apps” betray their 
-true nature constantly. But this shows it’s basically _possible&lt;/em&gt;. If 
+&lt;em&gt;lot&lt;/em&gt; of effort into their web stuff. Most “web apps” betray their 
+true nature constantly. But this shows it’s basically &lt;em&gt;possible&lt;/em&gt;. If 
 you don’t have the easy, lazy fallback of blaming any issues on a 
 thing being of the web, then you don’t necessarily think of that as 
 being a problem itself. &lt;/p&gt;
