@@ -920,3 +920,11 @@ ul.neighbours-links li a {
 #webmentions form {
 	margin-top: 10px;
 }
+
+code {
+    background: white;
+    font-size: 0.8em;
+    color: #903;
+    border: 1px solid #eee;
+    padding: 2px;
+}
