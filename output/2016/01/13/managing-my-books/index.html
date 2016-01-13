@@ -66,14 +66,10 @@
 4
 5
 6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
-
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
 calibredb <span class="nb">export</span> --all --dont-save-cover --dont-write-opf <span class="se">\</span>
     --formats<span class="o">=</span>EPUB --to-dir<span class="o">=</span>/home/aquarius/Documents/Books <span class="se">\</span>
     --template<span class="o">=</span><span class="s2">"{authors}/{series:|(| }{series_index:0&gt;2s| |) }{title}"</span>
-
 python ~/bin/calibre-dump-comments.py &gt; ~/Documents/Books/comments.json
 scp ~/Documents/Books/comments.json kryogenix.org:public_html/booklist/
 python ~/bin/calibre-export-link-recent.py
@@ -86,33 +82,59 @@ python ~/bin/calibre-export-link-recent.py
 <p>It uses <code>calibredb</code>, which is the command line tool to access, export, work with, and edit calibre’s database. Calibre does a pretty impressive job of making all its stuff available to external tools and scripts; you do not need to run the app itself to fiddle with the database. Here we’re using <code>calibredb export</code> to export a bunch of books to an external folder.</p>
 <h2>Export my reviews and some book metadata to a <span class="caps">JSON</span> file</h2>
 <p>I need the <span class="caps">JSON</span> file so I can drop it onto my website and build the booklist. So, this relatively trivial Python<sup id="sf-managing-my-books-2-back"><a title="Python 2. Yes. No upgrading in Castle Langridge" href="#sf-managing-my-books-2" class="simple-footnote">2</a></sup> script runs <code>calibredb list</code> to dump the metadata contents out into a pipe-separated text list; we then parse that list in Python so that it’s sorted and any missing metadata is added, and then dump it as <span class="caps">JSON</span>.</p>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">subprocess</span><span class="p">,</span> <span class="n">json</span>
-<span class="n">out</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">check_output</span><span class="p">([</span><span class="s">"calibredb"</span><span class="p">,</span> <span class="s">"list"</span><span class="p">,</span> <span class="s">"-f"</span><span class="p">,</span>
+<table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">json</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span><span class="s">"calibredb"</span><span class="p">,</span> <span class="s">"list"</span><span class="p">,</span> <span class="s">"-f"</span><span class="p">,</span>
     <span class="s">"authors,title,comments,timestamp,series,series_index"</span><span class="p">,</span> 
     <span class="s">"--separator"</span><span class="p">,</span> <span class="s">"|"</span><span class="p">,</span> <span class="s">"-w"</span><span class="p">,</span> <span class="s">"10000"</span><span class="p">])</span>
-<span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">line</span> <span class="n">in</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="p">]</span><span class="o">:</span>
-    <span class="k">if</span> <span class="n">line</span><span class="o">:</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
         <span class="p">(</span><span class="n">bookid</span><span class="p">,</span> <span class="n">authors</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">comments</span><span class="p">,</span> 
-            <span class="n">timestamp</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">series_index</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"|"</span><span class="p">)]</span>
-        <span class="k">if</span> <span class="n">comments</span> <span class="o">==</span> <span class="s">"None"</span><span class="o">:</span> <span class="n">comments</span> <span class="o">=</span> <span class="n">None</span>
-        <span class="k">if</span> <span class="n">series</span> <span class="o">!=</span> <span class="s">"None"</span> <span class="n">and</span> <span class="n">series_index</span><span class="o">:</span>
-            <span class="n">series_index</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="kt">float</span><span class="p">(</span><span class="n">series_index</span><span class="p">))</span>
+            <span class="n">timestamp</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">series_index</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"|"</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">comments</span> <span class="o">==</span> <span class="s">"None"</span><span class="p">:</span> <span class="n">comments</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">series</span> <span class="o">!=</span> <span class="s">"None"</span> <span class="ow">and</span> <span class="n">series_index</span><span class="p">:</span>
+            <span class="n">series_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">series_index</span><span class="p">))</span>
             <span class="n">anti_series_index</span> <span class="o">=</span> <span class="mi">999</span> <span class="o">-</span> <span class="n">series_index</span>
-        <span class="nl">else:</span>
-            <span class="n">series</span> <span class="o">=</span> <span class="n">None</span>
-            <span class="n">series_index</span> <span class="o">=</span> <span class="n">None</span>
-            <span class="n">anti_series_index</span> <span class="o">=</span> <span class="n">None</span>
-        <span class="k">if</span> <span class="n">title</span><span class="o">:</span>
-            <span class="n">data</span><span class="p">.</span><span class="n">append</span><span class="p">({</span><span class="s">"authors"</span><span class="o">:</span> <span class="n">authors</span><span class="p">,</span> <span class="s">"title"</span><span class="o">:</span> <span class="n">title</span><span class="p">,</span>
-                <span class="s">"comments"</span><span class="o">:</span> <span class="n">comments</span><span class="p">,</span> <span class="s">"timestamp"</span><span class="o">:</span> <span class="n">timestamp</span><span class="p">,</span> <span class="s">"bookid"</span><span class="o">:</span> <span class="n">bookid</span><span class="p">,</span>
-                <span class="s">"series"</span><span class="o">:</span> <span class="n">series</span><span class="p">,</span> <span class="s">"series_index"</span><span class="o">:</span> <span class="n">series_index</span><span class="p">,</span>
-                <span class="s">"ymd"</span><span class="o">:</span> <span class="n">timestamp</span><span class="p">[</span><span class="o">:</span><span class="mi">10</span><span class="p">],</span> <span class="s">"anti_series_index"</span><span class="o">:</span> <span class="n">anti_series_index</span><span class="p">})</span>
-<span class="n">data</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">lambda</span> <span class="n">k</span><span class="o">:</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="s">"ymd"</span><span class="p">],</span> <span class="n">k</span><span class="p">[</span><span class="s">"series"</span><span class="p">],</span> <span class="n">k</span><span class="p">[</span><span class="s">"anti_series_index"</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="n">True</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">series</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">series_index</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">anti_series_index</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">"authors"</span><span class="p">:</span> <span class="n">authors</span><span class="p">,</span> <span class="s">"title"</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+                <span class="s">"comments"</span><span class="p">:</span> <span class="n">comments</span><span class="p">,</span> <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span> <span class="s">"bookid"</span><span class="p">:</span> <span class="n">bookid</span><span class="p">,</span>
+                <span class="s">"series"</span><span class="p">:</span> <span class="n">series</span><span class="p">,</span> <span class="s">"series_index"</span><span class="p">:</span> <span class="n">series_index</span><span class="p">,</span>
+                <span class="s">"ymd"</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="s">"anti_series_index"</span><span class="p">:</span> <span class="n">anti_series_index</span><span class="p">})</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:(</span><span class="n">k</span><span class="p">[</span><span class="s">"ymd"</span><span class="p">],</span> <span class="n">k</span><span class="p">[</span><span class="s">"series"</span><span class="p">],</span> <span class="n">k</span><span class="p">[</span><span class="s">"anti_series_index"</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
-
+</td></tr></tbody></table>
 
 <h2>Copy the <span class="caps">JSON</span> file to my website</h2>
 <p>The actual <a href="http://kryogenix.org/booklist">book list</a> is a reasonably simple <span class="caps">PHP</span> script which reads the <span class="caps">JSON</span> file and displays the list of books, or displays a list of reviews if that’s what you picked. Not very complicated; if you’re desperate for the source, ask and I’ll send it over, but it’s really not hard.</p>
