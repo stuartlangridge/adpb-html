@@ -928,3 +928,15 @@ code {
     border: 1px solid #eee;
     padding: 2px;
 }
+
+.code div.highlight pre {
+    background: white;
+    font-size: 10px;
+    overflow-x: auto;
+    padding: 0.5em;
+    border: 1px solid #eee;
+}
+.entry-content table.highlighttable tr td.linenos, .entry-content table.highlighttable tr td.code {
+    padding: 0 0.5em;
+    font-size: 0.8em;
+}
