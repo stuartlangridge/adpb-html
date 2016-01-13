@@ -929,7 +929,7 @@ code {
     padding: 2px;
 }
 
-.code div.highlight pre {
+div.highlight pre {
     background: white;
     font-size: 10px;
     overflow-x: auto;
