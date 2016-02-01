@@ -61,8 +61,12 @@ function wm_rx_live_update(data) {
             if (netloc.length > 20) {
                 netloc = netloc.substr(0,20) + "...";
             }
+            var wm_name = wm.name;
+            if (wm_name.length > 20) {
+                wm_name = wm_name.substr(0,20) + "...";
+            }
             if (wm.name && wm.name != "null") {
-                a.appendChild(document.createTextNode(wm.name));
+                a.appendChild(document.createTextNode(wm_name));
                 li.appendChild(a);
                 li.appendChild(document.createTextNode(" (" + netloc + ") "));
             } else {
