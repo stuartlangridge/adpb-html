@@ -58,6 +58,9 @@ function wm_rx_live_update(data) {
             var a = document.createElement("a");
             a.href = wm.url;
             var netloc = wm.url.match(/:\/\/([^\/]+)/)[1];
+            if (netloc.length > 20) {
+                netloc = netloc.substr(0,20) + "...";
+            }
             if (wm.name && wm.name != "null") {
                 a.appendChild(document.createTextNode(wm.name));
                 li.appendChild(a);
@@ -67,7 +70,7 @@ function wm_rx_live_update(data) {
                 li.appendChild(a);
             }
 
-            if (wm.summary) {
+            if (wm.summary && wm.summary !== "null") {
                 var sp = document.createElement("span");
                 sp.className = "wm-summary";
                 if (wm.summary.length > 150) {
