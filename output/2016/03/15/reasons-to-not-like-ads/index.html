@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Reasons to not like ads</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="http://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="http://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="http://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="http://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="http://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="http://www.kryogenix.org/days/2016/03/15/reasons-to-not-like-ads/"><time 
+			class="dt-published" datetime="2016-03-15T17:09:00">Mar 15 2016</time></a>
+			<span class="byline h-card">By <a class="p-author" href="http://www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="http://www.kryogenix.org/days/2016/03/15/reasons-to-not-like-ads/" title="Permalink to Reasons to not like ads" rel="bookmark">Reasons to not like&nbsp;ads</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p><a href="http://www.brucelawson.co.uk">Bruce</a> linked to <a href="http://kagan.mactane.org/blog/?p=714">Kagan MacTane&#8217;s list of &#8220;reasons to use ad-blockers&#8221;</a>, and I thought it was pretty good. I&#8217;ve been describing people who want to use an ad-blocker really as falling into four categories; these obviously cross over a lot, and most people will have aspects of&nbsp;each.</p>
+<h3>Ads are bad for&nbsp;privacy</h3>
+<p>Primary concern here, ads that track you around the internet. Advertising <em>itself</em> isn&#8217;t so bad; it&#8217;s when the ad networks build up a list of sites you look at by dropping tracking cookies on you, and then create a profile of you and what you do and what you care about. There are potential benefits here &#8212; if you&#8217;re going to see adverts, then they might as well be for stuff you&#8217;re interested in, right? &#8212; but in a post-Snowden world, having this sort of profile of you available to a company who may not have your best interests at heart and may hand it over to whoever asks for it when compelled or paid isn&#8217;t necessarily a good thing. People who feel this way find that worrying. You can see your <a href="https://www.google.com/settings/u/0/ads/authenticated">Google ads profile</a> from your Google account, and get a sense of the sort of demographic information that has been built up about you, and you can change your list of interests or opt out entirely; most ad networks don&#8217;t have this level of control. The <a href="https://www.eff.org/privacybadger"><span class="caps">EFF</span>&#8217;s Privacy Badger</a> browser extension is primarily designed to alleviate this sort of worry, by permitting ads but removing any tracking cookies, or blocking ads and script requests that attempt to do&nbsp;tracking.</p>
+<h3>Ads are bad for&nbsp;performance</h3>
+<p>Primary concern: that a page full of adverts loads much more slowly, because the script in the ads holds up the page, and because the ads themselves take a lot of time to download. <a href="http://blog.lmorchard.com/2015/07/22/the-verge-web-sucks/">Les Orchard did a great job analysing The Verge</a> and showed that an article with 57K of <span class="caps">HTML</span> also included nearly <span class="caps">10MB</span> of ads and took thirty seconds to download. (The Vox Media team are <a href="http://product.voxmedia.com/2015/5/6/8561867/declaring-performance-bankruptcy">working on it</a>.) It&#8217;s quite startling how much faster a page is when it&#8217;s not downloading 200 times its own weight in extra advert code; this is what&#8217;s behind the <a href="https://www.ampproject.org/"><span class="caps">AMP</span> <span class="caps">HTML</span></a> initiative, although it&#8217;s not clear whether that serves the needs of people solely or whether it&#8217;s a bit of a landgrab by a few big companies. But it&#8217;s nonetheless a response to this performance issue, and I suspect that the only reason more people do <em>not</em> identify themselves with this concern over performance is that they don&#8217;t <em>realise</em> how much faster the web ought to be when done right. (Also, here, see Progressive Web&nbsp;Apps.)</p>
+<h3>Ads are visually&nbsp;disruptive</h3>
+<p>A fair few people don&#8217;t necessarily mind adverts as a concept but dislike the actual ads we&#8217;ve got, because they animate or flash colours or move around or play a video when you inadvertently mouse over them; that is, they&#8217;re distracting and terrible. People who feel like this tend not to mind, for example, text ads on the side of a set of search results, but don&#8217;t like awful flashing things. It makes it difficult to see what you&#8217;re actually reading. One of the larger offences in this particular category are ads which make a page&#8217;s content jump around; the ad appears after page load and pushes everything below it down, leading to immense annoyance on the part of someone reading the pushed-around thing (and screwing up the scroll position if you&#8217;ve just hit&nbsp;Back).</p>
+<h3>I shouldn&#8217;t have to see any ads at&nbsp;all</h3>
+<p>And then there are those who feel that they ought to not see any ads whatsoever, and if publishers have a problem with that, then the publishers need to solve&nbsp;it.</p>
+<p>Here&#8217;s the important point. In general, complaints about ad blocking (from publishers, from adtech companies, from ad networks, and the like) tend to assume that everyone&#8217;s solely and completely in the last category. That is: the argument that ad blockers are bad goes &#8220;you just don&#8217;t care about how we fund the stuff that you read for free&#8221;. This is, I suggest, not the case for everyone. Yes, there are some people &#8212; plenty of people &#8212; who <em>just don&#8217;t want any ads</em>, and take a brutal and blasé attitude (&#8220;it&#8217;s not my problem you&#8217;re relying on a crappy business model&#8221;), and ignore the very tragedy-of-the-commons outcome of this (if everyone does it, we break everything). But, I think (and I&#8217;d love to see data on this, beyond the anecdata I have from talking to people) that some if not most people don&#8217;t dislike ads <em>qua</em> ads, they dislike <em>the ads we get</em>. Because the ads we get are visually distracting, privacy-invasive, and slow down the web to the point of ridiculousness. Maybe if adverts didn&#8217;t track us around the internet, didn&#8217;t screw up reading a page, and didn&#8217;t take thirty seconds to load, everyone wouldn&#8217;t be so quick to blame &#8220;ads&#8221; and could instead blame &#8220;bad&nbsp;ads&#8221;.</p>
+<p>But&#8230; maybe it&#8217;s too late, now. I suspect it&#8217;s quite possible that the ad industry has pissed so comprehensively in this waterhole that there&#8217;s no way to come back from this and offer ads that can fund producers and aren&#8217;t&nbsp;dreadful.</p>
+<p>I hope I&#8217;m&nbsp;wrong.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="http://www.kryogenix.org/days/2016/03/07/mothering/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2016/03/15/reasons-to-not-like-ads/">
+	<input type="submit" value="Add link">
+</form>
+<script src="http://www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2016/03/15/reasons-to-not-like-ads/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
