@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="//www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Tue, 26 Apr 2016 18:12:00 +0100</lastBuildDate><item><title>LOWREZJAM reviews</title><link>//www.kryogenix.org/days/2016/04/26/lowrezjam-reviews/</link><description>&lt;p&gt;A few weeks ago, the &lt;a href="https://itch.io/jam/lowrezjam2016"&gt;&lt;span class="caps"&gt;LOWREZJAM&lt;/span&gt;&lt;/a&gt; kicked off on itch.io. It&amp;#8217;s a game jam; the idea is to build a computer game. This one had an interesting restriction: the game had to be 64x64 pixels. So, we&amp;#8217;re going&amp;nbsp;old-school.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="//www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Fri, 06 May 2016 21:15:00 +0100</lastBuildDate><item><title>CSS colour words in hex</title><link>//www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/</link><description>&lt;style&gt;
+ul.colour-word-box {
+    margin: 0;
+    padding: 0;
+}
+ul.colour-word-box li {
+    width: 18%;
+    margin: 1%;
+    padding: 1em;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    list-style: none;
+    border: 1px solid black;
+}
+ul.colour-word-box li:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+ul.colour-word-box li span {
+    text-transform: uppercase;
+    bottom: 0.5em;
+    right: 0.5em;
+    position: absolute;
+    color: black;
+}
+ul.colour-word-box li.dark span {
+    color: white;
+}
+
+&lt;/style&gt;
+
+&lt;p&gt;One of the nice little fillips about writing &lt;span class="caps"&gt;CSS&lt;/span&gt; is that occasionally you use a colour code which turns out to be a word; the most famous here is probably &lt;code&gt;#DECADE&lt;/code&gt;. I ran across &lt;a href="http://bada55.io/"&gt;bada55.io&lt;/a&gt; which has made a whole site from this and was quite pleased, but the terrible old grammarian in me just can&amp;#8217;t deal with the l33tsp34k nature of most of the suggestions. You&amp;#8217;re obviously allowed &lt;code&gt;A&lt;/code&gt; to &lt;code&gt;F&lt;/code&gt;, and I&amp;#8217;m prepared to allow &lt;code&gt;0&lt;/code&gt; as O and &lt;code&gt;1&lt;/code&gt; as I, but using &lt;code&gt;5&lt;/code&gt; as an S or &lt;code&gt;3&lt;/code&gt; as E is dubious, using &lt;code&gt;1&lt;/code&gt; as an L is &lt;em&gt;exceptionally&lt;/em&gt; dubious (especially when it&amp;#8217;s already being an I in the same word!), and &lt;code&gt;7&lt;/code&gt; for T or &lt;code&gt;4&lt;/code&gt; for A or &lt;code&gt;6&lt;/code&gt;/G or (incomprehensibly) &lt;code&gt;9&lt;/code&gt;/P are right out. The fun nature of the game goes away when you have to puzzle out the meaning of the word like it&amp;#8217;s a crossword clue or one of those horrid personalised number&amp;nbsp;plates.&lt;/p&gt;
+&lt;p&gt;So, if we excise these crimes against spelling, all the colours that make what I consider to be proper words are below. There are obviously rather a lot of pastel shades, since each of the red, green, and blue channels will almost certainly be &lt;code&gt;A0&lt;/code&gt; or larger, but that&amp;#8217;s not necessarily a problem (and there are a couple of decent highly-saturated colours in there too; I&amp;#8217;m particularly fond of &lt;code&gt;#AC1D1C&lt;/code&gt; and plan to use it more often). If we admit white and black into the palette, it&amp;#8217;d almost certainly be possible to build a site while drawing solely from this list for your colour choices. Something to bear in mind for a future project,&amp;nbsp;maybe.&lt;/p&gt;
+&lt;ul class="colour-word-box"&gt;
+    &lt;li class="dark" style="background: #ab1ded"&gt;&lt;span&gt;abided&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #acac1a"&gt;&lt;span&gt;acacia&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #accede"&gt;&lt;span&gt;accede&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="dark" style="background: #ac1d1c"&gt;&lt;span&gt;acidic&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #bab1ed"&gt;&lt;span&gt;babied&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="dark" style="background: #ba0bab"&gt;&lt;span&gt;baobab&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #beaded"&gt;&lt;span&gt;beaded&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #bedded"&gt;&lt;span&gt;bedded&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #beefed"&gt;&lt;span&gt;beefed&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #b0bbed"&gt;&lt;span&gt;bobbed&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #b0d1ce"&gt;&lt;span&gt;bodice&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="dark" style="background: #b00bed"&gt;&lt;span&gt;boobed&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #cabbed"&gt;&lt;span&gt;cabbed&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #cabb1e"&gt;&lt;span&gt;cabbie&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #cadd1e"&gt;&lt;span&gt;caddie&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #c1cada"&gt;&lt;span&gt;cicada&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #c0dded"&gt;&lt;span&gt;codded&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #c0ffee"&gt;&lt;span&gt;coffee&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="dark" style="background: #c01fed"&gt;&lt;span&gt;coifed&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #dabbed"&gt;&lt;span&gt;dabbed&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #decade"&gt;&lt;span&gt;decade&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #dec1de"&gt;&lt;span&gt;decide&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #dec0de"&gt;&lt;span&gt;decode&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #deeded"&gt;&lt;span&gt;deeded&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #deface"&gt;&lt;span&gt;deface&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #def1ed"&gt;&lt;span&gt;defied&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="dark" style="background: #de1ced"&gt;&lt;span&gt;deiced&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #d0ffed"&gt;&lt;span&gt;doffed&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="dark" style="background: #d00dad"&gt;&lt;span&gt;doodad&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #edd1ed"&gt;&lt;span&gt;eddied&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #efface"&gt;&lt;span&gt;efface&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #facade"&gt;&lt;span&gt;facade&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #f1bbed"&gt;&lt;span&gt;fibbed&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #f0bbed"&gt;&lt;span&gt;fobbed&lt;/span&gt;&lt;/li&gt;
+    &lt;li style="background: #0ff1ce"&gt;&lt;span&gt;office&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Fri, 06 May 2016 21:15:00 +0100</pubDate><guid>tag://www.kryogenix.org/days,2016-05-06:2016/05/06/css-colour-words-in-hex/</guid></item><item><title>LOWREZJAM reviews</title><link>//www.kryogenix.org/days/2016/04/26/lowrezjam-reviews/</link><description>&lt;p&gt;A few weeks ago, the &lt;a href="https://itch.io/jam/lowrezjam2016"&gt;&lt;span class="caps"&gt;LOWREZJAM&lt;/span&gt;&lt;/a&gt; kicked off on itch.io. It&amp;#8217;s a game jam; the idea is to build a computer game. This one had an interesting restriction: the game had to be 64x64 pixels. So, we&amp;#8217;re going&amp;nbsp;old-school.&lt;/p&gt;
 &lt;p&gt;I thought I&amp;#8217;d enter. So did about four hundred other people. It turns out that a jolly good way to get people to rate your game is for you to rate theirs and comment on it; then, your comment gets decorated with a link saying &amp;#8220;see their submission&amp;#8221; and they tend to follow it and rate you in turn. So, I wrote a bunch of short reviews. There doesn&amp;#8217;t seem to be a way to link to all my reviews in a given jam on itch.io (although it would be good if there were!), so I&amp;#8217;ve collected them here for posterity. Note that these make no attempt to be comprehensive or fair or balanced; they&amp;#8217;re basically comments on what I thought of the games I played and why I didn&amp;#8217;t like them, if indeed I&amp;nbsp;didn&amp;#8217;t.&lt;/p&gt;
 &lt;p&gt;A few games got a rating but not a comment; those aren&amp;#8217;t included. I also haven&amp;#8217;t included the actual ratings I gave, because those don&amp;#8217;t matter as much. The comments are mainly designed to be helpful to the game&amp;#8217;s developer, if&amp;nbsp;anything.&lt;/p&gt;
 &lt;p&gt;I only played in-browser games, because they&amp;#8217;re easiest to play, and I don&amp;#8217;t have the Unity web player so those games which require it didn&amp;#8217;t get played. It&amp;#8217;s good to see that a pretty high proportion of &amp;#8220;Unity&amp;#8221; games are using the Unity WebGL export so they can be played without the plugin! I also didn&amp;#8217;t play everything; with 188 games just in-browser, I was never going to get through them all. Pro-tip: this is one good reason to give your game nice imagery, so it looks interesting in a big&amp;nbsp;list.&lt;/p&gt;
@@ -495,14 +566,4 @@ know and will be better off for
 knowing. &lt;a href="http://adactio.com/journal/4272"&gt;Jeremy&amp;#8217;s datalist trick?&lt;/a&gt; Well 
 impressed. That feels like Duff&amp;#8217;s device must have done to C 
 people. PageRank being named for Larry rather than because it 
-ranks pages? Blimey. So, good work, Aaron. People: read this&amp;nbsp;book. &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 11 Jan 2016 23:14:00 +0000</pubDate><guid>tag://www.kryogenix.org/days,2016-01-11:2016/01/11/book-review-adaptive-web-design-by-aaron-gustafson/</guid></item><item><title>SCaLE 14x plans</title><link>//www.kryogenix.org/days/2016/01/11/scale-14x-plans/</link><description>&lt;p&gt;In a week and a half I am flying out to Pasadena to the &lt;a href="https://www.socallinuxexpo.org/scale/14x"&gt;SCALE14x&lt;/a&gt; conference. I will be there from the evening of Wed 20th Jan 2016 to Sun 24th Jan&amp;nbsp;2016.&lt;/p&gt;
-&lt;p&gt;&lt;span class="caps"&gt;SCALE&lt;/span&gt; is a tremendous conference, as I have mentioned many times before. This is a busy year for me, so I wanted to share what I will be up&amp;nbsp;to:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Thursday 21st January 2016 at 4pm &amp;#8212; Ubucon developer track. I&amp;#8217;m doing a talk named &lt;a href="http://ubucon.org/en/events/ubucon-summit-us/talks/#beyond-building-ubuntu-phone-apps"&gt;Beyond building Ubuntu phone apps
-&lt;/a&gt;, which covers the things that you do with your app after you&amp;#8217;re excited that you could build it at all; analytics, in-app payments, advertising, all the things that other platforms will expect, but done in a way that fits the Ubuntu vibe (at least a&amp;nbsp;bit).&lt;/li&gt;
-&lt;li&gt;Friday 22nd January 2016 at some point (you&amp;#8217;ll know as soon as I do) &amp;#8212; Alan Pope and I are talking about &lt;a href="http://popey.com/blog/2015/12/16/testing-ubuntu-apps-as-a-service/"&gt;marvin&lt;/a&gt;, a cloud service where you can upload your Ubuntu phone apps and have them run on a bunch of phones to confirm they&amp;nbsp;work&lt;/li&gt;
-&lt;li&gt;Friday 22nd Jan 2016 at 8pm &amp;#8212; Ballroom &lt;span class="caps"&gt;DE&lt;/span&gt;. &lt;strong&gt;Bad Voltage: Live&lt;/strong&gt; &amp;#8212; yes! The live show of the &lt;a href="http://badvoltage.org"&gt;podcast&lt;/a&gt;. Come join us for a fun, informative, and irreverent live Bad Voltage performance. There will be free beer, lots of prizes (including a $2200 Pogo Linux workstation, Zareason Strata laptop, Amazon Fire Stick, Mycroft, Raspberry Pi 2 kit, plenty of swag and more), and plenty of audience participation and surprises. If you&amp;#8217;re not sure if you&amp;#8217;re coming to SCaLE yet, then (1) this ought to be enough to swing the balance, (2) how are you not sure?, and (3) you can save money on your SCaLE ticket by using our &lt;a href="http://badvoltage.org/live"&gt;discount code&lt;/a&gt;, yes&amp;nbsp;indeed.&lt;/li&gt;
-&lt;li&gt;Sat 23rd Jan 2016 at 8pm &amp;#8212; Ballroom &lt;span class="caps"&gt;DE&lt;/span&gt;. The Weakest Geek. In which I am a participant. Should be fun, I do&amp;nbsp;believe&amp;#8230;!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I am looking forward to seeing you all there and if you would like have a meeting while I am there, then&amp;#8230; well, I&amp;#8217;ll be in the bar, most likely. Track me down for a chat. Or &lt;a href="http://kryogenix.org/contact"&gt;drop me a note&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;(With apologies to &lt;a href="http://www.jonobacon.org/2016/01/11/scale14x-plans/"&gt;Jono&lt;/a&gt; for stealing his format and, like, half his&amp;nbsp;words&amp;#8230;)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 11 Jan 2016 18:38:00 +0000</pubDate><guid>tag://www.kryogenix.org/days,2016-01-11:2016/01/11/scale-14x-plans/</guid></item></channel></rss>
+ranks pages? Blimey. So, good work, Aaron. People: read this&amp;nbsp;book. &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 11 Jan 2016 23:14:00 +0000</pubDate><guid>tag://www.kryogenix.org/days,2016-01-11:2016/01/11/book-review-adaptive-web-design-by-aaron-gustafson/</guid></item></channel></rss>

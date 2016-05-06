@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; CSS colour words in hex</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='//fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="//www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="//www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/"><time 
+			class="dt-published" datetime="2016-05-06T21:15:00">May 06 2016</time></a>
+			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="//www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/" title="Permalink to CSS colour words in hex" rel="bookmark"><span class="caps">CSS</span> colour words in&nbsp;hex</a>
+		</h2>
+		<div class="entry-content e-content">
+			<style>
+ul.colour-word-box {
+    margin: 0;
+    padding: 0;
+}
+ul.colour-word-box li {
+    width: 18%;
+    margin: 1%;
+    padding: 1em;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    list-style: none;
+    border: 1px solid black;
+}
+ul.colour-word-box li:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+ul.colour-word-box li span {
+    text-transform: uppercase;
+    bottom: 0.5em;
+    right: 0.5em;
+    position: absolute;
+    color: black;
+}
+ul.colour-word-box li.dark span {
+    color: white;
+}
+
+</style>
+
+<p>One of the nice little fillips about writing <span class="caps">CSS</span> is that occasionally you use a colour code which turns out to be a word; the most famous here is probably <code>#DECADE</code>. I ran across <a href="http://bada55.io/">bada55.io</a> which has made a whole site from this and was quite pleased, but the terrible old grammarian in me just can&#8217;t deal with the l33tsp34k nature of most of the suggestions. You&#8217;re obviously allowed <code>A</code> to <code>F</code>, and I&#8217;m prepared to allow <code>0</code> as O and <code>1</code> as I, but using <code>5</code> as an S or <code>3</code> as E is dubious, using <code>1</code> as an L is <em>exceptionally</em> dubious (especially when it&#8217;s already being an I in the same word!), and <code>7</code> for T or <code>4</code> for A or <code>6</code>/G or (incomprehensibly) <code>9</code>/P are right out. The fun nature of the game goes away when you have to puzzle out the meaning of the word like it&#8217;s a crossword clue or one of those horrid personalised number&nbsp;plates.</p>
+<p>So, if we excise these crimes against spelling, all the colours that make what I consider to be proper words are below. There are obviously rather a lot of pastel shades, since each of the red, green, and blue channels will almost certainly be <code>A0</code> or larger, but that&#8217;s not necessarily a problem (and there are a couple of decent highly-saturated colours in there too; I&#8217;m particularly fond of <code>#AC1D1C</code> and plan to use it more often). If we admit white and black into the palette, it&#8217;d almost certainly be possible to build a site while drawing solely from this list for your colour choices. Something to bear in mind for a future project,&nbsp;maybe.</p>
+<ul class="colour-word-box">
+    <li class="dark" style="background: #ab1ded"><span>abided</span></li>
+    <li style="background: #acac1a"><span>acacia</span></li>
+    <li style="background: #accede"><span>accede</span></li>
+    <li class="dark" style="background: #ac1d1c"><span>acidic</span></li>
+    <li style="background: #bab1ed"><span>babied</span></li>
+    <li class="dark" style="background: #ba0bab"><span>baobab</span></li>
+    <li style="background: #beaded"><span>beaded</span></li>
+    <li style="background: #bedded"><span>bedded</span></li>
+    <li style="background: #beefed"><span>beefed</span></li>
+    <li style="background: #b0bbed"><span>bobbed</span></li>
+    <li style="background: #b0d1ce"><span>bodice</span></li>
+    <li class="dark" style="background: #b00bed"><span>boobed</span></li>
+    <li style="background: #cabbed"><span>cabbed</span></li>
+    <li style="background: #cabb1e"><span>cabbie</span></li>
+    <li style="background: #cadd1e"><span>caddie</span></li>
+    <li style="background: #c1cada"><span>cicada</span></li>
+    <li style="background: #c0dded"><span>codded</span></li>
+    <li style="background: #c0ffee"><span>coffee</span></li>
+    <li class="dark" style="background: #c01fed"><span>coifed</span></li>
+    <li style="background: #dabbed"><span>dabbed</span></li>
+    <li style="background: #decade"><span>decade</span></li>
+    <li style="background: #dec1de"><span>decide</span></li>
+    <li style="background: #dec0de"><span>decode</span></li>
+    <li style="background: #deeded"><span>deeded</span></li>
+    <li style="background: #deface"><span>deface</span></li>
+    <li style="background: #def1ed"><span>defied</span></li>
+    <li class="dark" style="background: #de1ced"><span>deiced</span></li>
+    <li style="background: #d0ffed"><span>doffed</span></li>
+    <li class="dark" style="background: #d00dad"><span>doodad</span></li>
+    <li style="background: #edd1ed"><span>eddied</span></li>
+    <li style="background: #efface"><span>efface</span></li>
+    <li style="background: #facade"><span>facade</span></li>
+    <li style="background: #f1bbed"><span>fibbed</span></li>
+    <li style="background: #f0bbed"><span>fobbed</span></li>
+    <li style="background: #0ff1ce"><span>office</span></li>
+</ul>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="//www.kryogenix.org/days/2016/04/26/lowrezjam-reviews/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/">
+	<input type="submit" value="Add link">
+</form>
+<script src="//www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2016/05/06/css-colour-words-in-hex/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
