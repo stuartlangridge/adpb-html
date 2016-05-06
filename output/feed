@@ -72,7 +72,7 @@ ul.colour-word-box li.dark span {
     &lt;li style="background: #0ff1ce"&gt;&lt;span&gt;office&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Addendum: I forgot about three-character hex colour codes! Of which there are also quite a&amp;nbsp;few:&lt;/p&gt;
+&lt;p&gt;Addendum: I forgot about three-character hex colour codes! Of which there are also quite a few, and we do a lot better at the saturated ones this time because a whole channel is quite often &lt;code&gt;0&lt;/code&gt; or &lt;code&gt;1&lt;/code&gt;. Although it&amp;#8217;s less lexicographically elegant to use a three-character&amp;nbsp;word.&lt;/p&gt;
 &lt;ul class="colour-word-box"&gt;
     &lt;li style="background: #ace"&gt;&lt;span&gt;ace&lt;/span&gt;&lt;/li&gt;
     &lt;li style="background: #add"&gt;&lt;span&gt;add&lt;/span&gt;&lt;/li&gt;
