@@ -30,7 +30,15 @@ ul.colour-word-box li span {
 ul.colour-word-box li.dark span {
     color: white;
 }
-
+@media all and (max-width: 799px) {
+    ul.colour-word-box li span {
+        font-size: 11px;
+        bottom: 5px;
+        right: 0px;
+        left: 0;
+        text-align: center;
+    }
+}
 &lt;/style&gt;
 
 &lt;p&gt;One of the nice little fillips about writing &lt;span class="caps"&gt;CSS&lt;/span&gt; is that occasionally you use a colour code which turns out to be a word; the most famous here is probably &lt;code&gt;#DECADE&lt;/code&gt;. I ran across &lt;a href="http://bada55.io/"&gt;bada55.io&lt;/a&gt; which has made a whole site from this and was quite pleased, but the terrible old grammarian in me just can&amp;#8217;t deal with the l33tsp34k nature of most of the suggestions. You&amp;#8217;re obviously allowed &lt;code&gt;A&lt;/code&gt; to &lt;code&gt;F&lt;/code&gt;, and I&amp;#8217;m prepared to allow &lt;code&gt;0&lt;/code&gt; as O and &lt;code&gt;1&lt;/code&gt; as I, but using &lt;code&gt;5&lt;/code&gt; as an S or &lt;code&gt;3&lt;/code&gt; as E is dubious, using &lt;code&gt;1&lt;/code&gt; as an L is &lt;em&gt;exceptionally&lt;/em&gt; dubious (especially when it&amp;#8217;s already being an I in the same word!), and &lt;code&gt;7&lt;/code&gt; for T or &lt;code&gt;4&lt;/code&gt; for A or &lt;code&gt;6&lt;/code&gt;/G or (incomprehensibly) &lt;code&gt;9&lt;/code&gt;/P are right out. The fun nature of the game goes away when you have to puzzle out the meaning of the word like it&amp;#8217;s a crossword clue or one of those horrid personalised number&amp;nbsp;plates.&lt;/p&gt;
