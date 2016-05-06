@@ -266,13 +266,31 @@ body {
 	display: none;
 }
 blockquote {
-	background: #eee;
-	border-left: 10px solid #36bcab;
-	color: #000;
-	font-family: Georgia, Arial, Helvetica, sans-serif;
-	font-size: 15px;
-	padding: 10px;
-	text-align: justify;
+    background: #eee;
+    color: #777;
+    font-family: sans-serif;
+    font-size: 15px;
+    padding: 10px 10px 10px 90px;
+    text-align: justify;
+    position: relative;
+    margin-top: 40px;
+    margin-left: 40px;
+    border-radius: 0 10px 0 10px;
+    line-height: 150%;
+}
+blockquote::before {
+    content: '“';
+    position: absolute;
+    font-size: 200px;
+    background: #eee;
+    top: -20px;
+    left: -40px;
+    height: 100px;
+    line-height: 200px;
+    border-radius: 1000px;
+    width: 100px;
+    text-align: center;
+    color: #ccc;
 }
 a {
 	color: #000;
@@ -280,6 +298,10 @@ a {
 }
 a:hover {
 	color: #36bcab;
+}
+.entry-content {
+	font-family: Raleway, sans-serif;
+	color: #225;
 }
 .entry-content a img {
 	border: 10px solid transparent;
