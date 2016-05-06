@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="//www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Fri, 06 May 2016 21:15:00 +0100</lastBuildDate><item><title>CSS colour words in hex</title><link>//www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/</link><description>&lt;style&gt;
 ul.colour-word-box {
-    margin: 0;
+    margin: 1.5em 0;
     padding: 0;
+    overflow: auto;
 }
 ul.colour-word-box li {
     width: 18%;
