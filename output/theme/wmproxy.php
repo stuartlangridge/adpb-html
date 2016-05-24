@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 if (!isset($_GET["url"])) { echo "[]"; die(); }
 $u = $_GET["url"];
 $needle1 = "http://www.kryogenix.org/days/";
