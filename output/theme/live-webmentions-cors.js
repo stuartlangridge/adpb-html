@@ -47,7 +47,6 @@ function wm_rx_live_update(j) {
         
         var img = document.createElement("img"); 
         img.src = imgsrc;
-        li.appendChild(img);
 
         var tn;
         if (wmaname) {
@@ -55,7 +54,6 @@ function wm_rx_live_update(j) {
         } else {
             tn = " A response was written at ";
         }
-        li.appendChild(document.createTextNode(tn));
 
         var a = document.createElement("a");
         a.href = wm.url;
@@ -67,13 +65,25 @@ function wm_rx_live_update(j) {
         if (wm_name.length > 20) {
             wm_name = wm_name.substr(0,20) + "...";
         }
-        if (wm.name && wm.name != "null") {
-            a.appendChild(document.createTextNode(wm_name));
+        if (netloc == "twitter.com") {
+            li.className += " twitter";
+            var twimg = document.createElement("img");
+            twimg.src = "../../../../theme/twitter24.png";
+            a.appendChild(twimg);
+            a.appendChild(img);
+            a.appendChild(document.createTextNode(wmaname));
             li.appendChild(a);
-            li.appendChild(document.createTextNode(" (" + netloc + ") "));
         } else {
-            a.appendChild(document.createTextNode(netloc));
-            li.appendChild(a);
+            li.appendChild(img);
+            li.appendChild(document.createTextNode(tn));
+            if (wm.name && wm.name != "null") {
+                a.appendChild(document.createTextNode(wm_name));
+                li.appendChild(a);
+                li.appendChild(document.createTextNode(" (" + netloc + ") "));
+            } else {
+                a.appendChild(document.createTextNode(netloc));
+                li.appendChild(a);
+            }
         }
 
         if (wm.summary && wm.summary !== "null") {
