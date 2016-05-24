@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; The importance of URLs</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" id="oswald-css" href="https://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,700,700italic,400italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="//www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="//www.kryogenix.org/days/2016/05/24/the-importance-of-urls/"><time 
+			class="dt-published" datetime="2016-05-24T00:22:00">May 24 2016</time></a>
+			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="//www.kryogenix.org/days/2016/05/24/the-importance-of-urls/" title="Permalink to The importance of URLs" rel="bookmark">The importance of&nbsp;URLs</a>
+		</h2>
+		<div class="entry-content e-content">
+			<blockquote>“You don’t control Xykon! He controls you!”<br>“Like I said: subtle.”<br><br>Redcloak, <a href="http://www.giantitp.com/comics/oots0830.html">The Order of the Stick</a></blockquote>
+
+<p>Lots of discussion about <a href="https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/">progressive web apps</a> recently, with a general consensus among forward-thinking web people that this is the way we should be building things for the web from now on. Websites that work offline, that deal well with lie-fi<sup id="sf-the-importance-of-urls-1-back"><a title="Jake Archibald eloquently names lie-fi as that situation where your phone claims to have a connection but actually it doesn’t, the lying sack of dingo’s entrails that it is, and just spins forever when you tell it to connect to a website. If you’ve ever toggled a device into airplane mode and back out again, you know what we’re talking about" href="#sf-the-importance-of-urls-1" class="simple-footnote">1</a></sup>, that are responsive, that are progressive, that work everywhere but are better on devices that can cope with the glory. <a href="https://twitter.com/slightlylate">Alex Russell</a>, who originally coined the term, talks about PWAs being responsive, connectivity independent, fresh, safe, discoverable, re-engageable, installable, linkable, and having app-like interactions.</p>
+<p>We could discuss every part of that description, every word in that definition, for hours and hours, and if someone wants to nominate a pub with decent beer then I’m more than happy to have that discussion and a pint while doing it. But today, we’re talking about the word <em>linkable</em>.</p>
+<h2>Linkability</h2>
+<p><a href="https://adactio.com">Jeremy</a> tweeted:</p>
+<blockquote><a href="https://twitter.com/adactio/status/734873072042422273">Strongly disagree with Lighthouse wanting “Manifest’s display property set to standalone/fullscreen to allow launching without address bar.”</a><br><br>Jeremy Keith</blockquote>
+
+<h3>A little background</h3>
+<p>First, a little background. Google Chrome attempts to detect whether the website you’re looking at “qualifies” as a Progressive Web App, because if it <em>does</em> then they will show an “install to home screen” banner on your second visit. This is a major improvement over the previous state of a user having to manually install a site they like to their home screen by fishing through the menus<sup id="sf-the-importance-of-urls-2-back"><a title="although the Chrome approach is not without its problems" href="#sf-the-importance-of-urls-2" class="simple-footnote">2</a></sup> or using the “add to home screen” button in iOS Safari<sup id="sf-the-importance-of-urls-3-back"><a title="which is obscure enough that Matteo Spinelli made a library to show a pointer to the add-to-home-screen button; the library is wonderful, don’t get me wrong, but it ought to not need to exist" href="#sf-the-importance-of-urls-3" class="simple-footnote">3</a></sup>. The Chrome team have then created <a href="https://github.com/GoogleChrome/lighthouse">Lighthouse</a>, a tool which invokes a Chrome browser, checks whether a site passes their checks for “this looks like a <span class="caps">PWA</span>”, and returns a result.</p>
+<p>So Jeremy’s point is this: Lighthouse is declaring that to be a valid <span class="caps">PWA</span>, you have to insist that when you’re added to the home screen, you stop showing the <span class="caps">URL</span> bar. And he doesn’t agree, because</p>
+<blockquote><a href="https://twitter.com/adactio/status/734875747169501185">I want people to be able to copy URLs. I want people to be able to hack URLs. I’m not ashamed of my URLs …I’m downright proud.</a><br><br>Jeremy Keith</blockquote>
+
+<p>This is inspirational stuff, and it’s true. URLs are important. Individual addressability of parts on the web is important.</p>
+<p>However. (You knew there was a “however” coming.) Whether your web app shows a <span class="caps">URL</span> bar is not actually a thing about that web app.</p>
+<h3>A little more background</h3>
+<p>A bit more background. In order to qualify as a progressive web app, you have to provide a manifest.<sup id="sf-the-importance-of-urls-4-back"><a title="If you don’t know how to create one, see the manifest generator that Bruce and I created" href="#sf-the-importance-of-urls-4" class="simple-footnote">4</a></sup> That manifest lists various properties about this web app which are useful to operating systems: what its human-readable name is, what a human-readable <em>short</em> name for it is, what its icon should be, a theme colour for it, <a href="https://dev.opera.com/articles/installable-web-apps/">and so on</a>. This is all good.</p>
+<p>But the manifest also lists a <a href="http://manifest.sysapps.org/#display-modes"><code>display_mode</code></a>, defined in the spec as “how the web application is being presented within the context of an <span class="caps">OS</span> (e.g., in fullscreen, etc.)” Essentially, the options for the display mode are <code>fullscreen</code> (the app will take all the screen; hardware keys and the status bar will not be shown), <code>standalone</code> (no browser <span class="caps">UI</span> is shown, but the hardware keys and status bar will be displayed), and <code>browser</code> (the app will be shown with normal browser <span class="caps">UI</span>, ie. as a normal website).</p>
+<p>Now we see Jeremy’s point. Chrome propose that you only qualify as a “real” <span class="caps">PWA</span> if you request “fullscreen” or “standalone” mode: that is, that you hide the <span class="caps">URL</span> bar. Jeremy says that URLs are important; they’re not a thing to hide away or to pretend that don’t exist. And he has a point. The hackability of URLs is surprisingly important, and unsurprisingly dismissed by app developers who want to lock down the user experience.</p>
+<p>But, and this is the important point, <em>whether a web app shows its URLs is not a property of that app. It’s a property of how that app’s developer <strong>thinks</strong> about the web.</em></p>
+<h2>Property versus preference</h2>
+<p>If Jeremy and I were both to work on a website, and then discuss what should be in the manifest, we’d agree on what the app’s name was, what a shortened name was, what the icon is. But we might disagree on whether the app should show a <span class="caps">URL</span> bar when launched. That disagreement isn’t about the app itself; it’s about whether you, the developer, think it’s <span class="caps">OK</span> to hide that an app is actually on the web, or whether you should proudly <em>declare</em> that it’s on the web. That doesn’t differ from app to app; it differs from developer to developer. The app manifest declares properties of the app, but the <code>display</code> property isn’t about the app; it’s about how the app’s developer wants it to be shown. Do they want to proudly declare that this app is on the web and of the web? Then they’ll add the <span class="caps">URL</span> bar. Do they want to conceal that this is actually a web app in order to look more like “native” apps? Then they’ll hide the <span class="caps">URL</span> bar. The <code>display</code> property feels rather less like it’s actually tied to the app, and rather more like it should be chosen at “add-to-home-screen” time by the user; do you, the bookmarking user, prefer to think of this as a web thing? Include the <span class="caps">URL</span> bar. Do you want to think of it as an app which doesn’t involve the web? Hide the <span class="caps">URL</span> bar. It’s a preference. It’s not a property.</p>
+<h2>On the desktop</h2>
+<p>The above argument stands alone. But there are additional issues with having a <span class="caps">URL</span> bar showing on an added-to-home-screen web app. We should discuss these separately, but here I have them in the same essay because it’s all relevant.</p>
+<p>The additional issue is, essentially, this. On my desktop — <em>not</em> my phone — I add an app to my “home screen”. This might add it to my desktop as a shortcut icon, or to my Start Menu, or in the Applications list, or all of the above, depending on which <span class="caps">OS</span> I’m on.<sup id="sf-the-importance-of-urls-5-back"><a title="and it should be noted that basically nobody actually handles PWAs properly on desktop yet; it’s all about mobile. But desktop is coming, and we’ll need to solve this." href="#sf-the-importance-of-urls-5" class="simple-footnote">5</a></sup> If that <span class="caps">PWA</span> declares itself as being <code>standalone</code> then how to handle it is obvious: open it in a new window, with no <span class="caps">URL</span> bar showing. Similarly, <code>fullscreen</code> web apps launched from an icon should be full screen. But what do we do when launching a <code>browser</code> display-mode web app on a desktop?</p>
+<p>Since we’re launching something indistinguishable from just another browser tab, it should launch a browser tab, right? I mean, we’re opening something which is essentially a bookmark. But… wouldn’t it feel strange to you to pick something from your app menu or an icon from your desktop and have it just open a browser tab? It would for me, at least. So maybe we should launch a new browser window, with <span class="caps">URL</span> bar intact, as though you’d clicked “open in new window” on a link. But then I’d have a whole new browser window for something which doesn’t really <em>deserve</em> a whole new window; it’s just one more web page, so why does it get a window by itself? I manage my browser windows according to project; window A has tabs relevant to project A, window B has tabs relevant to project B, and so on. I don’t want a whole new window, and indeed I have extensions installed so that links which think they deserve a new window actually get a new <em>tab</em> instead.</p>
+<p>It’s not very clear what should happen here. The whole idea of launching a website from an <span class="caps">OS</span>-level icon doesn’t actually mesh very well at all with the idea of tabbed browser windows. It <em>does</em> mesh well with the 2002-era idea of a-new-browser-window-for-every-<span class="caps">URL</span>, but that idea has gone away. We have tabbed browsing, and people like it.<sup id="sf-the-importance-of-urls-6-back"><a title="Whether tabbed browsing actually makes conceptual sense is not up for discussion, here; we’ve collectively decided to use it, much as we’ve collectively decided that one-file-manager-window-per-folder isn’t the way we want to go either." href="#sf-the-importance-of-urls-6" class="simple-footnote">6</a></sup></p>
+<p>The Chrome team’s idea, that basically you can’t add an “<span class="caps">OS</span>-level bookmark” for a website which wants to be treated <em>as</em> a website, avoids these problems.</p>
+<p>Jeremy’s got a point, though. Hiding away URLs, pretending that this thing you’re looking at is a “native” app, does indeed sacrifice one of the key strengths of the web — that everything’s individually addressable. You can’t bookmark the “account” page in Steam, or the “settings” window in Keynote or Word or LibreOffice. With the web, you <em>can</em>. That’s a good thing. We shouldn’t give it up lightly. But you already can’t do that for apps which use web technologies but pretend to be native. If Word or iTunes used a WebView to render its preferences dialog, would it be good if you could link directly to it with a <span class="caps">URL</span> like <code>itunes://settings</code>? Yes it would. Would it be good if the iTunes user interface had a <span class="caps">URL</span> bar at the top <em>showing</em> that <span class="caps">URL</span> all the time? Not really, no.</p>
+<p>There is a paternalism discussion, here. URLs are a good thing about the web; the addressability of parts is a good thing about the web. People don’t necessarily appreciate that. How much effort should we put into making this stuff available <em>even though people don’t want it</em>, because they’re <em>wrong</em> to not want it? Do we actually know better than they do? I think: yes we do.<sup id="sf-the-importance-of-urls-7-back"><a title="Hubris is a great idea. The Greeks taught us that." href="#sf-the-importance-of-urls-7" class="simple-footnote">7</a></sup> But I don’t know how important that is, when we can also win people over to the web by pretending that it’s native apps, which is what people wrongly want.</p>
+<h2>Conclusions</h2>
+<p>On balance, therefore, I approve of the Lighthouse team’s idea that you don’t qualify as an add-to-home-screen-able app if you want a <span class="caps">URL</span> bar. I can see the argument against this, and I do agree that we’re giving up something important, something fundamental to the web by hiding away URLs. But I think that wanting to see the <span class="caps">URL</span> is not a property of an app; it’s a property of <em>how <strong>you personally</strong> want to deal with apps</em>. So browsers should, when adding things to the home screen, pretend that <code>display:browser</code> actually said <code>display:standalone</code>, but give people who care the ability to override that if they want. And if we want more people to care, then that’s what evangelism is for; having individual app developers decide how they want <em>their</em> app to be displayed just leads to fragmentation. Let’s educate people on why URLs are important, and then they can flip a switch and see the URLs for everything they use… but until we’ve convinced them, let’s not force them to see the URLs when what they want is a native-like experience.</p><ol class="simple-footnotes"><li id="sf-the-importance-of-urls-1">Jake Archibald eloquently names lie-fi as that situation where your phone claims to have a connection but actually it doesn’t, the lying sack of dingo’s entrails that it is, and just spins forever when you tell it to connect to a website. If you’ve ever toggled a device into airplane mode and back out again, you know what we’re talking about <a href="#sf-the-importance-of-urls-1-back" class="simple-footnote-back">↩</a></li><li id="sf-the-importance-of-urls-2">although the Chrome approach is <a href="http://www.kryogenix.org/days/2015/03/16/chrome-improves-add-to-home-screen-sorta/">not without its problems</a> <a href="#sf-the-importance-of-urls-2-back" class="simple-footnote-back">↩</a></li><li id="sf-the-importance-of-urls-3">which is obscure enough that Matteo Spinelli made a <a href="http://cubiq.org/add-to-home-screen">library to show a pointer to the add-to-home-screen button</a>; the library is wonderful, don’t get me wrong, but it ought to not need to exist <a href="#sf-the-importance-of-urls-3-back" class="simple-footnote-back">↩</a></li><li id="sf-the-importance-of-urls-4">If you don’t know how to create one, see the <a href="http://brucelawson.github.io/manifest/">manifest generator</a> that <a href="http://brucelawson.co.uk">Bruce</a> and I created <a href="#sf-the-importance-of-urls-4-back" class="simple-footnote-back">↩</a></li><li id="sf-the-importance-of-urls-5">and it should be noted that basically nobody actually handles PWAs properly on desktop yet; it’s all about mobile. But desktop is coming, and we’ll need to solve this. <a href="#sf-the-importance-of-urls-5-back" class="simple-footnote-back">↩</a></li><li id="sf-the-importance-of-urls-6">Whether tabbed browsing actually makes conceptual sense is not up for discussion, here; we’ve collectively decided to use it, much as we’ve collectively decided that one-file-manager-window-per-folder isn’t the way we want to go either. <a href="#sf-the-importance-of-urls-6-back" class="simple-footnote-back">↩</a></li><li id="sf-the-importance-of-urls-7">Hubris is a great idea. The Greeks taught us that. <a href="#sf-the-importance-of-urls-7-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="//www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2016/05/24/the-importance-of-urls/">
+	<input type="submit" value="Add link">
+</form>
+<script src="//www.kryogenix.org/days/theme/live-webmentions.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2016/05/24/the-importance-of-urls/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var comurl = "/oldcomments/" + parts.join("-") + ".html";
+var x = new XMLHttpRequest();
+x.open("HEAD", comurl, true);
+x.onreadystatechange = function() {
+	if (x.readyState == 4) {
+		if (x.status == 200) {
+			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+		}
+	}
+};
+x.send();
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
