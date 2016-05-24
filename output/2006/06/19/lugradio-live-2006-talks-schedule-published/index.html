@@ -83,17 +83,26 @@ while you&#8217;re at the greatest Linux and open source event in&nbsp;history!<
 var aurl = '2006/06/19/lugradio-live-2006-talks-schedule-published/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
-var comurl = "/oldcomments/" + parts.join("-") + ".html";
-var x = new XMLHttpRequest();
-x.open("HEAD", comurl, true);
-x.onreadystatechange = function() {
-	if (x.readyState == 4) {
-		if (x.status == 200) {
-			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
-		}
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
 	}
-};
-x.send();
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
 </script>
 
 		</div>

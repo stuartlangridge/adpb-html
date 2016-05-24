@@ -144,17 +144,26 @@ word &#8220;weblogging&#8221; (or &#8220;blogging&#8221;), but yeah. Anyway. On 
 var aurl = '2002/10/27/catchingup/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
-var comurl = "/oldcomments/" + parts.join("-") + ".html";
-var x = new XMLHttpRequest();
-x.open("HEAD", comurl, true);
-x.onreadystatechange = function() {
-	if (x.readyState == 4) {
-		if (x.status == 200) {
-			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
-		}
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
 	}
-};
-x.send();
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
 </script>
 
 		</div>

@@ -94,17 +94,26 @@ makes sense! Too many exclamation marks! Help! It&#8217;ll be&nbsp;great!</p>
 var aurl = '2007/06/13/lugradio-live-dont-listen-alone/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
-var comurl = "/oldcomments/" + parts.join("-") + ".html";
-var x = new XMLHttpRequest();
-x.open("HEAD", comurl, true);
-x.onreadystatechange = function() {
-	if (x.readyState == 4) {
-		if (x.status == 200) {
-			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
-		}
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
 	}
-};
-x.send();
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
 </script>
 
 		</div>

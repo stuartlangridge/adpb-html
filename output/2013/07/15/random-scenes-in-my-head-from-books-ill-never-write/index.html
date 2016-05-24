@@ -98,17 +98,26 @@ wouldn&#8217;t,&#8221; she said. &#8220;He&#8217;s pretty&nbsp;depressing.&#8221
 var aurl = '2013/07/15/random-scenes-in-my-head-from-books-ill-never-write/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
-var comurl = "/oldcomments/" + parts.join("-") + ".html";
-var x = new XMLHttpRequest();
-x.open("HEAD", comurl, true);
-x.onreadystatechange = function() {
-	if (x.readyState == 4) {
-		if (x.status == 200) {
-			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
-		}
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
 	}
-};
-x.send();
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
 </script>
 
 		</div>

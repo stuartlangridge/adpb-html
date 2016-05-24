@@ -91,17 +91,26 @@ an eye for fashion. We need Buffy.&#8221; Amen to that.&nbsp;&#8212;&#8212;-</p>
 var aurl = '2002/10/01/theologian/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
-var comurl = "/oldcomments/" + parts.join("-") + ".html";
-var x = new XMLHttpRequest();
-x.open("HEAD", comurl, true);
-x.onreadystatechange = function() {
-	if (x.readyState == 4) {
-		if (x.status == 200) {
-			document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
-		}
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
 	}
-};
-x.send();
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
 </script>
 
 		</div>
