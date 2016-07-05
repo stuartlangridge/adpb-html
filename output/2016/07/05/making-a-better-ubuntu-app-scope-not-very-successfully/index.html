@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Making a better Ubuntu app scope (not very successfully)</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" id="oswald-css" href="https://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,700,700italic,400italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="//www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="//www.kryogenix.org/days/2016/07/05/making-a-better-ubuntu-app-scope-not-very-successfully/"><time 
+			class="dt-published" datetime="2016-07-05T00:27:00">Jul 05 2016</time></a>
+			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="//www.kryogenix.org/days/2016/07/05/making-a-better-ubuntu-app-scope-not-very-successfully/" title="Permalink to Making a better Ubuntu app scope (not very successfully)" rel="bookmark">Making a better Ubuntu app scope (not very&nbsp;successfully)</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I was rather excited to discover the idea that one could change the icons used on an Android phone&#8217;s home screen. (As Sam Hewitt <a href="https://plus.google.com/u/0/+StuartLangridge/posts/A1XypgwkMyU">put it</a>, I have &#8220;become a themer&#8221;.) I didn&#8217;t know this was doable, and I went from not knowing this to having it done in the space of about half an hour. It is rare that something just works this nicely; I&#8217;ve been living my life a long time and I know how it works. So far, the other shoe hasn&#8217;t dropped, which is&nbsp;encouraging.</p>
+<h3>At first, there was&nbsp;Android</h3>
+
+<p>Anyway, my Android home screen now looks like&nbsp;this:</p>
+<p><img src="https://www.kryogenix.org/random/android-minimal.jpg"></p>
+
+<p>I&#8217;m pretty pleased with that. (The lock screen is even more minimal and pretty, but we&#8217;re not talking about lock screens today: see <a href="https://plus.google.com/u/0/+StuartLangridge/posts/A1XypgwkMyU">the G+ post</a> for what that looks&nbsp;like.)</p>
+<p>There is a <span class="caps">UI</span> concern here &#8212; in general, I don&#8217;t like using icons without text to indicate a thing, because it means you&#8217;re spending cognitive time remembering <em>what an icon stands for</em> rather than <em>what it&#8217;s similar to</em>. That is: icons are quite good for, say, files where you want to see that all of these are <code>.txt</code> files, but they&#8217;re not good for actions where you have to remember what a &#8220;heart&#8221; or some obscure little symbol means. I&#8217;ve lost count of the number of times when I&#8217;ve used a new app which only has icons and not text labels on its buttons and I have <em>no idea</em> what half the icons <em>do</em>; a few things are enshrined by everyone using them (a Share icon, a Save icon, an Open icon, etc) but most of the time using an icon alone to indicate an action or an app is a bad idea. However, this is an exception to that rule. I am very familiar with my home screen; the set of apps on it do not change very much at all. So there&#8217;s minimal cognitive load in remembering that <em>this</em> icon is for Twitter and <em>that</em> one is for Moon Reader. I do a reasonable proportion of that by spatial arrangement; the icons don&#8217;t move around, and I am familiar and trained in where they are. You wouldn&#8217;t want to ship a phone which looks like this to a new user, but it&#8217;s a perfectly good experience for me, with my own personal home screen that I know&nbsp;well.</p>
+<p>How is this beautiful miracle achieved? Well. The default Android home screen doesn&#8217;t let you change the icons used for apps. So when I discovered the (free!) <a href="https://play.google.com/store/apps/details?id=com.natewren.linesfree&amp;hl=en">Lines icon set</a> in the Play store my immediate thought was, cor, how does that work? And the answer is: use a different home screen app (in Android parlance, they&#8217;re called <em>launchers</em>). So I installed <a href="https://play.google.com/store/apps/details?id=com.teslacoilsw.launcher&amp;hl=en">Nova Launcher</a>. (This also had the rather nice benefit of allowing me to remove the hated Google search bar; I never, ever, ever used that because it shows results in some Google app rather than the web, meaning that you can&#8217;t long-press on images to save them or on links to open in a new tab. Pack it in, Google. Open in the browser. It&#8217;s good at that.) A little bit of setup with Nova Launcher and Lines and, lo, I had the nice minimal icons and pretty dark wallpaper (which came with Lines). Nova Launcher doesn&#8217;t let you resize the icons, and by default they&#8217;re a bit small, but you can buy the <a href="https://play.google.com/store/apps/details?id=com.teslacoilsw.launcher.prime&amp;hl=en">Nova Launcher Prime</a> add-on to enable that, and it was fifty pence so that&#8217;s a no-brainer. The Lines icon set is both worryingly comprehensive (they claim to have over two thousand icons!) and equally worryingly incomplete (with a million apps in the Play store they&#8217;re never going to carry them all, but not having Telegram? Seriously?) and so I added two more similar-looking icon sets (<a href="https://play.google.com/store/apps/details?id=com.ryanmkelly.me.min&amp;hl=en">Min</a> and <a href="https://play.google.com/store/apps/details?id=jimonen.glyphsyiconpack&amp;hl=en">Glyphsy</a>) to give me a wider choice. A bunch of tweaking of icon sizes, icon choices, margin sizes, and so on later and I have the screen above, and every time I look at it I like it a little more. Ultra-happy with&nbsp;it.</p>
+<h3>And then there was&nbsp;Ubuntu</h3>
+
+<p>I thought to myself, hang on, it ought to be possible to do the same thing with Ubuntu phone, right? One can write a custom scope which looks like that and shows all one&#8217;s apps, and add it to the Dash as the only scope, and then you&#8217;ve got a cool-looking app-launcher home screen. Sweet. That&#8217;s what I want. And it&#8217;ll give me an excuse to play with all the new scopes stuff and learn something about&nbsp;it.</p>
+<p>Not so fast,&nbsp;grasshopper.</p>
+<p>Here&#8217;s my basic idea. The existing apps scope is annoyingly slow; I&#8217;m sure it does a whole bunch of stuff and that&#8217;s why, but it&#8217;s slow to load, slow to scroll, and slow to react to things changing. This is obviously being worked on by the Canonical team and I&#8217;m sure it&#8217;ll get better, but currently it&#8217;s pretty frustrating. So I thought: what I&#8217;ll do is this. I&#8217;ll add a <a href="http://click.readthedocs.io/en/latest/hooks.html">click hook</a> so when apps get installed and removed I can update a sqlite database, and then my scope will just hit that database rather than inspecting the filesystem and loading loads of files. That database can also hold the locations of icons in my custom &#8220;wireframe&#8221; icon theme, and it&#8217;ll use those icons for the apps. So it&#8217;ll be fast and have custom icons, and tapping an icon will launch that app via <a href="https://developer.ubuntu.com/en/phone/platform/guides/url-dispatcher-guide/">an <code>application:///</code> url</a>. Job&#8217;s a good&#8217;un, etc. Off down the&nbsp;pub.</p>
+<p>It was not as easy as I had&nbsp;hoped.</p>
+<p>There are a few things that made the task difficult and which are basically my fault and for which no blame attaches to the Ubuntu team. Firstly, I&#8217;m still running Ubuntu 14.04. This is because it&#8217;s an long-term-support release, and LTSes don&#8217;t offer to upgrade to the next <span class="caps">LTS</span> release (16.04, which came out in April) until the first point release (16.04.1, which isn&#8217;t out at time of writing). This is so the new <span class="caps">LTS</span> gets a bit of testing before it hits all the people who desire stability, and is a good idea, and I am entirely happy with it. Secondly, I wanted to write the scope in JavaScript; one can write Unity 8 scopes in C++ (which I can&#8217;t do), Go (which I can&#8217;t do), and <span class="caps">JS</span> via node (which I am completely comfortable with). But the <span class="caps">JS</span> scopes stuff is new, and so doesn&#8217;t exist in 14.04. This meant that I had to do a great deal of faffing around in lxc containers to get a working version of a <span class="caps">JS</span> scope. However, that faffery did actually work out in the end, and it&#8217;s hard to see the need for it as due to anything more than my own desire to not upgrade away from the latest stable release <span class="caps">LTS</span>. So, no blame there, as mentioned. After a bit of poking, I managed to get a JavaScript scope, and some discussions with Brian Douglass and one tiny bash deploy script later (which basically does <code>click build .</code> and then <code>adb push</code>es the <code>.click</code> file to my Bq E4.5 and <code>pkcon install-local</code>s it), I had a scope that I&#8217;d written running on the phone. Hooray! Now to make that scope actually do and look as I want it&nbsp;to.</p>
+<p>This is where we run into problems. The JavaScript scopes stuff is, admittedly, new, but it had two major issues that caused me a great deal of grief. The first is that making async <code>fs.readdir</code> calls early in a scope <code>search()</code> handler were making my scope crash, and sometimes crashing all of Unity. (<a href="https://bugs.launchpad.net/unity-js-scopes/+bug/1598967"><span class="caps">LP</span>#1598967</a>) Oops. That took some time debugging before I eventually went for the synchronous <code>fs.readdirSync</code>, cursing all the while. Worse, though, is the <code>activate</code> problem. You see, a scope, by default, when a thing is tapped shows you the <em>preview page</em> for that thing. However, you can change things so that a tap on a thing does something directly; in this case, of course, I wanted a tap on one of my app icons to launch that app via the <span class="caps">URL</span> dispatcher. To do that, you call <code>set_intercept_activation()</code> on a <a href="https://developer.ubuntu.com/api/scopes/js/sdk-15.04.4/ScopeJS.CategorisedResult/">scope icon</a> when you create it, and then Unity will call your scope&#8217;s <code>runtime_config.activate()</code> method with the details when that icon is tapped; you can then handle it in whatever way you want, or return an <code>ActivationNotHandled</code> type of <code>ActivationResponse</code> to let Unity handle it for you, which in this case means &#8220;open the app with the url you provided&#8221;. (You can see a good example of how this works in Go in <a href="https://github.com/bhdouglass/falcon/blob/master/src/falcon.go#L98">Brian Douglass&#8217;s Falcon alternative app scope</a>.) However! If you do that in JavaScript, your scope ignores the tap and throws an error about how you <code>returned nullptr from activate()</code>. (<a href="https://bugs.launchpad.net/unity-js-scopes/+bug/1598969"><span class="caps">LP</span>#1598969</a>.) As the bug says, &#8220;this, in practice, means it&#8217;s impossible to write a <span class="caps">JS</span> scope which allows tapping on a result item to do anything other than show the preview (for example, launching an&nbsp;app).&#8221;</p>
+<p>Now, that&#8217;s just a bug, and I&#8217;m sure it&#8217;ll get fixed (I&#8217;m sure they&#8217;ll both be fixed). It is frustrating (has nobody writing the <span class="caps">JS</span> scopes stuff ever <em>tried</em> <code>set_intercept_activation()</code>? Isn&#8217;t there lots of <span class="caps">QA</span> built into the Ubuntu process now?) But it&#8217;s a temporary thing, I&#8217;m sure, and in the same class of &#8220;frustrating and show-stopping but will be fixed eventually&#8221; things as how <code>unity-js-scopes-tool</code> doesn&#8217;t build <code>node-pre-gyp</code> packages (<a href="https://bugs.launchpad.net/unity-js-scopes/+bug/1598971"><span class="caps">LP</span>#1598971</a>) or that <code>unity-js-scopes-tool</code> seems to actually <em>be</em> the <code>node</code> binary itself but that&#8217;s carefully kept secret for some reason, or that you have to remove and reinstall an app if you change the apparmor stuff otherwise the changes aren&#8217;t picked up (<a href="https://bugs.launchpad.net/ubuntu/+source/click/+bug/1549369"><span class="caps">LP</span>#1549369</a>) which cost me an hour of banging my head against the desk (thanks mzanetti for helping). They&#8217;ll get fixed. Move&nbsp;on.</p>
+<p>The things which actually stopped me building the scope I wanted weren&#8217;t these sorts of incidental bugs; they&#8217;re design decisions saying that what I want should not be possible. I&#8217;m hoping that the detail I&#8217;m going into here helps to explain <em>why</em> I want these things, and perhaps makes its way back to the team deciding on this stuff and helps to inform their&nbsp;decisions.</p>
+<p>For example. You see how my Android screen above has four columns of app icons? Like the Ubuntu apps scope has? Well&#8230; my replacement scope can&#8217;t. Scopes are only allowed three columns of icons. The apps scope has been magically <a href="https://bugs.launchpad.net/ubuntu/+source/unity8/+bug/1490388">hardcoded into Unity</a> to be allowed four columns; nobody else can do that. That&#8217;s pretty&nbsp;annoying.</p>
+<p>Similarly, customisation of the look of a scope is superficially good but actually rather limited. A scope <em>header</em> can have a custom background image, but a scope itself can&#8217;t; you can pick a colour, but you can&#8217;t set an image as the background for your scope. (<a href="https://bugs.launchpad.net/ubuntu/+source/unity-scopes-api/+bug/1598973"><span class="caps">LP</span>#1598973</a>) Scopes put the &#8220;Ubuntu shape&#8221; around all your scope icons, but you can turn that off by settings <code>ShapeImages=false</code> in your scope ini file. Except&#8230; that doesn&#8217;t work; it&#8217;s ignored, and you always get the Ubuntu shape border on every image, whether you want it or not. (<a href="https://bugs.launchpad.net/ubuntu/+source/unity-scopes-api/+bug/1598933"><span class="caps">LP</span>#1598933</a>) I understand the idea behind shaping imagery, but it looks heart-stoppingly ugly when done to icons with transparent backgrounds, such as all the &#8220;wireframe&#8221; icons I planned to use in this project. You can have settings for your scope, but they can&#8217;t change the <em>appearance</em>, because that stuff&#8217;s not programmatic; it&#8217;s in the <code>scope.ini</code> file and can&#8217;t be changed by code. So I can&#8217;t allow people to have a dark scope with white icons (as above) or choose a light scope with black icons. Also, making a replacement apps scope is essentially fruitless because the default apps scope cannot be removed. You can&#8217;t turn it off; it <em>must</em> be present in your Dash. This to me seems strange; I&#8217;m fine with you not being able to <em>delete</em> it, but it will always be present in the bottom-edge menu. Fine, maybe making replacement apps scopes is an edge case, but it&#8217;s hard to get the feeling that my phone is mine when I&#8217;m obliged to keep the default apps scope around even if I&#8217;ve got a&nbsp;replacement.</p>
+<p>Oh, and the idea of making the scope fast by populating a database? You can&#8217;t have that, either. Yes, there are click hooks. But you can&#8217;t install one. They must be stored in <code>/usr/share/click/hooks</code>, and that&#8217;s part of the system image, which is read-only. What this means is that there&#8217;s no way that a third-party app will ever be able to be informed of app installs and removals, sadly. I can put an app which requires extra permissions into the <a href="https://open.uappexplorer.com/">Open Store</a>, but even such an app can&#8217;t install a click hook; I&#8217;d have to make it a deb, and even then a deb won&#8217;t install either unless you mark your image as read-write, which requires plugging it into a computer. Talking someone through that process is close to impossible unless they&#8217;re the hardest of the hardcore Ubuntu touch hackers. Perhaps click might look in some other folder as well, which <em>is</em> accessible to apps, and have a new apparmor permission protect that folder? Then it would be possible for an application to request that permission and keep a database of installed and removed apps up to date, which would allow us to compete on making a better app launching&nbsp;experience.</p>
+<p>So all this means that the best I can do on Ubuntu is this. Ubuntu shapes around the transparent icons, no background imagery, three columns. And that&#8217;s just not pretty, I&#8217;m sad to&nbsp;say.</p>
+<p><img src="https://www.kryogenix.org/random/appease.png"></p>
+
+<p>Anyway. I still have my beautiful Android home screen. But I&#8217;ve reluctantly decided that I just can&#8217;t do that on Ubuntu. Maybe it&#8217;ll be possible later; maybe these bugs will be fixed and the design decisions revisited. I hope the above explains why I think that&#8217;s important and what app developers could maybe do if those restrictions are slightly relaxed. Fingers&nbsp;crossed.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="//www.kryogenix.org/days/2016/06/02/programmatic-progressiveness/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2016/07/05/making-a-better-ubuntu-app-scope-not-very-successfully/">
+	<input type="submit" value="Add link">
+</form>
+<script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2016/07/05/making-a-better-ubuntu-app-scope-not-very-successfully/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+
+					// from https://paul.kinlan.me/detecting-injected-content/
+					var detectInjection = function(knownHostsArray) {
+						var requests = window.performance.getEntriesByType("resource");
+						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
+						for (var knownHost in knownHostsArray) {
+							knownHosts[knownHostsArray[knownHost]] = true;
+						}
+						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
+							var request = requests[requestIdx];
+							var url = new URL(request.name);
+							var host = url.host;
+							// Aggregate all the requests from a host
+							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
+						}
+						for(var foundHost in foundHosts) {
+							// If an unknown host is found, add it to a list.
+							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
+						}
+						return unknownHosts;
+					};
+					window.addEventListener("load", function() {
+						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
+						if(!!scripts === true && scripts.length > 0) {
+							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
+								var scr = scripts[scriptsIdx];
+								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
+							}
+						}
+					});
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
