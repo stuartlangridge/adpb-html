@@ -56,7 +56,7 @@
 			<a class="u-url p-name" href="//www.kryogenix.org/days/2014/12/30/enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app/" title="Permalink to Enabling the devtools inspector when using Oxide in an Ubuntu SDK QML app" rel="bookmark">Enabling the devtools inspector when using Oxide in an Ubuntu <span class="caps">SDK</span> <span class="caps">QML</span>&nbsp;app</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>A tiny post for something I’ve just worked out. If you’re using Oxide, the Ubuntu web rendering engine (based on Chrome’s Blink) in an Ubuntu <span class="caps">SDK</span> <span class="caps">QML</span> app, it’d be useful to have access to the devtools inspector so you can debug it. Well, you can, although this doesn’t seem to be documented anywhere. Adnane “daker” Belmadiaf wrote a useful post <a href="http://daker.me/2014/05/how-to-use-oxide-in-your-ubuntu-qml-application.html">describing how to use Oxide in your Ubuntu <span class="caps">QML</span> application</a> but unaccountably didn’t explain how to turn on the dev tools<sup id="sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1-back"><a title="possibly because you couldn’t when he wrote the post :)" href="#sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1" class="simple-footnote">1</a></sup> so this is how to do it.</p>
+			<p>A tiny post for something I’ve just worked out. If you’re using Oxide, the Ubuntu web rendering engine (based on Chrome’s Blink) in an Ubuntu <span class="caps">SDK</span> <span class="caps">QML</span> app, it’d be useful to have access to the devtools inspector so you can debug it. Well, you can, although this doesn’t seem to be documented anywhere. Adnane “daker” Belmadiaf wrote a useful post <a href="http://daker.me/2014/05/how-to-use-oxide-in-your-ubuntu-qml-application.html">describing how to use Oxide in your Ubuntu <span class="caps">QML</span> application</a> but unaccountably didn’t explain how to turn on the dev tools<sup id="sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1-back"><a title="possibly because you couldn’t when he wrote the post :)" class="simple-footnote" href="#sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1">1</a></sup> so this is how to do it.</p>
 <p>Give your <code>WebView</code> a <code>WebContext</code> and set its <code>devtoolsEnabled</code> and <code>devtoolsPort</code> properties. That’s it.</p>
 <pre><code>import com.canonical.Oxide 1.0
 WebView {
@@ -67,7 +67,7 @@ WebView {
         devtoolsEnabled: true
         devtoolsPort: 9232
     }
-}</code></pre><ol class="simple-footnotes"><li id="sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1">possibly because you couldn’t when he wrote the post :) <a href="#sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1-back" class="simple-footnote-back">↩</a></li></ol>
+}</code></pre><ol class="simple-footnotes"><li id="sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1">possibly because you couldn’t when he wrote the post :) <a class="simple-footnote-back" href="#sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2014/12/17/the-matasano-crypto-challenges/">Previous post</a></li>

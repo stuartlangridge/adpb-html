@@ -65,17 +65,17 @@ service <em>out</em> of that Google service, whether because you want to leave
 or just because backups are a good idea. I’ve been a Gmail user for
 quite a long time, and have quite a lot of mail in there, and it’d be
 nice to have a backup of it. So, I click “create an archive”, and then
-some hours later<sup id="sf-searching-my-email-1-back"><a title="modulo that it weirdly didn’t work the first time, as per me mithering on Google+ about it " href="#sf-searching-my-email-1" class="simple-footnote">1</a></sup> I get a nudge from
+some hours later<sup id="sf-searching-my-email-1-back"><a title="modulo that it weirdly didn’t work the first time, as per me mithering on Google+ about it " class="simple-footnote" href="#sf-searching-my-email-1">1</a></sup> I get a nudge from
 Google saying “we’ve created an archive of all your mail, and now you
 can download it”. So that’s exactly what I did.</p>
 <h3>what shall we do with the drunken mailbox, err-lie in the mornin’</h3>
-<p><span class="caps">OK</span>, so I’ve got a <span class="caps">4GB</span> <code>.mbox</code> file of all my mail since 2004.<sup id="sf-searching-my-email-2-back"><a title="yes, I know I could have been doing this with offlineimap. I never got around to setting it up, and gmail’s imap implementation is odd because it treats folders as labels, meaning that a message with two labels appears in two imap folders. I might set it up now, though, since I don’t care about the offline imap Maildir other than so that notmuch can index it, and notmuch is clever about finding two mails with the same message ID" href="#sf-searching-my-email-2" class="simple-footnote">2</a></sup> It’s good to have a backup. What else can I do with it?</p>
+<p><span class="caps">OK</span>, so I’ve got a <span class="caps">4GB</span> <code>.mbox</code> file of all my mail since 2004.<sup id="sf-searching-my-email-2-back"><a title="yes, I know I could have been doing this with offlineimap. I never got around to setting it up, and gmail’s imap implementation is odd because it treats folders as labels, meaning that a message with two labels appears in two imap folders. I might set it up now, though, since I don’t care about the offline imap Maildir other than so that notmuch can index it, and notmuch is clever about finding two mails with the same message ID" class="simple-footnote" href="#sf-searching-my-email-2">2</a></sup> It’s good to have a backup. What else can I do with it?</p>
 <p>One obvious thing is to point a search engine at it. Gmail is pretty
 good at searching mail, don’t get me wrong, but it’s nice to be able to
 search locally without needing internet access, especially since
-sometimes Gmail goes down<sup id="sf-searching-my-email-3-back"><a title="vanishingly rare" href="#sf-searching-my-email-3" class="simple-footnote">3</a></sup> or my cable
+sometimes Gmail goes down<sup id="sf-searching-my-email-3-back"><a title="vanishingly rare" class="simple-footnote" href="#sf-searching-my-email-3">3</a></sup> or my cable
 connection decides that connections to gmail and twitter should be slow
-today.<sup id="sf-searching-my-email-4-back"><a title="nowhere near as rare" href="#sf-searching-my-email-4" class="simple-footnote">4</a></sup> The clear leader for this seems to
+today.<sup id="sf-searching-my-email-4-back"><a title="nowhere near as rare" class="simple-footnote" href="#sf-searching-my-email-4">4</a></sup> The clear leader for this seems to
 be <a href="http://notmuchmail.org/">notmuch</a>, which bills itself as “the mail indexer”. Notmuch
 doesn’t fetch mail, it doesn’t send mail; it just indexes and searches it.</p>
 <h3>a brief digression into mail storage formats</h3>
@@ -151,7 +151,7 @@ world’s simplest notmuch web search <span class="caps">UI</span> in Python. It
 do formatting properly, it hates foreigners and so smashes Unicode down
 to question marks, and I don’t care because all I need is to get search
 results over the web, and it does that fine. There’s <a href="https://bitbucket.org/wuzzeb/notmuch-web">notmuch-web</a>,
-which seems very nice<sup id="sf-searching-my-email-5-back"><a title="except for being written in Haskell, but I’m not bigoted" href="#sf-searching-my-email-5" class="simple-footnote">5</a></sup> but requires notmuch v0.15 or better, and Ubuntu 12.04
+which seems very nice<sup id="sf-searching-my-email-5-back"><a title="except for being written in Haskell, but I’m not bigoted" class="simple-footnote" href="#sf-searching-my-email-5">5</a></sup> but requires notmuch v0.15 or better, and Ubuntu 12.04
 only has 0.12. So, once more forth into noddy Python scripts.</p>
 <table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -312,15 +312,15 @@ does the absolute bare minimum required. It does what I need it to,
 though. I just did <code>crontab -e</code> to edit my list of scheduled apps and
 added <code>@reboot python /home/me/noddy-search-server.py</code> and now I can
 just connect to <code>http://homeserver:8411</code> and search my mail. Nice.</p><ol class="simple-footnotes"><li id="sf-searching-my-email-1">modulo that it weirdly didn’t work the first time,
-as per <a href="https://plus.google.com/u/0/+StuartLangridge/posts/MaGeUn3A2fz">me mithering on Google+ about it</a>  <a href="#sf-searching-my-email-1-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-2">yes, I
+as per <a href="https://plus.google.com/u/0/+StuartLangridge/posts/MaGeUn3A2fz">me mithering on Google+ about it</a>  <a class="simple-footnote-back" href="#sf-searching-my-email-1-back">↩</a></li><li id="sf-searching-my-email-2">yes, I
 know I could have been doing this with <code>offlineimap</code>. I never got around
 to setting it up, and gmail’s imap implementation is odd because it
 treats folders as labels, meaning that a message with two labels appears
 in two imap folders. I might set it up now, though, since I don’t care
 about the offline imap Maildir other than so that <code>notmuch</code> can index
 it, and <code>notmuch</code> is clever about finding two mails with the same
-message <span class="caps">ID</span> <a href="#sf-searching-my-email-2-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-3">vanishingly rare <a href="#sf-searching-my-email-3-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-4">nowhere near as rare <a href="#sf-searching-my-email-4-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-5">except for being written in Haskell, but I’m
-not bigoted <a href="#sf-searching-my-email-5-back" class="simple-footnote-back">↩</a></li></ol>
+message <span class="caps">ID</span> <a class="simple-footnote-back" href="#sf-searching-my-email-2-back">↩</a></li><li id="sf-searching-my-email-3">vanishingly rare <a class="simple-footnote-back" href="#sf-searching-my-email-3-back">↩</a></li><li id="sf-searching-my-email-4">nowhere near as rare <a class="simple-footnote-back" href="#sf-searching-my-email-4-back">↩</a></li><li id="sf-searching-my-email-5">except for being written in Haskell, but I’m
+not bigoted <a class="simple-footnote-back" href="#sf-searching-my-email-5-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2013/12/18/the-royal-institution-christmas-lectures/">Previous post</a></li>

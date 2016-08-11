@@ -65,7 +65,7 @@ throw a little bit of fun in there?</p>
 <p>The idea (which I have not built, to be clear) is: Fantasy League Planet
 Ubuntu. You go to the website, sign in with Ubuntu One, and get
 presented with a list of all Planet Ubuntu participants and some free
-money<sup id="sf-fantasy-league-planet-ubuntu-1-back"><a title="note: not actual money. Of course." href="#sf-fantasy-league-planet-ubuntu-1" class="simple-footnote">1</a></sup>. Each Planet Ubuntu
+money<sup id="sf-fantasy-league-planet-ubuntu-1-back"><a title="note: not actual money. Of course." class="simple-footnote" href="#sf-fantasy-league-planet-ubuntu-1">1</a></sup>. Each Planet Ubuntu
 participant has a price, based on how often and with what quality they
 post… and you have to spend your money to buy a team of ten. Then, every
 time one of your team posts to the Planet, you get some points, based on
@@ -85,7 +85,7 @@ posting. Remember, the underlying goal here is to have more people
 writing more things and thus having our community be more vibrant. Sure,
 there’s nothing in theory stopping someone writing a bot to just post
 huge lorem-ipsum posts, but firstly it’s hard to imagine that anyone
-who’s already a valued member of the Ubuntu community<sup id="sf-fantasy-league-planet-ubuntu-2-back"><a title="they’re on the Planet, right? So they’ve already passed that hurdle" href="#sf-fantasy-league-planet-ubuntu-2" class="simple-footnote">2</a></sup> stooping that
+who’s already a valued member of the Ubuntu community<sup id="sf-fantasy-league-planet-ubuntu-2-back"><a title="they’re on the Planet, right? So they’ve already passed that hurdle" class="simple-footnote" href="#sf-fantasy-league-planet-ubuntu-2">2</a></sup> stooping that
 low to win a game, and secondly they’re <em>polluting their own blog</em> by
 doing it, so it hurts them more than it hurts us!</p>
 <p>There’s endless scope here for extra stuff, too; does a link from one
@@ -102,7 +102,7 @@ pressure than that; don’t hassle people.</p>
 <h4>so how would you build it?</h4>
 <p>Two components: an <span class="caps">RSS</span> aggregator, and the website. Choose your
 favourite <span class="caps">RSS</span> aggregator (spycyroll? planetvenus? whichever). Then,
-hourly, scrape the list of feeds from Planet Ubuntu<sup id="sf-fantasy-league-planet-ubuntu-3-back"><a title="it would be nice if the Planet exported its list of participant feeds in machine-readable form; it must already have that list, so pointing a URL at it would be useful. Note that you can’t just fetch Planet Ubuntu’s own RSS feed, because you can’t unambiguously tell from that feed who wrote each post, unless you use their name as a unique key which is not a great idea" href="#sf-fantasy-league-planet-ubuntu-3" class="simple-footnote">3</a></sup> and hit each feed. For new posts, give them a score with the
+hourly, scrape the list of feeds from Planet Ubuntu<sup id="sf-fantasy-league-planet-ubuntu-3-back"><a title="it would be nice if the Planet exported its list of participant feeds in machine-readable form; it must already have that list, so pointing a URL at it would be useful. Note that you can’t just fetch Planet Ubuntu’s own RSS feed, because you can’t unambiguously tell from that feed who wrote each post, unless you use their name as a unique key which is not a great idea" class="simple-footnote" href="#sf-fantasy-league-planet-ubuntu-3">3</a></sup> and hit each feed. For new posts, give them a score with the
 scoring algorithm. Your <span class="caps">RSS</span> aggregator needs to keep around the post
 metadata, but can throw away the post content because it’s not actually
 producing any output. Then credit each relevant team owner with the
@@ -200,14 +200,14 @@ at that than I am. Hint.</p>
 <p>I think this would be rather fun. It’s also ongoing fun with no ongoing
 time investment; once it’s built, it runs itself and continues being fun :)</p>
 <p>And if it works, one can imagine as a sequel Fantasy League Ubuntu
-Developer — one point for a merge, two for a bug filed…?</p><ol class="simple-footnotes"><li id="sf-fantasy-league-planet-ubuntu-1">note: not actual money. Of course. <a href="#sf-fantasy-league-planet-ubuntu-1-back" class="simple-footnote-back">↩</a></li><li id="sf-fantasy-league-planet-ubuntu-2">they’re on the
-Planet, right? So they’ve already passed that hurdle <a href="#sf-fantasy-league-planet-ubuntu-2-back" class="simple-footnote-back">↩</a></li><li id="sf-fantasy-league-planet-ubuntu-3">it would be nice
+Developer — one point for a merge, two for a bug filed…?</p><ol class="simple-footnotes"><li id="sf-fantasy-league-planet-ubuntu-1">note: not actual money. Of course. <a class="simple-footnote-back" href="#sf-fantasy-league-planet-ubuntu-1-back">↩</a></li><li id="sf-fantasy-league-planet-ubuntu-2">they’re on the
+Planet, right? So they’ve already passed that hurdle <a class="simple-footnote-back" href="#sf-fantasy-league-planet-ubuntu-2-back">↩</a></li><li id="sf-fantasy-league-planet-ubuntu-3">it would be nice
 if the Planet exported its list of participant feeds in machine-readable
 form; it must already <em>have</em> that list, so pointing a <span class="caps">URL</span> at it would be
 useful. Note that you can’t just fetch Planet Ubuntu’s own <span class="caps">RSS</span> feed,
 because you can’t unambiguously tell from that feed who wrote each post,
 unless you use their name as a unique key which is not a great
-idea <a href="#sf-fantasy-league-planet-ubuntu-3-back" class="simple-footnote-back">↩</a></li></ol>
+idea <a class="simple-footnote-back" href="#sf-fantasy-league-planet-ubuntu-3-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2014/01/30/but-these-posts-go-to-eleven/">Previous post</a></li>
@@ -218,6 +218,11 @@ idea <a href="#sf-fantasy-league-planet-ubuntu-3-back" class="simple-footnote-ba
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
 	<ul>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="http://www.kryogenix.org/days/2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/">...</a>
+(www.kryogenix.org)		<span class="wm-summary">			I had this idea for a “screencast” which follows the mouse pointer around, rather than making you nominate a fixed screen area; ideal for little demo&hellip;
+</span></li>
 		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
 			A response was written at
 		<a href="http://www.kryogenix.org/days/2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/">...</a>
