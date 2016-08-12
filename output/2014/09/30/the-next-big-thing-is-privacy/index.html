@@ -243,15 +243,15 @@
 			Jude Gibbons responded at
 		<a href="https://twitter.com/sil/status/625093804501172224">likes this.</a>
 (twitter.com)		<span class="wm-summary"></span></li>
-		<li><img src="https://twitter.com/Interrel8ed/profile_image?size=original">
-			Interrelated responded at
-		<a href="https://twitter.com/Interrel8ed/status/643516268067295232">twitter.com</a>
-		<span class="wm-summary">			@lukeglen — The next big thing is privacy ow.ly/ScGAa Was @SpotiD too ahead of its tme? goo.gl/z9a2ty
-</span></li>
 		<li><img src="https://twitter.com/markwing/profile_image?size=original">
 			Mark Wing responded at
 		<a href="https://twitter.com/markwing/status/643516267786317824">twitter.com</a>
 		<span class="wm-summary">			@lukeglen — The next big thing is privacy ow.ly/ScH1F Was @SpotiD too ahead of its tme? goo.gl/z9a2ty
+</span></li>
+		<li><img src="https://twitter.com/Interrel8ed/profile_image?size=original">
+			Interrelated responded at
+		<a href="https://twitter.com/Interrel8ed/status/643516268067295232">twitter.com</a>
+		<span class="wm-summary">			@lukeglen — The next big thing is privacy ow.ly/ScGAa Was @SpotiD too ahead of its tme? goo.gl/z9a2ty
 </span></li>
 		<li><img src="https://twitter.com/personalbcouk/profile_image?size=original">
 			Personal Branding responded at
@@ -322,7 +322,7 @@ if (!tooNewForOldComments) {
 
 					// from https://paul.kinlan.me/detecting-injected-content/
 					var detectInjection = function(knownHostsArray) {
-						if (!window.performance) return;
+						if (!window.performance || !window.performance.getEntriesByType || !window.URL) return;
 						var requests = window.performance.getEntriesByType("resource");
 						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
 						for (var knownHost in knownHostsArray) {

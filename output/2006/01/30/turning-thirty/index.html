@@ -85,7 +85,13 @@ birthday to me. Hope the rest of you enjoy the&nbsp;day!</p>
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul><li>(no mentions, yet.)</li></ul>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/477950033816715264/JajhBvt_.jpeg">
+			Stephen Orr responded at
+		<a href="https://twitter.com/StephenOrr1981/status/764059651851726848">twitter.com</a>
+		<span class="wm-summary">			@sil @TTS_Hannah I got taken to New York and Washington DC for mine... Hard to think that's nearly 5 and a half years ago now. Getting old!
+</span></li>
+	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
@@ -139,7 +145,7 @@ if (!tooNewForOldComments) {
 
 					// from https://paul.kinlan.me/detecting-injected-content/
 					var detectInjection = function(knownHostsArray) {
-						if (!window.performance) return;
+						if (!window.performance || !window.performance.getEntriesByType || !window.URL) return;
 						var requests = window.performance.getEntriesByType("resource");
 						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
 						for (var knownHost in knownHostsArray) {

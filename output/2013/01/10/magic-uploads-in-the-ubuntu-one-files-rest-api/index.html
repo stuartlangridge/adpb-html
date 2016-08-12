@@ -245,7 +245,7 @@ if (!tooNewForOldComments) {
 
 					// from https://paul.kinlan.me/detecting-injected-content/
 					var detectInjection = function(knownHostsArray) {
-						if (!window.performance) return;
+						if (!window.performance || !window.performance.getEntriesByType || !window.URL) return;
 						var requests = window.performance.getEntriesByType("resource");
 						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
 						for (var knownHost in knownHostsArray) {
