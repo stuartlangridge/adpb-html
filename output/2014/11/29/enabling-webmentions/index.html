@@ -82,15 +82,15 @@
 		<a href="http://tantek.com/2014/333/t2/welcome-inventor-pingback-support-webmention">tantek.com</a>
 		<span class="wm-summary">			@sil welcome! As inventor of #pingback your support is a huge milestone for #webmention. Let's see how soon this shows up. Posted 17:32-0800.
 </span></li>
-		<li><img src="https://aaronparecki.com/images/aaronpk.png">
-			Aaron Parecki responded at
-		<a href="https://aaronparecki.com/replies/2014/11/29/1/indieweb">aaronparecki.com</a>
-		<span class="wm-summary">			@sil Congrats! This is exciting to see! #indieweb
-</span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/3657148842/934fb225b84b8fd3effe5ab95bb18005.jpeg">
 			Aaron Parecki responded at
 		<a href="https://twitter.com/aaronpk/status/538755296324096001">twitter.com</a>
 		<span class="wm-summary">			@sil Congrats! This is exciting to see! #indieweb (aaron.pk/r4ZP1)
+</span></li>
+		<li><img src="https://aaronparecki.com/images/aaronpk.png">
+			Aaron Parecki responded at
+		<a href="https://aaronparecki.com/replies/2014/11/29/1/indieweb">aaronparecki.com</a>
+		<span class="wm-summary">			@sil Congrats! This is exciting to see! #indieweb
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/477375893183033344/xPth0Xgn.png">
 			Jeremy Keith responded at
@@ -275,37 +275,6 @@ if (!tooNewForOldComments) {
 						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 					})();
-
-					// from https://paul.kinlan.me/detecting-injected-content/
-					var detectInjection = function(knownHostsArray) {
-						if (!window.performance || !window.performance.getEntriesByType || !window.URL) return;
-						var requests = window.performance.getEntriesByType("resource");
-						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
-						for (var knownHost in knownHostsArray) {
-							knownHosts[knownHostsArray[knownHost]] = true;
-						}
-						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
-							var request = requests[requestIdx];
-							var url = new URL(request.name);
-							var host = url.host;
-							// Aggregate all the requests from a host
-							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
-						}
-						for(var foundHost in foundHosts) {
-							// If an unknown host is found, add it to a list.
-							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
-						}
-						return unknownHosts;
-					};
-					window.addEventListener("load", function() {
-						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
-						if(!!scripts === true && scripts.length > 0) {
-							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
-								var scr = scripts[scriptsIdx];
-								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
-							}
-						}
-					});
 				</script>
 		</div><!-- /#footer -->
 	</div><!-- /#container -->

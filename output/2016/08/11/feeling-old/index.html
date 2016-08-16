@@ -113,6 +113,11 @@
 		<a href="https://twitter.com/ralsina/status/763732155532972032">twitter.com</a>
 		<span class="wm-summary">			The most depressing program in the universe, courtesy of @sil: kryogenix.org/days/2016/08/1…
 </span></li>
+		<li><img src="https://lh5.googleusercontent.com/-sJXS8vOQGqc/AAAAAAAAAAI/AAAAAAAAFKE/S6Z6a5akBFA/photo.jpg?sz=50">
+			Don Rideaux-Crenshaw responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#z12avnbrozuxvnj3h22qudshituzyxg5e04%231470923427717994">plus.google.com</a>
+		<span class="wm-summary">			"The Rocky Horror Picture Show happened closer to Babe Ruth's retirement than to today."Hey, you transvestites! Stop playing baseball on my lawn!
+</span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/1879098296/ad2757286db56a5c368cf9ab18dfc6eb.jpeg">
 			Mark Johnson responded at
 		<a href="https://twitter.com/marxjohnson/status/763735615351492608">twitter.com</a>
@@ -158,6 +163,32 @@
 		<a href="https://twitter.com/BirminghamIO/status/763765011227537408">twitter.com</a>
 		<span class="wm-summary">			Stuart Langridge: Feeling old, depending on how old you are by @sil buff.ly/2aO8YA3 #PlanetBirmingham
 </span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/434801946214801408/Ni8aJvw8.jpeg">
+			Martin O'Leary responded at
+		<a href="https://twitter.com/mewo2/status/764063665750323200">twitter.com</a>
+		<span class="wm-summary">			A nice piece by @sil on how my bot @feelingoldbot works (on an emotional, rather than technical level): kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/434801946214801408/Ni8aJvw8.jpeg">
+			Martin O'Leary responded at
+		<a href="https://twitter.com/mewo2/status/764063665750323200">twitter.com</a>
+		<span class="wm-summary">			A nice piece by @sil on how my bot @feelingoldbot works (on an emotional, rather than technical level): kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-M59IYdy_LVA/AAAAAAAAAAI/AAAAAAAAAAA/S1a1bMR0pys/photo.jpg?sz=50">
+			Lars Westman responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-102651681823460235328">...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Mu_LBVlg6g8/AAAAAAAAAAI/AAAAAAAAAAA/hnphM6JmQC0/photo.jpg?sz=50">
+			Andreas Lagerkvist responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-110924672377553496476">...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-aMEcCK38aqc/AAAAAAAAAAI/AAAAAAAAAAA/17o6BOQq75Y/photo.jpg?sz=50">
+			murph nj responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-116893325733822534829">...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-W0o50l2oK20/AAAAAAAAAAI/AAAAAAAAAAA/1ziirkRicVA/photo.jpg?sz=50">
+			Tim Süberkrüb responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-106125894943795709448">...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
 	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
@@ -209,37 +240,6 @@ if (!tooNewForOldComments) {
 						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 					})();
-
-					// from https://paul.kinlan.me/detecting-injected-content/
-					var detectInjection = function(knownHostsArray) {
-						if (!window.performance || !window.performance.getEntriesByType || !window.URL) return;
-						var requests = window.performance.getEntriesByType("resource");
-						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
-						for (var knownHost in knownHostsArray) {
-							knownHosts[knownHostsArray[knownHost]] = true;
-						}
-						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
-							var request = requests[requestIdx];
-							var url = new URL(request.name);
-							var host = url.host;
-							// Aggregate all the requests from a host
-							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
-						}
-						for(var foundHost in foundHosts) {
-							// If an unknown host is found, add it to a list.
-							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
-						}
-						return unknownHosts;
-					};
-					window.addEventListener("load", function() {
-						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
-						if(!!scripts === true && scripts.length > 0) {
-							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
-								var scr = scripts[scriptsIdx];
-								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
-							}
-						}
-					});
 				</script>
 		</div><!-- /#footer -->
 	</div><!-- /#container -->

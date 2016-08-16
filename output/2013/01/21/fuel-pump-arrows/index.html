@@ -62,7 +62,7 @@
 <p>Well the first thing, I got me a fuel&nbsp;pump  </p>
 <p>— Johnny Cash, <em>One Piece At A&nbsp;Time</em></p>
 </blockquote>
-<p><img alt="A fuel pump icon from a car dashboard with a triangle pointing left" src="" /></p>
+<p><img src="http://kryogenix.org/images/fuelpumparrow.svg" alt="A fuel pump icon from a car dashboard with a triangle pointing left"></p>
 <p>Above is an icon of a petrol pump, which you will see on pretty much
 every car dashboard. Most (not all) modern-ish cars also have a little
 triangle next to the petrol pump icon. That little triangle points
@@ -155,37 +155,6 @@ if (!tooNewForOldComments) {
 						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 					})();
-
-					// from https://paul.kinlan.me/detecting-injected-content/
-					var detectInjection = function(knownHostsArray) {
-						if (!window.performance || !window.performance.getEntriesByType || !window.URL) return;
-						var requests = window.performance.getEntriesByType("resource");
-						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
-						for (var knownHost in knownHostsArray) {
-							knownHosts[knownHostsArray[knownHost]] = true;
-						}
-						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
-							var request = requests[requestIdx];
-							var url = new URL(request.name);
-							var host = url.host;
-							// Aggregate all the requests from a host
-							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
-						}
-						for(var foundHost in foundHosts) {
-							// If an unknown host is found, add it to a list.
-							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
-						}
-						return unknownHosts;
-					};
-					window.addEventListener("load", function() {
-						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
-						if(!!scripts === true && scripts.length > 0) {
-							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
-								var scr = scripts[scriptsIdx];
-								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
-							}
-						}
-					});
 				</script>
 		</div><!-- /#footer -->
 	</div><!-- /#container -->

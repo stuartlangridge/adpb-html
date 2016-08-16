@@ -134,37 +134,6 @@ if (!tooNewForOldComments) {
 						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 					})();
-
-					// from https://paul.kinlan.me/detecting-injected-content/
-					var detectInjection = function(knownHostsArray) {
-						if (!window.performance || !window.performance.getEntriesByType || !window.URL) return;
-						var requests = window.performance.getEntriesByType("resource");
-						var unknownHosts = []; var knownHosts = {}; var foundHosts = {};
-						for (var knownHost in knownHostsArray) {
-							knownHosts[knownHostsArray[knownHost]] = true;
-						}
-						for (var requestIdx = 0; requestIdx < requests.length; requestIdx++) {
-							var request = requests[requestIdx];
-							var url = new URL(request.name);
-							var host = url.host;
-							// Aggregate all the requests from a host
-							if(host in foundHosts) { foundHosts[host].push(request); } else { foundHosts[host] = new Array(request); }
-						}
-						for(var foundHost in foundHosts) {
-							// If an unknown host is found, add it to a list.
-							if(!(foundHost in knownHosts)) { unknownHosts.push(foundHost); }
-						}
-						return unknownHosts;
-					};
-					window.addEventListener("load", function() {
-						var scripts = detectInjection(["kryogenix.org", "www.kryogenix.org", "www.google-analytics.com"]);
-						if(!!scripts === true && scripts.length > 0) {
-							for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
-								var scr = scripts[scriptsIdx];
-								_gaq.push(['trackEvent', 'ScriptLoads', 'UnknownHost', scr]);
-							}
-						}
-					});
 				</script>
 		</div><!-- /#footer -->
 	</div><!-- /#container -->
