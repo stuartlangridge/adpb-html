@@ -120,6 +120,7 @@ function live_update_wm(cb) {
     // localhost debugging
     pageURL = pageURL.replace(/localhost:[0-9]+\//, "www.kryogenix.org/days/");
     pageURL = pageURL.replace(/file:\/\/.*githubrepo\/output\//, "https://www.kryogenix.org/days/");
+    pageURL = pageURL.replace("?" + location.search, "");
     x.open("GET", "https://www.kryogenix.org/days/theme/wmproxy.php?url=" + pageURL, true);
     x.onreadystatechange = function() {
         if (x.readyState == 4) {
