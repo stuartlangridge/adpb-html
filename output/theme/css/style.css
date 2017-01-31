@@ -62,11 +62,9 @@ body {
 	color: #36bcab;
 }
 #site-description {
-	background: #f1f1f1;
-	background-image: -webkit-linear-gradient( #f8f8f8, #eee);
-	background-image: -moz-linear-gradient( #f8f8f8, #eee);
+	background: rgba(0,0,0,0.2);
 	border-radius: 3px;
-	color: #666;
+	color: white;
 	display: inline-block;
 	font-size: 14px;
 	font-weight: 300;
@@ -250,7 +248,7 @@ body {
 	text-transform: uppercase;
 }
 .entry-title a {
-	color: #666;
+	color: #000;
 	text-decoration: none;
 }
 .entry-meta .byline {
@@ -266,11 +264,11 @@ body {
 	display: none;
 }
 blockquote {
-    background: #eee;
-    color: #777;
+    background: rgba(0,0,0,0.3);
+    color: white;
     font-family: sans-serif;
     font-size: 15px;
-    padding: 10px 10px 10px 90px;
+    padding: 10px 20px 10px 50px;
     text-align: justify;
     position: relative;
     margin-top: 40px;
@@ -281,14 +279,14 @@ blockquote {
 blockquote::before {
     content: '“';
     position: absolute;
-    font-size: 200px;
-    background: #eee;
+    font-size: 150px;
+    background: #666;
     top: -20px;
     left: -40px;
-    height: 100px;
-    line-height: 200px;
+    height: 75px;
+    line-height: 150px;
     border-radius: 1000px;
-    width: 100px;
+    width: 75px;
     text-align: center;
     color: #ccc;
 }
@@ -300,9 +298,12 @@ a:hover {
 	color: #36bcab;
 }
 .entry-content {
-	font-family: Raleway, sans-serif;
-	color: #225;
+	font-family: "Maitree";
+	line-height: 1.35;
+	font-size: 16pt;
+	color: #220000;
 }
+.entry-content p { text-indent: 1.25em; }
 .entry-content a img {
 	border: 10px solid transparent;
 }
@@ -865,10 +866,13 @@ ul.neighbours-links li:first-child {
 ul.neighbours-links li:last-child {
 	float: right
 }
+ul.neighbours-links li:first-child:last-child {
+	float: left;
+}
 
 ul.neighbours-links li a {
 	display: block;
-	background: green;
+	background: rgba(0,128,0,0.5);
 	color: white;
 	text-align: center;
 	font-size: 1.5em;
