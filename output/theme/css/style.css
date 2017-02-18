@@ -46,7 +46,7 @@ body {
 ----------------------------------------------- */
 #site-title {
 	color: #000;
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+	font-family: 'Covered By Your Grace', cursive;
 	font-weight: bold;
 	font-size: 80px;
 	margin: 0px;
@@ -62,15 +62,14 @@ body {
 	color: #36bcab;
 }
 #site-description {
-	background: rgba(0,0,0,0.2);
 	border-radius: 3px;
-	color: white;
 	display: inline-block;
 	font-size: 14px;
 	font-weight: 300;
 	margin-top: 0;
 	margin-bottom: 50px;
 	padding: 6px 10px;
+	letter-spacing: 1vw;
 }
 #menu #header-image a {
 	margin: 0;
@@ -92,7 +91,7 @@ body {
 }
 #menu a {
 	color: #666;
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+	font-family: 'Covered By Your Grace', cursive;
 	font-size: 18px;
 	margin: 0 10px;
 	padding: 4px 0;
@@ -187,7 +186,7 @@ body {
 	width: 580px;
 }
 .hentry .entry-meta {
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+	font-family: 'Covered By Your Grace', cursive;
 	font-size: 25px;
 	float: left;
 	margin: 35px 0 0 -199px;
@@ -239,8 +238,8 @@ body {
 }
 .entry-title {
 	color: #666;
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
-	font-size: 25px;
+	font-family: 'Covered By Your Grace', cursive;
+	font-size: 40px;
 	line-height: 38px;
 	margin: 5px 0px 15px 0px;
 	text-align: left;
@@ -248,7 +247,7 @@ body {
 	text-transform: uppercase;
 }
 .entry-title a {
-	color: #000;
+	color: #223179;
 	text-decoration: none;
 }
 .entry-meta .byline {
@@ -301,7 +300,7 @@ a:hover {
 	font-family: "Maitree";
 	line-height: 1.35;
 	font-size: 16pt;
-	color: #220000;
+	color: #004;
 }
 .entry-content p { text-indent: 1.25em; }
 .entry-content a img {
@@ -682,7 +681,7 @@ article.comment {
 }
 .widget-title {
 	color: #555;
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+	font-family: 'Covered By Your Grace', cursive;
 	font-size: 16px;
 	margin: 0 0 12px 0;
 	text-transform: uppercase;
