@@ -46,7 +46,7 @@ body {
 ----------------------------------------------- */
 #site-title {
 	color: #000;
-	font-family: 'Covered By Your Grace', cursive;
+	font-family: 'Covered By Your Grace', serif;
 	font-weight: bold;
 	font-size: 80px;
 	margin: 0px;
@@ -91,7 +91,7 @@ body {
 }
 #menu a {
 	color: #666;
-	font-family: 'Covered By Your Grace', cursive;
+	font-family: 'Covered By Your Grace', serif;
 	font-size: 18px;
 	margin: 0 10px;
 	padding: 4px 0;
@@ -186,7 +186,7 @@ body {
 	width: 580px;
 }
 .hentry .entry-meta {
-	font-family: 'Covered By Your Grace', cursive;
+	font-family: 'Covered By Your Grace', serif;
 	font-size: 25px;
 	float: left;
 	margin: 35px 0 0 -199px;
@@ -238,7 +238,7 @@ body {
 }
 .entry-title {
 	color: #666;
-	font-family: 'Covered By Your Grace', cursive;
+	font-family: 'Covered By Your Grace', serif;
 	font-size: 40px;
 	line-height: 38px;
 	margin: 5px 0px 15px 0px;
@@ -681,7 +681,7 @@ article.comment {
 }
 .widget-title {
 	color: #555;
-	font-family: 'Covered By Your Grace', cursive;
+	font-family: 'Covered By Your Grace', serif;
 	font-size: 16px;
 	margin: 0 0 12px 0;
 	text-transform: uppercase;
