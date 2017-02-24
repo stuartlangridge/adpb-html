@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Dividends and director withdrawals</title>
+		<title>as days pass by &mdash; A standard password change API</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -49,48 +49,42 @@
 
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
-		<div class="date"><a href="//www.kryogenix.org/days/2017/02/20/dividends-and-director-withdrawals/"><time 
-			class="dt-published" datetime="2017-02-20T10:02:00">Feb 20 2017</time></a>
+		<div class="date"><a href="//www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/"><time 
+			class="dt-published" datetime="2017-02-24T20:20:00">Feb 24 2017</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="http://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="//www.kryogenix.org/days/2017/02/20/dividends-and-director-withdrawals/" title="Permalink to Dividends and director withdrawals" rel="bookmark">Dividends and director&nbsp;withdrawals</a>
+			<a class="u-url p-name" href="//www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/" title="Permalink to A standard password change API" rel="bookmark">A standard password change <span class="caps">API</span></a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Everyone running their own business except me probably already knows this. But, three years in, I think I’ve finally actually understood in my own mind the difference between a dividend and a director withdrawal. My accountant, Crunch<sup id="sf-dividends-and-director-withdrawals-1-back"><a title="who are really handy, online, and are happy to receive emails in which I ask stupid questions over and over again: if you need an accountant too, this referral link will get us both some money off" class="simple-footnote" href="#sf-dividends-and-director-withdrawals-1">1</a></sup> have me record both of them when I take money out of the company, and I didn’t really get why until recently. When I finally got it, I wrote myself a note that I could go back to and read when I get confused again, and I thought I’d publish that here so others can see it too.</p>
-<p>(<strong>Important note: this is not financial advice.</strong> If my understanding here differs from your understanding, trust yourself, or your accountant. I’m also likely glossing over many subtleties, etc, etc. If you think this is downright <em>wrong</em>, I’d be interested in hearing. If you think it’s over-simplified, you’re doubtless correct.)</p>
-<hr>
-
-<p>A dividend is a promise to pay you X money.</p>
-<p>A director withdrawal is you taking that money out.</p>
-<p>So when a pound comes in, you can create a dividend to say: we’ll pay Stuart 80p.</p>
-<p>When you take the money out, you record a director withdrawal of 80p.</p>
-<p>Dividends are IOUs. Withdrawals are you cashing the <span class="caps">IOU</span> in.</p>
-<p>So when the “director’s loan account is overdrawn”, that means: you have recorded dividends of N but have recorded director withdrawals of more than N, i.e., you’ve taken out more than the company wants to pay you. This may be because you are owed the amount you took, and recorded director withdrawals for all that but forgot to do a dividend for it, or because you’ve taken more than you’re allowed.</p>
-<p>When creating a new dividend (in Crunch) it will (usefully) say what the maximum dividend you can take is; that should be the maximum takeable <em>while still leaving enough money in the account to pay the tax bill</em>. </p>
-<p>In the Pay Yourself dashboard (in Crunch) it’ll say “money owed to Stuart”; that’s money that’s been promised with a dividend but not taken out with a withdrawal. (Note: this may be because you forgot to do a withdrawal for money you’ve taken! In theory it would mean money promised with a dividend but not taken, but maybe you took it and just didn’t do a withdrawal to record that you took it. Check.)</p><ol class="simple-footnotes"><li id="sf-dividends-and-director-withdrawals-1">who are really handy, online, and are happy to receive emails in which I ask stupid questions over and over again: if you need an accountant too, <a href="http://www.crunch.co.uk/referrals/?c2c=sl14342l">this referral link</a> will get us both some money off <a class="simple-footnote-back" href="#sf-dividends-and-director-withdrawals-1-back">↩</a></li></ol>
+			<p>Wouldn’t it be nice if there were some sort of standard password-change <span class="caps">API</span> that websites all implemented? Then when there’s some sort of breach and you have to change a bunch of passwords<sup id="sf-a-standard-password-change-api-1-back"><a title="this week it was Cloudflare, but there’ll be another next week no doubt" class="simple-footnote" href="#sf-a-standard-password-change-api-1">1</a></sup> you could just download a list of domains that need fixing and give it to your password manager, and then your password manager would use the standard password-change <span class="caps">API</span> on each of those sites to change your password to something else. Job done. That’d be lovely.</p>
+<p>Obvious questions:</p>
+<h4>What about people without a password manager?</h4>
+<p>Yeah, they’re no better off under this plan. But they’re no worse off. And they were likely already using guessable passwords. This problem needs fixing, certainly (have people use password managers, make them easier to use, eliminate passwords entirely, many other suggestions) but fixing it is not the goal of this plan.</p>
+<h4>How does the password manager know where to look?</h4>
+<p>Put a file in <a href="http://serverfault.com/questions/795467/for-what-is-the-well-known-folder"><code>/.well-known</code></a> which describes the location of the endpoint and the parameters that need to be passed to it or something. That seems an easy problem to solve; your password manager knows the domain, so it just hits <code>https://domain/.well-known/password-change.json</code> and gets <code>{location: '/std-pwchange', required_parameters: {username: "username", password: "password"}}</code> or something. The detail here can be worked out.</p>
+<h4>Doesn’t this make compromising people’s accounts easier?</h4>
+<p>I don’t <em>think</em> so, but I might be wrong. At the moment, if I discover your master password I can’t do anything with it without access to your password manager’s database; if I’ve got both your master password <em>and</em> access to your passwords database then I can manually go and steal all your accounts everywhere and change all your passwords. Having this doesn’t make it more likely; it just makes it less drudge-work for an attacker to do.</p>
+<h4>What about sites that require two-factor auth?</h4>
+<p>Yeah, this won’t work for them. Then again, if the site requires two-factor auth, having your password potentially compromised in a breach is not as big a deal, right? So the endpoint can return <code>needs-manual-update</code> and then your password manager pops up a box saying “you have to manually update your password on the following sites: (list of links)”. Which is what it would do for sites that inexplicably have not adopted this idea anyway.</p>
+<h4>Why would anyone adopt this?</h4>
+<p>Same reason anyone adopts anything; it seems a good plan, or everyone else is. This would certainly make life easier for users of password managers, and both sites and pw managers can advertise “we make your life easier when this happens” as a feature.</p>
+<p>Have I missed a reason why this would be a bad idea? It’d need speccing out in detail, obviously, but the concept to me seems good…</p><ol class="simple-footnotes"><li id="sf-a-standard-password-change-api-1">this week it was Cloudflare, but there’ll be another next week no doubt <a class="simple-footnote-back" href="#sf-a-standard-password-change-api-1-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
-		<li><a href="//www.kryogenix.org/days/2017/02/19/the-quiet-voice/">Previous post</a></li>
-		<li><a href="//www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/">Next post</a></li>
+		<li><a href="//www.kryogenix.org/days/2017/02/20/dividends-and-director-withdrawals/">Previous post</a></li>
 		</ul>
 	</div> <!--/#main-->
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul>
-		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
-			Birmingham.IO responded at
-		<a href="https://twitter.com/BirminghamIO/status/833630277855563776">twitter.com</a>
-		<span class="wm-summary">			Stuart Langridge: Dividends and director withdrawals by @sil buff.ly/2m3uhhJ #PlanetBirmingham
-</span></li>
-	</ul>
+	<ul><li>(no mentions, yet.)</li></ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
-	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2017/02/20/dividends-and-director-withdrawals/">
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/">
 	<input type="submit" value="Add link">
 </form>
 <script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
@@ -98,7 +92,7 @@
 
 <p id="oldcomments"></p>
 <script>
-var aurl = '2017/02/20/dividends-and-director-withdrawals/';
+var aurl = '2017/02/24/a-standard-password-change-api/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
 var tooNewForOldComments = false;
