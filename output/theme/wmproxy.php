@@ -2,16 +2,25 @@
 header("Access-Control-Allow-Origin: *");
 if (!isset($_GET["url"])) { echo "[]"; die(); }
 $u = $_GET["url"];
-$needle1 = "http://www.kryogenix.org/days/";
-$needle2 = "https://www.kryogenix.org/days/";
-$length1 = strlen($needle1);
-$length2 = strlen($needle2);
 
-if (substr($u, 0, $length1) === $needle1) {
-    // ok; requesting http URL
-} else if (substr($u, 0, $length2) === $needle2) {
-    // requesting https; change to http because that's what webmentions remembers
-    $u = str_replace("https://www.kryogenix.org", "http://www.kryogenix.org", $u);
+$permitted = [
+    "https://www.kryogenix.org/days/",
+    "https://kryogenix.org/days/",
+    "http://www.kryogenix.org/days/",
+    "http://kryogenix.org/days/"
+];
+
+$isok = FALSE;
+foreach($permitted as $check) {
+    $len = strlen($check);
+    if (substr($u, 0, $len) === $check) {
+        $isok = TRUE;
+    }
+}
+
+
+if ($isok) {
+    // no worries.
 } else {
     echo "[]"; die();
 }
