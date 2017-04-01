@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Enable Compiz in Ubuntu MATE to fix dragging the window borders</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Maitree" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(//www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="//www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="//www.kryogenix.org/days/2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/"><time 
+			class="dt-published" datetime="2017-04-01T13:44:00">Apr 01 2017</time></a>
+			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="//www.kryogenix.org/days/2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/" title="Permalink to Enable Compiz in Ubuntu MATE to fix dragging the window borders" rel="bookmark">Enable Compiz in Ubuntu <span class="caps">MATE</span> to fix dragging the window&nbsp;borders</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>If you use <a href="https://ubuntu-mate.org/">Ubuntu <span class="caps">MATE</span></a> you may have found that it&#8217;s really difficult to resize windows; you can move your mouse pointer over the edge of a window to drag the window bigger or smaller, but the &#8220;grab area&#8221; is only one pixel wide. This is alaarmingly&nbsp;irritating.</p>
+<p>It&#8217;s a long-standing bug (people were complaining about this <a href="http://askubuntu.com/questions/4109/how-do-i-increase-the-resize-margin-on-windows">in 2010</a>, seven years ago!), which has been fixed in Ubuntu proper for a long time, but has resurfaced in Ubuntu <span class="caps">MATE</span>. Anyway, to fix resizing of windows, you need to enable Compiz in Ubuntu <span class="caps">MATE</span>; that replaces Ubuntu <span class="caps">MATE</span>&#8217;s standard &#8220;window manager&#8221;, which is named &#8220;Marco&#8221;, with the Compiz window manager, and Compiz doesn&#8217;t have this daft problem. Yes, it is annoying that this doesn&#8217;t just work, and apparently they&#8217;re working on fixing it so it doesn&#8217;t become our problem as users to fix the deficiencies, but in the interim you can at least fix it for yourself even though you shouldn&#8217;t have&nbsp;to.</p>
+<p>So, open <span class="caps">MATE</span> Tweak, which is in the <strong>System</strong> menu (<strong>Preferences</strong> &gt; <strong>Look and Feel</strong> &gt; <strong><span class="caps">MATE</span> Tweak</strong>), and under <em>Windows</em>, choose <em>Compiz (Advanced <span class="caps">GPU</span> accelerated desktop effects)</em> under <em>Window Manager</em>.</p>
+<p><img src="https://kryogenix.org/random/ubuntu-mate-enable-compiz.png" alt=""></p>
+<p>Technically, Compiz requires a 3d accelerated graphics card. However, unless your machine is very, very, very old indeed, it will have enough 3d acceleration to do this; this is not like playing games or similar. My ancient Dell laptop copes with it fine, so it should not be a&nbsp;worry.</p>
+<p>Ubuntu <span class="caps">MATE</span> will then switch to Compiz (you don&#8217;t need to reboot or anything) and will show you a window saying &#8220;Keep this window manager?&#8221; If you see that window, you can click &#8220;Yes, <span class="caps">OK</span>&#8221; in it. (If for some reason this hasn&#8217;t worked, then you won&#8217;t see that window and so it will automatically switch back, so your computer isn&#8217;t broken.) Now, resizing Ubuntu <span class="caps">MATE</span> windows should be a lot easier, because the resize grab area will not be one single&nbsp;pixel.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="//www.kryogenix.org/days/2017/02/25/lets-encrypt-and-tsohost/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/">
+	<input type="submit" value="Add link">
+</form>
+<script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
