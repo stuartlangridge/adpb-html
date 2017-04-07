@@ -965,7 +965,7 @@ div.highlight pre {
     padding: 0 0.5em;
     font-size: 0.8em;
 }
-p > img:first-child:last-child:not([style]) {
+p > img:first-child:last-child:not([style]), p > a:first-child:last-child > img:first-child:last-child:not([style]) {
     max-width: 90%;
     margin: auto;
     display: block;
