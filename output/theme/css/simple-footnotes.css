@@ -19,3 +19,18 @@ a.simple-footnote:hover::after {
     background: rgba(0,0,0,0.2);
     border: 1px solid rgba(0,0,0,0.4);
 }
+
+ol.simple-footnotes {
+    border-top: 1px solid rgba(0,0,0,0.4);
+    margin-top: 1em;
+    padding-top: 1em;
+}
+ol.simple-footnotes::before {
+    content: "Footnotes";
+    display: block;
+    text-align: left;
+    font-size: 1.2em;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
