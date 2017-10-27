@@ -60,7 +60,9 @@
 		</h2>
 		<div class="entry-content e-content">
 			<p>It&#8217;s nice to get updates from your <span class="caps">CI</span> system when things build. It&#8217;s even nicer to do it without having to run any servers to do it. Here&#8217;s how I send build notifications to a Telegram bot from&nbsp;Jenkins.</p>
-<p>Basically, Jenkins knows how to hit a webhook for every stage of the build, and <a href="https://integram.org">Integram</a> run a Telegram bot which knows how to respond to webhooks. All you need is a little bit of glue code to convert stuff Jenkins sends into stuff Integram receives, and you can put that glue code on any one of fifteen serverless systems. I used <a href="https://webtask.io">webtask.io</a>. Deploy the following code there, being sure to update the Integram <span class="caps">URL</span> in it to be&nbsp;yours:</p>
+<p>Basically, Jenkins knows how to hit a webhook for every stage of the build, and <a href="https://integram.org">Integram</a> run a Telegram bot which knows how to respond to webhooks. All you need is a little bit of glue code to convert stuff Jenkins sends into stuff Integram receives, and you can put that glue code on any one of fifteen serverless systems. I used <a href="https://webtask.io">webtask.io</a>. </p>
+<p><img src="/images/jenkins-webtask.png" alt="The Webtask.io editor"></p>
+<p>Deploy the following code there, being sure to update the Integram <span class="caps">URL</span> in it to be&nbsp;yours:</p>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;body-parser&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;request&#39;</span><span class="p">)</span>
@@ -114,6 +116,7 @@
 <p><img src="/images/jenkins-notifications.png" alt="Add a notifications endpoint in the configure section of your build job"></p>
 <p>And invite the Integram bot to your Telegram channel (instructions at <a href="https://integram.org/">integram.org</a>).</p>
 <p>And you&#8217;re done. Every time Jenkins does anything, it sends a web request to your webtask, the webtask sends a message to the Integram bot, the Integram bot repeats it to you, and you get a notification. No extra servers required. I love the&nbsp;internet.</p>
+<p><img src="/images/jenkins-telegram-notifications.png" alt="The Telegram bot speaks the message it's given, and so Telegram notifies you"></p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2017/10/15/charles-paget-wade-and-the-underthing/">Previous post</a></li>
