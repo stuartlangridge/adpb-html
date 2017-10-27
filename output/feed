@@ -1,52 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="//www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Fri, 27 Oct 2017 10:53:00 +0100</lastBuildDate><item><title>Telegram notifications for Jenkins builds</title><link>//www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/</link><description>&lt;p&gt;It&amp;#8217;s nice to get updates from your &lt;span class="caps"&gt;CI&lt;/span&gt; system when things build. It&amp;#8217;s even nicer to do it without having to run any servers to do it. Here&amp;#8217;s how I send build notifications to a Telegram bot from&amp;nbsp;Jenkins.&lt;/p&gt;
 &lt;p&gt;Basically, Jenkins knows how to hit a webhook for every stage of the build, and &lt;a href="https://integram.org"&gt;Integram&lt;/a&gt; run a Telegram bot which knows how to respond to webhooks. All you need is a little bit of glue code to convert stuff Jenkins sends into stuff Integram receives, and you can put that glue code on any one of fifteen serverless systems. I used &lt;a href="https://webtask.io"&gt;webtask.io&lt;/a&gt;. Deploy the following code there, being sure to update the Integram &lt;span class="caps"&gt;URL&lt;/span&gt; in it to be&amp;nbsp;yours:&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;express&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;express&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;bodyParser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;body-parser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;request&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;request&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;Webtask&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -93,7 +48,7 @@
     &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Listening on port 4569&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
 
 &lt;p&gt;Then, put the webtask &lt;span class="caps"&gt;URL&lt;/span&gt; into Jenkins as a&amp;nbsp;webhook:&lt;/p&gt;
 &lt;p&gt;&lt;img src="/images/jenkins-notifications.png" alt="Add a notifications endpoint in the configure section of your build job"&gt;&lt;/p&gt;

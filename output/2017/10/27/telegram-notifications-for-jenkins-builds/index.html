@@ -61,52 +61,7 @@
 		<div class="entry-content e-content">
 			<p>It&#8217;s nice to get updates from your <span class="caps">CI</span> system when things build. It&#8217;s even nicer to do it without having to run any servers to do it. Here&#8217;s how I send build notifications to a Telegram bot from&nbsp;Jenkins.</p>
 <p>Basically, Jenkins knows how to hit a webhook for every stage of the build, and <a href="https://integram.org">Integram</a> run a Telegram bot which knows how to respond to webhooks. All you need is a little bit of glue code to convert stuff Jenkins sends into stuff Integram receives, and you can put that glue code on any one of fifteen serverless systems. I used <a href="https://webtask.io">webtask.io</a>. Deploy the following code there, being sure to update the Integram <span class="caps">URL</span> in it to be&nbsp;yours:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;body-parser&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;request&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">Webtask</span><span class="p">;</span>
@@ -153,7 +108,7 @@
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Listening on port 4569&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>Then, put the webtask <span class="caps">URL</span> into Jenkins as a&nbsp;webhook:</p>
 <p><img src="/images/jenkins-notifications.png" alt="Add a notifications endpoint in the configure section of your build job"></p>
