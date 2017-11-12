@@ -82,10 +82,8 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
     this.track.setAttribute("cy", "50");
     this.track.setAttribute("r", "45");
     this.indicator = this.track.cloneNode(true);&lt;/span&gt;
-
     this.track.style.stroke = "var(--track-color, #9E9E9E)";
     this.indicator.style.stroke = "var(--circle-color, #333333)";
-
     &lt;span&gt;svg.appendChild(this.track);
     svg.appendChild(this.indicator);
     let shadowRoot = this.attachShadow({mode: 'open'});
@@ -116,12 +114,11 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
     var style = document.createElement("style");
     style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
     shadowRoot.appendChild(style);
-    &lt;span&gt;
-  }
+  &lt;span&gt;}
 });&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Next, we need to be able to set the proeprties which define the value of the counter — how much progress it should show. Having &lt;code&gt;value&lt;/code&gt; and &lt;code&gt;max&lt;/code&gt; properties similar to an &lt;code&gt;&amp;lt;input type="range"&amp;gt;&lt;/code&gt; seems logical here. For this, we define a little function &lt;code&gt;setDashOffset&lt;/code&gt; which sets the &lt;code&gt;stroke-dashoffset&lt;/code&gt; style on our indicator. We then call that function in two places. One is in &lt;code&gt;connectedCallback&lt;/code&gt;, a method which is called when our custom element is first inserted into the document. The second is whenever our &lt;code&gt;value&lt;/code&gt; or &lt;code&gt;max&lt;/code&gt; attributes change. That gets set up by defining &lt;code&gt;observedAttributes&lt;/code&gt;, which returns a list of attributes that we want to watch; whenever one of those attributes changes, &lt;code&gt;attributeChangedCallback&lt;/code&gt; is called.&lt;/p&gt;
+&lt;p&gt;Next, we need to be able to set the properties which define the value of the counter — how much progress it should show. Having &lt;code&gt;value&lt;/code&gt; and &lt;code&gt;max&lt;/code&gt; properties similar to an &lt;code&gt;&amp;lt;input type="range"&amp;gt;&lt;/code&gt; seems logical here. For this, we define a little function &lt;code&gt;setDashOffset&lt;/code&gt; which sets the &lt;code&gt;stroke-dashoffset&lt;/code&gt; style on our indicator. We then call that function in two places. One is in &lt;code&gt;connectedCallback&lt;/code&gt;, a method which is called when our custom element is first inserted into the document. The second is whenever our &lt;code&gt;value&lt;/code&gt; or &lt;code&gt;max&lt;/code&gt; attributes change. That gets set up by defining &lt;code&gt;observedAttributes&lt;/code&gt;, which returns a list of attributes that we want to watch; whenever one of those attributes changes, &lt;code&gt;attributeChangedCallback&lt;/code&gt; is called.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
 &lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {&lt;/span&gt;
   static get observedAttributes() {

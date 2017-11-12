@@ -142,10 +142,8 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
     this.track.setAttribute("cy", "50");
     this.track.setAttribute("r", "45");
     this.indicator = this.track.cloneNode(true);</span>
-
     this.track.style.stroke = "var(--track-color, #9E9E9E)";
     this.indicator.style.stroke = "var(--circle-color, #333333)";
-
     <span>svg.appendChild(this.track);
     svg.appendChild(this.indicator);
     let shadowRoot = this.attachShadow({mode: 'open'});
@@ -176,12 +174,11 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
     var style = document.createElement("style");
     style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
     shadowRoot.appendChild(style);
-    <span>
-  }
+  <span>}
 });</span>
 </code></pre>
 
-<p>Next, we need to be able to set the proeprties which define the value of the counter — how much progress it should show. Having <code>value</code> and <code>max</code> properties similar to an <code>&lt;input type="range"&gt;</code> seems logical here. For this, we define a little function <code>setDashOffset</code> which sets the <code>stroke-dashoffset</code> style on our indicator. We then call that function in two places. One is in <code>connectedCallback</code>, a method which is called when our custom element is first inserted into the document. The second is whenever our <code>value</code> or <code>max</code> attributes change. That gets set up by defining <code>observedAttributes</code>, which returns a list of attributes that we want to watch; whenever one of those attributes changes, <code>attributeChangedCallback</code> is called.</p>
+<p>Next, we need to be able to set the properties which define the value of the counter — how much progress it should show. Having <code>value</code> and <code>max</code> properties similar to an <code>&lt;input type="range"&gt;</code> seems logical here. For this, we define a little function <code>setDashOffset</code> which sets the <code>stroke-dashoffset</code> style on our indicator. We then call that function in two places. One is in <code>connectedCallback</code>, a method which is called when our custom element is first inserted into the document. The second is whenever our <code>value</code> or <code>max</code> attributes change. That gets set up by defining <code>observedAttributes</code>, which returns a list of attributes that we want to watch; whenever one of those attributes changes, <code>attributeChangedCallback</code> is called.</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {</span>
   static get observedAttributes() {
