@@ -129,7 +129,8 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 </code></pre>
 
 <p>Now, we want to allow people to set the colours of our circles. The way to do this is with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*"><span class="caps">CSS</span> custom properties</a>. Basically, you can invent any new property name you like, as long as it’s prefixed with <code>--</code>. So we invent two: <code>--track-color</code> and <code>--circle-color</code>. We then set the two circles to be those colours by using <span class="caps">CSS</span>’s <code>var()</code> syntax; this lets us say “use this variable if it’s set, or use this default value if it isn’t”. So our user can style our element with <code>twitter-circle-count { --track-color: #eee; }</code> and it’ll work.</p>
-<p>Annoyingly, it doesn’t seem to be easily possible to use <em>existing</em> <span class="caps">CSS</span> properties for this; there doesn’t seem to be a good way to have the standard property <code>color</code> set the circle colour.<sup id="sf-i-wrote-a-web-component-4-back"><a title="It would be possible to have color apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare." class="simple-footnote" href="#sf-i-wrote-a-web-component-4">4</a></sup> One has to use a custom variable even if there’s a “real” <span class="caps">CSS</span> property that would be appropriate. I’m hoping I’m wrong about this and there is a sensible way to do it that I just haven’t discovered.<sup id="sf-i-wrote-a-web-component-5-back"><a title="QML does this by setting “aliases”; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow." class="simple-footnote" href="#sf-i-wrote-a-web-component-5">5</a></sup></p>
+<p>Annoyingly, it doesn’t seem to be easily possible to use <em>existing</em> <span class="caps">CSS</span> properties for this; there doesn’t seem to be a good way to have the standard property <code>color</code> set the circle colour.<sup id="sf-i-wrote-a-web-component-4-back"><a title="It would be possible to have color apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare." class="simple-footnote" href="#sf-i-wrote-a-web-component-4">4</a></sup> One has to use a custom variable even if there’s a “real” <span class="caps">CSS</span> property that would be appropriate. I’m hoping I’m wrong about this and there is a sensible way to do it that I just haven’t discovered.<sup id="sf-i-wrote-a-web-component-5-back"><a title="QML does this by setting “aliases”; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow." class="simple-footnote" href="#sf-i-wrote-a-web-component-5">5</a></sup>
+(Update: Matt Machell <a href="https://twitter.com/shuckle/status/929710831620820993">mentions <code>currentColor</code></a> which would work perfectly for this example, but it <em>only</em> works for <code>color</code>; there’s no way of setting other properties like, say, <code>font-size</code> on the component and having that explicitly propagate down to a particular element <em>in</em> the component; there’s no <code>currentFontSize</code>. I don’t know why <code>color</code> gets special treatment, even though the special treatment would solve my particular problem.)</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
   constructor() {
@@ -304,7 +305,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 </pre></div>
 
 
-<div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"keyup"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"input"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"twitter-circle-count"</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"value"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
 <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
 </pre></div>
@@ -333,10 +334,10 @@ twitter-circle-count {
 <script src="https://kryogenix.org/code/browser/twitter-circle-count.js">
 </script>
 <style>
-pre { line-height: 0.9; }
+pre { line-height: 1; }
 pre code { font-size: 12px; }
 pre code span { opacity: 0.25; }
-</style></p><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google’s web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-1-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-2-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it’s a bit more complicated than this. One step at a time. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-3-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-4-back">↩</a></li><li id="sf-i-wrote-a-web-component-5"><span class="caps">QML</span> does this by setting “aliases”; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-5-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn’t seem to support this yet, either <code>:host</code> or scoping styles so they don’t leak out of the component, so I’ve also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal <span class="caps">CSS</span>. This should be fixed soon. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-6-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-7-back">↩</a></li></ol>
+</style></p><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google’s web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-1-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-2-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it’s a bit more complicated than this. One step at a time. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-3-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-4-back">↩</a></li><li id="sf-i-wrote-a-web-component-5"><span class="caps">QML</span> does this by setting “aliases”; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-5-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn’t seem to support this yet, either <code>:host</code> or scoping styles so they don’t leak out of the component, so I’ve also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal <span class="caps">CSS</span>. This should be fixed soon. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-6-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-7-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/">Previous post</a></li>
@@ -345,7 +346,55 @@ pre code span { opacity: 0.25; }
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul><li>(no mentions, yet.)</li></ul>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000641235880/29f32f34a4f1247e0791ad55cb982f8f.jpeg">
+			Ben Nadel responded at
+		<a href="https://twitter.com/BenNadel/status/929699570199748608">twitter.com</a>
+		<span class="wm-summary">			Noice!!! Will check it out :D
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000641235880/29f32f34a4f1247e0791ad55cb982f8f.jpeg">
+			Ben Nadel responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-15148392">...</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/437657039322361856/kI1jXts7.png">
+			Brian Douglass responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-769568342">...</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/634707167770243072/9RvxX6u2.jpg">
+			Matt Machell responded at
+		<a href="https://twitter.com/shuckle/status/929710831620820993">twitter.com</a>
+		<span class="wm-summary">			for your colour woes, would currentColor keyword help? css-tricks.com/currentcolor/ we use that in our (non web component) SVG dials.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/929711474498527233">twitter.com</a>
+		<span class="wm-summary">			Ooh! It would. I don't understand why colour gets a special one-use-only solution rather than something that applies to all CSS properties, but they d&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/634707167770243072/9RvxX6u2.jpg">
+			Matt Machell responded at
+		<a href="https://twitter.com/shuckle/status/929712008840335360">twitter.com</a>
+		<span class="wm-summary">			works as far back as IE9, so shouldn't need it for SVG? caniuse.com/#search=curren…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/929712151933214720">twitter.com</a>
+		<span class="wm-summary">			This thing has existed for ever?? Blimey. I must be blind
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/634707167770243072/9RvxX6u2.jpg">
+			Matt Machell responded at
+		<a href="https://twitter.com/shuckle/status/929712583753502720">twitter.com</a>
+		<span class="wm-summary">			It has. It's really useful for any inline SVG you want to inherit its fill from the text color.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/870214669570650112/2QNI84vG.jpg">
+			Prem Rose responded at
+		<a href="https://twitter.com/premasagar/status/929716118843019264">twitter.com</a>
+		<span class="wm-summary">			Thanks for the post. It's helpful to have simple, useful examples to get going with web components. A heads-up, the code snippets have a line-height&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/870214669570650112/2QNI84vG.jpg">
+			Prem Rose responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-627103">...</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
