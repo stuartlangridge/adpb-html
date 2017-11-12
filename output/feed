@@ -260,7 +260,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 
 &lt;p&gt;Type some text in here:&lt;/p&gt;
 
-&lt;p&gt;&lt;textarea cols="40" rows="3"&gt;&lt;/textarea&gt;
+&lt;p&gt;&lt;textarea cols="20" rows="3"&gt;&lt;/textarea&gt;
 &lt;style&gt;
 twitter-circle-count {
   width: 30px;
