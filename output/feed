@@ -1,5 +1,283 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="//www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Fri, 27 Oct 2017 10:53:00 +0100</lastBuildDate><item><title>Telegram notifications for Jenkins builds</title><link>//www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/</link><description>&lt;p&gt;It&amp;#8217;s nice to get updates from your &lt;span class="caps"&gt;CI&lt;/span&gt; system when things build. It&amp;#8217;s even nicer to do it without having to run any servers to do it. Here&amp;#8217;s how I send build notifications to a Telegram bot from&amp;nbsp;Jenkins.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="//www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Sun, 12 Nov 2017 11:31:00 +0000</lastBuildDate><item><title>I wrote a Web Component</title><link>//www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/</link><description>&lt;p&gt;I’ve been meaning to play with Web Components for a little while now. After I saw &lt;a href="https://twitter.com/BenNadel/status/929383549584789504"&gt;Ben Nadel create a Twitter tweet progress indicator with Angular&lt;/a&gt; and &lt;a href="https://github.com/LucasLeandro1204/vue-twitter-counter"&gt;Lucas Leandro did the same with Vue.js&lt;/a&gt; I thought, here’s a chance to experiment.&lt;/p&gt;
+&lt;p&gt;Web Components involve a whole bunch of different dovetailing specs; &lt;span class="caps"&gt;HTML&lt;/span&gt; imports, custom elements, shadow &lt;span class="caps"&gt;DOM&lt;/span&gt;, &lt;span class="caps"&gt;HTML&lt;/span&gt; templates. I didn’t want to have to use the &lt;span class="caps"&gt;HTML&lt;/span&gt; template and import stuff if I could avoid it, and pleasantly you actually don’t need it. Essentially, you can create a custom element named &lt;code&gt;whatever-you-want&lt;/code&gt; and then just add &lt;code&gt;&amp;lt;whatever-you-want someattr="somevalue"&amp;gt;content here&amp;lt;/whatever-you-want&amp;gt;&lt;/code&gt; elements to your page, and it all works. This is good.&lt;/p&gt;
+&lt;p&gt;To define a new type of element, you use &lt;code&gt;window.customElements.define('your-element-name', YourClass)&lt;/code&gt;.&lt;sup id="sf-i-wrote-a-web-component-1-back"&gt;&lt;a title="I relied for a lot of this understanding on Google’s web components documentation by Eric Bidelman." class="simple-footnote" href="#sf-i-wrote-a-web-component-1"&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;code&gt;YourClass&lt;/code&gt; is an &lt;span class="caps"&gt;ES2016&lt;/span&gt; JavaScript class. &lt;sup id="sf-i-wrote-a-web-component-2-back"&gt;&lt;a title="All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later." class="simple-footnote" href="#sf-i-wrote-a-web-component-2"&gt;2&lt;/a&gt;&lt;/sup&gt; So, we start like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+window.customElements.define('twitter-circle-count', class extends HTMLElement {
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The class has a &lt;code&gt;constructor&lt;/code&gt; method which sets everything up. In our case, we’re going to create an &lt;span class="caps"&gt;SVG&lt;/span&gt; with two circles: the “indicator” (which is the one that changes colour and fills in as you add characters), and the “track” (which is the one that’s always present and shows where the line of the circle goes). Then we shrink and grow the “indicator” circle by using &lt;a href="https://jakearchibald.com/2013/animated-line-drawing-svg/"&gt;Jake Archibald’s dash-offset technique&lt;/a&gt;. This is all perfectly expressed by Ben Nadel’s diagram, which I hope he doesn’t mind me borrowing because it’s great.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/twitter-progress-indicator-concept-angular5.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;So, we need to dynamically create an &lt;span class="caps"&gt;SVG&lt;/span&gt;. The &lt;span class="caps"&gt;SVG&lt;/span&gt; we want will look basically like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"&amp;gt;
+  &amp;lt;circle cx="50" cy="50" r="45" 
+  style="stroke: #9E9E9E"&amp;gt;&amp;lt;/circle&amp;gt;
+  &amp;lt;circle cx="50" cy="50" r="45" 
+  style="stroke: #333333)"&amp;gt;&amp;lt;/circle&amp;gt;
+&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let’s set that &lt;span class="caps"&gt;SVG&lt;/span&gt; up in our element’s constructor:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {&lt;/span&gt;
+  constructor() {
+    /* You must call super() first in the constructor. */
+    super();
+
+    /* Create the SVG. Note that we need createElementNS, not createElement */
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+    /* Create the track. Note createElementNS. Note also that "this" refers to
+       this element, so we've got a reference to it for later. */
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    /* And create the indicator, by duplicating the track */
+    this.indicator = this.track.cloneNode(true);
+
+    svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+  }
+&lt;span&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to actually add that created &lt;span class="caps"&gt;SVG&lt;/span&gt; to the document. For that, we create a &lt;em&gt;shadow root&lt;/em&gt;. This is basically a little separate &lt;span class="caps"&gt;HTML&lt;/span&gt; document, inside your element, which is isolated from the rest of the page. Styles set in the main page won’t apply to stuff in your component; styles set in your component won’t leak out to the rest of the page.&lt;sup id="sf-i-wrote-a-web-component-3-back"&gt;&lt;a title="Pedant posse: yes, it’s a bit more complicated than this. One step at a time." class="simple-footnote" href="#sf-i-wrote-a-web-component-3"&gt;3&lt;/a&gt;&lt;/sup&gt; This is easy with &lt;code&gt;attachShadow&lt;/code&gt;, which returns you this shadow root, which you can then treat like a normal node:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {
+  constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);
+
+    svg.appendChild(this.track);
+    svg.appendChild(this.indicator);&lt;/span&gt;
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);
+  &lt;span&gt;}
+});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, we want to allow people to set the colours of our circles. The way to do this is with &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*"&gt;&lt;span class="caps"&gt;CSS&lt;/span&gt; custom properties&lt;/a&gt;. Basically, you can invent any new property name you like, as long as it’s prefixed with &lt;code&gt;--&lt;/code&gt;. So we invent two: &lt;code&gt;--track-color&lt;/code&gt; and &lt;code&gt;--circle-color&lt;/code&gt;. We then set the two circles to be those colours by using &lt;span class="caps"&gt;CSS&lt;/span&gt;’s &lt;code&gt;var()&lt;/code&gt; syntax; this lets us say “use this variable if it’s set, or use this default value if it isn’t”. So our user can style our element with &lt;code&gt;twitter-circle-count { --track-color: #eee; }&lt;/code&gt; and it’ll work.&lt;/p&gt;
+&lt;p&gt;Annoyingly, it doesn’t seem to be easily possible to use &lt;em&gt;existing&lt;/em&gt; &lt;span class="caps"&gt;CSS&lt;/span&gt; properties for this; there doesn’t seem to be a good way to have the standard property &lt;code&gt;color&lt;/code&gt; set the circle colour.&lt;sup id="sf-i-wrote-a-web-component-4-back"&gt;&lt;a title="It would be possible to have color apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare." class="simple-footnote" href="#sf-i-wrote-a-web-component-4"&gt;4&lt;/a&gt;&lt;/sup&gt; One has to use a custom variable even if there’s a “real” &lt;span class="caps"&gt;CSS&lt;/span&gt; property that would be appropriate. I’m hoping I’m wrong about this and there is a sensible way to do it that I just haven’t discovered.&lt;sup id="sf-i-wrote-a-web-component-5-back"&gt;&lt;a title="QML does this by setting “aliases”; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow." class="simple-footnote" href="#sf-i-wrote-a-web-component-5"&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {
+  constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);&lt;/span&gt;
+
+    this.track.style.stroke = "var(--track-color, #9E9E9E)";
+    this.indicator.style.stroke = "var(--circle-color, #333333)";
+
+    &lt;span&gt;svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);
+  }
+});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We want our little element to be &lt;code&gt;inline-block&lt;/code&gt;. To set properties on the element itself, from inside the element, there is a special &lt;span class="caps"&gt;CSS&lt;/span&gt; selector, &lt;code&gt;:host&lt;/code&gt;. Add a &lt;code&gt;&amp;lt;style&amp;gt;&lt;/code&gt; element inside the component and it only applies to the component (this is special “scoped style” magic), and setting &lt;code&gt;:host&lt;/code&gt; styles the root of your element:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {
+  constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);
+    this.track.style.stroke = "var(--track-color, #9E9E9E)";
+    this.indicator.style.stroke = "var(--circle-color, #333333)";
+    svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);&lt;/span&gt;
+    var style = document.createElement("style");
+    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
+    shadowRoot.appendChild(style);
+    &lt;span&gt;
+  }
+});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next, we need to be able to set the proeprties which define the value of the counter — how much progress it should show. Having &lt;code&gt;value&lt;/code&gt; and &lt;code&gt;max&lt;/code&gt; properties similar to an &lt;code&gt;&amp;lt;input type="range"&amp;gt;&lt;/code&gt; seems logical here. For this, we define a little function &lt;code&gt;setDashOffset&lt;/code&gt; which sets the &lt;code&gt;stroke-dashoffset&lt;/code&gt; style on our indicator. We then call that function in two places. One is in &lt;code&gt;connectedCallback&lt;/code&gt;, a method which is called when our custom element is first inserted into the document. The second is whenever our &lt;code&gt;value&lt;/code&gt; or &lt;code&gt;max&lt;/code&gt; attributes change. That gets set up by defining &lt;code&gt;observedAttributes&lt;/code&gt;, which returns a list of attributes that we want to watch; whenever one of those attributes changes, &lt;code&gt;attributeChangedCallback&lt;/code&gt; is called.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {&lt;/span&gt;
+  static get observedAttributes() {
+    return ['value', 'max'];
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.setDashOffset();
+  }
+  setDashOffset() {
+    var mx = parseInt(this.getAttribute("max"), 10);
+    if (isNaN(mx)) mx = 100;
+    var value = parseInt(this.getAttribute("value"), 10);
+    if (isNaN(value)) value = 0;
+    this.indicator.style.strokeDashoffset = this.circumference - 
+        (value * this.circumference / mx);
+  }
+  &lt;span&gt;constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);
+
+    this.track.style.stroke = "var(--track-color, #9E9E9E)";
+    this.indicator.style.stroke = "var(--circle-color, #333333)";&lt;/span&gt;
+    /* We know what the circumference of our circle is. It doesn't matter
+       how big the element is, because the SVG is always 100x100 in its own
+       "internal coordinates": that's what the viewBox means. So the circle
+       always has a 45px radius, and so its circumference is always the same,
+       2πr. Store this for later. */
+    this.circumference = 3.14 * (45 * 2);
+
+    &lt;span&gt;svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);
+    var style = document.createElement("style");
+    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
+    shadowRoot.appendChild(style);
+  }&lt;/span&gt;
+  connectedCallback() {
+    this.setDashOffset();
+  }
+&lt;span&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works if the user of the component does &lt;code&gt;counter.setAttribute("value", "50")&lt;/code&gt;, but it doesn’t make &lt;code&gt;counter.value = 50&lt;/code&gt; work, and it’s nice to provide these direct JavaScript APIs as well. For that we need to define a getter and a setter for each.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {
+  static get observedAttributes() {
+    return ['value', 'max'];
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.setDashOffset();
+  }
+  setDashOffset() {
+    var mx = parseInt(this.getAttribute("max"), 10);
+    if (isNaN(mx)) mx = this.defaultMax;
+    var value = parseInt(this.getAttribute("value"), 10);
+    if (isNaN(value)) value = this.defaultValue;
+    this.indicator.style.strokeDashoffset = this.circumference - (
+        value * this.circumference / mx);
+  }&lt;/span&gt;
+  get value() {
+    var value = this.getAttribute('value');
+    if (isNaN(value)) return this.defaultValue;
+    return value;
+  }
+  set value(value) { this.setAttribute("value", value); }
+  get max() {
+    var mx = this.getAttribute('max');
+    if (isNaN(mx)) return this.defaultMax;
+    return max;
+  }
+  set value(value) { this.setAttribute("value", value); }
+  &lt;span&gt;constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);
+    this.track.style.stroke = "var(--track-color, #9E9E9E)";
+    this.indicator.style.stroke = "var(--circle-color, #333333)";
+    this.circumference = 3.14 * (45 * 2);
+    svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);
+    var style = document.createElement("style");
+    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
+    shadowRoot.appendChild(style);&lt;/span&gt;
+    this.defaultValue = 50;
+    this.defaultMax = 100;
+  &lt;span&gt;}
+  connectedCallback() {
+    this.setDashOffset();
+  }
+});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that’s all we need. We can now create our &lt;code&gt;twitter-circle-count&lt;/code&gt; element and hook it up to a &lt;code&gt;textarea&lt;/code&gt; like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;twitter&lt;/span&gt;&lt;span class="na"&gt;-circle-count&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;"0"&lt;/span&gt; &lt;span class="na"&gt;max=&lt;/span&gt;&lt;span class="s"&gt;"280"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;&lt;span class="err"&gt;&amp;lt;&lt;/span&gt;/twitter-circle-count&amp;gt;
+&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Type in here&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;textarea&lt;/span&gt; &lt;span class="na"&gt;rows=&lt;/span&gt;&lt;span class="s"&gt;3&lt;/span&gt; &lt;span class="na"&gt;cols=&lt;/span&gt;&lt;span class="s"&gt;40&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/textarea&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;twitter-circle-count&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;30px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;30px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;track&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#ddd&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;circle&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#333&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;text&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#888&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"textarea"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"keyup"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"twitter-circle-count"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;setAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"value"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a &lt;a href="https://www.webcomponents.org/polyfills"&gt;polyfill&lt;/a&gt; to add support in browsers that don’t have it.&lt;sup id="sf-i-wrote-a-web-component-6-back"&gt;&lt;a title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering." class="simple-footnote" href="#sf-i-wrote-a-web-component-6"&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Here’s the counter: &lt;twitter-circle-count value="0" max="280"&gt;&lt;/twitter-circle-count&gt;&lt;/p&gt;
+
+&lt;p&gt;Type in here&lt;/p&gt;
+
+&lt;p&gt;&lt;textarea cols="40" rows="3"&gt;&lt;/textarea&gt;
+&lt;style&gt;
+twitter-circle-count {
+  width: 30px;
+  height: 30px;
+  --track-color: #ddd;
+  --circle-color: #333;
+  --text-color: #888;
+  text-indent: 0;
+}
+&lt;/style&gt;
+&lt;script src="https://kryogenix.org/code/browser/twitter-circle-count.js"&gt;
+&lt;/script&gt;
+&lt;style&gt;
+pre { line-height: 0.9; }
+pre code { font-size: 12px; }
+pre code span { opacity: 0.25; }
+&lt;/style&gt;&lt;/p&gt;&lt;ol class="simple-footnotes"&gt;&lt;li id="sf-i-wrote-a-web-component-1"&gt;I relied for a lot of this understanding on &lt;a href="https://developers.google.com/web/fundamentals/web-components/customelements"&gt;Google’s web components documentation&lt;/a&gt; by &lt;a href="https://twitter.com/ebidel"&gt;Eric Bidelman&lt;/a&gt;. &lt;a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-1-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-2"&gt;All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. &lt;a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-2-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-3"&gt;Pedant posse: yes, it’s a bit more complicated than this. One step at a time. &lt;a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-3-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-4"&gt;It would be possible to have &lt;code&gt;color&lt;/code&gt; apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. &lt;a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-4-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-5"&gt;&lt;span class="caps"&gt;QML&lt;/span&gt; does this by setting “aliases”; in a component, you can say &lt;code&gt;property alias foo: subelement.bar&lt;/code&gt; and setting &lt;code&gt;foo&lt;/code&gt; on an instance of my component propagates through and sets &lt;code&gt;bar&lt;/code&gt; on the &lt;code&gt;subelement&lt;/code&gt;. This is a really good idea, and I wish Web Components did it somehow. &lt;a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-5-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-6"&gt;Mikeal Rogers has a really nice technique here for &lt;a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210"&gt;bundling your web component with a polyfill&lt;/a&gt; which is also worth considering. &lt;a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-6-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Sun, 12 Nov 2017 11:31:00 +0000</pubDate><guid>tag://www.kryogenix.org/days,2017-11-12:2017/11/12/i-wrote-a-web-component/</guid></item><item><title>Telegram notifications for Jenkins builds</title><link>//www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/</link><description>&lt;p&gt;It&amp;#8217;s nice to get updates from your &lt;span class="caps"&gt;CI&lt;/span&gt; system when things build. It&amp;#8217;s even nicer to do it without having to run any servers to do it. Here&amp;#8217;s how I send build notifications to a Telegram bot from&amp;nbsp;Jenkins.&lt;/p&gt;
 &lt;p&gt;Basically, Jenkins knows how to hit a webhook for every stage of the build, and &lt;a href="https://integram.org"&gt;Integram&lt;/a&gt; run a Telegram bot which knows how to respond to webhooks. All you need is a little bit of glue code to convert stuff Jenkins sends into stuff Integram receives, and you can put that glue code on any one of fifteen serverless systems. I used &lt;a href="https://webtask.io"&gt;webtask.io&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;&lt;img src="/images/jenkins-webtask.png" alt="The Webtask.io editor"&gt;&lt;/p&gt;
 &lt;p&gt;Deploy the following code there, being sure to update the Integram &lt;span class="caps"&gt;URL&lt;/span&gt; in it to be&amp;nbsp;yours:&lt;/p&gt;
@@ -341,35 +619,4 @@ table.fleb-wordgrid td {
 &lt;p&gt;As you can see, that looks like Unity. It feels like Unity&amp;nbsp;too.&lt;/p&gt;
 &lt;p&gt;The main bit of customisation here is extensions. From the &lt;a href="https://extensions.gnome.org"&gt;Gnome shell extensions web app&lt;/a&gt;, install &lt;a href="https://extensions.gnome.org/extension/759/better-volume-indicator/"&gt;Better Volume Indicator&lt;/a&gt;, &lt;a href="https://extensions.gnome.org/extension/307/dash-to-dock/"&gt;Dash to Dock&lt;/a&gt;, &lt;a href="https://extensions.gnome.org/extension/118/no-topleft-hot-corner/"&gt;No Topleft Hot Corner&lt;/a&gt;, and &lt;a href="https://extensions.gnome.org/extension/1031/topicons/"&gt;TopIcons Plus&lt;/a&gt;. That gives you the Launcher on the left, indicators in the top right, and a volume indicator that you can roll the mouse wheel on. Choose a theme; I use the stock Gnome theme, &amp;#8220;Adwaita&amp;#8221;, but I turned it to &amp;#8220;dark mode&amp;#8221; (in &amp;#8220;Tweak Tool&amp;#8221;, turn on &amp;#8220;Global Dark Theme&amp;#8221;), and set icons to &amp;#8220;Ubuntu-mono-dark&amp;#8221; in the same&amp;nbsp;place.&lt;/p&gt;
 &lt;p&gt;Most of the stuff you&amp;#8217;re familiar with in Unity actually carries through to Gnome Shell pretty much unchanged &amp;#8212; they&amp;#8217;re actually very similar, especially with the excellent Dash to Dock extension! One neat trick is that the window spread and the search have been combined; if you hit the Super key (the &amp;#8220;Windows&amp;#8221; key), it opens up the window spread &lt;em&gt;and&lt;/em&gt; lets you search, so the normal way of launching an app by name (hit Super, type the name, hit Enter) is completely unchanged. Similarly, you can launch apps from the Launcher on the left with Super+1 or Super+2 and so on, just like&amp;nbsp;Unity.&lt;/p&gt;
-&lt;p&gt;There are a whole bunch of other extensions to customise bits of how Gnome Shell works; if there are some that make it more like a Unity feature you like and I haven&amp;#8217;t listed, I&amp;#8217;d be happy to hear about them. Meanwhile, I&amp;#8217;ve still got the feel I like, on the desktop I&amp;#8217;ll be using. Hooray for&amp;nbsp;that.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Wed, 05 Apr 2017 19:10:00 +0100</pubDate><guid>tag://www.kryogenix.org/days,2017-04-05:2017/04/05/making-gnome-shell-feel-like-unity/</guid></item><item><title>Podcasts I like</title><link>//www.kryogenix.org/days/2017/04/03/podcasts-i-like/</link><description>&lt;style&gt;
-p &gt; img.podcast:first-child {
-    float: right;
-    margin: 1em 0 1em 1em;
-    box-shadow: 3px 3px 3px #000;
-}
-&lt;/style&gt;
-
-&lt;p&gt;&lt;a href="https://www.aaron-gustafson.com/notebook/trypod/"&gt;Aaron alerts me&lt;/a&gt; to the recent initiative of sharing one&amp;#8217;s favourite podcasts with the hashtag &lt;a href="https://twitter.com/search?q=%23trypod"&gt;#trypod&lt;/a&gt;. That sounds like fun, speaking as a podcast listener and performer. So, here&amp;#8217;s the stuff I listen to, at the moment (it is April&amp;nbsp;2017).&lt;/p&gt;
-&lt;h2&gt;&lt;a href="http://brokenjars.xyz/dresden-files-podcast/"&gt;The Dresden Files&amp;nbsp;podcast&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/dresden.png"&gt;If you&amp;#8217;re sitting about waiting for the next Harry Dresden book, you&amp;#8217;ll like this. An excellent example of fandom; to someone outside the club they just ceaselessly hash over the books, but I think that&amp;#8217;s good fun both to do and to listen to. And I&amp;#8217;ve learned about quite a bit that I missed, as&amp;nbsp;well. &lt;/p&gt;
-&lt;h2&gt;&lt;a href="https://www.relay.fm/rocket"&gt;Rocket&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/rocket.png"&gt;Rocket&amp;#8217;s great. Very tech-focused, and the presenters skew a little more to the journalism side than other tech podcasts which tend to be more developer or sysadmin-based. If you like the stuff that I do, you&amp;#8217;ll probably like this. Look here for commentary on what&amp;#8217;s going on in the tech world, plus quite a lot of laughing at one another&amp;#8217;s&amp;nbsp;jokes.&lt;/p&gt;
-&lt;h2&gt;&lt;a href="http://ubuntupodcast.org/"&gt;The Ubuntu&amp;nbsp;podcast&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/ubuntu.png"&gt;Admittedly made up of friends of mine, but that&amp;#8217;s not the point. Amusing commentary on tech and open source stuff, with an Ubuntu slant, but these days they end up talking more about weird little hardware projects and Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; than what Canonical are up to. It&amp;#8217;s fun; they try for a &amp;#8220;family-friendly&amp;#8221; sort of vibe as well. While on-air, at&amp;nbsp;least.&lt;/p&gt;
-&lt;h2&gt;&lt;a href="http://westwingweekly.com/"&gt;West Wing&amp;nbsp;Weekly&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/westwing.png"&gt;An episode-by-episode relisten-to and discussion-of The West Wing, the &lt;span class="caps"&gt;TV&lt;/span&gt; programme. This is fandom stuff, much like Dresden above, but one of the two presenters is John Malina who played Will Bailey in the show and so they tend to have lots of interviews with members of the cast, the writers, the directors, and so&amp;nbsp;on.&lt;/p&gt;
-&lt;h2&gt;&lt;a href="https://soundcloud.com/simply-elementary"&gt;Simply&amp;nbsp;elementary&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/elementary.png"&gt;This covers elementary, the &lt;span class="caps"&gt;OS&lt;/span&gt;. They tend to go fairly in-depth on specific aspects or projects from the elementary team, although not always (they had me on once and were berated about various things, which I&amp;#8217;m grateful for the chance to have done). Worth listening to if you&amp;#8217;re part of the elementary&amp;nbsp;community.&lt;/p&gt;
-&lt;h2&gt;&lt;a href="https://developers.google.com/web/shows/http203/podcast/"&gt;&lt;span class="caps"&gt;HTTP&lt;/span&gt;&amp;nbsp;203&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/http203.png"&gt;The legendary and legendarily infrequent &lt;span class="caps"&gt;HTTP&lt;/span&gt; 203 podcast. Web development, right up at the cutting edge (sometimes considerably past the cutting edge and into the field on the other side of the road) from Jake Archibald and Paul Lewis of the Google Chrome developer relations team. About 20% amazing insight on what the web is and where it&amp;#8217;s going, another 20% them describing interesting web things they&amp;#8217;ve been up to, and the remainder off-colour stories and arsing about, which is marvellous stuff. If you&amp;#8217;re a web dev and you&amp;#8217;re not listening to this I don&amp;#8217;t know what&amp;#8217;s wrong with&amp;nbsp;you.&lt;/p&gt;
-&lt;h2&gt;&lt;a href="http://www.bbc.co.uk/programmes/p02nrss1"&gt;More or Less: Behind the&amp;nbsp;Stats&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/moreorless.png"&gt;From the &lt;span class="caps"&gt;BBC&lt;/span&gt;. A short but frequent programme in which they do a deep-dive into some quoted or reported bit of statistics and explain whether it&amp;#8217;s right and what it means. I&amp;#8217;ve learned quite a lot from&amp;nbsp;this!&lt;/p&gt;
-&lt;h2&gt;&lt;a href="https://www.linuxvoice.com/category/podcasts/"&gt;Linux&amp;nbsp;Voice&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/lv.png"&gt;From the editorial team of the late, great Linux Voice magazine. They&amp;#8217;re amusing to listen to, and they&amp;#8217;ve often got up to quite a bit. Notable for &amp;#8220;Voice of the Masses&amp;#8221;, which involves various audience polls, and &amp;#8220;Finds&amp;#8221;: random things and bits of software they&amp;#8217;ve discovered this week and want to&amp;nbsp;mention.&lt;/p&gt;
-&lt;h2&gt;&lt;a href="http://player.fm/series/mark-steadmans-escape-hatch-brum-radio"&gt;Mark Steadman&amp;#8217;s Escape&amp;nbsp;Hatch&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/steadman.png"&gt;Mark Steadman and his guest on Brum Radio do an extended hour-long interview and also play a sort of Choose Your Own Adventure game; something like a very constrained role-playing session. When I was on it I won and didn&amp;#8217;t die! Yay! So that&amp;#8217;s&amp;nbsp;encouraging.&lt;/p&gt;
-&lt;h2&gt;&lt;a href="https://latenightlinux.com/"&gt;Late Night&amp;nbsp;Linux&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img class="podcast" src="https://kryogenix.org/images/podcasts-2017/lnl.png"&gt;Traditional-style Linux podcast, but a good laugh; Joe, Ikey, Félim, and Jesse kick around some ideas, Ikey goes on about the distro he builds, they look at news and goings-on. For Linux people only, pretty much, but if you are then it&amp;#8217;s one of the better&amp;nbsp;ones.&lt;/p&gt;
-&lt;h2&gt;And&amp;nbsp;finally&amp;#8230;&lt;/h2&gt;
-&lt;p&gt;There is &lt;a href="http://badvoltage.org"&gt;Bad Voltage&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://badvoltage.org"&gt;&lt;img style="max-width: 100%; box-shadow: 3px 3px 3px black; background-color: black" src="http://www.badvoltage.org/wp-content/uploads/2013/10/logo1.png"&gt;&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 03 Apr 2017 14:47:00 +0100</pubDate><guid>tag://www.kryogenix.org/days,2017-04-03:2017/04/03/podcasts-i-like/</guid></item></channel></rss>
+&lt;p&gt;There are a whole bunch of other extensions to customise bits of how Gnome Shell works; if there are some that make it more like a Unity feature you like and I haven&amp;#8217;t listed, I&amp;#8217;d be happy to hear about them. Meanwhile, I&amp;#8217;ve still got the feel I like, on the desktop I&amp;#8217;ll be using. Hooray for&amp;nbsp;that.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Wed, 05 Apr 2017 19:10:00 +0100</pubDate><guid>tag://www.kryogenix.org/days,2017-04-05:2017/04/05/making-gnome-shell-feel-like-unity/</guid></item></channel></rss>
