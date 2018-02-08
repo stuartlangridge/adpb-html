@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Sorry Henry</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Maitree" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(//www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="//www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="//www.kryogenix.org/days/2018/02/08/sorry-henry/"><time 
+			class="dt-published" datetime="2018-02-08T18:34:00">Feb 08 2018</time></a>
+			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="//www.kryogenix.org/days/2018/02/08/sorry-henry/" title="Permalink to Sorry Henry" rel="bookmark">Sorry&nbsp;Henry</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I think I found a bug in a <a href="https://en.wikipedia.org/wiki/Henry_Dudeney">Henry Dudeney</a>&nbsp;book.</p>
+<p>Dudeney was a really famous puzzle creator in Victorian/Edwardian times. For Americans: Sam Loyd was sort of an American knock-off of Dudeney, except that Loyd stole half his puzzles from other people and <span class="caps">HD</span> didn&#8217;t. Dudeney got so annoyed by this theft that he eventually ended up comparing Loyd to the Devil, which was tough talk in&nbsp;1910.</p>
+<p>Anyway, he wrote a number of puzzle books, and at least some are available on <a href="http://www.gutenberg.org/ebooks/author/6885">Project Gutenberg</a>, so well done the <span class="caps">PG</span> people. If you like puzzles, maths or thinking sorts, then there are a few good collections (and there are nicer to read versions at <a href="https://archive.org/search.php?query=%221857-1930%22%20AND%20Dudeney">the Internet Archive</a> too). <em>The Canterbury Puzzles</em> is his most famous work, but I&#8217;ve been reading <em>Amusements in Mathematics</em>. In there he presents the following&nbsp;puzzle:</p>
+<h4>81.&#8212;<span class="caps">THE</span> <span class="caps">NINE</span> <span class="caps">COUNTERS</span>.</h4>
+<table class="dudeney">
+    <tr><td></td><td>1</td><td>5</td><td>8</td><td></td><td>7</td><td>9</td></tr>
+    <tr><td class="t">&times;</td><td></td><td>2</td><td>3</td><td class="t">&times;</td><td>4</td><td>6</td></tr>
+</table>
+
+<style>
+table.dudeney td:not(.t):not(:empty) {
+    border-radius: 1000px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    background-image: linear-gradient(
+        180deg, hsl(0,0%,78%)  0%, 
+        hsl(0,0%,90%) 47%, 
+        hsl(0,0%,78%) 53%,
+        hsl(0,0%,70%) 100%
+    );
+    width: 25px;
+    border: 1px solid #aaaaaa;
+    padding-bottom: 25px;
+    height: 0;
+    box-sizing: border-box;
+}
+table.dudeney td.t { text-align: right; }
+</style>
+
+<p>I have nine counters, each bearing one of the nine digits, 1, 2, 3, 4,
+5, 6, 7, 8 and 9. I arranged them on the table in two groups, as shown
+in the illustration, so as to form two multiplication sums, and found
+that both sums gave the same product. You will find that 158 multiplied
+by 23 is 3,634, and that 79 multiplied by 46 is also 3,634. Now, the
+puzzle I propose is to rearrange the counters so as to get as large a
+product as possible. What is the best way of placing them? Remember both
+groups must multiply to the same amount, and there must be three
+counters multiplied by two in one case, and two multiplied by two
+counters in the other, just as at&nbsp;present.</p>
+<h4>81. <span class="caps">ANSWER</span></h4>
+<p>In this case a certain amount of mere &#8220;trial&#8221; is unavoidable. But there
+are two kinds of &#8220;trials&#8221;&#8212;those that are purely haphazard, and those
+that are methodical. The true puzzle lover is never satisfied with mere
+haphazard trials. The reader will find that by just reversing the
+figures in 23 and 46 (making the multipliers 32 and 64) both products
+will be 5,056. This is an improvement, but it is not the correct answer.
+We can get as large a product as 5,568 if we multiply 174 by 32 and 96
+by 58, but this solution is not to be found without the exercise of some
+judgment and&nbsp;patience.</p>
+<hr>
+
+<p>But, you know what? I don&#8217;t think he&#8217;s right. Now, I appreciate that he probably had to spend hours or days trying out possibilities with a piece of paper and a fountain pen, and I just wrote the following 15 lines of Python in five minutes, but hey, he didn&#8217;t have to bear with his government trying to ban encryption, so let&#8217;s call it&nbsp;even.</p>
+<pre><code>from itertools import permutations
+nums = [1,2,3,4,5,6,7,8,9]
+values = []
+for p in permutations(nums, 9):
+    one   = p[0]*100 + p[1]*10 + p[2]
+    two   = p[3]*10 + p[4]
+    three = p[5]*10 + p[6]
+    four  = p[7]*10 + p[8]
+    if four > three: continue # or we'll see fg*hi and hi*fg as different
+    if one*two == three*four:
+        expression = "%s*%s = %s*%s = %s" % (
+            one, two, three, four, one*two)
+        values.append((expression, one*two))
+values.sort(key=lambda x:x[1])
+print("Solution for 1-9")
+print("\n".join([x[0] for x in values]))</code></pre>
+
+<p>The key point here is this: the little programme above indeed recognises his proposed solutions (<code>158*32 = 79*64 = 5056</code> and <code>174*32 = 96*58 = 5568</code>) but it also finds two larger ones: <code>584*12 = 96*73 = 7008</code> and <code>532*14 = 98*76 = 7448</code>. Did I miss something about the puzzle? Or am I actually in the rare position of finding an error in a Dudeney book? And all it took was seventy years of computer technology advancement to put me in that position. Maths, eh?&nbsp;Tch.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="//www.kryogenix.org/days/2018/01/30/and-everything/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2018/02/08/sorry-henry/">
+	<input type="submit" value="Add link">
+</form>
+<script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2018/02/08/sorry-henry/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
