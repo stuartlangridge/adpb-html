@@ -903,7 +903,7 @@ ul.neighbours-links li a {
         float: none;
     }
     #site-title {
-        font-size: 3em;
+        font-size: 2.8em;
     }
     #site-description {
         margin-bottom: 5px;
@@ -919,8 +919,14 @@ ul.neighbours-links li a {
         line-height: 1.3;
     }
     pre {
-    	overflow-x: auto;
-    	font-size: 0.4em;
+        overflow-x: auto;
+        font-size: 0.4em;
+    }
+    #menu a {
+        font-size: 15px;
+    }
+    .entry-title {
+        font-size: 36px;
     }
 }
 
