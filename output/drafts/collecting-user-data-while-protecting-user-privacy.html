@@ -106,6 +106,92 @@ canvas.lie_graphs {
 #tweak input {
     width: 60%;
 }
+#tweak input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 7px 0;
+}
+#tweak input[type=range]:focus {
+  outline: none;
+}
+#tweak input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #6b00bd;
+  border-radius: 6px;
+  border: 0px solid #010101;
+}
+#tweak input[type=range]::-webkit-slider-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+#tweak input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #8200e6;
+}
+#tweak input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #6b00bd;
+  border-radius: 6px;
+  border: 0px solid #010101;
+}
+#tweak input[type=range]::-moz-range-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+}
+#tweak input[type=range]::-ms-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+#tweak input[type=range]::-ms-fill-lower {
+  background: #540094;
+  border: 0px solid #010101;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#tweak input[type=range]::-ms-fill-upper {
+  background: #6b00bd;
+  border: 0px solid #010101;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#tweak input[type=range]::-ms-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+  height: 6px;
+}
+#tweak input[type=range]:focus::-ms-fill-lower {
+  background: #6b00bd;
+}
+#tweak input[type=range]:focus::-ms-fill-upper {
+  background: #8200e6;
+}
+
 </style>
 
 <script>
