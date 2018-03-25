@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><atom:link href="//www.kryogenix.org/days/feed" rel="self"></atom:link><lastBuildDate>Sun, 25 Mar 2018 23:36:00 +0100</lastBuildDate><item><title>Squares and prettier graphs</title><link>//www.kryogenix.org/days/2018/03/25/squares-and-prettier-graphs/</link><description>&lt;p&gt;The &lt;a href="https://www.futilitycloset.com/"&gt;Futility Closet&lt;/a&gt; people recently posted &amp;#8220;&lt;a href="https://www.futilitycloset.com/2018/03/24/a-square-circle/"&gt;A Square Circle&lt;/a&gt;&amp;#8220;, in which they&amp;nbsp;showed:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;49&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;73&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;7730&lt;/span&gt;
-&lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6829&lt;/span&gt;
-&lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5465&lt;/span&gt;
-&lt;span class="mi"&gt;54&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;7141&lt;/span&gt;
-&lt;span class="mi"&gt;71&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;41&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6722&lt;/span&gt;
-&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="err"&gt;²&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4973&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;49² + 73² = 7730
+77² + 30² = 6829
+68² + 29² = 5465
+54² + 65² = 7141
+71² + 41² = 6722
+67² + 22² = 4973
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -33,7 +33,7 @@
 
     &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;rectangle&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;rounded,filled&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;gradientangle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;270&amp;quot;&lt;/span&gt; 
         &lt;span class="n"&gt;fillcolor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#990033:#f5404f&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#991111&amp;quot;&lt;/span&gt; 
-        &lt;span class="n"&gt;fontcolor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#ffffff&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;fontname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;OpenDyslexic&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;fontcolor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#ffffff&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;fontname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Arial&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
     &lt;span class="n"&gt;edge&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#006699&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
