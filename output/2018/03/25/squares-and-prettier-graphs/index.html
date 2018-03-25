@@ -73,7 +73,7 @@
 <p><img src="https://kryogenix.org/images/squares2.png" alt=""></p>
 <p>There are no other 6-cycles; there&#8217;s a 5-cycle (start from <code>68²+50²=7124</code>), a 4-cycle (<code>47²+56²=5345</code>) and interestingly two 1-cycles, numbers which lead to themselves: <code>12²+33²=1233</code> and <code>88²+33²=8833</code>. That&#8217;s rather&nbsp;cool.</p>
 <p>I did wonder whether there are also interesting cycles with more numbers, so I tried out adding the squares of 3-digit&nbsp;numbers:</p>
-<p><img src="https://kryogenix.org/images/squares2.png" alt=""></p>
+<p><img src="https://kryogenix.org/images/squares3.png" alt=""></p>
 <p>but sadly they&#8217;re really boring; there&#8217;s a 2-cycle (<code>137²+461²=231290, 231²+290²=137461</code>), another 1-cycle (<code>990²+100²=990100</code>) and that&#8217;s it. Nonetheless, quite an interesting little property to fiddle around&nbsp;with.</p>
 <h2>Prettier&nbsp;graphs</h2>
 <p>Originally I was going to make my script count the lengths of the cycles and show the largest one and so on, but I realised that that was annoying and fiddly and what I ought to do is just display a nice picture of them and that&#8217;d be clear to my eyes immediately and take no code at all. My go-to tool for this sort of thing, where I&#8217;m drawing graphs (in the mathematical nodes-and-edges sense) programmatically, is <a href="https://www.graphviz.org/">Graphviz</a>, because it&#8217;s really easy; you basically write out your graph as obvious simple words with&nbsp;arrows:</p>
