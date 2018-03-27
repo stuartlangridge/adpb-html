@@ -166,6 +166,27 @@ if (!tooNewForOldComments) {
 				</script>
 		</div><!-- /#footer -->
 	</div><!-- /#container -->
-	<div style="display:none"></div>
-</body>
-</html>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+</script>
+</body> </html>
