@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2008/06/17/yeahconsole-a-dropdown-linux-terminal-thats-better-than-tilda/"><time 
-			class="dt-published" datetime="2008-06-17T23:57:00">Jun 17 2008</time></a>
+			class="dt-published" datetime="2008-06-17T23:57:00+01:00">Jun 17 2008</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -92,12 +92,12 @@ corner could actually be useful. On Ubuntu, you need to edit (actually,
 you probably need to <em>create</em>) a file called <code>.Xresources</code> in your home
 folder<span style="color: red" title="And on Debian. On other distros it might be called .Xdefaults">*</span>.
 In that file, you put the configuration for yeahconsole, like&nbsp;this:</p>
-<div class="highlight"><pre><span class="n">yeahconsole</span><span class="o">*</span><span class="n">toggleKey</span><span class="o">:</span> <span class="n">None</span><span class="o">+</span><span class="n">F2</span>
-<span class="n">yeahconsole</span><span class="o">*</span><span class="n">consoleHeight</span><span class="o">:</span> <span class="mi">20</span>
-<span class="n">yeahconsole</span><span class="o">*</span><span class="n">aniDelay</span><span class="o">:</span> <span class="mi">0</span>
-<span class="n">yeahconsole</span><span class="o">*</span><span class="n">stepSize</span><span class="o">:</span> <span class="mi">10</span>
-<span class="n">yeahconsole</span><span class="o">*</span><span class="n">faceName</span><span class="o">:</span> <span class="n">ProFontWindows</span><span class="o">:</span><span class="n">style</span><span class="o">=</span><span class="n">Regular</span>
-<span class="n">yeahconsole</span><span class="o">*</span><span class="n">faceSize</span><span class="o">:</span> <span class="mi">9</span>
+<div class="highlight"><pre><span></span>yeahconsole*toggleKey: None+F2
+yeahconsole*consoleHeight: 20
+yeahconsole*aniDelay: 0
+yeahconsole*stepSize: 10
+yeahconsole*faceName: ProFontWindows:style=Regular
+yeahconsole*faceSize: 9
 </pre></div>
 
 
@@ -117,8 +117,8 @@ thing: if you hit Ctrl-D to log out by mistake, it&#8217;ll close yeahconsole
 (tilda did this too), and that&#8217;s really irritating. To fix this, put the
 following in a file called <code>bashloop</code> in your home&nbsp;folder:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="k">while </span><span class="nb">true</span>; <span class="k">do </span>bash; <span class="k">done</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> bash<span class="p">;</span> <span class="k">done</span>
 </pre></div>
 </td></tr></table>
 

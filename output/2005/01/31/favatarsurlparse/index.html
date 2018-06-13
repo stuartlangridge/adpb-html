@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2005/01/31/favatarsurlparse/"><time 
-			class="dt-published" datetime="2005-01-31T11:00:00">Jan 31 2005</time></a>
+			class="dt-published" datetime="2005-01-31T11:00:00+00:00">Jan 31 2005</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -61,12 +61,12 @@
 		<div class="entry-content e-content">
 			<p>Bit more detail on how I implemented the favatars stuff, perhaps. The
 template that defines how a comment is output looks like&nbsp;this:</p>
-<div class="highlight"><pre>`<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;au$cmt_time&quot;</span> <span class="na">class=</span><span class="s">&quot;onecomment&quot;</span><span class="nt">&gt;</span>`
-`<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">&quot;favatar&quot;</span> <span class="na">alt=</span><span class="s">&quot;whatever&quot;</span> <span class="na">src=</span><span class="s">&quot;http://www.kryogenix.org/favatars/$cmt_link&quot;</span><span class="nt">&gt;</span>`
-`<span class="nt">&lt;h4&gt;</span>$cmt_author_and_link<span class="nt">&lt;/h4&gt;</span>`
+<div class="highlight"><pre><span></span>`<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;au$cmt_time&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;onecomment&quot;</span><span class="p">&gt;</span>`
+`<span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;favatar&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;whatever&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://www.kryogenix.org/favatars/$cmt_link&quot;</span><span class="p">&gt;</span>`
+`<span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>$cmt_author_and_link<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>`
 `$cmt_description`
-`<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#au$cmt_time&quot;</span><span class="nt">&gt;</span>#<span class="nt">&lt;/a&gt;</span>`
-`<span class="nt">&lt;/div&gt;</span>`
+`<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#au$cmt_time&quot;</span><span class="p">&gt;</span>#<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>`
+`<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>`
 </pre></div>
 
 
@@ -81,17 +81,17 @@ very easy by Python’s excellent <code>urlparse</code> module. You see, we need
 get the favicon from the root of the server. To do this, just use
 <code>urlparse.urljoin</code> to join whatever <span class="caps"><span class="caps">URL</span></span> you
 like with “/favicon.ico“. The key thing there is the / at the beginning.&nbsp;Watch:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urlparse</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s">&#39;http://www.kryogenix.org/&#39;</span><span class="p">,</span><span class="s">&#39;/favicon.ico&#39;</span><span class="p">)</span>
-<span class="s">&#39;http://www.kryogenix.org/favicon.ico&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s">&#39;http://www.kryogenix.org/days/&#39;</span><span class="p">,</span><span class="s">&#39;/favicon.ico&#39;</span><span class="p">)</span>
-<span class="s">&#39;http://www.kryogenix.org/favicon.ico&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s">&#39;http://www.kryogenix.org/days/something&#39;</span><span class="p">,</span><span class="s">&#39;/favicon.ico&#39;</span><span class="p">)</span>
-<span class="s">&#39;http://www.kryogenix.org/favicon.ico&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s">&#39;something that is not a URL&#39;</span><span class="p">,</span><span class="s">&#39;/favicon.ico&#39;</span><span class="p">)</span>
-<span class="s">&#39;/favicon.ico&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;/favicon.ico&#39;</span><span class="p">)</span>
-<span class="s">&#39;/favicon.ico&#39;</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urlparse</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s1">&#39;http://www.kryogenix.org/&#39;</span><span class="p">,</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">)</span>
+<span class="s1">&#39;http://www.kryogenix.org/favicon.ico&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s1">&#39;http://www.kryogenix.org/days/&#39;</span><span class="p">,</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">)</span>
+<span class="s1">&#39;http://www.kryogenix.org/favicon.ico&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s1">&#39;http://www.kryogenix.org/days/something&#39;</span><span class="p">,</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">)</span>
+<span class="s1">&#39;http://www.kryogenix.org/favicon.ico&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s1">&#39;something that is not a URL&#39;</span><span class="p">,</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">)</span>
+<span class="s1">&#39;/favicon.ico&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">)</span>
+<span class="s1">&#39;/favicon.ico&#39;</span>
 </pre></div>
 
 
@@ -110,7 +110,7 @@ also caches icons so that it works faster. You can <a href="http://kryogenix.org
 favatar.cgi</a> if you would like more details; it won’t work directly
 for you without some tweaking. You’ll also want a line similar to this
 in your .htaccess&nbsp;file:</p>
-<div class="highlight"><pre><span class="n">RewriteRule</span>   <span class="o">^</span><span class="n">favatars</span><span class="o">/</span><span class="p">(.</span><span class="o">*</span><span class="p">)</span>            <span class="o">/</span><span class="n">pyblosxom</span><span class="o">/</span><span class="n">favatar</span><span class="p">.</span><span class="n">cgi</span><span class="o">?</span><span class="n">url</span><span class="o">=</span><span class="err">$</span><span class="mi">1</span>
+<div class="highlight"><pre><span></span>RewriteRule   ^favatars/(.*)            /pyblosxom/favatar.cgi?url=$1
 </pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

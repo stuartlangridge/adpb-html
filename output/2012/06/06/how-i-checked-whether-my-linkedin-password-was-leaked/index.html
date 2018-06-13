@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2012/06/06/how-i-checked-whether-my-linkedin-password-was-leaked/"><time 
-			class="dt-published" datetime="2012-06-06T19:25:00">Jun 06 2012</time></a>
+			class="dt-published" datetime="2012-06-06T19:25:00+01:00">Jun 06 2012</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -99,16 +99,16 @@ then in your password file you store the hash <em>and</em> the salt. This makes
 guessing much harder. LinkedIn didn&#8217;t do this, sadly enough. So, given
 that you have a list of hashed passwords, you can guess a password and
 see whether it&#8217;s in the list. With your <code>SHA1.txt</code> file, try&nbsp;it:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">grep</span> <span class="err">`</span><span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="n">alongpasswordimadeup</span> <span class="o">|</span> <span class="n">shasum</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">c6</span><span class="o">-</span><span class="mi">40</span><span class="err">`</span> <span class="n">SHA1</span><span class="p">.</span><span class="n">txt</span><span class="err">$</span>
+<div class="highlight"><pre><span></span>$ grep <span class="sb">`</span><span class="nb">echo</span> -n alongpasswordimadeup <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt$
 </pre></div>
 
 
 <p>That didn&#8217;t show anything, so &#8220;alongpasswordimadeup&#8221; isn&#8217;t one of the
 leaked passwords. Let&#8217;s try&nbsp;another:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">grep</span> <span class="err">`</span><span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="n">l1nked0ut</span> <span class="o">|</span> <span class="n">shasum</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">c6</span><span class="o">-</span><span class="mi">40</span><span class="err">`</span> <span class="n">SHA1</span><span class="p">.</span><span class="n">txt</span> 
-<span class="n">e7bf10afef5f2ba94b104126d04db1837f423816</span>
-<span class="mo">000000</span><span class="n">afef5f2ba94b104126d04db1837f423816</span>
-<span class="err">$</span>
+<div class="highlight"><pre><span></span>$ grep <span class="sb">`</span><span class="nb">echo</span> -n l1nked0ut <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt 
+e7bf10afef5f2ba94b104126d04db1837f423816
+000000afef5f2ba94b104126d04db1837f423816
+$
 </pre></div>
 
 
@@ -120,7 +120,7 @@ characters overwritten with zeroes&#8230; so our unlucky l1nked0ut person is
 doubly punished for their lack of imagination by having a password
 leaked and having had it already guessed by the leakers.&nbsp;Oops.</p>
 <p>So, to check your own password,&nbsp;do:</p>
-<div class="highlight"><pre><span class="err">$</span>  <span class="n">grep</span> <span class="err">`</span><span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="n">yourpassword</span> <span class="o">|</span> <span class="n">shasum</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">c6</span><span class="o">-</span><span class="mi">40</span><span class="err">`</span> <span class="n">SHA1</span><span class="p">.</span><span class="n">txt</span>
+<div class="highlight"><pre><span></span>$  grep <span class="sb">`</span><span class="nb">echo</span> -n yourpassword <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt
 </pre></div>
 
 

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/"><time 
-			class="dt-published" datetime="2010-12-21T09:13:00">Dec 21 2010</time></a>
+			class="dt-published" datetime="2010-12-21T09:13:00+00:00">Dec 21 2010</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -89,10 +89,10 @@ responded with <a href="http://twitter.com/#!/psykoyiko/status/17142647932067840
 <a href="https://github.com/psykoyiko/pycanberra/raw/master/pycanberra.py">pycanberra.py</a>. So, you can now play system sounds from your Python
 program, because this is basically a set of Python bindings for&nbsp;libcanberra.</p>
 <p>To play a&nbsp;sound:</p>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">pycanberra</span>
-<span class="n">canberra</span> <span class="o">=</span> <span class="n">pycanberra</span><span class="p">.</span><span class="n">Canberra</span><span class="p">()</span>
-<span class="n">canberra</span><span class="p">.</span><span class="n">easy_play_sync</span><span class="p">(</span><span class="s">&quot;dialog-warning&quot;</span><span class="p">)</span>
-<span class="n">canberra</span><span class="p">.</span><span class="n">destroy</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycanberra</span>
+<span class="n">canberra</span> <span class="o">=</span> <span class="n">pycanberra</span><span class="o">.</span><span class="n">Canberra</span><span class="p">()</span>
+<span class="n">canberra</span><span class="o">.</span><span class="n">easy_play_sync</span><span class="p">(</span><span class="s2">&quot;dialog-warning&quot;</span><span class="p">)</span>
+<span class="n">canberra</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
 </pre></div>
 
 

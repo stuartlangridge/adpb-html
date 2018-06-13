@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2013/12/19/searching-my-email/"><time 
-			class="dt-published" datetime="2013-12-19T20:21:00">Dec 19 2013</time></a>
+			class="dt-published" datetime="2013-12-19T20:21:00+00:00">Dec 19 2013</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -68,17 +68,17 @@ service <em>out</em> of that Google service, whether because you want to leave
 or just because backups are a good idea. I’ve been a Gmail user for
 quite a long time, and have quite a lot of mail in there, and it’d be
 nice to have a backup of it. So, I click “create an archive”, and then
-some hours later<sup id="sf-searching-my-email-1-back"><a title="modulo that it weirdly didn’t work the first time, as per me mithering on Google+ about it " class="simple-footnote" href="#sf-searching-my-email-1">1</a></sup> I get a nudge from
+some hours later<sup id="sf-searching-my-email-1-back"><a href="#sf-searching-my-email-1" class="simple-footnote" title="modulo that it weirdly didn’t work the first time, as per me mithering on Google+ about it ">1</a></sup> I get a nudge from
 Google saying “we’ve created an archive of all your mail, and now you
 can download it”. So that’s exactly what I did.</p>
 <h3>what shall we do with the drunken mailbox, err-lie in the mornin’</h3>
-<p><span class="caps">OK</span>, so I’ve got a <span class="caps">4GB</span> <code>.mbox</code> file of all my mail since 2004.<sup id="sf-searching-my-email-2-back"><a title="yes, I know I could have been doing this with offlineimap. I never got around to setting it up, and gmail’s imap implementation is odd because it treats folders as labels, meaning that a message with two labels appears in two imap folders. I might set it up now, though, since I don’t care about the offline imap Maildir other than so that notmuch can index it, and notmuch is clever about finding two mails with the same message ID" class="simple-footnote" href="#sf-searching-my-email-2">2</a></sup> It’s good to have a backup. What else can I do with it?</p>
+<p><span class="caps">OK</span>, so I’ve got a <span class="caps">4GB</span> <code>.mbox</code> file of all my mail since 2004.<sup id="sf-searching-my-email-2-back"><a href="#sf-searching-my-email-2" class="simple-footnote" title="yes, I know I could have been doing this with offlineimap. I never got around to setting it up, and gmail’s imap implementation is odd because it treats folders as labels, meaning that a message with two labels appears in two imap folders. I might set it up now, though, since I don’t care about the offline imap Maildir other than so that notmuch can index it, and notmuch is clever about finding two mails with the same message ID">2</a></sup> It’s good to have a backup. What else can I do with it?</p>
 <p>One obvious thing is to point a search engine at it. Gmail is pretty
 good at searching mail, don’t get me wrong, but it’s nice to be able to
 search locally without needing internet access, especially since
-sometimes Gmail goes down<sup id="sf-searching-my-email-3-back"><a title="vanishingly rare" class="simple-footnote" href="#sf-searching-my-email-3">3</a></sup> or my cable
+sometimes Gmail goes down<sup id="sf-searching-my-email-3-back"><a href="#sf-searching-my-email-3" class="simple-footnote" title="vanishingly rare">3</a></sup> or my cable
 connection decides that connections to gmail and twitter should be slow
-today.<sup id="sf-searching-my-email-4-back"><a title="nowhere near as rare" class="simple-footnote" href="#sf-searching-my-email-4">4</a></sup> The clear leader for this seems to
+today.<sup id="sf-searching-my-email-4-back"><a href="#sf-searching-my-email-4" class="simple-footnote" title="nowhere near as rare">4</a></sup> The clear leader for this seems to
 be <a href="http://notmuchmail.org/">notmuch</a>, which bills itself as “the mail indexer”. Notmuch
 doesn’t fetch mail, it doesn’t send mail; it just indexes and searches it.</p>
 <h3>a brief digression into mail storage formats</h3>
@@ -120,19 +120,19 @@ ultranoddy Python script.</p>
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
 <span class="sd">"""mb2md seems to export a bunch of mails from the gmail takeout</span>
 <span class="sd">   mbox dump with a blank second line. Fix those."""</span>
 <span class="kn">import</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">os</span><span class="p">;</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">"~"</span><span class="p">)</span> <span class="o">+</span> <span class="s">"/Maildir/.All*/cur/*"</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~"</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"/Maildir/.All*/cur/*"</span><span class="p">):</span>
     <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">);</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s">""</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
       <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">);</span><span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">();</span> <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> 
-      <span class="n">lines</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span> <span class="k">del</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">data</span> <span class="o">=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
-      <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">"w"</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="n">lines</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span> <span class="k">del</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">data</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+      <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="n">counter</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-          <span class="k">print</span> <span class="s">"fixed another fifty files: total fixed"</span><span class="p">,</span> <span class="n">counter</span>
+          <span class="k">print</span> <span class="s2">"fixed another fifty files: total fixed"</span><span class="p">,</span> <span class="n">counter</span>
 </pre></div>
 </td></tr></tbody></table>
 
@@ -154,7 +154,7 @@ world’s simplest notmuch web search <span class="caps">UI</span> in Python. It
 do formatting properly, it hates foreigners and so smashes Unicode down
 to question marks, and I don’t care because all I need is to get search
 results over the web, and it does that fine. There’s <a href="https://bitbucket.org/wuzzeb/notmuch-web">notmuch-web</a>,
-which seems very nice<sup id="sf-searching-my-email-5-back"><a title="except for being written in Haskell, but I’m not bigoted" class="simple-footnote" href="#sf-searching-my-email-5">5</a></sup> but requires notmuch v0.15 or better, and Ubuntu 12.04
+which seems very nice<sup id="sf-searching-my-email-5-back"><a href="#sf-searching-my-email-5" class="simple-footnote" title="except for being written in Haskell, but I’m not bigoted">5</a></sup> but requires notmuch v0.15 or better, and Ubuntu 12.04
 only has 0.12. So, once more forth into noddy Python scripts.</p>
 <table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -231,33 +231,33 @@ only has 0.12. So, once more forth into noddy Python scripts.</p>
 73
 74
 75
-76</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+76</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
 
 <span class="kn">import</span> <span class="nn">notmuch</span><span class="o">,</span> <span class="nn">BaseHTTPServer</span><span class="o">,</span> <span class="nn">cgi</span><span class="o">,</span> <span class="nn">urlparse</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">json</span>
 
-<span class="n">BASE</span><span class="o">=</span><span class="s">"""&lt;!doctype html&gt;&lt;html&gt;&lt;style&gt;</span>
-<span class="s">div.thread { margin-left: 2em; }</span>
-<span class="s">div[data-match] pre { display: none; }</span>
-<span class="s">div[data-match=match] pre { display: block; }</span>
-<span class="s">details summary { color: #999; }</span>
-<span class="s">details[open] &gt; summary { color: black; }</span>
-<span class="si">%s</span><span class="s">"""</span>
-<span class="n">IDX</span><span class="o">=</span> <span class="n">BASE</span> <span class="o">%</span> <span class="s">"""Search: &lt;form&gt;&lt;input name="q"&gt;"""</span>
-<span class="n">MSG</span> <span class="o">=</span> <span class="p">(</span><span class="s">'&lt;div data-match="</span><span class="si">%(match)s</span><span class="s">"&gt;&lt;details </span><span class="si">%(matchopen)s</span><span class="s">&gt;'</span>
-  <span class="s">'&lt;summary&gt;</span><span class="si">%(from)s</span><span class="s"> </span><span class="si">%(date)s</span><span class="s">&lt;/summary&gt;&lt;pre&gt;</span><span class="si">%(body)s</span><span class="s">&lt;/pre&gt;'</span>
-  <span class="s">'&lt;/details&gt;&lt;/div&gt;'</span><span class="p">)</span>
+<span class="n">BASE</span><span class="o">=</span><span class="s2">"""&lt;!doctype html&gt;&lt;html&gt;&lt;style&gt;</span>
+<span class="s2">div.thread { margin-left: 2em; }</span>
+<span class="s2">div[data-match] pre { display: none; }</span>
+<span class="s2">div[data-match=match] pre { display: block; }</span>
+<span class="s2">details summary { color: #999; }</span>
+<span class="s2">details[open] &gt; summary { color: black; }</span>
+<span class="si">%s</span><span class="s2">"""</span>
+<span class="n">IDX</span><span class="o">=</span> <span class="n">BASE</span> <span class="o">%</span> <span class="s2">"""Search: &lt;form&gt;&lt;input name="q"&gt;"""</span>
+<span class="n">MSG</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'&lt;div data-match="</span><span class="si">%(match)s</span><span class="s1">"&gt;&lt;details </span><span class="si">%(matchopen)s</span><span class="s1">&gt;'</span>
+  <span class="s1">'&lt;summary&gt;</span><span class="si">%(from)s</span><span class="s1"> </span><span class="si">%(date)s</span><span class="s1">&lt;/summary&gt;&lt;pre&gt;</span><span class="si">%(body)s</span><span class="s1">&lt;/pre&gt;'</span>
+  <span class="s1">'&lt;/details&gt;&lt;/div&gt;'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">format_message</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
     <span class="n">j</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">format_message_as_json</span><span class="p">())</span>
     <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">"body"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="s2">"body"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
            <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">j</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-             <span class="s">"body"</span><span class="p">,</span> <span class="p">[{</span><span class="s">"content"</span><span class="p">:</span><span class="s">"no body"</span><span class="p">}])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"content"</span><span class="p">,</span> 
-              <span class="s">"no content"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"&gt;"</span><span class="p">)])),</span>
-        <span class="s">"subject"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s">"headers"</span><span class="p">][</span><span class="s">"Subject"</span><span class="p">]),</span>
-        <span class="s">"from"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s">"headers"</span><span class="p">][</span><span class="s">"From"</span><span class="p">]),</span>
-        <span class="s">"match"</span><span class="p">:</span> <span class="s">"match"</span> <span class="k">if</span> <span class="n">j</span><span class="p">[</span><span class="s">"match"</span><span class="p">]</span> <span class="k">else</span> <span class="s">""</span><span class="p">,</span>
-        <span class="s">"matchopen"</span><span class="p">:</span> <span class="s">"open"</span> <span class="k">if</span> <span class="n">j</span><span class="p">[</span><span class="s">"match"</span><span class="p">]</span> <span class="k">else</span> <span class="s">""</span><span class="p">,</span>
-        <span class="s">"date"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s">"headers"</span><span class="p">][</span><span class="s">"Date"</span><span class="p">])</span>
+             <span class="s2">"body"</span><span class="p">,</span> <span class="p">[{</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"no body"</span><span class="p">}])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"content"</span><span class="p">,</span> 
+              <span class="s2">"no content"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"&gt;"</span><span class="p">)])),</span>
+        <span class="s2">"subject"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">][</span><span class="s2">"Subject"</span><span class="p">]),</span>
+        <span class="s2">"from"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">][</span><span class="s2">"From"</span><span class="p">]),</span>
+        <span class="s2">"match"</span><span class="p">:</span> <span class="s2">"match"</span> <span class="k">if</span> <span class="n">j</span><span class="p">[</span><span class="s2">"match"</span><span class="p">]</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+        <span class="s2">"matchopen"</span><span class="p">:</span> <span class="s2">"open"</span> <span class="k">if</span> <span class="n">j</span><span class="p">[</span><span class="s2">"match"</span><span class="p">]</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+        <span class="s2">"date"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">][</span><span class="s2">"Date"</span><span class="p">])</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">MSG</span> <span class="o">%</span> <span class="n">dic</span>
 
@@ -269,43 +269,43 @@ only has 0.12. So, once more forth into noddy Python scripts.</p>
 
 <span class="k">class</span> <span class="nc">NMHandler</span><span class="p">(</span><span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">BaseHTTPRequestHandler</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="s">"/"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="s2">"/"</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">IDX</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">qs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cgi</span><span class="o">.</span><span class="n">parse_qsl</span><span class="p">(</span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">))</span>
-            <span class="k">if</span> <span class="s">"q"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">qs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">"q"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">qs</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">IDX</span><span class="p">)</span>
                 <span class="k">return</span>
             <span class="n">db</span><span class="o">=</span><span class="n">notmuch</span><span class="o">.</span><span class="n">Database</span><span class="p">()</span>
-            <span class="n">q</span><span class="o">=</span><span class="n">notmuch</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">qs</span><span class="p">[</span><span class="s">"q"</span><span class="p">])</span>
+            <span class="n">q</span><span class="o">=</span><span class="n">notmuch</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">qs</span><span class="p">[</span><span class="s2">"q"</span><span class="p">])</span>
             <span class="n">thrs</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">q</span><span class="o">.</span><span class="n">search_threads</span><span class="p">()]</span>
             <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">thr</span> <span class="ow">in</span> <span class="n">thrs</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s">"authors"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_authors</span><span class="p">(),</span>
-                    <span class="s">"subject"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_subject</span><span class="p">(),</span>
-                    <span class="s">"tid"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_thread_id</span><span class="p">(),</span>
-                    <span class="s">"date"</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">thr</span><span class="o">.</span><span class="n">get_oldest_date</span><span class="p">())),</span>
-                    <span class="s">"msgs"</span><span class="p">:</span> <span class="p">[],</span>
+                    <span class="s2">"authors"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_authors</span><span class="p">(),</span>
+                    <span class="s2">"subject"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_subject</span><span class="p">(),</span>
+                    <span class="s2">"tid"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_thread_id</span><span class="p">(),</span>
+                    <span class="s2">"date"</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">thr</span><span class="o">.</span><span class="n">get_oldest_date</span><span class="p">())),</span>
+                    <span class="s2">"msgs"</span><span class="p">:</span> <span class="p">[],</span>
                 <span class="p">}</span>
                 <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_toplevel_messages</span><span class="p">():</span>
                     <span class="n">msgs</span> <span class="o">=</span> <span class="n">get_message_and_children</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-                    <span class="n">data</span><span class="p">[</span><span class="s">"msgs"</span><span class="p">]</span> <span class="o">+=</span> <span class="n">msgs</span>
-                <span class="n">data</span><span class="p">[</span><span class="s">"msgs"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">"msgs"</span><span class="p">])</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s2">"msgs"</span><span class="p">]</span> <span class="o">+=</span> <span class="n">msgs</span>
+                <span class="n">data</span><span class="p">[</span><span class="s2">"msgs"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"msgs"</span><span class="p">])</span>
                 <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="n">LST</span> <span class="o">=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s">'&lt;li&gt;&lt;details&gt;&lt;summary&gt;</span><span class="si">%(subject)s</span><span class="s"> (</span><span class="si">%(authors)s</span><span class="s">, '</span>
-             <span class="s">'</span><span class="si">%(date)s</span><span class="s">)&lt;/summary&gt;&lt;div class="thread"&gt;'</span>
-             <span class="s">'</span><span class="si">%(msgs)s</span><span class="s">&lt;/div&gt;&lt;/details&gt;&lt;/li&gt;'</span><span class="p">)</span> <span class="o">%</span> <span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">res</span><span class="p">])</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">%</span> <span class="p">(</span><span class="s">"&lt;ul&gt;</span><span class="si">%s</span><span class="s">&lt;/ul&gt;"</span> <span class="o">%</span> <span class="n">LST</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"ascii"</span><span class="p">,</span> <span class="s">"replace"</span><span class="p">))</span>
+            <span class="n">LST</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s1">'&lt;li&gt;&lt;details&gt;&lt;summary&gt;</span><span class="si">%(subject)s</span><span class="s1"> (</span><span class="si">%(authors)s</span><span class="s1">, '</span>
+             <span class="s1">'</span><span class="si">%(date)s</span><span class="s1">)&lt;/summary&gt;&lt;div class="thread"&gt;'</span>
+             <span class="s1">'</span><span class="si">%(msgs)s</span><span class="s1">&lt;/div&gt;&lt;/details&gt;&lt;/li&gt;'</span><span class="p">)</span> <span class="o">%</span> <span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">res</span><span class="p">])</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">%</span> <span class="p">(</span><span class="s2">"&lt;ul&gt;</span><span class="si">%s</span><span class="s2">&lt;/ul&gt;"</span> <span class="o">%</span> <span class="n">LST</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"ascii"</span><span class="p">,</span> <span class="s2">"replace"</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">server_class</span><span class="o">=</span><span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">,</span>
         <span class="n">handler_class</span><span class="o">=</span><span class="n">NMHandler</span><span class="p">):</span>
-    <span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="mi">8411</span><span class="p">)</span>
+    <span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="mi">8411</span><span class="p">)</span>
     <span class="n">httpd</span> <span class="o">=</span> <span class="n">server_class</span><span class="p">(</span><span class="n">server_address</span><span class="p">,</span> <span class="n">handler_class</span><span class="p">)</span>
     <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">run</span><span class="p">()</span>
 </pre></div>
 </td></tr></tbody></table>
@@ -315,15 +315,15 @@ does the absolute bare minimum required. It does what I need it to,
 though. I just did <code>crontab -e</code> to edit my list of scheduled apps and
 added <code>@reboot python /home/me/noddy-search-server.py</code> and now I can
 just connect to <code>http://homeserver:8411</code> and search my mail. Nice.</p><ol class="simple-footnotes"><li id="sf-searching-my-email-1">modulo that it weirdly didn’t work the first time,
-as per <a href="https://plus.google.com/u/0/+StuartLangridge/posts/MaGeUn3A2fz">me mithering on Google+ about it</a>  <a class="simple-footnote-back" href="#sf-searching-my-email-1-back">↩</a></li><li id="sf-searching-my-email-2">yes, I
+as per <a href="https://plus.google.com/u/0/+StuartLangridge/posts/MaGeUn3A2fz">me mithering on Google+ about it</a>  <a href="#sf-searching-my-email-1-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-2">yes, I
 know I could have been doing this with <code>offlineimap</code>. I never got around
 to setting it up, and gmail’s imap implementation is odd because it
 treats folders as labels, meaning that a message with two labels appears
 in two imap folders. I might set it up now, though, since I don’t care
 about the offline imap Maildir other than so that <code>notmuch</code> can index
 it, and <code>notmuch</code> is clever about finding two mails with the same
-message <span class="caps">ID</span> <a class="simple-footnote-back" href="#sf-searching-my-email-2-back">↩</a></li><li id="sf-searching-my-email-3">vanishingly rare <a class="simple-footnote-back" href="#sf-searching-my-email-3-back">↩</a></li><li id="sf-searching-my-email-4">nowhere near as rare <a class="simple-footnote-back" href="#sf-searching-my-email-4-back">↩</a></li><li id="sf-searching-my-email-5">except for being written in Haskell, but I’m
-not bigoted <a class="simple-footnote-back" href="#sf-searching-my-email-5-back">↩</a></li></ol>
+message <span class="caps">ID</span> <a href="#sf-searching-my-email-2-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-3">vanishingly rare <a href="#sf-searching-my-email-3-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-4">nowhere near as rare <a href="#sf-searching-my-email-4-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-5">except for being written in Haskell, but I’m
+not bigoted <a href="#sf-searching-my-email-5-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2013/12/18/the-royal-institution-christmas-lectures/">Previous post</a></li>

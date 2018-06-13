@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2012/04/18/publishing-a-folder-with-ubuntu-one/"><time 
-			class="dt-published" datetime="2012-04-18T13:38:00">Apr 18 2012</time></a>
+			class="dt-published" datetime="2012-04-18T13:38:00+01:00">Apr 18 2012</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -80,11 +80,11 @@ testpublishfolder</a>.</p>
 <p>The thing I found nicest about this is working with <code>SyncDaemonTool</code>,
 the Python U1 controller. Combined with Twisted&#8217;s
 <code>defer.inlineCallbacks</code> stuff, it makes dealing with U1 really&nbsp;easy:</p>
-<div class="highlight"><pre><span class="err">@</span><span class="n">defer</span><span class="p">.</span><span class="n">inlineCallbacks</span>
-<span class="n">def</span> <span class="n">dosomething</span><span class="p">()</span><span class="o">:</span>
-    <span class="n">sd</span> <span class="o">=</span> <span class="n">SyncDaemonTool</span><span class="p">()</span>
-    <span class="n">metadata</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">sd</span><span class="p">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s">&quot;/home/aquarius/Documents/somefile&quot;</span><span class="p">)</span>
-    <span class="n">print</span> <span class="n">metadata</span>
+<div class="highlight"><pre><span></span>@defer.inlineCallbacks
+def dosomething():
+    sd = SyncDaemonTool()
+    metadata = yield sd.get_metadata(&quot;/home/aquarius/Documents/somefile&quot;)
+    print metadata
 </pre></div>
 
 

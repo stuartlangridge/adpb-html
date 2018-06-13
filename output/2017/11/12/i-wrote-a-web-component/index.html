@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/"><time 
-			class="dt-published" datetime="2017-11-12T11:31:00">Nov 12 2017</time></a>
+			class="dt-published" datetime="2017-11-12T11:31:00+00:00">Nov 12 2017</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -61,7 +61,7 @@
 		<div class="entry-content e-content">
 			<p>I’ve been meaning to play with Web Components for a little while now. After I saw <a href="https://twitter.com/BenNadel/status/929383549584789504">Ben Nadel create a Twitter tweet progress indicator with Angular</a> and <a href="https://github.com/LucasLeandro1204/vue-twitter-counter">Lucas Leandro did the same with Vue.js</a> I thought, here’s a chance to experiment.</p>
 <p>Web Components involve a whole bunch of different dovetailing specs; <span class="caps">HTML</span> imports, custom elements, shadow <span class="caps">DOM</span>, <span class="caps">HTML</span> templates. I didn’t want to have to use the <span class="caps">HTML</span> template and import stuff if I could avoid it, and pleasantly you actually don’t need it. Essentially, you can create a custom element named <code>whatever-you-want</code> and then just add <code>&lt;whatever-you-want someattr="somevalue"&gt;content here&lt;/whatever-you-want&gt;</code> elements to your page, and it all works. This is good.</p>
-<p>To define a new type of element, you use <code>window.customElements.define('your-element-name', YourClass)</code>.<sup id="sf-i-wrote-a-web-component-1-back"><a title="I relied for a lot of this understanding on Google’s web components documentation by Eric Bidelman." class="simple-footnote" href="#sf-i-wrote-a-web-component-1">1</a></sup> <code>YourClass</code> is an <span class="caps">ES2016</span> JavaScript class. <sup id="sf-i-wrote-a-web-component-2-back"><a title="All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later." class="simple-footnote" href="#sf-i-wrote-a-web-component-2">2</a></sup> So, we start like this:</p>
+<p>To define a new type of element, you use <code>window.customElements.define('your-element-name', YourClass)</code>.<sup id="sf-i-wrote-a-web-component-1-back"><a href="#sf-i-wrote-a-web-component-1" class="simple-footnote" title="I relied for a lot of this understanding on Google’s web components documentation by Eric Bidelman.">1</a></sup> <code>YourClass</code> is an <span class="caps">ES2016</span> JavaScript class. <sup id="sf-i-wrote-a-web-component-2-back"><a href="#sf-i-wrote-a-web-component-2" class="simple-footnote" title="All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later.">2</a></sup> So, we start like this:</p>
 <pre><code>
 window.customElements.define('twitter-circle-count', class extends HTMLElement {
 });
@@ -106,7 +106,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 <span>});</span>
 </code></pre>
 
-<p>Now we need to actually add that created <span class="caps">SVG</span> to the document. For that, we create a <em>shadow root</em>. This is basically a little separate <span class="caps">HTML</span> document, inside your element, which is isolated from the rest of the page. Styles set in the main page won’t apply to stuff in your component; styles set in your component won’t leak out to the rest of the page.<sup id="sf-i-wrote-a-web-component-3-back"><a title="Pedant posse: yes, it’s a bit more complicated than this. One step at a time." class="simple-footnote" href="#sf-i-wrote-a-web-component-3">3</a></sup> This is easy with <code>attachShadow</code>, which returns you this shadow root, which you can then treat like a normal node:</p>
+<p>Now we need to actually add that created <span class="caps">SVG</span> to the document. For that, we create a <em>shadow root</em>. This is basically a little separate <span class="caps">HTML</span> document, inside your element, which is isolated from the rest of the page. Styles set in the main page won’t apply to stuff in your component; styles set in your component won’t leak out to the rest of the page.<sup id="sf-i-wrote-a-web-component-3-back"><a href="#sf-i-wrote-a-web-component-3" class="simple-footnote" title="Pedant posse: yes, it’s a bit more complicated than this. One step at a time.">3</a></sup> This is easy with <code>attachShadow</code>, which returns you this shadow root, which you can then treat like a normal node:</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
   constructor() {
@@ -129,7 +129,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 </code></pre>
 
 <p>Now, we want to allow people to set the colours of our circles. The way to do this is with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*"><span class="caps">CSS</span> custom properties</a>. Basically, you can invent any new property name you like, as long as it’s prefixed with <code>--</code>. So we invent two: <code>--track-color</code> and <code>--circle-color</code>. We then set the two circles to be those colours by using <span class="caps">CSS</span>’s <code>var()</code> syntax; this lets us say “use this variable if it’s set, or use this default value if it isn’t”. So our user can style our element with <code>twitter-circle-count { --track-color: #eee; }</code> and it’ll work.</p>
-<p>Annoyingly, it doesn’t seem to be easily possible to use <em>existing</em> <span class="caps">CSS</span> properties for this; there doesn’t seem to be a good way to have the standard property <code>color</code> set the circle colour.<sup id="sf-i-wrote-a-web-component-4-back"><a title="It would be possible to have color apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare." class="simple-footnote" href="#sf-i-wrote-a-web-component-4">4</a></sup> One has to use a custom variable even if there’s a “real” <span class="caps">CSS</span> property that would be appropriate. I’m hoping I’m wrong about this and there is a sensible way to do it that I just haven’t discovered.<sup id="sf-i-wrote-a-web-component-5-back"><a title="QML does this by setting “aliases”; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow." class="simple-footnote" href="#sf-i-wrote-a-web-component-5">5</a></sup>
+<p>Annoyingly, it doesn’t seem to be easily possible to use <em>existing</em> <span class="caps">CSS</span> properties for this; there doesn’t seem to be a good way to have the standard property <code>color</code> set the circle colour.<sup id="sf-i-wrote-a-web-component-4-back"><a href="#sf-i-wrote-a-web-component-4" class="simple-footnote" title="It would be possible to have color apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare.">4</a></sup> One has to use a custom variable even if there’s a “real” <span class="caps">CSS</span> property that would be appropriate. I’m hoping I’m wrong about this and there is a sensible way to do it that I just haven’t discovered.<sup id="sf-i-wrote-a-web-component-5-back"><a href="#sf-i-wrote-a-web-component-5" class="simple-footnote" title="QML does this by setting “aliases”; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow.">5</a></sup>
 (Update: Matt Machell <a href="https://twitter.com/shuckle/status/929710831620820993">mentions <code>currentColor</code></a> which would work perfectly for this example, but it <em>only</em> works for <code>color</code>; there’s no way of setting other properties like, say, <code>font-size</code> on the component and having that explicitly propagate down to a particular element <em>in</em> the component; there’s no <code>currentFontSize</code>. I don’t know why <code>color</code> gets special treatment, even though the special treatment would solve my particular problem.)</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
@@ -153,7 +153,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 });</span>
 </code></pre>
 
-<p>We want our little element to be <code>inline-block</code>. To set properties on the element itself, from inside the element, there is a special <span class="caps">CSS</span> selector, <code>:host</code>.<sup id="sf-i-wrote-a-web-component-6-back"><a title="Firefox doesn’t seem to support this yet, either :host or scoping styles so they don’t leak out of the component, so I’ve also set display:inline-block and position:relative on the twitter-circle-count selector in my normal CSS. This should be fixed soon." class="simple-footnote" href="#sf-i-wrote-a-web-component-6">6</a></sup> Add a <code>&lt;style&gt;</code> element inside the component and it only applies to the component (this is special “scoped style” magic), and setting <code>:host</code> styles the root of your element:</p>
+<p>We want our little element to be <code>inline-block</code>. To set properties on the element itself, from inside the element, there is a special <span class="caps">CSS</span> selector, <code>:host</code>.<sup id="sf-i-wrote-a-web-component-6-back"><a href="#sf-i-wrote-a-web-component-6" class="simple-footnote" title="Firefox doesn’t seem to support this yet, either :host or scoping styles so they don’t leak out of the component, so I’ve also set display:inline-block and position:relative on the twitter-circle-count selector in my normal CSS. This should be fixed soon.">6</a></sup> Add a <code>&lt;style&gt;</code> element inside the component and it only applies to the component (this is special “scoped style” magic), and setting <code>:host</code> styles the root of your element:</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
   constructor() {
@@ -289,23 +289,23 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 </code></pre>
 
 <p>And that’s all we need. We can now create our <code>twitter-circle-count</code> element and hook it up to a <code>textarea</code> like this:</p>
-<div class="highlight"><pre><span class="nt">&lt;twitter</span><span class="na">-circle-count</span> <span class="na">value=</span><span class="s">"0"</span> <span class="na">max=</span><span class="s">"280"</span><span class="nt">&gt;</span><span class="err">&lt;</span>/twitter-circle-count&gt;
-<span class="nt">&lt;p&gt;</span>Type in here<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;textarea</span> <span class="na">rows=</span><span class="s">3</span> <span class="na">cols=</span><span class="s">40</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">twitter-circle-count</span> <span class="na">value</span><span class="o">=</span><span class="s">"0"</span> <span class="na">max</span><span class="o">=</span><span class="s">"280"</span><span class="p">&gt;&lt;/</span><span class="nt">twitter-circle-count</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Type in here<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">rows</span><span class="o">=</span><span class="s">3</span> <span class="na">cols</span><span class="o">=</span><span class="s">40</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="nt">twitter-circle-count</span> <span class="p">{</span>
-  <span class="k">width</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
-  <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
-  <span class="o">--</span><span class="n">track</span><span class="o">-</span><span class="k">color</span><span class="o">:</span> <span class="m">#ddd</span><span class="p">;</span>
-  <span class="o">--</span><span class="k">circle</span><span class="o">-</span><span class="k">color</span><span class="o">:</span> <span class="m">#333</span><span class="p">;</span>
-  <span class="o">--</span><span class="k">text</span><span class="o">-</span><span class="k">color</span><span class="o">:</span> <span class="m">#888</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nt">twitter-circle-count</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="err">--</span><span class="n">track-color</span><span class="p">:</span> <span class="mh">#ddd</span><span class="p">;</span>
+  <span class="err">--</span><span class="n">circle-color</span><span class="p">:</span> <span class="mh">#333</span><span class="p">;</span>
+  <span class="err">--</span><span class="n">text-color</span><span class="p">:</span> <span class="mh">#888</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c1">// we use input, not keyup, because that fires when text is cut or pasted</span>
+<div class="highlight"><pre><span></span><span class="c1">// we use input, not keyup, because that fires when text is cut or pasted</span>
 <span class="c1">// thank you Dave MN for that insight</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"input"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"twitter-circle-count"</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"value"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
@@ -313,14 +313,14 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 </pre></div>
 
 
-<p>and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a <a href="https://www.webcomponents.org/polyfills">polyfill</a> to add support in browsers that don’t have it.<sup id="sf-i-wrote-a-web-component-7-back"><a title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering." class="simple-footnote" href="#sf-i-wrote-a-web-component-7">7</a></sup></p>
+<p>and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a <a href="https://www.webcomponents.org/polyfills">polyfill</a> to add support in browsers that don’t have it.<sup id="sf-i-wrote-a-web-component-7-back"><a href="#sf-i-wrote-a-web-component-7" class="simple-footnote" title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering.">7</a></sup></p>
 <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script>
 
 <p>Here’s the counter: <twitter-circle-count value="0" max="280"></twitter-circle-count></p>
 
 <p>Type some text in here:</p>
 
-<p><textarea cols="20" rows="3"></textarea>
+<p><textarea rows="3" cols="20"></textarea>
 <style>
 twitter-circle-count {
   width: 30px;
@@ -338,7 +338,7 @@ twitter-circle-count {
 <style>
 pre code { font-size: 12px; }
 pre code span { opacity: 0.25; }
-</style></p><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google’s web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-1-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-2-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it’s a bit more complicated than this. One step at a time. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-3-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-4-back">↩</a></li><li id="sf-i-wrote-a-web-component-5"><span class="caps">QML</span> does this by setting “aliases”; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-5-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn’t seem to support this yet, either <code>:host</code> or scoping styles so they don’t leak out of the component, so I’ve also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal <span class="caps">CSS</span>. This should be fixed soon. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-6-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a class="simple-footnote-back" href="#sf-i-wrote-a-web-component-7-back">↩</a></li></ol>
+</style></p><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google’s web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a href="#sf-i-wrote-a-web-component-1-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. <a href="#sf-i-wrote-a-web-component-2-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it’s a bit more complicated than this. One step at a time. <a href="#sf-i-wrote-a-web-component-3-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. <a href="#sf-i-wrote-a-web-component-4-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-5"><span class="caps">QML</span> does this by setting “aliases”; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a href="#sf-i-wrote-a-web-component-5-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn’t seem to support this yet, either <code>:host</code> or scoping styles so they don’t leak out of the component, so I’ve also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal <span class="caps">CSS</span>. This should be fixed soon. <a href="#sf-i-wrote-a-web-component-6-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a href="#sf-i-wrote-a-web-component-7-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/">Previous post</a></li>
@@ -356,11 +356,11 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/378800000641235880/29f32f34a4f1247e0791ad55cb982f8f.jpeg">
 			Ben Nadel responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-15148392">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-15148392">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/437657039322361856/kI1jXts7.png">
 			Brian Douglass responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-769568342">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-769568342">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/634707167770243072/9RvxX6u2.jpg">
 			Matt Machell responded at
@@ -394,7 +394,7 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/870214669570650112/2QNI84vG.jpg">
 			Prem Rose responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-627103">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-627103">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/928337771617452032/aLWjDJgg.jpg">
 			Christmas Ex Machina responded at
@@ -423,7 +423,7 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/378800000808710206/2dbdaa1cb7b0db02f997aea5b40f29b8.jpeg">
 			Justin Fagnani responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-102513397">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-102513397">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
 			Stuart Langridge responded at
@@ -432,15 +432,15 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/847549031790387200/ictk1fgS.jpg">
 			Saleem Ahmed responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-1321994161">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-1321994161">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/773680193315610624/UvQsX9TB.jpg">
 			Eric Bidelman responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-14399709">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-14399709">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/700824335624249348/SkxQsdhq.png">
 			Mikeal Rogers responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-668423">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-668423">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
 			Gamer Geek responded at
@@ -449,15 +449,15 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/885237782117052417/1ic5y8M0.jpg">
 			Jude Gibbons responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-59450500">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-59450500">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/790346765836877825/nWgyLOvw.jpg">
 			Blake Winton responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-13831932">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-13831932">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/749630190809034753/QYrRDBL4.jpg">
 			AJ Klein responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-345874469">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-345874469">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/854897164094509059/ZI8v5rjO.jpg">
 			Lucas Leandro responded at
@@ -466,11 +466,11 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/753542724800901120/iEIIRnwR.jpg">
 			JimDabell responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-14505515">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-14505515">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/464747515653259264/M6VDjCds.jpeg">
 			Alex Balhatchet responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-8631222">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-8631222">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/805908354446917632/9rAIDTCZ.jpg">
 			Dunstan Orchard responded at
@@ -479,7 +479,7 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/750836288635359237/1GqenPM5.jpg">
 			Justin willis responded at
-		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-3342117765">...</a>
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-3342117765">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/850031946637996032/yFZuhw1y.jpg">
 			The Chipaca responded at
@@ -488,7 +488,7 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://lh3.googleusercontent.com/-mrFxx00fIQE/AAAAAAAAAAI/AAAAAAAAAAA/OJXgncfU_lA/photo.jpg?sz=50">
 			Pete Woods responded at
-		<a href="https://plus.google.com/+StuartLangridge/posts/KP2DuU7tvza#liked-by-102737484924270175908">...</a>
+		<a href="https://plus.google.com/+StuartLangridge/posts/KP2DuU7tvza#liked-by-102737484924270175908">tag:plus.goo...</a>
 (plus.google.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/850422136065970176/qw9Vj_1Q.jpg">
 			molily responded at
@@ -497,7 +497,7 @@ pre code span { opacity: 0.25; }
 </span></li>
 		<li><img src="https://lh3.googleusercontent.com/-WvaHUvxIOHc/AAAAAAAAAAI/AAAAAAAAAAA/ARcXvw4uRL8/photo.jpg?sz=50">
 			Joseph Parker responded at
-		<a href="https://plus.google.com/+StuartLangridge/posts/KP2DuU7tvza#liked-by-117696565362224401480">...</a>
+		<a href="https://plus.google.com/+StuartLangridge/posts/KP2DuU7tvza#liked-by-117696565362224401480">tag:plus.goo...</a>
 (plus.google.com)		<span class="wm-summary"></span></li>
 	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">

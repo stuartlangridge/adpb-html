@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2008/02/11/video-thumbnails-for-mythtv/"><time 
-			class="dt-published" datetime="2008-02-11T00:36:00">Feb 11 2008</time></a>
+			class="dt-published" datetime="2008-02-11T00:36:00+00:00">Feb 11 2008</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -121,36 +121,36 @@ totem-video-thumbnailer. (myth-thumbnailer.py &#8212; <a href="http://www.kryoge
 48
 49
 50
-51</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
 <span class="kn">import</span> <span class="nn">MySQLdb</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">re</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&quot;/usr/bin/totem-video-thumbnailer&quot;</span><span class="p">):</span>
-  <span class="k">raise</span> <span class="s">&quot;This script requires totem-video-thumbnailer&quot;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;/usr/bin/totem-video-thumbnailer&quot;</span><span class="p">):</span>
+  <span class="k">raise</span> <span class="s2">&quot;This script requires totem-video-thumbnailer&quot;</span>
 
-<span class="c"># read DB connection parameters</span>
-<span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;/etc/mythtv/mysql.txt&quot;</span><span class="p">)</span>
+<span class="c1"># read DB connection parameters</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/etc/mythtv/mysql.txt&quot;</span><span class="p">)</span>
 <span class="n">DB</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fp</span><span class="p">:</span>
-  <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;=&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-    <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;=&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">DB</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
 
-<span class="n">required_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;DBHostName&quot;</span><span class="p">,</span> <span class="s">&quot;DBUserName&quot;</span><span class="p">,</span> <span class="s">&quot;DBName&quot;</span><span class="p">,</span> <span class="s">&quot;DBPassword&quot;</span><span class="p">]</span>
+<span class="n">required_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DBHostName&quot;</span><span class="p">,</span> <span class="s2">&quot;DBUserName&quot;</span><span class="p">,</span> <span class="s2">&quot;DBName&quot;</span><span class="p">,</span> <span class="s2">&quot;DBPassword&quot;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">required_keys</span><span class="p">:</span>
   <span class="k">if</span> <span class="ow">not</span> <span class="n">DB</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="s">&quot;Missing MySQL connection detail: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">k</span>
+    <span class="k">raise</span> <span class="s2">&quot;Missing MySQL connection detail: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">k</span>
 
-<span class="c"># connect to database</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">[</span><span class="s">&quot;DBHostName&quot;</span><span class="p">],</span> <span class="n">DB</span><span class="p">[</span><span class="s">&quot;DBUserName&quot;</span><span class="p">],</span> <span class="n">DB</span><span class="p">[</span><span class="s">&quot;DBPassword&quot;</span><span class="p">],</span> <span class="n">DB</span><span class="p">[</span><span class="s">&quot;DBName&quot;</span><span class="p">])</span>
+<span class="c1"># connect to database</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">[</span><span class="s2">&quot;DBHostName&quot;</span><span class="p">],</span> <span class="n">DB</span><span class="p">[</span><span class="s2">&quot;DBUserName&quot;</span><span class="p">],</span> <span class="n">DB</span><span class="p">[</span><span class="s2">&quot;DBPassword&quot;</span><span class="p">],</span> <span class="n">DB</span><span class="p">[</span><span class="s2">&quot;DBName&quot;</span><span class="p">])</span>
 <span class="n">crs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 
-<span class="c"># get location where thumbnails are stored</span>
-<span class="n">sql</span> <span class="o">=</span> <span class="s">&quot;select data from settings where value = &#39;VideoArtworkDir&#39;;&quot;</span>
+<span class="c1"># get location where thumbnails are stored</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;select data from settings where value = &#39;VideoArtworkDir&#39;;&quot;</span>
 <span class="n">crs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
 <span class="n">VIDEO_DIR</span> <span class="o">=</span> <span class="n">crs</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="c"># get all files without covers</span>
-<span class="n">cmd</span> <span class="o">=</span> <span class="s">&#39;totem-video-thumbnailer -j -s 600 &quot;</span><span class="si">%s</span><span class="s">&quot; &quot;</span><span class="si">%s</span><span class="s">&quot; &gt;/dev/null 2&gt;&amp;1&#39;</span>
-<span class="n">sql</span> <span class="o">=</span> <span class="s">&quot;select intid, filename from videometadata where coverfile = &#39;No Cover&#39;;&quot;</span>
+<span class="c1"># get all files without covers</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;totem-video-thumbnailer -j -s 600 &quot;</span><span class="si">%s</span><span class="s1">&quot; &quot;</span><span class="si">%s</span><span class="s1">&quot; &gt;/dev/null 2&gt;&amp;1&#39;</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;select intid, filename from videometadata where coverfile = &#39;No Cover&#39;;&quot;</span>
 <span class="n">crs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
 <span class="n">VIDEOS</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
@@ -158,20 +158,20 @@ totem-video-thumbnailer. (myth-thumbnailer.py &#8212; <a href="http://www.kryoge
   <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span> <span class="k">break</span>
   <span class="n">intid</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">data</span>
   <span class="n">parts</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span>
-  <span class="n">output</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&quot;[^a-z0-9_]&quot;</span><span class="p">,</span><span class="s">&quot;_&quot;</span><span class="p">,</span><span class="s">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="o">+</span> <span class="s">&quot;.jpg&quot;</span>
+  <span class="n">output</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;[^a-z0-9_]&quot;</span><span class="p">,</span><span class="s2">&quot;_&quot;</span><span class="p">,</span><span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span>
   <span class="n">full_output</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">VIDEO_DIR</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">full_output</span><span class="p">):</span>
     <span class="k">pass</span>
   <span class="k">else</span><span class="p">:</span>
     <span class="n">cmd_exec</span> <span class="o">=</span> <span class="n">cmd</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">full_output</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">&quot;Thumbnailing&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">print</span> <span class="s2">&quot;Thumbnailing&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd_exec</span><span class="p">)</span>
     <span class="n">VIDEOS</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">intid</span><span class="p">,</span><span class="n">full_output</span><span class="p">))</span>
 
-<span class="n">sql</span> <span class="o">=</span> <span class="s">&quot;update videometadata set coverfile = </span><span class="si">%s</span><span class="s"> where intid = </span><span class="si">%s</span><span class="s"> limit 1;&quot;</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;update videometadata set coverfile = </span><span class="si">%s</span><span class="s2"> where intid = </span><span class="si">%s</span><span class="s2"> limit 1;&quot;</span>
 <span class="k">for</span> <span class="n">intid</span><span class="p">,</span> <span class="n">thumbnail</span> <span class="ow">in</span> <span class="n">VIDEOS</span><span class="p">:</span>
   <span class="n">crs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="p">(</span><span class="n">thumbnail</span><span class="p">,</span> <span class="n">intid</span><span class="p">))</span>
-  <span class="k">print</span> <span class="s">&quot;Added </span><span class="si">%s</span><span class="s"> to database&quot;</span> <span class="o">%</span> <span class="n">thumbnail</span>
+  <span class="k">print</span> <span class="s2">&quot;Added </span><span class="si">%s</span><span class="s2"> to database&quot;</span> <span class="o">%</span> <span class="n">thumbnail</span>
 </pre></div>
 </td></tr></table>
 		</div> <!--/#entry-content-->

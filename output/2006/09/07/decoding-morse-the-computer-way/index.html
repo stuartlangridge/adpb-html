@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2006/09/07/decoding-morse-the-computer-way/"><time 
-			class="dt-published" datetime="2006-09-07T12:10:00">Sep 07 2006</time></a>
+			class="dt-published" datetime="2006-09-07T12:10:00+01:00">Sep 07 2006</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -70,7 +70,7 @@ clearer) and made it mono (rather than stereo). At this point I could
 theoretically have decoded it by looking at the waveform: as you can see
 from this Audacity screenshot, that&#8217;s clearly the Morse code
 <code>.... .. .-.-.-</code> (short sound is a dot, long sound is a dash; that
-decodes to &#8220;<span class="caps">HI</span>.&#8221;) <img alt="morse" src="http://www.kryogenix.org/photoimages/pictures/random/567.png" /> However, that&#8217;d be boring and laborious, and
+decodes to &#8220;<span class="caps">HI</span>.&#8221;) <img alt="morse" src="http://www.kryogenix.org/photoimages/pictures/random/567.png"> However, that&#8217;d be boring and laborious, and
 what if the message was five hours long, eh? You wouldn&#8217;t want to
 transcribe that by hand. So, get the computer to do it! I didn&#8217;t want to
 write an mp3 parser, though, and because I was on a Windows box I didn&#8217;t
@@ -79,15 +79,15 @@ exported the sound from Audacity as a <span class="caps">WAV</span> file, and th
 got <a href="http://sox.sourceforge.net/">sox</a>, the Swiss Army knife of audio converters and another open
 source program. Sox can convert a sound sample to its &#8220;data&#8221; format,
 which is a load of lines that look like&nbsp;this:</p>
-<div class="highlight"><pre>               <span class="mi">0</span>  <span class="o">-</span><span class="mf">6.1035156e-005</span>
-  <span class="mf">2.2675737e-005</span>  <span class="o">-</span><span class="mf">3.0517578e-005</span>
-  <span class="mf">4.5351474e-005</span>                <span class="mi">0</span>
-  <span class="mf">6.8027211e-005</span>  <span class="o">-</span><span class="mf">3.0517578e-005</span>
-  <span class="mf">9.0702948e-005</span>   <span class="mf">3.0517578e-005</span>
-   <span class="mf">0.00011337868</span>  <span class="o">-</span><span class="mf">3.0517578e-005</span>
-   <span class="mf">0.00013605442</span>                <span class="mi">0</span>
-   <span class="mf">0.00015873016</span>  <span class="o">-</span><span class="mf">3.0517578e-005</span>
-    <span class="mf">0.0001814059</span>  <span class="o">-</span><span class="mf">3.0517578e-005</span>
+<div class="highlight"><pre><span></span>               0  -6.1035156e-005
+  2.2675737e-005  -3.0517578e-005
+  4.5351474e-005                0
+  6.8027211e-005  -3.0517578e-005
+  9.0702948e-005   3.0517578e-005
+   0.00011337868  -3.0517578e-005
+   0.00013605442                0
+   0.00015873016  -3.0517578e-005
+    0.0001814059  -3.0517578e-005
 </pre></div>
 
 
@@ -98,46 +98,46 @@ high where there was a sound and low where there wasn&#8217;t. I needed to go
 through the data and find all the loud bits and all the quiet bits; a
 long quiet bit is a space, a long loud bit is a dash, and a short loud
 bit is a dot. No problem: quick bit of Python&nbsp;scripting:</p>
-<div class="highlight"><pre><span class="n">fp</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;jezza4.dat&quot;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="kt">int</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="kt">float</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">fp</span><span class="p">.</span><span class="n">readlines</span><span class="p">()[</span><span class="mi">2</span><span class="o">:</span><span class="p">]]</span>
-<span class="n">fp</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight"><pre><span></span>fp = open(&quot;jezza4.dat&quot;)
+data = [int(abs(float(x.split()[1])) &gt; 0.01) for x in fp.readlines()[2:]]
+fp.close()
 
-<span class="cp"># count all the runs</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">current</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">data</span><span class="o">:</span>
-  <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">current</span><span class="o">:</span>
-    <span class="n">counts</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">current</span><span class="p">,</span><span class="n">count</span><span class="p">))</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">i</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+# count all the runs
+counts = []
+current = -1
+count = 0
+for i in data:
+  if i != current:
+    counts.append((current,count))
+    current = i
+    count = 0
+  count += 1
 
-<span class="cp"># now remove all short runs, which also removes the -1 row!</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">counts</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">]</span>
+# now remove all short runs, which also removes the -1 row!
+counts = [x for x in counts if x[1] &gt;= 15]
 
-<span class="cp"># and reaggregate everything</span>
-<span class="n">counts2</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">current</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">counts</span><span class="o">:</span>
-  <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">current</span><span class="o">:</span>
-    <span class="n">counts2</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">current</span><span class="p">,</span><span class="n">count</span><span class="p">))</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">count</span> <span class="o">+=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+# and reaggregate everything
+counts2 = []
+current = -1
+count = 0
+for i in counts:
+  if i[0] != current:
+    counts2.append((current,count))
+    current = i[0]
+    count = 0
+  count += i[1]
 
-<span class="n">mystr</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-<span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">counts2</span><span class="o">:</span>
-  <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
-    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">350</span><span class="o">:</span>
-      <span class="n">mystr</span> <span class="o">+=</span> <span class="s">&quot; &quot;</span>
-  <span class="n">elif</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">:</span>
-    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="o">:</span>
-      <span class="n">mystr</span> <span class="o">+=</span> <span class="s">&quot;-&quot;</span>
-    <span class="nl">else:</span>
-      <span class="n">mystr</span> <span class="o">+=</span> <span class="s">&quot;.&quot;</span>
-<span class="n">print</span> <span class="n">mystr</span>
+mystr = &quot;&quot;
+for x in counts2:
+  if x[0] == 0:
+    if x[1] &gt; 350:
+      mystr += &quot; &quot;
+  elif x[0] == 1:
+    if x[1] &gt; 500:
+      mystr += &quot;-&quot;
+    else:
+      mystr += &quot;.&quot;
+print mystr
 </pre></div>
 
 

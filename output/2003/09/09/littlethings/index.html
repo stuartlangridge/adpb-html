@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2003/09/09/littlethings/"><time 
-			class="dt-published" datetime="2003-09-09T11:00:00">Sep 09 2003</time></a>
+			class="dt-published" datetime="2003-09-09T11:00:00+01:00">Sep 09 2003</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -87,11 +87,11 @@ the default run action for all movies when clicked&nbsp;on:</p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
-disable-xscreensaver &amp; <span class="nv">DISABLE_PID</span><span class="o">=</span><span class="nv">$!</span>
-<span class="nb">echo</span> <span class="s2">&quot;Disabling screensaver (PID $DISABLE_PID)&quot;</span>
-mplayer -vo xvidix -ao oss -framedrop <span class="s2">&quot;$1&quot;</span> -really-quiet 2&gt;&amp;1
-<span class="nb">echo </span>Re-enabling screensaver
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+disable-xscreensaver <span class="p">&amp;</span> <span class="nv">DISABLE_PID</span><span class="o">=</span><span class="nv">$!</span>
+<span class="nb">echo</span> <span class="s2">&quot;Disabling screensaver (PID </span><span class="nv">$DISABLE_PID</span><span class="s2">)&quot;</span>
+mplayer -vo xvidix -ao oss -framedrop <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> -really-quiet <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="nb">echo</span> Re-enabling screensaver
 <span class="nb">kill</span> <span class="nv">$DISABLE_PID</span>
 </pre></div>
 </td></tr></table>
@@ -101,10 +101,10 @@ mplayer -vo xvidix -ao oss -framedrop <span class="s2">&quot;$1&quot;</span> -re
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="k">while </span><span class="nb">true</span>; <span class="k">do </span>
-<span class="k">    </span>sleep 59
-    xscreensaver-command -deactivate &amp;
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> 
+    sleep <span class="m">59</span>
+    xscreensaver-command -deactivate <span class="p">&amp;</span>
 <span class="k">done</span>
 </pre></div>
 </td></tr></table>

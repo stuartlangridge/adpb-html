@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2005/04/30/applicationanatomy/"><time 
-			class="dt-published" datetime="2005-04-30T11:00:00">Apr 30 2005</time></a>
+			class="dt-published" datetime="2005-04-30T11:00:00+01:00">Apr 30 2005</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -78,7 +78,7 @@ might turn out to be popular, I was worried that it would overwhelm the
 machine that it’s on. The obvious way to build a web app like this would
 be to have the image generation happen “in process“; that is, the
 architecture looks like&nbsp;this:</p>
-<p><img alt="Stage 1: request poster text from user; Stage 2: hang while generating image with PHP image library; Stage 3: Display page and newly created image" src="http://www.kryogenix.org/thumbnails/250/pictures/random/159.png" /></p>
+<p><img alt="Stage 1: request poster text from user; Stage 2: hang while generating image with PHP image library; Stage 3: Display page and newly created image" src="http://www.kryogenix.org/thumbnails/250/pictures/random/159.png"></p>
 <p>The problem with that idea, where you generate the image in
 <span class="caps"><span class="caps">PHP</span></span> code, is that the page hangs while you’re
 waiting for the image to be generated. Moreover, if a thousand people
@@ -94,7 +94,7 @@ generation process would just run in the background on the server,
 generating one image at a time, and the front end would just hand
 “requests” for image generation to it, and then wait around until it was
 done. Something like&nbsp;this:</p>
-<p><img alt="Stage 1: request poster text from user; Stage 2: Add a request for image generation to the queue and wait until it's done; Stage 3: Display page and newly created image by retrieving the image from the storage area. Meanwhile, the back end daemon reads requests from the queue and places complete images in the storage area." src="http://www.kryogenix.org/thumbnails/250/pictures/random/160.png" /></p>
+<p><img alt="Stage 1: request poster text from user; Stage 2: Add a request for image generation to the queue and wait until it's done; Stage 3: Display page and newly created image by retrieving the image from the storage area. Meanwhile, the back end daemon reads requests from the queue and places complete images in the storage area." src="http://www.kryogenix.org/thumbnails/250/pictures/random/160.png"></p>
 <p>Separating the processes makes each part quick and easy. The front end
 simply adds requests to the queue and then loads a “wait page”: this
 page refreshes itself every five seconds and, on load, checks whether
@@ -145,13 +145,13 @@ two page process as follows: page1 contains the form, which submits to
 page2; Page2 saves the data and then displays the message. I don’t do it
 like that; I have the form on page1 submit <strong>to</strong> page1, and page1 is
 structured as&nbsp;follows:</p>
-<div class="highlight"><pre><span class="k">if</span> <span class="n">data</span> <span class="n">has</span> <span class="n">been</span> <span class="n">submitted</span>
-  <span class="n">save</span> <span class="n">the</span> <span class="n">data</span> <span class="n">in</span> <span class="n">the</span> <span class="n">database</span>
-  <span class="n">redirect</span> <span class="n">to</span> <span class="n">page</span> <span class="mi">2</span>
-  <span class="n">end</span> <span class="n">page</span>
-<span class="n">end</span> <span class="k">if</span>
+<div class="highlight"><pre><span></span>if data has been submitted
+  save the data in the database
+  redirect to page 2
+  end page
+end if
 
-<span class="n">display</span> <span class="n">the</span> <span class="n">form</span>
+display the form
 </pre></div>
 
 

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2006/04/17/scripting-linux-desktop-applications/"><time 
-			class="dt-published" datetime="2006-04-17T02:34:00">Apr 17 2006</time></a>
+			class="dt-published" datetime="2006-04-17T02:34:00+01:00">Apr 17 2006</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -79,28 +79,28 @@ provide. The JavaScript gets lots of extra objects made available to it,
 and everyone has to learn about those objects, which is way harder than
 just learning <span class="caps">JS</span> itself. Writing a file using JavaScript and the Windows
 Scripting Host looks something like&nbsp;this:</p>
-<div class="highlight"><pre><span class="n">var</span> <span class="n">fso</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ActiveXObject</span><span class="p">(</span><span class="s">&quot;Scripting.FileSystemObject&quot;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fso</span><span class="p">.</span><span class="n">CreateTextFile</span><span class="p">(</span><span class="n">savefile</span><span class="p">);</span>
-<span class="n">fp</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Blah blah blah&quot;</span><span class="p">);</span>
-<span class="n">fp</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+<div class="highlight"><pre><span></span>var fso = new ActiveXObject(&quot;Scripting.FileSystemObject&quot;);
+var fp = fso.CreateTextFile(savefile);
+fp.WriteLine(&quot;Blah blah blah&quot;);
+fp.Close();
 </pre></div>
 
 
 <p>Writing a file using JavaScript inside Mozilla (which uses <span class="caps">XPCOM</span>) looks
 something like&nbsp;this:</p>
-<div class="highlight"><pre><span class="n">var</span> <span class="n">file</span> <span class="o">=</span> <span class="n">Components</span><span class="p">.</span><span class="n">classes</span><span class="p">[</span><span class="s">&quot;@mozilla.org/file/local;1&quot;</span><span class="p">]</span>
-        <span class="p">.</span><span class="n">createInstance</span><span class="p">(</span><span class="n">Components</span><span class="p">.</span><span class="n">interfaces</span><span class="p">.</span><span class="n">nsILocalFile</span><span class="p">);</span>
-    <span class="n">file</span><span class="p">.</span><span class="n">initWithPath</span><span class="p">(</span> <span class="n">savefile</span> <span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="n">file</span><span class="p">.</span><span class="n">exists</span><span class="p">()</span> <span class="o">==</span> <span class="nb">false</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="n">alert</span><span class="p">(</span> <span class="s">&quot;Creating file... &quot;</span> <span class="p">);</span>
-        <span class="n">file</span><span class="p">.</span><span class="n">create</span><span class="p">(</span> <span class="n">Components</span><span class="p">.</span><span class="n">interfaces</span><span class="p">.</span><span class="n">nsIFile</span><span class="p">.</span><span class="n">NORMAL_FILE_TYPE</span><span class="p">,</span> <span class="mi">420</span> <span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">var</span> <span class="n">outputStream</span> <span class="o">=</span> <span class="n">Components</span><span class="p">.</span><span class="n">classes</span><span class="p">[</span><span class="s">&quot;@mozilla.org/network/file-output-stream;1&quot;</span><span class="p">]</span>
-        <span class="p">.</span><span class="n">createInstance</span><span class="p">(</span> <span class="n">Components</span><span class="p">.</span><span class="n">interfaces</span><span class="p">.</span><span class="n">nsIFileOutputStream</span> <span class="p">);</span>
-    <span class="n">outputStream</span><span class="p">.</span><span class="n">init</span><span class="p">(</span> <span class="n">file</span><span class="p">,</span> <span class="mh">0x04</span> <span class="o">|</span> <span class="mh">0x08</span> <span class="o">|</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mi">420</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span>
-    <span class="n">var</span> <span class="n">output</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">blog</span><span class="err">&#39;</span><span class="p">).</span><span class="n">value</span><span class="p">;</span>
-    <span class="n">var</span> <span class="n">result</span> <span class="o">=</span> <span class="n">outputStream</span><span class="p">.</span><span class="n">write</span><span class="p">(</span> <span class="n">output</span><span class="p">,</span> <span class="n">output</span><span class="p">.</span><span class="n">length</span> <span class="p">);</span>
-    <span class="n">outputStream</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+<div class="highlight"><pre><span></span>var file = Components.classes[&quot;@mozilla.org/file/local;1&quot;]
+        .createInstance(Components.interfaces.nsILocalFile);
+    file.initWithPath( savefile );
+    if ( file.exists() == false ) {
+        alert( &quot;Creating file... &quot; );
+        file.create( Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420 );
+    }
+    var outputStream = Components.classes[&quot;@mozilla.org/network/file-output-stream;1&quot;]
+        .createInstance( Components.interfaces.nsIFileOutputStream );
+    outputStream.init( file, 0x04 | 0x08 | 0x20, 420, 0 );
+    var output = document.getElementById(&#39;blog&#39;).value;
+    var result = outputStream.write( output, output.length );
+    outputStream.close();
 </pre></div>
 
 

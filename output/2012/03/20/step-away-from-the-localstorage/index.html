@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2012/03/20/step-away-from-the-localstorage/"><time 
-			class="dt-published" datetime="2012-03-20T14:37:00">Mar 20 2012</time></a>
+			class="dt-published" datetime="2012-03-20T14:37:00+00:00">Mar 20 2012</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -89,27 +89,27 @@ decide whether I&#8217;m prepared to run the risk or not. Because what you&#8217
 asking for is that I replace&nbsp;this:</p>
 <p><code>localStorage.setItem("key", "value");</code></p>
 <p>with&nbsp;this</p>
-<div class="highlight"><pre><span class="nx">storeSomething</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">indexedDB</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&quot;mydbname&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;This is a description of the database.&quot;</span><span class="p">);</span>
-    <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="o">!=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">version</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">setVrequest</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">setVersion</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-            <span class="nx">setVrequest</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">createObjectStore</span><span class="p">(</span>
-                    <span class="s2">&quot;myobjectstore&quot;</span><span class="p">,</span> 
-                    <span class="p">{</span><span class="nx">keyPath</span><span class="o">:</span> <span class="s2">&quot;timeStamp&quot;</span><span class="p">});</span>
-                <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">put</span><span class="p">({</span><span class="nx">key</span><span class="o">:</span> <span class="nx">value</span><span class="p">,</span> 
-                    <span class="s2">&quot;timeStamp&quot;</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">()});</span>
-                <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="c1">// now carry on with what I was doing</span>
-                <span class="p">};</span>
-            <span class="p">};</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="nt">storeSomething</span> <span class="o">=</span> <span class="nt">function</span><span class="o">(</span><span class="nt">key</span><span class="o">,</span> <span class="nt">value</span><span class="o">)</span> <span class="p">{</span>
+    <span class="err">var</span> <span class="err">request</span> <span class="err">=</span> <span class="err">indexedDB.open(&quot;mydbname&quot;,</span>
+        <span class="err">&quot;This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">description</span> <span class="err">of</span> <span class="err">the</span> <span class="err">database.&quot;)</span><span class="p">;</span>
+    <span class="err">request.onsuccess</span> <span class="err">=</span> <span class="err">function(e)</span> <span class="err">{</span>
+        <span class="err">var</span> <span class="err">v</span> <span class="err">=</span> <span class="err">&quot;1.0&quot;</span><span class="p">;</span>
+        <span class="err">var</span> <span class="err">db</span> <span class="err">=</span> <span class="err">e.target.result</span><span class="p">;</span>
+        <span class="err">if</span> <span class="err">(v!=</span> <span class="err">db.version)</span> <span class="err">{</span>
+            <span class="err">var</span> <span class="err">setVrequest</span> <span class="err">=</span> <span class="err">db.setVersion(v)</span><span class="p">;</span>
+            <span class="err">setVrequest.onsuccess</span> <span class="err">=</span> <span class="err">function(e)</span> <span class="err">{</span>
+                <span class="err">var</span> <span class="err">store</span> <span class="err">=</span> <span class="err">db.createObjectStore(</span>
+                    <span class="err">&quot;myobjectstore&quot;,</span> 
+                    <span class="err">{</span><span class="n">keyPath</span><span class="p">:</span> <span class="s2">&quot;timeStamp&quot;</span><span class="p">}</span><span class="o">);</span>
+                <span class="nt">var</span> <span class="nt">request</span> <span class="o">=</span> <span class="nt">store</span><span class="p">.</span><span class="nc">put</span><span class="o">(</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span> 
+                    <span class="s2">&quot;timeStamp&quot;</span> <span class="o">:</span> <span class="n">new</span> <span class="nf">Date</span><span class="p">()</span><span class="o">.</span><span class="nf">getTime</span><span class="p">()}</span><span class="o">);</span>
+                <span class="nt">request</span><span class="p">.</span><span class="nc">onsuccess</span> <span class="o">=</span> <span class="nt">function</span><span class="o">(</span><span class="nt">e</span><span class="o">)</span> <span class="p">{</span>
+                    <span class="err">//</span> <span class="err">now</span> <span class="err">carry</span> <span class="err">on</span> <span class="err">with</span> <span class="err">what</span> <span class="err">I</span> <span class="err">was</span> <span class="err">doing</span>
+                <span class="p">}</span><span class="o">;</span>
+            <span class="err">}</span><span class="o">;</span>
+        <span class="err">}</span>
+    <span class="err">}</span><span class="o">;</span>
+<span class="err">}</span>
 </pre></div>
 
 

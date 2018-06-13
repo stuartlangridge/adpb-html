@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2014/01/23/a-simple-u1db-example-for-ubuntu-sdk-apps/"><time 
-			class="dt-published" datetime="2014-01-23T11:42:00">Jan 23 2014</time></a>
+			class="dt-published" datetime="2014-01-23T11:42:00+00:00">Jan 23 2014</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -68,61 +68,61 @@ should remember to load Abbey Street on next launch. I&#8217;ll have to look
 into how that&#8217;s implemented in&nbsp;Ubuntu.</p>
 </blockquote>
 <p>I&#8217;d use <span class="caps">U1DB</span> to do that. A simple&nbsp;example:</p>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">QtQuick</span> <span class="mf">2.0</span>
-<span class="n">import</span> <span class="n">Ubuntu</span><span class="p">.</span><span class="n">Components</span> <span class="mf">0.1</span>
-<span class="n">import</span> <span class="n">U1db</span> <span class="mf">1.0</span> <span class="n">as</span> <span class="n">U1db</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">QtQuick</span> <span class="mf">2.0</span>
+<span class="kn">import</span> <span class="nn">Ubuntu.Components</span> <span class="mf">0.1</span>
+<span class="kn">import</span> <span class="nn">U1db</span> <span class="mf">1.0</span> <span class="k">as</span> <span class="n">U1db</span>
 
 <span class="n">MainView</span> <span class="p">{</span>
-    <span class="nl">width:</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
-    <span class="nl">height:</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">71</span><span class="p">)</span>
+    <span class="n">width</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">height</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">71</span><span class="p">)</span>
 
-    <span class="cm">/* ----------------------------------------------------</span>
-<span class="cm">       Set up the U1DB database</span>
-<span class="cm">       Declare a named document</span>
-<span class="cm">       ---------------------------------------------------- */</span>
-    <span class="n">U1db</span><span class="p">.</span><span class="n">Database</span> <span class="p">{</span> <span class="n">id</span><span class="o">:</span> <span class="n">db</span><span class="p">;</span> <span class="n">path</span><span class="o">:</span> <span class="s">&quot;simpleu1dbdemo.u1db&quot;</span> <span class="p">}</span>
-    <span class="n">U1db</span><span class="p">.</span><span class="n">Document</span> <span class="p">{</span>
-        <span class="nl">id:</span> <span class="n">lastPlace</span>
-        <span class="nl">database:</span> <span class="n">db</span>
-        <span class="nl">docId:</span> <span class="s">&quot;lastPlace&quot;</span>
-        <span class="nl">create:</span> <span class="nb">true</span>
-        <span class="nl">defaults:</span> <span class="p">{</span> <span class="n">placename</span><span class="o">:</span> <span class="s">&quot;&quot;</span> <span class="p">}</span>
+    <span class="o">/*</span> <span class="o">----------------------------------------------------</span>
+       <span class="n">Set</span> <span class="n">up</span> <span class="n">the</span> <span class="n">U1DB</span> <span class="n">database</span>
+       <span class="n">Declare</span> <span class="n">a</span> <span class="n">named</span> <span class="n">document</span>
+       <span class="o">----------------------------------------------------</span> <span class="o">*/</span>
+    <span class="n">U1db</span><span class="o">.</span><span class="n">Database</span> <span class="p">{</span> <span class="nb">id</span><span class="p">:</span> <span class="n">db</span><span class="p">;</span> <span class="n">path</span><span class="p">:</span> <span class="s2">&quot;simpleu1dbdemo.u1db&quot;</span> <span class="p">}</span>
+    <span class="n">U1db</span><span class="o">.</span><span class="n">Document</span> <span class="p">{</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">lastPlace</span>
+        <span class="n">database</span><span class="p">:</span> <span class="n">db</span>
+        <span class="n">docId</span><span class="p">:</span> <span class="s2">&quot;lastPlace&quot;</span>
+        <span class="n">create</span><span class="p">:</span> <span class="n">true</span>
+        <span class="n">defaults</span><span class="p">:</span> <span class="p">{</span> <span class="n">placename</span><span class="p">:</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span>
     <span class="p">}</span>
 
 
     <span class="n">Page</span> <span class="p">{</span>
-        <span class="nl">title:</span> <span class="s">&quot;Simple U1DB demo&quot;</span>
+        <span class="n">title</span><span class="p">:</span> <span class="s2">&quot;Simple U1DB demo&quot;</span>
 
         <span class="n">Column</span> <span class="p">{</span>
-            <span class="nl">width:</span> <span class="n">parent</span><span class="p">.</span><span class="n">width</span>
-            <span class="nl">spacing:</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span>
+            <span class="n">spacing</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">Label</span> <span class="p">{</span>
-                <span class="nl">width:</span> <span class="n">parent</span><span class="p">.</span><span class="n">width</span>
-                <span class="nl">text:</span> <span class="s">&quot;Enter a place&quot;</span>
-                <span class="nl">horizontalAlignment:</span> <span class="n">Text</span><span class="p">.</span><span class="n">AlignHCenter</span>
+                <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span>
+                <span class="n">text</span><span class="p">:</span> <span class="s2">&quot;Enter a place&quot;</span>
+                <span class="n">horizontalAlignment</span><span class="p">:</span> <span class="n">Text</span><span class="o">.</span><span class="n">AlignHCenter</span>
             <span class="p">}</span>
             <span class="n">Rectangle</span> <span class="p">{</span>
-                <span class="nl">width:</span> <span class="n">parent</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                <span class="nl">color:</span> <span class="s">&quot;white&quot;</span>
-                <span class="nl">height:</span> <span class="n">inp</span><span class="p">.</span><span class="n">height</span> <span class="o">*</span> <span class="mi">2</span>
-                <span class="n">anchors</span><span class="p">.</span><span class="n">horizontalCenter</span><span class="o">:</span> <span class="n">parent</span><span class="p">.</span><span class="n">horizontalCenter</span>
-                <span class="nl">radius:</span> <span class="mi">5</span>
+                <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">color</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span>
+                <span class="n">height</span><span class="p">:</span> <span class="n">inp</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mi">2</span>
+                <span class="n">anchors</span><span class="o">.</span><span class="n">horizontalCenter</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">horizontalCenter</span>
+                <span class="n">radius</span><span class="p">:</span> <span class="mi">5</span>
                 <span class="n">TextInput</span> <span class="p">{</span>
-                    <span class="nl">id:</span> <span class="n">inp</span>
-                    <span class="nl">width:</span> <span class="n">parent</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="n">anchors</span><span class="p">.</span><span class="n">centerIn</span><span class="o">:</span> <span class="n">parent</span>
+                    <span class="nb">id</span><span class="p">:</span> <span class="n">inp</span>
+                    <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="n">anchors</span><span class="o">.</span><span class="n">centerIn</span><span class="p">:</span> <span class="n">parent</span>
 
-                    <span class="cm">/* ----------------------------------------------------</span>
-<span class="cm">                       Important part number one</span>
-<span class="cm">                       Retrieve the value from the declared U1DB document</span>
-<span class="cm">                       ---------------------------------------------------- */</span>
-                    <span class="nl">text:</span> <span class="n">lastPlace</span><span class="p">.</span><span class="n">contents</span><span class="p">.</span><span class="n">placename</span> <span class="o">||</span> <span class="s">&quot;&quot;</span>
+                    <span class="o">/*</span> <span class="o">----------------------------------------------------</span>
+                       <span class="n">Important</span> <span class="n">part</span> <span class="n">number</span> <span class="n">one</span>
+                       <span class="n">Retrieve</span> <span class="n">the</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">the</span> <span class="nn">declared</span> <span class="nn">U1DB</span> <span class="nn">document</span>
+                       <span class="o">----------------------------------------------------</span> <span class="o">*/</span>
+                    <span class="n">text</span><span class="p">:</span> <span class="n">lastPlace</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">placename</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span>
 
-                    <span class="cm">/* ----------------------------------------------------</span>
-<span class="cm">                       Important part number two</span>
-<span class="cm">                       Save a changed value back to the U1DB document</span>
-<span class="cm">                       ---------------------------------------------------- */</span>
-                    <span class="nl">onTextChanged:</span> <span class="n">lastPlace</span><span class="p">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">{</span><span class="n">placename</span><span class="o">:</span> <span class="n">text</span><span class="p">}</span>
+                    <span class="o">/*</span> <span class="o">----------------------------------------------------</span>
+                       <span class="n">Important</span> <span class="n">part</span> <span class="n">number</span> <span class="n">two</span>
+                       <span class="n">Save</span> <span class="n">a</span> <span class="n">changed</span> <span class="n">value</span> <span class="n">back</span> <span class="n">to</span> <span class="n">the</span> <span class="n">U1DB</span> <span class="n">document</span>
+                       <span class="o">----------------------------------------------------</span> <span class="o">*/</span>
+                    <span class="n">onTextChanged</span><span class="p">:</span> <span class="n">lastPlace</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">{</span><span class="n">placename</span><span class="p">:</span> <span class="n">text</span><span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>

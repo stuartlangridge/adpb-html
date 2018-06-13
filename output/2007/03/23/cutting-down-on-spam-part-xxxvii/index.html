@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/"><time 
-			class="dt-published" datetime="2007-03-23T13:43:00">Mar 23 2007</time></a>
+			class="dt-published" datetime="2007-03-23T13:43:00+00:00">Mar 23 2007</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -69,30 +69,30 @@ simple one, like &#8220;Add 3 and 4&#8221;) to every post. I didn&#8217;t want t
 tiny bit of hacking. After installing the plugin into <span class="caps">WP</span>, I edited my
 comments.php file in my theme and added this below the existing comment
 entry&nbsp;boxes:</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 
-<span class="cp"># For old posts, display math-comment-spam-protection&#39;s &quot;add these</span>
-<span class="cp"># numbers&quot; question.</span>
+<span class="c1"># For old posts, display math-comment-spam-protection&#39;s &quot;add these</span>
+<span class="c1"># numbers&quot; question.</span>
 
-<span class="cp">if (function_exists(&#39;math_comment_spam_protection&#39;)) {</span>
-<span class="cp">    $mcsp_info = math_comment_spam_protection();</span>
-<span class="cp">  if ((date(&#39;U&#39;) - get_the_time(&#39;U&#39;)) &gt; 2592000) { # 30 days ?&gt;</span>
-<span class="nt">&lt;p&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;mcspvalue&quot;</span> <span class="na">id=</span><span class="s">&quot;mcspvalue&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span>
-<span class="na">size=</span><span class="s">&quot;22&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;mcspvalue&quot;</span><span class="nt">&gt;&lt;small&gt;</span>Spam protection for older posts: Add
-together
-<span class="cp">&lt;?php echo $mcsp_info[</span><span class="s1">&#39;operand1&#39;</span><span class="cp">].&#39; and &#39;.$mcsp_info[</span><span class="s1">&#39;operand2&#39;</span><span class="cp">].&#39;&#39; ?&gt;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">function_exists</span><span class="p">(</span><span class="s1">&#39;math_comment_spam_protection&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$mcsp_info</span> <span class="o">=</span> <span class="nx">math_comment_spam_protection</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">((</span><span class="nb">date</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">get_the_time</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">2592000</span><span class="p">)</span> <span class="p">{</span> <span class="c1"># 30 days ?&gt;</span>
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;mcspvalue&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;mcspvalue&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nx">size</span><span class="o">=</span><span class="s2">&quot;22&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">&quot;mcspvalue&quot;</span><span class="o">&gt;&lt;</span><span class="nx">small</span><span class="o">&gt;</span><span class="nx">Spam</span> <span class="nx">protection</span> <span class="k">for</span> <span class="nx">older</span> <span class="nx">posts</span><span class="o">:</span> <span class="nx">Add</span>
+<span class="nx">together</span>
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;operand1&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39; and &#39;</span><span class="o">.</span><span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;operand2&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&#39;</span> <span class="cp">?&gt;</span>
 <span class="nt">&lt;/small&gt;&lt;/label&gt;</span> <span class="cp">&lt;?php</span>
-<span class="cp">  } else {</span>
-<span class="cp">    # it&#39;s not an old comment, so write the answer ourselves!</span>
-<span class="cp">    $vv = $mcsp_info[</span><span class="s1">&#39;operand1&#39;</span><span class="cp">]+$mcsp_info[</span><span class="s1">&#39;operand2&#39;</span><span class="cp">];</span>
-<span class="cp">    echo &#39;&lt;input type=&quot;hidden&quot; name=&quot;mcspvalue&quot; value=&quot;&#39; . $vv . &#39;&quot;&gt;&#39;;</span>
-<span class="cp">  } ?&gt;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1"># it&#39;s not an old comment, so write the answer ourselves!</span>
+    <span class="nv">$vv</span> <span class="o">=</span> <span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;operand1&#39;</span><span class="p">]</span><span class="o">+</span><span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;operand2&#39;</span><span class="p">];</span>
+    <span class="k">echo</span> <span class="s1">&#39;&lt;input type=&quot;hidden&quot; name=&quot;mcspvalue&quot; value=&quot;&#39;</span> <span class="o">.</span> <span class="nv">$vv</span> <span class="o">.</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="cp">?&gt;</span>
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name=</span><span class="s">&quot;mcspinfo&quot;</span>
-<span class="na">value=</span><span class="s">&quot;&lt;?php echo $mcsp_info</span><span class="cp">[</span><span class="s1">&#39;result&#39;</span><span class="cp">]</span><span class="s">; ?&gt;&quot;</span> <span class="nt">/&gt;</span>
+<span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/p&gt;</span>
 <span class="cp">&lt;?php</span>
-<span class="cp">}</span>
+<span class="p">}</span>
 <span class="cp">?&gt;</span>
 </pre></div>
 

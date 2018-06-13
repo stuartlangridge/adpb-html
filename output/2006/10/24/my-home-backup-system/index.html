@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2006/10/24/my-home-backup-system/"><time 
-			class="dt-published" datetime="2006-10-24T23:08:00">Oct 24 2006</time></a>
+			class="dt-published" datetime="2006-10-24T23:08:00+01:00">Oct 24 2006</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -87,30 +87,30 @@ stuff can be done with proper <span class="caps">GUI</span> tools, but I don&#82
 machine because it&#8217;s a server and I&#8217;m trying to converse disc space.
 This bit&#8217;s also from memory, so be very careful and don&#8217;t just slavishly
 follow&nbsp;it.</p>
-<div class="highlight"><pre><span class="cp"># First, make the partition available to LVM, by </span>
-<span class="cp"># making it a &quot;physical volume&quot;. This is LVM-speak for </span>
-<span class="cp"># &quot;a bit of a disk that I can use&quot;</span>
-<span class="n">pvcreate</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda3</span> <span class="err">#</span> <span class="n">the</span> <span class="n">big</span> <span class="n">partition</span> <span class="n">on</span> <span class="n">the</span> <span class="n">first</span> <span class="n">disc</span>
-<span class="n">pvcreate</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hdb</span> <span class="err">#</span> <span class="n">and</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">second</span> <span class="n">disc</span>
+<div class="highlight"><pre><span></span># First, make the partition available to LVM, by 
+# making it a &quot;physical volume&quot;. This is LVM-speak for 
+# &quot;a bit of a disk that I can use&quot;
+pvcreate /dev/hda3 # the big partition on the first disc
+pvcreate /dev/hdb # and all of the second disc
 
-<span class="cp"># Now, create a &quot;volume group&quot;. This is LVM-speak for </span>
-<span class="cp"># &quot;a big block of disc space all managed together&quot;</span>
-<span class="n">vgcreate</span> <span class="n">volumegroup</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda3</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hdb</span>
+# Now, create a &quot;volume group&quot;. This is LVM-speak for 
+# &quot;a big block of disc space all managed together&quot;
+vgcreate volumegroup /dev/hda3 /dev/hdb
 
-<span class="cp"># Next, create a &quot;logical volume&quot;. LVM-speak: &quot;something</span>
-<span class="cp"># that looks like a disc drive, so you can mount it&quot;</span>
-<span class="cp"># First, find out how big it can be</span>
-<span class="n">vgdisplay</span> <span class="o">|</span> <span class="n">grep</span> <span class="s">&quot;Total PE&quot;</span>
-  <span class="n">Total</span> <span class="n">PE</span>              <span class="mi">11833</span>
-<span class="cp"># now create the logical volume at that size</span>
-<span class="n">lvcreate</span> <span class="o">-</span><span class="n">l</span> <span class="mi">11833</span> <span class="n">volumegroup</span> <span class="o">-</span><span class="n">n</span> <span class="n">logical1</span>
+# Next, create a &quot;logical volume&quot;. LVM-speak: &quot;something
+# that looks like a disc drive, so you can mount it&quot;
+# First, find out how big it can be
+vgdisplay | grep &quot;Total PE&quot;
+  Total PE              11833
+# now create the logical volume at that size
+lvcreate -l 11833 volumegroup -n logical1
 
-<span class="cp"># You now have a device /dev/volumegroup/logical1</span>
-<span class="cp"># which you can treat as if it were a disc</span>
-<span class="cp"># Create a dir to put it in</span>
-<span class="n">mkdir</span> <span class="o">/</span><span class="n">space</span>
-<span class="cp"># and add it to /etc/fstab so it gets mounted. Add the line:</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">volumegroup</span><span class="o">/</span><span class="n">logical1</span> <span class="o">/</span><span class="n">space</span> <span class="k">auto</span>   <span class="n">defaults</span>        <span class="mi">0</span>       <span class="mi">0</span>
+# You now have a device /dev/volumegroup/logical1
+# which you can treat as if it were a disc
+# Create a dir to put it in
+mkdir /space
+# and add it to /etc/fstab so it gets mounted. Add the line:
+/dev/volumegroup/logical1 /space auto   defaults        0       0
 </pre></div>
 
 
@@ -126,21 +126,21 @@ folder for each machine, and there should be in there a folder per day.
 Each folder should look like a complete backup, but if a file hasn&#8217;t
 changed since yesterday it shouldn&#8217;t take up any more disc space. So,
 the folder structure should look, say, like&nbsp;this:</p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">space</span>
-  <span class="o">/</span><span class="n">stuart</span>
-    <span class="o">/</span><span class="mi">2006</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">24</span>
-      <span class="o">/</span><span class="n">folder1</span>
-        <span class="o">/</span><span class="n">file1</span>
-        <span class="o">/</span><span class="n">file2</span>
-        <span class="o">/</span><span class="n">newfile1</span>
-      <span class="o">/</span><span class="n">folder2</span>
-        <span class="o">/</span><span class="n">file3</span>
-    <span class="o">/</span><span class="mi">2006</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">23</span>
-      <span class="o">/</span><span class="n">folder1</span>
-        <span class="o">/</span><span class="n">file1</span>
-        <span class="o">/</span><span class="n">file2</span>
-      <span class="o">/</span><span class="n">folder2</span>
-        <span class="o">/</span><span class="n">file3</span>
+<div class="highlight"><pre><span></span>/space
+  /stuart
+    /2006-10-24
+      /folder1
+        /file1
+        /file2
+        /newfile1
+      /folder2
+        /file3
+    /2006-10-23
+      /folder1
+        /file1
+        /file2
+      /folder2
+        /file3
 </pre></div>
 
 
@@ -202,32 +202,32 @@ executable with <code>chmod +x /space/begin-backup</code>, and looks like&nbsp;t
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="nv">PERSON</span><span class="o">=</span><span class="nv">$1</span>
 <span class="nv">BROOT</span><span class="o">=</span>/space
 
-<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;$PERSON&quot;</span> <span class="o">]</span>; <span class="k">then</span>
-<span class="k">  </span><span class="nb">echo </span>You must pass the name of a backup dir
-  <span class="nb">exit </span>1
+<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;</span><span class="nv">$PERSON</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nb">echo</span> You must pass the name of a backup dir
+  <span class="nb">exit</span> <span class="m">1</span>
 <span class="k">fi</span>
 
 <span class="nv">PDIR</span><span class="o">=</span><span class="nv">$BROOT</span>/<span class="nv">$PERSON</span>/
 
-<span class="c"># If person dir doesn&#39;t exist, create it</span>
-<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PDIR</span> <span class="o">]</span>; <span class="k">then </span>mkdir <span class="nv">$PDIR</span>; <span class="k">fi</span>
+<span class="c1"># If person dir doesn&#39;t exist, create it</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PDIR</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> mkdir <span class="nv">$PDIR</span><span class="p">;</span> <span class="k">fi</span>
 
-<span class="c"># If there&#39;s no current dir, create an empty one and link it</span>
-<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PDIR</span>/current <span class="o">]</span>; <span class="k">then</span>
-<span class="k">  </span>mkdir <span class="nv">$PDIR</span>/first
+<span class="c1"># If there&#39;s no current dir, create an empty one and link it</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PDIR</span>/current <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  mkdir <span class="nv">$PDIR</span>/first
   ln -s first <span class="nv">$PDIR</span>/current
 <span class="k">fi</span>
 
 <span class="nv">DT</span><span class="o">=</span><span class="k">$(</span>date -Iseconds<span class="k">)</span>
 
-<span class="c"># Hardlink-tree the existing recent dir</span>
-cp -al <span class="s2">&quot;$(readlink -f $PDIR/current)&quot;</span> <span class="nv">$PDIR</span>/<span class="nv">$DT</span>
-<span class="c"># and link current to the new hardlink tree</span>
+<span class="c1"># Hardlink-tree the existing recent dir</span>
+cp -al <span class="s2">&quot;</span><span class="k">$(</span>readlink -f <span class="nv">$PDIR</span>/current<span class="k">)</span><span class="s2">&quot;</span> <span class="nv">$PDIR</span>/<span class="nv">$DT</span>
+<span class="c1"># and link current to the new hardlink tree</span>
 rm <span class="nv">$PDIR</span>/current
 ln -s <span class="nv">$DT</span> <span class="nv">$PDIR</span>/current
 </pre></div>
@@ -239,9 +239,9 @@ ln -s <span class="nv">$DT</span> <span class="nv">$PDIR</span>/current
 done with <code>rsync</code>, which is complex but brilliantly clever. In essence,
 rsync is like <code>copy</code> (or <code>cp</code>), except that it compares the source and
 the destination and only sends the changes over. On my laptop, I can&nbsp;do</p>
-<div class="highlight"><pre><span class="n">rsync</span> <span class="o">-</span><span class="n">avz</span> <span class="o">--</span><span class="n">delete</span> <span class="o">-</span><span class="n">e</span> <span class="n">ssh</span> 
-    <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">folder</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">back</span><span class="o">/</span><span class="n">up</span> 
-    <span class="n">myserver</span><span class="o">:/</span><span class="n">space</span><span class="o">/</span><span class="n">stuart</span><span class="o">/</span><span class="n">current</span><span class="o">/</span>
+<div class="highlight"><pre><span></span>rsync -avz --delete -e ssh 
+    /some/folder/to/back/up 
+    myserver:/space/stuart/current/
 </pre></div>
 
 
@@ -303,21 +303,21 @@ actually does the work, just does the above steps, and looks like&nbsp;this:</p>
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
-<span class="c"># Do backups to the rsync server</span>
-<span class="c"># You must have already set up a passphraseless ssh key to the ssh server</span>
-<span class="c"># so that &quot;ssh servername&quot; just logs you in.</span>
+<span class="c1"># Do backups to the rsync server</span>
+<span class="c1"># You must have already set up a passphraseless ssh key to the ssh server</span>
+<span class="c1"># so that &quot;ssh servername&quot; just logs you in.</span>
 
 <span class="nv">BK</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>
 <span class="nv">BKNAME</span><span class="o">=</span>stuart
 
-<span class="c"># First, tell it to clock over the backup</span>
+<span class="c1"># First, tell it to clock over the backup</span>
 ssh servername /space/begin-backup <span class="nv">$BKNAME</span>
 
-<span class="c"># Now, do the backup</span>
-python <span class="nv">$BK</span>/findemblem.py backup | <span class="k">while </span><span class="nb">read </span>fn; <span class="k">do</span>
-<span class="k">  </span>rsync -avzq --delete -e ssh <span class="s2">&quot;$fn&quot;</span> 
+<span class="c1"># Now, do the backup</span>
+python <span class="nv">$BK</span>/findemblem.py backup <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> fn<span class="p">;</span> <span class="k">do</span>
+  rsync -avzq --delete -e ssh <span class="s2">&quot;</span><span class="nv">$fn</span><span class="s2">&quot;</span> 
     servername:/space/<span class="nv">$BKNAME</span>/current
 <span class="k">done</span>
 </pre></div>
@@ -325,7 +325,7 @@ python <span class="nv">$BK</span>/findemblem.py backup | <span class="k">while 
 
 <p>All that remains now is to schedule this script to run every night, by
 editing your tasklist with <code>crontab -e</code> and adding the&nbsp;line</p>
-<div class="highlight"><pre><span class="mi">40</span>  <span class="mi">4</span>  <span class="o">*</span>   <span class="o">*</span>   <span class="o">*</span>     <span class="o">/</span><span class="n">full</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">dobackup</span><span class="p">.</span><span class="n">sh</span>
+<div class="highlight"><pre><span></span>40  4  *   *   *     /full/path/to/dobackup.sh
 </pre></div>
 
 

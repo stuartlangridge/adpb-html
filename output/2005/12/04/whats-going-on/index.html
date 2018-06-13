@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2005/12/04/whats-going-on/"><time 
-			class="dt-published" datetime="2005-12-04T09:05:00">Dec 04 2005</time></a>
+			class="dt-published" datetime="2005-12-04T09:05:00+00:00">Dec 04 2005</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -101,25 +101,25 @@ old version of our server to the new version. Creating each site was
 pretty easy. For those unsure about how to use Apache2, a very short
 <span class="caps">HOWTO</span>. To create a site www.example.com, I do it like this (either as
 root, or using sudo for each&nbsp;command):</p>
-<div class="highlight"><pre><span class="n">mkdir</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
-<span class="n">mkdir</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">html</span>
+<div class="highlight"><pre><span></span>mkdir /var/www/example.com
+mkdir /var/www/example.com/html
 </pre></div>
 
 
 <p>(place all files for the site in&nbsp;/var/www/example.com/html)</p>
-<div class="highlight"><pre><span class="n">chmod</span> <span class="o">-</span><span class="n">R</span> <span class="n">a</span><span class="o">+</span><span class="n">rx</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">html</span>
-<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">username</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
+<div class="highlight"><pre><span></span>chmod -R a+rx /var/www/example.com/html
+chown -R username /var/www/example.com
 </pre></div>
 
 
 <p>(use username that should own the site in line&nbsp;above)</p>
-<div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span>
-<span class="n">nano</span> <span class="n">example</span><span class="p">.</span><span class="n">com</span>
+<div class="highlight"><pre><span></span>cd /etc/apache2/sites-available
+nano example.com
 </pre></div>
 
 
 <p>(place the following in the example.com file you&#8217;re&nbsp;editing)</p>
-<div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="err">*</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="err">*</span><span class="nt">&gt;</span>
 ServerAdmin email@address.of.admin
 DocumentRoot /var/www/example.com/html
 ServerName www.example.com
@@ -131,9 +131,9 @@ ServerAlias example.com
 
 
 <p>(now back to the&nbsp;prompt)</p>
-<div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span>
-<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="p">..</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">example</span><span class="p">.</span><span class="n">com</span> <span class="p">.</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">apache2</span> <span class="n">restart</span>
+<div class="highlight"><pre><span></span>cd /etc/apache2/sites-enabled
+ln -s ../sites-available/example.com .
+/etc/init.d/apache2 restart
 </pre></div>
 
 

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2004/02/28/roxfiler/"><time 
-			class="dt-published" datetime="2004-02-28T11:00:00">Feb 28 2004</time></a>
+			class="dt-published" datetime="2004-02-28T11:00:00+00:00">Feb 28 2004</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -67,8 +67,8 @@ ways I think it could be better. I’m not posting this list to the
 <span class="caps"><span class="caps">ROX</span></span> mailing lists, because it’s not
 constructive criticism—there is no way I could implement this stuff, so
 I’d just be whining for someone else to write code for me. I can put it
-here, though. :)<br />
-<strong>Make the Filer spatial</strong><br />
+here, though. :)<br>
+<strong>Make the Filer spatial</strong><br>
 This is the key thing. John Siracusa has explained, in detail, the
 concept of a <a href="http://www.arstechnica.com/paedia/f/finder/finder-1.html">Spatial Finder</a> on the Mac, and I want my desktop to
 work like that. The
@@ -93,8 +93,8 @@ events, and records changes to Filer windows, but this should be a
 fundamental property of the Filer rather than something implemented
 externally. Even if the external approach was the way to go anyway, I
 couldn’t do it: I’m no good at C, and I can’t find Python bindings for
-libwnck.<br />
-<strong>Proxy icons for files</strong><br />
+libwnck.<br>
+<strong>Proxy icons for files</strong><br>
 Siracusa also flags the idea of “search folders“, which are folders
 that contain the results of a search, and are always up to date with the
 results of that search. <a href="http://freefall.homeip.net/code/ROXFilter/"><span class="caps"><span class="caps">ROX</span></span>Filter</a> nearly
@@ -110,14 +110,14 @@ should be moved there</em>. This is why
 symlinks, isn’t good; if you drag a symlink from a
 <span class="caps"><span class="caps">ROX</span></span>Filter folder, it’ll move the symlink, not
 the file the symlink points to. I don’t think that this can be done
-without support from the Filer.<br />
-<strong>Make the desktop a Filer window</strong><br />
+without support from the Filer.<br>
+<strong>Make the desktop a Filer window</strong><br>
 It should be possible to drag things to the desktop. At the moment, you
 can’t; the desktop can only contain shortcuts. This is a real pain; when
 I unpack AppDirs, I want to drop them on my desktop, run them, and then
 move them somewhere if I like them. At the moment I have to open a Filer
-window to have somewhere to put an unpacked thing. I don’t like this.<br />
-<strong>Make entering a path into the Filer quicker on big directories</strong><br />
+window to have somewhere to put an unpacked thing. I don’t like this.<br>
+<strong>Make entering a path into the Filer quicker on big directories</strong><br>
 I’m not sure about this one, because I’m halfway convinced that the
 Filer shouldn’t show pathnames at all. But, given that it does: on a
 Debian box (or probably other things too), bring up a Filer window, hit

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2005/03/04/pythonlike/"><time 
-			class="dt-published" datetime="2005-03-04T11:00:00">Mar 04 2005</time></a>
+			class="dt-published" datetime="2005-03-04T11:00:00+00:00">Mar 04 2005</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -89,8 +89,8 @@ anyone writing anything even vaguely substantial in Python uses <span class="cap
 it. But constricting the user to write in <span class="caps">OO</span> style is a <em>massive pain in
 the arse</em> when you just want to throw out a quick script. I find myself
 doing things&nbsp;like</p>
-<div class="highlight"><pre><span class="n">grep</span> <span class="s">&quot;some regexp&quot;</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">file</span> <span class="o">|</span> 
-<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s">&quot;import sys;print &#39;n&#39;.join([x.split()[3] for x in sys.stdin.readlines if x.split()[6] == &#39;word&#39;])&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">grep</span> <span class="s2">&quot;some regexp&quot;</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="nb">file</span> <span class="o">|</span> 
+<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys;print &#39;n&#39;.join([x.split()[3] for x in sys.stdin.readlines if x.split()[6] == &#39;word&#39;])&quot;</span>
 </pre></div>
 
 

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2006/01/13/corrected-addevent-function/"><time 
-			class="dt-published" datetime="2006-01-13T11:11:00">Jan 13 2006</time></a>
+			class="dt-published" datetime="2006-01-13T11:11:00+00:00">Jan 13 2006</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -62,12 +62,12 @@
 			<p>Most of my <a href="http://www.kryogenix.org/code/browser/">unobtrusive <span class="caps">DHTML</span> scripts</a> use the addEvent function,
 which has been copied from all over the place. The Opera people have
 very kindly dropped me a mail to tell me that it&#8217;s wrong; it uses the&nbsp;line</p>
-<div class="highlight"><pre><span class="n">obj</span><span class="p">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="n">evType</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+<div class="highlight"><pre><span></span>obj.addEventListener(evType, fn, true);
 </pre></div>
 
 
 <p>when instead that line should&nbsp;be</p>
-<div class="highlight"><pre><span class="n">obj</span><span class="p">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="n">evType</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<div class="highlight"><pre><span></span>obj.addEventListener(evType, fn, false);
 </pre></div>
 
 

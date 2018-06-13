@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2011/11/08/an-ubuntu-one-printer/"><time 
-			class="dt-published" datetime="2011-11-08T16:41:00">Nov 08 2011</time></a>
+			class="dt-published" datetime="2011-11-08T16:41:00+00:00">Nov 08 2011</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -113,29 +113,29 @@ you&#8217;re a Python app (on Ubuntu or Windows) and you&#8217;re running a very
 recent build of Ubuntu One (the shortly-to-be-released Windows build, or
 a nightly build on Ubuntu) you can use the Python <code>SyncDaemonTool</code>, and
 your daemon would look roughly like&nbsp;this:</p>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">os</span><span class="p">,</span> <span class="n">sys</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 
-<span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="err">&#39;</span><span class="n">win32</span><span class="err">&#39;</span><span class="o">:</span>
-    <span class="n">from</span> <span class="n">twisted</span><span class="p">.</span><span class="n">internet</span> <span class="n">import</span> <span class="n">glib2reactor</span>
-    <span class="n">glib2reactor</span><span class="p">.</span><span class="n">install</span><span class="p">()</span>
-    <span class="n">from</span> <span class="n">dbus</span><span class="p">.</span><span class="n">mainloop</span><span class="p">.</span><span class="n">glib</span> <span class="n">import</span> <span class="n">DBusGMainLoop</span>
-    <span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="n">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s1">&#39;win32&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">glib2reactor</span>
+    <span class="n">glib2reactor</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+    <span class="kn">from</span> <span class="nn">dbus.mainloop.glib</span> <span class="kn">import</span> <span class="n">DBusGMainLoop</span>
+    <span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="n">from</span> <span class="n">twisted</span><span class="p">.</span><span class="n">internet</span> <span class="n">import</span> <span class="n">defer</span><span class="p">,</span> <span class="n">reactor</span>
-<span class="n">from</span> <span class="n">ubuntuone</span><span class="p">.</span><span class="n">platform</span><span class="p">.</span><span class="n">tools</span> <span class="n">import</span> <span class="n">SyncDaemonTool</span>
-<span class="n">EXPECTED</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="err">&#39;</span><span class="o">~/</span><span class="p">.</span><span class="n">ubuntuone</span><span class="o">/</span><span class="n">Print</span> <span class="n">Queues</span><span class="o">/</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">defer</span><span class="p">,</span> <span class="n">reactor</span>
+<span class="kn">from</span> <span class="nn">ubuntuone.platform.tools</span> <span class="kn">import</span> <span class="n">SyncDaemonTool</span>
+<span class="n">EXPECTED</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ubuntuone/Print Queues/&#39;</span><span class="p">)</span>
 
-<span class="err">@</span><span class="n">defer</span><span class="p">.</span><span class="n">inlineCallbacks</span>
-<span class="n">def</span> <span class="n">track_file_download</span><span class="p">()</span><span class="o">:</span>
+<span class="nd">@defer.inlineCallbacks</span>
+<span class="k">def</span> <span class="nf">track_file_download</span><span class="p">():</span>
     <span class="n">sd</span> <span class="o">=</span> <span class="n">SyncDaemonTool</span><span class="p">()</span>
-    <span class="n">success_filter</span> <span class="o">=</span> <span class="n">lambda</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span><span class="o">:</span> <span class="n">path</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">EXPECTED</span><span class="p">)</span>
-    <span class="n">path</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">sd</span><span class="p">.</span><span class="n">wait_for_signals</span><span class="p">(</span><span class="n">signal_ok</span><span class="o">=</span><span class="err">&#39;</span><span class="n">DownloadFinished</span><span class="err">&#39;</span><span class="p">,</span>
+    <span class="n">success_filter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">EXPECTED</span><span class="p">)</span>
+    <span class="n">path</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">sd</span><span class="o">.</span><span class="n">wait_for_signals</span><span class="p">(</span><span class="n">signal_ok</span><span class="o">=</span><span class="s1">&#39;DownloadFinished&#39;</span><span class="p">,</span>
                                            <span class="n">success_filter</span><span class="o">=</span><span class="n">success_filter</span><span class="p">)</span>
-    <span class="n">print</span> <span class="err">&#39;</span><span class="o">==========</span><span class="n">n</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span>
+    <span class="k">print</span> <span class="s1">&#39;==========n&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
-    <span class="n">reactor</span><span class="p">.</span><span class="n">callWhenRunning</span><span class="p">(</span><span class="n">track_file_download</span><span class="p">)</span>
-    <span class="n">reactor</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">callWhenRunning</span><span class="p">(</span><span class="n">track_file_download</span><span class="p">)</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 
 
@@ -145,17 +145,17 @@ you&#8217;re reading this as a result of a Google search, do it this way). The
 other way to do this on Ubuntu is to listen to the <code>DownloadFinished</code>
 signal on the <code>com.ubuntuone.SyncDaemon.Status</code> D-Bus interface: that
 code would look something like&nbsp;this:</p>
-<div class="highlight"><pre><span class="kr">import</span> <span class="nx">dbus</span><span class="p">,</span> <span class="nx">gobject</span>
-<span class="nx">from</span> <span class="nx">dbus</span><span class="p">.</span><span class="nx">mainloop</span><span class="p">.</span><span class="nx">glib</span> <span class="kr">import</span> <span class="nx">DBusGMainLoop</span>
-<span class="nx">DBusGMainLoop</span><span class="p">(</span><span class="nx">set_as_default</span><span class="o">=</span><span class="nx">True</span><span class="p">)</span>
-<span class="nx">def</span> <span class="nx">track_file_download</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">info</span><span class="p">)</span><span class="o">:</span>
-    <span class="nx">print</span> <span class="nx">path</span>
-<span class="nx">dbus</span><span class="p">.</span><span class="nx">SessionBus</span><span class="p">().</span><span class="nx">add_signal_receiver</span><span class="p">(</span><span class="nx">handler_function</span><span class="o">=</span><span class="nx">track_file_download</span><span class="p">,</span>
-    <span class="nx">signal_name</span><span class="o">=</span><span class="s2">&quot;DownloadFinished&quot;</span><span class="p">,</span> 
-    <span class="nx">dbus_interface</span><span class="o">=</span><span class="s2">&quot;com.ubuntuone.SyncDaemon.Status&quot;</span><span class="p">,</span>
-    <span class="nx">bus_name</span><span class="o">=</span><span class="s2">&quot;com.ubuntuone.SyncDaemon&quot;</span><span class="p">,</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/status&quot;</span><span class="p">)</span>
-<span class="nx">loop</span> <span class="o">=</span> <span class="nx">gobject</span><span class="p">.</span><span class="nx">MainLoop</span><span class="p">()</span>
-<span class="nx">loop</span><span class="p">.</span><span class="nx">run</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dbus</span><span class="o">,</span> <span class="nn">gobject</span>
+<span class="kn">from</span> <span class="nn">dbus.mainloop.glib</span> <span class="kn">import</span> <span class="n">DBusGMainLoop</span>
+<span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">track_file_download</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">path</span>
+<span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span><span class="o">.</span><span class="n">add_signal_receiver</span><span class="p">(</span><span class="n">handler_function</span><span class="o">=</span><span class="n">track_file_download</span><span class="p">,</span>
+    <span class="n">signal_name</span><span class="o">=</span><span class="s2">&quot;DownloadFinished&quot;</span><span class="p">,</span> 
+    <span class="n">dbus_interface</span><span class="o">=</span><span class="s2">&quot;com.ubuntuone.SyncDaemon.Status&quot;</span><span class="p">,</span>
+    <span class="n">bus_name</span><span class="o">=</span><span class="s2">&quot;com.ubuntuone.SyncDaemon&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/status&quot;</span><span class="p">)</span>
+<span class="n">loop</span> <span class="o">=</span> <span class="n">gobject</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+<span class="n">loop</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 
 

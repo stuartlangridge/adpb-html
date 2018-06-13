@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2006/12/30/writing-a-jokosher-extension-a-rambling-essay/"><time 
-			class="dt-published" datetime="2006-12-30T08:15:00">Dec 30 2006</time></a>
+			class="dt-published" datetime="2006-12-30T08:15:00+00:00">Dec 30 2006</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -102,25 +102,25 @@ certain things. Those things are: Three variables, EXTENSION_NAME,
 EXTENSION_DESCRIPTION, and EXTENSION_VERSION Two functions, startup()
 and shutdown() So, to make a Python file into an extension, you add
 something like this to the bottom of&nbsp;it:</p>
-<div class="highlight"><pre><span class="n">def</span> <span class="n">startup</span><span class="p">(</span><span class="n">API</span><span class="p">)</span><span class="o">:</span>
+<div class="highlight"><pre><span></span>def startup(API):
 
-    <span class="n">pass</span>
-
-
-
-<span class="n">def</span> <span class="n">shutdown</span><span class="p">()</span><span class="o">:</span>
-
-    <span class="n">pass</span>
+    pass
 
 
 
-<span class="n">EXTENSION_NAME</span> <span class="o">=</span> <span class="s">&quot;Freesound search&quot;</span>
+def shutdown():
 
-<span class="n">EXTENSION_DESCRIPTION</span> <span class="o">=</span> <span class="s">&quot;Searches the Freesound library of &quot;</span> <span class="o">+</span>
+    pass
 
-  <span class="s">&quot;freely licenceable and useable sound clips&quot;</span>
 
-<span class="n">EXTENSION_VERSION</span> <span class="o">=</span> <span class="s">&quot;0.01&quot;</span>
+
+EXTENSION_NAME = &quot;Freesound search&quot;
+
+EXTENSION_DESCRIPTION = &quot;Searches the Freesound library of &quot; +
+
+  &quot;freely licenceable and useable sound clips&quot;
+
+EXTENSION_VERSION = &quot;0.01&quot;
 </pre></div>
 
 
@@ -137,8 +137,8 @@ Jokosher&#8217;s Extensions menu, and then when the user clicks that menu item
 we start doing the work. The <span class="caps">API</span> object has a function called,
 amazingly, add_menu_item() to do exactly that. So, our startup
 function should actually&nbsp;be:</p>
-<div class="highlight"><pre><span class="nx">def</span> <span class="nx">startup</span><span class="p">(</span><span class="nx">API</span><span class="p">)</span><span class="o">:</span>  
-    <span class="nx">menu_item</span> <span class="o">=</span> <span class="nx">API</span><span class="p">.</span><span class="nx">add_menu_item</span><span class="p">(</span><span class="s2">&quot;Search Freesound&quot;</span><span class="p">,</span> <span class="nx">callback_function</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>def startup(API):  
+    menu_item = API.add_menu_item(&quot;Search Freesound&quot;, callback_function)
 </pre></div>
 
 
@@ -151,17 +151,17 @@ extension. In our case, we need to remove that menu item, which is done
 using the menu item&#8217;s destroy() method. So, change startup() so that
 menu_item is a global variable (so it&#8217;s available to shutdown() as
 well), and change shutdown() so it removes&nbsp;it:</p>
-<div class="highlight"><pre><span class="n">def</span> <span class="n">startup</span><span class="p">(</span><span class="n">API</span><span class="p">)</span><span class="o">:</span>
+<div class="highlight"><pre><span></span>def startup(API):
 
-    <span class="n">global</span> <span class="n">menu_item</span>
+    global menu_item
 
-    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">API</span><span class="p">.</span><span class="n">add_menu_item</span><span class="p">(</span><span class="s">&quot;Search Freesound&quot;</span><span class="p">,</span> <span class="n">mainwindow</span><span class="p">.</span><span class="n">menu_cb</span><span class="p">)</span>
+    menu_item = API.add_menu_item(&quot;Search Freesound&quot;, mainwindow.menu_cb)
 
 
 
-<span class="n">def</span> <span class="n">shutdown</span><span class="p">()</span><span class="o">:</span>
+def shutdown():
 
-    <span class="n">menu_item</span><span class="p">.</span><span class="n">destroy</span><span class="p">()</span>
+    menu_item.destroy()
 </pre></div>
 
 
@@ -178,16 +178,16 @@ Jokosher instrument and it&#8217;ll work. So the Freesound extension just has
 to know how to allow users to drag things from it. Technically, this is
 called being a drag source. How to do this in Python is described in
 <a href="http://www.pygtk.org/pygtk2tutorial/sec-DNDMethods.html">the PyGtk Tutorial</a> &#8212; basically, you use code something like&nbsp;this:</p>
-<div class="highlight"><pre><span class="n">e</span><span class="p">.</span><span class="n">drag_source_set</span><span class="p">(</span><span class="n">gtk</span><span class="p">.</span><span class="n">gdk</span><span class="p">.</span><span class="n">BUTTON1_MASK</span><span class="p">,</span> <span class="p">[(</span><span class="err">&#39;</span><span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="err">&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">88</span><span class="p">)],</span><span class="n">gtk</span><span class="p">.</span><span class="n">gdk</span><span class="p">.</span><span class="n">ACTION_COPY</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>e.drag_source_set(gtk.gdk.BUTTON1_MASK, [(&#39;text/plain&#39;,0,88)],gtk.gdk.ACTION_COPY)
 
-<span class="n">e</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;drag_data_get&quot;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">returndata</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+e.connect(&quot;drag_data_get&quot;, self.returndata, sample)
 
 
-<span class="p">...</span>
+...
 
-<span class="n">def</span> <span class="n">returndata</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">drag_context</span><span class="p">,</span> <span class="n">selection_data</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span><span class="o">:</span>
+def returndata(self, widget, drag_context, selection_data, info, time, sample):
 
-    <span class="n">selection_data</span><span class="p">.</span><span class="n">set</span> <span class="p">(</span><span class="n">selection_data</span><span class="p">.</span><span class="n">target</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="n">sample</span><span class="p">.</span><span class="n">previewURL</span><span class="p">)</span>
+    selection_data.set (selection_data.target,8, sample.previewURL)
 </pre></div>
 
 

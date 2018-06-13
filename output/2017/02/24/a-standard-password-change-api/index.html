@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/"><time 
-			class="dt-published" datetime="2017-02-24T20:20:00">Feb 24 2017</time></a>
+			class="dt-published" datetime="2017-02-24T20:20:00+00:00">Feb 24 2017</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -59,7 +59,7 @@
 			<a class="u-url p-name" href="//www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/" title="Permalink to A standard password change API" rel="bookmark">A standard password change <span class="caps">API</span></a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Wouldn’t it be nice if there were some sort of standard password-change <span class="caps">API</span> that websites all implemented? Then when there’s some sort of breach and you have to change a bunch of passwords<sup id="sf-a-standard-password-change-api-1-back"><a title="this week it was Cloudflare, but there’ll be another next week no doubt" class="simple-footnote" href="#sf-a-standard-password-change-api-1">1</a></sup> you could just download a list of domains that need fixing and give it to your password manager, and then your password manager would use the standard password-change <span class="caps">API</span> on each of those sites to change your password to something else. Literally one click; instead of reading stern concerned messages from everyone on Twitter saying “you should change your passwords now!” one can just click one button and, bish bash bosh, job done. That’d be lovely. Maybe Chrome’s password manager would build it in and automatically fetch sites that need updating from a central list and then I’d be secured without even knowing about it!<sup id="sf-a-standard-password-change-api-2-back"><a title="and a bunch of people would turn this off or never turn it on, but that’s fine, and they’re probably using some different manager already anyway" class="simple-footnote" href="#sf-a-standard-password-change-api-2">2</a></sup></p>
+			<p>Wouldn’t it be nice if there were some sort of standard password-change <span class="caps">API</span> that websites all implemented? Then when there’s some sort of breach and you have to change a bunch of passwords<sup id="sf-a-standard-password-change-api-1-back"><a href="#sf-a-standard-password-change-api-1" class="simple-footnote" title="this week it was Cloudflare, but there’ll be another next week no doubt">1</a></sup> you could just download a list of domains that need fixing and give it to your password manager, and then your password manager would use the standard password-change <span class="caps">API</span> on each of those sites to change your password to something else. Literally one click; instead of reading stern concerned messages from everyone on Twitter saying “you should change your passwords now!” one can just click one button and, bish bash bosh, job done. That’d be lovely. Maybe Chrome’s password manager would build it in and automatically fetch sites that need updating from a central list and then I’d be secured without even knowing about it!<sup id="sf-a-standard-password-change-api-2-back"><a href="#sf-a-standard-password-change-api-2" class="simple-footnote" title="and a bunch of people would turn this off or never turn it on, but that’s fine, and they’re probably using some different manager already anyway">2</a></sup></p>
 <p>Obvious questions:</p>
 <h4>What about people without a password manager?</h4>
 <p>Yeah, they’re no better off under this plan. But they’re no worse off. And they were likely already using guessable passwords. This problem needs fixing, certainly (have people use password managers, make them easier to use, eliminate passwords entirely, many other suggestions) but fixing it is not the goal of this plan.</p>
@@ -70,9 +70,9 @@
 <h4>What about sites that require two-factor auth?</h4>
 <p>Yeah, this won’t work for them. Then again, if the site requires two-factor auth, having your password potentially compromised in a breach is not as big a deal, right? So the endpoint can return <code>needs-manual-update</code> and then your password manager pops up a box saying “you have to manually update your password on the following sites: (list of links)”. Which is what it would do for sites that inexplicably have not adopted this idea anyway.</p>
 <h4>Why would anyone adopt this?</h4>
-<p>Same reason anyone adopts anything; it seems a good plan, or everyone else is. This would certainly make life easier for users of password managers<sup id="sf-a-standard-password-change-api-3-back"><a title="I’m told that LastPass actually already supports this auto-password-change idea for lots of sites. Presumably they’re doing a little bit of custom code for each site to know where the password change form is? This would just standardise that and allow a password manager to do it automatically without any work at all, which would be obviously lovely for all concerned" class="simple-footnote" href="#sf-a-standard-password-change-api-3">3</a></sup>, and both sites and pw managers can advertise “we make your life easier when this happens” as a feature.</p>
+<p>Same reason anyone adopts anything; it seems a good plan, or everyone else is. This would certainly make life easier for users of password managers<sup id="sf-a-standard-password-change-api-3-back"><a href="#sf-a-standard-password-change-api-3" class="simple-footnote" title="I’m told that LastPass actually already supports this auto-password-change idea for lots of sites. Presumably they’re doing a little bit of custom code for each site to know where the password change form is? This would just standardise that and allow a password manager to do it automatically without any work at all, which would be obviously lovely for all concerned">3</a></sup>, and both sites and pw managers can advertise “we make your life easier when this happens” as a feature.</p>
 <p>Have I missed a reason why this would be a bad idea? It’d need speccing out in detail, obviously, but the concept to me seems good…</p>
-<p><strong>Update:</strong> there’s been a suggestion of one possible spec for such an <span class="caps">API</span> at <a href="https://github.com/SirCmpwn/pass-rotate/issues/1">https://github.com/SirCmpwn/pass-rotate/issues/1</a> for someone who wants to check it out. There’s also <a href="https://mikewest.github.io/change-password/">https://mikewest.github.io/change-password/</a>.</p><ol class="simple-footnotes"><li id="sf-a-standard-password-change-api-1">this week it was Cloudflare, but there’ll be another next week no doubt <a class="simple-footnote-back" href="#sf-a-standard-password-change-api-1-back">↩</a></li><li id="sf-a-standard-password-change-api-2">and a bunch of people would turn this off or never turn it on, but that’s fine, and they’re probably using some different manager already anyway <a class="simple-footnote-back" href="#sf-a-standard-password-change-api-2-back">↩</a></li><li id="sf-a-standard-password-change-api-3">I’m <a href="https://twitter.com/LarryABall/status/835222955042947072">told</a> that LastPass actually already supports this auto-password-change idea for lots of sites. Presumably they’re doing a little bit of custom code for each site to know where the password change form is? This would just standardise that and allow a password manager to do it automatically without any work at all, which would be obviously lovely for all concerned <a class="simple-footnote-back" href="#sf-a-standard-password-change-api-3-back">↩</a></li></ol>
+<p><strong>Update:</strong> there’s been a suggestion of one possible spec for such an <span class="caps">API</span> at <a href="https://github.com/SirCmpwn/pass-rotate/issues/1">https://github.com/SirCmpwn/pass-rotate/issues/1</a> for someone who wants to check it out. There’s also <a href="https://mikewest.github.io/change-password/">https://mikewest.github.io/change-password/</a>.</p><ol class="simple-footnotes"><li id="sf-a-standard-password-change-api-1">this week it was Cloudflare, but there’ll be another next week no doubt <a href="#sf-a-standard-password-change-api-1-back" class="simple-footnote-back">↩</a></li><li id="sf-a-standard-password-change-api-2">and a bunch of people would turn this off or never turn it on, but that’s fine, and they’re probably using some different manager already anyway <a href="#sf-a-standard-password-change-api-2-back" class="simple-footnote-back">↩</a></li><li id="sf-a-standard-password-change-api-3">I’m <a href="https://twitter.com/LarryABall/status/835222955042947072">told</a> that LastPass actually already supports this auto-password-change idea for lots of sites. Presumably they’re doing a little bit of custom code for each site to know where the password change form is? This would just standardise that and allow a password manager to do it automatically without any work at all, which would be obviously lovely for all concerned <a href="#sf-a-standard-password-change-api-3-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2017/02/20/dividends-and-director-withdrawals/">Previous post</a></li>
@@ -125,7 +125,7 @@
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/808585630766813184/f2WWe5n3.jpg">
 			David Reynolds responded at
-		<a href="https://twitter.com/sil/status/835227846280871938#favorited-by-13086672">...</a>
+		<a href="https://twitter.com/sil/status/835227846280871938#favorited-by-13086672">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
 			Stuart Langridge responded at
@@ -149,7 +149,7 @@
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/510355959768567808/8noconMR.jpeg">
 			blogisch responded at
-		<a href="https://twitter.com/sil/status/835227846280871938#favorited-by-11014332">...</a>
+		<a href="https://twitter.com/sil/status/835227846280871938#favorited-by-11014332">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/790225811144081409/-u-uB7va.jpg">
 			Emelia responded at
@@ -158,7 +158,7 @@
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/757229801501519872/vJR9OuKo.jpg">
 			blinch responded at
-		<a href="https://twitter.com/sil/status/835879880143351808#favorited-by-17857797">...</a>
+		<a href="https://twitter.com/sil/status/835879880143351808#favorited-by-17857797">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/437657039322361856/kI1jXts7.png">
 			Brian Douglass responded at

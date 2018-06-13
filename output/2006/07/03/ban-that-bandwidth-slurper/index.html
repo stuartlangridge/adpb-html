@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2006/07/03/ban-that-bandwidth-slurper/"><time 
-			class="dt-published" datetime="2006-07-03T13:37:00">Jul 03 2006</time></a>
+			class="dt-published" datetime="2006-07-03T13:37:00+01:00">Jul 03 2006</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -65,16 +65,16 @@ quite possibly because it&#8217;s being hammered by people. I deleted my log
 and then waited an hour to see if I was being hit a lot (the log was
 <span class="caps">200MB</span>! in less than an hour!) and then pulled out the 5 most persistent
 offenders&nbsp;with</p>
-<div class="highlight"><pre><span class="n">cut</span> <span class="o">-</span><span class="n">d</span><span class="s">&quot; &quot;</span> <span class="o">-</span><span class="n">f1</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">kryogenix</span><span class="p">.</span><span class="n">org</span><span class="o">-</span><span class="n">access</span><span class="p">.</span><span class="n">log</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">-</span><span class="n">c</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">n</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="mi">5</span>
+<div class="highlight"><pre><span></span>cut -d&quot; &quot; -f1 /var/log/apache2/kryogenix.org-access.log | sort | uniq -c | sort -n | tail -5
 </pre></div>
 
 
 <p>which gave&nbsp;me</p>
-<div class="highlight"><pre>    <span class="mi">324</span> <span class="mf">217.112.126.122</span>
-    <span class="mi">381</span> <span class="mf">81.133.81.248</span>
-    <span class="mi">421</span> <span class="mf">82.108.113.14</span>
-   <span class="mi">2060</span> <span class="mf">213.249.154.101</span>
-   <span class="mi">2391</span> <span class="mf">81.159.133.111</span>
+<div class="highlight"><pre><span></span>    324 217.112.126.122
+    381 81.133.81.248
+    421 82.108.113.14
+   2060 213.249.154.101
+   2391 81.159.133.111
 </pre></div>
 
 
@@ -83,11 +83,11 @@ mean, I appreciate all you people reading the good word of the
 Langridge, but I&#8217;m not that good a writer. So, they get banned, which is
 nice and easy. Following <a href="http://diveintomark.org/archives/2003/02/26/how_to_block_spambots_ban_spybots_and_tell_unwanted_robots_to_go_to_hell">Mark Pilgrim&#8217;s explanation</a>, I added the
 following lines to <code>.htaccess</code>:</p>
-<div class="highlight"><pre><span class="cp"># all your DoS are belong to us. Ban ban ban.</span>
-<span class="n">RewriteCond</span> <span class="o">%</span><span class="p">{</span><span class="n">REMOTE_ADDR</span><span class="p">}</span> <span class="o">^</span><span class="mf">213.249.154.101</span><span class="err">$</span>
-<span class="n">RewriteRule</span> <span class="p">.</span><span class="o">*</span> <span class="o">-</span> <span class="p">[</span><span class="n">F</span><span class="p">,</span><span class="n">L</span><span class="p">]</span>
-<span class="n">RewriteCond</span> <span class="o">%</span><span class="p">{</span><span class="n">REMOTE_ADDR</span><span class="p">}</span> <span class="o">^</span><span class="mf">81.159.133.111</span><span class="err">$</span>
-<span class="n">RewriteRule</span> <span class="p">.</span><span class="o">*</span> <span class="o">-</span> <span class="p">[</span><span class="n">F</span><span class="p">,</span><span class="n">L</span><span class="p">]</span>
+<div class="highlight"><pre><span></span># all your DoS are belong to us. Ban ban ban.
+RewriteCond %{REMOTE_ADDR} ^213.249.154.101$
+RewriteRule .* - [F,L]
+RewriteCond %{REMOTE_ADDR} ^81.159.133.111$
+RewriteRule .* - [F,L]
 </pre></div>
 
 

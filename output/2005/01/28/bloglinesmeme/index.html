@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2005/01/28/bloglinesmeme/"><time 
-			class="dt-published" datetime="2005-01-28T11:00:00">Jan 28 2005</time></a>
+			class="dt-published" datetime="2005-01-28T11:00:00+00:00">Jan 28 2005</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -90,7 +90,7 @@ the top 5 (or more) on your&nbsp;blog.</p>
 </ol>
 <p>Incidentally, the following little bit of Python will create that list
 for&nbsp;you:</p>
-<div class="highlight"><pre><span class="nx">print</span> <span class="s1">&#39;&lt;ol&gt;&lt;li&gt;&#39;</span><span class="o">+</span><span class="s1">&#39;&lt;/li&gt;n&lt;li&gt;&#39;</span><span class="bp">.</span><span class="nb">join</span><span class="p">(</span><span class="nx">re.findall</span><span class="p">(</span><span class="nb">r</span><span class="s1">&#39;&lt;h2.*&gt;(&lt;a href=&quot;.*?&quot;&gt;.*&lt;/a&gt;)&lt;/h2&gt;&#39;</span><span class="p">,</span><span class="nb">s</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;&lt;/li&gt;&lt;/ol&gt;&#39;</span>
+<div class="highlight"><pre><span></span>print &#39;<span class="nt">&lt;ol&gt;&lt;li&gt;</span>&#39;+&#39;<span class="nt">&lt;/li&gt;</span>n<span class="nt">&lt;li&gt;</span>&#39;.join(re.findall(r&#39;<span class="nt">&lt;h2.</span><span class="err">*</span><span class="nt">&gt;</span>(<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;.*?&quot;</span><span class="nt">&gt;</span>.*<span class="nt">&lt;/a&gt;</span>)<span class="nt">&lt;/h2&gt;</span>&#39;,s))+&#39;<span class="nt">&lt;/li&gt;&lt;/ol&gt;</span>&#39;
 </pre></div>
 
 

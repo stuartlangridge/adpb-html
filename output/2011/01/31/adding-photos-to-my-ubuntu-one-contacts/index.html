@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2011/01/31/adding-photos-to-my-ubuntu-one-contacts/"><time 
-			class="dt-published" datetime="2011-01-31T13:55:00">Jan 31 2011</time></a>
+			class="dt-published" datetime="2011-01-31T13:55:00+00:00">Jan 31 2011</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -76,33 +76,33 @@ rather than wait for the Ubuntu One servers to do it. So, a quick&nbsp;script.</
 <p><em>Note: this script uses the new undeprecated desktopcouch APIs in Ubuntu
 11.04, which is not yet released. So it likely won&#8217;t work for you right
 now unless you&#8217;re already running Ubuntu&nbsp;natty.</em></p>
-<div class="highlight"><pre><span class="n">from</span> <span class="n">desktopcouch</span><span class="p">.</span><span class="n">application</span><span class="p">.</span><span class="n">server</span> <span class="n">import</span> <span class="n">DesktopDatabase</span>
-<span class="n">from</span> <span class="n">desktopcouch</span><span class="p">.</span><span class="n">records</span><span class="p">.</span><span class="n">record</span> <span class="n">import</span> <span class="n">Record</span>
-<span class="n">import</span> <span class="n">urllib</span><span class="p">,</span> <span class="n">md5</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">DesktopDatabase</span><span class="p">(</span><span class="s">&quot;contacts&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">contact</span> <span class="n">in</span> <span class="n">db</span><span class="p">.</span><span class="n">get_records</span><span class="p">(</span><span class="n">create_view</span><span class="o">=</span><span class="n">True</span><span class="p">,</span> <span class="n">record_type</span><span class="o">=</span><span class="s">&quot;http://www.freedesktop.org/wiki/Specifications/desktopcouch/contact&quot;</span><span class="p">)</span><span class="o">:</span>
-    <span class="err">#</span> <span class="n">sigh</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">get_records</span> <span class="n">doesn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">get</span> <span class="n">Records</span> <span class="n">at</span> <span class="n">all</span><span class="p">,</span> <span class="n">it</span> <span class="n">gets</span> <span class="n">a</span> <span class="n">ViewResult</span><span class="p">.</span> <span class="n">And</span>
-    <span class="err">#</span> <span class="n">we</span> <span class="n">can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">just</span> <span class="n">wrap</span> <span class="n">row</span><span class="p">.</span><span class="n">value</span> <span class="n">in</span> <span class="n">a</span> <span class="n">Record</span> <span class="n">because</span> <span class="n">that</span> <span class="n">doesn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">get</span> <span class="n">attachments</span><span class="p">.</span>
-    <span class="err">#</span> <span class="n">So</span> <span class="n">re</span><span class="o">-</span><span class="n">fetch</span> <span class="n">the</span> <span class="n">Record</span> <span class="n">from</span> <span class="n">the</span> <span class="n">database</span><span class="p">.</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">get_record</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="err">&#39;</span><span class="n">_id</span><span class="err">&#39;</span><span class="p">])</span>
-    <span class="n">emails</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;email_addresses&quot;</span><span class="p">,</span> <span class="n">None</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">emails</span><span class="o">:</span>
-        <span class="k">for</span> <span class="n">email</span> <span class="n">in</span> <span class="n">emails</span><span class="o">:</span>
-            <span class="n">addr</span> <span class="o">=</span> <span class="n">email</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="err">&#39;</span><span class="n">address</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">None</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">addr</span><span class="o">:</span>
-                <span class="k">if</span> <span class="s">&quot;photo&quot;</span> <span class="n">in</span> <span class="n">r</span><span class="p">.</span><span class="n">list_attachments</span><span class="p">()</span><span class="o">:</span>
-                    <span class="n">print</span> <span class="s">&quot;Email %s already has photo in contact record&quot;</span> <span class="o">%</span> <span class="n">addr</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">desktopcouch.application.server</span> <span class="kn">import</span> <span class="n">DesktopDatabase</span>
+<span class="kn">from</span> <span class="nn">desktopcouch.records.record</span> <span class="kn">import</span> <span class="n">Record</span>
+<span class="kn">import</span> <span class="nn">urllib</span><span class="o">,</span> <span class="nn">md5</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">DesktopDatabase</span><span class="p">(</span><span class="s2">&quot;contacts&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">contact</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">get_records</span><span class="p">(</span><span class="n">create_view</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">record_type</span><span class="o">=</span><span class="s2">&quot;http://www.freedesktop.org/wiki/Specifications/desktopcouch/contact&quot;</span><span class="p">):</span>
+    <span class="c1"># sigh, db.get_records doesn&#39;t get Records at all, it gets a ViewResult. And</span>
+    <span class="c1"># we can&#39;t just wrap row.value in a Record because that doesn&#39;t get attachments.</span>
+    <span class="c1"># So re-fetch the Record from the database.</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_record</span><span class="p">(</span><span class="n">contact</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;_id&#39;</span><span class="p">])</span>
+    <span class="n">emails</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;email_addresses&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">emails</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">emails</span><span class="p">:</span>
+            <span class="n">addr</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">addr</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;photo&quot;</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">list_attachments</span><span class="p">():</span>
+                    <span class="k">print</span> <span class="s2">&quot;Email </span><span class="si">%s</span><span class="s2"> already has photo in contact record&quot;</span> <span class="o">%</span> <span class="n">addr</span>
                     <span class="k">continue</span>
-                <span class="n">print</span> <span class="p">(</span><span class="s">&quot;Checking addr %s in record id %s:&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="n">record_id</span><span class="p">)),</span>
-                <span class="n">hsh</span> <span class="o">=</span> <span class="n">md5</span><span class="p">.</span><span class="n">md5</span><span class="p">(</span><span class="n">addr</span><span class="p">.</span><span class="n">lower</span><span class="p">()).</span><span class="n">hexdigest</span><span class="p">().</span><span class="n">lower</span><span class="p">()</span>
-                <span class="n">fp</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&quot;http://www.gravatar.com/avatar/%s?d=404&amp;s=50&quot;</span> <span class="o">%</span> <span class="n">hsh</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">fp</span><span class="p">.</span><span class="n">getcode</span><span class="p">()</span> <span class="o">==</span> <span class="mi">404</span><span class="o">:</span>
-                    <span class="n">print</span> <span class="s">&quot;not found.&quot;</span>
-                <span class="nl">else:</span>
-                    <span class="n">r</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">fp</span><span class="p">.</span><span class="n">read</span><span class="p">(),</span> <span class="s">&quot;photo&quot;</span><span class="p">,</span> <span class="n">fp</span><span class="p">.</span><span class="n">info</span><span class="p">().</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s">&quot;image/jpeg&quot;</span><span class="p">))</span>
-                    <span class="n">fp</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-                    <span class="n">db</span><span class="p">.</span><span class="n">put_record</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-                    <span class="n">print</span> <span class="s">&quot;found!&quot;</span>
+                <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Checking addr </span><span class="si">%s</span><span class="s2"> in record id </span><span class="si">%s</span><span class="s2">:&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">record_id</span><span class="p">)),</span>
+                <span class="n">hsh</span> <span class="o">=</span> <span class="n">md5</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">addr</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="n">fp</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://www.gravatar.com/avatar/</span><span class="si">%s</span><span class="s2">?d=404&amp;s=50&quot;</span> <span class="o">%</span> <span class="n">hsh</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">fp</span><span class="o">.</span><span class="n">getcode</span><span class="p">()</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s2">&quot;not found.&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">r</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s2">&quot;photo&quot;</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpeg&quot;</span><span class="p">))</span>
+                    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                    <span class="n">db</span><span class="o">.</span><span class="n">put_record</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+                    <span class="k">print</span> <span class="s2">&quot;found!&quot;</span>
 </pre></div>
 
 

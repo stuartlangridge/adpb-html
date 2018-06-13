@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2004/03/17/redesigning/"><time 
-			class="dt-published" datetime="2004-03-17T11:00:00">Mar 17 2004</time></a>
+			class="dt-published" datetime="2004-03-17T11:00:00+00:00">Mar 17 2004</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -60,15 +60,15 @@
 		</h2>
 		<div class="entry-content e-content">
 			<p>Got bored of the old design, did a new one. The old one’s still there;
-just switch stylesheets in your browser.<br />
+just switch stylesheets in your browser.<br>
 I’m not totally happy with the new one, for a couple of technical
 reasons and one artistic reason. However, there are some nice little
-tricks in it, I think.<br />
+tricks in it, I think.<br>
 Nice trick no. 1 is that the date, top right of the <a href="http://www.kryogenix.org/">front page</a>, is
 the date of the most recent post. It’s absolutely positioned up there,
 and that date is identified with the <span class="caps"><span class="caps">CSS</span></span>
 selector div#blog h2.date:first-child. Naturally, this will only work
-in browsers that support such selectors.<br />
+in browsers that support such selectors.<br>
 Nice trick no. 2 is that the most recent post looks like a lead story,
 which is to say that it’s bigger than the others. Again, just standard
 use of <span class="caps"><span class="caps">CSS</span></span> selectors, in this case div#blog
@@ -79,15 +79,15 @@ and that is a first child that is a descendant of a div element with an
 id attribute that equals blog“, or in plainer (but less rigorous)
 English, “the post item that immediately follows the first date
 displayed in the weblog“, i.e., the first post). Blah blah blah browsers
-that support such selectors.<br />
+that support such selectors.<br>
 I am also, I confess it, childishly pleased at how different it is from
 the last one, given that I’ve just changed the
 <span class="caps"><span class="caps">CSS</span></span>. Yeah, yeah, I <em>know</em> that this is the
 point, and I <em>know</em> the <a href="http://www.csszengarden.com/">Zen garden</a> demonstrates this every day and a
 lot better than I do, but it’s been some time since I’ve had two
 successive designs that were very different and where I was pretty
-pleased with both. Plus, Plato looks cool up there at the top, huh?<br />
-Stuff I’m not happy with:<br />
+pleased with both. Plus, Plato looks cool up there at the top, huh?<br>
+Stuff I’m not happy with:<br>
 You can’t make stuff <em>really</em> take on the irregular column look of a
 newspaper, because you can’t allow arbitrary lengths on the columns and
 still have a space-filling design. That’s why they’re all fixed length.
@@ -97,12 +97,12 @@ position stuff to get it, but that wouldn’t be a lot better than this
 and would be a shitload more work with a ruler, so I haven’t done that.
 Fixed-length columns aren’t good because they cut off longer posts,
 obviously, as well as making the design too regular (two rows of
-stories, rather than them all fitting in randomly).<br />
+stories, rather than them all fitting in randomly).<br>
 There’s no way, as far as I can tell, using floats, to have any story
 at all appear on the left of the first story. So it has to be the
 leftmost. The design fudges this a bit by putting the metadata sidebar
 on the left so it looks a bit like a story, but that’s imperfect and
-fudgy.<br />
+fudgy.<br>
 You can’t apply float and position:relative to a thing to get it to be
 floated but then get treated as absolutely positioned for the purposes
 of absolutely positioning children relative to it. There is a p.comments
@@ -120,22 +120,22 @@ doesn’t work; Moz doesn’t seem to recognise it as absolutely positioned,
 and so p.comments styled like that appears at the top of the page
 instead of the top of the post it’s in. Can’t think of a way of doing
 this without JavaScript, which is cheating (although I might do it
-anyway).<br />
+anyway).<br>
 The “Regular Features” bit looks a bit pants. I wish I had one ounce of
-artistic talent.<br />
+artistic talent.<br>
 I can’t have different columns be different widths without hardcoding
-the widths, which is dead fudgy again.<br />
+the widths, which is dead fudgy again.<br>
 You can’t format a post into newspaper columns without doing something
 like <a href="http://markpasc.org/weblog/2001/09/14_ihts_flowing_columns.html">the <span class="caps"><span class="caps">IHT</span></span>’s JavaScript super-complex
 thing</a> or finding a browser which supports the
 <a href="http://www.w3.org/TR/2001/WD-css3-multicol-20010118/"><span class="caps"><span class="caps">CSS3</span></span> multicol spec</a> (none, as far as I can
-tell), so, dammit, I have to just live without it.<br />
+tell), so, dammit, I have to just live without it.<br>
 I can’t think of a way of putting a “More >>” thing at the bottom of
 posts if they overflow either, without using <span class="caps"><span class="caps">JS</span>
-</span>(which, again, I am thinking of doing).<br />
+</span>(which, again, I am thinking of doing).<br>
 I can see how to fix most of my problems (not the one about having the
 artistic ability of a glass hammer) with <span class="caps">JS</span>, I’m just not sure whether I
-want a huge blizzard of <span class="caps">JS</span> to run when someone loads the front page…<br />
+want a huge blizzard of <span class="caps">JS</span> to run when someone loads the front page…<br>
 <strong>Addendum</strong>: I keep doing redesigns, and then you look back at old
 posts which say “done a new design!” and there’s no clue what that
 design was. So, new policy: all new designs get a screenshot stored away

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2006/10/23/find-files-with-an-emblem/"><time 
-			class="dt-published" datetime="2006-10-23T20:53:00">Oct 23 2006</time></a>
+			class="dt-published" datetime="2006-10-23T20:53:00+01:00">Oct 23 2006</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -62,46 +62,46 @@
 			<p>With the desktop on Ubuntu Linux (indeed, with any Gnome desktop) it&#8217;s
 possible to add emblems to any file. An emblem is a little reminder, a
 small icon that appears on top of the file. Think of it as a tag,
-perhaps, in this Web 2.0 world. <img alt="The 'Sam presents' file has a 'money' emblem." src="http://www.kryogenix.org/random/emblems.png" /> Anyway, I needed a way of establishing which files had a
+perhaps, in this Web 2.0 world. <img alt="The 'Sam presents' file has a 'money' emblem." src="http://www.kryogenix.org/random/emblems.png"> Anyway, I needed a way of establishing which files had a
 particular emblem from a script. So here&#8217;s such a script. Call as&nbsp;follows:</p>
-<div class="highlight"><pre><span class="n">aquarius</span><span class="err">@</span><span class="n">giles</span><span class="o">:~</span><span class="err">$</span> <span class="n">python</span> <span class="n">findemblem</span><span class="p">.</span><span class="n">py</span> <span class="n">money</span>
-<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">aquarius</span><span class="o">/</span><span class="n">Sam</span> <span class="n">presents</span>
-<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">aquarius</span><span class="o">/</span><span class="n">Work</span><span class="o">/</span><span class="n">quotation</span><span class="p">.</span><span class="n">xml</span>
+<div class="highlight"><pre><span></span>aquarius@giles:~$ python findemblem.py money
+/home/aquarius/Sam presents
+/home/aquarius/Work/quotation.xml
 </pre></div>
 
 
 <p>The actual script&nbsp;is:</p>
-<div class="highlight"><pre><span class="s-Atom">import</span> <span class="s-Atom">re</span><span class="p">,</span> <span class="s-Atom">glob</span><span class="p">,</span> <span class="s-Atom">sys</span><span class="p">,</span> <span class="s-Atom">urllib</span><span class="p">,</span> <span class="s-Atom">os</span>
-<span class="s-Atom">from</span> <span class="s-Atom">xml</span><span class="p">.</span><span class="s-Atom">dom</span> <span class="s-Atom">import</span> <span class="s-Atom">minidom</span>
+<div class="highlight"><pre><span></span><span class="s s-Atom">import</span> <span class="s s-Atom">re</span><span class="p">,</span> <span class="s s-Atom">glob</span><span class="p">,</span> <span class="s s-Atom">sys</span><span class="p">,</span> <span class="s s-Atom">urllib</span><span class="p">,</span> <span class="s s-Atom">os</span>
+<span class="s s-Atom">from</span> <span class="s s-Atom">xml</span><span class="p">.</span><span class="s s-Atom">dom</span> <span class="s s-Atom">import</span> <span class="s s-Atom">minidom</span>
 
-<span class="s-Atom">def</span> <span class="nf">grep</span><span class="p">(</span><span class="s-Atom">pattern</span><span class="p">,</span> <span class="s-Atom">files</span><span class="p">)</span><span class="s-Atom">:</span>
-  <span class="s-Atom">search</span> <span class="o">=</span> <span class="s-Atom">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="s-Atom">pattern</span><span class="p">).</span><span class="s-Atom">search</span>
-  <span class="s-Atom">matches</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="s-Atom">for</span> <span class="s-Atom">file</span> <span class="s-Atom">in</span> <span class="nn">files</span><span class="p">:</span>
-    <span class="s-Atom">for</span> <span class="s-Atom">index</span><span class="p">,</span> <span class="s-Atom">line</span> <span class="s-Atom">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="nf">open</span><span class="p">(</span><span class="s-Atom">file</span><span class="p">))</span><span class="s-Atom">:</span>
-      <span class="s-Atom">if</span> <span class="nf">search</span><span class="p">(</span><span class="s-Atom">line</span><span class="p">)</span><span class="s-Atom">:</span>
-        <span class="s-Atom">matches</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="s-Atom">file</span><span class="p">)</span>
-        <span class="s-Atom">break</span>
-  <span class="s-Atom">return</span> <span class="s-Atom">matches</span>
+<span class="s s-Atom">def</span> <span class="nf">grep</span><span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">,</span> <span class="s s-Atom">files</span><span class="p">)</span><span class="s s-Atom">:</span>
+  <span class="s s-Atom">search</span> <span class="o">=</span> <span class="s s-Atom">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">).</span><span class="s s-Atom">search</span>
+  <span class="s s-Atom">matches</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="s s-Atom">for</span> <span class="s s-Atom">file</span> <span class="s s-Atom">in</span> <span class="nn">files</span><span class="p">:</span>
+    <span class="s s-Atom">for</span> <span class="s s-Atom">index</span><span class="p">,</span> <span class="s s-Atom">line</span> <span class="s s-Atom">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="nf">open</span><span class="p">(</span><span class="s s-Atom">file</span><span class="p">))</span><span class="s s-Atom">:</span>
+      <span class="s s-Atom">if</span> <span class="nf">search</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">)</span><span class="s s-Atom">:</span>
+        <span class="s s-Atom">matches</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="s s-Atom">file</span><span class="p">)</span>
+        <span class="s s-Atom">break</span>
+  <span class="s s-Atom">return</span> <span class="s s-Atom">matches</span>
 
-<span class="s-Atom">def</span> <span class="nf">findEmblemedFiles</span><span class="p">(</span><span class="s-Atom">emblem</span><span class="p">)</span><span class="s-Atom">:</span>
-  <span class="s-Atom">metafilesWithKeyword</span> <span class="o">=</span> <span class="nf">grep</span><span class="p">(</span><span class="s-Atom">&#39;&lt;keyword &#39;</span><span class="p">,</span> 
-               <span class="s-Atom">glob</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="s-Atom">os</span><span class="p">.</span><span class="s-Atom">path</span><span class="p">.</span><span class="nf">expanduser</span><span class="p">(</span><span class="s-Atom">&#39;~/.nautilus/metafiles/*&#39;</span><span class="p">)))</span>
-  <span class="s-Atom">retfiles</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="s-Atom">for</span> <span class="s-Atom">dirxmlfile</span> <span class="s-Atom">in</span> <span class="s-Atom">metafilesWithKeyword:</span>
-    <span class="s-Atom">dom</span> <span class="o">=</span> <span class="s-Atom">minidom</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s-Atom">dirxmlfile</span><span class="p">)</span>
-    <span class="s-Atom">filenodes</span> <span class="o">=</span> <span class="p">[</span><span class="s-Atom">x</span><span class="p">.</span><span class="s-Atom">parentNode</span><span class="p">.</span><span class="nf">getAttribute</span><span class="p">(</span><span class="s-Atom">&#39;name&#39;</span><span class="p">)</span> 
-                 <span class="s-Atom">for</span> <span class="s-Atom">x</span> <span class="s-Atom">in</span> <span class="s-Atom">dom</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="s-Atom">&#39;keyword&#39;</span><span class="p">)</span>
-                 <span class="s-Atom">if</span> <span class="s-Atom">x</span><span class="p">.</span><span class="nf">getAttribute</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s-Atom">emblem</span><span class="p">]</span>
-    <span class="s-Atom">files</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">([(</span><span class="s-Atom">x</span><span class="p">,</span><span class="s-Atom">&#39;&#39;</span><span class="p">)</span> <span class="s-Atom">for</span> <span class="s-Atom">x</span> <span class="s-Atom">in</span> <span class="s-Atom">filenodes</span><span class="p">]).</span><span class="nf">keys</span><span class="p">()</span>
-    <span class="s-Atom">#</span> <span class="s-Atom">turn</span> <span class="o">/</span><span class="s-Atom">home</span><span class="o">/</span><span class="s-Atom">foo/.nautilus</span><span class="o">/</span><span class="s-Atom">metafiles</span><span class="o">/</span><span class="nn">file</span><span class="p">:</span><span class="c1">%2F%2F%2Fhome%2Ffoo%2FWork.xml</span>
-    <span class="s-Atom">#</span> <span class="s-Atom">into</span> <span class="o">/</span><span class="s-Atom">home</span><span class="o">/</span><span class="s-Atom">foo</span><span class="o">/</span><span class="nv">Work</span><span class="o">/</span>
-    <span class="s-Atom">dirname</span> <span class="o">=</span> <span class="s-Atom">urllib</span><span class="p">.</span><span class="nf">unquote</span><span class="p">(</span><span class="s-Atom">os</span><span class="p">.</span><span class="s-Atom">path</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s-Atom">dirxmlfile</span><span class="p">)[</span><span class="m">1</span><span class="p">])[</span><span class="m">7</span><span class="p">:-</span><span class="m">4</span><span class="p">]</span> <span class="o">+</span> <span class="s-Atom">&#39;/&#39;</span> 
-    <span class="s-Atom">retfiles</span> <span class="s-Atom">+=</span> <span class="p">[</span><span class="s-Atom">os</span><span class="p">.</span><span class="s-Atom">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s-Atom">dirname</span><span class="p">,</span><span class="s-Atom">urllib</span><span class="p">.</span><span class="nf">unquote</span><span class="p">(</span><span class="s-Atom">f</span><span class="p">))</span> <span class="s-Atom">for</span> <span class="s-Atom">f</span> <span class="s-Atom">in</span> <span class="s-Atom">files</span><span class="p">]</span>
-  <span class="s-Atom">return</span> <span class="s-Atom">retfiles</span>
+<span class="s s-Atom">def</span> <span class="nf">findEmblemedFiles</span><span class="p">(</span><span class="s s-Atom">emblem</span><span class="p">)</span><span class="s s-Atom">:</span>
+  <span class="s s-Atom">metafilesWithKeyword</span> <span class="o">=</span> <span class="nf">grep</span><span class="p">(</span><span class="s s-Atom">&#39;&lt;keyword &#39;</span><span class="p">,</span> 
+               <span class="s s-Atom">glob</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">expanduser</span><span class="p">(</span><span class="s s-Atom">&#39;~/.nautilus/metafiles/*&#39;</span><span class="p">)))</span>
+  <span class="s s-Atom">retfiles</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="s s-Atom">for</span> <span class="s s-Atom">dirxmlfile</span> <span class="s s-Atom">in</span> <span class="s s-Atom">metafilesWithKeyword:</span>
+    <span class="s s-Atom">dom</span> <span class="o">=</span> <span class="s s-Atom">minidom</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s s-Atom">dirxmlfile</span><span class="p">)</span>
+    <span class="s s-Atom">filenodes</span> <span class="o">=</span> <span class="p">[</span><span class="s s-Atom">x</span><span class="p">.</span><span class="s s-Atom">parentNode</span><span class="p">.</span><span class="nf">getAttribute</span><span class="p">(</span><span class="s s-Atom">&#39;name&#39;</span><span class="p">)</span> 
+                 <span class="s s-Atom">for</span> <span class="s s-Atom">x</span> <span class="s s-Atom">in</span> <span class="s s-Atom">dom</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="s s-Atom">&#39;keyword&#39;</span><span class="p">)</span>
+                 <span class="s s-Atom">if</span> <span class="s s-Atom">x</span><span class="p">.</span><span class="nf">getAttribute</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s s-Atom">emblem</span><span class="p">]</span>
+    <span class="s s-Atom">files</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">([(</span><span class="s s-Atom">x</span><span class="p">,</span><span class="s s-Atom">&#39;&#39;</span><span class="p">)</span> <span class="s s-Atom">for</span> <span class="s s-Atom">x</span> <span class="s s-Atom">in</span> <span class="s s-Atom">filenodes</span><span class="p">]).</span><span class="nf">keys</span><span class="p">()</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">turn</span> <span class="o">/</span><span class="s s-Atom">home</span><span class="o">/</span><span class="s s-Atom">foo/.nautilus</span><span class="o">/</span><span class="s s-Atom">metafiles</span><span class="o">/</span><span class="nn">file</span><span class="p">:</span><span class="c1">%2F%2F%2Fhome%2Ffoo%2FWork.xml</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">into</span> <span class="o">/</span><span class="s s-Atom">home</span><span class="o">/</span><span class="s s-Atom">foo</span><span class="o">/</span><span class="nv">Work</span><span class="o">/</span>
+    <span class="s s-Atom">dirname</span> <span class="o">=</span> <span class="s s-Atom">urllib</span><span class="p">.</span><span class="nf">unquote</span><span class="p">(</span><span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s s-Atom">dirxmlfile</span><span class="p">)[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">7</span><span class="p">:-</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s s-Atom">&#39;/&#39;</span> 
+    <span class="s s-Atom">retfiles</span> <span class="s s-Atom">+=</span> <span class="p">[</span><span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">dirname</span><span class="p">,</span><span class="s s-Atom">urllib</span><span class="p">.</span><span class="nf">unquote</span><span class="p">(</span><span class="s s-Atom">f</span><span class="p">))</span> <span class="s s-Atom">for</span> <span class="s s-Atom">f</span> <span class="s s-Atom">in</span> <span class="s s-Atom">files</span><span class="p">]</span>
+  <span class="s s-Atom">return</span> <span class="s s-Atom">retfiles</span>
 
-<span class="s-Atom">if</span> <span class="k">__</span><span class="s-Atom">name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="s-Atom">:</span>
-  <span class="s-Atom">print</span> <span class="s-Atom">&#39;n&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">findEmblemedFiles</span><span class="p">(</span><span class="s-Atom">sys</span><span class="p">.</span><span class="s-Atom">argv</span><span class="p">[</span><span class="m">1</span><span class="p">]))</span>
+<span class="s s-Atom">if</span> <span class="k">__</span><span class="s s-Atom">name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="s s-Atom">:</span>
+  <span class="s s-Atom">print</span> <span class="s s-Atom">&#39;n&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">findEmblemedFiles</span><span class="p">(</span><span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

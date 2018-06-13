@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2004/12/21/thunderbird/"><time 
-			class="dt-published" datetime="2004-12-21T11:00:00">Dec 21 2004</time></a>
+			class="dt-published" datetime="2004-12-21T11:00:00+00:00">Dec 21 2004</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -69,20 +69,20 @@ seem to show up in the dropdown, so I thought I’d bang it into <strong>Custom
 Mail Reader</strong>. So, what do you put in? I’d have thought
 <code>mozilla-thunderbird %s</code>. Nope. That doesn’t work. Moreover, if you try
 that from the&nbsp;command-line:</p>
-<div class="highlight"><pre><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span> <span class="n">someone</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">org</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="n">client</span><span class="o">:</span> <span class="n">Error</span><span class="o">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">send</span> <span class="n">command</span><span class="o">:</span> <span class="mi">509</span> <span class="n">internal</span> <span class="n">error</span>
+<div class="highlight"><pre><span></span>mozilla-thunderbird someone@example.org
+/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client: Error: Failed to send command: 509 internal error
 </pre></div>
 
 
 <p>That’s no good. On the other hand, what’s a
 <code>mozilla-thunderbird-xremote-client</code>?</p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="n">client</span> <span class="n">someone</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">org</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="n">client</span><span class="o">:</span> <span class="n">Error</span><span class="o">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">send</span> <span class="n">command</span><span class="o">:</span> <span class="mi">500</span> <span class="n">command</span> <span class="n">not</span> <span class="n">parsable</span><span class="o">:</span> <span class="n">someone</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">org</span>
+<div class="highlight"><pre><span></span>/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client someone@example.org
+/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client: Error: Failed to send command: 500 command not parsable: someone@example.org
 </pre></div>
 
 
 <p>Ah, “command not parsable“. It must take the <a href="http://www.mozilla.org/unix/remote.html">-remote commands</a>.</p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="n">client</span> <span class="s">&quot;mailto(someone@example.org)&quot;</span>
+<div class="highlight"><pre><span></span>/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client &quot;mailto(someone@example.org)&quot;
 </pre></div>
 
 

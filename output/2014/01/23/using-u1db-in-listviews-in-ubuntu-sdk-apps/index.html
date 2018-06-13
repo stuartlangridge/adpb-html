@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2014/01/23/using-u1db-in-listviews-in-ubuntu-sdk-apps/"><time 
-			class="dt-published" datetime="2014-01-23T16:24:00">Jan 23 2014</time></a>
+			class="dt-published" datetime="2014-01-23T16:24:00+00:00">Jan 23 2014</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -71,93 +71,93 @@ indexing and querying documents have the same underlying philosophy
 regardless of implementation, and the core docs explain what an index
 is, what a query is, and how they&nbsp;work.</p>
 <p>First, a simple code&nbsp;example.</p>
-<div class="highlight"><pre><span class="kr">import</span> <span class="nx">QtQuick</span> <span class="mf">2.0</span>
-<span class="kr">import</span> <span class="nx">Ubuntu</span><span class="p">.</span><span class="nx">Components</span> <span class="mf">0.1</span>
-<span class="kr">import</span> <span class="nx">U1db</span> <span class="mf">1.0</span> <span class="nx">as</span> <span class="nx">U1db</span>
-<span class="kr">import</span> <span class="nx">Ubuntu</span><span class="p">.</span><span class="nx">Components</span><span class="p">.</span><span class="nx">ListItems</span> <span class="mf">0.1</span> <span class="nx">as</span> <span class="nx">ListItem</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">QtQuick</span> <span class="mf">2.0</span>
+<span class="kn">import</span> <span class="nn">Ubuntu.Components</span> <span class="mf">0.1</span>
+<span class="kn">import</span> <span class="nn">U1db</span> <span class="mf">1.0</span> <span class="k">as</span> <span class="n">U1db</span>
+<span class="kn">import</span> <span class="nn">Ubuntu.Components.ListItems</span> <span class="mf">0.1</span> <span class="k">as</span> <span class="n">ListItem</span>
 
-<span class="nx">MainView</span> <span class="p">{</span>
-    <span class="nx">width</span><span class="o">:</span> <span class="nx">units</span><span class="p">.</span><span class="nx">gu</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
-    <span class="nx">height</span><span class="o">:</span> <span class="nx">units</span><span class="p">.</span><span class="nx">gu</span><span class="p">(</span><span class="mi">71</span><span class="p">)</span>
+<span class="n">MainView</span> <span class="p">{</span>
+    <span class="n">width</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">height</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">71</span><span class="p">)</span>
 
-    <span class="cm">/* ----------------------------------------------------</span>
-<span class="cm">       Set up the U1DB database</span>
-<span class="cm">       Declare a named document</span>
-<span class="cm">       ---------------------------------------------------- */</span>
-    <span class="nx">U1db</span><span class="p">.</span><span class="nx">Database</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">db</span><span class="p">;</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">&quot;simpleu1dbdemo2.u1db&quot;</span> <span class="p">}</span>
-    <span class="nx">U1db</span><span class="p">.</span><span class="nx">Index</span> <span class="p">{</span>
-        <span class="nx">database</span><span class="o">:</span> <span class="nx">db</span>
-        <span class="nx">id</span><span class="o">:</span> <span class="nx">by_type</span>
-        <span class="cm">/* You have to specify in the index all fields you want to retrieve</span>
-<span class="cm">           The query should return the whole document, not just indexed fields</span>
-<span class="cm">           https://bugs.launchpad.net/u1db-qt/+bug/1271973 */</span>
-        <span class="nx">expression</span><span class="o">:</span> <span class="cp">[</span><span class="s2">&quot;things.type&quot;</span><span class="p">,</span> <span class="s2">&quot;things.placename&quot;</span><span class="cp">]</span>
+    <span class="o">/*</span> <span class="o">----------------------------------------------------</span>
+       <span class="n">Set</span> <span class="n">up</span> <span class="n">the</span> <span class="n">U1DB</span> <span class="n">database</span>
+       <span class="n">Declare</span> <span class="n">a</span> <span class="n">named</span> <span class="n">document</span>
+       <span class="o">----------------------------------------------------</span> <span class="o">*/</span>
+    <span class="n">U1db</span><span class="o">.</span><span class="n">Database</span> <span class="p">{</span> <span class="nb">id</span><span class="p">:</span> <span class="n">db</span><span class="p">;</span> <span class="n">path</span><span class="p">:</span> <span class="s2">&quot;simpleu1dbdemo2.u1db&quot;</span> <span class="p">}</span>
+    <span class="n">U1db</span><span class="o">.</span><span class="n">Index</span> <span class="p">{</span>
+        <span class="n">database</span><span class="p">:</span> <span class="n">db</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">by_type</span>
+        <span class="o">/*</span> <span class="n">You</span> <span class="n">have</span> <span class="n">to</span> <span class="n">specify</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">index</span> <span class="nb">all</span> <span class="n">fields</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">retrieve</span>
+           <span class="n">The</span> <span class="n">query</span> <span class="n">should</span> <span class="k">return</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">document</span><span class="p">,</span> <span class="ow">not</span> <span class="n">just</span> <span class="n">indexed</span> <span class="n">fields</span>
+           <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bugs</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">u1db</span><span class="o">-</span><span class="n">qt</span><span class="o">/+</span><span class="n">bug</span><span class="o">/</span><span class="mi">1271973</span> <span class="o">*/</span>
+        <span class="n">expression</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;things.type&quot;</span><span class="p">,</span> <span class="s2">&quot;things.placename&quot;</span><span class="p">]</span>
     <span class="p">}</span>
-    <span class="nx">U1db</span><span class="p">.</span><span class="nx">Query</span> <span class="p">{</span>
-        <span class="nx">id</span><span class="o">:</span> <span class="nx">places</span>
-        <span class="nx">index</span><span class="o">:</span> <span class="nx">by_type</span>
-        <span class="nx">query</span><span class="o">:</span> <span class="cp">[</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="cp">]</span>
+    <span class="n">U1db</span><span class="o">.</span><span class="n">Query</span> <span class="p">{</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">places</span>
+        <span class="n">index</span><span class="p">:</span> <span class="n">by_type</span>
+        <span class="n">query</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">]</span>
     <span class="p">}</span>
 
-    <span class="nx">Page</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;U1DB ListModel&quot;</span>
+    <span class="n">Page</span> <span class="p">{</span>
+        <span class="n">title</span><span class="p">:</span> <span class="s2">&quot;U1DB ListModel&quot;</span>
 
-        <span class="nx">Column</span> <span class="p">{</span>
-            <span class="nx">id</span><span class="o">:</span> <span class="nx">col</span>
-            <span class="nx">width</span><span class="o">:</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">width</span>
-            <span class="nx">spacing</span><span class="o">:</span> <span class="nx">units</span><span class="p">.</span><span class="nx">gu</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="nx">Label</span> <span class="p">{</span>
-                <span class="nx">width</span><span class="o">:</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">width</span>
-                <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Enter a place to add to list&quot;</span>
-                <span class="nx">horizontalAlignment</span><span class="o">:</span> <span class="nx">Text</span><span class="p">.</span><span class="nx">AlignHCenter</span>
+        <span class="n">Column</span> <span class="p">{</span>
+            <span class="nb">id</span><span class="p">:</span> <span class="n">col</span>
+            <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span>
+            <span class="n">spacing</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">Label</span> <span class="p">{</span>
+                <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span>
+                <span class="n">text</span><span class="p">:</span> <span class="s2">&quot;Enter a place to add to list&quot;</span>
+                <span class="n">horizontalAlignment</span><span class="p">:</span> <span class="n">Text</span><span class="o">.</span><span class="n">AlignHCenter</span>
             <span class="p">}</span>
-            <span class="nx">Rectangle</span> <span class="p">{</span>
-                <span class="nx">id</span><span class="o">:</span> <span class="nx">ta</span>
-                <span class="nx">width</span><span class="o">:</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">units</span><span class="p">.</span><span class="nx">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                <span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;white&quot;</span>
-                <span class="nx">height</span><span class="o">:</span> <span class="nx">inp</span><span class="p">.</span><span class="nx">height</span> <span class="o">*</span> <span class="mi">2</span>
-                <span class="nx">anchors</span><span class="p">.</span><span class="nx">horizontalCenter</span><span class="o">:</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">horizontalCenter</span>
-                <span class="nx">radius</span><span class="o">:</span> <span class="mi">5</span>
-                <span class="nx">TextInput</span> <span class="p">{</span>
-                    <span class="nx">id</span><span class="o">:</span> <span class="nx">inp</span>
-                    <span class="nx">width</span><span class="o">:</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">units</span><span class="p">.</span><span class="nx">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="nx">anchors</span><span class="p">.</span><span class="nx">centerIn</span><span class="o">:</span> <span class="nx">parent</span>
-                    <span class="nx">onAccepted</span><span class="o">:</span> <span class="nx">inp</span><span class="p">.</span><span class="nx">adddoc</span><span class="p">()</span>
+            <span class="n">Rectangle</span> <span class="p">{</span>
+                <span class="nb">id</span><span class="p">:</span> <span class="n">ta</span>
+                <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">color</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span>
+                <span class="n">height</span><span class="p">:</span> <span class="n">inp</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mi">2</span>
+                <span class="n">anchors</span><span class="o">.</span><span class="n">horizontalCenter</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">horizontalCenter</span>
+                <span class="n">radius</span><span class="p">:</span> <span class="mi">5</span>
+                <span class="n">TextInput</span> <span class="p">{</span>
+                    <span class="nb">id</span><span class="p">:</span> <span class="n">inp</span>
+                    <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="n">anchors</span><span class="o">.</span><span class="n">centerIn</span><span class="p">:</span> <span class="n">parent</span>
+                    <span class="n">onAccepted</span><span class="p">:</span> <span class="n">inp</span><span class="o">.</span><span class="n">adddoc</span><span class="p">()</span>
 
-                    <span class="kd">function</span> <span class="nx">adddoc</span><span class="p">()</span> <span class="p">{</span>
-                        <span class="cm">/* Indexes do not work on top-level fields. So put everything</span>
-<span class="cm">                           in the document in a dict called &quot;things&quot; so that they&#39;re</span>
-<span class="cm">                           not top-level fields any more.</span>
-<span class="cm">                           https://bugs.launchpad.net/u1db-qt/+bug/1271972 */</span>
-                        <span class="nx">db</span><span class="p">.</span><span class="nx">putDoc</span><span class="p">({</span><span class="nx">things</span><span class="o">:</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;place&quot;</span><span class="p">,</span> <span class="nx">placename</span><span class="o">:</span> <span class="nx">inp</span><span class="p">.</span><span class="nx">text</span><span class="p">}})</span>
-                        <span class="nx">inp</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                    <span class="n">function</span> <span class="n">adddoc</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="o">/*</span> <span class="n">Indexes</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">work</span> <span class="n">on</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">fields</span><span class="o">.</span> <span class="n">So</span> <span class="n">put</span> <span class="n">everything</span>
+                           <span class="ow">in</span> <span class="n">the</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">a</span> <span class="nb">dict</span> <span class="n">called</span> <span class="s2">&quot;things&quot;</span> <span class="n">so</span> <span class="n">that</span> <span class="n">they</span><span class="s1">&#39;re</span>
+                           <span class="ow">not</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">fields</span> <span class="nb">any</span> <span class="n">more</span><span class="o">.</span>
+                           <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bugs</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">u1db</span><span class="o">-</span><span class="n">qt</span><span class="o">/+</span><span class="n">bug</span><span class="o">/</span><span class="mi">1271972</span> <span class="o">*/</span>
+                        <span class="n">db</span><span class="o">.</span><span class="n">putDoc</span><span class="p">({</span><span class="n">things</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;place&quot;</span><span class="p">,</span> <span class="n">placename</span><span class="p">:</span> <span class="n">inp</span><span class="o">.</span><span class="n">text</span><span class="p">}})</span>
+                        <span class="n">inp</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">}</span>
-            <span class="nx">Button</span> <span class="p">{</span>
-                <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Add&quot;</span>
-                <span class="nx">width</span><span class="o">:</span> <span class="nx">ta</span><span class="p">.</span><span class="nx">width</span>
-                <span class="nx">anchors</span><span class="p">.</span><span class="nx">horizontalCenter</span><span class="o">:</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">horizontalCenter</span>
-                <span class="nx">onClicked</span><span class="o">:</span> <span class="nx">inp</span><span class="p">.</span><span class="nx">adddoc</span><span class="p">()</span>
+            <span class="n">Button</span> <span class="p">{</span>
+                <span class="n">text</span><span class="p">:</span> <span class="s2">&quot;Add&quot;</span>
+                <span class="n">width</span><span class="p">:</span> <span class="n">ta</span><span class="o">.</span><span class="n">width</span>
+                <span class="n">anchors</span><span class="o">.</span><span class="n">horizontalCenter</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">horizontalCenter</span>
+                <span class="n">onClicked</span><span class="p">:</span> <span class="n">inp</span><span class="o">.</span><span class="n">adddoc</span><span class="p">()</span>
             <span class="p">}</span>
         <span class="p">}</span>
-        <span class="nx">ListView</span> <span class="p">{</span>
-            <span class="nx">anchors</span><span class="p">.</span><span class="nx">top</span><span class="o">:</span> <span class="nx">col</span><span class="p">.</span><span class="nx">bottom</span>
-            <span class="nx">anchors</span><span class="p">.</span><span class="nx">bottom</span><span class="o">:</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">bottom</span>
-            <span class="nx">width</span><span class="o">:</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">width</span>
-            <span class="nx">model</span><span class="o">:</span> <span class="nx">places</span>
-            <span class="nx">clip</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="nx">delegate</span><span class="o">:</span> <span class="nx">ListItem</span><span class="p">.</span><span class="nx">Standard</span> <span class="p">{</span>
-                <span class="nx">text</span><span class="o">:</span> <span class="nx">model</span><span class="p">.</span><span class="nx">contents</span><span class="p">.</span><span class="nx">placename</span>
-                <span class="nx">control</span><span class="o">:</span> <span class="nx">Button</span> <span class="p">{</span>
-                    <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;x&quot;</span>
-                    <span class="nx">width</span><span class="o">:</span> <span class="nx">units</span><span class="p">.</span><span class="nx">gu</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-                    <span class="nx">onClicked</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="cm">/* To delete a document, you currently have to set its </span>
-<span class="cm">                           contents to empty string. There will be db.delete_doc</span>
-<span class="cm">                           eventually.</span>
-<span class="cm">                           https://bugs.launchpad.net/u1db-qt/+bug/1243395 */</span>
-                        <span class="nx">db</span><span class="p">.</span><span class="nx">putDoc</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nx">model</span><span class="p">.</span><span class="nx">docId</span><span class="p">);</span>
+        <span class="n">ListView</span> <span class="p">{</span>
+            <span class="n">anchors</span><span class="o">.</span><span class="n">top</span><span class="p">:</span> <span class="n">col</span><span class="o">.</span><span class="n">bottom</span>
+            <span class="n">anchors</span><span class="o">.</span><span class="n">bottom</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">bottom</span>
+            <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span>
+            <span class="n">model</span><span class="p">:</span> <span class="n">places</span>
+            <span class="n">clip</span><span class="p">:</span> <span class="n">true</span>
+            <span class="n">delegate</span><span class="p">:</span> <span class="n">ListItem</span><span class="o">.</span><span class="n">Standard</span> <span class="p">{</span>
+                <span class="n">text</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">placename</span>
+                <span class="n">control</span><span class="p">:</span> <span class="n">Button</span> <span class="p">{</span>
+                    <span class="n">text</span><span class="p">:</span> <span class="s2">&quot;x&quot;</span>
+                    <span class="n">width</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+                    <span class="n">onClicked</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="o">/*</span> <span class="n">To</span> <span class="n">delete</span> <span class="n">a</span> <span class="n">document</span><span class="p">,</span> <span class="n">you</span> <span class="n">currently</span> <span class="n">have</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">its</span> 
+                           <span class="n">contents</span> <span class="n">to</span> <span class="n">empty</span> <span class="n">string</span><span class="o">.</span> <span class="n">There</span> <span class="n">will</span> <span class="n">be</span> <span class="n">db</span><span class="o">.</span><span class="n">delete_doc</span>
+                           <span class="n">eventually</span><span class="o">.</span>
+                           <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bugs</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">u1db</span><span class="o">-</span><span class="n">qt</span><span class="o">/+</span><span class="n">bug</span><span class="o">/</span><span class="mi">1243395</span> <span class="o">*/</span>
+                        <span class="n">db</span><span class="o">.</span><span class="n">putDoc</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">docId</span><span class="p">);</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">}</span>

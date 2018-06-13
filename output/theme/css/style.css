@@ -297,10 +297,11 @@ a:hover {
 	color: #36bcab;
 }
 .entry-content {
-	font-family: "Lato";
+	font-family: "Pridi";
 	line-height: 1.35;
 	font-size: 16pt;
 	color: #004;
+	font-weight: 300;
 }
 .entry-content p { text-indent: 1.25em; }
 .entry-content a img {
@@ -972,11 +973,19 @@ div.highlight pre {
     padding: 0 0.5em;
     font-size: 0.8em;
 }
-p > img:first-child:last-child:not([style]), p > a:first-child:last-child > img:first-child:last-child:not([style]) {
+p > img:first-child:last-child:not([style]), p > a:first-child:last-child > img:first-child:last-child:not([style]), figure > img:not([style]) {
     max-width: 90%;
     margin: auto;
     display: block;
     box-shadow: 3px 3px 3px #000;
+}
+figure figcaption {
+	font-size: 75%;
+	font-style: italic;
+	text-align: center;
+	margin-top: 0.5em;
+	opacity: 0.8;
+	padding: 0 10%;
 }
 
 #webmentions li.twitter {

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2014/02/11/building-a-phonegap-ios-app-from-ubuntu-entirely-without-mac-os-x/"><time 
-			class="dt-published" datetime="2014-02-11T11:11:00">Feb 11 2014</time></a>
+			class="dt-published" datetime="2014-02-11T11:11:00+00:00">Feb 11 2014</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -60,9 +60,9 @@
 		</h2>
 		<div class="entry-content e-content">
 			<blockquote>
-<p>The Major: But, Fawlty, how did the starling get in the bar?<br />
- Basil: No, no, no. <em>You</em> were in the bar.<br />
- The Major: I was in the bar? Yes! Yes, I was!<br />
+<p>The Major: But, Fawlty, how did the starling get in the bar?<br>
+ Basil: No, no, no. <em>You</em> were in the bar.<br>
+ The Major: I was in the bar? Yes! Yes, I was!<br>
  Basil: And the starling was in the garden, and the rat was <em>nowhere
 at all</em>.</p>
 </blockquote>
@@ -106,10 +106,10 @@ Relations Certificate Authority</a>; download this AppleWWDRCA.cer file
 and keep it around&nbsp;somewhere.</p>
 <h4>Development p12&nbsp;key</h4>
 <p>Now, set yourself up a development p12 key as&nbsp;follows.</p>
-<div class="highlight"><pre><span class="cp"># Generate your private key</span>
-<span class="n">openssl</span> <span class="n">genrsa</span> <span class="o">-</span><span class="n">out</span> <span class="n">private</span><span class="p">.</span><span class="n">key</span> <span class="mi">2048</span>
-<span class="cp"># Generate a certificate signing request. Use your own email address!</span>
-<span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">new</span> <span class="o">-</span><span class="n">key</span> <span class="n">private</span><span class="p">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">CertificateSigningRequest</span><span class="p">.</span><span class="n">certSigningRequest</span>  <span class="o">-</span><span class="n">subj</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">emailAddress</span><span class="o">=</span><span class="n">joe</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">,</span> <span class="n">CN</span><span class="o">=</span><span class="n">Joe</span> <span class="n">Example</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">UK</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span># Generate your private key
+openssl genrsa -out private.key 2048
+# Generate a certificate signing request. Use your own email address!
+openssl req -new -key private.key -out CertificateSigningRequest.certSigningRequest  -subj &#39;/emailAddress=joe@example.com, CN=Joe Example, C=UK&#39;
 </pre></div>
 
 
@@ -117,17 +117,17 @@ and keep it around&nbsp;somewhere.</p>
 Development&#8221;. Go through its little wizard and upload your
 <code>CertificateSigningRequest.certSigningRequest</code> file. It will give you
 back a <code>ios_development.cer</code> file.</p>
-<div class="highlight"><pre><span class="cp"># Convert ios_development.cer to ios_development.pem</span>
-<span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">in</span> <span class="n">ios_development</span><span class="p">.</span><span class="n">cer</span> <span class="o">-</span><span class="n">inform</span> <span class="n">DER</span> <span class="o">-</span><span class="n">out</span> <span class="n">ios_development</span><span class="p">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">outform</span> <span class="n">PEM</span>
-<span class="cp"># Convert ios_development.pem to ios_development.p12.  Enter a password and remember it for later.</span>
-<span class="n">openssl</span> <span class="n">pkcs12</span> <span class="o">-</span><span class="n">export</span> <span class="o">-</span><span class="n">inkey</span> <span class="n">private</span><span class="p">.</span><span class="n">key</span> <span class="o">-</span><span class="n">in</span> <span class="n">ios_development</span><span class="p">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">ios_development</span><span class="p">.</span><span class="n">p12</span>
+<div class="highlight"><pre><span></span># Convert ios_development.cer to ios_development.pem
+openssl x509 -in ios_development.cer -inform DER -out ios_development.pem -outform PEM
+# Convert ios_development.pem to ios_development.p12.  Enter a password and remember it for later.
+openssl pkcs12 -export -inkey private.key -in ios_development.pem -out ios_development.p12
 </pre></div>
 
 
 <h4>Distribution p12&nbsp;key</h4>
 <p>Now, generate a distribution p12 key in the same&nbsp;way:</p>
-<div class="highlight"><pre><span class="cp"># Generate a certificate signing request. Use your own email address!</span>
-<span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">new</span> <span class="o">-</span><span class="n">key</span> <span class="n">private</span><span class="p">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">DistCertificateSigningRequest</span><span class="p">.</span><span class="n">certSigningRequest</span>  <span class="o">-</span><span class="n">subj</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">emailAddress</span><span class="o">=</span><span class="n">joe</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">,</span> <span class="n">CN</span><span class="o">=</span><span class="n">Joe</span> <span class="n">Example</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">UK</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span># Generate a certificate signing request. Use your own email address!
+openssl req -new -key private.key -out DistCertificateSigningRequest.certSigningRequest  -subj &#39;/emailAddress=joe@example.com, CN=Joe Example, C=UK&#39;
 </pre></div>
 
 
@@ -135,10 +135,10 @@ back a <code>ios_development.cer</code> file.</p>
 Development&#8221;. Go through its little wizard and upload your
 <code>DistCertificateSigningRequest.certSigningRequest</code> file. It will give
 you back a <code>ios_distribution.cer</code> file.</p>
-<div class="highlight"><pre><span class="cp"># Convert ios_distribution.cer to ios_distribution.pem</span>
-<span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">in</span> <span class="n">ios_distribution</span><span class="p">.</span><span class="n">cer</span> <span class="o">-</span><span class="n">inform</span> <span class="n">DER</span> <span class="o">-</span><span class="n">out</span> <span class="n">ios_distribution</span><span class="p">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">outform</span> <span class="n">PEM</span>
-<span class="cp"># Convert ios_distribution.pem to ios_distribution.p12.  Enter a password and remember it for later.</span>
-<span class="n">openssl</span> <span class="n">pkcs12</span> <span class="o">-</span><span class="n">export</span> <span class="o">-</span><span class="n">inkey</span> <span class="n">private</span><span class="p">.</span><span class="n">key</span> <span class="o">-</span><span class="n">in</span> <span class="n">ios_distribution</span><span class="p">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">ios_distribution</span><span class="p">.</span><span class="n">p12</span>
+<div class="highlight"><pre><span></span># Convert ios_distribution.cer to ios_distribution.pem
+openssl x509 -in ios_distribution.cer -inform DER -out ios_distribution.pem -outform PEM
+# Convert ios_distribution.pem to ios_distribution.p12.  Enter a password and remember it for later.
+openssl pkcs12 -export -inkey private.key -in ios_distribution.pem -out ios_distribution.p12
 </pre></div>
 
 
@@ -190,21 +190,21 @@ all&nbsp;together.</p>
 	<ul>
 		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
 			A response was written at
-		<a href="http://www.kryogenix.org/days/2014/02/13/static-electricity/">Static ...</a>
+		<a href="http://www.kryogenix.org/days/2014/02/13/static-electricity/">Static electricity</a>
 (www.kryogenix.org)		<span class="wm-summary">			So here I am with a static blog. I was on Wordpress. I like Wordpress; in particular, I like the vitality of it. There’s a large community of people u&hellip;
 </span></li>
 		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
 			A response was written at
-		<a href="http://www.kryogenix.org/days/2014/02/13/static-electricity/">Static ...</a>
+		<a href="http://www.kryogenix.org/days/2014/02/13/static-electricity/">Static electricity</a>
 (www.kryogenix.org)		<span class="wm-summary">			So here I am with a static blog. I was on Wordpress. I like Wordpress; in particular, I like the vitality of it. There’s a large community of people u&hellip;
 </span></li>
 		<li><img src="https://twitter.com/tweetsbymichiel/profile_image?size=original">
 			Michiel responded at
-		<a href="https://twitter.com/sil/status/700354219040186368#favorited-by-134770299">...</a>
+		<a href="https://twitter.com/sil/status/700354219040186368#favorited-by-134770299">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://twitter.com/tweetsbymichiel/profile_image?size=original">
 			Michiel responded at
-		<a href="https://twitter.com/sil/status/700354219040186368#favorited-by-134770299">...</a>
+		<a href="https://twitter.com/sil/status/700354219040186368#favorited-by-134770299">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://twitter.com/develop_mobile/profile_image?size=original">
 			Mobile Development responded at

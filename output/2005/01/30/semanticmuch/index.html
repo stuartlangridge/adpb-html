@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2005/01/30/semanticmuch/"><time 
-			class="dt-published" datetime="2005-01-30T11:00:00">Jan 30 2005</time></a>
+			class="dt-published" datetime="2005-01-30T11:00:00+00:00">Jan 30 2005</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -99,7 +99,7 @@ write a Python <span class="caps"><span class="caps">HTML</span></span> parser, 
 doing this with an (increasingly complex) one-liner command, I grabbed
 the <span class="caps"><span class="caps">HTML</span></span> at the <span class="caps"><span class="caps">URL</span></span>
 you specified with a comment, threw it through <strong>tidy</strong>, threw that&nbsp;through</p>
-<div class="highlight"><pre><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s">&quot;from xml.dom import minidom;import sys;d=minidom.parseString(sys.stdin.read());print [n.getAttribute(&#39;href&#39;) for n in d.getElementsByTagName(&#39;link&#39;) if n.getAttribute(&#39;title&#39;) == &#39;FOAF&#39;][0]&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;from xml.dom import minidom;import sys;d=minidom.parseString(sys.stdin.read());print [n.getAttribute(&#39;href&#39;) for n in d.getElementsByTagName(&#39;link&#39;) if n.getAttribute(&#39;title&#39;) == &#39;FOAF&#39;][0]&quot;</span>
 </pre></div>
 
 

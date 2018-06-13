@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2007/12/08/negative-numbers-in-the-google-chart-api/"><time 
-			class="dt-published" datetime="2007-12-08T00:37:00">Dec 08 2007</time></a>
+			class="dt-published" datetime="2007-12-08T00:37:00+00:00">Dec 08 2007</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -61,7 +61,7 @@
 		<div class="entry-content e-content">
 			<p>Google&#8217;s new <a href="http://code.google.com/apis/chart/">Chart <span class="caps">API</span></a> is a useful little thing that returns a <span class="caps">PNG</span>
 of a chart based on the <span class="caps">URL</span> you feed it, so you can create graphs like
-this: <img alt="a simple example line graph" src="http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:helloWorld&amp;chxt=x,y&amp;chxl=0:|0|10|20" /> by just specifying the
+this: <img alt="a simple example line graph" src="http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:helloWorld&amp;chxt=x,y&amp;chxl=0:|0|10|20"> by just specifying the
 <code>&lt;img&gt; src</code> attribute as
 <a href="http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:helloWorld&amp;chxt=x,y&amp;chxl=0:|0|10|20">http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:helloWorld&amp;chxt=x,y&amp;chxl=0:|0|10|20</a>
 However, as <a href="http://gulopine.gamemusic.org/2007/12/google-chart-api.html">Marty Alchin rightfully complains about</a>, it doesn&#8217;t
@@ -72,7 +72,7 @@ handle negative numbers in the Google Chart <span class="caps">API</span>. Sort 
 is a bodge. Hold your nose and dive in. I&#8217;m sure Google will forcibly
 inject clue into their charting engine at some point, but until then you
 can sorta-kinda get around the problem like this. <img alt="a simple line graph
-with negative numbers" src="http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:eelloWorld&amp;chco=ff8000&amp;chls=3,6,3&amp;chxt=y&amp;chxl=0:|-10|0|10&amp;chg=0,50,1,0" /> For line graphs with negative numbers, you need
+with negative numbers" src="http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:eelloWorld&amp;chco=ff8000&amp;chls=3,6,3&amp;chxt=y&amp;chxl=0:|-10|0|10&amp;chg=0,50,1,0"> For line graphs with negative numbers, you need
 to do two things. First, lie about the values on the y axis (so you
 display on the graph that the y axis goes between -10 and 10, in the
 above example, even though it actually goes between 0 and 20). You&#8217;ll
@@ -87,9 +87,9 @@ into two 50% parts, with <code>chg=0,50,1,0</code>. The four parameters 0, 50, 1
 mean &#8220;don&#8217;t draw vertical grid lines (0)&#8221;, &#8220;draw a horizontal grid line
 every 50% of the y axis (50)&#8221;, and &#8220;make the line solid with no gaps
 (1,0)&#8221;. It&#8217;s also possible for bar graphs, although it requires a small
-amount more ingenuity. <img alt="a bar graph with negative numbers" src="http://chart.apis.google.com/chart?cht=bvs&amp;chd=t:50,50,50,30,50|0,0,0,20,0|20,10,30,0,30&amp;chco=00000000,ff0000,0000ff&amp;chs=200x125&amp;chg=0,51,1,0&amp;chxt=y&amp;chxl=0:|-50|0|50" /> This graph
+amount more ingenuity. <img alt="a bar graph with negative numbers" src="http://chart.apis.google.com/chart?cht=bvs&amp;chd=t:50,50,50,30,50|0,0,0,20,0|20,10,30,0,30&amp;chco=00000000,ff0000,0000ff&amp;chs=200x125&amp;chg=0,51,1,0&amp;chxt=y&amp;chxl=0:|-50|0|50"> This graph
 has negatives, right? Well, how it&#8217;s done might be clearer if you see
-this graph: <img alt="a bar graph without negative numbers, with the parts 'below the line' coloured in" src="http://chart.apis.google.com/chart?cht=bvs&amp;chd=t:50,50,50,30,50|0,0,0,20,0|20,10,30,0,30&amp;chco=006600ff,ff0000,0000ff&amp;chs=200x125&amp;chg=0,51,1,0&amp;chxt=y&amp;chxl=0:|-50|0|50" /> Yep, you just stack up the bars, and
+this graph: <img alt="a bar graph without negative numbers, with the parts 'below the line' coloured in" src="http://chart.apis.google.com/chart?cht=bvs&amp;chd=t:50,50,50,30,50|0,0,0,20,0|20,10,30,0,30&amp;chco=006600ff,ff0000,0000ff&amp;chs=200x125&amp;chg=0,51,1,0&amp;chxt=y&amp;chxl=0:|-50|0|50"> Yep, you just stack up the bars, and
 make the bottom bit of the stack be transparent (note that in the first
 graph we have <code>chco=00000000,ff0000,0000ff</code>, which specifies colours for
 each data series; the first item in there is <code>00000000</code>, which is in

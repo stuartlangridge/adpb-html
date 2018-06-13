@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2005/06/14/installing372457021727/"><time 
-			class="dt-published" datetime="2005-06-14T11:00:00">Jun 14 2005</time></a>
+			class="dt-published" datetime="2005-06-14T11:00:00+01:00">Jun 14 2005</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -61,7 +61,7 @@
 		<div class="entry-content e-content">
 			<p>More for my benefit than anyone else’s, a walkthrough on how to install
 both the vmware-a-like <a href="http://fabrice.bellard.free.fr/qemu/">qemu</a> and its <em>kqemu</em> kernel module that makes
-it run at a decent speed.<br />
+it run at a decent speed.<br>
 Follow the kqemu install instructions, but before you do the
 installation, install some Ubuntu packages. You need libsdl1.2-dev, and
 the linux-headers package that corresponds to the kernel you’re running.
@@ -70,7 +70,7 @@ The headers install in /usr/src; you may need to pass a parameter to
 should say that <span class="caps"><span class="caps">SDL</span></span> support is on when running
 configure. Before running qemu, you’ll need to modprobe kqemu, and you
 may need to create /dev/kqemu as described on the documentation&nbsp;page.</p>
-<hr />
+<hr>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2005/06/12/javascriptmeetup/">Previous post</a></li>

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2004/06/23/emulating/"><time 
-			class="dt-published" datetime="2004-06-23T11:00:00">Jun 23 2004</time></a>
+			class="dt-published" datetime="2004-06-23T11:00:00+01:00">Jun 23 2004</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -72,11 +72,11 @@ following&nbsp;categories:</p>
     <span class="caps"><span class="caps">CSS</span></span> or specifying sizes without units
     (“30” instead of&nbsp;“30px“)</li>
 <li><span class="caps"><span class="caps">MIME</span></span> type bugs where pages are served as
-    <code>text/plain</code><br />
+    <code>text/plain</code><br>
     Point 1 can be, I would think, mostly fixed with the Firefox
     extension I mentioned. (In fact, WebFX’s Erik Arvidsson has already
     done most of this work with <a href="http://webfx.eae.net/dhtml/ieemu/">IEEmu</a>, but I don’t know what the
-    licencing requirements are on it).<br />
+    licencing requirements are on it).<br>
     Point 2 might be fixable and might not; we could search the in-page
     <span class="caps">JS</span> code for something that looks like a browser detect, but it would
     be bloody hard to know whether it correctly detected Mozilla and
@@ -85,15 +85,15 @@ following&nbsp;categories:</p>
     require user interaction to say “pretend to be <span class="caps">IE</span> for this page
     only“, but that’s a bit against the proposed unobtrusive nature of
     this extension. It might be possible to
-    <span class="caps"><span class="caps">DWIM</span></span> it with some thought.<br />
+    <span class="caps"><span class="caps">DWIM</span></span> it with some thought.<br>
     Point 3 might be fixable and might not; it could be fixed in
     stylesheets and <code>style</code> attributes, which might take care of a lot
     of the problems, but to have it fixed properly would require Mozilla
     to honour unitless dimensions as <code>px</code>, which might not be easily
-    doable from an extension.<br />
+    doable from an extension.<br>
     Point 4 probably can’t be fixed; <span class="caps">IE</span> ignores the server-supplied
     Content-Type if it likes, and Moz doesn’t. If we fix the above
-    cases, though, we’ll cover a large majority of “broken” sites.<br />
+    cases, though, we’ll cover a large majority of “broken” sites.<br>
     The extension would probably want to hook a page’s load event and
     run before any in-page script. It would then scan for use of any of
     the stuff that it “fixes”: if it finds any, it changes the

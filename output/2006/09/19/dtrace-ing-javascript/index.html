@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2006/09/19/dtrace-ing-javascript/"><time 
-			class="dt-published" datetime="2006-09-19T08:37:00">Sep 19 2006</time></a>
+			class="dt-published" datetime="2006-09-19T08:37:00+01:00">Sep 19 2006</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -64,7 +64,7 @@ Brendan Gregg be <a href="http://blogs.sun.com/brendan/entry/dtrace_meets_javasc
 those o&#8217; ye scurvy dogs that dunno, DTrace be this marvellous thing on
 Solaris that traces kernel calls. Apparently it be for more than that,
 though; see Brandan trace the JavaScript&nbsp;code</p>
-<div class="highlight"><pre><span class="kd">function</span> <span class="nx">padZero</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">padZero</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&quot;0&quot;</span> <span class="o">+</span> <span class="nx">i</span>
         <span class="k">return</span> <span class="nx">i</span>
@@ -83,14 +83,14 @@ though; see Brandan trace the JavaScript&nbsp;code</p>
 
 
 <p>and be gettin&#8217; the followin&#8217;&nbsp;output:</p>
-<div class="highlight"><pre> <span class="kt">FILE</span>                   <span class="n">FUNC</span>                          <span class="n">CALLS</span>
- <span class="n">clock</span><span class="p">.</span><span class="n">html</span>             <span class="n">getElementById</span>                    <span class="mi">9</span>
- <span class="n">clock</span><span class="p">.</span><span class="n">html</span>             <span class="n">getHours</span>                          <span class="mi">9</span>
- <span class="n">clock</span><span class="p">.</span><span class="n">html</span>             <span class="n">getMinutes</span>                        <span class="mi">9</span>
- <span class="n">clock</span><span class="p">.</span><span class="n">html</span>             <span class="n">getSeconds</span>                        <span class="mi">9</span>
- <span class="n">clock</span><span class="p">.</span><span class="n">html</span>             <span class="n">setTimeout</span>                        <span class="mi">9</span>
- <span class="n">clock</span><span class="p">.</span><span class="n">html</span>             <span class="n">startTime</span>                         <span class="mi">9</span>
- <span class="n">clock</span><span class="p">.</span><span class="n">html</span>             <span class="n">padZero</span>                          <span class="mi">27</span>
+<div class="highlight"><pre><span></span> FILE                   FUNC                          CALLS
+ clock.html             getElementById                    9
+ clock.html             getHours                          9
+ clock.html             getMinutes                        9
+ clock.html             getSeconds                        9
+ clock.html             setTimeout                        9
+ clock.html             startTime                         9
+ clock.html             padZero                          27
 </pre></div>
 
 

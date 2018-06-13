@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10/"><time 
-			class="dt-published" datetime="2011-01-01T13:50:00">Jan 01 2011</time></a>
+			class="dt-published" datetime="2011-01-01T13:50:00+00:00">Jan 01 2011</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -90,12 +90,12 @@ one, but we don&#8217;t need it&nbsp;anyway.)</dd>
 </dl>
 <h3>Installing Adobe&nbsp;Flex</h3>
 <p>So, first step: make a folder, download the Flex 3 <span class="caps">SDK</span>, and unpack&nbsp;it:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">cd</span> <span class="o">~</span>
-<span class="err">$</span> <span class="n">mkdir</span> <span class="n">flex</span>
-<span class="err">$</span> <span class="n">cd</span> <span class="n">flex</span>
-<span class="err">$</span> <span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//fpdownload.adobe.com/pub/flex/sdk/builds/flex3/flex_sdk_3.4.1.10084_mpl.zip</span>
-<span class="err">$</span> <span class="n">mkdir</span> <span class="n">flex_3_opensource</span>
-<span class="err">$</span> <span class="n">unzip</span> <span class="o">-</span><span class="n">d</span> <span class="n">flex_3_opensource</span> <span class="n">flex_sdk_3</span><span class="mf">.4.1.10084</span><span class="n">_mpl</span><span class="p">.</span><span class="n">zip</span>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
+$ mkdir flex
+$ <span class="nb">cd</span> flex
+$ wget http://fpdownload.adobe.com/pub/flex/sdk/builds/flex3/flex_sdk_3.4.1.10084_mpl.zip
+$ mkdir flex_3_opensource
+$ unzip -d flex_3_opensource flex_sdk_3.4.1.10084_mpl.zip
 </pre></div>
 
 
@@ -103,17 +103,17 @@ one, but we don&#8217;t need it&nbsp;anyway.)</dd>
 in <span class="caps">DOS</span> format, which Ubuntu doesn&#8217;t like, and they&#8217;re not executable.
 (This is fixed in Flex 4, but as noted Flex 4 doesn&#8217;t work.) So, let&#8217;s
 convert&nbsp;them:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">dos2unix</span>
-<span class="err">$</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">flex_3_opensource</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mxmlc</span>
-<span class="err">$</span> <span class="n">dos2unix</span> <span class="n">flex_3_opensource</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mxmlc</span>
+<div class="highlight"><pre><span></span>$ sudo apt-get install dos2unix
+$ chmod +x flex_3_opensource/bin/mxmlc
+$ dos2unix flex_3_opensource/bin/mxmlc
 </pre></div>
 
 
 <p>We also need Sun&#8217;s Java - the Flex <span class="caps">SDK</span> is written in Java - and it needs
 to be set as the default
 Java.<span title="strictly it doesn't (you can just set JAVA_HOME) but if you know that then you know enough to do it" style="color: red">*</span></p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">sun</span><span class="o">-</span><span class="n">java6</span><span class="o">-</span><span class="n">jdk</span>
-<span class="err">$</span> <span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">java</span>
+<div class="highlight"><pre><span></span>$ sudo apt-get install sun-java6-jdk
+$ sudo update-alternatives --config java
 </pre></div>
 
 
@@ -124,32 +124,32 @@ it should say something about &#8220;a target file must be specified&#8221;, whi
 means that it&#8217;s&nbsp;working.)</p>
 <h3>Getting Flixel and a&nbsp;game</h3>
 <p>Next step is to get the Flixel&nbsp;source.</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">wget</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">check</span><span class="o">-</span><span class="n">certificate</span> <span class="o">-</span><span class="n">O</span> <span class="n">flixel2</span><span class="p">.</span><span class="n">zip</span> <span class="n">http</span><span class="o">:</span><span class="c1">//github.com/AdamAtomic/flixel/zipball/master</span>
-<span class="err">$</span> <span class="n">unzip</span> <span class="n">flixel2</span><span class="p">.</span><span class="n">zip</span>
-<span class="err">$</span> <span class="n">mv</span> <span class="n">AdamAtomic</span><span class="o">-</span><span class="n">flixel</span><span class="o">*</span> <span class="n">flixel</span>
+<div class="highlight"><pre><span></span>$ wget --no-check-certificate -O flixel2.zip http://github.com/AdamAtomic/flixel/zipball/master
+$ unzip flixel2.zip
+$ mv AdamAtomic-flixel* flixel
 </pre></div>
 
 
 <p>And let&#8217;s get a Flixel game: <a href="http://flixel.org/flxinvaders/">FlxInvaders</a> is one of the Flixel
 examples, and the source is&nbsp;available.</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">wget</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">check</span><span class="o">-</span><span class="n">certificate</span> <span class="o">-</span><span class="n">O</span> <span class="n">flxinvaders</span><span class="p">.</span><span class="n">zip</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/AdamAtomic/Flx-Invaders/zipball/master</span>
-<span class="err">$</span> <span class="n">unzip</span> <span class="n">flxinvaders</span><span class="p">.</span><span class="n">zip</span>
-<span class="err">$</span> <span class="n">mv</span> <span class="n">AdamAtomic</span><span class="o">-</span><span class="n">Flx</span><span class="o">-</span><span class="n">Invaders</span><span class="o">*</span> <span class="n">flxinvaders</span>
+<div class="highlight"><pre><span></span>$ wget --no-check-certificate -O flxinvaders.zip https://github.com/AdamAtomic/Flx-Invaders/zipball/master
+$ unzip flxinvaders.zip
+$ mv AdamAtomic-Flx-Invaders* flxinvaders
 </pre></div>
 
 
 <p>One final thing: Flixel is, by default, set up for Flex 4, and we&#8217;re
 using Flex 3. So, you need to edit <code>flixel/org/flixel/FlxGame.as</code>:
 there&#8217;s a section which looks like&nbsp;this:</p>
-<div class="highlight"><pre>     <span class="c1">// NOTE: Flex 4 introduces DefineFont4, which is used by default and does not work in native text fields.</span>
-        <span class="c1">// Use the embedAsCFF=&quot;false&quot; param to switch back to DefineFont4. In earlier Flex 4 SDKs this was cff=&quot;false&quot;.</span>
-        <span class="c1">// So if you are using the Flex 3.x SDK compiler, switch the embed statment below to expose the correct version.</span>
+<div class="highlight"><pre><span></span>     <span class="o">//</span> <span class="nt">NOTE</span><span class="o">:</span> <span class="nt">Flex</span> <span class="nt">4</span> <span class="nt">introduces</span> <span class="nt">DefineFont4</span><span class="o">,</span> <span class="nt">which</span> <span class="nt">is</span> <span class="nt">used</span> <span class="nt">by</span> <span class="nt">default</span> <span class="nt">and</span> <span class="nt">does</span> <span class="nt">not</span> <span class="nt">work</span> <span class="nt">in</span> <span class="nt">native</span> <span class="nt">text</span> <span class="nt">fields</span><span class="o">.</span>
+        <span class="o">//</span> <span class="nt">Use</span> <span class="nt">the</span> <span class="nt">embedAsCFF</span><span class="o">=</span><span class="s2">&quot;false&quot;</span> <span class="nt">param</span> <span class="nt">to</span> <span class="nt">switch</span> <span class="nt">back</span> <span class="nt">to</span> <span class="nt">DefineFont4</span><span class="o">.</span> <span class="nt">In</span> <span class="nt">earlier</span> <span class="nt">Flex</span> <span class="nt">4</span> <span class="nt">SDKs</span> <span class="nt">this</span> <span class="nt">was</span> <span class="nt">cff</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="o">.</span>
+        <span class="o">//</span> <span class="nt">So</span> <span class="nt">if</span> <span class="nt">you</span> <span class="nt">are</span> <span class="nt">using</span> <span class="nt">the</span> <span class="nt">Flex</span> <span class="nt">3</span><span class="p">.</span><span class="nc">x</span> <span class="nt">SDK</span> <span class="nt">compiler</span><span class="o">,</span> <span class="nt">switch</span> <span class="nt">the</span> <span class="nt">embed</span> <span class="nt">statment</span> <span class="nt">below</span> <span class="nt">to</span> <span class="nt">expose</span> <span class="nt">the</span> <span class="nt">correct</span> <span class="nt">version</span><span class="o">.</span>
 
-        <span class="c1">//Flex v4.x SDK only (see note above):</span>
-        <span class="p">[</span><span class="n">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s">&quot;system&quot;</span><span class="p">,</span><span class="n">embedAsCFF</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">)]</span> <span class="n">protected</span> <span class="n">var</span> <span class="n">junk</span><span class="o">:</span><span class="n">String</span><span class="p">;</span>
+        <span class="o">//</span><span class="nt">Flex</span> <span class="nt">v4</span><span class="p">.</span><span class="nc">x</span> <span class="nt">SDK</span> <span class="nt">only</span> <span class="o">(</span><span class="nt">see</span> <span class="nt">note</span> <span class="nt">above</span><span class="o">):</span>
+        <span class="cp">[</span><span class="nx">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="p">,</span><span class="n">embedAsCFF</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="p">)</span><span class="cp">]</span> <span class="nt">protected</span> <span class="nt">var</span> <span class="nt">junk</span><span class="p">:</span><span class="nd">String</span><span class="o">;</span>
 
-        <span class="c1">//Flex v3.x SDK only (see note above):</span>
-        <span class="c1">//[Embed(source=&quot;data/nokiafc22.ttf&quot;,fontFamily=&quot;system&quot;)] protected var junk:String;</span>
+        <span class="o">//</span><span class="nt">Flex</span> <span class="nt">v3</span><span class="p">.</span><span class="nc">x</span> <span class="nt">SDK</span> <span class="nt">only</span> <span class="o">(</span><span class="nt">see</span> <span class="nt">note</span> <span class="nt">above</span><span class="o">):</span>
+        <span class="o">//</span><span class="cp">[</span><span class="nx">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="p">)</span><span class="cp">]</span> <span class="nt">protected</span> <span class="nt">var</span> <span class="nt">junk</span><span class="p">:</span><span class="nd">String</span><span class="o">;</span>
 </pre></div>
 
 
@@ -160,8 +160,8 @@ the Flex 3&nbsp;line.</p>
 <p>This bit&#8217;s easy; everything&#8217;s set up, so now you can just build the game
 with one command. We need to call <code>mxmlc</code>, the compiler, and since the
 flxinvaders source requires flixel, we need to tell it where flixel&nbsp;is.</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">cd</span> <span class="n">flxinvaders</span><span class="o">/</span><span class="n">src</span>
-<span class="err">$</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">flex_3_opensource</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mxmlc</span> <span class="o">-</span><span class="n">compiler</span><span class="p">.</span><span class="n">source</span><span class="o">-</span><span class="n">path</span><span class="o">=</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">flixel</span> <span class="n">FlxInvaders</span><span class="p">.</span><span class="n">as</span>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> flxinvaders/src
+$ ../../flex_3_opensource/bin/mxmlc -compiler.source-path<span class="o">=</span>../../flixel FlxInvaders.as
 </pre></div>
 
 

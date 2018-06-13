@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2008/03/28/overriding-a-single-field-in-the-django-admin-using-newforms-admin/"><time 
-			class="dt-published" datetime="2008-03-28T12:33:00">Mar 28 2008</time></a>
+			class="dt-published" datetime="2008-03-28T12:33:00+00:00">Mar 28 2008</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -68,14 +68,14 @@ field-editing widget that I&#8217;d created, rather than Django&#8217;s default
 textbox, in the Django admin system. You do that like this. In
 newforms-admin, you specify admin options for a model by creating an
 extra ModelAdmin class for&nbsp;it:</p>
-<div class="highlight"><pre><span class="n">class</span> <span class="n">Vehicle</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">)</span><span class="o">:</span>
-  <span class="n">colour</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">()</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Vehicle</span><span class="p">(</span><span class="nx">models</span><span class="p">.</span><span class="nx">Model</span><span class="p">)</span><span class="o">:</span>
+  <span class="nx">colour</span> <span class="o">=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">CharField</span><span class="p">()</span>
+  <span class="nx">name</span> <span class="o">=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">CharField</span><span class="p">()</span>
 
-<span class="n">class</span> <span class="n">VehicleAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">)</span><span class="o">:</span>
-  <span class="n">search_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;colour&quot;</span><span class="p">]</span>
+<span class="kr">class</span> <span class="nx">VehicleAdmin</span><span class="p">(</span><span class="nx">admin</span><span class="p">.</span><span class="nx">ModelAdmin</span><span class="p">)</span><span class="o">:</span>
+  <span class="nx">search_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;colour&quot;</span><span class="p">]</span>
 
-<span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="k">register</span><span class="p">(</span><span class="n">Vehicle</span><span class="p">,</span> <span class="n">VehicleAdmin</span><span class="p">)</span>
+<span class="nx">admin</span><span class="p">.</span><span class="nx">site</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">Vehicle</span><span class="p">,</span> <span class="nx">VehicleAdmin</span><span class="p">)</span>
 </pre></div>
 
 
@@ -86,14 +86,14 @@ you create your widget. The easiest way to do this is to subclass one of
 the existing widgets (TextInput is a good one here, because that&#8217;s a
 normal textbox, which is what gets used by default for CharFields) and
 then change its render&nbsp;method:</p>
-<div class="highlight"><pre><span class="k">import</span> <span class="nx">django.newforms</span> <span class="nx">as</span> <span class="nx">forms</span>
-<span class="nb">from</span> <span class="kt">string</span> <span class="k">import</span> <span class="nx">Template</span>
-<span class="nb">from</span> <span class="nx">django.utils.safestring</span> <span class="k">import</span> <span class="nx">mark_safe</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">django.newforms</span> <span class="kn">as</span> <span class="nn">forms</span>
+<span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
 
-<span class="nb">class</span> <span class="nx">ColourChooserWidget</span><span class="p">(</span><span class="nx">forms.TextInput</span><span class="p">):</span>
-  <span class="nx">def</span> <span class="nb">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="nb">value</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">tpl</span> <span class="o">=</span> <span class="nx">Template</span><span class="p">(</span><span class="nx">u</span><span class="s2">&quot;&quot;&quot;&lt;h1&gt;There would be a colour widget here, for value $colour&lt;/h1&gt;&quot;&quot;&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nx">mark_safe</span><span class="p">(</span><span class="nx">tpl.substitute</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="nb">value</span><span class="p">))</span>
+<span class="k">class</span> <span class="nc">ColourChooserWidget</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">tpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;&quot;&quot;&lt;h1&gt;There would be a colour widget here, for value $colour&lt;/h1&gt;&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">tpl</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 
 
@@ -110,16 +110,16 @@ escaped. Fourth, you don&#8217;t have to use <code>string.Template</code>, but i
 pretty convenient. Once you&#8217;ve created your custom widget, you have to
 hook it up to your model. In our example, we need to change
 <code>VehicleAdmin</code>:</p>
-<div class="highlight"><pre><span class="n">from</span> <span class="n">custom_widgets</span> <span class="n">import</span> <span class="n">ColourChooserWidget</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">custom_widgets</span> <span class="kn">import</span> <span class="n">ColourChooserWidget</span>
 
-<span class="p">...</span>
+<span class="o">...</span>
 
-<span class="n">class</span> <span class="n">VehicleAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">)</span><span class="o">:</span>
-  <span class="n">search_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;colour&quot;</span><span class="p">]</span>
-  <span class="n">def</span> <span class="n">formfield_for_dbfield</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">db_field</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">:</span>
-    <span class="k">if</span> <span class="n">db_field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">colour</span><span class="err">&#39;</span><span class="o">:</span>
-      <span class="n">kwargs</span><span class="p">[</span><span class="err">&#39;</span><span class="n">widget</span><span class="err">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ColourChooserWidget</span>
-    <span class="k">return</span> <span class="n">super</span><span class="p">(</span><span class="n">ArticleOptions</span><span class="p">,</span><span class="n">self</span><span class="p">).</span><span class="n">formfield_for_dbfield</span><span class="p">(</span><span class="n">db_field</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">VehicleAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+  <span class="n">search_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;colour&quot;</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">formfield_for_dbfield</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_field</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">db_field</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;colour&#39;</span><span class="p">:</span>
+      <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;widget&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ColourChooserWidget</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">ArticleOptions</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">formfield_for_dbfield</span><span class="p">(</span><span class="n">db_field</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 
 

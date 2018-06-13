@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2003/04/04/antipixel/"><time 
-			class="dt-published" datetime="2003-04-04T11:00:00">Apr 04 2003</time></a>
+			class="dt-published" datetime="2003-04-04T11:00:00+01:00">Apr 04 2003</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -71,41 +71,41 @@ jwz). Then I fell asleep in my chair. This morning I discover that Marek
 Prokop has already <a href="http://www.sovavsiti.cz/css/w3c_buttons.html">done the right thing</a> here. However, I think his
 styling&#8217;s a little overwrought. Marek creates his buttons as a <span class="caps">DIV</span> and
 then adds a link inside, and spans inside&nbsp;that:</p>
-<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;w3cbutton3&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;w3cbutton3&quot;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;w3c&quot;</span><span class="nt">&gt;</span>W3C<span class="nt">&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;spec&quot;</span><span class="nt">&gt;</span>XHTML 1.0<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
     <span class="nt">&lt;/div&gt;</span>
 </pre></div>
 
 
 <p>I prefer a slightly simpler&nbsp;version:</p>
-<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;silbutton&quot;</span> <span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;strong&gt;</span>W3C<span class="nt">&lt;/strong&gt;</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;silbutton&quot;</span> <span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;strong&gt;</span>W3C<span class="nt">&lt;/strong&gt;</span>
 <span class="nt">&lt;em&gt;</span>XHTML 1.0<span class="nt">&lt;/em&gt;&lt;/a&gt;</span>
 </pre></div>
 
 
 <p>Then you change Marek&#8217;s <span class="caps">CSS</span>&nbsp;slightly:</p>
-<div class="highlight"><pre>    <span class="nc">.silbutton</span> <span class="p">{</span>
-      <span class="k">margin</span><span class="o">:</span> <span class="m">1em</span> <span class="m">0</span><span class="p">;</span>
-      <span class="k">width</span><span class="o">:</span> <span class="m">9em</span><span class="p">;</span>
-      <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#ccc</span><span class="p">;</span>
-      <span class="k">font-family</span><span class="o">:</span> <span class="n">helvetica</span><span class="o">,</span><span class="n">arial</span><span class="o">,</span><span class="k">sans-serif</span><span class="p">;</span>
-      <span class="k">font-size</span><span class="o">:</span> <span class="m">70</span><span class="o">%</span><span class="p">;</span>
-      <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
-      <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
+<div class="highlight"><pre><span></span>    <span class="p">.</span><span class="nc">silbutton</span> <span class="p">{</span>
+      <span class="k">margin</span><span class="p">:</span> <span class="mi">1</span><span class="kt">em</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">width</span><span class="p">:</span> <span class="mi">9</span><span class="kt">em</span><span class="p">;</span>
+      <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#ccc</span><span class="p">;</span>
+      <span class="k">font-family</span><span class="p">:</span> <span class="n">helvetica</span><span class="p">,</span><span class="n">arial</span><span class="p">,</span><span class="kc">sans-serif</span><span class="p">;</span>
+      <span class="k">font-size</span><span class="p">:</span> <span class="mi">70</span><span class="kt">%</span><span class="p">;</span>
+      <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+      <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="nc">.silbutton</span><span class="nd">:link</span><span class="o">,</span> <span class="nc">.silbutton</span><span class="nd">:visited</span><span class="o">,</span> <span class="nc">.silbutton</span><span class="nd">:hover</span> <span class="p">{</span>
-      <span class="k">background-color</span><span class="o">:</span> <span class="m">#fc6</span><span class="p">;</span>
-      <span class="k">color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
-      <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">link</span><span class="o">,</span> <span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">visited</span><span class="o">,</span> <span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
+      <span class="k">background-color</span><span class="p">:</span> <span class="mh">#fc6</span><span class="p">;</span>
+      <span class="k">color</span><span class="p">:</span> <span class="mh">#000</span><span class="p">;</span>
+      <span class="k">text-decoration</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="nc">.silbutton</span> <span class="nt">span</span><span class="nc">.w3cstrong</span> <span class="p">{</span>
-      <span class="k">padding</span><span class="o">:</span> <span class="m">0</span> <span class="m">0.4em</span><span class="p">;</span>
-      <span class="k">background-color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
-      <span class="k">color</span><span class="o">:</span> <span class="m">#0c479d</span><span class="p">;</span>
-      <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+    <span class="p">.</span><span class="nc">silbutton</span> <span class="nt">span</span><span class="p">.</span><span class="nc">w3cstrong</span> <span class="p">{</span>
+      <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span> <span class="mf">0.4</span><span class="kt">em</span><span class="p">;</span>
+      <span class="k">background-color</span><span class="p">:</span> <span class="mh">#fff</span><span class="p">;</span>
+      <span class="k">color</span><span class="p">:</span> <span class="mh">#0c479d</span><span class="p">;</span>
+      <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="nc">.silbutton</span> <span class="nt">em</span> <span class="p">{</span>
-      <span class="k">font-style</span><span class="o">:</span> <span class="k">normal</span><span class="p">;</span>
+    <span class="p">.</span><span class="nc">silbutton</span> <span class="nt">em</span> <span class="p">{</span>
+      <span class="k">font-style</span><span class="p">:</span> <span class="kc">normal</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
 

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2004/03/05/mailnews/"><time 
-			class="dt-published" datetime="2004-03-05T11:00:00">Mar 05 2004</time></a>
+			class="dt-published" datetime="2004-03-05T11:00:00+00:00">Mar 05 2004</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -64,7 +64,7 @@ trying to decide on the best way to handle these three disparate
 entities. I’d like to use <span class="caps"><span class="caps">GUI</span></span> clients to do
 these things while I’m sitting at my machine, but I need them to be
 accessible through text-mode clients as well, because I spend a lot of
-time sshed in.<br />
+time sshed in.<br>
 Currently, I do the&nbsp;following:</p>
 <ul>
 <li>Read mail in mutt. My inbox is the default @/var/mail/aquarius@,
@@ -78,14 +78,14 @@ Currently, I do the&nbsp;following:</p>
     local inn-based newsgroups. I then tell tin that these local groups
     are mailing lists, and what the mailing address of each “newsgroup”
     is, and tin handles sending my responses to the list when I follow
-    up a post in the “newsgroups“.<br />
+    up a post in the “newsgroups“.<br>
     The big problem here is that I don’t understand inn. So it breaks.
     All the time. I haven’t actually been reading any newsgroups for
     about four months because inn broke and I don’t know how to fix it.
     So, I want to overhaul all this, and I’m looking for suggestions. I
     need to move away from inn, and I’d like to move away from groupie
     as well (since it’s not getting any maintenance, although it’s done
-    fine for the last couple of years (nice one Kam!)).<br />
+    fine for the last couple of years (nice one Kam!)).<br>
     Things I could do to solve all this (which are not necessarily
     mutually exclusive):  <ol>
 <li>Move my mail storage to Maildir, and use a
@@ -113,7 +113,7 @@ different <span class="caps"><span class="caps">IMAP</span></span>&nbsp;boxes.  
 <li>Move mailing lists to leafnode (if using leafnode) using
 <a href="http://zigzag.lvk.cs.msu.su/leafnode/">MLGroups</a>.  </li>
 <li>Use a <a href="http://www.news2mail.com/">news2mail service</a> to get all my news as mail. Problem:
-posting is awkward.<br />
+posting is awkward.<br>
 Essentially, I have two clients (mail and news clients) and three
 things (newsgroups, mailing lists, mail), and I need to know where
 to read each. It’s pretty much possible to read them in any
@@ -121,7 +121,7 @@ combination across the clients (I don’t want to read
 non-mailing-list mail in a newsreader), but I don’t know how best to
 do it. It might be nice to use just <strong>one</strong> client to read both mail
 and news, but there has to be two: a <span class="caps"><span class="caps">GUI</span></span>
-one and a commandline one.<br />
+one and a commandline one.<br>
 I’m open to suggestions on all this stuff. How do you handle this
 problem? I suspect a lot of people don’t have the
 <span class="caps"><span class="caps">GUI</span></span>/commandline requirement, which makes

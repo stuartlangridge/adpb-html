@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/"><time 
-			class="dt-published" datetime="2009-06-19T11:51:00">Jun 19 2009</time></a>
+			class="dt-published" datetime="2009-06-19T11:51:00+01:00">Jun 19 2009</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -71,73 +71,73 @@ like. Being able to browse around your database with a web browser is
 dead handy for writing this sort of thing, I have to say :-) At the
 moment, this is the sort of direction we&#8217;re heading in. A CouchDB
 document is <span class="caps">JSON</span>, and an example contact looks like&nbsp;this:</p>
-<div class="highlight"><pre><span class="p">{</span>
-   <span class="s">&quot;_id&quot;</span><span class="o">:</span> <span class="s">&quot;362cbeae5f408d6863bb70892d5ba345&quot;</span><span class="p">,</span>
-   <span class="s">&quot;_rev&quot;</span><span class="o">:</span> <span class="s">&quot;1-182987891&quot;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span>{
+   &quot;_id&quot;: &quot;362cbeae5f408d6863bb70892d5ba345&quot;,
+   &quot;_rev&quot;: &quot;1-182987891&quot;,
 
-   <span class="s">&quot;record_type&quot;</span><span class="o">:</span> <span class="s">&quot;http://example.com/contact-record&quot;</span><span class="p">,</span>
-   <span class="s">&quot;record_type_version&quot;</span><span class="o">:</span> <span class="s">&quot;1.0&quot;</span><span class="p">,</span>
+   &quot;record_type&quot;: &quot;http://example.com/contact-record&quot;,
+   &quot;record_type_version&quot;: &quot;1.0&quot;,
 
-   <span class="s">&quot;first_name&quot;</span><span class="o">:</span> <span class="s">&quot;Joshua&quot;</span><span class="p">,</span>
-   <span class="s">&quot;last_name&quot;</span><span class="o">:</span> <span class="s">&quot;Molby&quot;</span><span class="p">,</span>
-   <span class="s">&quot;birth_date&quot;</span><span class="o">:</span> <span class="s">&quot;1945-07-04&quot;</span><span class="p">,</span>
+   &quot;first_name&quot;: &quot;Joshua&quot;,
+   &quot;last_name&quot;: &quot;Molby&quot;,
+   &quot;birth_date&quot;: &quot;1945-07-04&quot;,
 
-   <span class="s">&quot;addresses&quot;</span><span class="o">:</span> <span class="p">{</span>
-       <span class="s">&quot;85cf156f-fcf6-4901-9201-82ee90859213&quot;</span><span class="o">:</span> <span class="p">{</span>
-           <span class="s">&quot;city&quot;</span><span class="o">:</span> <span class="s">&quot;Bedford&quot;</span><span class="p">,</span>
-           <span class="s">&quot;state&quot;</span><span class="o">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-           <span class="s">&quot;description&quot;</span><span class="o">:</span> <span class="s">&quot;home&quot;</span><span class="p">,</span>
-           <span class="s">&quot;country&quot;</span><span class="o">:</span> <span class="s">&quot;Scotland&quot;</span><span class="p">,</span>
-           <span class="s">&quot;postalcode&quot;</span><span class="o">:</span> <span class="s">&quot;cw12 3hi&quot;</span><span class="p">,</span>
-           <span class="s">&quot;address1&quot;</span><span class="o">:</span> <span class="s">&quot;Nicol Street&quot;</span><span class="p">,</span>
-           <span class="s">&quot;address2&quot;</span><span class="o">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-           <span class="s">&quot;pobox&quot;</span><span class="o">:</span> <span class="s">&quot;&quot;</span>
-       <span class="p">},</span>
-       <span class="s">&quot;d20f7364-e80b-47a2-a7e7-0677cb293745&quot;</span><span class="o">:</span> <span class="p">{</span>
-           <span class="s">&quot;city&quot;</span><span class="o">:</span> <span class="s">&quot;Bedford&quot;</span><span class="p">,</span>
-           <span class="s">&quot;state&quot;</span><span class="o">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-           <span class="s">&quot;description&quot;</span><span class="o">:</span> <span class="s">&quot;work&quot;</span><span class="p">,</span>
-           <span class="s">&quot;country&quot;</span><span class="o">:</span> <span class="s">&quot;England&quot;</span><span class="p">,</span>
-           <span class="s">&quot;postalcode&quot;</span><span class="o">:</span> <span class="s">&quot;dk12 3av&quot;</span><span class="p">,</span>
-           <span class="s">&quot;address1&quot;</span><span class="o">:</span> <span class="s">&quot;Rush Street&quot;</span><span class="p">,</span>
-           <span class="s">&quot;address2&quot;</span><span class="o">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-           <span class="s">&quot;pobox&quot;</span><span class="o">:</span> <span class="s">&quot;&quot;</span>
-       <span class="p">}</span>
-   <span class="p">},</span>
-   <span class="s">&quot;phone_numbers&quot;</span><span class="o">:</span> <span class="p">{</span>
-       <span class="s">&quot;f0bac2a0-83a3-46f9-b079-d41533b87391&quot;</span><span class="o">:</span> <span class="p">{</span>
-           <span class="s">&quot;priority&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-           <span class="s">&quot;number&quot;</span><span class="o">:</span> <span class="s">&quot;+84 63 6220 9178&quot;</span><span class="p">,</span>
-           <span class="s">&quot;description&quot;</span><span class="o">:</span> <span class="s">&quot;work&quot;</span>
-       <span class="p">},</span>
-       <span class="s">&quot;cf01fc9c-703b-4ae4-b303-fcc6f8ce5a53&quot;</span><span class="o">:</span> <span class="p">{</span>
-           <span class="s">&quot;priority&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-           <span class="s">&quot;number&quot;</span><span class="o">:</span> <span class="s">&quot;+91 99 6920 2837&quot;</span><span class="p">,</span>
-           <span class="s">&quot;description&quot;</span><span class="o">:</span> <span class="s">&quot;home&quot;</span>
-       <span class="p">},</span>
-       <span class="s">&quot;f0c05bf4-de4a-48f2-bbaf-f9698e52d491&quot;</span><span class="o">:</span> <span class="p">{</span>
-           <span class="s">&quot;priority&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-           <span class="s">&quot;number&quot;</span><span class="o">:</span> <span class="s">&quot;+97 52 9211 6455&quot;</span><span class="p">,</span>
-           <span class="s">&quot;description&quot;</span><span class="o">:</span> <span class="s">&quot;other&quot;</span>
-       <span class="p">}</span>
-   <span class="p">},</span>
-   <span class="s">&quot;email_addresses&quot;</span><span class="o">:</span> <span class="p">{</span>
-       <span class="s">&quot;6e3178d8-fee6-45b1-b95a-2c76be090e2b&quot;</span><span class="o">:</span> <span class="p">{</span>
-           <span class="s">&quot;description&quot;</span><span class="o">:</span> <span class="s">&quot;home&quot;</span><span class="p">,</span>
-           <span class="s">&quot;address&quot;</span><span class="o">:</span> <span class="s">&quot;Joshua1.Molby@uck.com&quot;</span>
-       <span class="p">},</span>
-       <span class="s">&quot;adb1fc2a-0468-4deb-bb6c-974db23ef7fd&quot;</span><span class="o">:</span> <span class="p">{</span>
-           <span class="s">&quot;description&quot;</span><span class="o">:</span> <span class="s">&quot;work&quot;</span><span class="p">,</span>
-           <span class="s">&quot;address&quot;</span><span class="o">:</span> <span class="s">&quot;Joshua1.Molby@vkc.com&quot;</span>
-       <span class="p">}</span>
-   <span class="p">},</span>
-   <span class="s">&quot;application_annotations&quot;</span><span class="o">:</span> <span class="p">{</span>
-       <span class="s">&quot;Funambol&quot;</span><span class="o">:</span> <span class="p">{</span>
-             <span class="s">&quot;jobTitle&quot;</span><span class="o">:</span> <span class="s">&quot;Director&quot;</span><span class="p">,</span>
-             <span class="s">&quot;company&quot;</span><span class="o">:</span> <span class="s">&quot;ACME Ltd&quot;</span>
-       <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
+   &quot;addresses&quot;: {
+       &quot;85cf156f-fcf6-4901-9201-82ee90859213&quot;: {
+           &quot;city&quot;: &quot;Bedford&quot;,
+           &quot;state&quot;: &quot;&quot;,
+           &quot;description&quot;: &quot;home&quot;,
+           &quot;country&quot;: &quot;Scotland&quot;,
+           &quot;postalcode&quot;: &quot;cw12 3hi&quot;,
+           &quot;address1&quot;: &quot;Nicol Street&quot;,
+           &quot;address2&quot;: &quot;&quot;,
+           &quot;pobox&quot;: &quot;&quot;
+       },
+       &quot;d20f7364-e80b-47a2-a7e7-0677cb293745&quot;: {
+           &quot;city&quot;: &quot;Bedford&quot;,
+           &quot;state&quot;: &quot;&quot;,
+           &quot;description&quot;: &quot;work&quot;,
+           &quot;country&quot;: &quot;England&quot;,
+           &quot;postalcode&quot;: &quot;dk12 3av&quot;,
+           &quot;address1&quot;: &quot;Rush Street&quot;,
+           &quot;address2&quot;: &quot;&quot;,
+           &quot;pobox&quot;: &quot;&quot;
+       }
+   },
+   &quot;phone_numbers&quot;: {
+       &quot;f0bac2a0-83a3-46f9-b079-d41533b87391&quot;: {
+           &quot;priority&quot;: 0,
+           &quot;number&quot;: &quot;+84 63 6220 9178&quot;,
+           &quot;description&quot;: &quot;work&quot;
+       },
+       &quot;cf01fc9c-703b-4ae4-b303-fcc6f8ce5a53&quot;: {
+           &quot;priority&quot;: 0,
+           &quot;number&quot;: &quot;+91 99 6920 2837&quot;,
+           &quot;description&quot;: &quot;home&quot;
+       },
+       &quot;f0c05bf4-de4a-48f2-bbaf-f9698e52d491&quot;: {
+           &quot;priority&quot;: 0,
+           &quot;number&quot;: &quot;+97 52 9211 6455&quot;,
+           &quot;description&quot;: &quot;other&quot;
+       }
+   },
+   &quot;email_addresses&quot;: {
+       &quot;6e3178d8-fee6-45b1-b95a-2c76be090e2b&quot;: {
+           &quot;description&quot;: &quot;home&quot;,
+           &quot;address&quot;: &quot;Joshua1.Molby@uck.com&quot;
+       },
+       &quot;adb1fc2a-0468-4deb-bb6c-974db23ef7fd&quot;: {
+           &quot;description&quot;: &quot;work&quot;,
+           &quot;address&quot;: &quot;Joshua1.Molby@vkc.com&quot;
+       }
+   },
+   &quot;application_annotations&quot;: {
+       &quot;Funambol&quot;: {
+             &quot;jobTitle&quot;: &quot;Director&quot;,
+             &quot;company&quot;: &quot;ACME Ltd&quot;
+       }
+   }
+}
 </pre></div>
 
 
@@ -154,12 +154,10 @@ explicitly if you&nbsp;want)</dd>
 </dl>
 </dd>
 <dt>Contact schema&nbsp;fields</dt>
-<dd>
-<p>The contact schema is the list of fields that are stored for a
+<dd>The contact schema is the list of fields that are stored for a
 contact. Since this is a shared schema, everyone can rely on it.
 Fields that aren&#8217;t in this list can be stored by applications in
-<code>application_annotations</code>, if an application cares about extra&nbsp;stuff.</p>
-</dd>
+<code>application_annotations</code>, if an application cares about extra&nbsp;stuff.</dd>
 <dd>
 <ul>
 <li><code>first_name</code> (string)</li>
@@ -195,11 +193,9 @@ Fields that aren&#8217;t in this list can be stored by applications in
 </ul>
 </dd>
 <dt>Basic &#8220;record schema&#8221;&nbsp;fields</dt>
-<dd>
-<p>The record schema is the basic format we&#8217;re talking about for
+<dd>The record schema is the basic format we&#8217;re talking about for
 storing <em>any</em> data in CouchDB; it&#8217;s a couple of fields that are in
-every record that everyone can rely&nbsp;on.</p>
-</dd>
+every record that everyone can rely&nbsp;on.</dd>
 <dd>
 <dl>
 <dt><code>record_type</code></dt>

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2011/03/11/adding-tasks-to-evolution-from-python/"><time 
-			class="dt-published" datetime="2011-03-11T10:30:00">Mar 11 2011</time></a>
+			class="dt-published" datetime="2011-03-11T10:30:00+00:00">Mar 11 2011</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -63,21 +63,21 @@
 tasks into my task list in Evolution. Now, this is entirely possible:
 there&#8217;s <a href="http://doc.conduit-project.org/evolution-python/">an <span class="caps">API</span> to interact with Evolution from Python code</a> (in
 Ubuntu as <a href="http://apt.ubuntu.com/python-evolution">python-evolution</a>. And it&nbsp;works.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">evolution.ecal</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">evolution.ecal</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">list_task_sources</span><span class="p">()</span>
-<span class="p">[(</span><span class="s">&#39;Personal&#39;</span><span class="p">,</span> <span class="s">&#39;local:system&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Shopping&#39;</span><span class="p">,</span> <span class="s">&#39;local:1299834516.3294.1@giles&#39;</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s1">&#39;Personal&#39;</span><span class="p">,</span> <span class="s1">&#39;local:system&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Shopping&#39;</span><span class="p">,</span> <span class="s1">&#39;local:1299834516.3294.1@giles&#39;</span><span class="p">)]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">personal_list_uri</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">list_task_sources</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">personal_list_source</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">open_calendar_source</span><span class="p">(</span><span class="n">personal_list_uri</span><span class="p">,</span> 
     <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_SOURCE_TYPE_TODO</span><span class="p">)</span>
 <span class="o">**</span> <span class="p">(</span><span class="n">process</span><span class="p">:</span><span class="mi">14939</span><span class="p">):</span> <span class="n">DEBUG</span><span class="p">:</span> <span class="n">Opening</span> <span class="n">calendar</span> <span class="n">source</span> <span class="n">uri</span><span class="p">:</span> <span class="n">local</span><span class="p">:</span><span class="n">system</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">personal_list_source</span><span class="o">.</span><span class="n">get_all_objects</span><span class="p">()]</span>
-<span class="p">[</span><span class="s">&#39;My first task&#39;</span><span class="p">,</span> <span class="s">&#39;My second task&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;My first task&#39;</span><span class="p">,</span> <span class="s1">&#39;My second task&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>And we can also add new tasks to an existing&nbsp;list:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">new_task</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">ECalComponent</span><span class="p">(</span><span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_COMPONENT_TODO</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">new_task</span><span class="o">.</span><span class="n">set_summary</span><span class="p">(</span><span class="s">&#39;Write task scripts&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">new_task</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">ECalComponent</span><span class="p">(</span><span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_COMPONENT_TODO</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_task</span><span class="o">.</span><span class="n">set_summary</span><span class="p">(</span><span class="s1">&#39;Write task scripts&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">personal_list_source</span><span class="o">.</span><span class="n">add_object</span><span class="p">(</span><span class="n">new_task</span><span class="p">)</span>
 </pre></div>
 
@@ -86,11 +86,11 @@ Ubuntu as <a href="http://apt.ubuntu.com/python-evolution">python-evolution</a>.
 be able to. Lists created in Evolution itself seem to have a list uri
 that looks like <code>local:(time).(number)@(machinename)</code>. So I think this
 should&nbsp;work:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">new_list_source</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">open_calendar_source_new_with_absolute_uri</span><span class="p">(</span><span class="s">&#39;Created from Python&#39;</span><span class="p">,</span> 
-  <span class="s">&#39;local:</span><span class="si">%s</span><span class="s">00.2.giles&#39;</span> <span class="o">%</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">new_list_source</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">open_calendar_source_new_with_absolute_uri</span><span class="p">(</span><span class="s1">&#39;Created from Python&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;local:</span><span class="si">%s</span><span class="s1">00.2.giles&#39;</span> <span class="o">%</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
   <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_SOURCE_TYPE_TODO</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">new_task_2</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">ECalComponent</span><span class="p">(</span><span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_COMPONENT_TODO</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">new_task_2</span><span class="o">.</span><span class="n">set_summary</span><span class="p">(</span><span class="s">&#39;New task in a new list&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_task_2</span><span class="o">.</span><span class="n">set_summary</span><span class="p">(</span><span class="s1">&#39;New task in a new list&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">new_list_source</span><span class="o">.</span><span class="n">add_object</span><span class="p">(</span><span class="n">new_task_2</span><span class="p">)</span>
 </pre></div>
 

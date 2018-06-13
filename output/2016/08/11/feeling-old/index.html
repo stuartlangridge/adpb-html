@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2016/08/11/feeling-old/"><time 
-			class="dt-published" datetime="2016-08-11T14:14:00">Aug 11 2016</time></a>
+			class="dt-published" datetime="2016-08-11T14:14:00+01:00">Aug 11 2016</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -59,7 +59,7 @@
 			<a class="u-url p-name" href="//www.kryogenix.org/days/2016/08/11/feeling-old/" title="Permalink to Feeling old, depending on how old you are" rel="bookmark">Feeling old, depending on how old you&nbsp;are</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>I recently discovered <a href="http://mewo2.com/">Martin O’Leary</a>‘s <a href="https://twitter.com/feelingoldbot">Feeling Old twitter bot</a>,<sup id="sf-feeling-old-1-back"><a title="because I was reading his excellent work on how to create accurate looking fantasy maps" class="simple-footnote" href="#sf-feeling-old-1">1</a></sup> which has a big list of “things that have happened” and then constructs comparisons such as “<span class="caps">Y2K</span> was as close to the release of Return of the Jedi as to now”, to make you do that weird “wow, I am old!” double-take. As Martin says, it occasionally throws out a gem. But, looking through the list, I think that they’re probably all gems, but whether they hit home for you depends on how old you are.</p>
+			<p>I recently discovered <a href="http://mewo2.com/">Martin O’Leary</a>‘s <a href="https://twitter.com/feelingoldbot">Feeling Old twitter bot</a>,<sup id="sf-feeling-old-1-back"><a href="#sf-feeling-old-1" class="simple-footnote" title="because I was reading his excellent work on how to create accurate looking fantasy maps">1</a></sup> which has a big list of “things that have happened” and then constructs comparisons such as “<span class="caps">Y2K</span> was as close to the release of Return of the Jedi as to now”, to make you do that weird “wow, I am old!” double-take. As Martin says, it occasionally throws out a gem. But, looking through the list, I think that they’re probably all gems, but whether they hit home for you depends on how old you are.</p>
 <p>Basically, the form of the sentence is: <code>thing</code> is closer to <code>old thing</code> than to today. Ideally, you want <code>thing</code> to be something that <em>you</em> think is recent, and <code>old thing</code> to be something that you think is ancient, and therefore you’ll be surprised that <code>thing</code> really isn’t actually recent and that’s because you’re a decrepit old codger.</p>
 <p>My theory is this: <code>old thing</code> ought to be before you were born. By definition, anything that happens before you were born feels like a long time ago to you. And the gap between <code>thing</code> and <code>old thing</code> is the same as the gap between <code>thing</code> and <code>now</code> (because that’s what constructs the sentences). So <code>thing</code> has to happen in the first half of your life. Stuff that happens while you’re a <em>young</em> child also feels like a long time ago — you were a kid when it happened! — so we want something that happened once you started to feel like <em>you</em> in your head. Say, around 12 or so years of age. Thus, we take a big list of pop culture things, find an event which happened between the ages of 12 and half your current age, find a corresponding old event, display them to you, and have you be surprised and displeased. It’s a living.</p>
 <p>Give it a try.</p>
@@ -76,10 +76,10 @@
 <button data-year="1997">in the late 90s</button>
 <button data-year="2003">in the 21st century</button>
 </div>
-<p style="display: none; font-size: 130%" id="oldness"><span id="oldness-thing"></span> happened closer to <span id="oldness-old-thing"></span> than to today.</p>
+<p id="oldness" style="display: none; font-size: 130%"><span id="oldness-thing"></span> happened closer to <span id="oldness-old-thing"></span> than to today.</p>
 </div>
 
-<script src="https://kryogenix.org/random/oldness.js"></script><ol class="simple-footnotes"><li id="sf-feeling-old-1">because I was reading his <em>excellent</em> work on <a href="http://mewo2.com/notes/terrain/">how to create accurate looking fantasy maps</a> <a class="simple-footnote-back" href="#sf-feeling-old-1-back">↩</a></li></ol>
+<script src="https://kryogenix.org/random/oldness.js"></script><ol class="simple-footnotes"><li id="sf-feeling-old-1">because I was reading his <em>excellent</em> work on <a href="http://mewo2.com/notes/terrain/">how to create accurate looking fantasy maps</a> <a href="#sf-feeling-old-1-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2016/07/05/making-a-better-ubuntu-app-scope-not-very-successfully/">Previous post</a></li>
@@ -177,20 +177,25 @@
 </span></li>
 		<li><img src="https://lh3.googleusercontent.com/-M59IYdy_LVA/AAAAAAAAAAI/AAAAAAAAAAA/S1a1bMR0pys/photo.jpg?sz=50">
 			Lars Westman responded at
-		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-102651681823460235328">...</a>
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-102651681823460235328">tag:plus.goo...</a>
 (plus.google.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://lh3.googleusercontent.com/-Mu_LBVlg6g8/AAAAAAAAAAI/AAAAAAAAAAA/hnphM6JmQC0/photo.jpg?sz=50">
 			Andreas Lagerkvist responded at
-		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-110924672377553496476">...</a>
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-110924672377553496476">tag:plus.goo...</a>
 (plus.google.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://lh3.googleusercontent.com/-aMEcCK38aqc/AAAAAAAAAAI/AAAAAAAAAAA/17o6BOQq75Y/photo.jpg?sz=50">
 			murph nj responded at
-		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-116893325733822534829">...</a>
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-116893325733822534829">tag:plus.goo...</a>
 (plus.google.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://lh3.googleusercontent.com/-W0o50l2oK20/AAAAAAAAAAI/AAAAAAAAAAA/1ziirkRicVA/photo.jpg?sz=50">
 			Tim Süberkrüb responded at
-		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-106125894943795709448">...</a>
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-106125894943795709448">tag:plus.goo...</a>
 (plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://checkmention.appspot.com/static/img/ive.png">
+			Jonathan Ive responded at
+		<a href="https://www.apple.com/pr/bios/jonathan-ive.html">www.apple.com</a>
+		<span class="wm-summary">			I love the way your site looks, though I'm not really the Jony Ive. How easy is it for someone to discover the real author of this note? Please also c&hellip;
+</span></li>
 		<li><img src="https://checkmention.appspot.com/static/img/check.png">
 			Checkmention responded at
 		<a href="https://checkmention.appspot.com/content/1577073a479/b82701404a98c3c9e355d81e304812d1bd38113e/success">checkmention.appspot.com</a>
@@ -200,11 +205,6 @@
 			Does clicking me alert? responded at
 		<a href="https://checkmention.appspot.com/content/1577073a479/b82701404a98c3c9e355d81e304812d1bd38113e/hcardxss">checkmention.appspot.com</a>
 		<span class="wm-summary">			This test embeds XSS within the hcard name and time field. Clicking on the name or title should not raise an alert.
-</span></li>
-		<li><img src="https://checkmention.appspot.com/static/img/ive.png">
-			Jonathan Ive responded at
-		<a href="https://www.apple.com/pr/bios/jonathan-ive.html">www.apple.com</a>
-		<span class="wm-summary">			I love the way your site looks, though I'm not really the Jony Ive. How easy is it for someone to discover the real author of this note? Please also c&hellip;
 </span></li>
 		<li><img src="https://checkmention.appspot.com/static/img/q.jpg">
 			Checkmention XSS test responded at
@@ -238,7 +238,7 @@
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/852945138343174145/o-A71mrA.jpg">
 			⚒ Garry Harvey ⚒ responded at
-		<a href="https://twitter.com/sil/status/882152664158679040#favorited-by-862865221">...</a>
+		<a href="https://twitter.com/sil/status/882152664158679040#favorited-by-862865221">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/780789099020029952/db8xcMPM.jpg">
 			Gary Anderson responded at
@@ -252,7 +252,7 @@
 </span></li>
 		<li><img src="https://pbs.twimg.com/profile_images/838486711386550273/KU4kNNKs.jpg">
 			Christopher Smith responded at
-		<a href="https://twitter.com/sil/status/882152664158679040#favorited-by-18576450">...</a>
+		<a href="https://twitter.com/sil/status/882152664158679040#favorited-by-18576450">tag:twitter....</a>
 (twitter.com)		<span class="wm-summary"></span></li>
 	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">

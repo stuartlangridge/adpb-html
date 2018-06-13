@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2004/03/26/another/"><time 
-			class="dt-published" datetime="2004-03-26T11:00:00">Mar 26 2004</time></a>
+			class="dt-published" datetime="2004-03-26T11:00:00+00:00">Mar 26 2004</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -68,16 +68,16 @@ as my mail client. So, here’s what I’ve done so far: Installed procmail:
 archive into <code>$HOME/src/spambayes</code> Created a <code>sb_filter</code> shell script
 that invokes SpamBayes’&nbsp;filter:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/src/spambayes/spambayes <span class="nv">$HOME</span>/src/spambayes/spambayes/scripts/sb_filter.py -d <span class="nv">$HOME</span>/.hammie.db <span class="nv">$*</span>
 </pre></div>
 </td></tr></table>
 
 <p>Told procmail to filter my mail through SpamBayes, by putting in
 \$<span class="caps">HOME</span>/.procmailrc:</p>
-<div class="highlight"><pre><span class="n">PYTHONPATH</span><span class="o">=</span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">spambayes</span><span class="o">/</span><span class="n">spambayes</span>
-<span class="o">:</span><span class="mf">0f</span><span class="n">w</span><span class="o">:</span><span class="n">hamlock</span>
-<span class="o">|</span> <span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">spambayes</span><span class="o">/</span><span class="n">spambayes</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">sb_filter</span><span class="p">.</span><span class="n">py</span> <span class="o">-</span><span class="n">d</span> <span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="p">.</span><span class="n">hammie</span><span class="p">.</span><span class="n">db</span>
+<div class="highlight"><pre><span></span>PYTHONPATH=$HOME/src/spambayes/spambayes
+:0fw:hamlock
+| $HOME/src/spambayes/spambayes/scripts/sb_filter.py -d $HOME/.hammie.db
 </pre></div>
 
 
@@ -85,20 +85,20 @@ that invokes SpamBayes’&nbsp;filter:</p>
 a folder, and I never save spam into a folder, so I want to train any
 saved message as ham (non-spam). I bind “S” to mean “this is spam, so
 train it <strong>as</strong> spam and then delete it“. In&nbsp;.muttrc:</p>
-<div class="highlight"><pre><span class="err">##</span> <span class="nx">Lower</span> <span class="k">case</span> <span class="nb">s</span> <span class="nx">saves</span> <span class="nx">the</span> <span class="nx">message</span> <span class="nx">after</span> <span class="nx">training</span> <span class="nx">it</span> <span class="nx">as</span> <span class="nx">ham.</span>
-    <span class="err">##</span> <span class="nx">Upper</span><span class="na">-case</span> <span class="nb">S</span> <span class="nx">deletes</span> <span class="nx">the</span> <span class="nx">message</span> <span class="nx">after</span> <span class="nx">training</span> <span class="nx">it</span> <span class="nx">as</span> <span class="nx">spam.</span>
+<div class="highlight"><pre><span></span>## Lower case s saves the message after training it as ham.
+    ## Upper-case S deletes the message after training it as spam.
 
-    <span class="nx">macro</span> <span class="nb">index</span> <span class="nb">s</span> <span class="s2">&quot;|sb_filter &lt;del&gt;g -f &gt; /dev/nulln&lt;save&lt;/del&gt;message&gt;&quot;</span>
-<span class="nx">macro</span> <span class="nx">pager</span> <span class="nb">s</span> <span class="s2">&quot;|sb_filter &lt;del&gt;g -f &gt; /dev/nulln&lt;save&lt;/del&gt;message&gt;&quot;</span>
-<span class="nx">color</span> <span class="nb">index</span> <span class="nb">red</span> <span class="nx">black</span> <span class="s2">&quot;~h &#39;X-Spambayes-Disposition: spam&#39; ~F&quot;</span>
+    macro index s &quot;|sb_filter <span class="nt">&lt;del&gt;</span>g -f &gt; /dev/nulln<span class="nt">&lt;save</span><span class="err">&lt;/del</span><span class="nt">&gt;</span>message&gt;&quot;
+macro pager s &quot;|sb_filter <span class="nt">&lt;del&gt;</span>g -f &gt; /dev/nulln<span class="nt">&lt;save</span><span class="err">&lt;/del</span><span class="nt">&gt;</span>message&gt;&quot;
+color index red black &quot;~h &#39;X-Spambayes-Disposition: spam&#39; ~F&quot;
 
-    <span class="nx">macro</span> <span class="nb">index</span> <span class="nb">S</span> <span class="s2">&quot;&lt;delete-message&gt;|sb_filter -s -f &gt; /dev/nulln&quot;</span>
-<span class="nx">macro</span> <span class="nx">pager</span> <span class="nb">S</span> <span class="s2">&quot;&lt;delete-message&gt;|sb_filter -s -f &gt; /dev/nulln&quot;</span>
+    macro index S &quot;<span class="nt">&lt;delete-message&gt;</span>|sb_filter -s -f &gt; /dev/nulln&quot;
+macro pager S &quot;<span class="nt">&lt;delete-message&gt;</span>|sb_filter -s -f &gt; /dev/nulln&quot;
 
 
 
-    <span class="nb">Stop</span> <span class="nx">Mutt</span> <span class="nx">saying</span> <span class="s2">&quot;Press any key to continue&quot;</span> <span class="nx">after</span> <span class="nx">training</span>
-<span class="nb">set</span> <span class="n">wait_key</span><span class="o">=</span><span class="nx">no</span>
+    Stop Mutt saying &quot;Press any key to continue&quot; after training
+set wait_key=no
 </pre></div>
 
 

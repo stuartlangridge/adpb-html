@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2003/02/17/commentsrecent/"><time 
-			class="dt-published" datetime="2003-02-17T11:00:00">Feb 17 2003</time></a>
+			class="dt-published" datetime="2003-02-17T11:00:00+00:00">Feb 17 2003</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -72,23 +72,23 @@ here&#8217;s some instructions for doing the same with&nbsp;Vellum.</p>
 <p>You need to create a template for recent comments, tell Vellum to build
 said template, and then include the built file somewhere on your&nbsp;pages.</p>
 <p>First, the template, in <code>vellum/templates/recentcomments.tmpl</code>:</p>
-<div class="highlight"><pre><span class="cp">&lt;%</span>
-<span class="no">COMMENTS_TO_DISPLAY</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">import</span> <span class="n">vellum</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">audience</span><span class="p">,</span><span class="n">vellum</span><span class="o">.</span><span class="n">Entry</span>
+<div class="highlight"><pre><span></span><span class="o">&lt;%</span>
+<span class="n">COMMENTS_TO_DISPLAY</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="kn">import</span> <span class="nn">vellum.plugins.audience</span><span class="o">,</span><span class="nn">vellum.Entry</span>
 
 <span class="n">comments</span> <span class="o">=</span> <span class="n">vellum</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">audience</span><span class="o">.</span><span class="n">all_audience</span><span class="p">()</span>
-<span class="n">comments</span> <span class="o">=</span> <span class="n">filter</span><span class="p">(</span><span class="nb">lambda</span> <span class="ss">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="o">==</span><span class="s1">&#39;comment&#39;</span><span class="p">,</span><span class="n">comments</span><span class="p">)</span>
+<span class="n">comments</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="o">==</span><span class="s1">&#39;comment&#39;</span><span class="p">,</span><span class="n">comments</span><span class="p">)</span>
 
-<span class="n">comments</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="nb">lambda</span> <span class="n">x</span><span class="p">,</span><span class="ss">y</span><span class="p">:</span><span class="n">cmp</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">posted</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">posted</span><span class="p">))</span>
+<span class="n">comments</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="nb">cmp</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">posted</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">posted</span><span class="p">))</span>
 
-<span class="nb">print</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span>
-<span class="k">for</span> <span class="n">c</span> <span class="k">in</span> <span class="n">comments</span><span class="o">[</span><span class="ss">:COMMENTS_TO_DISPLAY</span><span class="o">]</span><span class="p">:</span>
+<span class="k">print</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">comments</span><span class="p">[:</span><span class="n">COMMENTS_TO_DISPLAY</span><span class="p">]:</span>
   <span class="n">e</span> <span class="o">=</span> <span class="n">vellum</span><span class="o">.</span><span class="n">Entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">entryid</span><span class="p">)</span>
-  <span class="nb">print</span> <span class="s1">&#39;&lt;li&gt;%s on &lt;a href=&quot;%s#au%s&quot;&gt;%s&lt;/a&gt;&lt;/li&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ref</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">permalink</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">ti</span>
+  <span class="k">print</span> <span class="s1">&#39;&lt;li&gt;</span><span class="si">%s</span><span class="s1"> on &lt;a href=&quot;</span><span class="si">%s</span><span class="s1">#au</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="si">%s</span><span class="s1">&lt;/a&gt;&lt;/li&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ref</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">permalink</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">ti</span>
 <span class="n">tle</span><span class="p">)</span>
-<span class="k">end</span>
-<span class="nb">print</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span>
-<span class="cp">%&gt;</span>
+<span class="n">end</span>
+<span class="k">print</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span>
+<span class="o">%&gt;</span>
 </pre></div>
 
 

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2013/12/12/promises-promises/"><time 
-			class="dt-published" datetime="2013-12-12T14:02:00">Dec 12 2013</time></a>
+			class="dt-published" datetime="2013-12-12T14:02:00+00:00">Dec 12 2013</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -60,27 +60,27 @@
 		</h2>
 		<div class="entry-content e-content">
 			<p>Discussion last night at the Opera/Mozilla/Left Logic/Kryogenix
-Christmas Strategy Summit about <a href="http://promises-aplus.github.io/promises-spec/">JavaScript Promises</a><sup id="sf-promises-promises-1-back"><a title="warning: official spec! also dense, difficult terminology!" class="simple-footnote" href="#sf-promises-promises-1">1</a></sup>, where by
+Christmas Strategy Summit about <a href="http://promises-aplus.github.io/promises-spec/">JavaScript Promises</a><sup id="sf-promises-promises-1-back"><a href="#sf-promises-promises-1" class="simple-footnote" title="warning: official spec! also dense, difficult terminology!">1</a></sup>, where by
 “discussion” I mean <a href="http://remysharp.com/">Remy</a> tried to explain it to <a href="http://www.brucelawson.co.uk/">Bruce</a> and
 <a href="https://twitter.com/chrisdavidmills">Chris</a> with me chipping in “helpfully” during the discussion. Anyway,
-Bruce has tried to con me into saying that I promised<sup id="sf-promises-promises-2-back"><a title="ha! ba-dump tish" class="simple-footnote" href="#sf-promises-promises-2">2</a></sup> an explanation.</p>
+Bruce has tried to con me into saying that I promised<sup id="sf-promises-promises-2-back"><a href="#sf-promises-promises-2" class="simple-footnote" title="ha! ba-dump tish">2</a></sup> an explanation.</p>
 <p>I am not going to explain exactly what promises are, other than to say:
 they’re a way of making your asynchronous code look like it’s
 synchronous, because async code is hard to write, hard to understand,
-and hard to debug<sup id="sf-promises-promises-3-back"><a title="See Shot of Jaq podcast episode “Going Async” for more on this from 2010; my opinion has not changed" class="simple-footnote" href="#sf-promises-promises-3">3</a></sup>. The
+and hard to debug<sup id="sf-promises-promises-3-back"><a href="#sf-promises-promises-3" class="simple-footnote" title="See Shot of Jaq podcast episode “Going Async” for more on this from 2010; my opinion has not changed">3</a></sup>. The
 important point to take away is: you can start using promises now, and
 <em>hardly anything will change</em> in your code. So you should do that.</p>
 <h3>Asynchronously doing a thing</h3>
 <p>Let’s say you want to load an image, and then when that image is loaded,
 update the page to say it was loaded. Pretty trivial code:</p>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">imgsrc</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
-      <span class="nx">i</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">callback</span><span class="p">;</span>
-      <span class="nx">i</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgsrc</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"The image is loaded"</span><span class="p">;</span>
-    <span class="p">});</span>
+<div class="highlight"><pre><span></span>    function loadImage(imgsrc, callback) {
+      var i = new Image();
+      i.onload = callback;
+      i.src = imgsrc;
+    }
+    loadImage("http://kryogenix.org/images/me/bigbwme.jpg", function() {
+      document.querySelector("p").innerHTML = "The image is loaded";
+    });
 </pre></div>
 
 
@@ -88,17 +88,17 @@ update the page to say it was loaded. Pretty trivial code:</p>
 <p>We create a little helper function which loads the image and then calls
 our callback; in our callback, we update the text of the page.</p>
 <h3>The Promises version</h3>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">imgsrc</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span> <span class="c1">// using the Q promises library; see below</span>
-      <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
-      <span class="nx">i</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span> <span class="p">}</span>
-      <span class="nx">i</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgsrc</span><span class="p">;</span>
-      <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="p">);</span>
-    <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"The image is loaded"</span><span class="p">;</span>
-    <span class="p">});</span>
+<div class="highlight"><pre><span></span>    <span class="nt">function</span> <span class="nt">loadImage</span><span class="o">(</span><span class="nt">imgsrc</span><span class="o">)</span> <span class="p">{</span>
+      <span class="err">var</span> <span class="err">deferred</span> <span class="err">=</span> <span class="err">Q.defer()</span><span class="p">;</span> <span class="err">//</span> <span class="err">using</span> <span class="err">the</span> <span class="err">Q</span> <span class="err">promises</span> <span class="err">library</span><span class="p">;</span> <span class="err">see</span> <span class="err">below</span>
+      <span class="err">var</span> <span class="err">i</span> <span class="err">=</span> <span class="err">new</span> <span class="err">Image()</span><span class="p">;</span>
+      <span class="err">i.onload</span> <span class="err">=</span> <span class="err">function()</span> <span class="err">{</span> <span class="err">deferred.resolve()</span><span class="p">;</span> <span class="p">}</span>
+      <span class="nt">i</span><span class="p">.</span><span class="nc">src</span> <span class="o">=</span> <span class="nt">imgsrc</span><span class="o">;</span>
+      <span class="nt">return</span> <span class="nt">deferred</span><span class="p">.</span><span class="nc">promise</span><span class="o">;</span>
+    <span class="err">}</span>
+    <span class="nt">var</span> <span class="nt">promise</span> <span class="o">=</span> <span class="nt">loadImage</span><span class="o">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="o">);</span>
+    <span class="nt">promise</span><span class="p">.</span><span class="nc">then</span><span class="o">(</span><span class="nt">function</span><span class="o">()</span> <span class="p">{</span>
+      <span class="err">document.querySelector("p").innerHTML</span> <span class="err">=</span> <span class="err">"The</span> <span class="err">image</span> <span class="err">is</span> <span class="err">loaded"</span><span class="p">;</span>
+    <span class="p">}</span><span class="o">);</span>
 </pre></div>
 
 
@@ -108,35 +108,35 @@ of having the helper function call our callback directly, the helper
 function returns a Promise (straight away, synchronously) and the
 promise’s <code>then</code> function calls our callback. There are a few little
 wrinkles in there, like what <code>resolve</code> means (in this case, it basically
-means: run the promise’s <code>then</code> function<sup id="sf-promises-promises-4-back"><a title="yes, if you know about this stuff then that’s not what it means. Also, I have ignored error checking in all examples" class="simple-footnote" href="#sf-promises-promises-4">4</a></sup>), but if you’ve written any <span class="caps">JS</span>, you can
+means: run the promise’s <code>then</code> function<sup id="sf-promises-promises-4-back"><a href="#sf-promises-promises-4" class="simple-footnote" title="yes, if you know about this stuff then that’s not what it means. Also, I have ignored error checking in all examples">4</a></sup>), but if you’ve written any <span class="caps">JS</span>, you can
 probably read that code and understand roughly what it’s doing. You
-could start doing that today, right?<sup id="sf-promises-promises-5-back"><a title="obviously this doesn’t just apply to image loading, but to anything async; you could XHR with     function xhr(url) {        var x = new XMLHttpRequest(), d=Q.defer();        x.open(“GET”, url);        x.onreadystatechange=function() {          if (x.readyState==4) d.resolve(x.responseText);        }       x.send();       return d.promise;     } " class="simple-footnote" href="#sf-promises-promises-5">5</a></sup> Just mechanically start returning promises and using their <code>then</code>
+could start doing that today, right?<sup id="sf-promises-promises-5-back"><a href="#sf-promises-promises-5" class="simple-footnote" title="obviously this doesn’t just apply to image loading, but to anything async; you could XHR with     function xhr(url) {        var x = new XMLHttpRequest(), d=Q.defer();        x.open(“GET”, url);        x.onreadystatechange=function() {          if (x.readyState==4) d.resolve(x.responseText);        }       x.send();       return d.promise;     } ">5</a></sup> Just mechanically start returning promises and using their <code>then</code>
 functions instead of using callbacks. You don’t really need to grasp the
 complexity underlying all this stuff. (Note: there are about a zillion
-Promises implementations<sup id="sf-promises-promises-6-back"><a title="and actual native browser support with no library at all is coming. See MDN on Promises for details - mdn. " class="simple-footnote" href="#sf-promises-promises-6">6</a></sup>.
+Promises implementations<sup id="sf-promises-promises-6-back"><a href="#sf-promises-promises-6" class="simple-footnote" title="and actual native browser support with no library at all is coming. See MDN on Promises for details - mdn. ">6</a></sup>.
 I’m using here (and generally use) <a href="https://github.com/kriskowal/q">Kris Kowal’s Q</a>, and that’s why
 the code says <code>Q.defer</code>, but if you prefer another one, go ahead.)</p>
 <p>But there’s an obvious question: why should I bother to use these
 promise things? Well, here’s a second example. What we want to do now is
 load two images, and then update the page when <em>both</em> of them are loaded.</p>
 <h3>A second example, with callbacks</h3>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">imgsrc</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
-      <span class="nx">i</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">callback</span><span class="p">;</span>
-      <span class="nx">i</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgsrc</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">image1loaded</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">image2loaded</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nx">showTheyAreLoaded</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"The images are loaded"</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">image1loaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">image1loaded</span> <span class="o">&amp;&amp;</span> <span class="nx">image2loaded</span><span class="p">)</span> <span class="nx">showTheyAreLoaded</span><span class="p">();</span>
-    <span class="p">});</span>
-    <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/hackergotchi-simpler.png"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">image2loaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">image1loaded</span> <span class="o">&amp;&amp;</span> <span class="nx">image2loaded</span><span class="p">)</span> <span class="nx">showTheyAreLoaded</span><span class="p">();</span>
-    <span class="p">});</span>
+<div class="highlight"><pre><span></span>    function loadImage(imgsrc, callback) {
+      var i = new Image();
+      i.onload = callback;
+      i.src = imgsrc;
+    }
+    var image1loaded = false, image2loaded = false;
+    function showTheyAreLoaded() {
+      document.querySelector("p").innerHTML = "The images are loaded";
+    }
+    loadImage("http://kryogenix.org/images/me/bigbwme.jpg", function() {
+      image1loaded = true;
+      if (image1loaded &amp;&amp; image2loaded) showTheyAreLoaded();
+    });
+    loadImage("http://kryogenix.org/images/me/hackergotchi-simpler.png", function() {
+      image2loaded = true;
+      if (image1loaded &amp;&amp; image2loaded) showTheyAreLoaded();
+    });
 </pre></div>
 
 
@@ -147,18 +147,18 @@ the previous async version. What we do now is we have one flag per image
 its flag, and then check if all the flags are set. If they are all set,
 then we update the page.</p>
 <h3>That second example, with promises</h3>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">imgsrc</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
-      <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
-      <span class="nx">i</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span> <span class="p">}</span>
-      <span class="nx">i</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgsrc</span><span class="p">;</span>
-      <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">loadImage</span><span class="p">(</span><span class="s2">"http://kryogenix.org/images/me/hackergotchi-simpler.png"</span><span class="p">);</span>
-    <span class="nx">Q</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="cp">[</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="cp">]</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"The images are loaded"</span><span class="p">;</span>
-    <span class="p">});</span>
+<div class="highlight"><pre><span></span>    <span class="nt">function</span> <span class="nt">loadImage</span><span class="o">(</span><span class="nt">imgsrc</span><span class="o">)</span> <span class="p">{</span>
+      <span class="err">var</span> <span class="err">deferred</span> <span class="err">=</span> <span class="err">Q.defer()</span><span class="p">;</span>
+      <span class="err">var</span> <span class="err">i</span> <span class="err">=</span> <span class="err">new</span> <span class="err">Image()</span><span class="p">;</span>
+      <span class="err">i.onload</span> <span class="err">=</span> <span class="err">function()</span> <span class="err">{</span> <span class="err">deferred.resolve()</span><span class="p">;</span> <span class="p">}</span>
+      <span class="nt">i</span><span class="p">.</span><span class="nc">src</span> <span class="o">=</span> <span class="nt">imgsrc</span><span class="o">;</span>
+      <span class="nt">return</span> <span class="nt">deferred</span><span class="p">.</span><span class="nc">promise</span><span class="o">;</span>
+    <span class="err">}</span>
+    <span class="nt">var</span> <span class="nt">promise1</span> <span class="o">=</span> <span class="nt">loadImage</span><span class="o">(</span><span class="s2">"http://kryogenix.org/images/me/bigbwme.jpg"</span><span class="o">);</span>
+    <span class="nt">var</span> <span class="nt">promise2</span> <span class="o">=</span> <span class="nt">loadImage</span><span class="o">(</span><span class="s2">"http://kryogenix.org/images/me/hackergotchi-simpler.png"</span><span class="o">);</span>
+    <span class="nt">Q</span><span class="p">.</span><span class="nc">all</span><span class="o">(</span><span class="cp">[</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="cp">]</span><span class="o">)</span><span class="p">.</span><span class="nc">then</span><span class="o">(</span><span class="nt">function</span><span class="o">()</span> <span class="p">{</span>
+      <span class="err">document.querySelector("p").innerHTML</span> <span class="err">=</span> <span class="err">"The</span> <span class="err">images</span> <span class="err">are</span> <span class="err">loaded"</span><span class="p">;</span>
+    <span class="p">}</span><span class="o">);</span>
 </pre></div>
 
 
@@ -170,7 +170,7 @@ then the <code>all</code> function fires <code>all</code><span class="quo">‘</
 promises are done.</p>
 <p>The two item version isn’t that complicated, but you can imagine that
 it’d be quite a lot more annoying to do the async version with three or
-four or fifty images<sup id="sf-promises-promises-7-back"><a title="yes, of course you’d write a little helper which puts all the loaded image flags into a dict keyed on the img src, and ticks them all off when they arrive. Congratulations. You’ve just written the first 4% of your own promises library. Wouldn’t it have been easier to just use someone else’s so that you can get on with real work?" class="simple-footnote" href="#sf-promises-promises-7">7</a></sup>; the promises version hardly gets any more difficult at all.</p>
+four or fifty images<sup id="sf-promises-promises-7-back"><a href="#sf-promises-promises-7" class="simple-footnote" title="yes, of course you’d write a little helper which puts all the loaded image flags into a dict keyed on the img src, and ticks them all off when they arrive. Congratulations. You’ve just written the first 4% of your own promises library. Wouldn’t it have been easier to just use someone else’s so that you can get on with real work?">7</a></sup>; the promises version hardly gets any more difficult at all.</p>
 <h3>You can’t handle the truth</h3>
 <p>You see, that’s it, for promises. If you start using them today, almost
 everything you do with them will be like the very first example: instead
@@ -190,10 +190,10 @@ and wait for both” situations. Do not be put off by the complexity. You
 don’t care about the complexity, and you probably don’t need it. Just
 start using them now, and the hard stuff will wait patiently for you to
 get to it.</p><ol class="simple-footnotes"><li id="sf-promises-promises-1">warning:
-official spec! also dense, difficult terminology! <a class="simple-footnote-back" href="#sf-promises-promises-1-back">↩</a></li><li id="sf-promises-promises-2">ha! ba-dump
-tish <a class="simple-footnote-back" href="#sf-promises-promises-2-back">↩</a></li><li id="sf-promises-promises-3">See <a href="http://www.kryogenix.org/shotofjaq.html">Shot of Jaq podcast episode “Going Async”</a> for more on this from 2010; my opinion has not changed <a class="simple-footnote-back" href="#sf-promises-promises-3-back">↩</a></li><li id="sf-promises-promises-4">yes, if you know about this
+official spec! also dense, difficult terminology! <a href="#sf-promises-promises-1-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-2">ha! ba-dump
+tish <a href="#sf-promises-promises-2-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-3">See <a href="http://www.kryogenix.org/shotofjaq.html">Shot of Jaq podcast episode “Going Async”</a> for more on this from 2010; my opinion has not changed <a href="#sf-promises-promises-3-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-4">yes, if you know about this
 stuff then that’s <em>not</em> what it means. Also, I have ignored error
-checking in all examples <a class="simple-footnote-back" href="#sf-promises-promises-4-back">↩</a></li><li id="sf-promises-promises-5">obviously this doesn’t just
+checking in all examples <a href="#sf-promises-promises-4-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-5">obviously this doesn’t just
 apply to image loading, but to anything async; you could <span class="caps">XHR</span> with
     function xhr(url) { 
       var x = new XMLHttpRequest(), d=Q.defer(); 
@@ -204,13 +204,13 @@ apply to image loading, but to anything async; you could <span class="caps">XHR<
       x.send();
       return d.promise;
     }
- <a class="simple-footnote-back" href="#sf-promises-promises-5-back">↩</a></li><li id="sf-promises-promises-6">and actual native browser support with no
-library at all is coming. See <span class="caps">MDN</span> on Promises for details - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">mdn</a>.  <a class="simple-footnote-back" href="#sf-promises-promises-6-back">↩</a></li><li id="sf-promises-promises-7">yes, of course you’d write a little helper
+ <a href="#sf-promises-promises-5-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-6">and actual native browser support with no
+library at all is coming. See <span class="caps">MDN</span> on Promises for details - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">mdn</a>.  <a href="#sf-promises-promises-6-back" class="simple-footnote-back">↩</a></li><li id="sf-promises-promises-7">yes, of course you’d write a little helper
 which puts all the loaded image flags into a dict keyed on the img src,
 and ticks them all off when they arrive. Congratulations. You’ve just
 written the first 4% of your own promises library. Wouldn’t it have been
 easier to just use someone else’s so that you can get on with real
-work? <a class="simple-footnote-back" href="#sf-promises-promises-7-back">↩</a></li></ol>
+work? <a href="#sf-promises-promises-7-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2013/12/08/lenovo-u300s-and-ssds/">Previous post</a></li>

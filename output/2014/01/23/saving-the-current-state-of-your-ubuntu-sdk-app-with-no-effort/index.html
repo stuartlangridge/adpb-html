@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2014/01/23/saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort/"><time 
-			class="dt-published" datetime="2014-01-23T18:14:00">Jan 23 2014</time></a>
+			class="dt-published" datetime="2014-01-23T18:14:00+00:00">Jan 23 2014</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -64,7 +64,7 @@ your Ubuntu app</a>. Now, <span class="caps">U1DB</span> is useful for actually 
 data, right enough. But if you want to save <strong>state</strong> — which tab was
 showing, what was being typed into a text field, what was chosen in a
 dropdown, where a list was scrolled to — then that’s built right
-in<sup id="sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1-back"><a title="how did I not know this existed! Big thanks to Florian for cueing me in" class="simple-footnote" href="#sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1">1</a></sup> to the Ubuntu <span class="caps">SDK</span>.</p>
+in<sup id="sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1-back"><a href="#sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1" class="simple-footnote" title="how did I not know this existed! Big thanks to Florian for cueing me in">1</a></sup> to the Ubuntu <span class="caps">SDK</span>.</p>
 <p>It’s called <strong><a href="http://developer.ubuntu.com/api/devel/ubuntu-13.04/qml/ui-toolkit/qml-ubuntu-components0-statesaver.html">StateSaver</a></strong>.</p>
 <p>This isn’t used to store data, long term. It’s used to make your app
 automatically remember what position things were in. So quitting the app
@@ -74,12 +74,12 @@ were halfway through typing in, doesn’t forget where you’d scrolled to.</p>
 <p>To use it, just add <code>StateSaver.properties</code> to the Item you want to save
 things for. So, for example, if you want your ListView to remember the
 position it was scrolled to, do this:</p>
-<div class="highlight"><pre><span class="n">ListView</span> <span class="p">{</span>
-  <span class="nl">id:</span> <span class="n">mylistview</span>
-  <span class="nl">model:</span> <span class="n">someModel</span>
-  <span class="nl">delegate:</span> <span class="n">ListItem</span><span class="p">.</span><span class="n">Standard</span> <span class="p">{</span> <span class="n">text</span><span class="o">:</span> <span class="s">"row "</span> <span class="o">+</span> <span class="n">model</span><span class="p">.</span><span class="n">index</span> <span class="p">}</span>
-  <span class="n">StateSaver</span><span class="p">.</span><span class="n">properties</span><span class="o">:</span> <span class="s">"contentY"</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span>ListView {
+  id: mylistview
+  model: someModel
+  delegate: ListItem.Standard { text: "row " + model.index }
+  StateSaver.properties: "contentY"
+}
 </pre></div>
 
 
@@ -126,65 +126,65 @@ did it automatically, as noted.) Good work, Ubuntu <span class="caps">SDK</span>
 needs more publicity!</p>
 <p>Longer code example, which remembers which tab you were looking at,
 where the list is scrolled to, and what was typed in the text field:</p>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">QtQuick</span> <span class="mf">2.0</span>
-<span class="n">import</span> <span class="n">Ubuntu</span><span class="p">.</span><span class="n">Components</span> <span class="mf">0.1</span>
-<span class="n">import</span> <span class="n">Ubuntu</span><span class="p">.</span><span class="n">Components</span><span class="p">.</span><span class="n">ListItems</span> <span class="mf">0.1</span> <span class="n">as</span> <span class="n">ListItem</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">QtQuick</span> <span class="mf">2.0</span>
+<span class="kn">import</span> <span class="nn">Ubuntu.Components</span> <span class="mf">0.1</span>
+<span class="kn">import</span> <span class="nn">Ubuntu.Components.ListItems</span> <span class="mf">0.1</span> <span class="k">as</span> <span class="n">ListItem</span>
 
 <span class="n">MainView</span> <span class="p">{</span>
-    <span class="nl">id:</span> <span class="n">root</span>
-    <span class="nl">width:</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
-    <span class="nl">height:</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="n">root</span>
+    <span class="n">width</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">height</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>
 
     <span class="n">Tabs</span> <span class="p">{</span>
-        <span class="nl">id:</span> <span class="n">tabs</span>
-        <span class="n">StateSaver</span><span class="p">.</span><span class="n">properties</span><span class="o">:</span> <span class="s">"selectedTabIndex"</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">tabs</span>
+        <span class="n">StateSaver</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span> <span class="s2">"selectedTabIndex"</span>
 
         <span class="n">Tab</span> <span class="p">{</span>
-            <span class="nl">id:</span> <span class="n">t1</span>
-            <span class="nl">title:</span> <span class="s">"StateSaver, 1"</span>
+            <span class="nb">id</span><span class="p">:</span> <span class="n">t1</span>
+            <span class="n">title</span><span class="p">:</span> <span class="s2">"StateSaver, 1"</span>
 
-            <span class="nl">page:</span> <span class="n">Page</span> <span class="p">{</span>
-                <span class="nl">id:</span> <span class="n">pg</span>
+            <span class="n">page</span><span class="p">:</span> <span class="n">Page</span> <span class="p">{</span>
+                <span class="nb">id</span><span class="p">:</span> <span class="n">pg</span>
                 <span class="n">ListView</span> <span class="p">{</span>
-                    <span class="nl">id:</span> <span class="n">lv</span>
-                    <span class="nl">model:</span> <span class="mi">40</span>
-                    <span class="nl">clip:</span> <span class="nb">true</span>
-                    <span class="n">anchors</span><span class="p">.</span><span class="n">fill</span><span class="o">:</span> <span class="n">parent</span>
-                    <span class="n">StateSaver</span><span class="p">.</span><span class="n">properties</span><span class="o">:</span> <span class="s">"contentY"</span>
-                    <span class="nl">delegate:</span> <span class="n">ListItem</span><span class="p">.</span><span class="n">Standard</span> <span class="p">{</span>
-                        <span class="nl">text:</span> <span class="s">"This is row "</span> <span class="o">+</span> <span class="n">model</span><span class="p">.</span><span class="n">index</span> <span class="o">+</span> <span class="s">". Scroll to wherever."</span>
+                    <span class="nb">id</span><span class="p">:</span> <span class="n">lv</span>
+                    <span class="n">model</span><span class="p">:</span> <span class="mi">40</span>
+                    <span class="n">clip</span><span class="p">:</span> <span class="n">true</span>
+                    <span class="n">anchors</span><span class="o">.</span><span class="n">fill</span><span class="p">:</span> <span class="n">parent</span>
+                    <span class="n">StateSaver</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span> <span class="s2">"contentY"</span>
+                    <span class="n">delegate</span><span class="p">:</span> <span class="n">ListItem</span><span class="o">.</span><span class="n">Standard</span> <span class="p">{</span>
+                        <span class="n">text</span><span class="p">:</span> <span class="s2">"This is row "</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s2">". Scroll to wherever."</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
         <span class="n">Tab</span> <span class="p">{</span>
-            <span class="nl">id:</span> <span class="n">t2</span>
-            <span class="nl">title:</span> <span class="s">"StateSaver, 2"</span>
+            <span class="nb">id</span><span class="p">:</span> <span class="n">t2</span>
+            <span class="n">title</span><span class="p">:</span> <span class="s2">"StateSaver, 2"</span>
 
             <span class="n">Column</span> <span class="p">{</span>
-                <span class="nl">width:</span> <span class="n">parent</span><span class="p">.</span><span class="n">width</span>
-                <span class="nl">id:</span> <span class="n">col2</span>
-                <span class="nl">spacing:</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">anchors</span><span class="p">.</span><span class="n">centerIn</span><span class="o">:</span> <span class="n">parent</span>
+                <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span>
+                <span class="nb">id</span><span class="p">:</span> <span class="n">col2</span>
+                <span class="n">spacing</span><span class="p">:</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">anchors</span><span class="o">.</span><span class="n">centerIn</span><span class="p">:</span> <span class="n">parent</span>
 
                 <span class="n">Label</span> <span class="p">{</span>
-                    <span class="nl">text:</span> <span class="s">"Enter your favourite pie"</span>
-                    <span class="nl">horizontalAlignment:</span> <span class="n">Text</span><span class="p">.</span><span class="n">AlignHCenter</span>
-                    <span class="n">anchors</span><span class="p">.</span><span class="n">horizontalCenter</span><span class="o">:</span> <span class="n">parent</span><span class="p">.</span><span class="n">horizontalCenter</span>
+                    <span class="n">text</span><span class="p">:</span> <span class="s2">"Enter your favourite pie"</span>
+                    <span class="n">horizontalAlignment</span><span class="p">:</span> <span class="n">Text</span><span class="o">.</span><span class="n">AlignHCenter</span>
+                    <span class="n">anchors</span><span class="o">.</span><span class="n">horizontalCenter</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">horizontalCenter</span>
                 <span class="p">}</span>
                 <span class="n">TextField</span> <span class="p">{</span>
-                    <span class="nl">id:</span> <span class="n">tf</span>
-                    <span class="nl">width:</span> <span class="n">parent</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">units</span><span class="p">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="n">StateSaver</span><span class="p">.</span><span class="n">properties</span><span class="o">:</span> <span class="s">"text"</span>
-                    <span class="n">anchors</span><span class="p">.</span><span class="n">horizontalCenter</span><span class="o">:</span> <span class="n">parent</span><span class="p">.</span><span class="n">horizontalCenter</span>
+                    <span class="nb">id</span><span class="p">:</span> <span class="n">tf</span>
+                    <span class="n">width</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="n">StateSaver</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span> <span class="s2">"text"</span>
+                    <span class="n">anchors</span><span class="o">.</span><span class="n">horizontalCenter</span><span class="p">:</span> <span class="n">parent</span><span class="o">.</span><span class="n">horizontalCenter</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div><ol class="simple-footnotes"><li id="sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1">how did I not know this existed! Big thanks to Florian for cueing
-me in <a class="simple-footnote-back" href="#sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1-back">↩</a></li></ol>
+me in <a href="#sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2014/01/23/using-u1db-in-listviews-in-ubuntu-sdk-apps/">Previous post</a></li>

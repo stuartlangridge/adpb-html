@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Pridi:300,400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -50,7 +50,7 @@
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="//www.kryogenix.org/days/2005/03/11/applicationsbutton/"><time 
-			class="dt-published" datetime="2005-03-11T11:00:00">Mar 11 2005</time></a>
+			class="dt-published" datetime="2005-03-11T11:00:00+00:00">Mar 11 2005</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
@@ -72,20 +72,20 @@ the Back button takes me back to where I was before I clicked it“. So,
 clicking something in an Ajax app, which doesn’t actually navigate to a
 new page but instead just does something, would be “undone” by clicking
 Back, because the semantic is “the Back button takes me back to where I
-was before I clicked that last thing“.<br />
+was before I clicked that last thing“.<br>
 This will likely annoy serious web developers, because they <em>know</em> that
 Back doesn’t mean “return to the state before the last click“, it means
 “go back to the previous page” (modulo frame-ish things). But that’s
 because an Ajax application isn’t like the web-as-was; “Back” and
 “Forward” don’t make that much sense when the page metaphor is broken
-anyway.<br />
+anyway.<br>
 Note that I’m not talking about implementation detail here; Alex’s
 method seems to be the approach. But essentially what Ajax apps could do
 is provide an “undo stack” in the same way as client apps do; the
 implementation of making the back/forward buttons trigger this is then
 simply a call to one of Alex’s iframes when you move back or forward in
 the stack, and every action needs to write itself into the undo stack so
-that it can be undone.<br />
+that it can be undone.<br>
 This is rather rambly. I need to work up a demo to explain what I mean,&nbsp;perhaps.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
