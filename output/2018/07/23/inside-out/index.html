@@ -49,18 +49,18 @@
 
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
-		<div class="date"><a href="//www.kryogenix.org/days/drafts/inside-out.html"><time 
+		<div class="date"><a href="//www.kryogenix.org/days/2018/07/23/inside-out/"><time 
 			class="dt-published" datetime="2018-07-23T18:26:00+01:00">Jul 23 2018</time></a>
 			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="//www.kryogenix.org/days/drafts/inside-out.html" title="Permalink to Inside out" rel="bookmark">Inside&nbsp;out</a>
+			<a class="u-url p-name" href="//www.kryogenix.org/days/2018/07/23/inside-out/" title="Permalink to Inside out" rel="bookmark">Inside&nbsp;out</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Recently the question of whether browsers should have a View Source function has reared its head again. <a href="https://css-tricks.com/view-source/">Chris Coyier</a> says no, as do <a href="https://twitter.com/tomdale/status/965681976199077889">Tom Dale</a> and <a href="https://christianheilmann.com/2018/07/09/different-views-on-view-source/">Christian Heilmann</a>. <a href="https://snook.ca/archives/opinion/view-source">Jonathan Snook</a> says yes they&nbsp;should.</p>
-<p>The argument against essentially boils down to this: the browser devtools are better. This is undeniably the truth in most cases. You can not just see the original <span class="caps">HTML</span> source of a page but manipulate it, drill down into it, see it beside the page itself and see which parts correspond. Everyone who develops for the web spends most of their day in the devtools, and rightly so. They are enormously powerful. View Source&#8230; isn&#8217;t. It&#8217;s a throwback, a historical legacy back from the days when you couldn&#8217;t introspect a page, couldn&#8217;t fiddle with things at runtime. If something was wrong with the page you were building, you went back to your editor and tentatively changed a thing, and then went back again to the browser and hit Refresh to see if you&#8217;d fixed it. Debugging blind, like finding your way through a cave with no lights on. You were quite likely to be eaten by a grue. Things are better&nbsp;now.</p>
+<p>The argument against essentially boils down to this: the browser devtools are better. This is undeniably, absolutely the truth. You can not just see the original <span class="caps">HTML</span> source of a page but manipulate it, drill down into it, see it beside the page itself and see which parts correspond. Everyone who develops for the web spends most of their day in the devtools, and rightly so. They are enormously powerful. View Source&#8230; isn&#8217;t. It&#8217;s a throwback, a historical legacy back from the days when you couldn&#8217;t introspect a page, couldn&#8217;t fiddle with things at runtime. If something was wrong with the page you were building, you went back to your editor and tentatively changed a thing, and then went back again to the browser and hit Refresh to see if you&#8217;d fixed it. Debugging blind, like finding your way through a cave with no lights on. You were quite likely to be eaten by a grue. Things are better&nbsp;now.</p>
 <p>There are minor reasons why View Source is a good idea. One of them is that it&#8217;s an easy way to see the source you were actually given, <em>before</em> the in-page JavaScript started screwing around with it. I don&#8217;t use this a lot, but I do use it. It&#8217;s one of those small but handy features; a <a href="http://littlebigdetails.com/">little big detail</a>.</p>
 <p>Another is: there are twenty years of simple documentation saying &#8220;you can see what this web page does just by hitting View&nbsp;Source&#8221;.</p>
 <p>Yet another is that the devtools are pretty confusing if all you want to do is look at the source of a page. This is (I think) similar to Jon Snook&#8217;s arguments, linked above: &#8220;The sites some build may be simple static sites, befitting of a simple View Source &#8230; Just because you don’t need those tools doesn’t mean that somebody doesn’t need those&nbsp;tools.&#8221;</p>
@@ -90,6 +90,7 @@
 <p>So, is it best to be an avout or a Muggle? Either are, I think, fine. But I don&#8217;t like it when the avout try to take away Muggle tools, and I don&#8217;t like it when the Muggles try to limit how creative the avout can be. If someone, not a web developer, complained that the devtools were incredibly complicated, I&#8217;d mostly be <span class="caps">OK</span> with the argument that those tools aren&#8217;t for that person to look at, and the complexity is aimed at the actual users of the devtools. It seems right to do them the same courtesy. So perhaps View Source is a Muggle tool and we avout shouldn&#8217;t use it, but that doesn&#8217;t mean we should take it&nbsp;away.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
+		<li><a href="//www.kryogenix.org/days/2018/07/03/article-13-mep/">Previous post</a></li>
 		</ul>
 	</div> <!--/#main-->
 </div>  <!--/#post-->
@@ -99,7 +100,7 @@
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
-	<input type="hidden" name="target" value="http://www.kryogenix.org/days/drafts/inside-out.html">
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2018/07/23/inside-out/">
 	<input type="submit" value="Add link">
 </form>
 <script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
@@ -107,7 +108,7 @@
 
 <p id="oldcomments"></p>
 <script>
-var aurl = 'drafts/inside-out.html';
+var aurl = '2018/07/23/inside-out/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
 var tooNewForOldComments = false;

@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>as days pass by - sil</title><link href="//www.kryogenix.org/days/" rel="alternate"></link><link href="//www.kryogenix.org/days/feeds/sil.atom.xml" rel="self"></link><id>//www.kryogenix.org/days/</id><updated>2018-07-03T09:58:00+01:00</updated><entry><title>EU Copyright Reform: a letter to my MEP, Siôn Simon, about Article 13</title><link href="//www.kryogenix.org/days/2018/07/03/article-13-mep/" rel="alternate"></link><published>2018-07-03T09:58:00+01:00</published><updated>2018-07-03T09:58:00+01:00</updated><author><name>sil</name></author><id>tag:www.kryogenix.org,2018-07-03:/days/2018/07/03/article-13-mep/</id><summary type="html">&lt;p&gt;Dear&amp;nbsp;Siôn,&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>as days pass by - sil</title><link href="//www.kryogenix.org/days/" rel="alternate"></link><link href="//www.kryogenix.org/days/feeds/sil.atom.xml" rel="self"></link><id>//www.kryogenix.org/days/</id><updated>2018-07-23T18:26:00+01:00</updated><entry><title>Inside out</title><link href="//www.kryogenix.org/days/2018/07/23/inside-out/" rel="alternate"></link><published>2018-07-23T18:26:00+01:00</published><updated>2018-07-23T18:26:00+01:00</updated><author><name>sil</name></author><id>tag:www.kryogenix.org,2018-07-23:/days/2018/07/23/inside-out/</id><summary type="html">&lt;p&gt;Recently the question of whether browsers should have a View Source function has reared its head again. &lt;a href="https://css-tricks.com/view-source/"&gt;Chris Coyier&lt;/a&gt; says no, as do &lt;a href="https://twitter.com/tomdale/status/965681976199077889"&gt;Tom Dale&lt;/a&gt; and &lt;a href="https://christianheilmann.com/2018/07/09/different-views-on-view-source/"&gt;Christian Heilmann&lt;/a&gt;. &lt;a href="https://snook.ca/archives/opinion/view-source"&gt;Jonathan Snook&lt;/a&gt; says yes they&amp;nbsp;should.&lt;/p&gt;
+&lt;p&gt;The argument against essentially boils down to this: the browser devtools are better. This is undeniably …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently the question of whether browsers should have a View Source function has reared its head again. &lt;a href="https://css-tricks.com/view-source/"&gt;Chris Coyier&lt;/a&gt; says no, as do &lt;a href="https://twitter.com/tomdale/status/965681976199077889"&gt;Tom Dale&lt;/a&gt; and &lt;a href="https://christianheilmann.com/2018/07/09/different-views-on-view-source/"&gt;Christian Heilmann&lt;/a&gt;. &lt;a href="https://snook.ca/archives/opinion/view-source"&gt;Jonathan Snook&lt;/a&gt; says yes they&amp;nbsp;should.&lt;/p&gt;
+&lt;p&gt;The argument against essentially boils down to this: the browser devtools are better. This is undeniably, absolutely the truth. You can not just see the original &lt;span class="caps"&gt;HTML&lt;/span&gt; source of a page but manipulate it, drill down into it, see it beside the page itself and see which parts correspond. Everyone who develops for the web spends most of their day in the devtools, and rightly so. They are enormously powerful. View Source&amp;#8230; isn&amp;#8217;t. It&amp;#8217;s a throwback, a historical legacy back from the days when you couldn&amp;#8217;t introspect a page, couldn&amp;#8217;t fiddle with things at runtime. If something was wrong with the page you were building, you went back to your editor and tentatively changed a thing, and then went back again to the browser and hit Refresh to see if you&amp;#8217;d fixed it. Debugging blind, like finding your way through a cave with no lights on. You were quite likely to be eaten by a grue. Things are better&amp;nbsp;now.&lt;/p&gt;
+&lt;p&gt;There are minor reasons why View Source is a good idea. One of them is that it&amp;#8217;s an easy way to see the source you were actually given, &lt;em&gt;before&lt;/em&gt; the in-page JavaScript started screwing around with it. I don&amp;#8217;t use this a lot, but I do use it. It&amp;#8217;s one of those small but handy features; a &lt;a href="http://littlebigdetails.com/"&gt;little big detail&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Another is: there are twenty years of simple documentation saying &amp;#8220;you can see what this web page does just by hitting View&amp;nbsp;Source&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;Yet another is that the devtools are pretty confusing if all you want to do is look at the source of a page. This is (I think) similar to Jon Snook&amp;#8217;s arguments, linked above: &amp;#8220;The sites some build may be simple static sites, befitting of a simple View Source &amp;#8230; Just because you don’t need those tools doesn’t mean that somebody doesn’t need those&amp;nbsp;tools.&amp;#8221;&lt;/p&gt;
+&lt;p&gt;The major reason to keep View Source around is&amp;#8230; well, time for a little&amp;nbsp;story.&lt;/p&gt;
+&lt;p&gt;Google have a search app, on Android phones. The Google search bar at the top of the Android home screen (the one you can&amp;#8217;t get rid of evn if you want to, without extreme measures) shows query results in a thing which is almost but not quite a web browser. The results &lt;em&gt;look&lt;/em&gt; like the normal Google search results you&amp;#8217;re used to from searching in the browser, but it&amp;#8217;s &lt;em&gt;actually&lt;/em&gt; a separate app. And that&amp;#8217;s fine; you can see the results, and tap them, and a result opens in a browser, and everything&amp;#8217;s good. I found this pretty useful, until the first time I did an image search and then long-pressed one of the images to open it on its own. And&amp;#8230; I didn&amp;#8217;t get the popup menu. Because this thing isn&amp;#8217;t &lt;em&gt;really&lt;/em&gt; a browser. It&amp;#8217;s a browser but with all the bits that let you look under the surface turned off, because you don&amp;#8217;t need&amp;nbsp;them.&lt;/p&gt;
+&lt;p&gt;I do not like that attitude. I like that the web is made up of separate bits that you can see if you want to. You can understand how it works by piecing together the parts. It&amp;#8217;s not meant to be a sealed unit, an appliance which does what the owner wants it to and restricts everything else. That&amp;#8217;s what apps do. The web&amp;#8217;s better than that. Like stories our parents told about how they could fix their cars when they were younger but now you can&amp;#8217;t without training and magic screwdrivers and the secret config software. It&amp;#8217;s a switch between being able to see the bits of the jigsaw if you want to, and being able to see the bits of the jigsaw only if you&amp;#8217;re &lt;a href="https://kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/"&gt;allowed&lt;/a&gt;&amp;nbsp;to.&lt;/p&gt;
+&lt;p&gt;In Neal Stephenson&amp;#8217;s &lt;a href="https://en.wikipedia.org/wiki/Anathem"&gt;Anathem&lt;/a&gt;, there&amp;#8217;s a discussion between Raz, an &lt;em&gt;avout&lt;/em&gt; (basically a monk cloistered away in a monastery, but a monk of science rather than religion), Cord (his sister, an experienced engineer but a normal person, not an avout), and Yul (her boyfriend, and something of a handyman but without formal training). Raz tries to explain that a stove which is a sealed unit appliance and which works perfectly would be better than an unreliable stove deliberately kept simple so people can understand it; Cord and Yul try to explain that a stove which they can understand is better, even if unreliable, because a mysterious black box which does what you want today might mysteriously &lt;em&gt;stop&lt;/em&gt; doing what you want tomorrow and you&amp;#8217;ll have no idea&amp;nbsp;why.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;I guess because I live in a place with almost zero praxis [technology], it never occurs to me to think about such things,&amp;#8217; I [Raz] said. &amp;#8216;But at times like this, the absurdity hits me between the eyes. There&amp;#8217;s no reason to put up with junk like this. A stove with dangerous, unreliable chemical fuel. With orifices that clog. In four thousand years we could have made a better&amp;nbsp;stove.&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;Would I be able to take that stove apart and fix&amp;nbsp;it?&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;You wouldn&amp;#8217;t have to, because it would never&amp;nbsp;break.&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;But I want to know if I could understand such a&amp;nbsp;stove.&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;All right, I take your point. You&amp;#8217;re really asking if the average person could understand the workings of such a&amp;nbsp;thing&amp;#8212;&amp;#8230;&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;I don&amp;#8217;t know what an average person is. But look at Yul here. He built his stove himself. Didn&amp;#8217;t you, Yul? And it worked,&amp;#8217; Cord&amp;nbsp;said.&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;Took me two years to make it run right,&amp;#8217; Yul&amp;nbsp;admitted.&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;And none of that would have been possible with some kind of technology that only an avout can understand,&amp;#8217; Cord&amp;nbsp;concluded.&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;Okay, okay,&amp;#8217; I said, and let it drop there. Letting the argument play out would have been a waste of breath. We, the [avout], had the power to change the physical world through praxis. Up to a point, ordinary people liked the changes we made. But the more clever the praxis became, the less people understood it and the more dependent they became on us&amp;#8212;-and they didn&amp;#8217;t like that at&amp;nbsp;all.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;small&gt;&lt;em&gt;Extract edited a little for length, but without removing the sense of it&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Nobody actually wins this argument. These are two genuinely differing points of view, I think; there&amp;#8217;s no obvious knockdown answer, no obviously correct approach to take. To be an avout or to be a Muggle is kinda a&amp;nbsp;choice.&lt;/p&gt;
+&lt;p&gt;There will be some people reading this saying: this is a very handwavy rarefied argument. &lt;em&gt;Removing &amp;#8216;View Source&amp;#8217; is another small move in the direction of taking away the web&amp;#8217;s democratic nature? It&amp;#8217;s one more example of the boot of the Them in crushing out our ability to know what&amp;#8217;s going on?&lt;/em&gt; Get over yourself, Langridge. Stop making philosophical arguments and let&amp;#8217;s be practical and&amp;nbsp;realistic.&lt;/p&gt;
+&lt;p&gt;This is a fair comment. My response to it would, then, be: what harm is keeping the menu item around actually doing? It&amp;#8217;s one menu item. It&amp;#8217;s taking up very little space in the &lt;span class="caps"&gt;UI&lt;/span&gt;, it&amp;#8217;s not anywhere particularly obvious, and even if you don&amp;#8217;t think my arguments above or Jon Snook&amp;#8217;s arguments are winning ones, we might be a little bit right, and so why not just keep the menu item? It&amp;#8217;s no extra work to code it; the code already&amp;nbsp;exists.&lt;/p&gt;
+&lt;p&gt;Ah, you may say, but we shouldn&amp;#8217;t have menu items that we don&amp;#8217;t need. If it can be cut out, cut it out. Don&amp;#8217;t have more options, more preferences than you need. And this is also correct; it&amp;#8217;s a good principle of &lt;span class="caps"&gt;UX&lt;/span&gt; design. I&amp;#8217;ve been quoting &lt;a href="https://ometer.com/preferences.html"&gt;Havoc Pennington&amp;#8217;s essay on preferences&lt;/a&gt; for 16 years now and I&amp;#8217;m not likely to stop. It is completely true that extra options and extra preferences have a&amp;nbsp;cost.&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s not that that&amp;#8217;s a bad argument, because it isn&amp;#8217;t. It&amp;#8217;s that that argument is &lt;em&gt;just as theoretical and rarefied and philosophical&lt;/em&gt; as is my argument that taking away another tool of understanding is a bad&amp;nbsp;precedent.&lt;/p&gt;
+&lt;p&gt;So, is it best to be an avout or a Muggle? Either are, I think, fine. But I don&amp;#8217;t like it when the avout try to take away Muggle tools, and I don&amp;#8217;t like it when the Muggles try to limit how creative the avout can be. If someone, not a web developer, complained that the devtools were incredibly complicated, I&amp;#8217;d mostly be &lt;span class="caps"&gt;OK&lt;/span&gt; with the argument that those tools aren&amp;#8217;t for that person to look at, and the complexity is aimed at the actual users of the devtools. It seems right to do them the same courtesy. So perhaps View Source is a Muggle tool and we avout shouldn&amp;#8217;t use it, but that doesn&amp;#8217;t mean we should take it&amp;nbsp;away.&lt;/p&gt;</content></entry><entry><title>EU Copyright Reform: a letter to my MEP, Siôn Simon, about Article 13</title><link href="//www.kryogenix.org/days/2018/07/03/article-13-mep/" rel="alternate"></link><published>2018-07-03T09:58:00+01:00</published><updated>2018-07-03T09:58:00+01:00</updated><author><name>sil</name></author><id>tag:www.kryogenix.org,2018-07-03:/days/2018/07/03/article-13-mep/</id><summary type="html">&lt;p&gt;Dear&amp;nbsp;Siôn,&lt;/p&gt;
 &lt;p&gt;Thank you for your &lt;a href="https://twitter.com/sionsimon/status/1014060437585920000"&gt;comments on Twitter&lt;/a&gt; welcoming my feedback on the &lt;a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52016PC0593"&gt;&lt;span class="caps"&gt;EU&lt;/span&gt;&amp;#8217;s proposed copyright reform&lt;/a&gt;. I&amp;#8217;d like to discuss in particular Article 13, &amp;#8220;Use of protected content by information society service providers storing and giving access to large amounts of works and other subject-matter uploaded …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Dear&amp;nbsp;Siôn,&lt;/p&gt;
 &lt;p&gt;Thank you for your &lt;a href="https://twitter.com/sionsimon/status/1014060437585920000"&gt;comments on Twitter&lt;/a&gt; welcoming my feedback on the &lt;a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52016PC0593"&gt;&lt;span class="caps"&gt;EU&lt;/span&gt;&amp;#8217;s proposed copyright reform&lt;/a&gt;. I&amp;#8217;d like to discuss in particular Article 13, &amp;#8220;Use of protected content by information society service providers storing and giving access to large amounts of works and other subject-matter uploaded by their&amp;nbsp;users&amp;#8221;.&lt;/p&gt;
 &lt;p&gt;Firstly I should say that I am in general in favour of the &lt;span class="caps"&gt;EU&lt;/span&gt;&amp;#8217;s overall approach to data collection and privacy, and of the goal of copyright reform. I am also in favour of the goals of Article 13: improving the rights of creators over giant American tech companies (and there was a great &lt;a href="https://www.theguardian.com/technology/2018/jul/02/how-the-eu-can-make-the-internet-play-fair-with-musicians"&gt;recent letter in the Guardian&lt;/a&gt; on this point). My concerns with Article 13 are not with what it&amp;#8217;s &lt;em&gt;trying&lt;/em&gt; to do, but in the implementation: it is loosely worded to the point where it will cause serious problems, it materially underweights the costs and hassle of compliance, and it pushes for unreliable technology without requiring any&amp;nbsp;oversight. &lt;/p&gt;
@@ -647,284 +676,4 @@ Everybody looked at Alice.&lt;br&gt;
 &lt;p&gt;OwnTracks then posts my location to a tiny &lt;span class="caps"&gt;PHP&lt;/span&gt; file which just dumps it in a big &lt;span class="caps"&gt;JSON&lt;/span&gt; list. The &lt;a href="https://kryogenix.org/brumtechxmas17/"&gt;#brumtechxmas 2017 map&lt;/a&gt; then reads that &lt;span class="caps"&gt;JSON&lt;/span&gt; file and plots the walk on the map (or it will do once we’re doing it; as I write this, the event isn’t until tomorrow, Friday 29th December, but I have tested it out).&lt;/p&gt;
 &lt;p&gt;The map is an &lt;span class="caps"&gt;SVG&lt;/span&gt;, embedded in the page. This has the nice property that I can change it with &lt;span class="caps"&gt;CSS&lt;/span&gt;. In particular, the page looks at the list of locations we’ve been in and works out whether any of them were close enough to a pub on the map that we probably went in there… and then uses &lt;span class="caps"&gt;CSS&lt;/span&gt; to colour the pub we’re &lt;em&gt;in&lt;/em&gt; green, and ones we’ve been in grey. So it’s dynamic! Nice and easy to find us wherever we are. If it works, which is a bit handwavy at this point.&lt;/p&gt;
 &lt;p&gt;If you’re coming, see you tomorrow. If you’re not coming: you should come. :-)&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/brumtechxmas2017.png" alt="A static version of the map: you'll want the website for the real dynamic clever one" title="A static version of the map: you'll want the website for the real dynamic clever one"&gt;&lt;/p&gt;&lt;ol class="simple-footnotes"&gt;&lt;li id="sf-owntracks-and-a-map-1"&gt;well, except me. And hero of the revolution Andy Yates. &lt;a href="#sf-owntracks-and-a-map-1-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-owntracks-and-a-map-2"&gt;and you do too &lt;a href="#sf-owntracks-and-a-map-2-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-owntracks-and-a-map-3"&gt;the &lt;a href="http://owntracks.org/booklet/features/location/#ios"&gt;OwnTracks docs&lt;/a&gt; explain this in more detail &lt;a href="#sf-owntracks-and-a-map-3-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</content></entry><entry><title>I wrote a Web Component</title><link href="//www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/" rel="alternate"></link><published>2017-11-12T11:31:00+00:00</published><updated>2017-11-12T11:31:00+00:00</updated><author><name>sil</name></author><id>tag:www.kryogenix.org,2017-11-12:/days/2017/11/12/i-wrote-a-web-component/</id><summary type="html">&lt;p&gt;I’ve been meaning to play with Web Components for a little while now. After I saw &lt;a href="https://twitter.com/BenNadel/status/929383549584789504"&gt;Ben Nadel create a Twitter tweet progress indicator with Angular&lt;/a&gt; and &lt;a href="https://github.com/LucasLeandro1204/vue-twitter-counter"&gt;Lucas Leandro did the same with Vue.js&lt;/a&gt; I thought, here’s a chance to experiment.&lt;/p&gt;
-&lt;p&gt;Web Components involve a whole bunch …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I’ve been meaning to play with Web Components for a little while now. After I saw &lt;a href="https://twitter.com/BenNadel/status/929383549584789504"&gt;Ben Nadel create a Twitter tweet progress indicator with Angular&lt;/a&gt; and &lt;a href="https://github.com/LucasLeandro1204/vue-twitter-counter"&gt;Lucas Leandro did the same with Vue.js&lt;/a&gt; I thought, here’s a chance to experiment.&lt;/p&gt;
-&lt;p&gt;Web Components involve a whole bunch of different dovetailing specs; &lt;span class="caps"&gt;HTML&lt;/span&gt; imports, custom elements, shadow &lt;span class="caps"&gt;DOM&lt;/span&gt;, &lt;span class="caps"&gt;HTML&lt;/span&gt; templates. I didn’t want to have to use the &lt;span class="caps"&gt;HTML&lt;/span&gt; template and import stuff if I could avoid it, and pleasantly you actually don’t need it. Essentially, you can create a custom element named &lt;code&gt;whatever-you-want&lt;/code&gt; and then just add &lt;code&gt;&amp;lt;whatever-you-want someattr="somevalue"&amp;gt;content here&amp;lt;/whatever-you-want&amp;gt;&lt;/code&gt; elements to your page, and it all works. This is good.&lt;/p&gt;
-&lt;p&gt;To define a new type of element, you use &lt;code&gt;window.customElements.define('your-element-name', YourClass)&lt;/code&gt;.&lt;sup id="sf-i-wrote-a-web-component-1-back"&gt;&lt;a href="#sf-i-wrote-a-web-component-1" class="simple-footnote" title="I relied for a lot of this understanding on Google’s web components documentation by Eric Bidelman."&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;code&gt;YourClass&lt;/code&gt; is an &lt;span class="caps"&gt;ES2016&lt;/span&gt; JavaScript class. &lt;sup id="sf-i-wrote-a-web-component-2-back"&gt;&lt;a href="#sf-i-wrote-a-web-component-2" class="simple-footnote" title="All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later."&gt;2&lt;/a&gt;&lt;/sup&gt; So, we start like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-window.customElements.define('twitter-circle-count', class extends HTMLElement {
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The class has a &lt;code&gt;constructor&lt;/code&gt; method which sets everything up. In our case, we’re going to create an &lt;span class="caps"&gt;SVG&lt;/span&gt; with two circles: the “indicator” (which is the one that changes colour and fills in as you add characters), and the “track” (which is the one that’s always present and shows where the line of the circle goes). Then we shrink and grow the “indicator” circle by using &lt;a href="https://jakearchibald.com/2013/animated-line-drawing-svg/"&gt;Jake Archibald’s dash-offset technique&lt;/a&gt;. This is all perfectly expressed by Ben Nadel’s diagram, which I hope he doesn’t mind me borrowing because it’s great.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://kryogenix.org/images/twitter-progress-indicator-concept-angular5.png" alt=""&gt;&lt;/p&gt;
-&lt;p&gt;So, we need to dynamically create an &lt;span class="caps"&gt;SVG&lt;/span&gt;. The &lt;span class="caps"&gt;SVG&lt;/span&gt; we want will look basically like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&amp;lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"&amp;gt;
-  &amp;lt;circle cx="50" cy="50" r="45" 
-  style="stroke: #9E9E9E"&amp;gt;&amp;lt;/circle&amp;gt;
-  &amp;lt;circle cx="50" cy="50" r="45" 
-  style="stroke: #333333)"&amp;gt;&amp;lt;/circle&amp;gt;
-&amp;lt;/svg&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let’s set that &lt;span class="caps"&gt;SVG&lt;/span&gt; up in our element’s constructor:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {&lt;/span&gt;
-  constructor() {
-    /* You must call super() first in the constructor. */
-    super();
-
-    /* Create the SVG. Note that we need createElementNS, not createElement */
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 100 100");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-
-    /* Create the track. Note createElementNS. Note also that "this" refers to
-       this element, so we've got a reference to it for later. */
-    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    this.track.setAttribute("cx", "50");
-    this.track.setAttribute("cy", "50");
-    this.track.setAttribute("r", "45");
-    /* And create the indicator, by duplicating the track */
-    this.indicator = this.track.cloneNode(true);
-
-    svg.appendChild(this.track);
-    svg.appendChild(this.indicator);
-  }
-&lt;span&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we need to actually add that created &lt;span class="caps"&gt;SVG&lt;/span&gt; to the document. For that, we create a &lt;em&gt;shadow root&lt;/em&gt;. This is basically a little separate &lt;span class="caps"&gt;HTML&lt;/span&gt; document, inside your element, which is isolated from the rest of the page. Styles set in the main page won’t apply to stuff in your component; styles set in your component won’t leak out to the rest of the page.&lt;sup id="sf-i-wrote-a-web-component-3-back"&gt;&lt;a href="#sf-i-wrote-a-web-component-3" class="simple-footnote" title="Pedant posse: yes, it’s a bit more complicated than this. One step at a time."&gt;3&lt;/a&gt;&lt;/sup&gt; This is easy with &lt;code&gt;attachShadow&lt;/code&gt;, which returns you this shadow root, which you can then treat like a normal node:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {
-  constructor() {
-    super();
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 100 100");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    this.track.setAttribute("cx", "50");
-    this.track.setAttribute("cy", "50");
-    this.track.setAttribute("r", "45");
-    this.indicator = this.track.cloneNode(true);
-
-    svg.appendChild(this.track);
-    svg.appendChild(this.indicator);&lt;/span&gt;
-    let shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(svg);
-  &lt;span&gt;}
-});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now, we want to allow people to set the colours of our circles. The way to do this is with &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*"&gt;&lt;span class="caps"&gt;CSS&lt;/span&gt; custom properties&lt;/a&gt;. Basically, you can invent any new property name you like, as long as it’s prefixed with &lt;code&gt;--&lt;/code&gt;. So we invent two: &lt;code&gt;--track-color&lt;/code&gt; and &lt;code&gt;--circle-color&lt;/code&gt;. We then set the two circles to be those colours by using &lt;span class="caps"&gt;CSS&lt;/span&gt;’s &lt;code&gt;var()&lt;/code&gt; syntax; this lets us say “use this variable if it’s set, or use this default value if it isn’t”. So our user can style our element with &lt;code&gt;twitter-circle-count { --track-color: #eee; }&lt;/code&gt; and it’ll work.&lt;/p&gt;
-&lt;p&gt;Annoyingly, it doesn’t seem to be easily possible to use &lt;em&gt;existing&lt;/em&gt; &lt;span class="caps"&gt;CSS&lt;/span&gt; properties for this; there doesn’t seem to be a good way to have the standard property &lt;code&gt;color&lt;/code&gt; set the circle colour.&lt;sup id="sf-i-wrote-a-web-component-4-back"&gt;&lt;a href="#sf-i-wrote-a-web-component-4" class="simple-footnote" title="It would be possible to have color apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare."&gt;4&lt;/a&gt;&lt;/sup&gt; One has to use a custom variable even if there’s a “real” &lt;span class="caps"&gt;CSS&lt;/span&gt; property that would be appropriate. I’m hoping I’m wrong about this and there is a sensible way to do it that I just haven’t discovered.&lt;sup id="sf-i-wrote-a-web-component-5-back"&gt;&lt;a href="#sf-i-wrote-a-web-component-5" class="simple-footnote" title="QML does this by setting “aliases”; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow."&gt;5&lt;/a&gt;&lt;/sup&gt;
-(Update: Matt Machell &lt;a href="https://twitter.com/shuckle/status/929710831620820993"&gt;mentions &lt;code&gt;currentColor&lt;/code&gt;&lt;/a&gt; which would work perfectly for this example, but it &lt;em&gt;only&lt;/em&gt; works for &lt;code&gt;color&lt;/code&gt;; there’s no way of setting other properties like, say, &lt;code&gt;font-size&lt;/code&gt; on the component and having that explicitly propagate down to a particular element &lt;em&gt;in&lt;/em&gt; the component; there’s no &lt;code&gt;currentFontSize&lt;/code&gt;. I don’t know why &lt;code&gt;color&lt;/code&gt; gets special treatment, even though the special treatment would solve my particular problem.)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {
-  constructor() {
-    super();
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 100 100");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    this.track.setAttribute("cx", "50");
-    this.track.setAttribute("cy", "50");
-    this.track.setAttribute("r", "45");
-    this.indicator = this.track.cloneNode(true);&lt;/span&gt;
-    this.track.style.stroke = "var(--track-color, #9E9E9E)";
-    this.indicator.style.stroke = "var(--circle-color, #333333)";
-    &lt;span&gt;svg.appendChild(this.track);
-    svg.appendChild(this.indicator);
-    let shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(svg);
-  }
-});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We want our little element to be &lt;code&gt;inline-block&lt;/code&gt;. To set properties on the element itself, from inside the element, there is a special &lt;span class="caps"&gt;CSS&lt;/span&gt; selector, &lt;code&gt;:host&lt;/code&gt;.&lt;sup id="sf-i-wrote-a-web-component-6-back"&gt;&lt;a href="#sf-i-wrote-a-web-component-6" class="simple-footnote" title="Firefox doesn’t seem to support this yet, either :host or scoping styles so they don’t leak out of the component, so I’ve also set display:inline-block and position:relative on the twitter-circle-count selector in my normal CSS. This should be fixed soon."&gt;6&lt;/a&gt;&lt;/sup&gt; Add a &lt;code&gt;&amp;lt;style&amp;gt;&lt;/code&gt; element inside the component and it only applies to the component (this is special “scoped style” magic), and setting &lt;code&gt;:host&lt;/code&gt; styles the root of your element:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {
-  constructor() {
-    super();
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 100 100");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    this.track.setAttribute("cx", "50");
-    this.track.setAttribute("cy", "50");
-    this.track.setAttribute("r", "45");
-    this.indicator = this.track.cloneNode(true);
-    this.track.style.stroke = "var(--track-color, #9E9E9E)";
-    this.indicator.style.stroke = "var(--circle-color, #333333)";
-    svg.appendChild(this.track);
-    svg.appendChild(this.indicator);
-    let shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(svg);&lt;/span&gt;
-    var style = document.createElement("style");
-    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
-    shadowRoot.appendChild(style);
-  &lt;span&gt;}
-});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Next, we need to be able to set the properties which define the value of the counter — how much progress it should show. Having &lt;code&gt;value&lt;/code&gt; and &lt;code&gt;max&lt;/code&gt; properties similar to an &lt;code&gt;&amp;lt;input type="range"&amp;gt;&lt;/code&gt; seems logical here. For this, we define a little function &lt;code&gt;setDashOffset&lt;/code&gt; which sets the &lt;code&gt;stroke-dashoffset&lt;/code&gt; style on our indicator. We then call that function in two places. One is in &lt;code&gt;connectedCallback&lt;/code&gt;, a method which is called when our custom element is first inserted into the document. The second is whenever our &lt;code&gt;value&lt;/code&gt; or &lt;code&gt;max&lt;/code&gt; attributes change. That gets set up by defining &lt;code&gt;observedAttributes&lt;/code&gt;, which returns a list of attributes that we want to watch; whenever one of those attributes changes, &lt;code&gt;attributeChangedCallback&lt;/code&gt; is called.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {&lt;/span&gt;
-  static get observedAttributes() {
-    return ['value', 'max'];
-  }
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.setDashOffset();
-  }
-  setDashOffset() {
-    var mx = parseInt(this.getAttribute("max"), 10);
-    if (isNaN(mx)) mx = 100;
-    var value = parseInt(this.getAttribute("value"), 10);
-    if (isNaN(value)) value = 0;
-    this.indicator.style.strokeDashoffset = this.circumference - 
-        (value * this.circumference / mx);
-  }
-  &lt;span&gt;constructor() {
-    super();
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 100 100");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    this.track.setAttribute("cx", "50");
-    this.track.setAttribute("cy", "50");
-    this.track.setAttribute("r", "45");
-    this.indicator = this.track.cloneNode(true);
-
-    this.track.style.stroke = "var(--track-color, #9E9E9E)";
-    this.indicator.style.stroke = "var(--circle-color, #333333)";&lt;/span&gt;
-    /* We know what the circumference of our circle is. It doesn't matter
-       how big the element is, because the SVG is always 100x100 in its own
-       "internal coordinates": that's what the viewBox means. So the circle
-       always has a 45px radius, and so its circumference is always the same,
-       2πr. Store this for later. */
-    this.circumference = 3.14 * (45 * 2);
-
-    &lt;span&gt;svg.appendChild(this.track);
-    svg.appendChild(this.indicator);
-    let shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(svg);
-    var style = document.createElement("style");
-    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
-    shadowRoot.appendChild(style);
-  }&lt;/span&gt;
-  connectedCallback() {
-    this.setDashOffset();
-  }
-&lt;span&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This works if the user of the component does &lt;code&gt;counter.setAttribute("value", "50")&lt;/code&gt;, but it doesn’t make &lt;code&gt;counter.value = 50&lt;/code&gt; work, and it’s nice to provide these direct JavaScript APIs as well. For that we need to define a getter and a setter for each.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;span&gt;window.customElements.define('twitter-circle-count', class extends HTMLElement {
-  static get observedAttributes() {
-    return ['value', 'max'];
-  }
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.setDashOffset();
-  }
-  setDashOffset() {
-    var mx = parseInt(this.getAttribute("max"), 10);
-    if (isNaN(mx)) mx = this.defaultMax;
-    var value = parseInt(this.getAttribute("value"), 10);
-    if (isNaN(value)) value = this.defaultValue;
-    this.indicator.style.strokeDashoffset = this.circumference - (
-        value * this.circumference / mx);
-  }&lt;/span&gt;
-  get value() {
-    var value = this.getAttribute('value');
-    if (isNaN(value)) return this.defaultValue;
-    return value;
-  }
-  set value(value) { this.setAttribute("value", value); }
-  get max() {
-    var mx = this.getAttribute('max');
-    if (isNaN(mx)) return this.defaultMax;
-    return max;
-  }
-  set value(value) { this.setAttribute("value", value); }
-  &lt;span&gt;constructor() {
-    super();
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 100 100");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    this.track.setAttribute("cx", "50");
-    this.track.setAttribute("cy", "50");
-    this.track.setAttribute("r", "45");
-    this.indicator = this.track.cloneNode(true);
-    this.track.style.stroke = "var(--track-color, #9E9E9E)";
-    this.indicator.style.stroke = "var(--circle-color, #333333)";
-    this.circumference = 3.14 * (45 * 2);
-    svg.appendChild(this.track);
-    svg.appendChild(this.indicator);
-    let shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(svg);
-    var style = document.createElement("style");
-    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
-    shadowRoot.appendChild(style);&lt;/span&gt;
-    this.defaultValue = 50;
-    this.defaultMax = 100;
-  &lt;span&gt;}
-  connectedCallback() {
-    this.setDashOffset();
-  }
-});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And that’s all we need. We can now create our &lt;code&gt;twitter-circle-count&lt;/code&gt; element and hook it up to a &lt;code&gt;textarea&lt;/code&gt; like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;twitter-circle-count&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"0"&lt;/span&gt; &lt;span class="na"&gt;max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"280"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;twitter-circle-count&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Type in here&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;textarea&lt;/span&gt; &lt;span class="na"&gt;rows&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;3&lt;/span&gt; &lt;span class="na"&gt;cols&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;40&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;textarea&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;twitter-circle-count&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="err"&gt;--&lt;/span&gt;&lt;span class="n"&gt;track-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;#ddd&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="err"&gt;--&lt;/span&gt;&lt;span class="n"&gt;circle-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;#333&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="err"&gt;--&lt;/span&gt;&lt;span class="n"&gt;text-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;#888&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// we use input, not keyup, because that fires when text is cut or pasted&lt;/span&gt;
-&lt;span class="c1"&gt;// thank you Dave MN for that insight&lt;/span&gt;
-&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"textarea"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"input"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"twitter-circle-count"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;setAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"value"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a &lt;a href="https://www.webcomponents.org/polyfills"&gt;polyfill&lt;/a&gt; to add support in browsers that don’t have it.&lt;sup id="sf-i-wrote-a-web-component-7-back"&gt;&lt;a href="#sf-i-wrote-a-web-component-7" class="simple-footnote" title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering."&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"&gt;&lt;/script&gt;
-
-&lt;p&gt;Here’s the counter: &lt;twitter-circle-count value="0" max="280"&gt;&lt;/twitter-circle-count&gt;&lt;/p&gt;
-
-&lt;p&gt;Type some text in here:&lt;/p&gt;
-
-&lt;p&gt;&lt;textarea rows="3" cols="20"&gt;&lt;/textarea&gt;
-&lt;style&gt;
-twitter-circle-count {
-  width: 30px;
-  height: 30px;
-  --track-color: #ddd;
-  --circle-color: #333;
-  --text-color: #888;
-  text-indent: 0;
-  display: inline-block;
-  position: relative;
-}
-&lt;/style&gt;
-&lt;script src="https://kryogenix.org/code/browser/twitter-circle-count.js"&gt;
-&lt;/script&gt;
-&lt;style&gt;
-pre code { font-size: 12px; }
-pre code span { opacity: 0.25; }
-&lt;/style&gt;&lt;/p&gt;&lt;ol class="simple-footnotes"&gt;&lt;li id="sf-i-wrote-a-web-component-1"&gt;I relied for a lot of this understanding on &lt;a href="https://developers.google.com/web/fundamentals/web-components/customelements"&gt;Google’s web components documentation&lt;/a&gt; by &lt;a href="https://twitter.com/ebidel"&gt;Eric Bidelman&lt;/a&gt;. &lt;a href="#sf-i-wrote-a-web-component-1-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-2"&gt;All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. &lt;a href="#sf-i-wrote-a-web-component-2-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-3"&gt;Pedant posse: yes, it’s a bit more complicated than this. One step at a time. &lt;a href="#sf-i-wrote-a-web-component-3-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-4"&gt;It would be possible to have &lt;code&gt;color&lt;/code&gt; apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. &lt;a href="#sf-i-wrote-a-web-component-4-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-5"&gt;&lt;span class="caps"&gt;QML&lt;/span&gt; does this by setting “aliases”; in a component, you can say &lt;code&gt;property alias foo: subelement.bar&lt;/code&gt; and setting &lt;code&gt;foo&lt;/code&gt; on an instance of my component propagates through and sets &lt;code&gt;bar&lt;/code&gt; on the &lt;code&gt;subelement&lt;/code&gt;. This is a really good idea, and I wish Web Components did it somehow. &lt;a href="#sf-i-wrote-a-web-component-5-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-6"&gt;Firefox doesn’t seem to support this yet, either &lt;code&gt;:host&lt;/code&gt; or scoping styles so they don’t leak out of the component, so I’ve also set &lt;code&gt;display:inline-block&lt;/code&gt; and &lt;code&gt;position:relative&lt;/code&gt; on the &lt;code&gt;twitter-circle-count&lt;/code&gt; selector in my normal &lt;span class="caps"&gt;CSS&lt;/span&gt;. This should be fixed soon. &lt;a href="#sf-i-wrote-a-web-component-6-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-i-wrote-a-web-component-7"&gt;Mikeal Rogers has a really nice technique here for &lt;a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210"&gt;bundling your web component with a polyfill&lt;/a&gt; which is also worth considering. &lt;a href="#sf-i-wrote-a-web-component-7-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</content></entry></feed>
+&lt;p&gt;&lt;img src="/images/brumtechxmas2017.png" alt="A static version of the map: you'll want the website for the real dynamic clever one" title="A static version of the map: you'll want the website for the real dynamic clever one"&gt;&lt;/p&gt;&lt;ol class="simple-footnotes"&gt;&lt;li id="sf-owntracks-and-a-map-1"&gt;well, except me. And hero of the revolution Andy Yates. &lt;a href="#sf-owntracks-and-a-map-1-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-owntracks-and-a-map-2"&gt;and you do too &lt;a href="#sf-owntracks-and-a-map-2-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-owntracks-and-a-map-3"&gt;the &lt;a href="http://owntracks.org/booklet/features/location/#ios"&gt;OwnTracks docs&lt;/a&gt; explain this in more detail &lt;a href="#sf-owntracks-and-a-map-3-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</content></entry></feed>
