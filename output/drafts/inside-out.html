@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Inside out</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(//www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="//www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="//www.kryogenix.org/days/drafts/inside-out.html"><time 
+			class="dt-published" datetime="2018-07-23T18:26:00+01:00">Jul 23 2018</time></a>
+			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="//www.kryogenix.org/days/drafts/inside-out.html" title="Permalink to Inside out" rel="bookmark">Inside&nbsp;out</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Recently the question of whether browsers should have a View Source function has reared its head again. <a href="https://css-tricks.com/view-source/">Chris Coyier</a> says no, as do <a href="https://twitter.com/tomdale/status/965681976199077889">Tom Dale</a> and <a href="https://christianheilmann.com/2018/07/09/different-views-on-view-source/">Christian Heilmann</a>. <a href="https://snook.ca/archives/opinion/view-source">Jonathan Snook</a> says yes they&nbsp;should.</p>
+<p>The argument against essentially boils down to this: the browser devtools are better. This is undeniably the truth in most cases. You can not just see the original <span class="caps">HTML</span> source of a page but manipulate it, drill down into it, see it beside the page itself and see which parts correspond. Everyone who develops for the web spends most of their day in the devtools, and rightly so. They are enormously powerful. View Source&#8230; isn&#8217;t. It&#8217;s a throwback, a historical legacy back to the days when you couldn&#8217;t introspect a page, couldn&#8217;t fiddle with things at runtime. If something was wrong with the page you were building, you went back to your editor and tentatively changed a thing, and then went back again to the browser and hit Refresh to see if you&#8217;d fixed it. Debugging blind, like finding your way through a cave with no lights on. You were quite likely to be eaten by a&nbsp;grue.</p>
+<p>There are minor reasons why View Source is a good idea. One of them is that it&#8217;s an easy way to see the source you were actually <em>given</em>, <em>before</em> the in-page JavaScript started screwing around with it. I don&#8217;t use this a lot, but I do use it. It&#8217;s one of those small but handy features; a <a href="http://littlebigdetails.com/">little big detail</a>.</p>
+<p>A third is: there are twenty years of simple documentation saying &#8220;you can see what this web page does just by hitting View&nbsp;Source&#8221;.</p>
+<p>Yet another is that the devtools are pretty confusing if all you want to do is look at the source of a page. This is (I think) similar to Jon Snook&#8217;s arguments, linked above: &#8220;The sites some build may be simple static sites, befitting of a simple View Source &#8230; Just because you don’t need those tools doesn’t mean that somebody doesn’t need those&nbsp;tools.&#8221;</p>
+<p>The major reason to keep View Source around is&#8230; well, time for a little&nbsp;story.</p>
+<p>Google have a search app, on Android phones. The Google search bar at the top of the Android home screen (the one you can&#8217;t get rid of evn if you want to, without extreme measures) shows query results in a thing which is almost but not quite a web browser. The results <em>look</em> like the normal Google search results you&#8217;re used to from searching in the browser, but it&#8217;s <em>actually</em> a separate app. And that&#8217;s fine; you can see the results, and tap them, and a result opens in a browser, and everything&#8217;s good. I found this pretty useful, until the first time I did an image search and then long-pressed one of the images to open it on its own. And&#8230; I didn&#8217;t get the popup menu. Because this thing isn&#8217;t <em>really</em> a browser. It&#8217;s a browser but with all the bits that let you look under the surface turned off, because you don&#8217;t need&nbsp;them.</p>
+<p>I do not like that attitude. I like that the web is made up of separate bits that you can see if you want to. You can understand how it works by piecing together the parts. It&#8217;s not meant to be a sealed unit, an appliance which does what the owner wants it to and restricts everything else. That&#8217;s what apps do. The web&#8217;s better than that. Like stories our parents told about how they could fix their cars when they were younger but now you can&#8217;t without training and magic screwdrivers and a&nbsp;laptop.</p>
+<p>In Neal Stephenson&#8217;s <a href="https://en.wikipedia.org/wiki/Anathem">Anathem</a>, there&#8217;s a discussion between Raz, an <em>avout</em> (basically a monk cloistered away in a monastery, but a monk of science rather than religion), Cord (his sister, an experienced engineer but a normal person, not an avout), and Yul (her boyfriend, and something of a handyman but without formal training). Raz tries to explain that a stove which is a sealed unit appliance and which works perfectly would be better than an unreliable stove deliberately kept simple so people can understand it; Cord and Yul try to explain that a stove which they can understand is better, even if unreliable, because a mysterious black box which does what you want might mysteriously <em>stop</em> doing what you want tomorrow and you&#8217;ll have no idea&nbsp;why.</p>
+<blockquote>
+<p><span class="quo">&#8216;</span>I guess because I live in a place with almost zero praxis _[technology]_, it never occurs to me to think about such things,&#8217; I _[Raz]_ said. &#8216;But at times like this, the absurdity hits me between the eyes. There&#8217;s no reason to put up with junk like this. A stove with dangerous, unreliable chemical fuel. With orifices that clog. In four thousand years we could have made a better&nbsp;stove.&#8217;</p>
+<p><span class="quo">&#8216;</span>Would I be able to take that stove apart and fix&nbsp;it?&#8217;</p>
+<p><span class="quo">&#8216;</span>You wouldn&#8217;t have to, because it would never&nbsp;break.&#8217;</p>
+<p><span class="quo">&#8216;</span>But I want to know if I could understand such a&nbsp;stove.&#8217;</p>
+<p><span class="quo">&#8216;</span>All right, I take your point. You&#8217;re really asking if the average person could understand the workings of such a&nbsp;thing&#8212;&#8230;&#8217;</p>
+<p><span class="quo">&#8216;</span>I don&#8217;t know what an average person is. But look at Yul here. He built his stove himself. Didn&#8217;t you, Yul? And it worked,&#8217; Cord&nbsp;said.</p>
+<p><span class="quo">&#8216;</span>Took me two years to make it run right,&#8217; Yul&nbsp;admitted.</p>
+<p><span class="quo">&#8216;</span>And none of that would have been possible with some kind of technology that only an avout can understand,&#8217; Cord&nbsp;concluded.</p>
+<p><span class="quo">&#8216;</span>Okay, okay,&#8217; I said, and let it drop there. Letting the argument play out would have been a waste of breath. We, the theors, who had retreated (or, depending on how you liked your history, been herded) into the maths at the Reconstitution, had the power to change the physical world through praxis. Up to a point, ordinary people liked the changes we made. But the more clever the praxis became, the less people understood it and the more dependent they became on us&#8212;-and they didn&#8217;t like that at&nbsp;all.</p>
+</blockquote>
+
+<p>Nobody actually wins this argument. These are two genuinely differing points of view, I think; there&#8217;s no obvious knockdown answer, no obviously correct approach to take. To be an avout or to be a Muggle is kinda a&nbsp;choice.</p>
+<p>There will be some people reading this saying: this is a very handwavy rarefied argument. Removing &#8216;View Source&#8217; is another small move in the direction of taking away the web&#8217;s democratic nature? It&#8217;s one more example of the boot of the Them in crushing out our ability to know what&#8217;s going on? Get over yourself, Langridge. Stop making philosophical arguments and let&#8217;s be practical and&nbsp;realistic.</p>
+<p>This is a fair comment. My response to it would, then, be: what harm is keeping the menu item around actually doing? It&#8217;s one menu item. It&#8217;s taking up very little space in the <span class="caps">UI</span>, it&#8217;s not anywhere particularly obvious, and even if you don&#8217;t think my arguments above or Jon Snook&#8217;s arguments are winning ones, we might be a little bit right, and so why not just keep the menu item? It&#8217;s no extra work to code it; the code already&nbsp;exists.</p>
+<p>Ah, you may say, but we shouldn&#8217;t have menu items that we don&#8217;t need. If it can be cut out, cut it out. Don&#8217;t have more options, more preferences than you need. And this is also correct; it&#8217;s a good principle of <span class="caps">UX</span> design. I&#8217;ve been quoting <a href="https://ometer.com/preferences.html">Havoc Pennington&#8217;s essay on preferences</a> for 16 years now and I&#8217;m not likely to stop. It is completely true that extra options and extra preferences have a&nbsp;cost.</p>
+<p>It&#8217;s not that that&#8217;s a bad argument, because it isn&#8217;t. It&#8217;s that that argument is <em>just as theoretical and rarefied and philosophical</em> as is my argument that taking away another tool of understanding is a bad&nbsp;precedent.</p>
+<p>So, is it best to be an avout or a Muggle? Either are, I think, fine. But I don&#8217;t like it when the avout try to take away Muggle tools, and I don&#8217;t like it when the Muggles try to limit how creative the avout can be. If someone, not a web developer, complained that the devtools were incredibly complicated, I&#8217;d mostly be <span class="caps">OK</span> with the argument that those tools aren&#8217;t for that person to look at, and the complexity is aimed at the actual users of the devtools. It seems right to do them the same courtesy. So perhaps View Source is a Muggle tool and we avout shouldn&#8217;t use it, but that doesn&#8217;t mean we should take it&nbsp;away.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/drafts/inside-out.html">
+	<input type="submit" value="Add link">
+</form>
+<script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = 'drafts/inside-out.html';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
