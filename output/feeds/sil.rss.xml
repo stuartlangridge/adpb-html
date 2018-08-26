@@ -1,9 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"><channel><title>as days pass by - sil</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><lastBuildDate>Thu, 09 Aug 2018 00:19:00 +0100</lastBuildDate><item><title>If you can do it with CSS do it with CSS</title><link>//www.kryogenix.org/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/</link><description>&lt;p&gt;I read Twitter with Tweetdeck. And I use the excellent &lt;a href="https://better.tw/"&gt;Better Tweetdeck&lt;/a&gt; to improve my Tweetdeck experience. And I had an&amp;nbsp;idea.&lt;/p&gt;
-&lt;p&gt;You see, emoji, much as they&amp;#8217;re the way we communicate now, they&amp;#8217;re actually quite hard to read. And Slack does this rather neat thing where if …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Thu, 09 Aug 2018 00:19:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-08-09:/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/</guid></item><item><title>Inside out</title><link>//www.kryogenix.org/days/2018/07/23/inside-out/</link><description>&lt;p&gt;Recently the question of whether browsers should have a View Source function has reared its head again. &lt;a href="https://css-tricks.com/view-source/"&gt;Chris Coyier&lt;/a&gt; says no, as do &lt;a href="https://twitter.com/tomdale/status/965681976199077889"&gt;Tom Dale&lt;/a&gt; and &lt;a href="https://christianheilmann.com/2018/07/09/different-views-on-view-source/"&gt;Christian Heilmann&lt;/a&gt;. &lt;a href="https://snook.ca/archives/opinion/view-source"&gt;Jonathan Snook&lt;/a&gt; says yes they&amp;nbsp;should.&lt;/p&gt;
-&lt;p&gt;The argument against essentially boils down to this: the browser devtools are better. This is undeniably …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 23 Jul 2018 18:26:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-07-23:/days/2018/07/23/inside-out/</guid></item><item><title>EU Copyright Reform: a letter to my MEP, Siôn Simon, about Article 13</title><link>//www.kryogenix.org/days/2018/07/03/article-13-mep/</link><description>&lt;p&gt;Dear&amp;nbsp;Siôn,&lt;/p&gt;
-&lt;p&gt;Thank you for your &lt;a href="https://twitter.com/sionsimon/status/1014060437585920000"&gt;comments on Twitter&lt;/a&gt; welcoming my feedback on the &lt;a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52016PC0593"&gt;&lt;span class="caps"&gt;EU&lt;/span&gt;&amp;#8217;s proposed copyright reform&lt;/a&gt;. I&amp;#8217;d like to discuss in particular Article 13, &amp;#8220;Use of protected content by information society service providers storing and giving access to large amounts of works and other subject-matter uploaded …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 03 Jul 2018 09:58:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-07-03:/days/2018/07/03/article-13-mep/</guid></item><item><title>Little community conferences</title><link>//www.kryogenix.org/days/2018/06/12/little-community-conferences/</link><description>&lt;p&gt;This last weekend I was at &lt;a href="https://kryogenix.org/days/2018/06/11/foss-talk-live-2018"&gt;&lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live 2018&lt;/a&gt;. It was fun. And it led me into various thoughts of how I&amp;#8217;d like there to be more of this sort of fun in and around the tech community, and how my feelings on success have changed a bit …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 12 Jun 2018 10:07:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-06-12:/days/2018/06/12/little-community-conferences/</guid></item><item><title>FOSS Talk Live 2018</title><link>//www.kryogenix.org/days/2018/06/11/foss-talk-live-2018/</link><description>&lt;p&gt;&lt;img src="https://kryogenix.org/images/fosstalk2018/poster.jpg" alt="The poster for FOSS Talk Live 2018, in situ in the window of the Harrison"&gt;&lt;/p&gt;
-&lt;p&gt;Saturday 9th June 2018 marked &lt;a href="https://fosstalk.com/foss-talk-live-2018"&gt;&lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live 2018&lt;/a&gt;, an evening of Linux &lt;span class="caps"&gt;UK&lt;/span&gt; podcasts on stage at &lt;a href="http://harrisonbar.co.uk/"&gt;The Harrison&lt;/a&gt; pub near Kings Cross, London. It&amp;#8217;s in its third year now, and each year has improved on the last. This year there were four live shows: &lt;a href="https://latenightlinux.com/"&gt;Late Night Linux …&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 11 Jun 2018 17:50:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-06-11:/days/2018/06/11/foss-talk-live-2018/</guid></item><item><title>Squares and prettier graphs</title><link>//www.kryogenix.org/days/2018/03/25/squares-and-prettier-graphs/</link><description>&lt;p&gt;The &lt;a href="https://www.futilitycloset.com/"&gt;Futility Closet&lt;/a&gt; people recently posted &amp;#8220;&lt;a href="https://www.futilitycloset.com/2018/03/24/a-square-circle/"&gt;A Square Circle&lt;/a&gt;&amp;#8220;, in which they&amp;nbsp;showed:&lt;/p&gt;
+&lt;p&gt;You see, emoji, much as they&amp;#8217;re the way we communicate now, they&amp;#8217;re actually quite hard to read. And Slack does this rather neat thing where if you respond to a message with an emoji, it displays that emoji bigger than normal text so you can see it clearly. And some people just write tweets which are, like, two emoji and that&amp;#8217;s it, and it would be really handy if they were large enough to&amp;nbsp;read.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/tweet-emoji-only.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;So I thought, here&amp;#8217;s an idea; how about, if there&amp;#8217;s a tweet which is just emoji, then display those emoji larger so they&amp;#8217;re easier to see? Only if there are, say, four or less; you don&amp;#8217;t want those people who write a whole huge tweet as emoji to get enlarged. Just the ones where someone responds with two little pictures and that&amp;#8217;s it; let&amp;#8217;s make that nice and visible, like Slack&amp;nbsp;does.&lt;/p&gt;
+&lt;p&gt;This is clearly a thing for Better Tweetdeck to do. (They already provide a config option to make emoji a little bigger, which I appreciate.) So&amp;#8230; how do we do&amp;nbsp;this?&lt;/p&gt;
+&lt;p&gt;Well, one obvious way is to do it with JavaScript. Every time we read a new tweet, look to see whether it contains nothing but emoji, and if it does and there are less than four of them, add inline styles to make them larger. Job&amp;nbsp;done.&lt;/p&gt;
+&lt;p&gt;But&amp;#8230; that&amp;#8217;s not very efficient, is it? You have to do that every time a new tweet appears, in any column, and that happens a lot. What would actually be better is to write some &lt;span class="caps"&gt;CSS&lt;/span&gt; which does this, and add that &lt;span class="caps"&gt;CSS&lt;/span&gt; one time, when you load up, and then you&amp;#8217;re done. Have the browser do the heavy lifting, not us. It is a principle with me that if you &lt;em&gt;can&lt;/em&gt; do a thing with &lt;span class="caps"&gt;CSS&lt;/span&gt;, then you &lt;em&gt;should&lt;/em&gt; do it with &lt;span class="caps"&gt;CSS&lt;/span&gt;. JavaScript is there for things that &lt;span class="caps"&gt;CSS&lt;/span&gt; &lt;em&gt;can&amp;#8217;t&lt;/em&gt; do. Don&amp;#8217;t use JavaScript, which makes you do the work, when you can use &lt;span class="caps"&gt;CSS&lt;/span&gt; and make the browser do it instead. The browser is better than you at&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;So&amp;#8230; what you want to do is this. In pure &lt;span class="caps"&gt;CSS&lt;/span&gt;, if there&amp;#8217;s a tweet (which in Tweetdeck is a &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; element) which contains &lt;code&gt;&amp;lt;img class="emoji"&amp;gt;&lt;/code&gt; &lt;em&gt;and nothing else&lt;/em&gt;, and there are four or fewer of these &lt;code&gt;img.emoji&lt;/code&gt; elements, then make those images&amp;nbsp;larger.&lt;/p&gt;
+&lt;p&gt;In pure &lt;span class="caps"&gt;CSS&lt;/span&gt;. No JavaScript. This is harder than it looks. Go and try to work it out, if you don&amp;#8217;t believe&amp;nbsp;me.&lt;/p&gt;
+&lt;p&gt;Well, the key insight here is that if you are an element, and you are &lt;code&gt;:last-child(X)&lt;/code&gt;, and you are &lt;em&gt;also&lt;/em&gt; &lt;code&gt;last-of-type(X)&lt;/code&gt;, then there can&amp;#8217;t be any elements after you which are not the same as you. So, if an &lt;code&gt;img.emoji&lt;/code&gt; is the first of its type, and also the first element, and it&amp;#8217;s the third last of its type, and also the third last element, then we know that it is element 1 of three identical elements. So an &lt;code&gt;img:nth-child(1)&lt;/code&gt; which is also an &lt;code&gt;img:nth-of-type(1)&lt;/code&gt; and which is also an &lt;code&gt;img:nth-last-of-type(3)&lt;/code&gt; and also an &lt;code&gt;img:nth-last-child(3)&lt;/code&gt; &lt;em&gt;must be&lt;/em&gt; the first &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt; in a group of three &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt; elements. So that solves our problem! All we need is a selector which matches an img which&amp;nbsp;is:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;img 1 in a group of 1 image,&amp;nbsp;or&lt;/li&gt;
+    &lt;li&gt;img 1 in a group of 2 images,&amp;nbsp;or&lt;/li&gt;
+    &lt;li&gt;img 2 in a group of 2 images,&amp;nbsp;or&lt;/li&gt;
+    &lt;li&gt;img 1 in a group of 3 images,&amp;nbsp;or&lt;/li&gt;
+    &lt;li&gt;img 2 in a group of 3 images,&amp;nbsp;or&lt;/li&gt;
+    &lt;li&gt;img 3 in a group of 3 images,&amp;nbsp;or&lt;/li&gt;
+    &lt;li&gt;img 1 in a group of 4 images,&amp;nbsp;or&lt;/li&gt;
+    &lt;li&gt;&amp;#8230;etc&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&amp;#8230;and that&amp;#8217;s pretty easy, although long, to express as a &lt;span class="caps"&gt;CSS&lt;/span&gt; selector. So, to resize all &lt;code&gt;img.emoji&lt;/code&gt; elements where (a) there are &lt;em&gt;only&lt;/em&gt; &lt;code&gt;img.emoji&lt;/code&gt; elements in this tweet and no text, &lt;em&gt;and&lt;/em&gt; (b) there are four or fewer &lt;code&gt;img.emoji&lt;/code&gt; in the tweet, we need a selector like&amp;nbsp;this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;p &gt; .emoji:nth-child(1):nth-of-type(1):nth-last-child(1):nth-last-of-type(1), /* 1 of 1 */
+p &gt; .emoji:nth-child(1):nth-of-type(1):nth-last-child(2):nth-last-of-type(2), /* 1 of 2 */
+p &gt; .emoji:nth-child(2):nth-of-type(2):nth-last-child(1):nth-last-of-type(1), /* 2 of 2 */
+p &gt; .emoji:nth-child(1):nth-of-type(1):nth-last-child(3):nth-last-of-type(3), /* 1 of 3 */
+p &gt; .emoji:nth-child(2):nth-of-type(2):nth-last-child(2):nth-last-of-type(2), /* 2 of 3 */
+p &gt; .emoji:nth-child(3):nth-of-type(3):nth-last-child(1):nth-last-of-type(1), /* 3 of 3 */
+p &gt; .emoji:nth-child(1):nth-of-type(1):nth-last-child(4):nth-last-of-type(4), /* 1 of 4 */
+p &gt; .emoji:nth-child(2):nth-of-type(2):nth-last-child(3):nth-last-of-type(3), /* 2 of 4 */
+p &gt; .emoji:nth-child(3):nth-of-type(3):nth-last-child(2):nth-last-of-type(2), /* 3 of 4 */
+p &gt; .emoji:nth-child(4):nth-of-type(4):nth-last-child(1):nth-last-of-type(1) {/* 4 of 4 */
+    styles here
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It looks long and cryptic and mystic, but actually it&amp;#8217;s not that complicated at all. And, importantly, this is all the work you have to do. Add that &lt;span class="caps"&gt;CSS&lt;/span&gt;, and then any new tweets that come along which match our criteria get &lt;em&gt;automatically&lt;/em&gt; styled to match. You don&amp;#8217;t have to inspect every tweet and tweak it. The browser does the work, which is what the browser is designed for. If you &lt;em&gt;can&lt;/em&gt; do a thing with &lt;span class="caps"&gt;CSS&lt;/span&gt;, then &lt;em&gt;do&lt;/em&gt; it with &lt;span class="caps"&gt;CSS&lt;/span&gt;. Job&amp;nbsp;done. &lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m quite proud of this. There&amp;#8217;s an increasing, and depressing, movement to add more JavaScript to web pages, to write more code client side, to deal with huge &lt;span class="caps"&gt;JS&lt;/span&gt; downloads by improving compression rather than by just &lt;em&gt;doing less JavaScript&lt;/em&gt;. I, myself, I&amp;#8217;m in favour of having &lt;span class="caps"&gt;CSS&lt;/span&gt; do the things it can do, even if you have to be creative to solve that problem. Falling back to JavaScript to do styling is a failure. Use &lt;span class="caps"&gt;CSS&lt;/span&gt; where you can; being clever in how you do that &lt;span class="caps"&gt;CSS&lt;/span&gt; is part of the fun. You don&amp;#8217;t need &lt;span class="caps"&gt;JS&lt;/span&gt; for this, really you don&amp;#8217;t. &lt;span class="caps"&gt;CSS&lt;/span&gt; actually &lt;em&gt;is&lt;/em&gt;&amp;nbsp;awesome.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/eramdam/BetterTweetDeck/pull/369"&gt;My pull request at Better Tweetdeck&lt;/a&gt; is, at time of writing, still pending. Proof that this technique works &lt;a href="http://jsbin.com/yosasol/edit?html,css,output"&gt;is in jsbin&lt;/a&gt;. Fingers crossed my &lt;span class="caps"&gt;PR&lt;/span&gt; gets accepted, and we can solve another problem with pure &lt;span class="caps"&gt;CSS&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Purity is great. And if you&amp;#8217;re thinking, &lt;span class="caps"&gt;CSS&lt;/span&gt; can&amp;#8217;t solve real problems&amp;#8230; check out &lt;a href="https://twitter.com/finnhvman/status/1020243884079763456"&gt;Bence Szabó&lt;/a&gt;&amp;#8216;s &lt;em&gt;amazing&lt;/em&gt; &lt;a href="https://codepen.io/finnhvman/full/xJRMJp/"&gt;pure &lt;span class="caps"&gt;CSS&lt;/span&gt; stacking game&lt;/a&gt;. I was open mouthed with awe. If you aren&amp;#8217;t, maybe you should spend some time going back over how the web works, and then you will be&amp;nbsp;too.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Thu, 09 Aug 2018 00:19:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-08-09:/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/</guid></item><item><title>Inside out</title><link>//www.kryogenix.org/days/2018/07/23/inside-out/</link><description>&lt;p&gt;Recently the question of whether browsers should have a View Source function has reared its head again. &lt;a href="https://css-tricks.com/view-source/"&gt;Chris Coyier&lt;/a&gt; says no, as do &lt;a href="https://twitter.com/tomdale/status/965681976199077889"&gt;Tom Dale&lt;/a&gt; and &lt;a href="https://christianheilmann.com/2018/07/09/different-views-on-view-source/"&gt;Christian Heilmann&lt;/a&gt;. &lt;a href="https://snook.ca/archives/opinion/view-source"&gt;Jonathan Snook&lt;/a&gt; says yes they&amp;nbsp;should.&lt;/p&gt;
+&lt;p&gt;The argument against essentially boils down to this: the browser devtools are better. This is undeniably, absolutely the truth. You can not just see the original &lt;span class="caps"&gt;HTML&lt;/span&gt; source of a page but manipulate it, drill down into it, see it beside the page itself and see which parts correspond. Everyone who develops for the web spends most of their day in the devtools, and rightly so. They are enormously powerful. View Source&amp;#8230; isn&amp;#8217;t. It&amp;#8217;s a throwback, a historical legacy back from the days when you couldn&amp;#8217;t introspect a page, couldn&amp;#8217;t fiddle with things at runtime. If something was wrong with the page you were building, you went back to your editor and tentatively changed a thing, and then went back again to the browser and hit Refresh to see if you&amp;#8217;d fixed it. Debugging blind, like finding your way through a cave with no lights on. You were quite likely to be eaten by a grue. Things are better&amp;nbsp;now.&lt;/p&gt;
+&lt;p&gt;There are minor reasons why View Source is a good idea. One of them is that it&amp;#8217;s an easy way to see the source you were actually given, &lt;em&gt;before&lt;/em&gt; the in-page JavaScript started screwing around with it. I don&amp;#8217;t use this a lot, but I do use it. It&amp;#8217;s one of those small but handy features; a &lt;a href="http://littlebigdetails.com/"&gt;little big detail&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Another is: there are twenty years of simple documentation saying &amp;#8220;you can see what this web page does just by hitting View&amp;nbsp;Source&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;Yet another is that the devtools are pretty confusing if all you want to do is look at the source of a page. This is (I think) similar to Jon Snook&amp;#8217;s arguments, linked above: &amp;#8220;The sites some build may be simple static sites, befitting of a simple View Source &amp;#8230; Just because you don’t need those tools doesn’t mean that somebody doesn’t need those&amp;nbsp;tools.&amp;#8221;&lt;/p&gt;
+&lt;p&gt;The major reason to keep View Source around is&amp;#8230; well, time for a little&amp;nbsp;story.&lt;/p&gt;
+&lt;p&gt;Google have a search app, on Android phones. The Google search bar at the top of the Android home screen (the one you can&amp;#8217;t get rid of evn if you want to, without extreme measures) shows query results in a thing which is almost but not quite a web browser. The results &lt;em&gt;look&lt;/em&gt; like the normal Google search results you&amp;#8217;re used to from searching in the browser, but it&amp;#8217;s &lt;em&gt;actually&lt;/em&gt; a separate app. And that&amp;#8217;s fine; you can see the results, and tap them, and a result opens in a browser, and everything&amp;#8217;s good. I found this pretty useful, until the first time I did an image search and then long-pressed one of the images to open it on its own. And&amp;#8230; I didn&amp;#8217;t get the popup menu. Because this thing isn&amp;#8217;t &lt;em&gt;really&lt;/em&gt; a browser. It&amp;#8217;s a browser but with all the bits that let you look under the surface turned off, because you don&amp;#8217;t need&amp;nbsp;them.&lt;/p&gt;
+&lt;p&gt;I do not like that attitude. I like that the web is made up of separate bits that you can see if you want to. You can understand how it works by piecing together the parts. It&amp;#8217;s not meant to be a sealed unit, an appliance which does what the owner wants it to and restricts everything else. That&amp;#8217;s what apps do. The web&amp;#8217;s better than that. Like stories our parents told about how they could fix their cars when they were younger but now you can&amp;#8217;t without training and magic screwdrivers and the secret config software. It&amp;#8217;s a switch between being able to see the bits of the jigsaw if you want to, and being able to see the bits of the jigsaw only if you&amp;#8217;re &lt;a href="https://kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/"&gt;allowed&lt;/a&gt;&amp;nbsp;to.&lt;/p&gt;
+&lt;p&gt;In Neal Stephenson&amp;#8217;s &lt;a href="https://en.wikipedia.org/wiki/Anathem"&gt;Anathem&lt;/a&gt;, there&amp;#8217;s a discussion between Raz, an &lt;em&gt;avout&lt;/em&gt; (basically a monk cloistered away in a monastery, but a monk of science rather than religion), Cord (his sister, an experienced engineer but a normal person, not an avout), and Yul (her boyfriend, and something of a handyman but without formal training). Raz tries to explain that a stove which is a sealed unit appliance and which works perfectly would be better than an unreliable stove deliberately kept simple so people can understand it; Cord and Yul try to explain that a stove which they can understand is better, even if unreliable, because a mysterious black box which does what you want today might mysteriously &lt;em&gt;stop&lt;/em&gt; doing what you want tomorrow and you&amp;#8217;ll have no idea&amp;nbsp;why.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;I guess because I live in a place with almost zero praxis [technology], it never occurs to me to think about such things,&amp;#8217; I [Raz] said. &amp;#8216;But at times like this, the absurdity hits me between the eyes. There&amp;#8217;s no reason to put up with junk like this. A stove with dangerous, unreliable chemical fuel. With orifices that clog. In four thousand years we could have made a better&amp;nbsp;stove.&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;Would I be able to take that stove apart and fix&amp;nbsp;it?&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;You wouldn&amp;#8217;t have to, because it would never&amp;nbsp;break.&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;But I want to know if I could understand such a&amp;nbsp;stove.&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;All right, I take your point. You&amp;#8217;re really asking if the average person could understand the workings of such a&amp;nbsp;thing&amp;#8212;&amp;#8230;&amp;#8217;&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;I don&amp;#8217;t know what an average person is. But look at Yul here. He built his stove himself. Didn&amp;#8217;t you, Yul? And it worked,&amp;#8217; Cord&amp;nbsp;said.&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;Took me two years to make it run right,&amp;#8217; Yul&amp;nbsp;admitted.&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;And none of that would have been possible with some kind of technology that only an avout can understand,&amp;#8217; Cord&amp;nbsp;concluded.&lt;/p&gt;
+&lt;p&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;Okay, okay,&amp;#8217; I said, and let it drop there. Letting the argument play out would have been a waste of breath. We, the [avout], had the power to change the physical world through praxis. Up to a point, ordinary people liked the changes we made. But the more clever the praxis became, the less people understood it and the more dependent they became on us&amp;#8212;-and they didn&amp;#8217;t like that at&amp;nbsp;all.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;small&gt;&lt;em&gt;Extract edited a little for length, but without removing the sense of it&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Nobody actually wins this argument. These are two genuinely differing points of view, I think; there&amp;#8217;s no obvious knockdown answer, no obviously correct approach to take. To be an avout or to be a Muggle is kinda a&amp;nbsp;choice.&lt;/p&gt;
+&lt;p&gt;There will be some people reading this saying: this is a very handwavy rarefied argument. &lt;em&gt;Removing &amp;#8216;View Source&amp;#8217; is another small move in the direction of taking away the web&amp;#8217;s democratic nature? It&amp;#8217;s one more example of the boot of the Them in crushing out our ability to know what&amp;#8217;s going on?&lt;/em&gt; Get over yourself, Langridge. Stop making philosophical arguments and let&amp;#8217;s be practical and&amp;nbsp;realistic.&lt;/p&gt;
+&lt;p&gt;This is a fair comment. My response to it would, then, be: what harm is keeping the menu item around actually doing? It&amp;#8217;s one menu item. It&amp;#8217;s taking up very little space in the &lt;span class="caps"&gt;UI&lt;/span&gt;, it&amp;#8217;s not anywhere particularly obvious, and even if you don&amp;#8217;t think my arguments above or Jon Snook&amp;#8217;s arguments are winning ones, we might be a little bit right, and so why not just keep the menu item? It&amp;#8217;s no extra work to code it; the code already&amp;nbsp;exists.&lt;/p&gt;
+&lt;p&gt;Ah, you may say, but we shouldn&amp;#8217;t have menu items that we don&amp;#8217;t need. If it can be cut out, cut it out. Don&amp;#8217;t have more options, more preferences than you need. And this is also correct; it&amp;#8217;s a good principle of &lt;span class="caps"&gt;UX&lt;/span&gt; design. I&amp;#8217;ve been quoting &lt;a href="https://ometer.com/preferences.html"&gt;Havoc Pennington&amp;#8217;s essay on preferences&lt;/a&gt; for 16 years now and I&amp;#8217;m not likely to stop. It is completely true that extra options and extra preferences have a&amp;nbsp;cost.&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s not that that&amp;#8217;s a bad argument, because it isn&amp;#8217;t. It&amp;#8217;s that that argument is &lt;em&gt;just as theoretical and rarefied and philosophical&lt;/em&gt; as is my argument that taking away another tool of understanding is a bad&amp;nbsp;precedent.&lt;/p&gt;
+&lt;p&gt;So, is it best to be an avout or a Muggle? Either are, I think, fine. But I don&amp;#8217;t like it when the avout try to take away Muggle tools, and I don&amp;#8217;t like it when the Muggles try to limit how creative the avout can be. If someone, not a web developer, complained that the devtools were incredibly complicated, I&amp;#8217;d mostly be &lt;span class="caps"&gt;OK&lt;/span&gt; with the argument that those tools aren&amp;#8217;t for that person to look at, and the complexity is aimed at the actual users of the devtools. It seems right to do them the same courtesy. So perhaps View Source is a Muggle tool and we avout shouldn&amp;#8217;t use it, but that doesn&amp;#8217;t mean we should take it&amp;nbsp;away.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 23 Jul 2018 18:26:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-07-23:/days/2018/07/23/inside-out/</guid></item><item><title>EU Copyright Reform: a letter to my MEP, Siôn Simon, about Article 13</title><link>//www.kryogenix.org/days/2018/07/03/article-13-mep/</link><description>&lt;p&gt;Dear&amp;nbsp;Siôn,&lt;/p&gt;
+&lt;p&gt;Thank you for your &lt;a href="https://twitter.com/sionsimon/status/1014060437585920000"&gt;comments on Twitter&lt;/a&gt; welcoming my feedback on the &lt;a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52016PC0593"&gt;&lt;span class="caps"&gt;EU&lt;/span&gt;&amp;#8217;s proposed copyright reform&lt;/a&gt;. I&amp;#8217;d like to discuss in particular Article 13, &amp;#8220;Use of protected content by information society service providers storing and giving access to large amounts of works and other subject-matter uploaded by their&amp;nbsp;users&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;Firstly I should say that I am in general in favour of the &lt;span class="caps"&gt;EU&lt;/span&gt;&amp;#8217;s overall approach to data collection and privacy, and of the goal of copyright reform. I am also in favour of the goals of Article 13: improving the rights of creators over giant American tech companies (and there was a great &lt;a href="https://www.theguardian.com/technology/2018/jul/02/how-the-eu-can-make-the-internet-play-fair-with-musicians"&gt;recent letter in the Guardian&lt;/a&gt; on this point). My concerns with Article 13 are not with what it&amp;#8217;s &lt;em&gt;trying&lt;/em&gt; to do, but in the implementation: it is loosely worded to the point where it will cause serious problems, it materially underweights the costs and hassle of compliance, and it pushes for unreliable technology without requiring any&amp;nbsp;oversight. &lt;/p&gt;
+&lt;p&gt;I should unpack those assertions a&amp;nbsp;bit.&lt;/p&gt;
+&lt;p&gt;Content &lt;span class="caps"&gt;ID&lt;/span&gt;, the approach of using technology to detect copyrighted material, doesn&amp;#8217;t work very well. Or, more accurately, it&amp;#8217;s way too easy for rightsholders to incorrectly assert rights and it&amp;#8217;s way too hard to appeal because an algorithm doesn&amp;#8217;t listen to explanations. I&amp;#8217;ve experienced this myself: in 2012 myself and my dad &lt;a href="https://kryogenix.org/days/2012/04/09/potton-in-2012-a-video-drivearound/"&gt;drove around our home town and videoed all the streets&lt;/a&gt; to provide a historical artifact that people could look at thirty years from now to know what the town was like. I found a piece of &amp;#8220;elevator music&amp;#8221;, available under a Creative Commons licence, attached that to the video, and &lt;a href="https://www.youtube.com/watch?v=eqzB7hf88GA"&gt;uploaded it to YouTube&lt;/a&gt;. And then later &lt;a href="https://www.kryogenix.org/days/2015/05/30/disputing-a-bs-youtube-copyright-claim/"&gt;I received a copyright claim from a record company stating that I&amp;#8217;d used music from their catalogue&lt;/a&gt;. To be clear here: I had not. They had misidentified the music as being another song, one over which they hold rights. But to explain this I have to file a &amp;#8220;counterclaim&amp;#8221;, hand over my home address, think about naming a solicitor&amp;#8230; or if I don&amp;#8217;t do that, Google put a &amp;#8220;copyright strike&amp;#8221; on my account and start removing my ability to earn money from a thing I made. In this&amp;#8230; I&amp;#8217;m a creator. And I&amp;#8217;m being forced away from my creation. It&amp;#8217;s a small example, but it&amp;#8217;s characteristic: laws designed to protect creators (which, again, I&amp;#8217;m in favour of) need to ensure that they protect the rights of &lt;em&gt;all&lt;/em&gt; creators, not just the ones who have a legal department and millions in the bank to fund an indiscriminate barrage of automated takedown requests, especially when those takedown requests are &lt;em&gt;wrong&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;But even if we assume that the technology is 100% reliable (ha! have you ever seen technology that was?), the wording of Article 13 is still problematic. Essentially it says &amp;#8220;if you allow people to upload things, you need to implement Content &lt;span class="caps"&gt;ID&lt;/span&gt; now&amp;#8221;. The text refers to those who store and provide &amp;#8220;large&amp;#8221; amounts of works, but in no way define what that actually is! I run a &lt;a href="http://community.badvoltage.org"&gt;discussion forum&lt;/a&gt; for &lt;a href="http://badvoltage.org"&gt;a podcast&lt;/a&gt;, and there people can post messages and, importantly, also post files. Are we hosting a &amp;#8220;large&amp;#8221; amount of works? I doubt it, but&amp;#8230; who knows? And how do I implement Content &lt;span class="caps"&gt;ID&lt;/span&gt; anyway? In order to tell whether an uploaded thing is copyrighted I&amp;#8217;d need access to every copyrighted work ever; this inevitably means that I&amp;#8217;d need to subscribe to some sort of &amp;#8220;is this thing copyrighted?&amp;#8221; third-party service, which will not at all be free of charge and would be a burden to integrate even if it were. This is a major pain to do, and it essentially applies to everyone because it&amp;#8217;s not at all clear where the dividing line is for &amp;#8220;you are now big enough to have to do&amp;nbsp;this&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;I get the goal of this. I &lt;em&gt;sympathise&lt;/em&gt; with the goal of this. It&amp;#8217;s to say: hey, huge hosting sites, YouTube et al, you have to try harder to stop people uploading music and movies without ensuring that the creators get paid. You can&amp;#8217;t hide behind the excuse that it&amp;#8217;s up to the uploader to check and you&amp;#8217;re just a neutral repository; you bear some responsibility here, so get on with it. I think that is correct and proper! And I also sympathise with the idea that defining &amp;#8220;huge hosting sites, YouTube et al&amp;#8221; in actual legal terms is pretty difficult. But the current wording is a poor attempt at&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s like&amp;#8230; well, imagine that we were worried about stabbing incidents in nightclubs, and so we want to pass a law saying that everyone going into a club needs to be searched to ensure that they don&amp;#8217;t have a knife. But the law says &amp;#8220;all persons entering a place of assembly with music must be searched&amp;#8221;, and then someone who runs a coffee shop on the High Street says &amp;#8220;hey, surely I don&amp;#8217;t have to search everyone who comes in to buy a latte, do I?&amp;#8221;. And they do, because the description probably applies to them too&amp;#8230; and now they&amp;#8217;re turning customers away because they don&amp;#8217;t want to be searched in order to buy a cup of tea. The goal of the law is a good idea; the intentions behind it are worthwhile. But it&amp;#8217;s drafted in a way that pulls in a whole load of people that it&amp;#8217;s not aimed at, and fills those people with uncertainty and concern. If you&amp;#8217;re a multinational corporation then licensing some sort of Content &lt;span class="caps"&gt;ID&lt;/span&gt; service is just one more cost on the balance sheet. If you&amp;#8217;re not, it&amp;#8217;s a huge deal. Just the uncertainty of &lt;em&gt;whether&lt;/em&gt; you might be on the list is a huge&amp;nbsp;deal.&lt;/p&gt;
+&lt;p&gt;And saying &amp;#8220;you probably don&amp;#8217;t count as &amp;#8216;large&amp;#8217;, so don&amp;#8217;t worry about it; we promise to only prosecute those people who deserve it&amp;#8221; is not at all encouraging. Especially if you&amp;#8217;re a small host and the people who&amp;#8217;ve decided to sue are a huge media company whose software has misidentified your theme tune as one of their records. There&amp;#8217;s a huge incentive for content owners to threaten small hosts under this law, and it&amp;#8217;s really hard to fight back against that; if I get a letter saying &amp;#8220;you are a host distributing content without having a content scanning policy as per Article 13&amp;#8221; then I can&amp;#8217;t afford to even &lt;em&gt;argue&lt;/em&gt; about that; anything involving the courts is in itself expensive and time-consuming. I&amp;#8217;m not going to instruct a solicitor to help with that case, at a hundred pounds an hour; I&amp;#8217;m going to shut my forum down. And this applies even if that letter I received was sent by an algorithm which misidentified some music and no human ever saw it. If I can say &amp;#8220;that law doesn&amp;#8217;t apply to me&amp;#8221;, then I&amp;#8217;m good. If I can only say &amp;#8220;I don&amp;#8217;t think it applies&amp;#8221;&amp;#8230; then I&amp;#8217;m&amp;nbsp;sunk.&lt;/p&gt;
+&lt;p&gt;Smaller hosts and creators are not, and really mustn&amp;#8217;t become, necessary fallout in a fight between big content creation firms and big internet companies. Please don&amp;#8217;t let this law go forward in the way it&amp;#8217;s currently written; have it do the job it&amp;#8217;s intended to and not&amp;nbsp;more. &lt;/p&gt;
+&lt;p&gt;Many thanks for taking the time to read all this. I look forward to your response, and to have further discussion about it all. I&amp;#8217;ve posted this letter to my website as well so that it might help others also looking to contact their representatives; I&amp;#8217;d be happy to update that with your thoughts as well (or not, of course, if you prefer&amp;nbsp;not).&lt;/p&gt;
+&lt;p&gt;Best,&lt;/p&gt;
+&lt;p&gt;Stuart&amp;nbsp;Langridge&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 03 Jul 2018 09:58:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-07-03:/days/2018/07/03/article-13-mep/</guid></item><item><title>Little community conferences</title><link>//www.kryogenix.org/days/2018/06/12/little-community-conferences/</link><description>&lt;p&gt;This last weekend I was at &lt;a href="https://kryogenix.org/days/2018/06/11/foss-talk-live-2018"&gt;&lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live 2018&lt;/a&gt;. It was fun. And it led me into various thoughts of how I&amp;#8217;d like there to be more of this sort of fun in and around the tech community, and how my feelings on success have changed a bit since the early&amp;nbsp;years.&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live has about sixty or seventy people at it. It&amp;#8217;s a small thing; a relatively close-knit community of people (a) in the &lt;span class="caps"&gt;UK&lt;/span&gt; (b) travelling distance from London (c) who listen to Linux podcasts. It&amp;#8217;s not meant to be the &lt;span class="caps"&gt;FA&lt;/span&gt; Cup final. And because of that, it&amp;#8217;s a good time. Rather a few conferences these days tend to be big productions: a couple of hundred pounds a ticket, multiple tracks, big stages, important keynotes, world-changing topics. These are good to learn from, and good to speak at, but there&amp;#8217;s space for things which are less earth-shattering and more fun, I think. Something smaller than a &amp;#8220;conference&amp;#8221; but bigger than a &amp;#8220;meetup&amp;#8221; &amp;#8212; here in Birmingham there are &lt;a href="https://calendar.birmingham.io/"&gt;loads of tech meetups&lt;/a&gt; every week, and they&amp;#8217;re good for a local community. &lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live is something a little bigger and a little more organised than that, without having to be the high cost, high hassle, and high production values of a real &amp;#8220;conference&amp;#8221;. It&amp;#8217;s similar to &lt;a href="https://twitter.com/FusionMeetup"&gt;Fusion&lt;/a&gt; here in Brum, which explains why I like that one too. Big enough that you run into a bunch of people you wouldn&amp;#8217;t see otherwise, but small enough that it feels intimate and friendly. I&amp;#8217;d like to see more of this sort of&amp;nbsp;thing.&lt;/p&gt;
+&lt;p&gt;This to some extent ties into how I feel about open source and Linux stuff more generally. In years past I considered myself an evangelist, and my goals for Linux on the desktop were to drive adoption: get more people using it, more software on it, more vendors supporting it. That certainly was important; people who&amp;#8217;ve been doing this a long time will remember days when most computers didn&amp;#8217;t work right unless you carefully chose the hardware, where projectors and wifi were a complex nightmare of configuration, where there was hardly any software available unless you wanted to write it yourself. But those days are now long in the past. My Ubuntu desktop does everything I need it to (which is admittedly helped by how I&amp;#8217;m in the tech industry) and my dad&amp;#8217;s does everything he needs it to (relatively simple needs to be sure, but he uses it a lot). Most of the software I want is actually there, now, helped by the rise of web-based systems and Electron &amp;#8212; I&amp;#8217;ve got Chrome, Skype, Slack, Telegram, Sublime Text, open all the time every day. I&amp;#8217;ve got Steam for games and a pretty decent catalogue of games in it. So, did we win? Did we get what I&amp;nbsp;wanted?&lt;/p&gt;
+&lt;p&gt;Depends on your definition of winning, I suppose. I won, myself, personally. I can do everything I need. What&amp;#8217;s changed is that now, for me, that&amp;#8217;s enough. We&amp;#8217;ve reached a point of sustainability; enough people support and use the desktop I choose to ensure that it will continue to exist. I&amp;#8217;m no longer all that bothered about evangelism &amp;#8212; when a friend of mine has a problem with their computer my first response is now not &amp;#8220;hey, why not try Ubuntu?&amp;#8221;, and I suspect I&amp;#8217;m nicer to be around because of it. If someone else uses something else&amp;#8230; fine, whatever. I use this, and I like it, and that&amp;#8217;s perfectly sufficient. Looking at the companies being driven by investment to be bigger, to get more users, to offer &amp;#8220;freemium&amp;#8221; models&amp;#8230; perhaps that&amp;#8217;s a good thing. I&amp;#8217;m glad I&amp;#8217;m not part of&amp;nbsp;that.&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s a perfectly legitimate business model to have a small but more dedicated userbase. This is what the &lt;a href="http://kk.org/thetechnium/1000-true-fans/"&gt;1000 True Fans&lt;/a&gt; concept is about, or what Maciej writes about on the &lt;a href="https://blog.pinboard.in/"&gt;Pinboard blog&lt;/a&gt;. It&amp;#8217;s demonstrated by &lt;a href="https://www.entroware.com"&gt;Entroware&lt;/a&gt; and &lt;a href="https://puri.sm/"&gt;Purism&lt;/a&gt;. Have a community and work well with them, and it&amp;#8217;s possible to make a sustainable business. You don&amp;#8217;t get to be Jeff Bezos, but you don&amp;#8217;t have to be horrible to everyone either. Striving for growth as far as I can tell basically makes people miserable &amp;#8212; you if you fail, and everyone involved with you if you succeed. Being smaller and nicer feels like a better way for the world as a&amp;nbsp;whole.&lt;/p&gt;
+&lt;p&gt;Philosophical thoughts, admittedly, so how are they relevant? Well, if your goal is to get 50% of people on earth using your choice of &lt;span class="caps"&gt;OS&lt;/span&gt; then everything you do needs to be big, splashy, impressive. There&amp;#8217;s not much room left in there for doing stuff just for the joy of it. But if what you have is &lt;em&gt;already&lt;/em&gt; good then you&amp;#8217;re no longer constrained to &lt;em&gt;change&lt;/em&gt; it, just to &lt;em&gt;enjoy&lt;/em&gt; it. And that&amp;#8217;s what I meant about smaller conferences. Nobody showed up to &lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live to hand out business cards, or even to make contacts. None of the podcasts are seeking their break-out into television. It&amp;#8217;s done for joy. I like joy. Beethoven wrote music about it. I&amp;#8217;d like there to be more joy and less striving in people&amp;#8217;s lives, if we can manage it; the actual business of your life is hard and annoying and unpleasant sometimes, or maybe all the time. Having the things we do for fun actually be fun sounds like a good plan. &lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live and Fusion feel so &lt;em&gt;welcoming&lt;/em&gt;, so friendly; a place where, fine, we can unabashedly talk about tech without embarrassment, but equally there&amp;#8217;s no pressure. It&amp;#8217;s just nice. I&amp;#8217;d like there to be more of that. Let&amp;#8217;s work out&amp;nbsp;how.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 12 Jun 2018 10:07:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-06-12:/days/2018/06/12/little-community-conferences/</guid></item><item><title>FOSS Talk Live 2018</title><link>//www.kryogenix.org/days/2018/06/11/foss-talk-live-2018/</link><description>&lt;p&gt;&lt;img src="https://kryogenix.org/images/fosstalk2018/poster.jpg" alt="The poster for FOSS Talk Live 2018, in situ in the window of the Harrison"&gt;&lt;/p&gt;
+&lt;p&gt;Saturday 9th June 2018 marked &lt;a href="https://fosstalk.com/foss-talk-live-2018"&gt;&lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live 2018&lt;/a&gt;, an evening of Linux &lt;span class="caps"&gt;UK&lt;/span&gt; podcasts on stage at &lt;a href="http://harrisonbar.co.uk/"&gt;The Harrison&lt;/a&gt; pub near Kings Cross, London. It&amp;#8217;s in its third year now, and each year has improved on the last. This year there were four live shows: &lt;a href="https://latenightlinux.com/"&gt;Late Night Linux&lt;/a&gt;, &lt;a href="https://ubuntupodcast.org/"&gt;Ubuntu Podcast&lt;/a&gt;, &lt;a href="https://linuxvoice.com/"&gt;Linux Voice&lt;/a&gt;, and what we affectionally call the &amp;#8220;Drunken Mashup Show&amp;#8221; containing Joe from Late Night Linux, &lt;a href="https://twitter.com/megaslippers"&gt;Dave Megins-Nichols&lt;/a&gt; from &lt;a href="http://sixgun.org/geeknewsradio/"&gt;Geek News Radio&lt;/a&gt;, &lt;a href="https://twitter.com/mariusquabeck/"&gt;Marius Quabeck&lt;/a&gt; from &lt;a href="https://www.nerdzoom.de/category/nerdzoom/nerdzoom-podcast/"&gt;Nerdzoom.de&lt;/a&gt; and&amp;#8230; me, representing &lt;a href="http://badvoltage.org"&gt;Bad Voltage&lt;/a&gt;. It was jolly good fun; Jesse did a &lt;a href="https://www.youtube.com/watch?v=kONStcyC7eU"&gt;timelapse&lt;/a&gt; of the whole&amp;nbsp;thing.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src="https://kryogenix.org/images/fosstalk2018/before.jpg" alt="me, Marius, Mark, Martin, Popey, and Dave before the event"&gt;
+    &lt;figcaption&gt;contrary to popular belief, Dave was not actually having his foot gnawed on by an alligator while this photo was being taken&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Traditionally the event &amp;#8220;starts&amp;#8221; mid-afternoon in the Lucas Arms, around the corner from the venue, where a bunch of people show up early, have a couple of beers, and say things like &amp;#8220;we should probably go and help Joe set up&amp;#8221; and then order another round of drinks instead. This year was no exception. Well done the Lucas; also well done &lt;a href="https://wimpysworld.com/"&gt;Martin Wimpress&lt;/a&gt; for showing up with a huge bag full of random technology for people to coo over, including the &lt;a href="https://www.amazon.co.uk/Unihertz-Smallest-Smartphone-Android-Unlocked/dp/B0752CMXJM"&gt;Jelly phone&lt;/a&gt; which is a phone the size of a bourbon biscuit running Android 7.0 and is pretty cool by all accounts, and two little screen-and-keyboard Linux devices (&lt;a href="https://www.indiegogo.com/projects/gpd-pocket-7-0-umpc-laptop-ubuntu-or-win-10-os"&gt;&lt;span class="caps"&gt;GPD&lt;/span&gt; Pocket&lt;/a&gt; and &lt;a href="https://www.planetcom.co.uk/"&gt;Gemini &lt;span class="caps"&gt;PDA&lt;/span&gt;&lt;/a&gt;) which are both morally &lt;a href="https://en.wikipedia.org/wiki/Psion_Series_5"&gt;Psion 5&lt;/a&gt;s and, despite that, which I am actually a bit tempted&amp;nbsp;by.&lt;/p&gt;
+&lt;h2&gt;Late Night&amp;nbsp;Linux&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src="https://kryogenix.org/images/fosstalk2018/lnl2.jpg" alt="Graham, Jesse, Joe, and Bill of Late Night Linux on stage"&gt;
+    &lt;figcaption&gt;not deliberately taken to catch a moment when new father Jesse was asleep after many nights on 2 hours kip, but it reflects a moral truth in my opinion&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;First up were &lt;a href="https://latenightlinux.com/"&gt;Late Night Linux&lt;/a&gt; who talked about dreams and dreads for open source in the next five years. I liked this concept, and it was actually pretty interesting to hear a whole bunch of good plans I hadn&amp;#8217;t even considered. I think I might have broken it up a little, though, for future reference; the second half of the show being all things that might go wrong (and plausibly so) kinda put a downer on things, so I was sat there thinking, cor, everything sucks, that&amp;#8217;s no good, after a first half which was buoyant and exciting. To be clear, pretty much all their worries are at least possibly justified and are things that we need to fix or need to find a way to avoid, it&amp;#8217;s just that hearing them all at once is pretty&amp;nbsp;demoralising!&lt;/p&gt;
+&lt;p&gt;There were also some big goals in there (in the positive half); associate &amp;#8220;Linux&amp;#8221; as a word with quality, so when someone in the street hears that their Alexa device or their smart fridge or their cycle computer has Linux in it, they think, &lt;span class="caps"&gt;OK&lt;/span&gt;, that&amp;#8217;s a good thing. I like this idea. No clue how to pull it off, mind, but it&amp;#8217;s a good idea. Quite a few of the positive suggestions weren&amp;#8217;t actually technological, and I think that&amp;#8217;s a positive; five years ago any list of goals for the five years hence would still have included edges of &amp;#8220;make wifi reliable&amp;#8221;, and now all the actual boring tech stuff is sorted, thanks to a focus on fixing problems that real people want fixed. This is a good thing. Their show is &lt;a href="https://latenightlinux.com/late-night-linux-episode-39/"&gt;available to listen to&lt;/a&gt; so you can make up your own&amp;nbsp;mind.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en-gb"&gt;&lt;p lang="en" dir="ltr"&gt;Much to agree with and much to disagree with from &lt;a href="https://twitter.com/latenightlinux?ref_src=twsrc%5Etfw"&gt;@latenightlinux&lt;/a&gt; at &lt;a href="https://twitter.com/hashtag/fosstalk?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#fosstalk&lt;/a&gt; but a good show! Next, &lt;a href="https://twitter.com/ubuntupodcast?ref_src=twsrc%5Etfw"&gt;@ubuntupodcast&lt;/a&gt; (but I think I&amp;#39;ll get a pint&amp;nbsp;first)&lt;/p&gt;&amp;mdash; Stuart Langridge (@sil) &lt;a href="https://twitter.com/sil/status/1005513818041212928?ref_src=twsrc%5Etfw"&gt;9 June 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;h2&gt;Ubuntu&amp;nbsp;Podcast&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src="https://kryogenix.org/images/fosstalk2018/up1.jpg" alt="Martin, Mark, and Alan of the Ubuntu Podcast on stage"&gt;
+    &lt;figcaption&gt;the Ubuntu Podcast team inexplicably talking about plumbing again&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The Ubuntu Podcast, up next, had a sort of flipped around version of that concept &amp;#8212; the &lt;a href="https://en.wikipedia.org/wiki/Time_Trumpet"&gt;Time Trumpet&lt;/a&gt; in which they looked back at technology forty, twenty, and ten years ago before zooming forward to now. And more news on Mark&amp;#8217;s bathroom, which I was of course eager to hear as much about as possible (who cares about software? not me! toilets, that&amp;#8217;s where it&amp;#8217;s at) Their show is available &lt;a href="https://www.youtube.com/watch?v=Pv2ivTIN5kk"&gt;to listen to&lt;/a&gt; as well (at the time I post this it isn&amp;#8217;t out yet, but it will be in a day or&amp;nbsp;so).&lt;/p&gt;
+&lt;p&gt;&lt;hr class="ftl"&gt;
+(imagine the conceptual flow pausing here for one of the Harrison&amp;#8217;s rather nice burgers, and the beginning hatchings of a Plan with &lt;a href="http://whizzy.org"&gt;Bill&lt;/a&gt;&amp;#8230;)
+&lt;hr class="ftl"&gt;&lt;/p&gt;
+&lt;h2&gt;Linux&amp;nbsp;Voice&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src="https://kryogenix.org/images/fosstalk2018/lv1.jpg" alt="Graham, Andrew, and Ben from Linux Voice"&gt;
+    &lt;figcaption&gt;quite a lot less foaming at the mouth about Brexit this year, not that the actual problem has got any better&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Linux Voice (back together again!) had the chaps talking about, among other things, &lt;a href="https://www.bbc.co.uk/iplayer/episode/b09g92bv/mastermind-2017-episode-16"&gt;Andrew&amp;#8217;s appearance on Mastermind&lt;/a&gt; answering questions about George Orwell and only narrowly being beaten by the person who went on to win the whole competition, Graham&amp;#8217;s audio adventures which I&amp;#8217;m sure were very enlightening to people who, unlike me, are not specifically prohibited from having opinions about audio matters, and the suggestion that Microsoft buying Github was a bit like when Channel 4 bought Bake Off. (I am considerably more confident that Nat Friedman has my best interests at heart than that Paul Hollywood does, although I am astounded to discover that Paul Hollywood&amp;#8217;s name &lt;em&gt;really is&lt;/em&gt; &lt;a href="https://en.wikipedia.org/wiki/Paul_Hollywood"&gt;Paul Hollywood&lt;/a&gt;!) &lt;/p&gt;
+&lt;h2&gt;The &amp;#8220;Drunken Mashup&amp;nbsp;Show&amp;#8221;&lt;/h2&gt;
+
+&lt;p&gt;It&amp;#8217;s not actually particularly drunken, if I&amp;#8217;m honest, at least partially because I do my best to not drink too much so that we can manage the stage&amp;nbsp;properly&amp;#8230;&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src="https://kryogenix.org/images/fosstalk2018/dms1.jpg" alt="Dave, Joe, Marius, and me"&gt;
+    &lt;figcaption&gt;everyone votes just to annoy Joe&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This year I had a bit of a brainwave. Wouldn&amp;#8217;t it be cool if we had a bunch of questions to ask the audience and they could vote on them? Stuff which divides people, but not stuff that&amp;#8217;s divisive; questions that provoke friendly rivalry, so we&amp;#8217;re all having fun together. And then everyone votes with their phones and we see a real-time graph of the voting &amp;#8212; drama, people cheering, that sort of thing, that&amp;#8217;ll be good. And there must be someone out there who&amp;#8217;s already built a service to do this, surely? I mean, I can write one if I have to, but I&amp;#8217;d really like not to have to. The other chaps agreed this sounded fun, and after some poking around I discovered &lt;a href="http://directpoll.com/"&gt;DirectPoll&lt;/a&gt; who do exactly this. There are a bunch of people doing this, actually, but most of them limit you somehow &amp;#8212; you can only have two questions, or you can only have ten voters, or something. I completely understand &lt;em&gt;why&lt;/em&gt; they do this, and I am obviously a vicious leech for wanting this and not paying for it, but equally I did want it and didn&amp;#8217;t want to pay for it, so well done&amp;nbsp;DirectPoll.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en-gb"&gt;&lt;p lang="en" dir="ltr"&gt;&lt;a href="https://twitter.com/sil?ref_src=twsrc%5Etfw"&gt;@sil&lt;/a&gt; I loved the voting system on the drunken mashup at &lt;a href="https://twitter.com/FOSS_Talk?ref_src=twsrc%5Etfw"&gt;@FOSS_Talk&lt;/a&gt;, was the best end show to date &lt;span class="caps"&gt;IMHO&lt;/span&gt;.&lt;/p&gt;&amp;mdash; A Jesse (@beardyjesse) &lt;a href="https://twitter.com/beardyjesse/status/1005868963346165762?ref_src=twsrc%5Etfw"&gt;10 June 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;What I wanted to happen was to have a set of slides so that when I advanced to the slide for the next question, everyone&amp;#8217;s phones updated so they could &lt;em&gt;answer&lt;/em&gt; that question, and I wanted the poll to reset all the vote totals when I loaded it so that we&amp;#8217;d be sure on the night that any remnants of our testing had been swept away. And this was all nicely doable with DirectPoll&amp;#8217;s &lt;span class="caps"&gt;API&lt;/span&gt; &amp;#8212; you can visit a &lt;span class="caps"&gt;URL&lt;/span&gt; to do each of those things, and you don&amp;#8217;t have to sign in to the admin backend to do it. Their goal seems to be that you give this complex &lt;span class="caps"&gt;URL&lt;/span&gt; to the users somehow, but I just embedded it in an invisible iframe in our slides.js presentation deck, and everything worked out. This is important because I&amp;#8217;m on stage and the laptop running the slides &lt;em&gt;isn&amp;#8217;t&lt;/em&gt;, so I couldn&amp;#8217;t be fiddling around with it; I had &amp;#8220;go to next slide&amp;#8221; and &amp;#8220;refresh the whole window&amp;#8221; buttons and that was about it. And it all worked pretty much fine on the night &amp;#8212; the little remote I was using was not as reliable as could be hoped, but I&amp;#8217;d planned for that and everything was good. And, more importantly, people thought that the voting game was fun! Audience interaction, and lots to argue about in the bar afterwards; the way we had it set up was that for each question, each of the four presenters had their choice of answer and got to do a little speech to defend that on stage and try to influence the audience. Which worked &lt;em&gt;surprisingly&lt;/em&gt; well; some of the winning answers clearly only got to that position because they were eloquently defended on the mike. So well done,&amp;nbsp;chaps.&lt;/p&gt;
+&lt;p&gt;We will ignore the bit where Martin Wimpress, Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; lead and bastard, tweeted out the link to the voting page &lt;em&gt;from the Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; account&lt;/em&gt;, so I apologise to the Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; community for them no longer having a lead person any more. If it&amp;#8217;s really important I can probably remember where I buried&amp;nbsp;him.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en-gb"&gt;&lt;p lang="en" dir="ltr"&gt;&lt;span class="caps"&gt;OK&lt;/span&gt;, go to this &lt;span class="caps"&gt;URL&lt;/span&gt; and when the vote opens (in the next 15 mins or so) give Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; your love 😍 &lt;a href="https://t.co/6fXq6C4446"&gt;https://t.co/6fXq6C4446&lt;/a&gt;&lt;/p&gt;&amp;mdash; Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; (@ubuntu_mate) &lt;a href="https://twitter.com/ubuntu_mate/status/1005558123602628608?ref_src=twsrc%5Etfw"&gt;9 June 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;h3&gt;The questions (and&amp;nbsp;answers)&lt;/h3&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;&lt;h4&gt;Best Linux&amp;nbsp;distro?&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; (me, and the winning&amp;nbsp;answer)&lt;/li&gt;
+            &lt;li&gt;Solus&amp;nbsp;(Marius)&lt;/li&gt;
+            &lt;li&gt;Xubuntu&amp;nbsp;(Joe)&lt;/li&gt;
+            &lt;li&gt;Windows Subsystem for Linux (Dave; a surprisingly strong second&amp;nbsp;place!)&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;h4&gt;Best desktop&amp;nbsp;environment?&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Budgie&amp;nbsp;(Marius)&lt;/li&gt;
+            &lt;li&gt;Gnome (Dave, and the winning&amp;nbsp;answer)&lt;/li&gt;
+            &lt;li&gt;Xfce&amp;nbsp;(Joe)&lt;/li&gt;
+            &lt;li&gt;&lt;span class="caps"&gt;MATE&lt;/span&gt; Cupertino&amp;nbsp;(me)&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;h4&gt;Best vulnerability&amp;nbsp;name?&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Spectre&amp;nbsp;(Joe)&lt;/li&gt;
+            &lt;li&gt;Efail&amp;nbsp;(Marius)&lt;/li&gt;
+            &lt;li&gt;ImageTragick&amp;nbsp;(Dave)&lt;/li&gt;
+            &lt;li&gt;&lt;span class="caps"&gt;CVE&lt;/span&gt;-2014-6271 (me, and the winning&amp;nbsp;answer)&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;h4&gt;Which&amp;nbsp;laptop?&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Lenovo Carbon X1 2018&amp;nbsp;(Marius)&lt;/li&gt;
+            &lt;li&gt;Dell &lt;span class="caps"&gt;XPS&lt;/span&gt;&amp;nbsp;(Dave)&lt;/li&gt;
+            &lt;li&gt;a desktop&amp;nbsp;(me)&lt;/li&gt;
+            &lt;li&gt;Entroware (Joe, and a big&amp;nbsp;victory)&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;h4&gt;Which open source personality deserves the most&amp;nbsp;respect?&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Nat Friedman&amp;nbsp;(me)&lt;/li&gt;
+            &lt;li&gt;Guido van Rossum&amp;nbsp;(Dave)&lt;/li&gt;
+            &lt;li&gt;Linus Torvalds (Joe, and the&amp;nbsp;winner)&lt;/li&gt;
+            &lt;li&gt;Mark Shuttleworth&amp;nbsp;(Marius)&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;h4&gt;Best text&amp;nbsp;editor?&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Atom&amp;nbsp;(Marius)&lt;/li&gt;
+            &lt;li&gt;&lt;span class="caps"&gt;VS&lt;/span&gt; Code&amp;nbsp;(Dave)&lt;/li&gt;
+            &lt;li&gt;Sublime Text&amp;nbsp;(me)&lt;/li&gt;
+            &lt;li&gt;nano/gedit (Joe, and the&amp;nbsp;winner)&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Dave&amp;#8217;s robust defence of the Windows Subsystem for Linux and its subsequent second-place ranking shows just how far we&amp;#8217;ve come as a community and Microsoft have come in learning to work with communities; can you imagine suggesting such a thing as a good alternative in 2005? And Joe&amp;#8217;s eloquent description of &lt;a href="https://www.entroware.com/"&gt;Entroware&lt;/a&gt; swayed the audience pretty comprehensively: next time you need a laptop, buy it from&amp;nbsp;there!&lt;/p&gt;
+&lt;p&gt;You can &lt;a href="https://fosstalk.com/foss-talk-live-2018-drunken-mashup"&gt;listen to the show&lt;/a&gt; (or &lt;a href="https://www.youtube.com/watch?v=UoF_42n-6xI"&gt;watch it on video&lt;/a&gt;).&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src="https://kryogenix.org/images/fosstalk2018/after.jpg" alt="people, with beers"&gt;
+    &lt;figcaption&gt;a job well done&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2&gt;A couple more general&amp;nbsp;thoughts&lt;/h2&gt;
+
+&lt;p&gt;The event should be a lot more diverse than it is. It was almost entirely men and almost entirely white. Free software in general has something of a problem with this, but this feels like somewhere where we could make a difference, and then I&amp;#8217;d have more and different people to meet and hang out&amp;nbsp;with.&lt;/p&gt;
+&lt;p&gt;There are some pretty cheap AirBNB flats really near the venue, too. I&amp;#8217;d never stayed in an AirBNB alone before; if you have similarly low requirements of a place to stay after an evening on the razz, you&amp;#8217;ll like&amp;nbsp;&amp;#8216;em.&lt;/p&gt;
+&lt;hr class="ftl"&gt;
+
+&lt;p&gt;So that was &lt;span class="caps"&gt;FOSS&lt;/span&gt; Talk Live 2018. Thank you lots to Joe, who does all the work to organise this whole thing. And thank you to everyone who came. It was great. I really enjoyed myself. There should be more of this sort of thing. Which is the subject of the &lt;a href="https://kryogenix.org/days/2018/06/12/little-community-conferences"&gt;next post&lt;/a&gt;.&lt;/p&gt;
+&lt;style&gt;
+hr.ftl {
+    overflow: visible; /* For &lt;span class="caps"&gt;IE&lt;/span&gt; */
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+&lt;/style&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 11 Jun 2018 17:50:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-06-11:/days/2018/06/11/foss-talk-live-2018/</guid></item><item><title>Squares and prettier graphs</title><link>//www.kryogenix.org/days/2018/03/25/squares-and-prettier-graphs/</link><description>&lt;p&gt;The &lt;a href="https://www.futilitycloset.com/"&gt;Futility Closet&lt;/a&gt; people recently posted &amp;#8220;&lt;a href="https://www.futilitycloset.com/2018/03/24/a-square-circle/"&gt;A Square Circle&lt;/a&gt;&amp;#8220;, in which they&amp;nbsp;showed:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;49² + 73² = 7730
 77² + 30² = 6829
 68² + 29² = 5465
@@ -13,12 +232,458 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;which is a nice little result. I like this sort of recreational maths, so I spent a little time …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Sun, 25 Mar 2018 23:36:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-03-25:/days/2018/03/25/squares-and-prettier-graphs/</guid></item><item><title>Collecting user data while protecting user privacy</title><link>//www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/</link><description>&lt;p&gt;Lots of companies want to collect data about their users. This is a good thing, generally; being data-driven is important, and it&amp;#8217;s jolly hard to know where best to focus your efforts if you don&amp;#8217;t know what your people are like. However, this sort of data collection also …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 20 Feb 2018 23:58:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-02-20:/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/</guid></item><item><title>Sorry Henry</title><link>//www.kryogenix.org/days/2018/02/08/sorry-henry/</link><description>&lt;p&gt;I think I found a bug in a &lt;a href="https://en.wikipedia.org/wiki/Henry_Dudeney"&gt;Henry Dudeney&lt;/a&gt;&amp;nbsp;book.&lt;/p&gt;
-&lt;p&gt;Dudeney was a really famous puzzle creator in Victorian/Edwardian times. For Americans: Sam Loyd was sort of an American knock-off of Dudeney, except that Loyd stole half his puzzles from other people and &lt;span class="caps"&gt;HD&lt;/span&gt; didn&amp;#8217;t. Dudeney got …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Thu, 08 Feb 2018 18:34:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-02-08:/days/2018/02/08/sorry-henry/</guid></item><item><title>And Everything</title><link>//www.kryogenix.org/days/2018/01/30/and-everything/</link><description>&lt;blockquote&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;Rule Forty-two. All persons more than a mile high to leave the court.&amp;#8221;&lt;br&gt;
+&lt;p&gt;which is a nice little result. I like this sort of recreational maths, so I spent a little time wondering whether this was the only such cycle, or the longest, or whether there were longer ones. A brief bit of Python scripting later, and the truth is revealed: it&amp;#8217;s not the only cycle, but it is the longest one, with six&amp;nbsp;entries. &lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/squares2.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;There are no other 6-cycles; there&amp;#8217;s a 5-cycle (start from &lt;code&gt;68²+50²=7124&lt;/code&gt;), a 4-cycle (&lt;code&gt;47²+56²=5345&lt;/code&gt;) and interestingly two 1-cycles, numbers which lead to themselves: &lt;code&gt;12²+33²=1233&lt;/code&gt; and &lt;code&gt;88²+33²=8833&lt;/code&gt;. That&amp;#8217;s rather&amp;nbsp;cool.&lt;/p&gt;
+&lt;p&gt;I did wonder whether there are also interesting cycles with more numbers, so I tried out adding the squares of 3-digit&amp;nbsp;numbers:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/squares3.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;but sadly they&amp;#8217;re really boring; there&amp;#8217;s a 2-cycle (&lt;code&gt;137²+461²=231290, 231²+290²=137461&lt;/code&gt;), another 1-cycle (&lt;code&gt;990²+100²=990100&lt;/code&gt;) and that&amp;#8217;s it. Nonetheless, quite an interesting little property to fiddle around&amp;nbsp;with.&lt;/p&gt;
+&lt;h2&gt;Prettier&amp;nbsp;graphs&lt;/h2&gt;
+&lt;p&gt;Originally I was going to make my script count the lengths of the cycles and show the largest one and so on, but I realised that that was annoying and fiddly and what I ought to do is just display a nice picture of them and that&amp;#8217;d be clear to my eyes immediately and take no code at all. My go-to tool for this sort of thing, where I&amp;#8217;m drawing graphs (in the mathematical nodes-and-edges sense) programmatically, is &lt;a href="https://www.graphviz.org/"&gt;Graphviz&lt;/a&gt;, because it&amp;#8217;s really easy; you basically write out your graph as obvious simple words with&amp;nbsp;arrows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;digraph {
+    &amp;quot;get up&amp;quot; -&amp;gt; &amp;quot;go to work&amp;quot;;
+    &amp;quot;go to work&amp;quot; -&amp;gt; &amp;quot;come home again&amp;quot;;
+    &amp;quot;come home again&amp;quot; -&amp;gt; &amp;quot;go to sleep&amp;quot;;
+    &amp;quot;go to sleep&amp;quot; -&amp;gt; &amp;quot;get up&amp;quot;;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and then you can make it a graph with one command: &lt;code&gt;dot -Tpng simple.dot &amp;gt; output.png&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/basic-graphviz.png" alt="A basic graphviz graph of the above code; plain black and white, and not pretty"&gt;&lt;/p&gt;
+&lt;p&gt;That looks pretty terrible, though; plain black and white, ugly. I tweaked my graph above to look a bit nicer, with some colours, and that&amp;#8217;s really easy; you just add a few extra properties to the nodes (the things to do) and edges (the arrows) in your graph&amp;nbsp;specification:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;digraph {
+
+    node[shape=&amp;quot;rectangle&amp;quot; style=&amp;quot;rounded,filled&amp;quot; gradientangle=&amp;quot;270&amp;quot; 
+        fillcolor=&amp;quot;#990033:#f5404f&amp;quot; color=&amp;quot;#991111&amp;quot; 
+        fontcolor=&amp;quot;#ffffff&amp;quot; fontname=&amp;quot;Arial&amp;quot;]
+
+    edge [color=&amp;quot;#006699&amp;quot; len=2.5]
+
+
+    &amp;quot;get up&amp;quot; -&amp;gt; &amp;quot;go to work&amp;quot;;
+    &amp;quot;go to work&amp;quot; -&amp;gt; &amp;quot;come home again&amp;quot;;
+    &amp;quot;come home again&amp;quot; -&amp;gt; &amp;quot;go to sleep&amp;quot;;
+    &amp;quot;go to sleep&amp;quot; -&amp;gt; &amp;quot;get up&amp;quot;;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and then you get something a bit&amp;nbsp;nicer:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/nicer-graphviz.png" alt="Same graph, but with a little colour and niceness"&gt;&lt;/p&gt;
+&lt;p&gt;Now, I am no graphic artist. I&amp;#8217;m not good at this stuff. If you&amp;#8217;re thinking &amp;#8220;that looks rubbish; I could make it look &lt;em&gt;loads&lt;/em&gt; nicer&amp;#8221; then great! Please, please do so! I would very much like one of the many graphic artists involved in the open source world to put together a &amp;#8220;theme&amp;#8221; for graphviz that just makes graphs look a bit nicer and classier, by default. Seriously, if you&amp;#8217;ve got an artistic eye this is the sort of thing that&amp;#8217;d probably take you a lunchtime to do. Just pick some nice colours, line widths, arrow shapes, node shapes, and you&amp;#8217;re done. Write a blog post saying &amp;#8220;these are the six lines to add to the top of your graphviz &lt;code&gt;.dot&lt;/code&gt; files&amp;#8221; and that&amp;#8217;s the job complete; that would be a small but measureable improvement to the universe that you&amp;#8217;ve made, there, with not much effort at&amp;nbsp;all.&lt;/p&gt;
+&lt;p&gt;The graphviz people are pretty open to the idea of even including such a thing in their releases, maybe even by default. I asked on Twitter whether someone could or had already done this that I&amp;#8217;m asking for, and one of the people who responded was Stephen North, who&amp;#8217;s part of the graphviz team, saying that they&amp;#8217;d be happy to include and publicise such a&amp;nbsp;thing.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-partner="tweetdeck"&gt;&lt;p lang="en" dir="ltr"&gt;We would definitely include the profiles in our distribution and/or make them easier options to&amp;nbsp;use.&lt;/p&gt;&amp;mdash; Stephen North (@magneticnorth) &lt;a href="https://twitter.com/magneticnorth/status/977690082953097216?ref_src=twsrc%5Etfw"&gt;March 24, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;To be clear, this is not a complaint about the graphviz team themselves; their job is mostly to think very hard about layout algorithms, which they indeed do a good job of. But I think it&amp;#8217;s really important, not just that open source stuff can be made to look pretty if you know what you&amp;#8217;re doing, but also that it &lt;em&gt;already does&lt;/em&gt; look pretty by default where it can. It turns people off your software, no matter how powerful it is, if some less-powerful alternative puts out more attractive output. There are some things where this would take a lot of work; rejigging the entire &lt;span class="caps"&gt;UI&lt;/span&gt; of a complex programme is difficult and time-consuming, absolutely. But I really feel like someone with a decent artistic eye (i.e., not me) could put together a simple set of colours and font choices and line widths that would make graphviz look much nicer either by default or by specifying &lt;code&gt;--pretty&lt;/code&gt; or something, and it wouldn&amp;#8217;t take long at all. I&amp;#8217;d certainly be way happier if that happened. Maybe that person is you, gentle&amp;nbsp;reader?&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Sun, 25 Mar 2018 23:36:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-03-25:/days/2018/03/25/squares-and-prettier-graphs/</guid></item><item><title>Collecting user data while protecting user privacy</title><link>//www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/</link><description>&lt;p&gt;Lots of companies want to collect data about their users. This is a good thing, generally; being data-driven is important, and it&amp;#8217;s jolly hard to know where best to focus your efforts if you don&amp;#8217;t know what your people are like. However, this sort of data collection also gives people a sense of disquiet; what are you going to do with that data about me? How do I get you to stop using it? What conclusions are you drawing from it? I&amp;#8217;ve spoken about &lt;a href="https://kryogenix.org/code/privacy-could-be-the-next-big-thing-hackference/"&gt;this sense of disquiet&lt;/a&gt; in the past, and you can watch (or read) that talk for a lot more detail about how and why people don&amp;#8217;t like&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;So, what can we do about it? As I said, being data-driven is a good thing, and you can&amp;#8217;t be data-driven if you haven&amp;#8217;t got any data to be driven by. How do we enable people to collect data about you without compromising your&amp;nbsp;privacy?&lt;/p&gt;
+&lt;p&gt;Well, there are some ways. Before I dive into them, though, a couple of brief asides: there are some people who believe that you shouldn&amp;#8217;t be allowed to collect any data on your users whatsoever; that the mere act of wanting to do so is in itself a compromise of privacy. This is not addressed to those people. What I want is a way that both sides can get what they want: companies and projects can be data-driven, &lt;em&gt;and&lt;/em&gt; users don&amp;#8217;t get their privacy compromised. If what you want is that companies are banned from collecting anything&amp;#8230; this is not for you. Most people are basically &lt;span class="caps"&gt;OK&lt;/span&gt; with the idea of data collection, they just don&amp;#8217;t want to be victimised by it, now or in the future, and it&amp;#8217;s that property that we want to&amp;nbsp;protect.&lt;/p&gt;
+&lt;p&gt;Similarly, if you&amp;#8217;re a company who &lt;em&gt;wants&lt;/em&gt; to know everything about each individual one of your users so you can sell that data for money, or exploit it on a user-by-user basis, this isn&amp;#8217;t for you either. Stop doing&amp;nbsp;that.&lt;/p&gt;
+&lt;h3&gt;Aggregation&lt;/h3&gt;
+&lt;p&gt;The key point here is that, if you&amp;#8217;re collecting data about a load of users, you&amp;#8217;re usually doing so in order to look at it in &lt;em&gt;aggregate&lt;/em&gt;; to draw conclusions about the general trends and the general distribution of your user base. And it&amp;#8217;s possible to do that data collection in ways that maintain the aggregate properties of it while making it hard or impossible for the company to use it to target individual users. That&amp;#8217;s what we want here: some way that the company can still draw correct conclusions from all the data when collected together, while preventing them from targeting individuals or knowing what a specific person&amp;nbsp;said.&lt;/p&gt;
+&lt;p&gt;In the 1960s, Warner and Greenberg put together the &lt;a href="https://en.wikipedia.org/wiki/Randomized_response"&gt;randomised response technique&lt;/a&gt; for social science interviews. Basically, the idea here is that if you want to ask people questions about sensitive topics &amp;#8212; have they committed a crime? what are their sexual preferences? &amp;#8212; then you need to be able to draw aggregate conclusions about what percentages of people have done various things, but any one individual&amp;#8217;s ballot shouldn&amp;#8217;t be a confession that can be used against them. The technique varies a lot in exactly how it&amp;#8217;s applied, but the basic concept is that for any question, there&amp;#8217;s a random chance that the answerer should &lt;em&gt;lie&lt;/em&gt; in their response. If some people lie in one direction (saying that they did a thing, when they didn&amp;#8217;t), and the same proportion of people lie in the other direction (saying they didn&amp;#8217;t do the thing when they did), then if you&amp;#8217;ve got enough answerers, all the lies pretty much cancel out. So your aggregate statistics are still pretty much accurate &amp;#8212; you know that X percent of people did the thing &amp;#8212; but any one individual person&amp;#8217;s response isn&amp;#8217;t incriminating, because they might have been lying. This gives us the privacy protection we need for people, while preserving the aggregate properties that allow the survey-analysers to draw accurate&amp;nbsp;conclusions.&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s something like whether you&amp;#8217;ll find a ticket inspector on a train. Train companies realised a long time ago that you don&amp;#8217;t need to put a ticket inspector on every single train. Instead, you can put inspectors on &lt;em&gt;enough&lt;/em&gt; trains that the chance of fare-dodgers being caught is high enough that they don&amp;#8217;t want to take the risk. This randomised response is similar; if you get a ballot from someone saying that they smoked marijuana, then you can&amp;#8217;t know whether they were one of those who were randomly selected to lie about their answer, and therefore that answer isn&amp;#8217;t incriminating, but the overall percentage of people who &lt;em&gt;say&lt;/em&gt; they smoked will be roughly equal to the percentage of people who actually &lt;em&gt;did&lt;/em&gt;.&lt;/p&gt;
+&lt;h3&gt;A worked&amp;nbsp;example&lt;/h3&gt;
+&lt;p&gt;Let&amp;#8217;s imagine you&amp;#8217;re, say, an operating system vendor. You&amp;#8217;d like to know what sorts of machines your users are installing on (Ubuntu are &lt;a href="https://www.omgubuntu.co.uk/2018/02/ubuntu-data-collection-opt-out"&gt;looking&lt;/a&gt; to do this as most other OSes already do), and so how much &lt;span class="caps"&gt;RAM&lt;/span&gt; those machines have would be a useful figure to know. (Lots of other stats would also be useful, of course, but we&amp;#8217;ll just look at one for now while we&amp;#8217;re explaining the process. And remember this all applies to any statistic you want to collect; it&amp;#8217;s not particular to &lt;span class="caps"&gt;OS&lt;/span&gt; vendors, or &lt;span class="caps"&gt;RAM&lt;/span&gt;. If you want to know how often your users open your app, or what country they&amp;#8217;re in, this process works&amp;nbsp;too.)&lt;/p&gt;
+&lt;p&gt;So, we assume that the &lt;em&gt;actual truth&lt;/em&gt; about how much &lt;span class="caps"&gt;RAM&lt;/span&gt; the users&amp;#8217; computers have looks something like this graph. Remember, the company does not know this. They &lt;em&gt;want&lt;/em&gt; to know it, but they currently&amp;nbsp;don&amp;#8217;t.&lt;/p&gt;
+&lt;canvas id="graph_truth" class="lie_graphs" width="750" height="350"&gt;&lt;/canvas&gt;
+
+&lt;p&gt;So, how can they collect data to know this graph, without being able to tell how much &lt;span class="caps"&gt;RAM&lt;/span&gt; any one specific user&amp;nbsp;has?&lt;/p&gt;
+&lt;p&gt;As described above, the way to do this is to randomise the responses. Let&amp;#8217;s say that we tell 20% of users to lie about their answer, one category up or down. So if you&amp;#8217;ve really got &lt;span class="caps"&gt;8GB&lt;/span&gt; of &lt;span class="caps"&gt;RAM&lt;/span&gt;, then there&amp;#8217;s an 80% chance you tell the truth, and a 20% chance you lie; 10% of users lie in a &amp;#8220;downwards&amp;#8221; direction, so they claim to have &lt;span class="caps"&gt;4GB&lt;/span&gt; of &lt;span class="caps"&gt;RAM&lt;/span&gt; when they&amp;#8217;ve actually got &lt;span class="caps"&gt;8GB&lt;/span&gt;, and 10% of users lie in an &amp;#8220;upwards&amp;#8221; direction and claim to have &lt;span class="caps"&gt;16GB&lt;/span&gt;. Obviously, we wouldn&amp;#8217;t actually have the users lie &amp;#8212; the software that collects this info would randomly either produce the correct information or not with the above probabilities, and people wouldn&amp;#8217;t even know it was doing it; the deliberately incorrect data is only provided to the survey. (Your computer doesn&amp;#8217;t lie to &lt;em&gt;you&lt;/em&gt; about how much &lt;span class="caps"&gt;RAM&lt;/span&gt; it&amp;#8217;s got, just the company.) What does that do to the graph&amp;nbsp;data?&lt;/p&gt;
+&lt;canvas id="graph_lies" class="lie_graphs" width="750" height="350"&gt;&lt;/canvas&gt;
+
+&lt;p&gt;We show in this graph the users that gave accurate information in green, and inaccurate lies in red. And the graph looks pretty much the same! Any one given user&amp;#8217;s answers are unreliable and can&amp;#8217;t be trusted, but the overall shape of the graph is pretty similar to the actual truth. There are still peaks at the most popular points, and still troughs at the unpopular ones. Each bar in the graph is reasonably accurate (accuracy figures are shown below each bar, and they&amp;#8217;ll normally be around 90-95%, although because it&amp;#8217;s random it may fluctuate a little for you.) So our company can draw conclusions from this data, and they&amp;#8217;ll be generally correct. They&amp;#8217;ll have to take those conclusions with a small pinch of salt, because we&amp;#8217;ve deliberately introduced inaccuracy into them, but the trends and the overall shape of the data will be&amp;nbsp;good.&lt;/p&gt;
+&lt;p&gt;The key point here is that, although &lt;em&gt;you&lt;/em&gt; can see in the graph which answers are truth and which are incorrect, the company &lt;em&gt;can&amp;#8217;t&lt;/em&gt;. They don&amp;#8217;t get told whether an answer is truth or lies; they just get the information and no indication of how true it is. They&amp;#8217;ll know the percentage chance that an answer is untrue, but they won&amp;#8217;t know whether any one given answer&amp;nbsp;is.&lt;/p&gt;
+&lt;p&gt;Can we be more inaccurate? Well, here&amp;#8217;s a graph to play with. You can adjust what percentage of users&amp;#8217; computers lie about their survey results by dragging the slider, and see what that does to the&amp;nbsp;data.&lt;/p&gt;
+&lt;canvas id="graph_both" class="lie_graphs" width="750" height="700"&gt;&lt;/canvas&gt;
+
+&lt;div id="tweak"&gt;
+    &lt;p&gt;0% &lt;input id="lie_range" type="range" min="0" max="0.5" step="0.05" onchange="move_range(this)" value="0.1"&gt;&amp;nbsp;100%&lt;/p&gt;
+    &lt;p&gt;&lt;output id="lie_output"&gt;20%&lt;/output&gt; of submissions are deliberately&amp;nbsp;incorrect&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Even if you make &lt;em&gt;every single user&lt;/em&gt; lie about their values, the graph shape isn&amp;#8217;t &lt;em&gt;too&lt;/em&gt; bad. Lying tends to &amp;#8220;flatten out&amp;#8221; the graph; it makes tall peaks less tall, and short troughs more tall, and every single person lying probably flattens out things so much that conclusions you draw are probably now going to be wrong. But you can see from this that it ought to be possible to run the numbers and come up with a &amp;#8220;lie&amp;#8221; percentage which accurately balances the company&amp;#8217;s need for accurate information with the user&amp;#8217;s need to not provide&amp;nbsp;accuracy.&lt;/p&gt;
+&lt;p&gt;It is of course critical to this whole procedure that the lies cancel out, which means that they need to be evenly distributed. If everyone just makes up random answers then obviously this doesn&amp;#8217;t work; answers have to start with the truth and then (maybe) lie in one direction or&amp;nbsp;another.&lt;/p&gt;
+&lt;p&gt;This is a fairly simple description of this whole process of introducing noise into the data, and data scientists would be able to bring much more learning to bear on this. For example, how much does it affect accuracy if user information can lie by more than one &amp;#8220;step&amp;#8221; in every direction? Do we make it so instead of n% truth and 100-n% lies, we distribute the lies normally across the graph with the centrepoint being the truth? Is it possible to do this data collection without flattening out the graph to such an extent? And the state of the data art has moved on since the 1960s, too: Dwork wrote an influential 2006 paper on &lt;a href="https://en.wikipedia.org/wiki/Differential_privacy"&gt;differential privacy&lt;/a&gt; which goes into this in more detail. Obviously we&amp;#8217;ll be collecting data on more than one number &amp;#8212; someone looking for data on computers on which their &lt;span class="caps"&gt;OS&lt;/span&gt; is installed will want for example version info, network connectivity, lots of hardware stats, device vendor, and so on. And that&amp;#8217;s &lt;span class="caps"&gt;OK&lt;/span&gt;, because it&amp;#8217;s safe to collect this data now&amp;#8230; so how do our accuracy figures change when there are lots of stats and not just one? There will be better statistical ways to quantify &lt;em&gt;how&lt;/em&gt; inaccurate the results are than my simple single-bar percentage measure, and how to tweak the percentage-of-lying to give the best results for everyone. This whole topic seems like something that data scientists in various communities could really get their teeth into and provide great suggestions and help to companies who want to collect data in a responsible&amp;nbsp;way.&lt;/p&gt;
+&lt;p&gt;Of course, this applies to &lt;em&gt;any&lt;/em&gt; data you want to collect. Do you want analytics on how often your users open your app? What times of day they do that? Which &lt;span class="caps"&gt;OS&lt;/span&gt; version they&amp;#8217;re on? How long do they spend using it? All your data still works in aggregate, but the things you&amp;#8217;re collecting aren&amp;#8217;t so personally invasive, because you don&amp;#8217;t know if a user&amp;#8217;s records are lies. This needs careful thought &amp;#8212; there has been plenty of research on deanonymising data and similar things, and the &lt;span class="caps"&gt;EFF&lt;/span&gt;&amp;#8217;s &lt;a href="https://panopticlick.eff.org/"&gt;Panopticlick&lt;/a&gt; project shows how a combination of data can be cross-referenced and that needs protecting against too, but that&amp;#8217;s what data science is for; to tune the parameters used here so that individual privacy isn&amp;#8217;t compromised while aggregate properties are&amp;nbsp;preserved.&lt;/p&gt;
+&lt;p&gt;If a company is collecting info about you and they&amp;#8217;re not actually interested in tying your submitted records &lt;em&gt;to&lt;/em&gt; you (see previous point about how this doesn&amp;#8217;t apply to companies who &lt;em&gt;do&lt;/em&gt; want to do this, who are a whole different problem), then this in theory isn&amp;#8217;t needed. They don&amp;#8217;t have to collect &lt;span class="caps"&gt;IP&lt;/span&gt; addresses or usernames and record them against each submission, and indeed if they don&amp;#8217;t want that information then they probably don&amp;#8217;t do that. But there&amp;#8217;s always a concern: what if they&amp;#8217;re really doing that and lying about it? Well, this is how we alleviate that problem. Even if a company actually are trying to collect personally-identifiable data and they&amp;#8217;re lying to us about doing that it doesn&amp;#8217;t matter, because we protect ourselves by &amp;#8212; with a specific probability &amp;#8212; lying back to them. And then everyone gets what they want. There&amp;#8217;s a certain sense of justice in&amp;nbsp;that.&lt;/p&gt;
+&lt;style&gt;
+canvas.lie_graphs {
+    width: 100%;
+}
+#tweak {
+    text-align: center;
+    background: #dedadf;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    padding: 0.5em;
+    font-size: 80%;
+}
+#tweak p {
+    margin: 0.3em;
+}
+#tweak input[type=range] {
+  -webkit-appearance: none;
+  width: 60%;
+  margin: 7px 0;
+}
+#tweak input[type=range]:focus {
+  outline: none;
+}
+#tweak input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #6b00bd;
+  border-radius: 6px;
+  border: 0px solid #010101;
+}
+#tweak input[type=range]::-webkit-slider-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+#tweak input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #8200e6;
+}
+#tweak input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #6b00bd;
+  border-radius: 6px;
+  border: 0px solid #010101;
+}
+#tweak input[type=range]::-moz-range-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+}
+#tweak input[type=range]::-ms-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+#tweak input[type=range]::-ms-fill-lower {
+  background: #540094;
+  border: 0px solid #010101;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#tweak input[type=range]::-ms-fill-upper {
+  background: #6b00bd;
+  border: 0px solid #010101;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#tweak input[type=range]::-ms-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+  height: 6px;
+}
+#tweak input[type=range]:focus::-ms-fill-lower {
+  background: #6b00bd;
+}
+#tweak input[type=range]:focus::-ms-fill-upper {
+  background: #8200e6;
+}
+
+&lt;/style&gt;
+
+&lt;script&gt;
+
+var BAR_WIDTH = 50;
+var BAR_GAP = 10;
+var LEFT_MARGIN = 125;
+var BOTTOM_MARGIN = 50;
+var ram_options_weights = [
+    ["&lt;1GB", 20],
+    ["1GB", 30],
+    ["2GB", 50],
+    ["4GB", 150],
+    ["8GB", 300],
+    ["16GB", 250],
+    ["32GB", 100],
+    ["64GB", 50],
+    ["128GB", 30],
+    ["128GB+", 20]
+];
+var machines = [];
+var ram_key_offsets = {};
+for (var i=0; i&lt;ram_options_weights.length; i++) {
+    ram_key_offsets[ram_options_weights[i][0]] = i;
+}
+while (ram_options_weights.length &gt; 0) {
+    var nxt = ram_options_weights.shift();
+    for (var i=0; i&lt;nxt[1]; i++) {
+        machines.push({true_value: nxt[0]});
+    }
+}
+
+function draw_axis(ctx, yoffset, keys, title1, title2) {
+    ctx.fillStyle = "black";
+    ctx.font = "14px sans-serif";
+    var ax_x = 0;
+    for (var k in keys) {
+        ctx.fillText(k, (ax_x * (BAR_WIDTH + BAR_GAP)) + LEFT_MARGIN, 350 + 350 * yoffset - 30);
+        ax_x += 1;
+    }
+    ctx.fillText(title1, 0, 350 + (350 * yoffset) - 30);
+    ctx.fillText(title2, 0, 350 + (350 * yoffset) - 15);
+}
+
+function draw_accuracy(ctx, yoffset, keys, real_counts, false_counts) {
+    ctx.fillStyle = "black";
+    ctx.font = "14px sans-serif";
+    var ax_x = 0;
+    for (var k in keys) {
+        var real_v = real_counts[k];
+        var false_v = false_counts[k];
+        var diff = Math.abs(false_v - real_v);
+        var accuracy = Math.round(100 - (100 * diff / real_v));
+        ctx.fillText(accuracy + "%", (ax_x * (BAR_WIDTH + BAR_GAP)) + LEFT_MARGIN, 350 + 350 * yoffset - 15);
+        ax_x += 1;
+    }
+}
+
+function draw_detail(ctx, yoffset, text, text2) {
+    ctx.fillStyle = "black";
+    ctx.font = "bold 16px sans-serif";
+    ctx.fillText(text, 0, 350 * yoffset + 20);
+    ctx.fillText(text2, 0 , 350 * yoffset + 40);
+}
+
+function clear_graph(ctx, yoffset) {
+    // clear the graph rectangle
+    ctx.fillStyle = "#eff2f2";
+    ctx.fillRect(0, yoffset * 350, 750, 350);
+}
+
+function draw_graph(canvas_id, yoffset, machines, keys) {
+    var c = document.getElementById(canvas_id);
+    var ctx = c.getContext("2d");
+    clear_graph(ctx, yoffset);
+
+    var counts = {};
+
+    draw_axis(ctx, yoffset, keys, "Actual RAM", "");
+    draw_detail(ctx, yoffset, "True distribution of machines", "");
+
+    ctx.fillStyle = "#6b00bd";
+    machines.forEach(function(m) {
+        var xidx = keys[m.true_value];
+        var xposition = (xidx * (BAR_WIDTH + BAR_GAP)) + LEFT_MARGIN;
+        if (!counts[m.true_value]) counts[m.true_value] = 0;
+        counts[m.true_value] += 1;
+        var yposition = 350 - (counts[m.true_value] + BOTTOM_MARGIN);
+        ctx.fillRect(xposition, yposition, BAR_WIDTH, 1);
+        m.xposition = xposition;
+        m.yposition = yposition;
+    });
+}
+
+function move_graph(canvas_id, yoffset, machines, keys, lie_chance, has_parent) {
+    // this time, we flash each line on the original graph before drawing it
+    // and we draw lines in green for truth, or red for lies, on the new graph
+    var c = document.getElementById(canvas_id);
+    var ctx = c.getContext("2d");
+    clear_graph(ctx, yoffset);
+
+    var counts = {};
+
+    draw_axis(ctx, yoffset, keys, "Reported RAM", "Accuracy");
+    draw_detail(ctx, yoffset, "Distribution of machines with " + (lie_chance * 2 * 100) + "%", "of submissions deliberately incorrect");
+
+    var real_counts = {};
+    machines.forEach(function(m) {
+        if (!real_counts[m.true_value]) real_counts[m.true_value] = 0;
+        real_counts[m.true_value] += 1;
+    })
+
+    var machines_copy = JSON.parse(JSON.stringify(machines));
+    var idx_to_keys = {};
+    for (var k in keys) { idx_to_keys[keys[k]] = k; }
+    function process_one_machine(count) {
+        var m = machines_copy.shift();
+        if (!m) {
+            draw_accuracy(ctx, yoffset, keys, real_counts, counts);
+            return;
+        }
+
+        var xidx = keys[m.true_value];
+        // now, lie about the value, with a lie_chance chance of lying downwards
+        // and the same for lying upwards
+        var r = Math.random();
+        var lied = false;
+        if (r &lt;= lie_chance) {
+            // lie downwards
+            xidx -= 1;
+            lied = true;
+        } else if (r &gt;= 1.0 - lie_chance) {
+            xidx += 1;
+            lied = true;
+        }
+        xidx = xidx % Object.keys(keys).length;
+        if (xidx &lt; 0) xidx = Object.keys(keys).length + xidx;
+        var new_value = idx_to_keys[xidx];
+
+        var new_xposition = (xidx * (BAR_WIDTH + BAR_GAP)) + LEFT_MARGIN;
+        if (!counts[new_value]) counts[new_value] = 0;
+        counts[new_value] += 1;
+        var new_yposition = yoffset * 350 + (350 - (counts[new_value] + BOTTOM_MARGIN));
+
+        // Fill our new one in its new position, in red or green for lied or not
+        ctx.fillStyle = lied ? "#ec4137" : "#52bd00";
+        ctx.fillRect(new_xposition, new_yposition, BAR_WIDTH, 1);
+
+        // Flash the line it came from, then unflash it
+        if (has_parent) {
+            ctx.fillRect(m.xposition, m.yposition, BAR_WIDTH, 1);
+            (function(last_line_xposition, last_line_yposition) {
+                setTimeout(function() {
+                    ctx.fillStyle = "#6b00bd";
+                    ctx.fillRect(last_line_xposition, last_line_yposition, BAR_WIDTH, 1);
+                }, 150);
+            })(m.xposition, m.yposition)
+        }
+
+        // and run the loop again
+        if (count &lt; 20) {
+            process_one_machine(count + 1); 
+        } else {
+            requestAnimationFrame(function() { process_one_machine(0); });
+        }
+    };
+
+    // kick it all off
+    process_one_machine(0);
+}
+
+function move_range(el) {
+    document.getElementById("lie_output").textContent = (el.valueAsNumber * 100 * 2) + "%";
+    move_graph("graph_both", 1, machines, ram_key_offsets, el.valueAsNumber, true);
+}
+
+function main() {
+    draw_graph("graph_truth", 0, machines, ram_key_offsets);
+    move_graph("graph_lies", 0, machines, ram_key_offsets, 0.1, false);
+    draw_graph("graph_both", 0, machines, ram_key_offsets);
+    move_graph("graph_both", 1, machines, ram_key_offsets, 0.1, true);
+}
+main();
+&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 20 Feb 2018 23:58:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-02-20:/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/</guid></item><item><title>Sorry Henry</title><link>//www.kryogenix.org/days/2018/02/08/sorry-henry/</link><description>&lt;p&gt;I think I found a bug in a &lt;a href="https://en.wikipedia.org/wiki/Henry_Dudeney"&gt;Henry Dudeney&lt;/a&gt;&amp;nbsp;book.&lt;/p&gt;
+&lt;p&gt;Dudeney was a really famous puzzle creator in Victorian/Edwardian times. For Americans: Sam Loyd was sort of an American knock-off of Dudeney, except that Loyd stole half his puzzles from other people and &lt;span class="caps"&gt;HD&lt;/span&gt; didn&amp;#8217;t. Dudeney got so annoyed by this theft that he eventually ended up comparing Loyd to the Devil, which was tough talk in&amp;nbsp;1910.&lt;/p&gt;
+&lt;p&gt;Anyway, he wrote a number of puzzle books, and at least some are available on &lt;a href="http://www.gutenberg.org/ebooks/author/6885"&gt;Project Gutenberg&lt;/a&gt;, so well done the &lt;span class="caps"&gt;PG&lt;/span&gt; people. If you like puzzles, maths or thinking sorts, then there are a few good collections (and there are nicer to read versions at &lt;a href="https://archive.org/search.php?query=%221857-1930%22%20AND%20Dudeney"&gt;the Internet Archive&lt;/a&gt; too). &lt;em&gt;The Canterbury Puzzles&lt;/em&gt; is his most famous work, but I&amp;#8217;ve been reading &lt;em&gt;Amusements in Mathematics&lt;/em&gt;. In there he presents the following&amp;nbsp;puzzle:&lt;/p&gt;
+&lt;h4&gt;81.&amp;#8212;&lt;span class="caps"&gt;THE&lt;/span&gt; &lt;span class="caps"&gt;NINE&lt;/span&gt; &lt;span class="caps"&gt;COUNTERS&lt;/span&gt;.&lt;/h4&gt;
+&lt;table class="dudeney"&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class="t"&gt;&amp;times;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td class="t"&gt;&amp;times;&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;style&gt;
+table.dudeney td:not(.t):not(:empty) {
+    border-radius: 1000px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    background-image: linear-gradient(
+        180deg, hsl(0,0%,78%)  0%, 
+        hsl(0,0%,90%) 47%, 
+        hsl(0,0%,78%) 53%,
+        hsl(0,0%,70%) 100%
+    );
+    width: 25px;
+    border: 1px solid #aaaaaa;
+    padding-bottom: 25px;
+    height: 0;
+    box-sizing: border-box;
+}
+table.dudeney td.t { text-align: right; }
+&lt;/style&gt;
+
+&lt;p&gt;I have nine counters, each bearing one of the nine digits, 1, 2, 3, 4,
+5, 6, 7, 8 and 9. I arranged them on the table in two groups, as shown
+in the illustration, so as to form two multiplication sums, and found
+that both sums gave the same product. You will find that 158 multiplied
+by 23 is 3,634, and that 79 multiplied by 46 is also 3,634. Now, the
+puzzle I propose is to rearrange the counters so as to get as large a
+product as possible. What is the best way of placing them? Remember both
+groups must multiply to the same amount, and there must be three
+counters multiplied by two in one case, and two multiplied by two
+counters in the other, just as at&amp;nbsp;present.&lt;/p&gt;
+&lt;h4&gt;81. &lt;span class="caps"&gt;ANSWER&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;In this case a certain amount of mere &amp;#8220;trial&amp;#8221; is unavoidable. But there
+are two kinds of &amp;#8220;trials&amp;#8221;&amp;#8212;those that are purely haphazard, and those
+that are methodical. The true puzzle lover is never satisfied with mere
+haphazard trials. The reader will find that by just reversing the
+figures in 23 and 46 (making the multipliers 32 and 64) both products
+will be 5,056. This is an improvement, but it is not the correct answer.
+We can get as large a product as 5,568 if we multiply 174 by 32 and 96
+by 58, but this solution is not to be found without the exercise of some
+judgment and&amp;nbsp;patience.&lt;/p&gt;
+&lt;hr&gt;
+
+&lt;p&gt;But, you know what? I don&amp;#8217;t think he&amp;#8217;s right. Now, I appreciate that he probably had to spend hours or days trying out possibilities with a piece of paper and a fountain pen, and I just wrote the following 15 lines of Python in five minutes, but hey, he didn&amp;#8217;t have to bear with his government trying to ban encryption, so let&amp;#8217;s call it&amp;nbsp;even.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from itertools import permutations
+nums = [1,2,3,4,5,6,7,8,9]
+values = []
+for p in permutations(nums, 9):
+    one   = p[0]*100 + p[1]*10 + p[2]
+    two   = p[3]*10 + p[4]
+    three = p[5]*10 + p[6]
+    four  = p[7]*10 + p[8]
+    if four &gt; three: continue # or we'll see fg*hi and hi*fg as different
+    if one*two == three*four:
+        expression = "%s*%s = %s*%s = %s" % (
+            one, two, three, four, one*two)
+        values.append((expression, one*two))
+values.sort(key=lambda x:x[1])
+print("Solution for 1-9")
+print("\n".join([x[0] for x in values]))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The key point here is this: the little programme above indeed recognises his proposed solutions (&lt;code&gt;158*32 = 79*64 = 5056&lt;/code&gt; and &lt;code&gt;174*32 = 96*58 = 5568&lt;/code&gt;) but it also finds two larger ones: &lt;code&gt;584*12 = 96*73 = 7008&lt;/code&gt; and &lt;code&gt;532*14 = 98*76 = 7448&lt;/code&gt;. Did I miss something about the puzzle? Or am I actually in the rare position of finding an error in a Dudeney book? And all it took was seventy years of computer technology advancement to put me in that position. Maths, eh?&amp;nbsp;Tch.&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s an interesting book. There are lots of money puzzles, in which I have to carefully remember that ha&amp;#8217;pennies and farthings are a thing (a farthing is a quarter of a penny), there are 12 pennies in a shilling, and twenty shillings in a pound. There&amp;#8217;s some rather racist portrayals of comic-opera Chinese characters in a few of the puzzles. And my heart sank when I read a puzzle about husbands and wives crossing a river in a boat, where no man would permit his wife to be in the boat with another man without him, because I assumed that the solution would also say something like &amp;#8220;and of course the women cannot be expected to row the boat&amp;#8221;, and I was then pleasantly surprised to discover that this was not the case and indeed they were described as probably being capable oarswomen and it was likely their boat to begin with! Writings from another time. But still as good as any puzzle book today, if not&amp;nbsp;better.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en-gb"&gt;&lt;p lang="en" dir="ltr"&gt;From Henry Dudeney&amp;#39;s Amusements in Mathematics, published 1917. We did, Henry, mate. Cheers for the puzzle book. &lt;a href="https://t.co/tt8JljBXN1"&gt;https://t.co/tt8JljBXN1&lt;/a&gt; &lt;a href="https://t.co/MFamXHxJ05"&gt;pic.twitter.com/MFamXHxJ05&lt;/a&gt;&lt;/p&gt;&amp;mdash; Stuart Langridge (@sil) &lt;a href="https://twitter.com/sil/status/912253821807730688?ref_src=twsrc%5Etfw"&gt;25 September 2017&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Thu, 08 Feb 2018 18:34:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-02-08:/days/2018/02/08/sorry-henry/</guid></item><item><title>And Everything</title><link>//www.kryogenix.org/days/2018/01/30/and-everything/</link><description>&lt;blockquote&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;Rule Forty-two. All persons more than a mile high to leave the court.&amp;#8221;&lt;br&gt;
 Everybody looked at Alice.&lt;br&gt;
 &amp;#8220;I&amp;#8221;m not a mile high,&amp;#8221; said Alice.&lt;br&gt;
 &amp;#8220;You are,&amp;#8221; said the King.&lt;br&gt;
 &amp;#8220;Nearly two miles high,&amp;#8221; added the Queen.&lt;br&gt;
-&amp;#8220;Well, I shan&amp;#8217;t go, at any rate,&amp;#8221; said Alice: &amp;#8220;besides, that&amp;#8217;s …&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 30 Jan 2018 10:36:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-01-30:/days/2018/01/30/and-everything/</guid></item><item><title>Happy 45th Anniversary, mum and dad</title><link>//www.kryogenix.org/days/2018/01/06/happy-anniversary/</link><description>&lt;p&gt;You&amp;#8217;re supposed to send cards to wish someone a happy anniversary. Well, today, my mum and dad have been married for 45 years (!), so I sent them some cards. Specifically, five playing cards, with weird symbols on&amp;nbsp;them.&lt;/p&gt;
+&amp;#8220;Well, I shan&amp;#8217;t go, at any rate,&amp;#8221; said Alice: &amp;#8220;besides, that&amp;#8217;s not a regular rule: you invented it just now.&amp;#8221;&lt;br&gt;
+&amp;#8220;It&amp;#8217;s the oldest rule in the book,&amp;#8221; said the King.&lt;br&gt;
+&amp;#8220;Then it ought to be Number One,&amp;#8221; said Alice.&lt;/blockquote&gt;
+
+&lt;p&gt;It&amp;#8217;s my birthday (&lt;a href="https://www.kryogenix.org/days/2017/01/30/niobium/"&gt;a&lt;/a&gt;&lt;a href="http://www.kryogenix.org/days/2016/01/31/what-i-did-on-my-holidays/"&gt;g&lt;/a&gt;&lt;a href="http://www.kryogenix.org/days/2015/01/30/temporarily-older-than-benedict-cumberbatch-for-six-months-again-dammit/"&gt;a&lt;/a&gt;&lt;a href="http://www.kryogenix.org/days/2014/01/30/but-these-posts-go-to-eleven/"&gt;i&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2013/01/30/thirty-seven-for-gods-sake-how-did-that-happen/"&gt;n&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2012/01/30/a-year-goes-past/"&gt;.&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2011/01/31/brave-new-age/"&gt;.&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2009/01/30/mini-hippo-returns/"&gt;.&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2008/01/30/another-year-passes/"&gt;.&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2007/01/30/my-week/"&gt;.&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2006/01/30/turning-thirty/"&gt;.&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2005/01/30/staring/"&gt;.&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2004/01/31/birthdays/"&gt;.&lt;/a&gt;&lt;a href="http://kryogenix.org/days/2003/01/30/revolution/"&gt;.&lt;/a&gt;). I&amp;#8217;m 21, for the second time around.&amp;nbsp;Hooray!&lt;/p&gt;
+&lt;p&gt;So far it&amp;#8217;s been a nice day, with lots of people wishing me happy birthday from midnight last night (including a rather lovely thing from &lt;a href="http://www.jonobacon.com/2018/01/30/happy-birthday-stuart-2/"&gt;Jono&lt;/a&gt;). I got a cool shirt off mum and dad, which I shall be wearing for this evening&amp;#8217;s venture to &lt;a href="https://www.ghettogolf.co.uk/birmingham/"&gt;Ghetto Golf&lt;/a&gt;, a sort of weird crazy golf place which is all neon and skulls and graffiti, with&amp;nbsp;cocktails.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/ghettogolf.jpg" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Dinner with Niamh this afternoon, too, which is cool. I&amp;#8217;m still as worried about the future and the world as I was this time last year, but I can have a day off for my birthday. And I have friends. This helps. So I can do nice things; write some code, maybe publish the talk I did at Hackference, solve a problem or two. Eat biscuits. You know. Nice things. No&amp;nbsp;ironing.&lt;/p&gt;
+&lt;p&gt;Many happy returns,&amp;nbsp;me.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 30 Jan 2018 10:36:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-01-30:/days/2018/01/30/and-everything/</guid></item><item><title>Happy 45th Anniversary, mum and dad</title><link>//www.kryogenix.org/days/2018/01/06/happy-anniversary/</link><description>&lt;p&gt;You&amp;#8217;re supposed to send cards to wish someone a happy anniversary. Well, today, my mum and dad have been married for 45 years (!), so I sent them some cards. Specifically, five playing cards, with weird symbols on&amp;nbsp;them.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://kryogenix.org/images/ha45-1.png" alt="Joker, J♠, A♥, A♠, 5♠"&gt;&lt;/p&gt;
-&lt;p&gt;So, the first question is: what order should they be in …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Sat, 06 Jan 2018 12:42:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-01-06:/days/2018/01/06/happy-anniversary/</guid></item></channel></rss>
+&lt;p&gt;So, the first question is: what order should they be in? You might need to be Irish to get this next&amp;nbsp;bit.&lt;/p&gt;
+&lt;p&gt;There is a card game in Ireland called Forty-Five. It&amp;#8217;s basically Whist, or Trumps; you each play a card, and highest card wins, except that a trump card beats a non-trump. My grandad, my mum&amp;#8217;s dad, was an absolute demon at it. You&amp;#8217;d sit and play a few hands and then he&amp;#8217;d say: you reneged! And you&amp;#8217;d say, I did what? And he&amp;#8217;d say: you should have played your Jack of Spades there. And you&amp;#8217;d say: how the bloody hell do you know I have the Jack of Spades? And then he&amp;#8217;d beat you nine hundred games to&amp;nbsp;nil.&lt;/p&gt;
+&lt;p&gt;Anyway, what makes Forty-Five not be Whist is that the trumps are in a weird order. Imagine that, in this hand, trump suit has been chosen as Spades. The highest trump, the best card in the pack, is the Five of Spades. Then the Jack of Spades, then the Joker, then the Ace of Hearts (&lt;em&gt;regardless&lt;/em&gt; of which suit is trump; always the A♥ as fourth trump), then the Ace of Spades and down the other trump suit cards in sequence (K♠, Q♠,&amp;nbsp;etc).&lt;/p&gt;
+&lt;p&gt;And it is their forty-fifth wedding anniversary. (See what I did there?) So if we put the cards in&amp;nbsp;order:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/ha45-2.png" alt="5♠, J♠, Joker, A♥, A♠"&gt;&lt;/p&gt;
+&lt;p&gt;then that&amp;#8217;s correct. But what about the weird symbols? Well, once you&amp;#8217;ve got the cards laid out in order as above, you can look at them from the right-hand-side and the symbols spell a vertical&amp;nbsp;message:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/images/ha45-3.png" alt="Weird symbols spell out 'HAPPY ANNIVERSARY'"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;HAPPY&lt;/span&gt; &lt;span class="caps"&gt;ANNIVERSARY&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Also, I&amp;#8217;m forty-one, so all you people who have suggested that my parents were unmarried (although by using a shorter word for it) are&amp;nbsp;wrong.&lt;/p&gt;
+&lt;p&gt;Happy anniversary, mum and&amp;nbsp;dad.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Sat, 06 Jan 2018 12:42:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-01-06:/days/2018/01/06/happy-anniversary/</guid></item></channel></rss>
