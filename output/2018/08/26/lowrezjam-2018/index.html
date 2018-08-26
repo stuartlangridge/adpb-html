@@ -323,7 +323,7 @@ And, of course, now you&#8217;ve looked at all those, you should go and play <em
 
 <h2><a href='https://itch.io/jam/lowrezjam-2018/rate/287184'>Pipe&nbsp;Flip</a></h2>
 <img src='https://img.itch.zone/aW1hZ2UvMjg3MTg0LzEzOTkzODUucG5n/315x250%23c/6SccRA.png' alt=''>
-<p>This jam was good fun. Thank you to <a href="https://jackoatley.itch.io/">Jack Oatley</a> for organising&nbsp;it!</p>
+<p>This jam was good fun. Thank you to <a href="https://jackoatley.itch.io/">Jack Oatley</a> for organising it! And thanks to Alan Pope for&nbsp;playtesting.</p>
 <p>One of my major limitations in game writing is that I am supernaturally, volcanically bad at graphics. So something like Lydian, the winning game, is completely beyond me to create, sad to say. This is why I made a puzzle game; the graphics in it are simplistic, to say the least. A few sprites of pipes, and the creeping fluid, and the entry and end screens. One of the advantages of the lowrezjam specifically is that you don&#8217;t have to create screens on the fly with code; you can just literally pre-render a bunch of them as PNGs and load those PNGs, because they&#8217;re only 64x64 pixels, which is tiny; the title screen, with logo and big <span class="caps">PLAY</span> button, is a 1.<span class="caps">4KB</span> png file which I just load into place. That&#8217;s pretty useful. I also made the game with pure <span class="caps">HTML</span>, <span class="caps">CSS</span>, and JavaScript; it&#8217;s not using a game engine which renders to a <code>&lt;canvas&gt;</code>. All of the things on screen are actually <span class="caps">HTML</span> elements. One of the nice advantages this gives is that mobile support is pretty easy, because browsers are already good at that; if I show the thing on screen, the browser handles clicks and so on for me. I can use all the <span class="caps">CSS</span> I want, so to scale a thing I don&#8217;t need to work out scaling algorithms myself; I just do everything at 64x64, and then apply <code>transform: scale(10)</code> or whatever to the whole containing element to make it bigger. (Pro tip: if you want to do that, and you want it to scale up, pixelated, then apply <code>image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; image-rendering: pixelated;</code> to the thing you&#8217;re scaling, and then it&#8217;ll scale pixel by pixel, rather than blurring everything. That doesn&#8217;t work on fonts, annoyingly, but the rest is&nbsp;fine.)</p>
 <p>Another thing I learned was that reviewing other people&#8217;s games helps. I grabbed all the results from the jam and put them in a spreadsheet (you can <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS3YzSpmkMNoFTRUAebtUS9Al9Uw-Ra2fxloDuo3i_rIrjzH4GvjA8Wh3TsMqwa3F2Du4VlK2yCeONf/pub?output=csv">download the <span class="caps">CSV</span> file here</a>), and I discovered something. You see, I came 69th overall, which out of 170 isn&#8217;t too bad. But I got more reviews on my game than almost anyone; Pipe Flip had 27 reviews and only <em>two</em> games got more than that. I am pretty confident that that happened <em>because</em> I wrote the above set of reviews, and posted them to each game, as the jam was going on. To review a game as part of the jam you have to have <em>entered</em> the jam; what this means is that when you <em>get</em> a review, you know that the reviewer also entered something. And I did my best to write meaningful reviews; not just that a game was good or bad but also what was good or bad about it, suggestions for improvements, applause for things that worked particularly well. I certainly wasn&#8217;t the only one doing this, but I think it helped; I not only got a bunch of useful feedback on Pipe Flip but I also had comments back from developers responding to my thoughts on their own games; I think this encouraged them to review mine. Of course, next I need to write a game which people review with higher scores, but that&#8217;s for next year :-) And in the meantime, there&#8217;s a message here; participate. We&#8217;re all in this together; everyone in the jam is looking to hear detail about their own games, whether good or bad, because it makes us all better game&nbsp;developers.</p>
 <p>Anyway, that was the <span class="caps">LOWREZJAM</span>, 2018. I enjoyed it. Roll on the next&nbsp;one.</p>
@@ -337,7 +337,23 @@ And, of course, now you&#8217;ve looked at all those, you should go and play <em
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul><li>(no mentions, yet.)</li></ul>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/1033708647082348550">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: LOWREZJAM 2018 by @sil buff.ly/2Mw2HdG #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/1033708771556687873">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: LOWREZJAM 2018 kryogenix.org/days/2018/08/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/797662861011144704/0eUGNJem.jpg">
+			Dr. Roy Schestowitz (罗伊) responded at
+		<a href="https://twitter.com/schestowitz/status/1033718871495258113">twitter.com</a>
+		<span class="wm-summary">			"you have to build a game which runs in a 64x64 pixel square. So, really small — the #GameBoy was 160x144, or about six times as big." kryogenix.org/d&hellip;
+</span></li>
+	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
