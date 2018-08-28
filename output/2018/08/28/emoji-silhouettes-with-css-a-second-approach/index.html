@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Emoji Silhouettes with CSS, a second approach</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(//www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="//www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="//www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/"><time 
+			class="dt-published" datetime="2018-08-28T22:29:00+01:00">Aug 28 2018</time></a>
+			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="//www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/" title="Permalink to Emoji Silhouettes with CSS, a second approach" rel="bookmark">Emoji Silhouettes with <span class="caps">CSS</span>, a second&nbsp;approach</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Every now and again it&#8217;s useful to display single-colour emoji on a web page; all the colours in those little emoji symbols are nice and all, but it does occasionally make your formal document look a bit like an angry fruit salad. I&#8217;ve seen a technique for this before (in particular from <a href="https://www.bram.us/2016/10/06/emoji-silhouettes-and-emoji-outlines-with-css/">Bram van Damme</a>, but searching for &#8220;emoji silhouettes&#8221; finds lots of other people doing it too), where you set the text colour to <code>transparent</code> and then set a <code>text-shadow</code>, and you&#8217;re done. This is nice, but it doesn&#8217;t work for me in Firefox, sadly; if you set the text <code>color</code> to transparent then indeed your emoji disappear, but if you set a text shadow they come right back, and in full&nbsp;colour.</p>
+<p>So, I do it a different way, akin to the ancient and well-known image replacement method; set a <code>text-indent</code> on the element containing your emoji and then reverse that text indent in the <code>text-shadow</code><span class="quo">&#8216;</span>s <code>offset-x</code> position. So you set <code>text-indent</code> to something massive and negative like <code>-2000em</code> so it&#8217;s definitely off the page to the left, and then a <code>text-shadow</code> (which, we recall, is <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow">specified</a> as <em>text-shadow: offset-x offset-y blur-radius color</em>) of <em>plus</em> 2000em to put the text shadow back where the original characters were before they were indented miles to the&nbsp;left.</p>
+<pre><code>
+&lt;style&gt;
+span.emoji {
+    text-indent: -2000em;
+    text-shadow: 2000em 0 0 red;
+}
+&lt;/style&gt;
+...
+&lt;p&gt;And here are some emoji silhouettes:
+    &lt;span class="emoji"&gt;🚀 🎭 &lt;/span&gt;.
+    Aren't they nice!&lt;p&gt;
+</code></pre>
+
+<style>
+#emojidemo span.emoji {
+    text-indent: -2000em;
+    text-shadow: 2000em 0 0 red;
+    display: inline-block;
+    width: 2.5em;
+}
+</style>
+
+<p id="emojidemo">And here are some emoji silhouettes:
+    <span class="emoji">🚀 🎭 </span>. 
+Aren&#8217;t they&nbsp;nice!</p>
+
+<p>You have to wrap your Unicode characters in their own little span, which is a bit unfortunate, but then you have to with other approaches too. (And your span has to be <code>display: inline-block</code> or <code>block</code> too, otherwise the <code>text-indent</code> gets ignored.) Anyway, not earth-shattering, but I quite like&nbsp;it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="//www.kryogenix.org/days/2018/08/26/lowrezjam-2018/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/">
+	<input type="submit" value="Add link">
+</form>
+<script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2018/08/28/emoji-silhouettes-with-css-a-second-approach/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
