@@ -88,7 +88,9 @@ span.emoji {
 Aren&#8217;t they&nbsp;nice!</p>
 
 <p>You have to wrap your Unicode characters in their own little span, which is a bit unfortunate, but then you have to with other approaches too. (And your span has to be <code>display: inline-block</code> or <code>block</code> too, otherwise the <code>text-indent</code> gets ignored.) Anyway, not earth-shattering, but I quite like&nbsp;it.</p>
-<p><strong>Update!</strong> Garrett LeSage <a href="https://twitter.com/garrett/status/1034570594027810816">suggests</a> a different approach, using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter"><span class="caps">CSS</span> filters</a>. These are quite a lot more powerful than one might think. His approach applies a set of <span class="caps">CSS</span> filters in concert, like&nbsp;this:</p>
+<hr>
+
+<p>After this was originally posted, Garrett LeSage <a href="https://twitter.com/garrett/status/1034570594027810816">suggested</a> a different approach, using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter"><span class="caps">CSS</span> filters</a>. These are quite a lot more powerful than one might think. His approach applies a set of <span class="caps">CSS</span> filters in concert, like&nbsp;this:</p>
 <p>Set the contrast on your emoji to high with <span class="caps">CSS</span> <code>filter: contrast(0)</code></p>
 <p><span style="filter: contrast(0)">🚀&nbsp;🎭 </span></p>
 <p>Use a <code>sepia(100%)</code> filter to&nbsp;colorise:</p>

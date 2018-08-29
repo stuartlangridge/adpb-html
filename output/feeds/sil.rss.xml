@@ -28,7 +28,9 @@ span.emoji {
 Aren&amp;#8217;t they&amp;nbsp;nice!&lt;/p&gt;
 
 &lt;p&gt;You have to wrap your Unicode characters in their own little span, which is a bit unfortunate, but then you have to with other approaches too. (And your span has to be &lt;code&gt;display: inline-block&lt;/code&gt; or &lt;code&gt;block&lt;/code&gt; too, otherwise the &lt;code&gt;text-indent&lt;/code&gt; gets ignored.) Anyway, not earth-shattering, but I quite like&amp;nbsp;it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update!&lt;/strong&gt; Garrett LeSage &lt;a href="https://twitter.com/garrett/status/1034570594027810816"&gt;suggests&lt;/a&gt; a different approach, using &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter"&gt;&lt;span class="caps"&gt;CSS&lt;/span&gt; filters&lt;/a&gt;. These are quite a lot more powerful than one might think. His approach applies a set of &lt;span class="caps"&gt;CSS&lt;/span&gt; filters in concert, like&amp;nbsp;this:&lt;/p&gt;
+&lt;hr&gt;
+
+&lt;p&gt;After this was originally posted, Garrett LeSage &lt;a href="https://twitter.com/garrett/status/1034570594027810816"&gt;suggested&lt;/a&gt; a different approach, using &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter"&gt;&lt;span class="caps"&gt;CSS&lt;/span&gt; filters&lt;/a&gt;. These are quite a lot more powerful than one might think. His approach applies a set of &lt;span class="caps"&gt;CSS&lt;/span&gt; filters in concert, like&amp;nbsp;this:&lt;/p&gt;
 &lt;p&gt;Set the contrast on your emoji to high with &lt;span class="caps"&gt;CSS&lt;/span&gt; &lt;code&gt;filter: contrast(0)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span style="filter: contrast(0)"&gt;🚀&amp;nbsp;🎭 &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Use a &lt;code&gt;sepia(100%)&lt;/code&gt; filter to&amp;nbsp;colorise:&lt;/p&gt;
