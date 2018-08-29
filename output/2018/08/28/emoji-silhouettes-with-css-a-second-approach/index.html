@@ -88,6 +88,16 @@ span.emoji {
 Aren&#8217;t they&nbsp;nice!</p>
 
 <p>You have to wrap your Unicode characters in their own little span, which is a bit unfortunate, but then you have to with other approaches too. (And your span has to be <code>display: inline-block</code> or <code>block</code> too, otherwise the <code>text-indent</code> gets ignored.) Anyway, not earth-shattering, but I quite like&nbsp;it.</p>
+<p><strong>Update!</strong> Garrett LeSage <a href="https://twitter.com/garrett/status/1034570594027810816">suggests</a> a different approach, using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter"><span class="caps">CSS</span> filters</a>. These are quite a lot more powerful than one might think. His approach applies a set of <span class="caps">CSS</span> filters in concert, like&nbsp;this:</p>
+<p>Set the contrast on your emoji to high with <span class="caps">CSS</span> <code>filter: contrast(0)</code></p>
+<p><span style="filter: contrast(0)">🚀&nbsp;🎭 </span></p>
+<p>Use a <code>sepia(100%)</code> filter to&nbsp;colorise:</p>
+<p><span style="filter: contrast(0) sepia(100%)">🚀&nbsp;🎭 </span></p>
+<p>Set the colour to one of your choice with <code>hue-rotate(180deg)</code>:</p>
+<p><span style="filter: contrast(0) sepia(100%) hue-rotate(180deg)">🚀&nbsp;🎭 </span></p>
+<p>And finally pump up the saturation with <code>saturate(1000%)</code>:</p>
+<p><span style="filter: contrast(0) sepia(100%) hue-rotate(180deg) saturate(1000%)">🚀&nbsp;🎭 </span></p>
+<p>The up-side of this approach is that it&#8217;s one line of <span class="caps">CSS</span>; you don&#8217;t need to set inline-block, or worry about defining a width on your &#8220;emoji&#8221; element. The down-side is that you have to do some <em>crazy</em> maths calculations to actually set your emoji to the colour you <em>want</em>. Barrett Sonntag wrote an <a href="https://codepen.io/sosuke/pen/Pjoqqp">interactive filter generator</a> to calculate the set of <code>filter</code>s required to set your colour as the one you want, based on some <a href="https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991">Stack Overflow</a> answers. I think this downside is enough to lean me away from this method, personally, but it&#8217;s another approach if you prefer&nbsp;it!</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="//www.kryogenix.org/days/2018/08/26/lowrezjam-2018/">Previous post</a></li>
@@ -96,7 +106,46 @@ Aren&#8217;t they&nbsp;nice!</p>
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul><li>(no mentions, yet.)</li></ul>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/901006755462819840/wntaeD5u.jpg">
+			Bramus! responded at
+		<a href="https://twitter.com/bramus/status/1034560837527240704">twitter.com</a>
+		<span class="wm-summary">			Emoji silhouettes in CSS; @bramus's approach of setting color: transparent and then using a text-shadow is nice but sadly doesn't work for
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/1034561931124895744">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Emoji Silhouettes with CSS, a second approach kryogenix.org/days/2018/08/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/901006755462819840/wntaeD5u.jpg">
+			Bramus! responded at
+		<a href="https://twitter.com/sil/status/1034558670011596800#favorited-by-9131062">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/879665418910261248/jSxoPLQg.jpg">
+			Christian Dywan responded at
+		<a href="https://twitter.com/sil/status/1034558670011596800#favorited-by-879664376206249988">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/901694495246438400/_jWecvQY.jpg">
+			Garrett LeSage responded at
+		<a href="https://twitter.com/garrett/status/1034570594027810816">twitter.com</a>
+		<span class="wm-summary">			Simpler emoji silhouettes in CSS: filter with high contrast, sepia to colorize, hue shift to taste, pump up saturation. filter: contrast(0) sepia(100&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/901694495246438400/_jWecvQY.jpg">
+			Garrett LeSage responded at
+		<a href="https://twitter.com/garrett/status/1034571804239691783">twitter.com</a>
+		<span class="wm-summary">			(Disclaimer: This *should* work cross-browser, but it's after midnight and I only tested it in Firefox on my phone, in bed. 😉)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1034572509117599744">twitter.com</a>
+		<span class="wm-summary">			oooh, posh. I didn't think of filters. Nice work! That works well! MDN claims it's supported everywhere, too (well, except IE, but one can live with t&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/1034669978509815808">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Emoji Silhouettes with CSS, a second approach by @sil buff.ly/2BYg1D0 #PlanetBirmingham
+</span></li>
+	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
