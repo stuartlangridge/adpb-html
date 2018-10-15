@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><lastBuildDate>Tue, 28 Aug 2018 22:29:00 +0100</lastBuildDate><item><title>Emoji Silhouettes with CSS, a second approach</title><link>//www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/</link><description>&lt;p&gt;Every now and again it&amp;#8217;s useful to display single-colour emoji on a web page; all the colours in those little emoji symbols are nice and all, but it does occasionally make your formal document look a bit like an angry fruit salad. I&amp;#8217;ve seen a technique for this before (in particular from &lt;a href="https://www.bram.us/2016/10/06/emoji-silhouettes-and-emoji-outlines-with-css/"&gt;Bram van Damme&lt;/a&gt;, but searching for &amp;#8220;emoji silhouettes&amp;#8221; finds lots of other people doing it too), where you set the text colour to &lt;code&gt;transparent&lt;/code&gt; and then set a &lt;code&gt;text-shadow&lt;/code&gt;, and you&amp;#8217;re done. This is nice, but it doesn&amp;#8217;t work for me in Firefox, sadly; if you set the text &lt;code&gt;color&lt;/code&gt; to transparent then indeed your emoji disappear, but if you set a text shadow they come right back, and in full&amp;nbsp;colour.&lt;/p&gt;
+<rss version="2.0"><channel><title>as days pass by</title><link>//www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><lastBuildDate>Mon, 15 Oct 2018 23:31:00 +0100</lastBuildDate><item><title>Print to Google Drive in a non-Gnome desktop</title><link>//www.kryogenix.org/days/2018/10/15/print-to-google-drive-in-a-non-gnome-desktop/</link><description>&lt;p&gt;Jeremy Bicha wrote up an unknown Ubuntu feature: &lt;a href="https://jeremy.bicha.net/2018/10/14/google-cloud-print-in-ubuntu/"&gt;&amp;#8220;printing&amp;#8221; direct to a Google Drive &lt;span class="caps"&gt;PDF&lt;/span&gt;&lt;/a&gt;. I rather wanted this, but I don&amp;#8217;t run the Gnome desktop, so I thought I might be out of luck. But no! It works fine on my Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; desktop too. A couple of extra tweaks are required, though. This is unfortunately a bit technical, but it should only need setting up&amp;nbsp;once.&lt;/p&gt;
+&lt;p&gt;You need the Gnome Control Centre and Gnome Online Accounts installed, if you don&amp;#8217;t have them already, as well as the Google Cloud Print extension that Jeremy mentions. From a terminal, run &lt;code&gt;sudo apt install gnome-control-center gnome-online-accounts cpdb-backend-gcp&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Next, you need to launch the Control Centre, but it doesn&amp;#8217;t like you if you&amp;#8217;re not running the Gnome desktop. So, we lie to it. In that terminal, run &lt;code&gt;XDG_CURRENT_DESKTOP=GNOME gnome-control-center online-accounts&lt;/code&gt;. This should correctly start the Control Centre, showing the online accounts. Sign in to your Google account using that window. (I only have Files and Printers selected; you don&amp;#8217;t need Mail and Calendars and so on to get this printing&amp;nbsp;working.) &lt;/p&gt;
+&lt;p&gt;Then&amp;#8230; it all works. From now on, when you go to print something, the print dialogue will, after a couple of seconds, show a new entry: &amp;#8220;Save to Google Drive&amp;#8221;. Choose that, and your document will &amp;#8220;print&amp;#8221; to a &lt;span class="caps"&gt;PDF&lt;/span&gt; stored in Google Drive. Easy peasy. Nice one Jeremy for the write-up. It&amp;#8217;d be neat if Ubuntu &lt;span class="caps"&gt;MATE&lt;/span&gt; could integrate this a little more&amp;nbsp;tightly.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 15 Oct 2018 23:31:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-10-15:/days/2018/10/15/print-to-google-drive-in-a-non-gnome-desktop/</guid></item><item><title>Emoji Silhouettes with CSS, a second approach</title><link>//www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/</link><description>&lt;p&gt;Every now and again it&amp;#8217;s useful to display single-colour emoji on a web page; all the colours in those little emoji symbols are nice and all, but it does occasionally make your formal document look a bit like an angry fruit salad. I&amp;#8217;ve seen a technique for this before (in particular from &lt;a href="https://www.bram.us/2016/10/06/emoji-silhouettes-and-emoji-outlines-with-css/"&gt;Bram van Damme&lt;/a&gt;, but searching for &amp;#8220;emoji silhouettes&amp;#8221; finds lots of other people doing it too), where you set the text colour to &lt;code&gt;transparent&lt;/code&gt; and then set a &lt;code&gt;text-shadow&lt;/code&gt;, and you&amp;#8217;re done. This is nice, but it doesn&amp;#8217;t work for me in Firefox, sadly; if you set the text &lt;code&gt;color&lt;/code&gt; to transparent then indeed your emoji disappear, but if you set a text shadow they come right back, and in full&amp;nbsp;colour.&lt;/p&gt;
 &lt;p&gt;So, I do it a different way, akin to the ancient and well-known image replacement method; set a &lt;code&gt;text-indent&lt;/code&gt; on the element containing your emoji and then reverse that text indent in the &lt;code&gt;text-shadow&lt;/code&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;s &lt;code&gt;offset-x&lt;/code&gt; position. So you set &lt;code&gt;text-indent&lt;/code&gt; to something massive and negative like &lt;code&gt;-2000em&lt;/code&gt; so it&amp;#8217;s definitely off the page to the left, and then a &lt;code&gt;text-shadow&lt;/code&gt; (which, we recall, is &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow"&gt;specified&lt;/a&gt; as &lt;em&gt;text-shadow: offset-x offset-y blur-radius color&lt;/em&gt;) of &lt;em&gt;plus&lt;/em&gt; 2000em to put the text shadow back where the original characters were before they were indented miles to the&amp;nbsp;left.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
 &amp;lt;style&amp;gt;
@@ -895,76 +898,4 @@ function main() {
     move_graph("graph_both", 1, machines, ram_key_offsets, 0.1, true);
 }
 main();
-&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 20 Feb 2018 23:58:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-02-20:/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/</guid></item><item><title>Sorry Henry</title><link>//www.kryogenix.org/days/2018/02/08/sorry-henry/</link><description>&lt;p&gt;I think I found a bug in a &lt;a href="https://en.wikipedia.org/wiki/Henry_Dudeney"&gt;Henry Dudeney&lt;/a&gt;&amp;nbsp;book.&lt;/p&gt;
-&lt;p&gt;Dudeney was a really famous puzzle creator in Victorian/Edwardian times. For Americans: Sam Loyd was sort of an American knock-off of Dudeney, except that Loyd stole half his puzzles from other people and &lt;span class="caps"&gt;HD&lt;/span&gt; didn&amp;#8217;t. Dudeney got so annoyed by this theft that he eventually ended up comparing Loyd to the Devil, which was tough talk in&amp;nbsp;1910.&lt;/p&gt;
-&lt;p&gt;Anyway, he wrote a number of puzzle books, and at least some are available on &lt;a href="http://www.gutenberg.org/ebooks/author/6885"&gt;Project Gutenberg&lt;/a&gt;, so well done the &lt;span class="caps"&gt;PG&lt;/span&gt; people. If you like puzzles, maths or thinking sorts, then there are a few good collections (and there are nicer to read versions at &lt;a href="https://archive.org/search.php?query=%221857-1930%22%20AND%20Dudeney"&gt;the Internet Archive&lt;/a&gt; too). &lt;em&gt;The Canterbury Puzzles&lt;/em&gt; is his most famous work, but I&amp;#8217;ve been reading &lt;em&gt;Amusements in Mathematics&lt;/em&gt;. In there he presents the following&amp;nbsp;puzzle:&lt;/p&gt;
-&lt;h4&gt;81.&amp;#8212;&lt;span class="caps"&gt;THE&lt;/span&gt; &lt;span class="caps"&gt;NINE&lt;/span&gt; &lt;span class="caps"&gt;COUNTERS&lt;/span&gt;.&lt;/h4&gt;
-&lt;table class="dudeney"&gt;
-    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td class="t"&gt;&amp;times;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td class="t"&gt;&amp;times;&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;style&gt;
-table.dudeney td:not(.t):not(:empty) {
-    border-radius: 1000px;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
-    background-image: linear-gradient(
-        180deg, hsl(0,0%,78%)  0%, 
-        hsl(0,0%,90%) 47%, 
-        hsl(0,0%,78%) 53%,
-        hsl(0,0%,70%) 100%
-    );
-    width: 25px;
-    border: 1px solid #aaaaaa;
-    padding-bottom: 25px;
-    height: 0;
-    box-sizing: border-box;
-}
-table.dudeney td.t { text-align: right; }
-&lt;/style&gt;
-
-&lt;p&gt;I have nine counters, each bearing one of the nine digits, 1, 2, 3, 4,
-5, 6, 7, 8 and 9. I arranged them on the table in two groups, as shown
-in the illustration, so as to form two multiplication sums, and found
-that both sums gave the same product. You will find that 158 multiplied
-by 23 is 3,634, and that 79 multiplied by 46 is also 3,634. Now, the
-puzzle I propose is to rearrange the counters so as to get as large a
-product as possible. What is the best way of placing them? Remember both
-groups must multiply to the same amount, and there must be three
-counters multiplied by two in one case, and two multiplied by two
-counters in the other, just as at&amp;nbsp;present.&lt;/p&gt;
-&lt;h4&gt;81. &lt;span class="caps"&gt;ANSWER&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;In this case a certain amount of mere &amp;#8220;trial&amp;#8221; is unavoidable. But there
-are two kinds of &amp;#8220;trials&amp;#8221;&amp;#8212;those that are purely haphazard, and those
-that are methodical. The true puzzle lover is never satisfied with mere
-haphazard trials. The reader will find that by just reversing the
-figures in 23 and 46 (making the multipliers 32 and 64) both products
-will be 5,056. This is an improvement, but it is not the correct answer.
-We can get as large a product as 5,568 if we multiply 174 by 32 and 96
-by 58, but this solution is not to be found without the exercise of some
-judgment and&amp;nbsp;patience.&lt;/p&gt;
-&lt;hr&gt;
-
-&lt;p&gt;But, you know what? I don&amp;#8217;t think he&amp;#8217;s right. Now, I appreciate that he probably had to spend hours or days trying out possibilities with a piece of paper and a fountain pen, and I just wrote the following 15 lines of Python in five minutes, but hey, he didn&amp;#8217;t have to bear with his government trying to ban encryption, so let&amp;#8217;s call it&amp;nbsp;even.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from itertools import permutations
-nums = [1,2,3,4,5,6,7,8,9]
-values = []
-for p in permutations(nums, 9):
-    one   = p[0]*100 + p[1]*10 + p[2]
-    two   = p[3]*10 + p[4]
-    three = p[5]*10 + p[6]
-    four  = p[7]*10 + p[8]
-    if four &gt; three: continue # or we'll see fg*hi and hi*fg as different
-    if one*two == three*four:
-        expression = "%s*%s = %s*%s = %s" % (
-            one, two, three, four, one*two)
-        values.append((expression, one*two))
-values.sort(key=lambda x:x[1])
-print("Solution for 1-9")
-print("\n".join([x[0] for x in values]))&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The key point here is this: the little programme above indeed recognises his proposed solutions (&lt;code&gt;158*32 = 79*64 = 5056&lt;/code&gt; and &lt;code&gt;174*32 = 96*58 = 5568&lt;/code&gt;) but it also finds two larger ones: &lt;code&gt;584*12 = 96*73 = 7008&lt;/code&gt; and &lt;code&gt;532*14 = 98*76 = 7448&lt;/code&gt;. Did I miss something about the puzzle? Or am I actually in the rare position of finding an error in a Dudeney book? And all it took was seventy years of computer technology advancement to put me in that position. Maths, eh?&amp;nbsp;Tch.&lt;/p&gt;
-&lt;p&gt;It&amp;#8217;s an interesting book. There are lots of money puzzles, in which I have to carefully remember that ha&amp;#8217;pennies and farthings are a thing (a farthing is a quarter of a penny), there are 12 pennies in a shilling, and twenty shillings in a pound. There&amp;#8217;s some rather racist portrayals of comic-opera Chinese characters in a few of the puzzles. And my heart sank when I read a puzzle about husbands and wives crossing a river in a boat, where no man would permit his wife to be in the boat with another man without him, because I assumed that the solution would also say something like &amp;#8220;and of course the women cannot be expected to row the boat&amp;#8221;, and I was then pleasantly surprised to discover that this was not the case and indeed they were described as probably being capable oarswomen and it was likely their boat to begin with! Writings from another time. But still as good as any puzzle book today, if not&amp;nbsp;better.&lt;/p&gt;
-&lt;blockquote class="twitter-tweet" data-lang="en-gb"&gt;&lt;p lang="en" dir="ltr"&gt;From Henry Dudeney&amp;#39;s Amusements in Mathematics, published 1917. We did, Henry, mate. Cheers for the puzzle book. &lt;a href="https://t.co/tt8JljBXN1"&gt;https://t.co/tt8JljBXN1&lt;/a&gt; &lt;a href="https://t.co/MFamXHxJ05"&gt;pic.twitter.com/MFamXHxJ05&lt;/a&gt;&lt;/p&gt;&amp;mdash; Stuart Langridge (@sil) &lt;a href="https://twitter.com/sil/status/912253821807730688?ref_src=twsrc%5Etfw"&gt;25 September 2017&lt;/a&gt;&lt;/blockquote&gt;
-
-&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Thu, 08 Feb 2018 18:34:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-02-08:/days/2018/02/08/sorry-henry/</guid></item></channel></rss>
+&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 20 Feb 2018 23:58:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-02-20:/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/</guid></item></channel></rss>
