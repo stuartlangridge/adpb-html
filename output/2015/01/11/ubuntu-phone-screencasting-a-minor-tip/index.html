@@ -6,20 +6,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<style type="text/css">
 			body.custom-background {
-				background: url(//www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
 			}
 		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
-			href="//www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+			href="https://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
-		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
 		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
 		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
@@ -27,8 +27,8 @@
 <body class="home blog custom-background single-author" >
 	<div id="container">
 		<div id="header">
-				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
-				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
 <h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
 		
 		<div id="menu">
@@ -49,14 +49,14 @@
 
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
-		<div class="date"><a href="//www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/"><time 
+		<div class="date"><a href="https://www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/"><time 
 			class="dt-published" datetime="2015-01-11T06:14:00+00:00">Jan 11 2015</time></a>
-			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="//www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/" title="Permalink to Ubuntu phone screencasting, a minor tip" rel="bookmark">Ubuntu phone screencasting, a minor&nbsp;tip</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/" title="Permalink to Ubuntu phone screencasting, a minor tip" rel="bookmark">Ubuntu phone screencasting, a minor&nbsp;tip</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>An Ubuntu phone has a command-line utility called <code>mirscreencast</code> which dumps screen frames to a file, meaning that in theory it&#8217;s possible to record a video of your phone&#8217;s screen. In practice, though, it doesn&#8217;t work for video; the phone is that busy (a) grabbing frames and (b) writing them to the phone&#8217;s storage that you can&#8217;t actually <em>use</em> it for jerkiness, and the resultant video includes about one frame in ten. I can&#8217;t fix this, but I did come up with a way to make it at least a bit better &#8212; instead of saving the video onto the phone&#8217;s storage, send it over the network to a real&nbsp;machine.</p>
@@ -67,8 +67,8 @@
 <p><strong><span class="caps">UPDATE</span></strong>: using <code>mirscreencast</code><span class="quo">&#8216;</span>s <code>-s</code> option to shrink the size <em>and</em> <code>--cap-interval</code> option to only grab some frames seems to work even better. A command like <code>mirscreencast -n 60 -m /var/run/mir_socket --stdout --cap-interval 4 -s 384 640</code> will record 1/4 of the frames (<code>--cap-interval 4</code>), which is 15fps (rather than the screen&#8217;s 60fps), and resize those frames to half their size (my Nexus 4 has a screen resolution of 768x1280, which halved is 384x640, and each frame is only a quarter of the size). Converting like so: <code>mencoder -demuxer rawvideo -rawvideo fps=15:w=384:h=640:format=rgba -ovc x264 -o out.mp4 out</code> (note the <code>format=rgba</code>, the <code>w</code> and <code>h</code> for screen size, and <code>fps=15</code>) and you get pretty much perfectly smooth&nbsp;video.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
-		<li><a href="//www.kryogenix.org/days/2015/01/01/ubuntu-component-store-redux-2/">Previous post</a></li>
-		<li><a href="//www.kryogenix.org/days/2015/01/21/live-screencasting-from-ubuntu-phone/">Next post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2015/01/01/ubuntu-component-store-redux-2/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2015/01/21/live-screencasting-from-ubuntu-phone/">Next post</a></li>
 		</ul>
 	</div> <!--/#main-->
 </div>  <!--/#post-->
@@ -78,10 +78,10 @@
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
-	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/">
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2015/01/11/ubuntu-phone-screencasting-a-minor-tip/">
 	<input type="submit" value="Add link">
 </form>
-<script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
 </div>
 
 <p id="oldcomments"></p>

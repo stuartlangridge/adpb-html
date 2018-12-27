@@ -6,20 +6,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<style type="text/css">
 			body.custom-background {
-				background: url(//www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
 			}
 		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
-			href="//www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+			href="https://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
-		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
 		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
 		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
@@ -27,8 +27,8 @@
 <body class="home blog custom-background single-author" >
 	<div id="container">
 		<div id="header">
-				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
-				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
 <h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
 		
 		<div id="menu">
@@ -49,14 +49,14 @@
 
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
-		<div class="date"><a href="//www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/"><time 
+		<div class="date"><a href="https://www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/"><time 
 			class="dt-published" datetime="2017-02-24T20:20:00+00:00">Feb 24 2017</time></a>
-			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="//www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/" title="Permalink to A standard password change API" rel="bookmark">A standard password change <span class="caps">API</span></a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/" title="Permalink to A standard password change API" rel="bookmark">A standard password change <span class="caps">API</span></a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Wouldn’t it be nice if there were some sort of standard password-change <span class="caps">API</span> that websites all implemented? Then when there’s some sort of breach and you have to change a bunch of passwords<sup id="sf-a-standard-password-change-api-1-back"><a href="#sf-a-standard-password-change-api-1" class="simple-footnote" title="this week it was Cloudflare, but there’ll be another next week no doubt">1</a></sup> you could just download a list of domains that need fixing and give it to your password manager, and then your password manager would use the standard password-change <span class="caps">API</span> on each of those sites to change your password to something else. Literally one click; instead of reading stern concerned messages from everyone on Twitter saying “you should change your passwords now!” one can just click one button and, bish bash bosh, job done. That’d be lovely. Maybe Chrome’s password manager would build it in and automatically fetch sites that need updating from a central list and then I’d be secured without even knowing about it!<sup id="sf-a-standard-password-change-api-2-back"><a href="#sf-a-standard-password-change-api-2" class="simple-footnote" title="and a bunch of people would turn this off or never turn it on, but that’s fine, and they’re probably using some different manager already anyway">2</a></sup></p>
@@ -75,8 +75,8 @@
 <p><strong>Update:</strong> there’s been a suggestion of one possible spec for such an <span class="caps">API</span> at <a href="https://github.com/SirCmpwn/pass-rotate/issues/1">https://github.com/SirCmpwn/pass-rotate/issues/1</a> for someone who wants to check it out. There’s also <a href="https://mikewest.github.io/change-password/">https://mikewest.github.io/change-password/</a>.</p><ol class="simple-footnotes"><li id="sf-a-standard-password-change-api-1">this week it was Cloudflare, but there’ll be another next week no doubt <a href="#sf-a-standard-password-change-api-1-back" class="simple-footnote-back">↩</a></li><li id="sf-a-standard-password-change-api-2">and a bunch of people would turn this off or never turn it on, but that’s fine, and they’re probably using some different manager already anyway <a href="#sf-a-standard-password-change-api-2-back" class="simple-footnote-back">↩</a></li><li id="sf-a-standard-password-change-api-3">I’m <a href="https://twitter.com/LarryABall/status/835222955042947072">told</a> that LastPass actually already supports this auto-password-change idea for lots of sites. Presumably they’re doing a little bit of custom code for each site to know where the password change form is? This would just standardise that and allow a password manager to do it automatically without any work at all, which would be obviously lovely for all concerned <a href="#sf-a-standard-password-change-api-3-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
-		<li><a href="//www.kryogenix.org/days/2017/02/20/dividends-and-director-withdrawals/">Previous post</a></li>
-		<li><a href="//www.kryogenix.org/days/2017/02/25/fruit-machine-hacking/">Next post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2017/02/20/dividends-and-director-withdrawals/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2017/02/25/fruit-machine-hacking/">Next post</a></li>
 		</ul>
 	</div> <!--/#main-->
 </div>  <!--/#post-->
@@ -243,10 +243,10 @@
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
-	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/">
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2017/02/24/a-standard-password-change-api/">
 	<input type="submit" value="Add link">
 </form>
-<script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
 </div>
 
 <p id="oldcomments"></p>

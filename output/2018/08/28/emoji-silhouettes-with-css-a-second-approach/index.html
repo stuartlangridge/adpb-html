@@ -6,20 +6,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="//www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<style type="text/css">
 			body.custom-background {
-				background: url(//www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
 			}
 		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
-			href="//www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="//www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+			href="https://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
-		<link rel="feed" href="http://www.kryogenix.org/days/archives/"> 
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
 		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
 		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
@@ -27,8 +27,8 @@
 <body class="home blog custom-background single-author" >
 	<div id="container">
 		<div id="header">
-				<p>A blog by <a href="//www.kryogenix.org/">Stuart Langridge</a></p>
-				<h1 id="site-title"><a href="//www.kryogenix.org/days">as days pass by</a></h1>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
 <h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
 		
 		<div id="menu">
@@ -49,14 +49,14 @@
 
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
-		<div class="date"><a href="//www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/"><time 
+		<div class="date"><a href="https://www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/"><time 
 			class="dt-published" datetime="2018-08-28T22:29:00+01:00">Aug 28 2018</time></a>
-			<span class="byline h-card">By <a class="p-author" href="//www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="//www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/" title="Permalink to Emoji Silhouettes with CSS, a second approach" rel="bookmark">Emoji Silhouettes with <span class="caps">CSS</span>, a second&nbsp;approach</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/" title="Permalink to Emoji Silhouettes with CSS, a second approach" rel="bookmark">Emoji Silhouettes with <span class="caps">CSS</span>, a second&nbsp;approach</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Every now and again it&#8217;s useful to display single-colour emoji on a web page; all the colours in those little emoji symbols are nice and all, but it does occasionally make your formal document look a bit like an angry fruit salad. I&#8217;ve seen a technique for this before (in particular from <a href="https://www.bram.us/2016/10/06/emoji-silhouettes-and-emoji-outlines-with-css/">Bram van Damme</a>, but searching for &#8220;emoji silhouettes&#8221; finds lots of other people doing it too), where you set the text colour to <code>transparent</code> and then set a <code>text-shadow</code>, and you&#8217;re done. This is nice, but it doesn&#8217;t work for me in Firefox, sadly; if you set the text <code>color</code> to transparent then indeed your emoji disappear, but if you set a text shadow they come right back, and in full&nbsp;colour.</p>
@@ -98,8 +98,8 @@ Aren&#8217;t they&nbsp;nice!</p>
 <p>The up-side of this approach is that it&#8217;s one line of <span class="caps">CSS</span>; you don&#8217;t need to set inline-block, or worry about defining a width on your &#8220;emoji&#8221; element. The down-side is&#8230; well, you may be thinking, &#8220;where do we specify that we want the final colour of the emoji to be <code>red</code> in that code above?&#8221; And you would be right. You have to do some <em>crazy</em> maths calculations to actually work out how to set your emoji to the colour you <em>want</em>. Barrett Sonntag wrote an <a href="https://codepen.io/sosuke/pen/Pjoqqp">interactive filter generator</a> to calculate the set of <code>filter</code>s required to set your colour to the thing you choose, based on some <a href="https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991">Stack Overflow</a> answers. I think this downside is enough to lean me away from this method, personally, but it&#8217;s another approach if you prefer&nbsp;it!</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
-		<li><a href="//www.kryogenix.org/days/2018/08/26/lowrezjam-2018/">Previous post</a></li>
-		<li><a href="//www.kryogenix.org/days/2018/10/15/print-to-google-drive-in-a-non-gnome-desktop/">Next post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2018/08/26/lowrezjam-2018/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2018/10/15/print-to-google-drive-in-a-non-gnome-desktop/">Next post</a></li>
 		</ul>
 	</div> <!--/#main-->
 </div>  <!--/#post-->
@@ -187,10 +187,10 @@ Aren&#8217;t they&nbsp;nice!</p>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
-	<input type="hidden" name="target" value="http://www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/">
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2018/08/28/emoji-silhouettes-with-css-a-second-approach/">
 	<input type="submit" value="Add link">
 </form>
-<script src="//www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
 </div>
 
 <p id="oldcomments"></p>
