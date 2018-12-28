@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>as days pass by</title><link>https://www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><lastBuildDate>Wed, 19 Dec 2018 11:11:00 +0000</lastBuildDate><item><title>Why isn’t it their job</title><link>https://www.kryogenix.org/days/2018/12/19/why-isn-t-it-their-job/</link><description>&lt;p&gt;Bruce Lawson has written a rather nice description of &lt;a href="https://www.brucelawson.co.uk/2018/the-practical-value-of-semantic-html/"&gt;the practical value of semantic &lt;span class="caps"&gt;HTML&lt;/span&gt;&lt;/a&gt;, and you should read it, especially if you&amp;#8217;re a full-stack developer who feels that &lt;span class="caps"&gt;HTML&lt;/span&gt; is the super-easy part of your toolkit and the components are the most important. But there&amp;#8217;s one extra argument I&amp;#8217;d like to add to his list; less important than some of the others, but a different&amp;nbsp;nuance.&lt;/p&gt;
+<rss version="2.0"><channel><title>as days pass by</title><link>https://www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><lastBuildDate>Thu, 27 Dec 2018 21:04:00 +0000</lastBuildDate><item><title>Brum tech pub crawl 2018</title><link>https://www.kryogenix.org/days/2018/12/27/brum-tech-pub-crawl-2018/</link><description>&lt;p&gt;It&amp;#8217;s time for the Birmingham tech pub crawl! Saturday 29th December&amp;nbsp;2018.&lt;/p&gt;
+&lt;p&gt;This is called a pub crawl, but it&amp;#8217;s really an excuse to get together, hang out, have a couple of drinks &amp;#8212; alcoholic or not, that&amp;#8217;s entirely up to you and there&amp;#8217;s no pressure &amp;#8212; in various places around the Jewellery Quarter. Get away from the turkey and chill out and meet people. Bring your family and your friends along. Pop in for an hour while you&amp;#8217;re in town and say hello, or show up at 12 noon and still be there at midnight, it&amp;#8217;s up to you. Lots of people come at various points during the day, and it&amp;#8217;s all very friendly, so if you don&amp;#8217;t think you know anyone, or you&amp;#8217;re on your own, that&amp;#8217;s not a problem. Come, chat to people, have a drink, have a laugh. The agenda this year is, roughly, six different places and a couple of hours in each, so we move around a bit, but it&amp;#8217;s all in the Jewellery Quarter so there&amp;#8217;s not a lot of walking. If you&amp;#8217;re feeling unsure do feel free to ping me &amp;#8212; &lt;a href="https://twitter.com/sil"&gt;@sil&lt;/a&gt; on Twitter &amp;#8212; and I can tell you where we are, and I&amp;#8217;ll try to keep things updated during the day. Everyone is welcome, and everyone is&amp;nbsp;invited.&lt;/p&gt;
+&lt;p&gt;A rough&amp;nbsp;agenda:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;The Lord Clifden, 12pm - 2pm (they do food if you fancy&amp;nbsp;lunch)&lt;/li&gt;
+    &lt;li&gt;The Church, 2pm -&amp;nbsp;4pm&lt;/li&gt;
+    &lt;li&gt;1000 Trades, 4pm -&amp;nbsp;6pm&lt;/li&gt;
+    &lt;li&gt;The Rose Villa Tavern, 6pm - 8pm (probably grab a bite to eat here if we haven&amp;#8217;t&amp;nbsp;already)&lt;/li&gt;
+    &lt;li&gt;The Queen&amp;#8217;s Arms, 8pm -&amp;nbsp;10pm&lt;/li&gt;
+    &lt;li&gt;The Actress and Bishop, 10pm -&amp;nbsp;whenever&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src="/images/jqtechxmas18.svg"&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Thu, 27 Dec 2018 21:04:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-12-27:/days/2018/12/27/brum-tech-pub-crawl-2018/</guid></item><item><title>Why isn’t it their job</title><link>https://www.kryogenix.org/days/2018/12/19/why-isn-t-it-their-job/</link><description>&lt;p&gt;Bruce Lawson has written a rather nice description of &lt;a href="https://www.brucelawson.co.uk/2018/the-practical-value-of-semantic-html/"&gt;the practical value of semantic &lt;span class="caps"&gt;HTML&lt;/span&gt;&lt;/a&gt;, and you should read it, especially if you&amp;#8217;re a full-stack developer who feels that &lt;span class="caps"&gt;HTML&lt;/span&gt; is the super-easy part of your toolkit and the components are the most important. But there&amp;#8217;s one extra argument I&amp;#8217;d like to add to his list; less important than some of the others, but a different&amp;nbsp;nuance.&lt;/p&gt;
 &lt;p&gt;Sometimes, when I find myself doing a bit of extra work to accommodate some users with unusual requirements, I find myself thinking: why isn&amp;#8217;t it their job to fix this, rather than mine? This is an unworthy thought, and I don&amp;#8217;t like that I have it, and I don&amp;#8217;t &lt;em&gt;respond&lt;/em&gt; to this thought; doing the right thing so all my users can use my stuff is important. But I do have the thought, nonetheless. Whether I&amp;#8217;m adding aria labels for screenreaders, or doing extra work to build sites that layer behaviour on top as additional rather than critical, or checking text contrast ratios, or testing on unusual mobile phones I don&amp;#8217;t and won&amp;#8217;t have, there&amp;#8217;s a sneaky little bit of my brain saying &amp;#8220;why is this my problem? if someone wants to buy a weird phone, it&amp;#8217;s their problem that websites don&amp;#8217;t work right, isn&amp;#8217;t&amp;nbsp;it?&amp;#8221;&lt;/p&gt;
 &lt;p&gt;Leave aside here, for now, that there is no such thing as a &amp;#8220;normal&amp;#8221; experience, and even saying that people differ from the &amp;#8220;normal&amp;#8221; experience means that you are thinking about things the wrong way because you&amp;#8217;re assuming that there is a normality and then there&amp;#8217;s divergence and that&amp;#8217;s &lt;em&gt;wrong&lt;/em&gt;. I know this. You know this too, or at least&amp;nbsp;should.&lt;/p&gt;
 &lt;p&gt;Here&amp;#8217;s the secret. Someone who has a web experience different from what the industry perceives as the norm is normally actually pretty happy to try, for themselves, to make their web experience better. Someone with poor motor control generally &lt;em&gt;will&lt;/em&gt; be happy to learn the keyboard shortcuts for their browser, which the &amp;#8220;norm&amp;#8221; don&amp;#8217;t bother to do. Someone who listens to the web rather than reads it generally &lt;em&gt;will&lt;/em&gt; be happy to learn how to skip over your header using an option available in their tool but not yours, so you don&amp;#8217;t have to add &amp;#8220;skip header&amp;#8221; links. Someone who is desperate for all bold text to appear in bright green and with sparkles generally will be happy to learn how to customise their user stylesheet to make that&amp;nbsp;happen.&lt;/p&gt;
@@ -534,57 +546,4 @@ hr.ftl {
     color: #333;
     text-align: center;
 }
-&lt;/style&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 11 Jun 2018 17:50:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-06-11:/days/2018/06/11/foss-talk-live-2018/</guid></item><item><title>Squares and prettier graphs</title><link>https://www.kryogenix.org/days/2018/03/25/squares-and-prettier-graphs/</link><description>&lt;p&gt;The &lt;a href="https://www.futilitycloset.com/"&gt;Futility Closet&lt;/a&gt; people recently posted &amp;#8220;&lt;a href="https://www.futilitycloset.com/2018/03/24/a-square-circle/"&gt;A Square Circle&lt;/a&gt;&amp;#8220;, in which they&amp;nbsp;showed:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;49² + 73² = 7730
-77² + 30² = 6829
-68² + 29² = 5465
-54² + 65² = 7141
-71² + 41² = 6722
-67² + 22² = 4973
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;which is a nice little result. I like this sort of recreational maths, so I spent a little time wondering whether this was the only such cycle, or the longest, or whether there were longer ones. A brief bit of Python scripting later, and the truth is revealed: it&amp;#8217;s not the only cycle, but it is the longest one, with six&amp;nbsp;entries. &lt;/p&gt;
-&lt;p&gt;&lt;img src="https://kryogenix.org/images/squares2.png" alt=""&gt;&lt;/p&gt;
-&lt;p&gt;There are no other 6-cycles; there&amp;#8217;s a 5-cycle (start from &lt;code&gt;68²+50²=7124&lt;/code&gt;), a 4-cycle (&lt;code&gt;47²+56²=5345&lt;/code&gt;) and interestingly two 1-cycles, numbers which lead to themselves: &lt;code&gt;12²+33²=1233&lt;/code&gt; and &lt;code&gt;88²+33²=8833&lt;/code&gt;. That&amp;#8217;s rather&amp;nbsp;cool.&lt;/p&gt;
-&lt;p&gt;I did wonder whether there are also interesting cycles with more numbers, so I tried out adding the squares of 3-digit&amp;nbsp;numbers:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://kryogenix.org/images/squares3.png" alt=""&gt;&lt;/p&gt;
-&lt;p&gt;but sadly they&amp;#8217;re really boring; there&amp;#8217;s a 2-cycle (&lt;code&gt;137²+461²=231290, 231²+290²=137461&lt;/code&gt;), another 1-cycle (&lt;code&gt;990²+100²=990100&lt;/code&gt;) and that&amp;#8217;s it. Nonetheless, quite an interesting little property to fiddle around&amp;nbsp;with.&lt;/p&gt;
-&lt;h2&gt;Prettier&amp;nbsp;graphs&lt;/h2&gt;
-&lt;p&gt;Originally I was going to make my script count the lengths of the cycles and show the largest one and so on, but I realised that that was annoying and fiddly and what I ought to do is just display a nice picture of them and that&amp;#8217;d be clear to my eyes immediately and take no code at all. My go-to tool for this sort of thing, where I&amp;#8217;m drawing graphs (in the mathematical nodes-and-edges sense) programmatically, is &lt;a href="https://www.graphviz.org/"&gt;Graphviz&lt;/a&gt;, because it&amp;#8217;s really easy; you basically write out your graph as obvious simple words with&amp;nbsp;arrows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;digraph {
-    &amp;quot;get up&amp;quot; -&amp;gt; &amp;quot;go to work&amp;quot;;
-    &amp;quot;go to work&amp;quot; -&amp;gt; &amp;quot;come home again&amp;quot;;
-    &amp;quot;come home again&amp;quot; -&amp;gt; &amp;quot;go to sleep&amp;quot;;
-    &amp;quot;go to sleep&amp;quot; -&amp;gt; &amp;quot;get up&amp;quot;;
-}
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;and then you can make it a graph with one command: &lt;code&gt;dot -Tpng simple.dot &amp;gt; output.png&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://kryogenix.org/images/basic-graphviz.png" alt="A basic graphviz graph of the above code; plain black and white, and not pretty"&gt;&lt;/p&gt;
-&lt;p&gt;That looks pretty terrible, though; plain black and white, ugly. I tweaked my graph above to look a bit nicer, with some colours, and that&amp;#8217;s really easy; you just add a few extra properties to the nodes (the things to do) and edges (the arrows) in your graph&amp;nbsp;specification:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;digraph {
-
-    node[shape=&amp;quot;rectangle&amp;quot; style=&amp;quot;rounded,filled&amp;quot; gradientangle=&amp;quot;270&amp;quot; 
-        fillcolor=&amp;quot;#990033:#f5404f&amp;quot; color=&amp;quot;#991111&amp;quot; 
-        fontcolor=&amp;quot;#ffffff&amp;quot; fontname=&amp;quot;Arial&amp;quot;]
-
-    edge [color=&amp;quot;#006699&amp;quot; len=2.5]
-
-
-    &amp;quot;get up&amp;quot; -&amp;gt; &amp;quot;go to work&amp;quot;;
-    &amp;quot;go to work&amp;quot; -&amp;gt; &amp;quot;come home again&amp;quot;;
-    &amp;quot;come home again&amp;quot; -&amp;gt; &amp;quot;go to sleep&amp;quot;;
-    &amp;quot;go to sleep&amp;quot; -&amp;gt; &amp;quot;get up&amp;quot;;
-}
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;and then you get something a bit&amp;nbsp;nicer:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://kryogenix.org/images/nicer-graphviz.png" alt="Same graph, but with a little colour and niceness"&gt;&lt;/p&gt;
-&lt;p&gt;Now, I am no graphic artist. I&amp;#8217;m not good at this stuff. If you&amp;#8217;re thinking &amp;#8220;that looks rubbish; I could make it look &lt;em&gt;loads&lt;/em&gt; nicer&amp;#8221; then great! Please, please do so! I would very much like one of the many graphic artists involved in the open source world to put together a &amp;#8220;theme&amp;#8221; for graphviz that just makes graphs look a bit nicer and classier, by default. Seriously, if you&amp;#8217;ve got an artistic eye this is the sort of thing that&amp;#8217;d probably take you a lunchtime to do. Just pick some nice colours, line widths, arrow shapes, node shapes, and you&amp;#8217;re done. Write a blog post saying &amp;#8220;these are the six lines to add to the top of your graphviz &lt;code&gt;.dot&lt;/code&gt; files&amp;#8221; and that&amp;#8217;s the job complete; that would be a small but measureable improvement to the universe that you&amp;#8217;ve made, there, with not much effort at&amp;nbsp;all.&lt;/p&gt;
-&lt;p&gt;The graphviz people are pretty open to the idea of even including such a thing in their releases, maybe even by default. I asked on Twitter whether someone could or had already done this that I&amp;#8217;m asking for, and one of the people who responded was Stephen North, who&amp;#8217;s part of the graphviz team, saying that they&amp;#8217;d be happy to include and publicise such a&amp;nbsp;thing.&lt;/p&gt;
-&lt;blockquote class="twitter-tweet" data-partner="tweetdeck"&gt;&lt;p lang="en" dir="ltr"&gt;We would definitely include the profiles in our distribution and/or make them easier options to&amp;nbsp;use.&lt;/p&gt;&amp;mdash; Stephen North (@magneticnorth) &lt;a href="https://twitter.com/magneticnorth/status/977690082953097216?ref_src=twsrc%5Etfw"&gt;March 24, 2018&lt;/a&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;To be clear, this is not a complaint about the graphviz team themselves; their job is mostly to think very hard about layout algorithms, which they indeed do a good job of. But I think it&amp;#8217;s really important, not just that open source stuff can be made to look pretty if you know what you&amp;#8217;re doing, but also that it &lt;em&gt;already does&lt;/em&gt; look pretty by default where it can. It turns people off your software, no matter how powerful it is, if some less-powerful alternative puts out more attractive output. There are some things where this would take a lot of work; rejigging the entire &lt;span class="caps"&gt;UI&lt;/span&gt; of a complex programme is difficult and time-consuming, absolutely. But I really feel like someone with a decent artistic eye (i.e., not me) could put together a simple set of colours and font choices and line widths that would make graphviz look much nicer either by default or by specifying &lt;code&gt;--pretty&lt;/code&gt; or something, and it wouldn&amp;#8217;t take long at all. I&amp;#8217;d certainly be way happier if that happened. Maybe that person is you, gentle&amp;nbsp;reader?&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Sun, 25 Mar 2018 23:36:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-03-25:/days/2018/03/25/squares-and-prettier-graphs/</guid></item></channel></rss>
+&lt;/style&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 11 Jun 2018 17:50:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2018-06-11:/days/2018/06/11/foss-talk-live-2018/</guid></item></channel></rss>
