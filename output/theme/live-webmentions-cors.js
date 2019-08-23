@@ -29,7 +29,15 @@ function wm_rx_live_update(j) {
     j.forEach(function(wm) {
         var imgsrc;
         if (wm.author && wm.author.photo && wm.author.photo != "null") {
-            imgsrc = wm.author.photo;
+            // twitter broke avatar URLs of format
+            // https://twitter.com/username/profile_image?size=original
+            // so we fix them up
+            var m = wm.author.photo.match(/twitter.com\/(.*)\/profile_image/);
+            if (m) {
+                imgsrc = "https://avatars.io/twitter/" + m[1];
+            } else {
+                imgsrc = wm.author.photo;
+            }
         } else {
             imgsrc = "http://www.gravatar.com/avatar/no?d=mm";
         }
