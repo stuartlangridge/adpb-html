@@ -7,11 +7,9 @@ a.simple-footnote {
 a.simple-footnote::after {
     content: " ";
     position: absolute;
-    display: inline-block;
-    padding: 1.3em;
-    margin-left: -1.5em;
-    margin-top: -.2em;
-    border: 1px solid transparent;
+    width: 44px;
+    height: 44px;
+    transform: translateX(-50%) translateY(-10px);
     border-radius: 2px;
 }
 
