@@ -945,7 +945,6 @@ ul.neighbours-links li a {
 	    line-height: 50px;
 	    width: 25px;
 	}
-
 }
 
 #webmentions {
@@ -1018,4 +1017,26 @@ figure figcaption {
 .entry-content audio {
 	width: 80%;
 }
+
+
+@media (prefers-color-scheme: dark) {
+	body.custom-background {
+    	background: #222;
+    	color: #ddd;
+    }
+    a, .entry-title a {
+    	color: #c1c6e1;
+	}
+	#site-title a {
+		color: #dd4814;
+	}
+	#menu a {
+		color: #bbb;
+	}
+	.entry-content {
+    	color: #eef;
+    }
+    a.simple-footnote {
+		color: rgba(255,180,180,0.7);
+	}
 }
