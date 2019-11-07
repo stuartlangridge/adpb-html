@@ -1039,4 +1039,7 @@ figure figcaption {
     a.simple-footnote {
         color: rgba(255,180,180,0.7);
     }
+    div.highlight pre {
+    	background: #333;
+    }
 }
