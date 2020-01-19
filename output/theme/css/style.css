@@ -968,7 +968,7 @@ ul.neighbours-links li a {
 
 code {
     background: white;
-    font-size: 0.8em;
+    font-size: 0.7em;
     color: #903;
     border: 1px solid #eee;
     padding: 2px;
@@ -976,7 +976,7 @@ code {
 
 div.highlight pre {
     background: white;
-    font-size: 10px;
+    font-size: 11px;
     overflow-x: auto;
     padding: 0.5em;
     border: 1px solid #eee;
@@ -1039,4 +1039,9 @@ figure figcaption {
     div.highlight pre {
     	background: #333;
     }
+    code {
+ 	  	background: #005;
+    	color: #d73;
+    	border-color: #336;
+	}
 }
