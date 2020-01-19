@@ -68,7 +68,9 @@
 
 
 <p>and <code>string.Template</code> like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">string</span><span class="o">.</span><span class="n">Template</span><span class="p">(</span><span class="s2">&quot;My name is $name and I am $age years old&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">safe_substitute</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Stuart&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">43</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">string</span><span class="o">.</span><span class="n">Template</span><span class="p">(</span>
+    <span class="s2">&quot;My name is $name and I am $age years old&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">safe_substitute</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Stuart&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">43</span><span class="p">)</span>
 </pre></div>
 
 
