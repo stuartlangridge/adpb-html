@@ -80,8 +80,9 @@
 <p>I have a theory that (a) yes all numbers end up in a fixed point and (b) there probably aren’t any more fixed points. Warning: dubious mathematical assertions lie ahead.</p>
 <p>There can’t be that many numbers that encode to themselves. This is both because I’ve run it up to 5000 and there aren’t, and because it just seems kinda unlikely and coincidental. So, we assume that the fixed points we have are most or all of the fixed points available. Now, every number has to end up <em>somewhere</em>; the process can’t just keep going forever. So, if you keep generating numbers, you’re pretty likely at some point to hit a number you’ve already hit, which ends up at one of the fixed points. And finally, the numbers-to-words process doesn’t grow as fast as actual numbers do. Once you’ve got over a certain limit, you’ll pretty much always end up generating a number smaller than oneself in the next iteration. The reason I think this is that adding more to numbers doesn’t make their word lengths all that much longer. Take, for example, the longest number (in words) up to 100,000, which is (among others) <code>73,373</code>, or <code>seventy-three thousand, three hundred and seventy-three</code>. This is <code>47</code> characters long. Even if they were all <code>Z</code>, which they aren’t, it’d generate <code>47×26=1222</code>, which is way less than <code>73,373</code>. And adding lots more doesn’t help much: if we add a million to that number, we put <code>one million</code> on the front of it, which is only another <code>10</code> characters, or a maximum added value of <code>260</code>. There’s no actual ceiling — numbers in words still grow without limit as the number itself grows — but it doesn’t grow anywhere near as fast as the number itself does. So the numbers generally get smaller as they iterate, until they get down below four hundred or so… and all of those numbers terminate in one of the three fixed points already outlined. So I think that all numbers will terminate thus.</p>
 <p>The obvious flaw with this argument is that it ought to apply to the reverse-and-add process above too and it doesn’t for 196 (and some others). So it’s possible that my approach will also make a Lychrel-ish number that may not terminate, but I don’t think it will; the argument above seems compelling.</p>
-<p>You might be thinking: bloody English imperialist! What about <em>les nombres</em>, eh? Or <em>die Zahlen</em>? Did you check those? <em>Mais oui</em>, I checked (nice one <code>num2words</code> for supporting a zillion languages!) Same thing. There are different fixed points (French has one big island until <code>177</code>, a very small island to <code>232</code>, a <code>258, 436</code> pair, and <code>222</code> which encodes to itself and nothing else encodes to it, for example. Images of <a href="https://www.kryogenix.org/images/numwords_fr.png">French</a> and <a href="https://www.kryogenix.org/images/numwords_de.png">German</a> are available, and you can of course use <a href="https://www.kryogenix.org/code/numwords.py">the Python 3 script</a> to make your own; run it as <code>python3 numwords.py no</code> for Norwegian, etc.) You may also be thinking “what about American English, eh? <code>101</code> is <code>ONE HUNDRED ONE</code>, not <code>ONE HUNDRED AND ONE</code>.” I have not tested this, partially because I think the above argument should still hold for it, partially because <code>num2words</code> doesn’t support it, and partially because that’s what you get for throwing a bunch of perfectly good tea into the ocean, but I don’t think it’d be hard to verify if someone wants to try it.</p>
-<p>No earth-shattering revelations here, not that it matters anyway because I’m 43 and you can only win a Fields Medal if you’re under forty, but this was a fun little diversion.</p><ol class="simple-footnotes"><li id="sf-number-word-sequences-1">Well, 285 is part of a 285, 267, 313, 248, 284, 285 loop. <a href="#sf-number-word-sequences-1-back" class="simple-footnote-back">↩</a></li><li id="sf-number-word-sequences-2">This is also why the graphs use <code>neato</code>, which is much less pleasing a layout for this than the “tree”-style layout of <code>dot</code>, because the <code>dot</code> images end up being 32,767 pixels across and all is a disaster. <a href="#sf-number-word-sequences-2-back" class="simple-footnote-back">↩</a></li></ol>
+<p>You might be thinking: bloody English imperialist! What about <em>les nombres</em>, eh? Or <em>die Zahlen</em>? Did you check those? <em>Mais oui</em>, I checked (nice one <code>num2words</code> for supporting a zillion languages!) Same thing. There are different fixed points (<del>French has one big island until <code>177</code>, a very small island to <code>232</code>, a <code>258, 436</code> pair, and <code>222</code> which encodes to itself and nothing else encodes to it, for example.</del><ins>Not quite: see the update at the end. Nothing changes about the maths, though.</ins> Images of <a href="https://www.kryogenix.org/images/numwords_fr.png">French</a> and <a href="https://www.kryogenix.org/images/numwords_de.png">German</a> are available, and you can of course use <a href="https://www.kryogenix.org/code/numwords.py">the Python 3 script</a> to make your own; run it as <code>python3 numwords.py no</code> for Norwegian, etc.) You may also be thinking “what about American English, eh? <code>101</code> is <code>ONE HUNDRED ONE</code>, not <code>ONE HUNDRED AND ONE</code>.” I have not tested this, partially because I think the above argument should still hold for it, partially because <code>num2words</code> doesn’t support it, and partially because that’s what you get for throwing a bunch of perfectly good tea into the ocean, but I don’t think it’d be hard to verify if someone wants to try it.</p>
+<p>No earth-shattering revelations here, not that it matters anyway because I’m 43 and you can only win a Fields Medal if you’re under forty, but this was a fun little diversion.</p>
+<p><strong>Update:</strong> Minirop <a href="https://twitter.com/minirop/status/1219191671746940928">pointed out on Twitter</a> that my code wasn’t correctly highlighting the “end” of a chain, which indeed it was not. I’ve poked the code, and the diagrams, to do this better; it’s apparent that both <a href="https://www.kryogenix.org/images/numwords_fr.png">French</a> and <a href="https://www.kryogenix.org/images/numwords_de.png">German</a> have most numbers end up in a fairy large loop, rather than at one specific number. I don’t <em>think</em> this alters my argument for why this is likely to happen for all numbers (because a loop of numbers which all encode to one another is about as rare as a single number which encodes to itself, I’d guess), but maybe I haven’t thought about it enough!</p><ol class="simple-footnotes"><li id="sf-number-word-sequences-1">Well, 285 is part of a 285, 267, 313, 248, 284, 285 loop. <a href="#sf-number-word-sequences-1-back" class="simple-footnote-back">↩</a></li><li id="sf-number-word-sequences-2">This is also why the graphs use <code>neato</code>, which is much less pleasing a layout for this than the “tree”-style layout of <code>dot</code>, because the <code>dot</code> images end up being 32,767 pixels across and all is a disaster. <a href="#sf-number-word-sequences-2-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2020/01/19/the-tiniest-of-python-templating-engines/">Previous post</a></li>
@@ -90,7 +91,65 @@
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul><li>(no mentions, yet.)</li></ul>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/1197957006486908928/iaSWAJBN.jpg">
+			Alan Pope 🍺🐧🐱🇬🇧🇪🇺 responded at
+		<a href="https://twitter.com/popey/status/1219037981509636102">twitter.com</a>
+		<span class="wm-summary">			Having a play around with some recreational maths, after being inspired by a @jamesgrime @numberphile video. Convert a number to words; add
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1197957006486908928/iaSWAJBN.jpg">
+			Alan Pope 🍺 🐧 🐱 🇬🇧 🇪🇺 responded at
+		<a href="https://twitter.com/sil/status/1219033504824152064#favorited-by-12325402">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1179567156280745985/p25DVKMl.jpg">
+			Derek Ardolf responded at
+		<a href="https://twitter.com/sil/status/1219033504824152064#favorited-by-2321573773">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/482522689785962497/mW-yutPd.jpeg">
+			Rob Ferrer responded at
+		<a href="https://twitter.com/sil/status/1219033504824152064#favorited-by-20243318">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1393049019/meagain.JPG">
+			James Grime responded at
+		<a href="https://twitter.com/jamesgrime/status/1219189811707371520">twitter.com</a>
+		<span class="wm-summary">			That's a lot of fun. I like it.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1393049019/meagain.JPG">
+			James Grime responded at
+		<a href="https://twitter.com/jamesgrime/status/1219189824671883264">twitter.com</a>
+		<span class="wm-summary">			Having a play around with some recreational maths, after being inspired by a @jamesgrime @numberphile video. Convert a number to words; add
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1219190308296175617">twitter.com</a>
+		<span class="wm-summary">			Cheers! I had a fun Sunday evening playing around with it :-)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000294415763/84460fdea208f22df58719ccd21b14d5.png">
+			🇫🇷 minirop 🇬🇧 responded at
+		<a href="https://twitter.com/minirop/status/1219191671746940928">twitter.com</a>
+		<span class="wm-summary">			on the French picture, 177 is red but there is an arrow that point outwards and goes to 178 (which doesn't have outwards arrows (not even to itself))
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/993713384494252034/y1oXlGnk.jpg">
+			chris.code(); responded at
+		<a href="https://twitter.com/sil/status/1219033504824152064#favorited-by-1085246726">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1218965742751641600/mJ1jInf5.jpg">
+			Snehangshu Bhattacharya responded at
+		<a href="https://twitter.com/sil/status/1219033504824152064#favorited-by-1010590194267910144">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1025075043636834304/f6ovdK3Z.jpg">
+			Daniel James 🏳️‍🌈 📚 📝 responded at
+		<a href="https://twitter.com/sil/status/1219033504824152064#favorited-by-1001207161647755265">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1076072013905776640/rF2_PeXQ.jpg">
+			Peter Ellis responded at
+		<a href="https://twitter.com/sil/status/1219033504824152064#favorited-by-879086245066006528">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1133092609486798848/gYnxNPYo.png">
+			грустная 🕵️‍♀️ динозавриха responded at
+		<a href="https://twitter.com/sil/status/1219033504824152064#favorited-by-866395767401046016">twitter.com</a>
+		<span class="wm-summary"></span></li>
+	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
