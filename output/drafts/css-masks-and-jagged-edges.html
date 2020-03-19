@@ -182,7 +182,7 @@ img#css-jagged-fail-1 {
     mask-position: left bottom;
 }
 </style></p>
-<p>Nuh-uh. The problem here is that is you confine the mask to just the bottom stripe of the image with mask-size, then the rest of the image has no mask-image at all over it… and so gets entirely masked out. So we can’t have just the sawtooth as a mask. What we need is a <code>mask-image</code> which is a rectangle the size of the image with just a sawtooth at the bottom. Something like this, in fact:</p>
+<p>Nuh-uh. The problem here is that is you confine the mask to just the bottom stripe of the image with <code>mask-size</code>, then the rest of the image has no <code>mask-image</code> at all over it… and so gets entirely masked out. So we can’t have just the sawtooth as a mask. What we need is a <code>mask-image</code> which is a rectangle the size of the image with just a sawtooth at the bottom. Something like this, in fact:</p>
 <div id="css-hightooth-bg"><div id="css-hightooth-actual"></div></div>
 
 <style>
