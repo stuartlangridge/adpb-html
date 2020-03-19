@@ -1037,7 +1037,9 @@ figure figcaption {
         color: rgba(255,180,180,0.7);
     }
     div.highlight pre {
-    	background: #333;
+    	background: #ddd;
+    	color: #222;
+    	filter: invert(100);
     }
     code {
  	  	background: #005;
