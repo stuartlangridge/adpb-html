@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Remote Applause</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
+		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2020/04/27/remote-applause/"><time 
+			class="dt-published" datetime="2020-04-27T20:31:00+01:00">Apr 27 2020</time></a>
+			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2020/04/27/remote-applause/" title="Permalink to Remote Applause" rel="bookmark">Remote&nbsp;Applause</a>
+		</h2>
+		<div class="entry-content e-content">
+			<blockquote class="twitter-tweet"><p lang="en" dir="ltr">For online conferences, someone should make it so 👏🏻 or 😆 in the chat leads to the sound of claps and laughs on video. The audience feels like a missing piece of what makes conferences so special. (The more claps and laughs, the more clap and laugh track should be played)</p>— Nicole Sullivan (@stubbornella) <a href="https://twitter.com/stubbornella/status/1254164566017114112?ref_src=twsrc%5Etfw">April 25, 2020</a></blockquote>
+
+<p><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </p>
+<p>That’s a cool idea, I thought.</p>
+<p>So I built <a href="https://stuartlangridge.github.io/remote-applause/">Remote Applause</a>, which does exactly that. Give your session a name, and it gives you a page to be the “stage”, and a link to send to everyone in the “audience”. The audience link has “clap” and “laugh” buttons; when anyone presses one, your stage page plays the sound of a laughter track or applause. Quite neat for an afternoon hack, so I thought I’d talk about how it works.</p>
+<p>Basically, it’s all driven by WebRTC data connections. WebRTC is notoriously difficult to get right, but fortunately <a href="https://peerjs.com/">PeerJS</a> exists which does most of the heavy lifting.<sup id="sf-remote-applause-1-back"><a href="#sf-remote-applause-1" class="simple-footnote" title="but it requires javascript! Aren’t you always going on about that, Stuart? Well, yes. However, it’s flat-out not possible to do real-time two-way communication sanely without it, so I’m OK with requiring JS in this particular case. For your restaurant menu, no.">1</a></sup> It seemed to be abandoned a few years ago, but they’ve picked it up again since, which is good news. Essentially, the way the thing works is as follows:</p>
+<p>When you name your session, the “stage” page calculates a unique <span class="caps">ID</span> from that name, and registers with that name on PeerJS’s coordination server. The audience page calculates the same <span class="caps">ID</span><sup id="sf-remote-applause-2-back"><a href="#sf-remote-applause-2" class="simple-footnote" title="using a quick JS version of Java’s hashCode function, because PeerJS has requirements on ID strings that exclude some of the characters in base64 so I couldn’t use window.btoa(), I didn’t want (or need) a whole hash library, and the  is complex">2</a></sup>, registers itself with a random <span class="caps">ID</span>, and opens a PeerJS data connection to the stage page (because it knows what its <span class="caps">ID</span> is). PeerJS is just using WebRTC data connections under the covers, but the PeerJS people provide the signalling server, which the main alternative <a href="https://github.com/feross/simple-peer">simple-peer</a> doesn’t, and I didn’t want to have to run a signalling server myself because then I’d need server-side hosting for it.</p>
+<p>The audience page can then send a “clap” or “laugh” message down that connection whenever the respective button is pressed, and the stage page receives that message and plays the appropriate sound. Well, it’s a fraction more complex than that. The two sounds, clapping and laughing, are constantly playing on a loop but muted. When the stage receives messages, it changes the volume on the sounds. Fortunately, the stage knows how many incoming connections there are, and it knows who the messages are coming in from, so it can scale the volume change appropriately; if most of the audience send a clap, then the stage can jack the clapping volume up to 100%, and if only a few people do then it can still play the clapping but at much lower volume. This largely does away with the need for moderation; a malicious actor who hammers the clap button as often as they can can at the very worst only make the applause track play at full volume, and most of the time they’ll be one in 50 people and so can only make it play at 5% volume or something.</p>
+<p>There are a couple of extra wrinkles. The first one is that autoplaying sounds are a no-no, because of all the awful advertising people who misused them to have autoplaying videos as soon as you opened a page; sound can only start playing if it’s driven by a user gesture of some kind. So the stage has an “enable sounds” checkbox; turning that checkbox on counts as the user gesture, so we can start actually playing the sounds but at zero volume, and we also take advantage of that to send a message to all the connected audience pages to tell them it’s enabled… and the audience pages don’t show the buttons until they get that message, which is handy. The second thing is that when the stage receives a clap or laugh from an audience member it rebroadcasts that to all other audience members; this means that each audience page can show a little clap emoji when that happens, so you can see how many other people are clapping as well as hear it over the conference audio. And the third… well, the third is a bit more annoying.</p>
+<p>If an audience member closes their page, the stage ought to get told about that somehow. And it does… in Firefox. The PeerJS <code>connection</code> object fires a <code>close</code> event when this happens, so, hooray. In Chrome, though, we never get that event. As far as I can tell it’s a known bug in PeerJS, or possibly in Chrome’s WebRTC implementation; I didn’t manage to track it down further than the PeerJS issues list. So what we <em>also</em> do in the stage is poll the PeerJS connection object for every connection every few seconds with <code>setInterval</code>, because it exposes the underlying WebRTC connection object, and that does indeed have a property dictating its current state. So we check that and if it’s showing <code>disconnected</code>, we treat that the same as the <code>close</code> event. Easily enough solved.</p>
+<p>There are more complexities than that, though. WebRTC is pretty goshdark flaky, in my experience. If the stage runner is using a lot of their bandwidth, then the connections to the stage drop, like, a <em>lot</em>, and need to be reconnected. I suppose it would be possible to quietly gloss over this in the <span class="caps">UI</span> and just save stuff up for when the connection comes back, but I didn’t do that, firstly because I <strong>hate</strong> it when an app pretends it’s working but actually it isn’t, and secondly because of…</p>
+<p><strong>Latency.</strong> This is the other big problem, and I don’t think it’s one that Remote Applause can fix, because it’s not <span class="caps">RA</span>’s problem. You see, the model for this is that I’m streaming myself giving a talk as part of an online conference, right? Now, testing has demonstrated that when doing this on Twitch or YouTube Live or whatever, there’s a delay of anything from 5 to 30 seconds or so in between me saying something and the audience hearing it. Anyone who’s tried interacting with the live chat while streaming will have experienced this. Normally that’s not all that big a problem (except for interacting with the live chat) but it’s definitely a problem for this, because even if Remote Applause is instantaneous (which it pretty much is), when you press the button to applaud, the speaker is 10 seconds further into their talk. So you’ll be applauding the wrong thing. I’m not sure that’s fixable; it’s pretty much an inherent limitation of streaming video. Microsoft reputedly have a <a href="https://docs.microsoft.com/en-us/azure/media-services/latest/live-event-latency">low latency streaming video service</a> but most people aren’t using it; maybe Twitch and YouTube will adopt this technology. </p>
+<p>Still, it was a fun little project! Nice to have a reason to use PeerJS for something. And it’s <a href="https://stuartlangridge.github.io/remote-applause/">hosted on Github Pages</a> because it’s all client side, so it doesn’t cost me anything to run, which is nice and so I can just leave it up even if nobody’s using it. </p><ol class="simple-footnotes"><li id="sf-remote-applause-1">but it requires javascript! Aren’t you always going on about that, Stuart? Well, yes. However, it’s flat-out not possible to do real-time two-way communication sanely without it, so I’m <span class="caps">OK</span> with requiring <span class="caps">JS</span> in this particular case. For your restaurant menu, no. <a href="#sf-remote-applause-1-back" class="simple-footnote-back">↩</a></li><li id="sf-remote-applause-2">using a quick <span class="caps">JS</span> version of Java’s <code>hashCode</code> function, because PeerJS has requirements on <span class="caps">ID</span> strings that exclude some of the characters in base64 so I couldn’t use <code>window.btoa()</code>, I didn’t want (or need) a whole hash library, and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">Web Crypto <span class="caps">API</span></a> is complex <a href="#sf-remote-applause-2-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2020/04/15/a-uk-map-made-of-squares/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2020/04/27/remote-applause/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2020/04/27/remote-applause/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
