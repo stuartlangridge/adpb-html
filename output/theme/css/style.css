@@ -1015,6 +1015,8 @@ figure figcaption {
 	width: 80%;
 }
 
+strong { font-weight: bold; }
+
 
 @media (prefers-color-scheme: dark) {
     body.custom-background {
