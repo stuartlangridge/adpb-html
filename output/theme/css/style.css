@@ -1049,3 +1049,5 @@ strong { font-weight: bold; }
     	border-color: #336;
 	}
 }
+
+.entry-content twitter-widget { margin-left: auto; margin-right: auto; }
