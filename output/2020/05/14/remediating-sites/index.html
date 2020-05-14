@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Remediating sites</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
+		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2020/05/14/remediating-sites/"><time 
+			class="dt-published" datetime="2020-05-14T18:05:00+01:00">May 14 2020</time></a>
+			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2020/05/14/remediating-sites/" title="Permalink to Remediating sites" rel="bookmark">Remediating&nbsp;sites</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Sometimes you&#8217;ll find yourself doing a job where you need to make alterations to a web page that already exists, and where you can&#8217;t change the <span class="caps">HTML</span>, so your job is to write some bits of JavaScript to poke at the page, add some attributes and some event handlers, maybe move some things around. This sort of thing comes up a lot with accessibility remediations, but maybe you&#8217;re working with an ancient <span class="caps">CMS</span> where changing the templates is a no-no, or you&#8217;re plugging in some after-the-fact support into a site that can&#8217;t be changed without a big approval process but adding a script element is allowed. So you write a script, no worries. How do you test&nbsp;it?</p>
+<p>Well, one way is to actually do it: we assume that the way your work will eventually be deployed is that you&#8217;ll give the owners a script file, they&#8217;ll upload it somehow to the site and add a script element that loads it. That&#8217;s likely to be a very slow and cumbersome process, though (if it wasn&#8217;t, then you wouldn&#8217;t need to be fixing the site by poking it with <span class="caps">JS</span>, would you? you&#8217;d just fix the <span class="caps">HTML</span> as God intended web developers to do) and so there ought to be a better way. A potential better way is to have them add a script element that points at your script on some other server, so you can iterate on that and then eventually send over the finished version when done. But that&#8217;s still pretty annoying, and it means putting that on the live server (&#8220;a &#8216;staging&#8217; server? no, I don&#8217;t think we&#8217;ve got one of those&#8221;) and then having something in your script which only runs it if it&#8217;s you testing. Alternatively, you might download the <span class="caps">HTML</span> for the page with Save Page As and grab all the dependencies. But that never works quite right, does&nbsp;it?</p>
+<p>The way I do this is with <a href="https://addons.mozilla.org/en-GB/firefox/addon/greasemonkey/">Greasemonkey</a>. Greasemonkey, or its Chrome-ish cousin <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">Tampermonkey</a>, has been around forever, and it lets you write custom scripts which it then takes care of loading for you when you visit a specified <span class="caps">URL</span>. Great stuff: write your thing as a Greasemonkey script to test it and then when you&#8217;re happy, send the script file to the client and you&#8217;re&nbsp;done.</p>
+<p>There is a little nuance here, though. A Greasemonkey script isn&#8217;t exactly the same as a script in the page. This is partially because of browser security restrictions, and partially because <span class="caps">GM</span> scripts have certain magic privileged access that scripts in the page don&#8217;t have. What this means is that the Greasemonkey script environment is quite sandboxed away; it doesn&#8217;t have direct access to stuff in the page, and stuff in the page doesn&#8217;t have direct access to it (in the early days, there were security problems where in-page script walked its way back up the object tree until it got hold of one of the magic Greasemonkey objects and then used that to do all sorts of naughty privileged things that it shouldn&#8217;t have been able to, and so it all got rigorously sandboxed away to prevent that). So, if the page loads jQuery, say, and you want to use that, then you can&#8217;t, because your script is in its own little world with a peephole to the page, and getting hold of in-page objects is awkward. Obviously, your remediation script can&#8217;t be relying on any of these magic <span class="caps">GM</span> privileges (because it won&#8217;t have them when it&#8217;s deployed for real), so you don&#8217;t intend to use them, but because <span class="caps">GM</span> doesn&#8217;t know that, it still isolates your script away. Fortunately, there&#8217;s a neat little trick to have the best of both worlds; to create the script in <span class="caps">GM</span> to make it easy to test and iterate, but have the script run in the context of the page so it gets the environment it&nbsp;expects.</p>
+<p>What you do is, put all your code in a function, stringify it, and then push that string into an in-page script. Like&nbsp;this:</p>
+<div class="highlight"><pre><span></span><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name     Stuart&#39;s GM remediation script</span>
+<span class="c1">// @version  1</span>
+<span class="c1">// @grant    none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="cm">/* All your code goes below here... */</span>
+
+
+
+    <span class="cm">/* ...and above here. */</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">);</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nx">main</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;)();&quot;</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+</pre></div>
+
+
+<p>That&#8217;s it. Your code is defined in Greasemonkey, but it&#8217;s actually executed as though it were a &lt;script&gt; element in the page. You should basically pretend that that code doesn&#8217;t exist and just write whatever you planned to inside the <code>main()</code> function. You can define other functions, add event handlers, whatever you fancy. This is a neat trick; I&#8217;m not sure if I invented it or picked it up from somewhere else years ago (and if someone knows, tell me and I&#8217;ll happily link to whoever invented it), but it&#8217;s really useful; you build the remediation script, doing whatever you want it to do, and then when you&#8217;re happy with it, copy whatever&#8217;s <em>inside</em> the <code>main()</code> function to a new file called <code>whatever.js</code> and send that to the client, and tell them: upload this to your creaky old <span class="caps">CMS</span> and then link to it with a &lt;script&gt; element. Job done. Easier for you, easier for&nbsp;them.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2020/05/06/hammer-and-nails/">Previous post</a></li>
+		</ul>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2020/05/14/remediating-sites/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2020/05/14/remediating-sites/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-331575-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
