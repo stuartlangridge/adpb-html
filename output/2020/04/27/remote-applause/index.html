@@ -177,6 +177,16 @@
 			An unnamed person responded at
 		<a href="https://tinyletter.com/erielp/letters/burning-the-midnight-oil">tinyletter.com</a>
 		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/526998565928054784/rY90ChAv.jpeg">
+			Richard responded at
+		<a href="https://twitter.com/rythie/status/1262140804870660096">twitter.com</a>
+		<span class="wm-summary">			@rythie kryogenix.org/days/2020/04/2… is the thing I built, yup :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/526998565928054784/rY90ChAv.jpeg">
+			Richard responded at
+		<a href="https://twitter.com/rythie/status/1262140930099949570">twitter.com</a>
+		<span class="wm-summary">			Cool, didn’t realise you’d built it already
+</span></li>
 	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
@@ -218,17 +228,14 @@ if (!tooNewForOldComments) {
 		
 		<div id="footer">
 			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-				<script type="text/javascript">
-					var _gaq = _gaq || [];
-					_gaq.push(['_setAccount', 'UA-331575-1']);
-					_gaq.push(['_trackPageview']);
-					(function() {
-						var ga = document.createElement('script'); 
-						ga.type = 'text/javascript'; ga.async = true;
-						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-					})();
-				</script>
+			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
+			<script>
+  				window.dataLayer = window.dataLayer || [];
+  				function gtag(){dataLayer.push(arguments);}
+  				gtag('js', new Date());
+  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
+			</script>
 		</div><!-- /#footer -->
 	</div><!-- /#container -->
 

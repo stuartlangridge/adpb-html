@@ -90,15 +90,15 @@
 		<a href="https://twitter.com/sil/status/695596376722423808">twitter.com</a>
 		<span class="wm-summary">			@gauntface don't know what the deal with it is. I mean, maybe it's phone malware which applies to all my newly installed apps?
 </span></li>
-		<li><img src="https://twitter.com/thespite/profile_image?size=original">
-			Jaume Sanchez Elias responded at
-		<a href="https://twitter.com/thespite/status/695596471496867840">twitter.com</a>
-		<span class="wm-summary">			@gauntface @sil that's from ES File Explorer, I think
-</span></li>
 		<li><img src="https://twitter.com/sil/profile_image?size=original">
 			Stuart Langridge responded at
 		<a href="https://twitter.com/sil/status/695596475418550272">twitter.com</a>
 		<span class="wm-summary">			@sil @gauntface have only just thought of that. Will try installing more.
+</span></li>
+		<li><img src="https://twitter.com/thespite/profile_image?size=original">
+			Jaume Sanchez Elias responded at
+		<a href="https://twitter.com/thespite/status/695596471496867840">twitter.com</a>
+		<span class="wm-summary">			@gauntface @sil that's from ES File Explorer, I think
 </span></li>
 		<li><img src="https://twitter.com/x1101/profile_image?size=original">
 			x1101 responded at
@@ -171,17 +171,14 @@ if (!tooNewForOldComments) {
 		
 		<div id="footer">
 			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-				<script type="text/javascript">
-					var _gaq = _gaq || [];
-					_gaq.push(['_setAccount', 'UA-331575-1']);
-					_gaq.push(['_trackPageview']);
-					(function() {
-						var ga = document.createElement('script'); 
-						ga.type = 'text/javascript'; ga.async = true;
-						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-					})();
-				</script>
+			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
+			<script>
+  				window.dataLayer = window.dataLayer || [];
+  				function gtag(){dataLayer.push(arguments);}
+  				gtag('js', new Date());
+  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
+			</script>
 		</div><!-- /#footer -->
 	</div><!-- /#container -->
 
