@@ -1054,5 +1054,9 @@ strong { font-weight: bold; }
 
 .hireme {
 	background: #dd4814;
-	color: black;
+	color: white;
+	clear: both;
+	margin-top: 6em;
+	padding: 1.5em;
+	text-align: justify;
 }
