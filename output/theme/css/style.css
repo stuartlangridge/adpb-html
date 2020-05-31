@@ -1051,3 +1051,8 @@ strong { font-weight: bold; }
 }
 
 .entry-content twitter-widget { margin-left: auto; margin-right: auto; }
+
+.hireme {
+	background: #dd4814;
+	color: black;
+}
