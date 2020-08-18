@@ -68,13 +68,13 @@ open to people. That being the case, what I want to do is enforce
 authentication on URLs with <code>@edit</code> in them. This is done using the
 Apache <a href="http://httpd.apache.org/docs/mod/core.html#locationmatch">LocationMatch</a> directive: I added the following into the
 <code>VirtualHost</code> section that defines kryogenix.org in my <code>httpd.conf</code>.</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;LocationMatch</span> <span class="err">&quot;wiki/@edit&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;LocationMatch</span> <span class="err">&quot;wiki/@edit&quot;</span><span class="nt">&gt;</span>
  AuthType Basic
 AuthName &quot;No spam&quot;
 AuthUserFile /var/www/kryogenix.org/html/wiki/.htpasswd
 Require valid-user
 <span class="nt">&lt;/LocationMatch&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The really annoying thing is that you can’t use <code>LocationMatch</code> in a

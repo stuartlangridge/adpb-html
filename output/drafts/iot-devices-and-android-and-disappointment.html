@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; IoT devices and Android and disappointment</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
+		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/drafts/iot-devices-and-android-and-disappointment.html"><time 
+			class="dt-published" datetime="2020-08-18T13:13:00+01:00">Aug 18 2020</time></a>
+			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/drafts/iot-devices-and-android-and-disappointment.html" title="Permalink to IoT devices and Android and disappointment" rel="bookmark">IoT devices and Android and&nbsp;disappointment</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>One of the projects I&#8217;m working on involves creating a little device which you talk to from your phone. So, I thought, I&#8217;ll do this <em>properly</em>. No &#8220;cloud service&#8221; that you don&#8217;t need; no native app that you don&#8217;t need; you&#8217;ll just send data from your phone to it, locally, and if the owners go bust it won&#8217;t brick all your devices. That is, here&#8217;s the guiding principle, which is one that I think a lot of people would agree with and which a lot of devices don&#8217;t&nbsp;do:</p>
+<p>You should be able to communicate <strong>medium quantities of data</strong> to the device <strong>locally</strong>, <strong>without needing a cloud service</strong> by using <strong>a web app rather than a native app</strong> from <strong>an Android phone</strong>.</p>
+<p>Here&#8217;s why that doesn&#8217;t work. Android and Chrome, I am very disappointed in&nbsp;you.</p>
+<p><strong>Bluetooth <span class="caps">LE</span></strong></p>
+<p>The first reaction here is to use Bluetooth <span class="caps">LE</span>. This is what it&#8217;s for; it&#8217;s easy to use, phones support it, Chrome on Android has <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">Web Bluetooth</a>, everything&#8217;s gravy,&nbsp;right?</p>
+<p>No, sadly. Because of the &#8220;medium quantities of data&#8221; requirement. This is, honestly, not a <em>lot</em> of data; a few hundred kilobytes at most. However&#8230; that&#8217;s too much for poor old Bluetooth <span class="caps">LE</span>. <a href="https://aimconsulting.com/insights/blog/wi-fi-vs-bluetooth-classic-vs-bluetooth-low-energy-ble-choosing-the-right-technology-when-designing-for-iot/">An excellent article from <span class="caps">AIM</span> Consulting</a> goes into this in a little detail and there&#8217;s a <a href="https://www.novelbits.io/bluetooth-5-speed-maximum-throughput/">much more detailed article from Novelbits</a>, but transferring tens or hundreds of <span class="caps">KB</span> of data over <span class="caps">BLE</span> just isn&#8217;t practical. Maybe you can get speeds of a few hundred kilo <em>bits</em> per second in theory, but in practice it&#8217;s nothing like that; I was getting speeds of <strong>twenty</strong> <em>bytes</em> per second, which is utterly unhelpful. Sure, maybe it can be more efficient than that, but it&#8217;s just never going to be fast enough: nobody&#8217;s going to want to send a <span class="caps">40KB</span> image and wait three minutes for it to do so. <span class="caps">BLE</span>&#8217;s good for small amounts of data; not for even medium&nbsp;amounts.</p>
+<p><strong>WiFi to your local <span class="caps">AP</span></strong></p>
+<p>The next idea, therefore, is to connect the device to the wifi router in your house. This is how most IoT devices work; you teach them about your wifi network and they connect to it. But&#8230; <em>how</em> do you teach them that? Normally, you put them in some sort of &#8220;setup&#8221; mode and the device creates its own wifi network, and then you connect your phone to that, teach it about your wifi network, and then it stops its own <span class="caps">AP</span> and connects to yours instead. But you still need to connect to its private <span class="caps">AP</span> first to do that setup, and so let&#8217;s talk about&nbsp;that.</p>
+<p><strong>WiFi to the&nbsp;device</strong></p>
+<p>The device creates its own WiFi network; it becomes a wifi router. You then connect your phone to it, and then you can talk to it. The device can even be a web server, so you can load the controlling web app from the device itself. This is ideal; exactly what I&nbsp;planned.</p>
+<p>Except it doesn&#8217;t work, and as far as I can tell it&#8217;s Android&#8217;s fault. Bah&nbsp;humbug.</p>
+<p>You see, the device&#8217;s wifi network obviously doesn&#8217;t have a route to the internet. So, when you connect your phone to it, Android says &#8220;hey! there&#8217;s no route to the internet here! this wifi network sucks and clearly you don&#8217;t want to be connected to it!&#8221; and, after ten seconds or so, disconnects you. Boom. You have no chance to use the web app on the device to configure the device, because Android (10, at least) disconnects you from the device&#8217;s wifi network before you can do&nbsp;so.</p>
+<p>Now, there is the concept of a &#8220;captive portal&#8221;. This is the thing you get in hotels and airports and so on, where you have to fill in some details or pay some money or something to be able to use the wifi; what happens is that all web accesses get redirected to the captive portal page where you do or pay whatever&#8217;s necessary and then the network suddenly becomes able to access the internet. Android will helpfully detect these networks and show you that captive portal login page so you can sign in. Can we have our device be a captive&nbsp;portal?</p>
+<p>No. Well, we can, but it doesn&#8217;t&nbsp;help.</p>
+<p>You see, Android shows you the captive portal login page in a special cut-down &#8220;browser&#8221;. This captive portal browser (Apple calls it a <span class="caps">CNA</span>, for Captive Network Assistant, so I shall too&#8230; but we&#8217;re not talking about iOS here, which is an entirely different kettle of fish for a different article), this <span class="caps">CNA</span> isn&#8217;t <em>really</em> a browser. Obviously, our IoT device can&#8217;t provide a route to the internet; it&#8217;s not that it has one but won&#8217;t let you see it, like a hotel; it doesn&#8217;t have one at all. So you can&#8217;t fill anything into the <span class="caps">CNA</span> that will make that happen. If you try to switch back to the real browser in order to access the website being served from the device, Android says &#8220;aha, you closed the <span class="caps">CNA</span> and there&#8217;s still no route to the internet!&#8221; and disconnects you from the device wifi. That doesn&#8217;t&nbsp;work.</p>
+<p>You can&#8217;t open a page in the real browser <em>from</em> the <span class="caps">CNA</span>, either. You used to be able to do <a href="https://stackoverflow.com/questions/59585783/open-app-browser-android-using-captive-portal-error-social-login-with-facebook">some shenanigans with a link pointing to an <code>intent://</code> <span class="caps">URL</span></a> but that doesn&#8217;t work any&nbsp;more.</p>
+<p>Maybe we can run the whole web app <em>inside</em> the <span class="caps">CNA</span>? I mean, it&#8217;s a web browser, right? Not an ideal user experience, but it might be <span class="caps">OK</span>.</p>
+<p>Nope. The <span class="caps">CNA</span> is a browser, but half of the features are turned off. There are a bunch of JavaScript APIs you don&#8217;t have access to, but the key thing for our purposes is that <code>&amp;lt;input type="file"&amp;gt;</code> elements don&#8217;t work; you can&#8217;t open a file picker to allow someone to choose a file to upload to the device. So that&#8217;s a non-starter&nbsp;too.</p>
+<p><strong>So, what do we&nbsp;do?</strong></p>
+<p>Unfortunately, it seems that the&nbsp;plan:</p>
+<p>communicate <strong>medium quantities of data</strong> to the device <strong>locally</strong>,  <strong>without needing a cloud service</strong> by using <strong>a web app rather than a native app</strong> from <strong>an Android&nbsp;phone</strong></p>
+<p>isn&#8217;t possible. It <em>could</em> be, but it isn&#8217;t; there are roadblocks in the way. So building the sort of IoT device which ought to exist isn&#8217;t actually possible, thanks very much Android. Thandroid. We have to compromise on one of the key&nbsp;points.</p>
+<p>If you&#8217;re only communicating small amounts of data, then you can use Bluetooth <span class="caps">LE</span> for this. Sadly, this is not something you can really choose to compromise on; if your device plan only needs small volumes, great, but if it needs more then likely you can&#8217;t say &#8220;we just won&#8217;t send that data&#8221;. So that&#8217;s a&nbsp;no-go.</p>
+<p>You can use a cloud service. That is: you teach the device about the local wifi network and then it talks to your cloud servers, and so does your phone; all data is round-tripped through those cloud servers. This is stupid: if the cloud servers go away, the device is a brick. Yes, lots of companies do this, but part of the reason they do it is that they <em>want</em> to be able to control whether you can access a device you&#8217;ve bought by running the connection via their own servers, so they can charge you subscription money for it. If you&#8217;re not doing that, then the servers are a constant ongoing cost and you can&#8217;t ever shut them down. And it&#8217;s a poor model, and aggressively consumer-hostile, to require someone to continue paying you to use a thing they purchased. Not doing that. Communication should be local; the device is in my house, I&#8217;m in my house, why the hell should talking to it require going via a server on the other side of the&nbsp;world?</p>
+<p>You can use a native app. Native apps can avoid the whole &#8220;this wifi network has no internet access so I will disconnect you from it for your own good&#8221; approach by calling <a href="https://stackoverflow.com/questions/62320720/android-disconnects-automatically-from-wifi-without-internet-below-android-10">various native APIs in the connectivity manager</a>. A web app can&#8217;t do this. So you&#8217;re somewhat forced into using a native app even though you really shouldn&#8217;t have&nbsp;to.</p>
+<p>Or you can use something other than Android; iOS, it seems, <a href="https://stackoverflow.com/questions/55138577/how-to-redirect-to-default-browser-from-captive-portal-cna-browser">has a workaround</a> although it&#8217;s a bit&nbsp;dodgy.</p>
+<p>None of these are good answers. Currently I&#8217;m looking at building native apps, which I really don&#8217;t think I should have to do; this is exactly the sort of thing that the web should be good at, and is available on every platform and to everyone, and I can&#8217;t use the web for it because a bunch of decisions have been taken to prevent that. There are good reasons for those decisions, certainly; I want my phone to be helpful when I&#8217;m on some stupid hotel wifi with a signin. But it&#8217;s also breaking a perfectly legitimate use case and forcing me to use native apps rather than the&nbsp;web.</p>
+<p>Unless I&#8217;m wrong? If I am&#8230; this is where you tell me how to do it. Something with a pleasant user experience, that non-technical people can easily do. If it doesn&#8217;t match that, I ain&#8217;t doin&#8217; it, just to warn you. But if you know how this can be done to meet my list of criteria, I&#8217;m happy to&nbsp;listen.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/drafts/iot-devices-and-android-and-disappointment.html">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = 'drafts/iot-devices-and-android-and-disappointment.html';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
+			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
+			<script>
+  				window.dataLayer = window.dataLayer || [];
+  				function gtag(){dataLayer.push(arguments);}
+  				gtag('js', new Date());
+  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
+			</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

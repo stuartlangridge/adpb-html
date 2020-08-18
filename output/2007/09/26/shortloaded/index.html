@@ -86,14 +86,14 @@ which is rather neat. So, it should be possible to combine the existing
 Safari method, Opera and Mozilla&#8217;s DOMContentLoaded support, and
 Hedger&#8217;s <span class="caps">IE</span> approach into a short bit of boilerplate code that can be
 dropped into your standalone script. And indeed it is. <a href="http://www.kryogenix.org/code/browser/domcontentloaded.html">See a simple demo</a>, and more importantly, here is the short version of the&nbsp;code:</p>
-<div class="highlight"><pre><span></span><span class="o">(</span><span class="nt">function</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="p">{</span><span class="err">var</span> <span class="err">u</span> <span class="err">=navigator.userAgent</span><span class="p">;</span><span class="err">var</span> <span class="err">e=</span><span class="c">/*@cc_on!@*/</span><span class="err">false</span><span class="p">;</span> <span class="err">var</span> <span class="err">st</span> <span class="err">=</span> 
-<span class="err">setTimeout</span><span class="p">;</span><span class="err">if(/webkit/i.test(u)){st(function(){var</span> <span class="err">dr=document.readyState</span><span class="p">;</span>
-<span class="err">if(dr==&quot;loaded&quot;||dr==&quot;complete&quot;){i()</span><span class="p">}</span><span class="nt">else</span><span class="p">{</span><span class="err">st(arguments.callee,10)</span><span class="p">;}</span><span class="err">}</span><span class="o">,</span><span class="nt">10</span><span class="o">);</span><span class="err">}</span>
-<span class="nt">else</span> <span class="nt">if</span><span class="o">((/</span><span class="nt">mozilla</span><span class="o">/</span><span class="nt">i</span><span class="p">.</span><span class="nc">test</span><span class="o">(</span><span class="nt">u</span><span class="o">)&amp;&amp;!/(</span><span class="nt">compati</span><span class="o">)/</span><span class="p">.</span><span class="nc">test</span><span class="o">(</span><span class="nt">u</span><span class="o">))</span> <span class="o">||</span> <span class="o">(/</span><span class="nt">opera</span><span class="o">/</span><span class="nt">i</span><span class="p">.</span><span class="nc">test</span><span class="o">(</span><span class="nt">u</span><span class="o">)))</span><span class="p">{</span>
-<span class="err">document.addEventListener(&quot;DOMContentLoaded&quot;,i,false)</span><span class="p">;</span> <span class="p">}</span> <span class="nt">else</span> <span class="nt">if</span><span class="o">(</span><span class="nt">e</span><span class="o">)</span><span class="p">{</span>     <span class="err">(</span>
-<span class="err">function(){var</span> <span class="err">t=document.createElement(&#39;</span><span class="n">doc</span><span class="p">:</span><span class="n">rdy</span><span class="s1">&#39;);try{t.doScroll(&#39;</span><span class="kc">left</span><span class="err">&#39;</span><span class="p">);</span>
-<span class="err">i()</span><span class="p">;</span><span class="err">t=null</span><span class="p">;}</span><span class="nt">catch</span><span class="o">(</span><span class="nt">e</span><span class="o">)</span><span class="p">{</span><span class="err">st(arguments.callee,0)</span><span class="p">;}</span><span class="err">}</span><span class="o">)();</span><span class="err">}</span><span class="nt">else</span><span class="p">{</span><span class="err">window.onload=i</span><span class="p">;}</span><span class="err">}</span><span class="o">)(</span><span class="nt">init</span><span class="o">);</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">(function(i) {var u =navigator.userAgent;var e=/*@cc_on!@*/false; var st = </span>
+<span class="err">setTimeout;if(/webkit/i.test(u)){st(function(){var dr=document.readyState;</span>
+<span class="err">if(dr==&quot;loaded&quot;||dr==&quot;complete&quot;){i()}else{st(arguments.callee,10);}},10);}</span>
+<span class="err">else if((/mozilla/i.test(u)&amp;&amp;!/(compati)/.test(u)) || (/opera/i.test(u))){</span>
+<span class="err">document.addEventListener(&quot;DOMContentLoaded&quot;,i,false); } else if(e){     (</span>
+<span class="err">function(){var t=document.createElement(&#39;doc:rdy&#39;);try{t.doScroll(&#39;left&#39;);</span>
+<span class="err">i();t=null;}catch(e){st(arguments.callee,0);}})();}else{window.onload=i;}})(init);</span>
+</code></pre></div>
 
 
 <p>The <strong><code>init</code></strong> on the last line is the name of your &#8220;init&#8221; function; the

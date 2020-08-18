@@ -72,10 +72,10 @@ just call <code>webbrowser.open('javascript:window.open("...")')</code>, because
 then you’ll have <em>two</em> windows; the one that ran the <span class="caps">JS</span> and the one the
 <span class="caps">JS</span> opened. <span class="caps">JS</span> can’t close the one that ran the <span class="caps">JS</span>, because it wasn’t
 opened by <span class="caps">JS</span>. The solution? Chrome&nbsp;windows:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">webbrowser</span>
 <span class="n">moz</span> <span class="o">=</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mozilla&#39;</span><span class="p">)</span>
 <span class="n">moz</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;javascript:void(window.open(&quot;http://www.kryogenix.org&quot;,&quot;winname&quot;,&quot;chrome&quot;))&#39;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>It should be possible to make this work for <span class="caps">IE</span> as well, because <a href="http://www10.brinkster.com/doctorunclear/BrowserBugsSection/Opera7Bugs/ClosingWindowsNotOpenedByJS.html"><span class="caps">IE</span>

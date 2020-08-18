@@ -91,11 +91,11 @@ responded with <a href="http://twitter.com/#!/psykoyiko/status/17142647932067840
 <a href="https://github.com/psykoyiko/pycanberra/raw/master/pycanberra.py">pycanberra.py</a>. So, you can now play system sounds from your Python
 program, because this is basically a set of Python bindings for&nbsp;libcanberra.</p>
 <p>To play a&nbsp;sound:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycanberra</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pycanberra</span>
 <span class="n">canberra</span> <span class="o">=</span> <span class="n">pycanberra</span><span class="o">.</span><span class="n">Canberra</span><span class="p">()</span>
 <span class="n">canberra</span><span class="o">.</span><span class="n">easy_play_sync</span><span class="p">(</span><span class="s2">&quot;dialog-warning&quot;</span><span class="p">)</span>
 <span class="n">canberra</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Hooray! Good job psykoyiko! Someone should get this into&nbsp;Ubuntu.</p>

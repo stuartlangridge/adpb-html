@@ -62,16 +62,16 @@
 		</h2>
 		<div class="entry-content e-content">
 			<p>I needed a way to display the contents of an <span class="caps">HTML</span> file on my desktop, in such a way that it looks like it’s part of the wallpaper. Fortunately, most of the answer was in <a href="http://askubuntu.com/questions/205300/how-can-i-make-my-own-custom-desktop-widgets">How can I make my own custom desktop widgets?</a> on Ask Ubuntu, along with <a href="http://askubuntu.com/questions/258829/create-a-gtk-window-insensitive-to-show-desktop-and-wont-show-in-launcher">Create a Gtk Window insensitive to Show Desktop and Won’t show in Launcher</a>. Combining that with the <em>excellent</em> <a href="http://lazka.github.io/pgi-docs/">Python <span class="caps">GI</span> <span class="caps">API</span> Reference</a> which contains everything and which I can never find when I go looking for it, I came up with a simple little Python app. I have it monitoring the <span class="caps">HTML</span> file which it displays for changes; when that file changes, I refresh the&nbsp;widget.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">WebKit</span><span class="p">,</span> <span class="n">Gtk</span><span class="p">,</span> <span class="n">Gdk</span><span class="p">,</span> <span class="n">Gio</span><span class="p">,</span> <span class="n">GLib</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">WebKit</span><span class="p">,</span> <span class="n">Gtk</span><span class="p">,</span> <span class="n">Gdk</span><span class="p">,</span> <span class="n">Gio</span><span class="p">,</span> <span class="n">GLib</span>
 <span class="kn">import</span> <span class="nn">signal</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="k">class</span> <span class="nc">MainWin</span><span class="p">(</span><span class="n">Gtk</span><span class="o">.</span><span class="n">Window</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">Gtk</span><span class="o">.</span><span class="n">Window</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">skip_pager_hint</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">skip_taskbar_hint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">Gtk</span><span class="o">.</span><span class="n">Window</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">skip_pager_hint</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">skip_taskbar_hint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_wmclass</span><span class="p">(</span><span class="s2">&quot;sildesktopwidget&quot;</span><span class="p">,</span><span class="s2">&quot;sildesktopwidget&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_type_hint</span><span class="p">(</span><span class="n">Gdk</span><span class="o">.</span><span class="n">WindowTypeHint</span><span class="o">.</span><span class="n">DOCK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_size_request</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_keep_below</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_keep_below</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1">#Set transparency</span>
         <span class="n">screen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_screen</span><span class="p">()</span>
@@ -81,15 +81,15 @@
 
         <span class="c1">#Add all the parts</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">WebKit</span><span class="o">.</span><span class="n">WebView</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">set_transparent</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">set_transparent</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">override_background_color</span><span class="p">(</span><span class="n">Gtk</span><span class="o">.</span><span class="n">StateFlags</span><span class="o">.</span><span class="n">NORMAL</span><span class="p">,</span> <span class="n">Gdk</span><span class="o">.</span><span class="n">RGBA</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">enable_default_context_menu</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">enable_default_context_menu</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">load_uri</span><span class="p">(</span><span class="s2">&quot;file:///home/aquarius/Work/jobs.html&quot;</span><span class="p">)</span>
 
         <span class="n">box</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Box</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
-        <span class="n">box</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_decorated</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">box</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_decorated</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;destroy&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">())</span>
 
         <span class="c1">#Show all the parts</span>
@@ -97,22 +97,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">refresh_file</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="k">print</span> <span class="n">args</span>
+    <span class="nb">print</span> <span class="n">args</span>
     <span class="n">mainwin</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">file_changed</span><span class="p">(</span><span class="n">monitor</span><span class="p">,</span> <span class="nb">file</span><span class="p">,</span> <span class="n">unknown</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">file_changed</span><span class="p">(</span><span class="n">monitor</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">unknown</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
     <span class="c1"># reload</span>
     <span class="n">GLib</span><span class="o">.</span><span class="n">timeout_add_seconds</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">refresh_file</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">gio_file</span> <span class="o">=</span> <span class="n">Gio</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">new_for_path</span><span class="p">(</span><span class="s2">&quot;/home/aquarius/Work/jobs.html&quot;</span><span class="p">)</span>
-    <span class="n">monitor</span> <span class="o">=</span> <span class="n">gio_file</span><span class="o">.</span><span class="n">monitor_file</span><span class="p">(</span><span class="n">Gio</span><span class="o">.</span><span class="n">FileMonitorFlags</span><span class="o">.</span><span class="n">NONE</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="n">monitor</span> <span class="o">=</span> <span class="n">gio_file</span><span class="o">.</span><span class="n">monitor_file</span><span class="p">(</span><span class="n">Gio</span><span class="o">.</span><span class="n">FileMonitorFlags</span><span class="o">.</span><span class="n">NONE</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="n">monitor</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;changed&quot;</span><span class="p">,</span> <span class="n">file_changed</span><span class="p">)</span>
 
     <span class="n">mainwin</span> <span class="o">=</span> <span class="n">MainWin</span><span class="p">()</span>
     <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_DFL</span><span class="p">)</span> <span class="c1"># make ^c work</span>
     <span class="n">Gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Lots of little tricks in there: the widget acts as a widget (that is: it stays glued to the desktop, and doesn’t vanish when you <code>Show Desktop</code>) because of the <code>Gdk.WindowTypeHint.DOCK</code>, <code>skip_pager_hint=True</code>, <code>skip_taskbar_hint=True</code>, and <code>set_keep_below(True)</code> parts; it’s transparent because the <span class="caps">HTML</span> file sets its background colour to <code>rgba(0,0,0,0)</code> with <span class="caps">CSS</span> and then we use <code>override_background_color</code> to make that actually be transparent; the window has no decorations because of <code>set_decorated(False)</code>. Then I just add it to Startup Applications and we’re&nbsp;done.</p>

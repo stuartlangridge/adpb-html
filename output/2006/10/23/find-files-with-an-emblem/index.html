@@ -66,14 +66,14 @@ possible to add emblems to any file. An emblem is a little reminder, a
 small icon that appears on top of the file. Think of it as a tag,
 perhaps, in this Web 2.0 world. <img alt="The 'Sam presents' file has a 'money' emblem." src="http://www.kryogenix.org/random/emblems.png"> Anyway, I needed a way of establishing which files had a
 particular emblem from a script. So here&#8217;s such a script. Call as&nbsp;follows:</p>
-<div class="highlight"><pre><span></span>aquarius@giles:~$ python findemblem.py money
-/home/aquarius/Sam presents
-/home/aquarius/Work/quotation.xml
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">aquarius@giles:~$ python findemblem.py money</span>
+<span class="err">/home/aquarius/Sam presents</span>
+<span class="err">/home/aquarius/Work/quotation.xml</span>
+</code></pre></div>
 
 
 <p>The actual script&nbsp;is:</p>
-<div class="highlight"><pre><span></span><span class="s s-Atom">import</span> <span class="s s-Atom">re</span><span class="p">,</span> <span class="s s-Atom">glob</span><span class="p">,</span> <span class="s s-Atom">sys</span><span class="p">,</span> <span class="s s-Atom">urllib</span><span class="p">,</span> <span class="s s-Atom">os</span>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">import</span> <span class="s s-Atom">re</span><span class="p">,</span> <span class="s s-Atom">glob</span><span class="p">,</span> <span class="s s-Atom">sys</span><span class="p">,</span> <span class="s s-Atom">urllib</span><span class="p">,</span> <span class="s s-Atom">os</span>
 <span class="s s-Atom">from</span> <span class="s s-Atom">xml</span><span class="p">.</span><span class="s s-Atom">dom</span> <span class="s s-Atom">import</span> <span class="s s-Atom">minidom</span>
 
 <span class="s s-Atom">def</span> <span class="nf">grep</span><span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">,</span> <span class="s s-Atom">files</span><span class="p">)</span><span class="s s-Atom">:</span>
@@ -104,7 +104,7 @@ particular emblem from a script. So here&#8217;s such a script. Call as&nbsp;fol
 
 <span class="s s-Atom">if</span> <span class="k">__</span><span class="s s-Atom">name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="s s-Atom">:</span>
   <span class="s s-Atom">print</span> <span class="s s-Atom">&#39;n&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">findEmblemedFiles</span><span class="p">(</span><span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-</pre></div>
+</code></pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2006/10/22/i-hate-sharp/">Previous post</a></li>

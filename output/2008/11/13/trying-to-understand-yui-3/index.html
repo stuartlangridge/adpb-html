@@ -100,11 +100,11 @@ drifts in space. It&#8217;s not wrapped in an onDOMContentLoaded or anything.
 people down with infrastructure just so they can write a click
 function.) So, since there&#8217;s a working example in the page, I looked in
 the source myself, and we&nbsp;get</p>
-<div class="highlight"><pre><span></span>YUI({combine: true, timeout: 10000}).use(&quot;node&quot;,
-function(Y) {
- ... code from the example...
-});
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">YUI({combine: true, timeout: 10000}).use(&quot;node&quot;,</span>
+<span class="err">function(Y) {</span>
+<span class="err"> ... code from the example...</span>
+<span class="err">});</span>
+</code></pre></div>
 
 
 <p>Ah, <span class="caps">OK</span>, so that&#8217;s onDOMContentLoaded, is it? a new <span class="caps">YUI</span> function. I&#8217;m

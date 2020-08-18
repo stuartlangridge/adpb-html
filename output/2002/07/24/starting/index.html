@@ -83,106 +83,106 @@ Note that you must edit the &#8220;browsers&#8221; line in the script to specify
 your browsers and locations of same. This script probably requires
 VBScript 5.5 and <span class="caps">IE</span> 5.5 (but if you&#8217;re looking to test on multiple
 browsers you&#8217;ll almost certainly have <span class="caps">IE</span>).</p>
-<div class="highlight"><pre><span></span><span class="s1">&#39; startBrowser.vbs</span>
-<span class="s1">&#39;</span> <span class="nx">If</span> <span class="nx">you</span> <span class="nx">have</span> <span class="nx">a</span> <span class="nx">URL</span> <span class="nx">on</span> <span class="nx">the</span> <span class="nx">clipboard</span><span class="p">,</span> <span class="nx">offers</span> <span class="nx">you</span> <span class="nx">a</span> <span class="nx">menu</span>
-<span class="s1">&#39; of browsers and then starts your choice with the one you want.</span>
+<div class="highlight"><pre><span></span><code>&#39; startBrowser.vbs
+&#39; If you have a URL on the clipboard, offers you a menu
+&#39; of browsers and then starts your choice with the one you want.
 
-<span class="s1">&#39;</span> <span class="nx">Uses</span> <span class="nx">code</span> <span class="nx">from</span> <span class="nx">HTMLClipboard</span><span class="p">.</span><span class="nx">vbs</span> <span class="nx">by</span> <span class="nx">G</span><span class="err">�</span><span class="nx">Born</span> <span class="p">(</span><span class="nx">www</span><span class="p">.</span><span class="nx">borncity</span><span class="p">.</span><span class="nx">de</span><span class="p">)</span>
-<span class="s1">&#39;</span>
+&#39; Uses code from HTMLClipboard.vbs by G�Born (www.borncity.de)
+&#39;
 
-<span class="s1">Dim oIE</span>
-<span class="s1">Set oIE = WScript.CreateObject(&quot;InternetExplorer.Application&quot;)</span>
+Dim oIE
+Set oIE = WScript.CreateObject(&quot;InternetExplorer.Application&quot;)
 
-<span class="s1">&#39;</span> <span class="nx">Set</span> <span class="nx">your</span> <span class="nx">browsers</span> <span class="nx">variable</span><span class="o">:</span> 
-<span class="s1">&#39;   pipe (|) separates browsers</span>
-<span class="s1">&#39;</span>   <span class="nx">a</span> <span class="nx">browser</span> <span class="nx">is</span> <span class="nx">exe</span><span class="o">-</span><span class="kd">with</span><span class="o">-</span><span class="nx">full</span><span class="o">-</span><span class="nx">path</span><span class="p">,</span><span class="nx">name</span><span class="p">,</span><span class="nx">accesskey</span>
-<span class="nx">browsers</span> <span class="o">=</span> <span class="s2">&quot;d:mozilla1.0mozilla,Mozilla,m|iexplore,Internet Explorer,e&quot;</span>
-
-
-<span class="nx">clipboard</span> <span class="o">=</span> <span class="nx">getClipBoardText</span><span class="p">()</span>
-<span class="s1">&#39; Does it look like a URL?</span>
-<span class="s1">if left(clipboard,7) = &quot;http://&quot; then</span>
-<span class="s1">    html = &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Choose your browser to open url &quot; &amp; clipboard &amp; &quot;&lt;/title&gt;&lt;script&gt;document.onkeypress=kp;&quot; &amp; vbCrLf &amp; _</span>
-<span class="s1">        &quot;function kp() { switch(String.fromCharCode(window.event.keyCode)) {&quot;</span>
-<span class="s1">    browserArray=split(browsers,&quot;|&quot;)</span>
-<span class="s1">    for b=0 to ubound(browserArray)</span>
-<span class="s1">        brArray=split(browserArray(b),&quot;,&quot;)</span>
-<span class="s1">        html = html &amp; &quot;case &#39;</span><span class="s2">&quot; &amp; brArray(2) &amp; &quot;</span><span class="s1">&#39;: document.getElementById(&#39;</span><span class="nx">browser</span><span class="s1">&#39;).value=&#39;</span><span class="s2">&quot; &amp; brArray(1) &amp; &quot;</span><span class="s1">&#39;; break; &quot; &amp; vbCrLf</span>
-<span class="s1">    next</span>
-<span class="s1">    html=html &amp; &quot;} }&lt;/script&gt;&lt;/head&gt;&quot; &amp; _</span>
-<span class="s1">        &quot;&lt;body bgcolor=&#39;</span><span class="nx">silver</span><span class="s1">&#39;&gt;&lt;h1 style=&#39;</span><span class="nx">font</span><span class="o">-</span><span class="nx">size</span>: <span class="kt">12px</span><span class="s1">&#39;&gt;Choose your browser to open url &quot; &amp; clipboard &amp; &quot;&lt;/h1&gt;&quot;</span>
-<span class="s1">    for b=0 to ubound(browserArray)</span>
-<span class="s1">        brArray=split(browserArray(b),&quot;,&quot;)</span>
-<span class="s1">        html = html &amp; brArray(1) &amp; &quot; (&lt;strong&gt;&quot; &amp; brArray(2) &amp; &quot;&lt;/strong&gt;)&lt;br&gt;&quot;</span>
-<span class="s1">    next</span>
-<span class="s1">        html=html &amp; &quot;&lt;input type=&#39;</span><span class="nx">hidden</span><span class="s1">&#39; name=&#39;</span><span class="nx">browser</span><span class="s1">&#39; id=&#39;</span><span class="nx">browser</span><span class="s1">&#39; value=&#39;&#39;&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>
-<span class="s1">    oIE.visible = 1</span>
-<span class="s1">    MakeIEDoc html</span>
-<span class="s1">    &#39;</span> <span class="nx">Now</span> <span class="nx">poll</span> <span class="nx">IE</span> <span class="nx">to</span> <span class="nx">see</span> <span class="k">if</span> <span class="nx">they</span><span class="s1">&#39;ve picked a browser or 10 seconds have passed</span>
-<span class="s1">    closetime=10000     &#39;</span> <span class="nx">thousandths</span> <span class="nx">of</span> <span class="nx">a</span> <span class="nx">second</span>
-    <span class="nx">pollinterval</span><span class="o">=</span><span class="mi">500</span>    <span class="s1">&#39; thousandths of a second</span>
-<span class="s1">    count=0</span>
-<span class="s1">    do</span>
-<span class="s1">        count = count + pollinterval</span>
-<span class="s1">        if count &gt;= closetime then exit do</span>
-<span class="s1">        browsername = oIE.Document.All.browser.Value</span>
-<span class="s1">        if browsername &lt;&gt; &quot;&quot; then exit do</span>
-<span class="s1">        wscript.sleep pollinterval</span>
-<span class="s1">    loop</span>
-<span class="s1">    if browsername &lt;&gt; &quot;&quot; then</span>
-<span class="s1">        &#39;</span> <span class="nx">Find</span> <span class="nx">their</span> <span class="nx">browser</span> <span class="nx">and</span> <span class="nx">start</span> <span class="nx">it</span>
-        <span class="k">for</span> <span class="nx">b</span><span class="o">=</span><span class="mi">0</span> <span class="nx">to</span> <span class="nx">ubound</span><span class="p">(</span><span class="nx">browserArray</span><span class="p">)</span>
-            <span class="nx">brArray</span><span class="o">=</span><span class="nx">split</span><span class="p">(</span><span class="nx">browserArray</span><span class="p">(</span><span class="nx">b</span><span class="p">),</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nx">browsername</span> <span class="o">=</span> <span class="nx">brArray</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="nx">then</span>
-                <span class="nx">set</span> <span class="nx">oShell</span> <span class="o">=</span> <span class="nx">createobject</span><span class="p">(</span><span class="s2">&quot;WScript.Shell&quot;</span><span class="p">)</span>
-                <span class="nx">oShell</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">brArray</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="s2">&quot; &quot;</span> <span class="o">&amp;</span> <span class="nx">clipboard</span><span class="p">)</span>
-            <span class="nx">end</span> <span class="k">if</span>
-        <span class="nx">next</span>
-    <span class="nx">end</span> <span class="k">if</span>
-<span class="nx">end</span> <span class="k">if</span>
-<span class="nx">oIE</span><span class="p">.</span><span class="nx">Quit</span>
-<span class="nx">wscript</span><span class="p">.</span><span class="nx">quit</span>
+&#39; Set your browsers variable: 
+&#39;   pipe (|) separates browsers
+&#39;   a browser is exe-with-full-path,name,accesskey
+browsers = &quot;d:mozilla1.0mozilla,Mozilla,m|iexplore,Internet Explorer,e&quot;
 
 
+clipboard = getClipBoardText()
+&#39; Does it look like a URL?
+if left(clipboard,7) = &quot;http://&quot; then
+    html = &quot;<span class="nt">&lt;html&gt;&lt;head&gt;&lt;title&gt;</span>Choose your browser to open url &quot; <span class="err">&amp;</span> clipboard <span class="err">&amp;</span> &quot;<span class="nt">&lt;/title&gt;&lt;script&gt;</span>document.onkeypress=kp;&quot; <span class="err">&amp;</span> vbCrLf <span class="err">&amp;</span> _
+        &quot;function kp() { switch(String.fromCharCode(window.event.keyCode)) {&quot;
+    browserArray=split(browsers,&quot;|&quot;)
+    for b=0 to ubound(browserArray)
+        brArray=split(browserArray(b),&quot;,&quot;)
+        html = html <span class="err">&amp;</span> &quot;case &#39;&quot; <span class="err">&amp;</span> brArray(2) <span class="err">&amp;</span> &quot;&#39;: document.getElementById(&#39;browser&#39;).value=&#39;&quot; <span class="err">&amp;</span> brArray(1) <span class="err">&amp;</span> &quot;&#39;; break; &quot; <span class="err">&amp;</span> vbCrLf
+    next
+    html=html <span class="err">&amp;</span> &quot;} }<span class="nt">&lt;/script&gt;&lt;/head&gt;</span>&quot; <span class="err">&amp;</span> _
+        &quot;<span class="nt">&lt;body</span> <span class="na">bgcolor=</span><span class="s">&#39;silver&#39;</span><span class="nt">&gt;&lt;h1</span> <span class="na">style=</span><span class="s">&#39;font-size: 12px&#39;</span><span class="nt">&gt;</span>Choose your browser to open url &quot; <span class="err">&amp;</span> clipboard <span class="err">&amp;</span> &quot;<span class="nt">&lt;/h1&gt;</span>&quot;
+    for b=0 to ubound(browserArray)
+        brArray=split(browserArray(b),&quot;,&quot;)
+        html = html <span class="err">&amp;</span> brArray(1) <span class="err">&amp;</span> &quot; (<span class="nt">&lt;strong&gt;</span>&quot; <span class="err">&amp;</span> brArray(2) <span class="err">&amp;</span> &quot;<span class="nt">&lt;/strong&gt;</span>)<span class="nt">&lt;br&gt;</span>&quot;
+    next
+        html=html <span class="err">&amp;</span> &quot;<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;hidden&#39;</span> <span class="na">name=</span><span class="s">&#39;browser&#39;</span> <span class="na">id=</span><span class="s">&#39;browser&#39;</span> <span class="na">value=</span><span class="s">&#39;&#39;</span><span class="nt">&gt;&lt;/body&gt;&lt;/html&gt;</span>&quot;
+    oIE.visible = 1
+    MakeIEDoc html
+    &#39; Now poll IE to see if they&#39;ve picked a browser or 10 seconds have passed
+    closetime=10000     &#39; thousandths of a second
+    pollinterval=500    &#39; thousandths of a second
+    count=0
+    do
+        count = count + pollinterval
+        if count &gt;= closetime then exit do
+        browsername = oIE.Document.All.browser.Value
+        if browsername <span class="err">&lt;</span>&gt; &quot;&quot; then exit do
+        wscript.sleep pollinterval
+    loop
+    if browsername <span class="err">&lt;</span>&gt; &quot;&quot; then
+        &#39; Find their browser and start it
+        for b=0 to ubound(browserArray)
+            brArray=split(browserArray(b),&quot;,&quot;)
+            if browsername = brArray(1) then
+                set oShell = createobject(&quot;WScript.Shell&quot;)
+                oShell.run(brArray(0) <span class="err">&amp;</span> &quot; &quot; <span class="err">&amp;</span> clipboard)
+            end if
+        next
+    end if
+end if
+oIE.Quit
+wscript.quit
 
-<span class="s1">&#39;###################</span>
-<span class="s1">&#39;</span> <span class="nx">Helper</span> <span class="nx">procedures</span>
-<span class="s1">&#39;###################</span>
-<span class="s1">function getClipBoardText()</span>
-<span class="s1">Dim txt</span>
-<span class="s1">MakeIEDoc &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Clipboard Exchange Helper&lt;/title&gt;&lt;/head&gt;&quot; &amp; _</span>
-<span class="s1">       &quot;&lt;body bgcolor=&#39;</span><span class="nx">silver</span><span class="s1">&#39;&gt;&quot; &amp; _</span>
-<span class="s1">       &quot;&lt;textarea name=&#39;</span><span class="nx">exch</span><span class="s1">&#39; rows=&#39;</span><span class="mi">8</span><span class="s1">&#39; cols=&#39;</span><span class="mi">80</span><span class="s1">&#39;&gt;&lt;/textarea&gt;&quot; &amp; _</span>
-<span class="s1">       &quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>
 
-<span class="s1">txt = &quot;foo&quot;</span>
-<span class="s1">oIE.Document.All.exch.Value = txt</span>
-<span class="s1">oIE.Document.All.exch.select()</span>
-<span class="s1">oIE.Document.execCommand(&quot;Paste&quot;)</span>
-<span class="s1">getClipBoardText = oIE.Document.All.exch.Value</span>
-<span class="s1">end function</span>
 
-<span class="s1">Sub MakeIEDoc (html)</span>
-<span class="s1">&#39;</span> <span class="nx">Launch</span> <span class="nx">Internet</span> <span class="nx">Explorer</span> <span class="o">&amp;</span> <span class="nx">prepare</span> <span class="nx">a</span> <span class="nx">page</span> <span class="kd">with</span> <span class="nx">a</span> <span class="nx">text</span> <span class="nx">box</span>
-<span class="s1">&#39; define HTML code with a text area</span>
+&#39;###################
+&#39; Helper procedures
+&#39;###################
+function getClipBoardText()
+Dim txt
+MakeIEDoc &quot;<span class="nt">&lt;html&gt;&lt;head&gt;&lt;title&gt;</span>Clipboard Exchange Helper<span class="nt">&lt;/title&gt;&lt;/head&gt;</span>&quot; <span class="err">&amp;</span> _
+       &quot;<span class="nt">&lt;body</span> <span class="na">bgcolor=</span><span class="s">&#39;silver&#39;</span><span class="nt">&gt;</span>&quot; <span class="err">&amp;</span> _
+       &quot;<span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">&#39;exch&#39;</span> <span class="na">rows=</span><span class="s">&#39;8&#39;</span> <span class="na">cols=</span><span class="s">&#39;80&#39;</span><span class="nt">&gt;&lt;/textarea&gt;</span>&quot; <span class="err">&amp;</span> _
+       &quot;<span class="nt">&lt;/body&gt;&lt;/html&gt;</span>&quot;
 
-<span class="s1">&#39;</span> <span class="o">***</span> <span class="nx">launch</span> <span class="nx">Internet</span> <span class="nx">Explorer</span> <span class="o">***</span>
-  <span class="nx">oIE</span><span class="p">.</span><span class="nx">left</span><span class="o">=</span><span class="mi">50</span>             <span class="s1">&#39; window position</span>
-<span class="s1">  oIE.top = 100           &#39;</span> <span class="nx">and</span> <span class="nx">other</span> <span class="nx">properties</span>
-  <span class="nx">oIE</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="mi">200</span>
-  <span class="nx">oIE</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="mi">580</span>
-  <span class="nx">oIE</span><span class="p">.</span><span class="nx">menubar</span> <span class="o">=</span> <span class="mi">0</span>         <span class="s1">&#39; no menu</span>
-<span class="s1">  oIE.toolbar = 0</span>
-<span class="s1">  oIE.statusbar = 0</span>
-<span class="s1">  oIE.navigate &quot;about:&quot; &amp; html &#39;</span> <span class="nx">Helper</span> <span class="nb">window</span>
-<span class="s1">&#39; we keep the browser window invisible! Uncomment the</span>
-<span class="s1">&#39;</span> <span class="nx">next</span> <span class="nx">line</span><span class="p">,</span> <span class="k">if</span> <span class="nx">you</span> <span class="nx">like</span> <span class="nx">to</span> <span class="nx">view</span> <span class="nx">the</span> <span class="nx">browser</span> <span class="nb">window</span> <span class="k">for</span> <span class="nx">tests</span>
-<span class="s1">&#39;  oIE.visible = 1         &#39;</span> <span class="nx">keep</span> <span class="nx">visible</span>
+txt = &quot;foo&quot;
+oIE.Document.All.exch.Value = txt
+oIE.Document.All.exch.select()
+oIE.Document.execCommand(&quot;Paste&quot;)
+getClipBoardText = oIE.Document.All.exch.Value
+end function
 
-  <span class="nx">Do</span> <span class="nx">While</span> <span class="p">(</span><span class="nx">oIE</span><span class="p">.</span><span class="nx">Busy</span><span class="p">)</span><span class="o">:</span><span class="nx">Loop</span> <span class="s1">&#39; Important: wait till MSIE is ready</span>
-<span class="s1">End Sub</span>
-<span class="s1">&#39;</span><span class="o">*</span> <span class="nx">End</span>
-</pre></div>
+Sub MakeIEDoc (html)
+&#39; Launch Internet Explorer <span class="err">&amp;</span> prepare a page with a text box
+&#39; define HTML code with a text area
+
+&#39; *** launch Internet Explorer ***
+  oIE.left=50             &#39; window position
+  oIE.top = 100           &#39; and other properties
+  oIE.height = 200
+  oIE.width = 580
+  oIE.menubar = 0         &#39; no menu
+  oIE.toolbar = 0
+  oIE.statusbar = 0
+  oIE.navigate &quot;about:&quot; <span class="err">&amp;</span> html &#39; Helper window
+&#39; we keep the browser window invisible! Uncomment the
+&#39; next line, if you like to view the browser window for tests
+&#39;  oIE.visible = 1         &#39; keep visible
+
+  Do While (oIE.Busy):Loop &#39; Important: wait till MSIE is ready
+End Sub
+&#39;* End
+</code></pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2002/07/23/meyereric/">Previous post</a></li>

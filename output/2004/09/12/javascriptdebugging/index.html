@@ -64,17 +64,17 @@
 			<p>If you’re doing a lot of JavaScript debugging, you tend to put <code>alert()</code>
 statements all over the place (well, I do, anyway). They can interrupt
 things somewhat. Instead, stick this in an included <span class="caps">JS</span> file&nbsp;somewhere:</p>
-<div class="highlight"><pre><span></span>alert = function(s) { 
-  var ta = document.getElementById(&#39;debug&#39;);
-  if (!ta) {
-    var ta = document.createElement(&#39;textarea&#39;);
-    ta.id = &#39;debug&#39;;
-    ta.rows = 8; ta.cols = 80;
-    document.body.appendChild(ta);
-  }
-  ta.value += s+&#39;n&#39;;
-}
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">alert = function(s) { </span>
+<span class="err">  var ta = document.getElementById(&#39;debug&#39;);</span>
+<span class="err">  if (!ta) {</span>
+<span class="err">    var ta = document.createElement(&#39;textarea&#39;);</span>
+<span class="err">    ta.id = &#39;debug&#39;;</span>
+<span class="err">    ta.rows = 8; ta.cols = 80;</span>
+<span class="err">    document.body.appendChild(ta);</span>
+<span class="err">  }</span>
+<span class="err">  ta.value += s+&#39;n&#39;;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>Then, whenever you do <code>alert('whatever');</code>, it’ll just add to a textarea

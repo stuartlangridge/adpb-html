@@ -291,28 +291,28 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 </code></pre>
 
 <p>And that’s all we need. We can now create our <code>twitter-circle-count</code> element and hook it up to a <code>textarea</code> like this:</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">twitter-circle-count</span> <span class="na">value</span><span class="o">=</span><span class="s">"0"</span> <span class="na">max</span><span class="o">=</span><span class="s">"280"</span><span class="p">&gt;&lt;/</span><span class="nt">twitter-circle-count</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">twitter-circle-count</span> <span class="na">value</span><span class="o">=</span><span class="s">"0"</span> <span class="na">max</span><span class="o">=</span><span class="s">"280"</span><span class="p">&gt;&lt;/</span><span class="nt">twitter-circle-count</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Type in here<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">rows</span><span class="o">=</span><span class="s">3</span> <span class="na">cols</span><span class="o">=</span><span class="s">40</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="nt">twitter-circle-count</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">twitter-circle-count</span> <span class="p">{</span>
   <span class="k">width</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
   <span class="k">height</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
   <span class="err">--</span><span class="n">track-color</span><span class="p">:</span> <span class="mh">#ddd</span><span class="p">;</span>
   <span class="err">--</span><span class="n">circle-color</span><span class="p">:</span> <span class="mh">#333</span><span class="p">;</span>
   <span class="err">--</span><span class="n">text-color</span><span class="p">:</span> <span class="mh">#888</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1">// we use input, not keyup, because that fires when text is cut or pasted</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// we use input, not keyup, because that fires when text is cut or pasted</span>
 <span class="c1">// thank you Dave MN for that insight</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"input"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"twitter-circle-count"</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"value"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
 <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a <a href="https://www.webcomponents.org/polyfills">polyfill</a> to add support in browsers that don’t have it.<sup id="sf-i-wrote-a-web-component-7-back"><a href="#sf-i-wrote-a-web-component-7" class="simple-footnote" title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering.">7</a></sup></p>

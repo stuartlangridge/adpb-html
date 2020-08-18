@@ -81,16 +81,16 @@ exported the sound from Audacity as a <span class="caps">WAV</span> file, and th
 got <a href="http://sox.sourceforge.net/">sox</a>, the Swiss Army knife of audio converters and another open
 source program. Sox can convert a sound sample to its &#8220;data&#8221; format,
 which is a load of lines that look like&nbsp;this:</p>
-<div class="highlight"><pre><span></span>               0  -6.1035156e-005
-  2.2675737e-005  -3.0517578e-005
-  4.5351474e-005                0
-  6.8027211e-005  -3.0517578e-005
-  9.0702948e-005   3.0517578e-005
-   0.00011337868  -3.0517578e-005
-   0.00013605442                0
-   0.00015873016  -3.0517578e-005
-    0.0001814059  -3.0517578e-005
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">               0  -6.1035156e-005</span>
+<span class="err">  2.2675737e-005  -3.0517578e-005</span>
+<span class="err">  4.5351474e-005                0</span>
+<span class="err">  6.8027211e-005  -3.0517578e-005</span>
+<span class="err">  9.0702948e-005   3.0517578e-005</span>
+<span class="err">   0.00011337868  -3.0517578e-005</span>
+<span class="err">   0.00013605442                0</span>
+<span class="err">   0.00015873016  -3.0517578e-005</span>
+<span class="err">    0.0001814059  -3.0517578e-005</span>
+</code></pre></div>
 
 
 <p>where each line represents one sound frame; the first number is &#8220;number
@@ -100,47 +100,47 @@ high where there was a sound and low where there wasn&#8217;t. I needed to go
 through the data and find all the loud bits and all the quiet bits; a
 long quiet bit is a space, a long loud bit is a dash, and a short loud
 bit is a dot. No problem: quick bit of Python&nbsp;scripting:</p>
-<div class="highlight"><pre><span></span>fp = open(&quot;jezza4.dat&quot;)
-data = [int(abs(float(x.split()[1])) &gt; 0.01) for x in fp.readlines()[2:]]
-fp.close()
+<div class="highlight"><pre><span></span><code><span class="n">fp</span> <span class="o">=</span> <span class="k">open</span><span class="p">(</span><span class="ss">&quot;jezza4.dat&quot;</span><span class="p">)</span>
+<span class="k">data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="k">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">fp</span><span class="p">.</span><span class="n">readlines</span><span class="p">()[</span><span class="mi">2</span><span class="p">:]]</span>
+<span class="n">fp</span><span class="p">.</span><span class="k">close</span><span class="p">()</span>
 
-# count all the runs
-counts = []
-current = -1
-count = 0
-for i in data:
-  if i != current:
-    counts.append((current,count))
-    current = i
-    count = 0
-  count += 1
+<span class="o">#</span> <span class="k">count</span> <span class="k">all</span> <span class="n">the</span> <span class="n">runs</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">current</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="k">data</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="k">current</span><span class="p">:</span>
+    <span class="n">counts</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="k">current</span><span class="p">,</span><span class="k">count</span><span class="p">))</span>
+    <span class="k">current</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">count</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
-# now remove all short runs, which also removes the -1 row!
-counts = [x for x in counts if x[1] &gt;= 15]
+<span class="o">#</span> <span class="n">now</span> <span class="n">remove</span> <span class="k">all</span> <span class="n">short</span> <span class="n">runs</span><span class="p">,</span> <span class="n">which</span> <span class="n">also</span> <span class="n">removes</span> <span class="n">the</span> <span class="o">-</span><span class="mi">1</span> <span class="k">row</span><span class="o">!</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">counts</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">]</span>
 
-# and reaggregate everything
-counts2 = []
-current = -1
-count = 0
-for i in counts:
-  if i[0] != current:
-    counts2.append((current,count))
-    current = i[0]
-    count = 0
-  count += i[1]
+<span class="o">#</span> <span class="k">and</span> <span class="n">reaggregate</span> <span class="n">everything</span>
+<span class="n">counts2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">current</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">counts</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="k">current</span><span class="p">:</span>
+    <span class="n">counts2</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="k">current</span><span class="p">,</span><span class="k">count</span><span class="p">))</span>
+    <span class="k">current</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">count</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">count</span> <span class="o">+=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-mystr = &quot;&quot;
-for x in counts2:
-  if x[0] == 0:
-    if x[1] &gt; 350:
-      mystr += &quot; &quot;
-  elif x[0] == 1:
-    if x[1] &gt; 500:
-      mystr += &quot;-&quot;
-    else:
-      mystr += &quot;.&quot;
-print mystr
-</pre></div>
+<span class="n">mystr</span> <span class="o">=</span> <span class="ss">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">counts2</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">350</span><span class="p">:</span>
+      <span class="n">mystr</span> <span class="o">+=</span> <span class="ss">&quot; &quot;</span>
+  <span class="n">elif</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
+      <span class="n">mystr</span> <span class="o">+=</span> <span class="ss">&quot;-&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">mystr</span> <span class="o">+=</span> <span class="ss">&quot;.&quot;</span>
+<span class="n">print</span> <span class="n">mystr</span>
+</code></pre></div>
 
 
 <p>and that printed out the Morse code for the message in dots and dashes!

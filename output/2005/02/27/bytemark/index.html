@@ -74,17 +74,17 @@ You need to get access to the backup space as a filesystem, although
 we’re not using <span class="caps"><span class="caps">NFS</span></span> for the backups; we’ll be
 using rsync. Mount the backup space at /backup. All this stuff needs to
 be done as&nbsp;root.</p>
-<div class="highlight"><pre><span></span>mkdir /backup/.config
-mkdir /backup/rsync
-mkdir /backup/rsync/files
-mkdir /backup/rsync/db
-nano /backup/.config/rsync
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">mkdir /backup/.config</span>
+<span class="err">mkdir /backup/rsync</span>
+<span class="err">mkdir /backup/rsync/files</span>
+<span class="err">mkdir /backup/rsync/db</span>
+<span class="err">nano /backup/.config/rsync</span>
+</code></pre></div>
 
 
 <p>Put the following line in that&nbsp;file:</p>
-<div class="highlight"><pre><span></span>VMNAME-backup:PASSWORD:::1:rsync
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="c">VMNAME-backup:PASSWORD:::1:rsync</span>
+</code></pre></div>
 
 
 <p>This <a href="http://www.bytemark.co.uk/support/tech/backuprsync.html">sets up rsync</a>. <em><span class="caps"><span class="caps">VMNAME</span></span></em> must be the
@@ -95,18 +95,18 @@ foobar.vm.bytemark.co.uk, and <em>foobar</em> is your <span class="caps">VM</spa
 Pick something random. Wait for ages. Rsync stuff only gets activated a
 few times a day, so go away and come back the following day or eight
 hours later or&nbsp;something.</p>
-<div class="highlight"><pre><span></span>mkdir /usr/local/backups
-echo &quot;RSYNC_PASSWORD_FROM_ABOVE&quot; &gt; /usr/local/backups/backup-password
-chmod og-rwx /usr/local/backups/backup-password
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">mkdir /usr/local/backups</span>
+<span class="err">echo &quot;RSYNC_PASSWORD_FROM_ABOVE&quot; &gt; /usr/local/backups/backup-password</span>
+<span class="err">chmod og-rwx /usr/local/backups/backup-password</span>
+</code></pre></div>
 
 
 <p>Now we’ll test that rsync is&nbsp;working.</p>
-<div class="highlight"><pre><span></span>rsync -a 
---password-file=/usr/local/backups/backup-password 
-/etc/motd 
-VMNAME-backup@VMNAME.backup.vm.bytemark.co.uk::VMNAME-backup/files/test/
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">rsync -a </span>
+<span class="err">--password-file=/usr/local/backups/backup-password </span>
+<span class="err">/etc/motd </span>
+<span class="err">VMNAME-backup@VMNAME.backup.vm.bytemark.co.uk::VMNAME-backup/files/test/</span>
+</code></pre></div>
 
 
 <p>If that worked, there should now be a /backup/rsync/files/test directory
@@ -132,7 +132,7 @@ with one that does your own choice of <span class="caps">DB</span>.)</p>
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Dump all databases to a file, and rsync that file into the backup space,</span>
 <span class="c1"># inside a directory named for data and time.</span>
@@ -149,7 +149,7 @@ rsync -a
  &lt;em&gt;vmname&lt;/em&gt;-backup@_vmname_.backup.vm.bytemark.co.uk::_vmname_-backup/db/<span class="nv">$NEW_BACKUP_DIR</span>/
 
 logger -t Backups Backup of all databases <span class="k">done</span> to <span class="nv">$NEW_BACKUP_DIR</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>Run that file to test it. It should create a directory in
@@ -179,7 +179,7 @@ it of all your databases.&nbsp;/usr/local/backup/backup-files.sh:</p>
 22
 23
 24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># Backs up files with rsync</span>
 
 <span class="nv">NEW_BACKUP_DIR</span><span class="o">=</span><span class="sb">`</span>date +%Y%m%d@%H%M%S<span class="sb">`</span>
@@ -204,49 +204,49 @@ rsync -a --delete
  VMNAME-backup@VMNAME.backup.vm.bytemark.co.uk::VMNAME-backup/files/<span class="nv">$NEW_BACKUP_DIR</span>/
 
 logger -t Backups Backup of files <span class="k">done</span> to <span class="nv">$NEW_BACKUP_DIR</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>You’ll also need to create /usr/local/backups/files-to-include. The
 syntax of this file is a great big pain in the arse. Mine is&nbsp;below:</p>
-<div class="highlight"><pre><span></span># List of directories to back up
-# If you want to back up directory /a/b, then you need the following lines:
-# /a         (since otherwise we never get as far as b, because a is excluded)
-# /a/b       (the directory we want to back up)
-# - /a/*/    (don&#39;t back up any other directories in /a)
-# - /a/*     (don&#39;t back up any files in /a either)
-# Yes, this is completely shit. Rsync&#39;s fault.
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">List</span> <span class="k">of</span> <span class="n">directories</span> <span class="k">to</span> <span class="n">back</span> <span class="n">up</span>
+<span class="o">#</span> <span class="k">If</span> <span class="n">you</span> <span class="n">want</span> <span class="k">to</span> <span class="n">back</span> <span class="n">up</span> <span class="n">directory</span> <span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">,</span> <span class="k">then</span> <span class="n">you</span> <span class="n">need</span> <span class="n">the</span> <span class="n">following</span> <span class="n">lines</span><span class="p">:</span>
+<span class="o">#</span> <span class="o">/</span><span class="n">a</span>         <span class="p">(</span><span class="n">since</span> <span class="n">otherwise</span> <span class="n">we</span> <span class="n">never</span> <span class="k">get</span> <span class="k">as</span> <span class="n">far</span> <span class="k">as</span> <span class="n">b</span><span class="p">,</span> <span class="n">because</span> <span class="n">a</span> <span class="k">is</span> <span class="n">excluded</span><span class="p">)</span>
+<span class="o">#</span> <span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">b</span>       <span class="p">(</span><span class="n">the</span> <span class="n">directory</span> <span class="n">we</span> <span class="n">want</span> <span class="k">to</span> <span class="n">back</span> <span class="n">up</span><span class="p">)</span>
+<span class="o">#</span> <span class="o">-</span> <span class="o">/</span><span class="n">a</span><span class="cm">/*/    (don&#39;t back up any other directories in /a)</span>
+<span class="cm"># - /a/*     (don&#39;t back up any files in /a either)</span>
+<span class="cm"># Yes, this is completely shit. Rsync&#39;s fault.</span>
 
-/var/
-/var/www/
-- /var/*/
-- /var/*
-/home/
-/etc/
-/usr/
-/usr/local/
-- /usr/*/
-- /usr/*
-/usr/local/backups/
-- /usr/local/*/
-- /usr/local/*
+<span class="cm">/var/</span>
+<span class="cm">/var/www/</span>
+<span class="cm">- /var/*/</span>
+<span class="cm">- /var/*</span>
+<span class="cm">/home/</span>
+<span class="cm">/etc/</span>
+<span class="cm">/usr/</span>
+<span class="cm">/usr/local/</span>
+<span class="cm">- /usr/*/</span>
+<span class="cm">- /usr/*</span>
+<span class="cm">/usr/local/backups/</span>
+<span class="cm">- /usr/local/*/</span>
+<span class="cm">- /usr/local/*</span>
 
-# Directories to explicitly exclude. Note that you don&#39;t need all
-# that parent directory shit here; just put in dirs that you don&#39;t
-# want to back up for whatever reason.
+<span class="cm"># Directories to explicitly exclude. Note that you don&#39;t need all</span>
+<span class="cm"># that parent directory shit here; just put in dirs that you don&#39;t</span>
+<span class="cm"># want to back up for whatever reason.</span>
 
-- /var/www/jonobacon.org/mysqlbackups/
-- /var/www/jonobacon.org/mysqlbackups.old/
+<span class="cm">- /var/www/jonobacon.org/mysqlbackups/</span>
+<span class="cm">- /var/www/jonobacon.org/mysqlbackups.old/</span>
 
-# Don&#39;t fuck about with the stuff here; it ensures that logs directories
-# aren&#39;t backed up, and neither is anything else in / (otherwise we&#39;ll
-# back up the whole machine or something equally dreadful).
+<span class="cm"># Don&#39;t fuck about with the stuff here; it ensures that logs directories</span>
+<span class="cm"># aren&#39;t backed up, and neither is anything else in / (otherwise we&#39;ll</span>
+<span class="cm"># back up the whole machine or something equally dreadful).</span>
 
-- **/*.mp3
-- **/logs/
-- /*/
-- /*
-</pre></div>
+<span class="cm">- **/*.mp3</span>
+<span class="cm">- **/logs/</span>
+<span class="cm">- /*/</span>
+<span class="cm">- /*</span>
+</code></pre></div>
 
 
 <p>Pay attention to the comments. I mean&nbsp;it.</p>
@@ -260,13 +260,13 @@ exist. I love Linux, I really&nbsp;do.</p>
 <p>Anyway, those two files should do the job of backing up everything.
 Stick two lines in your crontab to kick them&nbsp;off.</p>
 <p>/etc/crontab:</p>
-<div class="highlight"><pre><span></span># ########### Backups ###############
-# mysql
-30 5 * * * root /usr/local/backups/backup-databases.sh
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="o">###########</span> <span class="n">Backups</span> <span class="o">###############</span>
+<span class="o">#</span> <span class="n">mysql</span>
+<span class="mi">30</span> <span class="mi">5</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">backups</span><span class="o">/</span><span class="n">backup</span><span class="o">-</span><span class="n">databases</span><span class="p">.</span><span class="n">sh</span>
 
-# files (4.40am)
-45 5 * * * root /usr/local/backups/backup-files.sh
-</pre></div>
+<span class="o">#</span> <span class="n">files</span> <span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">40</span><span class="n">am</span><span class="p">)</span>
+<span class="mi">45</span> <span class="mi">5</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">backups</span><span class="o">/</span><span class="n">backup</span><span class="o">-</span><span class="n">files</span><span class="p">.</span><span class="n">sh</span>
+</code></pre></div>
 
 
 <p>and it should all&nbsp;work.</p>

@@ -68,22 +68,22 @@ and Quickly is capable of having &#8220;templates&#8221;: ways of setting up new
 types of&nbsp;projects.</p>
 <p>So, after <a href="https://code.launchpad.net/~sil/quickly/add-flash-game-template/">a little bit of hacking</a>, and some help from Didier Roche,
 I can now do&nbsp;this:</p>
-<div class="highlight"><pre><span></span>aquarius@giles: $ wget http://adamatomic.com/mode/Mode.swf
---2011-01-03 17:38:54--  http://adamatomic.com/mode/Mode.swf
-Saving to: `Mode.swf&#39;
-2011-01-03 17:38:56 (201 KB/s) - `Mode.swf&#39; saved [350603/350603]
+<div class="highlight"><pre><span></span><code><span class="n">aquarius</span><span class="nv">@giles</span><span class="err">:</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">adamatomic</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">mode</span><span class="o">/</span><span class="n">Mode</span><span class="p">.</span><span class="n">swf</span><span class="w"></span>
+<span class="c1">--2011-01-03 17:38:54--  http://adamatomic.com/mode/Mode.swf</span>
+<span class="n">Saving</span><span class="w"> </span><span class="k">to</span><span class="err">:</span><span class="w"> </span><span class="err">`</span><span class="n">Mode</span><span class="p">.</span><span class="n">swf</span><span class="s1">&#39;</span>
+<span class="s1">2011-01-03 17:38:56 (201 KB/s) - `Mode.swf&#39;</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="o">[</span><span class="n">350603/350603</span><span class="o">]</span><span class="w"></span>
 
-aquarius@giles: $ quickly create flash-game mode-by-adamatomic Mode.swf 
-Creating project directory mode-by-adamatomic
-Creating bzr repository and commiting
-Launching your newly created project!
-Congratulations, your new project is set up! cd /home/aquarius/mode-by-adamatomic/ to edit the details.
-aquarius@giles: $ cd mode-by-adamatomic/
-aquarius@giles: $ quickly package
-.......Ubuntu packaging created in debian/
-........................................
-Ubuntu package has been successfully created in ../mode-by-adamatomic_0.1_all.deb
-</pre></div>
+<span class="n">aquarius</span><span class="nv">@giles</span><span class="err">:</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="n">quickly</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">flash</span><span class="o">-</span><span class="n">game</span><span class="w"> </span><span class="n">mode</span><span class="o">-</span><span class="k">by</span><span class="o">-</span><span class="n">adamatomic</span><span class="w"> </span><span class="n">Mode</span><span class="p">.</span><span class="n">swf</span><span class="w"> </span>
+<span class="n">Creating</span><span class="w"> </span><span class="n">project</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">mode</span><span class="o">-</span><span class="k">by</span><span class="o">-</span><span class="n">adamatomic</span><span class="w"></span>
+<span class="n">Creating</span><span class="w"> </span><span class="n">bzr</span><span class="w"> </span><span class="n">repository</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">commiting</span><span class="w"></span>
+<span class="n">Launching</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">newly</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="n">project</span><span class="err">!</span><span class="w"></span>
+<span class="n">Congratulations</span><span class="p">,</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">project</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">up</span><span class="err">!</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">aquarius</span><span class="o">/</span><span class="n">mode</span><span class="o">-</span><span class="k">by</span><span class="o">-</span><span class="n">adamatomic</span><span class="o">/</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">edit</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="w"></span>
+<span class="n">aquarius</span><span class="nv">@giles</span><span class="err">:</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">mode</span><span class="o">-</span><span class="k">by</span><span class="o">-</span><span class="n">adamatomic</span><span class="o">/</span><span class="w"></span>
+<span class="n">aquarius</span><span class="nv">@giles</span><span class="err">:</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="n">quickly</span><span class="w"> </span><span class="n">package</span><span class="w"></span>
+<span class="p">.......</span><span class="n">Ubuntu</span><span class="w"> </span><span class="n">packaging</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">debian</span><span class="o">/</span><span class="w"></span>
+<span class="p">........................................</span><span class="w"></span>
+<span class="n">Ubuntu</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">successfully</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">mode</span><span class="o">-</span><span class="k">by</span><span class="o">-</span><span class="n">adamatomic_0</span><span class="mf">.1</span><span class="n">_all</span><span class="p">.</span><span class="n">deb</span><span class="w"></span>
+</code></pre></div>
 
 
 <p>Hooray; package up a Flash game and make it available to Ubuntu users in

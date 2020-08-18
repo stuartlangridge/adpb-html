@@ -65,21 +65,26 @@
 irc channel which told us about commits. I thought: I bet that&#8217;s not too
 hard, and it&#8217;ll give me an excuse to learn <a href="http://www.twistedmatrix.com">Twisted</a>.  </p>
 <blockquote>
-<p>\<jokbot\> New commit (r574) by laszlop: A better fix for ticket
-\#150. This code is more maintainable and replaces the other fix
-committed in r566. <br> \<aquarius\> jokbot: help<br> \<jokbot\> For help on Jokosher, see http://jokosher.org. You can
+<p>\&lt;jokbot> New commit (r574) by laszlop: A better fix for ticket
+#150. This code is more maintainable and replaces the other fix
+committed in r566. <br>
+ \&lt;aquarius> jokbot: help<br>
+ \&lt;jokbot> For help on Jokosher, see http://jokosher.org. You can
 also ask questions here; please be patient for an answer! Commands I
 understand: ticket <ticket number> - shows a bug in the bugtracker &#8230;
 download count - shows count of downloads of Jokosher &#8230; help - This
 message &#8230; revision <revision number> - shows a revision from <span class="caps">SVN</span><br>
- \<aquarius\> jokbot: download count<br> \<jokbot\> src:87 deb:281 rpm:74 srcrpm:7<br> \<aquarius\> jokbot: ticket 7<br> \<jokbot\> Recording quality settings -
+ \&lt;aquarius> jokbot: download count<br>
+ \&lt;jokbot> src:87 deb:281 rpm:74 srcrpm:7<br>
+ \&lt;aquarius> jokbot: ticket 7<br>
+ \&lt;jokbot> Recording quality settings -
 http://jokosher.python-hosting.com/ticket/7</revision></ticket></p>
 </blockquote>
 <p>The bot&#8217;s based on the <a href="http://twistedmatrix.com/projects/words/documentation/examples/ircLogBot.py">Twisted example ircLogBot</a>, and the basic code
 is really, really simple. You can make a noddy bot that responds to
 everything directed at it on the #jokbottest channel with the following
 47 lines of&nbsp;Python:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">twisted.protocols</span> <span class="kn">import</span> <span class="n">irc</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">twisted.protocols</span> <span class="kn">import</span> <span class="n">irc</span>
 <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">reactor</span><span class="p">,</span> <span class="n">protocol</span>
 <span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
@@ -123,7 +128,7 @@ everything directed at it on the #jokbottest channel with the following
   <span class="n">f</span> <span class="o">=</span> <span class="n">JokBotFactory</span><span class="p">()</span>
   <span class="n">reactor</span><span class="o">.</span><span class="n">connectTCP</span><span class="p">(</span><span class="s1">&#39;irc.freenode.net&#39;</span><span class="p">,</span> <span class="mi">6667</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
   <span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>That&#8217;s all you need for a very simple <span class="caps">IRC</span> bot. The jokbot code does a

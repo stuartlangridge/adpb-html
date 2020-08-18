@@ -108,10 +108,10 @@ idea would have broken; he linked to
 <a href="http://www.kryogenix.org/days/000138.cas">http://www.kryogenix.org/days/000138.cas</a>, and the post is now at
 <a href="http://www.kryogenix.org/days/80.html">http://www.kryogenix.org/days/80.html</a>. To handle this, I set up the
 following rules in .htaccess for my&nbsp;weblog:</p>
-<div class="highlight"><pre><span></span>rewriteengine on
-rewritebase /days
-rewriterule ^([0-9]+).cas$ /days/mt2v.cgi?id=$1
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">rewriteengine on</span>
+<span class="err">rewritebase /days</span>
+<span class="err">rewriterule ^([0-9]+).cas$ /days/mt2v.cgi?id=$1</span>
+</code></pre></div>
 
 
 <p>and <code>mt2v.cgi</code> is a Python <span class="caps">CGI</span> with a great big lookup list in it. I

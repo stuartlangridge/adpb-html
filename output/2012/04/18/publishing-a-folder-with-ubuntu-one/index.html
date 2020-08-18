@@ -82,12 +82,12 @@ testpublishfolder</a>.</p>
 <p>The thing I found nicest about this is working with <code>SyncDaemonTool</code>,
 the Python U1 controller. Combined with Twisted&#8217;s
 <code>defer.inlineCallbacks</code> stuff, it makes dealing with U1 really&nbsp;easy:</p>
-<div class="highlight"><pre><span></span>@defer.inlineCallbacks
-def dosomething():
-    sd = SyncDaemonTool()
-    metadata = yield sd.get_metadata(&quot;/home/aquarius/Documents/somefile&quot;)
-    print metadata
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">@defer.inlineCallbacks</span>
+<span class="err">def dosomething():</span>
+<span class="err">    sd = SyncDaemonTool()</span>
+<span class="err">    metadata = yield sd.get_metadata(&quot;/home/aquarius/Documents/somefile&quot;)</span>
+<span class="err">    print metadata</span>
+</code></pre></div>
 
 
 <p>Normally, <a href="http://shotofjaq.org/2010/03/going-async/">dealing with async stuff is hard</a>, but it&#8217;s just dead easy

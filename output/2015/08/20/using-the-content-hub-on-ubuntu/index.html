@@ -68,21 +68,21 @@
 <p>First, you need permission to access the content hub at all. So, in your <code>appname.apparmor</code> file<sup id="sf-using-the-content-hub-on-ubuntu-4-back"><a href="#sf-using-the-content-hub-on-ubuntu-4" class="simple-footnote" title="or whatever you called it; hooks.$APPNAME.apparmor in manifest.json">4</a></sup>, add <code>content_exchange_source</code>.<sup id="sf-using-the-content-hub-on-ubuntu-5-back"><a href="#sf-using-the-content-hub-on-ubuntu-5" class="simple-footnote" title="This is more confusing than it should be. If you’re using Ubuntu SDK as your editor, then clicking the big “+” button will load a list of possible apparmor permissions. Don’t double-click a permission; this will just show you what it means in code terms, rather irrelevantly. Instead, choose your permission (content_exchange_source in this case) and then say Add">5</a></sup> This tells Ubuntu that you’re prepared to provide files for others (you are a “source” of data). You then need to, also in <code>manifest.json</code>, configure what you’re allowed to do with the content hub; add a <code>hooks.content-hub</code> key which names a file (<code>myappname.content-hub</code> or whatever you prefer). That file that you just named needs to also be json, and looks something like <code>{"source": ["all"]}</code>, which dictates which sorts of files you want to be a source <em>for</em>.<sup id="sf-using-the-content-hub-on-ubuntu-6-back"><a href="#sf-using-the-content-hub-on-ubuntu-6" class="simple-footnote" title="you can also do `{“source”:[“pictures”]}. There may be other things you can write in there instead of “all” or “pictures”, but the documentation is surlily silent on such things.">6</a></sup> Once you’ve done all this, you’re allowed to use the content hub. So now we explore how.</p>
 <p>In your <span class="caps">QML</span> app, you need to add a <code>ContentPeerPicker</code>. This is a normal <span class="caps">QML</span> Item; specifically, showing it to the user is <em>your</em> responsibility. So you might want to drop it in a Dialog, or a Page, or you might just put it at top level with <code>visible:hidden</code> and then show it when appropriate (such as when your user taps a file or image or whatever that they want to open in another app).</p>
 <p>Your <code>ContentPeerPicker</code> should look, at minimum, like this:</p>
-<div class="highlight"><pre><span></span><span class="nt">ContentPeerPicker</span> <span class="p">{</span>
-    <span class="n">handler</span><span class="p">:</span> <span class="n">ContentHandler</span><span class="o">.</span><span class="n">Destination</span>
-    <span class="n">contentType</span><span class="o">:</span> <span class="n">ContentType</span><span class="o">.</span><span class="n">All</span>
-    <span class="n">onPeerSelected</span><span class="o">:</span> <span class="err">{</span>
-        <span class="n">var</span> <span class="n">transfer</span> <span class="o">=</span> <span class="n">peer</span><span class="o">.</span><span class="nf">request</span><span class="p">();</span>
-        <span class="err">var</span> <span class="err">items</span> <span class="err">=</span> <span class="err">new</span> <span class="err">Array()</span><span class="p">;</span>
-        <span class="err">exportItem.url</span> <span class="err">=</span> <span class="c">/* whatever the URL of the file you want to share is */</span><span class="p">;</span>
-        <span class="err">items.push(exportItem)</span><span class="p">;</span>
-        <span class="err">transfer.items</span> <span class="err">=</span> <span class="err">items</span><span class="p">;</span>
-        <span class="err">transfer.state</span> <span class="err">=</span> <span class="err">ContentTransfer.Charged</span><span class="p">;</span>
-        <span class="err">cpp.visible</span> <span class="err">=</span> <span class="err">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nt">onCancelPressed</span><span class="o">:</span> <span class="nt">cpp</span><span class="p">.</span><span class="nc">visible</span> <span class="o">=</span> <span class="nt">false</span><span class="o">;</span>
+<div class="highlight"><pre><span></span><code><span class="err">ContentPeerPicker {</span>
+<span class="err">    handler: ContentHandler.Destination</span>
+<span class="err">    contentType: ContentType.All</span>
+<span class="err">    onPeerSelected: {</span>
+<span class="err">        var transfer = peer.request();</span>
+<span class="err">        var items = new Array();</span>
+<span class="err">        exportItem.url = /* whatever the URL of the file you want to share is */;</span>
+<span class="err">        items.push(exportItem);</span>
+<span class="err">        transfer.items = items;</span>
+<span class="err">        transfer.state = ContentTransfer.Charged;</span>
+<span class="err">        cpp.visible = false;</span>
+<span class="err">    }</span>
+<span class="err">    onCancelPressed: cpp.visible = false;</span>
 <span class="err">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The important parts here are <code>handler: ContentHandler.Destination</code> (which means “I am a source for files which need to be opened in some other app”), and <code>contentType: ContentType.All</code> (which means “I am a source for all types of file”).<sup id="sf-using-the-content-hub-on-ubuntu-7-back"><a href="#sf-using-the-content-hub-on-ubuntu-7" class="simple-footnote" title="You can see all the possible content types in the Ubuntu SDK ContentType documentation (https://developer.ubuntu.com/api/apps/qml/sdk-15.04/Ubuntu.Content.ContentType/), with misleading typos and all">7</a></sup> After that<sup id="sf-using-the-content-hub-on-ubuntu-8-back"><a href="#sf-using-the-content-hub-on-ubuntu-8" class="simple-footnote" title="as mzanetti excellently described it">8</a></sup> show it to the user somehow and connect to its <code>onPeerSelected</code> method. When the user picks some other app to export to from this new Item, <code>onPeerSelected</code> will be called; when the callback <code>onPeerSelected</code> is called, the <code>peer</code> property is valid. Get a transfer object to this peer: <code>var transfer = peer.request();</code>, and then you need to fill in <code>transfer.items</code>. This is a JavaScript list of <code>ContentItem</code>s; specifically, define <code>ContentItem { id: exportItem }</code> in your app, and then make a “list” of one item with <code>var items = new Array(); exportItem.url = PATH_TO_FILE_YOU_ARE_EXPORTING; items.push(exportItem); transfer.items = items;</code>.<sup id="sf-using-the-content-hub-on-ubuntu-9-back"><a href="#sf-using-the-content-hub-on-ubuntu-9" class="simple-footnote" title="You can transfer more than one item, here.">9</a></sup> After that, set <code>transfer.state = ContentTransfer.Charged</code> and your transfer begins; you can hide the <code>ContentPeerPicker</code> by setting <code>cpp.visible=false</code> at this point.</p>

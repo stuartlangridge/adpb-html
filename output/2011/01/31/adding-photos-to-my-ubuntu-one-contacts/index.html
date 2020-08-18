@@ -78,7 +78,7 @@ rather than wait for the Ubuntu One servers to do it. So, a quick&nbsp;script.</
 <p><em>Note: this script uses the new undeprecated desktopcouch APIs in Ubuntu
 11.04, which is not yet released. So it likely won&#8217;t work for you right
 now unless you&#8217;re already running Ubuntu&nbsp;natty.</em></p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">desktopcouch.application.server</span> <span class="kn">import</span> <span class="n">DesktopDatabase</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">desktopcouch.application.server</span> <span class="kn">import</span> <span class="n">DesktopDatabase</span>
 <span class="kn">from</span> <span class="nn">desktopcouch.records.record</span> <span class="kn">import</span> <span class="n">Record</span>
 <span class="kn">import</span> <span class="nn">urllib</span><span class="o">,</span> <span class="nn">md5</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">DesktopDatabase</span><span class="p">(</span><span class="s2">&quot;contacts&quot;</span><span class="p">)</span>
@@ -105,7 +105,7 @@ now unless you&#8217;re already running Ubuntu&nbsp;natty.</em></p>
                     <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
                     <span class="n">db</span><span class="o">.</span><span class="n">put_record</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
                     <span class="k">print</span> <span class="s2">&quot;found!&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>And now I have little pictures next to 123 out of 939 of my contacts on

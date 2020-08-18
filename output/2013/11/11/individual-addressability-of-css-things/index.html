@@ -65,11 +65,11 @@
 considered a little less often these days, is individual addressability
 of parts of a <span class="caps">CSS</span>&nbsp;declaration.</p>
 <p>An example. You have an element, with a&nbsp;background:</p>
-<div class="highlight"><pre><span></span><span class="nt">p</span><span class="p">#</span><span class="nn">myelement1</span> <span class="p">{</span> 
-  <span class="k">background</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">http://kryogenix.org/images/hackergotchi-simpler.png</span><span class="p">)</span> <span class="kc">top</span> <span class="kc">left</span> <span class="kc">repeat-x</span><span class="p">;</span>
-  <span class="k">min-height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">p#myelement1 { </span>
+<span class="err">  background: url(http://kryogenix.org/images/hackergotchi-simpler.png) top left repeat-x;</span>
+<span class="err">  min-height: 100px;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>and then at run time you want to change the background image to
@@ -88,11 +88,11 @@ a property but also all its parts individually, seems to be being
 weakened by more advanced properties (ones where the value is not just
 something primitive but is instead its own tiny domain-specific
 language). Take, for example,&nbsp;gradients.</p>
-<div class="highlight"><pre><span></span><span class="nt">p</span><span class="p">#</span><span class="nn">myelement2</span> <span class="p">{</span> 
-  <span class="k">background</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">bottom</span><span class="p">,</span> <span class="mh">#1e5799</span> <span class="mi">0</span><span class="kt">%</span><span class="p">,</span><span class="mh">#7db9e8</span> <span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
-  <span class="k">min-height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">p#myelement2 { </span>
+<span class="err">  background: linear-gradient(to bottom, #1e5799 0%,#7db9e8 100%);</span>
+<span class="err">  min-height: 100px;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>[raw]</p>

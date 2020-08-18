@@ -76,8 +76,8 @@ the package from the source code. First, then, you have to tell Ubuntu
 that it can get source code from Ubuntu feisty. Go <strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">System >
 Administration > Software Sources</strong>. In the <strong>Third Party</strong> tab, click
 <strong>Add</strong>, and put in the <strong><span class="caps">APT</span> line:</strong>&nbsp;textbox:</p>
-<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://gb.archive.ubuntu.com/ubuntu/</span> <span class="kp">feisty</span> <span class="kp">main</span> <span class="kp">universe</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">deb-src</span> <span class="s">http://gb.archive.ubuntu.com/ubuntu/</span> <span class="kp">feisty</span> <span class="kp">main</span> <span class="kp">universe</span>
+</code></pre></div>
 
 
 <p><strong>Add Source</strong>, <strong>Close</strong>, and <strong>Reload</strong> when it tells you that the
@@ -91,19 +91,19 @@ temporary folder to do the build in (<strong><img alt="ubuntu" src="http://www.k
 then right-click in your home folder window and say <strong>Create Folder</strong>,
 and call the new folder <code>tmp</code>). In a terminal (<strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">Applications >
 Accessories > Terminal</strong>), change into your created temporary&nbsp;folder</p>
-<div class="highlight"><pre><span></span>cd tmp
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">cd tmp</span>
+</code></pre></div>
 
 
 <p>and install first the things you need to build the&nbsp;package</p>
-<div class="highlight"><pre><span></span>sudo aptitude install libnotify-dev gaim-dev fakeroot cdbs
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">sudo aptitude install libnotify-dev gaim-dev fakeroot cdbs</span>
+</code></pre></div>
 
 
 <p>(you could also install those three packages from Synaptic if you
 prefer), and then fetch and automatically build the gaim libnotify&nbsp;package</p>
-<div class="highlight"><pre><span></span>fakeroot apt-get --build source gaim-libnotify
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">fakeroot apt-get --build source gaim-libnotify</span>
+</code></pre></div>
 
 
 <p>That will take a little while. Once it&#8217;s finished, go back to your Home

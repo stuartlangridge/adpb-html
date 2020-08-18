@@ -70,24 +70,24 @@ as my mail client. So, here’s what I’ve done so far: Installed procmail:
 archive into <code>$HOME/src/spambayes</code> Created a <code>sb_filter</code> shell script
 that invokes SpamBayes’&nbsp;filter:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/src/spambayes/spambayes <span class="nv">$HOME</span>/src/spambayes/spambayes/scripts/sb_filter.py -d <span class="nv">$HOME</span>/.hammie.db <span class="nv">$*</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>Told procmail to filter my mail through SpamBayes, by putting in
 \$<span class="caps">HOME</span>/.procmailrc:</p>
-<div class="highlight"><pre><span></span>PYTHONPATH=$HOME/src/spambayes/spambayes
-:0fw:hamlock
-| $HOME/src/spambayes/spambayes/scripts/sb_filter.py -d $HOME/.hammie.db
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">PYTHONPATH=$HOME/src/spambayes/spambayes</span>
+<span class="err">:0fw:hamlock</span>
+<span class="err">| $HOME/src/spambayes/spambayes/scripts/sb_filter.py -d $HOME/.hammie.db</span>
+</code></pre></div>
 
 
 <p>Set up keybindings for mutt: I use “s” to save the current message into
 a folder, and I never save spam into a folder, so I want to train any
 saved message as ham (non-spam). I bind “S” to mean “this is spam, so
 train it <strong>as</strong> spam and then delete it“. In&nbsp;.muttrc:</p>
-<div class="highlight"><pre><span></span>## Lower case s saves the message after training it as ham.
+<div class="highlight"><pre><span></span><code>## Lower case s saves the message after training it as ham.
     ## Upper-case S deletes the message after training it as spam.
 
     macro index s &quot;|sb_filter <span class="nt">&lt;del&gt;</span>g -f &gt; /dev/nulln<span class="nt">&lt;save</span><span class="err">&lt;/del</span><span class="nt">&gt;</span>message&gt;&quot;
@@ -101,7 +101,7 @@ macro pager S &quot;<span class="nt">&lt;delete-message&gt;</span>|sb_filter -s 
 
     Stop Mutt saying &quot;Press any key to continue&quot; after training
 set wait_key=no
-</pre></div>
+</code></pre></div>
 
 
 <p>And that’s it. I still have to delete all my spam, but now SpamBayes is

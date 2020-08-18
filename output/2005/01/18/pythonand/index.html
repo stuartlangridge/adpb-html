@@ -65,13 +65,13 @@
 <span class="caps"><span class="caps">XML</span></span> libraries from <a href="http://www.nelson.monkey.org/~nelson/weblog/tech/python/xpath2.html">Nelson</a> and responses
 from <a href="http://www.nelson.monkey.org/~nelson/weblog?redirectURL=http://www.oreillynet.com/pub/wlg/6239">Uche</a>. I still think it’s too complicated. Way too complicated.
 What I want to do is&nbsp;this:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">xmllib</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">xmllib</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">xmldoc</span> <span class="o">=</span> <span class="n">xmllib</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;filename.xml&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">xmldoc</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//node1/node2&quot;</span><span class="p">)</span>
 <span class="p">[</span><span class="o">&lt;</span><span class="n">DOM</span> <span class="n">Element</span><span class="p">:</span> <span class="n">node2</span> <span class="n">at</span> <span class="mh">0x3457</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">DOM</span> <span class="n">Element</span><span class="p">:</span> <span class="n">node2</span> <span class="n">at</span> <span class="mh">0x090532</span><span class="o">&gt;</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">xmldoc</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;node2&quot;</span><span class="p">)</span>
 <span class="p">[</span><span class="o">&lt;</span><span class="n">DOM</span> <span class="n">Element</span><span class="p">:</span> <span class="n">node2</span> <span class="n">at</span> <span class="mh">0x3457</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">DOM</span> <span class="n">Element</span><span class="p">:</span> <span class="n">node2</span> <span class="n">at</span> <span class="mh">0x090532</span><span class="o">&gt;</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>That’d do me. In fact, I think I might write&nbsp;it.</p>

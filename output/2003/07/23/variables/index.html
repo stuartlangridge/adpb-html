@@ -77,29 +77,29 @@ fix ones where you&#8217;ve used a &#8220;user defined variable&#8221;. Ah, but 
 some testing, both Mozilla and <span class="caps">IE</span> just don&#8217;t make invalid rules (or
 rulesets) available to the <span class="caps">DOM</span> <em>at all</em>. Given this stylesheet as the
 first and only in the&nbsp;document:</p>
-<div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mf">1.2</span><span class="kt">em</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="p">{</span>
-  <span class="nt">pre</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-<span class="p">@</span><span class="k">define</span> <span class="p">{</span>
-  <span class="nt">reddish</span><span class="o">:</span> <span class="p">#</span><span class="nn">f00</span><span class="o">;</span>
-<span class="p">}</span>
-<span class="nt">h2</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mf">1.1</span><span class="kt">em</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">reddish</span><span class="p">;</span> <span class="p">}</span>
-<span class="nt">h3</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mf">1.0</span><span class="kt">em</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">h1 { font-size: 1.2em; color: red; }</span>
+<span class="err">@media screen {</span>
+<span class="err">  pre { color: blue; }</span>
+<span class="err">}</span>
+<span class="err">@define {</span>
+<span class="err">  reddish: #f00;</span>
+<span class="err">}</span>
+<span class="err">h2 { font-size: 1.1em; color: &amp;reddish; }</span>
+<span class="err">h3 { font-size: 1.0em; color: red; }</span>
+</code></pre></div>
 
 
 <p>p>You&#8217;d expect <code>document.styleSheets[0].cssRules</code> (or <code>...rules</code> for
 <span class="caps">IE</span>) to contain 5 entries, right, one for each of the rules? Nuh-uh.
 Walking through the rules and displaying <code>.cssText</code> for each (in Moz;
 displaying <code>stylesheet.cssText</code> in <span class="caps">IE</span>), the stylesheet looks like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mf">1.2</span><span class="kt">em</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="p">{</span> 
-   <span class="nt">pre</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span><span class="p">;</span> <span class="p">}</span> 
-<span class="p">}</span>
-<span class="nt">h2</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mf">1.1</span><span class="kt">em</span><span class="p">;</span> <span class="p">}</span>
-<span class="nt">h3</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">h1 { font-size: 1.2em; color: red; }</span>
+<span class="err">@media screen { </span>
+<span class="err">   pre { color: blue; } </span>
+<span class="err">}</span>
+<span class="err">h2 { font-size: 1.1em; }</span>
+<span class="err">h3 { font-size: 1em; color: red; }</span>
+</code></pre></div>
 
 
 <p>Note how both the entire invalid <code>@define</code> ruleset and the invalid
@@ -115,11 +115,11 @@ Since this isn&#8217;t get implemented in <span class="caps">CSS</span>, looks l
 is the way to go. Bah. As Simon points out from the w3c-style
 discussion, it breaks compatibility in older browsers, although I can&#8217;t
 see why you can&#8217;t&nbsp;do:</p>
-<div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span>
-    <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
-    <span class="k">color</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">myred</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">h1 {</span>
+<span class="err">    color: red;</span>
+<span class="err">    color: &amp;myred;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>since the latter declaration is ignored by non-supporting browsers, just

@@ -80,10 +80,10 @@ or <a href="http://www.adactio.com/">Jeremy Keith</a> or <a href="http://www.mez
 can offer this kind of thing automatically. Joe’s proposal is the most
 pure: offer a new “zoomed” media type, so that adding a new low-vision
 style to your website is as simple as adding to your&nbsp;stylesheet:</p>
-<div class="highlight"><pre><span></span>@media zoomed {
-  ... add your low-vision declarations here
-}
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">@media zoomed {</span>
+<span class="err">  ... add your low-vision declarations here</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>but the <span class="caps"><span class="caps">W3C</span></span>’s <span class="caps"><span class="caps">CSS</span>
@@ -95,11 +95,11 @@ class=“lowvision” to&nbsp;all</p>
 script (alternatively, it might be encapsulated in its own “lowvision”
 extension for Firefox), and all those designers out there can instead
 style their pages for low-vision users with declarations <em>a la</em>:</p>
-<div class="highlight"><pre><span></span>body.lowvision div.whatever {
-  ...style declarations for this div...
-}
-    ... etc ...
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">body.lowvision div.whatever {</span>
+<span class="err">  ...style declarations for this div...</span>
+<span class="err">}</span>
+<span class="err">    ... etc ...</span>
+</code></pre></div>
 
 
 <p>This does rely somewhat on being able to get the word out to low-vision

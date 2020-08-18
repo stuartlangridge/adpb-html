@@ -80,10 +80,10 @@ dynamically, but the resultant <span class="caps"><span class="caps">HTML</span>
 page is the same every time), why don’t I just spider the lot and serve
 the resultant saved static <span class="caps"><span class="caps">HTML</span></span>? So that’s
 what I did, with the&nbsp;command</p>
-<div class="highlight"><pre><span></span>wget --no-host-directories 
---directory-prefix=/var/www/lugradio.org/static 
--p -E --mirror http://secretlocation.lugradio.org/
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">wget --no-host-directories </span>
+<span class="err">--directory-prefix=/var/www/lugradio.org/static </span>
+<span class="err">-p -E --mirror http://secretlocation.lugradio.org/</span>
+</code></pre></div>
 
 
 <p>so the previously existing pyblosxom version now exists at

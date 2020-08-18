@@ -108,13 +108,13 @@ list of packages! <code>/usr/local/bin/sgt-index</code>:</p>
 37
 38
 39
-40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
 <span class="kn">import</span> <span class="nn">gtk</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="k">try</span><span class="p">:</span>
   <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/var/lib/dpkg/info/sgt-puzzles.list&quot;</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-  <span class="k">print</span> <span class="s2">&quot;sgt-puzzles not installed!&quot;</span>
+  <span class="nb">print</span> <span class="s2">&quot;sgt-puzzles not installed!&quot;</span>
   <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 
 <span class="n">games</span> <span class="o">=</span> <span class="p">[</span>
@@ -148,7 +148,7 @@ list of packages! <code>/usr/local/bin/sgt-index</code>:</p>
 <span class="n">win</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
 
 <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>Then just add an item to the menu (right-click the <code>Applications</code> and

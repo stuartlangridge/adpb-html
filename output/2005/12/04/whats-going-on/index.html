@@ -103,25 +103,25 @@ old version of our server to the new version. Creating each site was
 pretty easy. For those unsure about how to use Apache2, a very short
 <span class="caps">HOWTO</span>. To create a site www.example.com, I do it like this (either as
 root, or using sudo for each&nbsp;command):</p>
-<div class="highlight"><pre><span></span>mkdir /var/www/example.com
-mkdir /var/www/example.com/html
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">mkdir /var/www/example.com</span>
+<span class="err">mkdir /var/www/example.com/html</span>
+</code></pre></div>
 
 
 <p>(place all files for the site in&nbsp;/var/www/example.com/html)</p>
-<div class="highlight"><pre><span></span>chmod -R a+rx /var/www/example.com/html
-chown -R username /var/www/example.com
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">chmod -R a+rx /var/www/example.com/html</span>
+<span class="err">chown -R username /var/www/example.com</span>
+</code></pre></div>
 
 
 <p>(use username that should own the site in line&nbsp;above)</p>
-<div class="highlight"><pre><span></span>cd /etc/apache2/sites-available
-nano example.com
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">cd /etc/apache2/sites-available</span>
+<span class="err">nano example.com</span>
+</code></pre></div>
 
 
 <p>(place the following in the example.com file you&#8217;re&nbsp;editing)</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="err">*</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span> <span class="err">*</span><span class="nt">&gt;</span>
 ServerAdmin email@address.of.admin
 DocumentRoot /var/www/example.com/html
 ServerName www.example.com
@@ -129,14 +129,14 @@ ServerName www.example.com
 ServerAlias example.com
 
 <span class="nt">&lt;/VirtualHost&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>(now back to the&nbsp;prompt)</p>
-<div class="highlight"><pre><span></span>cd /etc/apache2/sites-enabled
-ln -s ../sites-available/example.com .
-/etc/init.d/apache2 restart
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">cd /etc/apache2/sites-enabled</span>
+<span class="err">ln -s ../sites-available/example.com .</span>
+<span class="err">/etc/init.d/apache2 restart</span>
+</code></pre></div>
 
 
 <p>(and that site should now be working) David Morley on the Wolves <span class="caps">LUG</span>

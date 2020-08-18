@@ -72,12 +72,12 @@ possibly me just being dim. I haven&#8217;t got time to test it, you&nbsp;see.</
 <p>It seems that if you prefix a <span class="caps">CSS</span> declaration with a hash, <span class="caps">IE6</span>/Win2K
 ignores the hash, and Phoenix0.5/Win2K ignores the declaration.
 Something&nbsp;like:</p>
-<div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">myheader</span> <span class="p">{</span>
-    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-    <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="err">left</span><span class="p">;</span> <span class="err">0</span><span class="p">;</span> <span class="k">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="err">#</span><span class="k">width</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">#myheader {</span>
+<span class="err">    position: absolute;</span>
+<span class="err">    top: 0; left; 0; right: 0;</span>
+<span class="err">    #width: 50px;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p><span class="caps">IE6</span>/Win2K will obey the <code>width</code> declaration, and Phoenix 0.5/Win2K will

@@ -74,7 +74,7 @@ here&#8217;s some instructions for doing the same with&nbsp;Vellum.</p>
 <p>You need to create a template for recent comments, tell Vellum to build
 said template, and then include the built file somewhere on your&nbsp;pages.</p>
 <p>First, the template, in <code>vellum/templates/recentcomments.tmpl</code>:</p>
-<div class="highlight"><pre><span></span><span class="o">&lt;%</span>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;%</span>
 <span class="n">COMMENTS_TO_DISPLAY</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="kn">import</span> <span class="nn">vellum.plugins.audience</span><span class="o">,</span><span class="nn">vellum.Entry</span>
 
@@ -91,7 +91,7 @@ said template, and then include the built file somewhere on your&nbsp;pages.</p>
 <span class="n">end</span>
 <span class="k">print</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span>
 <span class="o">%&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>(this has changed from my original posting: use this version, because it

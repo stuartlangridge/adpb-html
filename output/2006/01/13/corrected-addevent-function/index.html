@@ -64,13 +64,13 @@
 			<p>Most of my <a href="http://www.kryogenix.org/code/browser/">unobtrusive <span class="caps">DHTML</span> scripts</a> use the addEvent function,
 which has been copied from all over the place. The Opera people have
 very kindly dropped me a mail to tell me that it&#8217;s wrong; it uses the&nbsp;line</p>
-<div class="highlight"><pre><span></span>obj.addEventListener(evType, fn, true);
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">obj.addEventListener(evType, fn, true);</span>
+</code></pre></div>
 
 
 <p>when instead that line should&nbsp;be</p>
-<div class="highlight"><pre><span></span>obj.addEventListener(evType, fn, false);
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">obj.addEventListener(evType, fn, false);</span>
+</code></pre></div>
 
 
 <p>The &#8220;true&#8221; and &#8220;false&#8221; bits relate to whether the event is &#8220;capturing&#8221;

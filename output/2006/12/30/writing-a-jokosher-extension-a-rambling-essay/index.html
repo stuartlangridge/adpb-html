@@ -104,26 +104,26 @@ certain things. Those things are: Three variables, EXTENSION_NAME,
 EXTENSION_DESCRIPTION, and EXTENSION_VERSION Two functions, startup()
 and shutdown() So, to make a Python file into an extension, you add
 something like this to the bottom of&nbsp;it:</p>
-<div class="highlight"><pre><span></span>def startup(API):
+<div class="highlight"><pre><span></span><code><span class="n">def</span> <span class="n">startup</span><span class="p">(</span><span class="n">API</span><span class="p">):</span>
 
-    pass
-
-
-
-def shutdown():
-
-    pass
+    <span class="n">pass</span>
 
 
 
-EXTENSION_NAME = &quot;Freesound search&quot;
+<span class="n">def</span> <span class="n">shutdown</span><span class="p">():</span>
 
-EXTENSION_DESCRIPTION = &quot;Searches the Freesound library of &quot; +
+    <span class="n">pass</span>
 
-  &quot;freely licenceable and useable sound clips&quot;
 
-EXTENSION_VERSION = &quot;0.01&quot;
-</pre></div>
+
+<span class="n">EXTENSION_NAME</span> <span class="o">=</span> <span class="ss">&quot;Freesound search&quot;</span>
+
+<span class="n">EXTENSION_DESCRIPTION</span> <span class="o">=</span> <span class="ss">&quot;Searches the Freesound library of &quot;</span> <span class="o">+</span>
+
+  <span class="ss">&quot;freely licenceable and useable sound clips&quot;</span>
+
+<span class="n">EXTENSION_VERSION</span> <span class="o">=</span> <span class="ss">&quot;0.01&quot;</span>
+</code></pre></div>
 
 
 <p>The variables are needed so that Jokosher knows what your extension is
@@ -139,9 +139,9 @@ Jokosher&#8217;s Extensions menu, and then when the user clicks that menu item
 we start doing the work. The <span class="caps">API</span> object has a function called,
 amazingly, add_menu_item() to do exactly that. So, our startup
 function should actually&nbsp;be:</p>
-<div class="highlight"><pre><span></span>def startup(API):  
-    menu_item = API.add_menu_item(&quot;Search Freesound&quot;, callback_function)
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">def startup(API):  </span>
+<span class="err">    menu_item = API.add_menu_item(&quot;Search Freesound&quot;, callback_function)</span>
+</code></pre></div>
 
 
 <p>What this will do is add a menu item &#8220;Search Freesound&#8221;, and when the
@@ -153,18 +153,18 @@ extension. In our case, we need to remove that menu item, which is done
 using the menu item&#8217;s destroy() method. So, change startup() so that
 menu_item is a global variable (so it&#8217;s available to shutdown() as
 well), and change shutdown() so it removes&nbsp;it:</p>
-<div class="highlight"><pre><span></span>def startup(API):
+<div class="highlight"><pre><span></span><code><span class="n">def</span> <span class="n">startup</span><span class="p">(</span><span class="n">API</span><span class="p">):</span>
 
-    global menu_item
+    <span class="k">global</span> <span class="n">menu_item</span>
 
-    menu_item = API.add_menu_item(&quot;Search Freesound&quot;, mainwindow.menu_cb)
+    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">API</span><span class="p">.</span><span class="n">add_menu_item</span><span class="p">(</span><span class="ss">&quot;Search Freesound&quot;</span><span class="p">,</span> <span class="n">mainwindow</span><span class="p">.</span><span class="n">menu_cb</span><span class="p">)</span>
 
 
 
-def shutdown():
+<span class="n">def</span> <span class="n">shutdown</span><span class="p">():</span>
 
-    menu_item.destroy()
-</pre></div>
+    <span class="n">menu_item</span><span class="p">.</span><span class="k">destroy</span><span class="p">()</span>
+</code></pre></div>
 
 
 <p>That takes care of hooking the extension into Jokosher; the user can now
@@ -180,17 +180,17 @@ Jokosher instrument and it&#8217;ll work. So the Freesound extension just has
 to know how to allow users to drag things from it. Technically, this is
 called being a drag source. How to do this in Python is described in
 <a href="http://www.pygtk.org/pygtk2tutorial/sec-DNDMethods.html">the PyGtk Tutorial</a> &#8212; basically, you use code something like&nbsp;this:</p>
-<div class="highlight"><pre><span></span>e.drag_source_set(gtk.gdk.BUTTON1_MASK, [(&#39;text/plain&#39;,0,88)],gtk.gdk.ACTION_COPY)
+<div class="highlight"><pre><span></span><code><span class="n">e</span><span class="p">.</span><span class="n">drag_source_set</span><span class="p">(</span><span class="n">gtk</span><span class="p">.</span><span class="n">gdk</span><span class="p">.</span><span class="n">BUTTON1_MASK</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">88</span><span class="p">)],</span><span class="n">gtk</span><span class="p">.</span><span class="n">gdk</span><span class="p">.</span><span class="n">ACTION_COPY</span><span class="p">)</span>
 
-e.connect(&quot;drag_data_get&quot;, self.returndata, sample)
+<span class="n">e</span><span class="p">.</span><span class="k">connect</span><span class="p">(</span><span class="ss">&quot;drag_data_get&quot;</span><span class="p">,</span> <span class="k">self</span><span class="p">.</span><span class="n">returndata</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
 
 
-...
+<span class="p">...</span>
 
-def returndata(self, widget, drag_context, selection_data, info, time, sample):
+<span class="n">def</span> <span class="n">returndata</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">drag_context</span><span class="p">,</span> <span class="n">selection_data</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="k">time</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
 
-    selection_data.set (selection_data.target,8, sample.previewURL)
-</pre></div>
+    <span class="n">selection_data</span><span class="p">.</span><span class="k">set</span> <span class="p">(</span><span class="n">selection_data</span><span class="p">.</span><span class="n">target</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="n">sample</span><span class="p">.</span><span class="n">previewURL</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>where &#8220;e&#8221; in the first snippet is the widget displaying the sample, and

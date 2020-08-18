@@ -66,7 +66,7 @@ front page. Fetch them from del.icio.us hourly and write out a document
 snippet, and then include that snippet in the&nbsp;page.</p>
 <p>First, how to fetch them: a trivial Python script which uses the
 <a href="http://del.icio.us/doc/api">del.icio.us <span class="caps">REST</span> <span class="caps">API</span></a> to get recent&nbsp;posts:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xmltramp</span><span class="o">,</span><span class="nn">urllib2</span><span class="o">,</span><span class="nn">cgi</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">xmltramp</span><span class="o">,</span><span class="nn">urllib2</span><span class="o">,</span><span class="nn">cgi</span>
 
 <span class="k">def</span> <span class="nf">e</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="s1">&#39;&amp;quot;&#39;</span><span class="p">)</span>
@@ -90,23 +90,23 @@ snippet, and then include that snippet in the&nbsp;page.</p>
 <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/var/www/kryogenix.org/scripts/index.curlies.cached&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
 <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Then throw a line in crontab to actually run it, with <code>crontab -e</code>:</p>
-<div class="highlight"><pre><span></span>@hourly python /var/www/kryogenix.org/scripts/get-delicious-recent.py
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">@hourly python /var/www/kryogenix.org/scripts/get-delicious-recent.py</span>
+</code></pre></div>
 
 
 <p>And finally a brief snippet to include it in the index page, which is a
 <a href="http://www.kryogenix.org/code/castalian/">Castalian</a>&nbsp;page:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?</span><span class="nx">cas</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?</span><span class="nx">cas</span>
 <span class="nx">CACHED_COPY</span> <span class="o">=</span> <span class="s1">&#39;../scripts/index.curlies.cached&#39;</span>
 <span class="nx">pfp</span> <span class="o">=</span> <span class="nx">open</span><span class="p">(</span><span class="nx">CACHED_COPY</span><span class="p">)</span>
 <span class="nx">response</span><span class="o">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">pfp</span><span class="o">.</span><span class="nx">read</span><span class="p">())</span>
 <span class="nx">pfp</span><span class="o">.</span><span class="nx">close</span><span class="p">()</span>
 <span class="cp">?&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>and that’s it. Move complete. No more maintaining my own linklog.&nbsp;:)</p>

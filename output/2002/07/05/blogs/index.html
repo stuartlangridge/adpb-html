@@ -87,7 +87,7 @@ Whoever cracks this will be famous. :) Meanwhile, all I have to do now
 to add another blog to my blogroll is to subscribe to it at blo.gs,
 which is pretty darn fabulous. I hear you asking: good Lord, how did you
 do that, eh? It was easy. The power of <span class="caps">XML</span>. (And <a href="/code/castalian/">Castalian</a>,&nbsp;naturally.)</p>
-<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="err">?</span><span class="n">cas</span>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="err">?</span><span class="n">cas</span>
 <span class="kn">import</span> <span class="nn">xml.dom.minidom</span><span class="o">,</span><span class="nn">urllib</span><span class="o">,</span><span class="nn">rfc822</span><span class="o">,</span><span class="nn">time</span>
 <span class="c1"># The favourites file is fetched from blo.gs once per hour by cron</span>
 <span class="n">fp</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://www.kryogenix.org/days/blo.gs-favourites.xml&quot;</span><span class="p">)</span>
@@ -103,7 +103,7 @@ do that, eh? It was easy. The power of <span class="caps">XML</span>. (And <a hr
             <span class="n">url</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">)</span>
             <span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="si">%s</span><span class="s1">&lt;/a&gt; (</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">nam</span><span class="p">,</span><span class="n">tme</span><span class="p">))</span>
 <span class="err">?</span><span class="o">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>And that&#8217;s all there is to it!&nbsp;&#8212;&#8212;-</p>

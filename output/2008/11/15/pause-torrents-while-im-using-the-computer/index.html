@@ -89,14 +89,14 @@ log in, and Bob&#8217;s your uncle. the&nbsp;script:</p>
 16
 17
 18
-19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">dbus</span><span class="o">,</span> <span class="nn">urllib</span>
 <span class="kn">from</span> <span class="nn">dbus.mainloop.glib</span> <span class="kn">import</span> <span class="n">DBusGMainLoop</span>
 
 <span class="n">START_TORRENTS</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:9091/transmission/rpc?method=torrent-start&quot;</span>
 <span class="n">STOP_TORRENTS</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:9091/transmission/rpc?method=torrent-stop&quot;</span>
 
-<span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">sess</span><span class="o">=</span><span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">sig</span><span class="p">(</span><span class="n">screensaverActive</span><span class="p">):</span>
   <span class="k">if</span> <span class="n">screensaverActive</span><span class="p">:</span>
@@ -108,7 +108,7 @@ log in, and Bob&#8217;s your uncle. the&nbsp;script:</p>
 <span class="kn">import</span> <span class="nn">gobject</span>
 <span class="n">loop</span> <span class="o">=</span> <span class="n">gobject</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
 <span class="n">loop</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

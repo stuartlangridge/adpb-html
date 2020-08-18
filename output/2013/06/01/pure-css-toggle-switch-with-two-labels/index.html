@@ -148,17 +148,17 @@ transition: all 0.3s ease;
 <p>First, start with just the plain <span class="caps">HTML</span> we want. Two radio buttons, each
 with a label. Note that clicking the label sets the radio button to
 checked, as you&#8217;d&nbsp;expect.</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;radiocoffee&quot;</span> <span class="na">name=</span><span class="s">&quot;drink&quot;</span> <span class="err">checked</span><span class="nt">&gt;&lt;label</span> 
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;radiocoffee&quot;</span> <span class="na">name=</span><span class="s">&quot;drink&quot;</span> <span class="err">checked</span><span class="nt">&gt;&lt;label</span> 
 <span class="na">for=</span><span class="s">&quot;radiocoffee&quot;</span><span class="nt">&gt;</span>Coffee<span class="nt">&lt;/label&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;radiotea&quot;</span> 
 <span class="na">name=</span><span class="s">&quot;drink&quot;</span><span class="nt">&gt;&lt;label</span> <span class="na">for=</span><span class="s">&quot;radiotea&quot;</span><span class="nt">&gt;</span>Tea<span class="nt">&lt;/label&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><input id="i11" type="radio" checked="checked" name="i1"></input><label for="i11">Coffee</label><input id="i12" type="radio" name="i1"></input><label for="i12">Tea</label></p>
 <p>We need the radio buttons because they do the work, and we need them
 semantically, but we don&#8217;t want to see them. Hide them&nbsp;away.</p>
-<div class="highlight"><pre><span></span><span class="nt">input</span> <span class="p">{</span> <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span> <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">input { position: absolute; opacity: 0; }</span>
+</code></pre></div>
 
 
 <p><input id="i21" type="radio" checked="checked" name="i2"></input><label for="i21">Coffee</label><input id="i22" type="radio" name="i2"></input><label for="i22">Tea</label></p>
@@ -166,7 +166,7 @@ semantically, but we don&#8217;t want to see them. Hide them&nbsp;away.</p>
 label, and using <span class="caps">CSS</span> generated content, reserve a block of space to put
 our switch in. (Note: we also temporarily colour various parts for this
 demo and offset them, so you can see what&#8217;s going&nbsp;on.)</p>
-<div class="highlight"><pre><span></span><span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span><span class="p">::</span><span class="nd">after</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span><span class="p">::</span><span class="nd">after</span> <span class="p">{</span>
     <span class="k">content</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">;</span>
     <span class="k">width</span><span class="p">:</span> <span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
     <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
@@ -178,18 +178,18 @@ demo and offset them, so you can see what&#8217;s going&nbsp;on.)</p>
     <span class="k">width</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">border-width</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><input id="i31" type="radio" checked="checked" name="i3"></input><label for="i31">Coffee</label><input id="i32" type="radio" name="i3"></input><label for="i32">Tea</label></p>
 <p>Now, the switch part of the switch needs to go somewhere. Reserve some
 space on the left of the second label to put that switch part&nbsp;in.</p>
-<div class="highlight"><pre><span></span><span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span> <span class="o">+</span> <span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span> <span class="p">{</span>
-    <span class="k">padding-right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">padding-left</span><span class="p">:</span> <span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">margin-left</span><span class="p">:</span> <span class="mi">-150</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">input + label + input + label {</span>
+<span class="err">    padding-right: 0;</span>
+<span class="err">    padding-left: 150px;</span>
+<span class="err">    margin-left: -150px;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p><input id="i41" type="radio" checked="checked" name="i4"></input><label for="i41">Coffee</label><input id="i42" type="radio" name="i4"></input><label for="i42">Tea</label></p>
@@ -197,11 +197,11 @@ space on the left of the second label to put that switch part&nbsp;in.</p>
 is why the space for the switch body was reserved with <code>::after</code>
 generated content, rather than right padding on the label &#8212; so that the
 switch body can have its own border and&nbsp;styles.</p>
-<div class="highlight"><pre><span></span><span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span><span class="p">::</span><span class="nd">after</span> <span class="p">{</span>
-    <span class="k">border</span><span class="p">:</span> <span class="mi">2</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">black</span><span class="p">;</span>
-    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">600</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">input + label::after {</span>
+<span class="err">    border: 2px solid black;</span>
+<span class="err">    border-radius: 600px;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p><input id="i51" type="radio" checked="checked" name="i5"></input><label for="i51">Coffee</label><input id="i52" type="radio" name="i5"></input><label for="i52">Tea</label></p>
@@ -209,13 +209,13 @@ switch body can have its own border and&nbsp;styles.</p>
 gradient on the background of the right-hand label. Obviously you&#8217;ll
 need to add vendor prefixes to <code>radial-gradient</code>, or use Lea Verou&#8217;s
 <a href="http://leaverou.github.io/prefixfree/">prefixfree</a> or&nbsp;similar.</p>
-<div class="highlight"><pre><span></span><span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span> <span class="o">+</span> <span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span> <span class="p">{</span>
-    <span class="k">background-image</span><span class="p">:</span> <span class="nb">radial-gradient</span><span class="p">(</span><span class="kc">circle</span><span class="p">,</span> <span class="kc">transparent</span> <span class="mi">0</span><span class="kt">%</span><span class="p">,</span> <span class="kc">transparent</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">black</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">black</span> <span class="mi">54</span><span class="kt">%</span><span class="p">,</span> <span class="kc">transparent</span> <span class="mi">59</span><span class="kt">%</span><span class="p">,</span> <span class="kc">transparent</span> <span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
-    <span class="k">background-position</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">-1</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">background-size</span><span class="p">:</span> <span class="mi">40</span><span class="kt">px</span> <span class="mi">105</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">background-repeat</span><span class="p">:</span> <span class="kc">no-repeat</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">input + label + input + label {</span>
+<span class="err">    background-image: radial-gradient(circle, transparent 0%, transparent 50%, black 50%, black 54%, transparent 59%, transparent 100%);</span>
+<span class="err">    background-position: 0px -1px;</span>
+<span class="err">    background-size: 40px 105%;</span>
+<span class="err">    background-repeat: no-repeat;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p><input id="i61" type="radio" checked="checked" name="i6"></input><label for="i61">Coffee</label><input id="i62" type="radio" name="i6"></input><label for="i62">Tea</label></p>
@@ -251,25 +251,25 @@ bills,&nbsp;y&#8217;all.</p>
 <p>All we do is decrease the size of the reserved space for the switch part
 of the switch&#8230;which has the visual effect of moving it to the right,
 closer to its label. Click the switch below and you&#8217;ll see it&nbsp;working.</p>
-<div class="highlight"><pre><span></span><span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span> <span class="o">+</span> <span class="nt">input</span><span class="p">:</span><span class="nd">checked</span> <span class="o">+</span> <span class="nt">label</span> <span class="p">{</span>
-    <span class="k">padding-left</span><span class="p">:</span> <span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">margin-left</span><span class="p">:</span> <span class="mi">-40</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">input + label + input:checked + label {</span>
+<span class="err">    padding-left: 40px;</span>
+<span class="err">    margin-left: -40px;</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p><input id="i91" type="radio" checked="checked" name="i9"></input><label for="i91">Coffee</label><input id="i92" type="radio" name="i9"></input><label for="i92">Tea</label></p>
 <p>It&#8217;d be nice to indicate which label is selected, too; here, we colour
 it&nbsp;red:</p>
-<div class="highlight"><pre><span></span><span class="n">input</span><span class="o">:</span><span class="n">checked</span> <span class="o">+</span> <span class="n">label</span> <span class="o">{</span> <span class="n">color</span><span class="o">:</span> <span class="n">red</span><span class="o">;</span> <span class="o">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">input</span><span class="o">:</span><span class="n">checked</span> <span class="o">+</span> <span class="n">label</span> <span class="o">{</span> <span class="n">color</span><span class="o">:</span> <span class="n">red</span><span class="o">;</span> <span class="o">}</span>
+</code></pre></div>
 
 
 <p><input id="ia1" type="radio" checked="checked" name="ia"></input><label for="ia1">Coffee</label><input id="ia2" type="radio" name="ia"></input><label for="ia2">Tea</label></p>
 <p>And finally, the switch change ought to animate, which is simply doable
 with <span class="caps">CSS</span> transitions (which, again, may need to be vendor&nbsp;prefixed).</p>
-<div class="highlight"><pre><span></span><span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span> <span class="o">+</span> <span class="nt">input</span> <span class="o">+</span> <span class="nt">label</span> <span class="p">{</span> <span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">0.3</span><span class="kt">s</span> <span class="kc">ease</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">input + label + input + label { transition: all 0.3s ease; }</span>
+</code></pre></div>
 
 
 <p><input id="ib1" type="radio" checked="checked" name="ib"></input><label for="ib1">Coffee</label><input id="ib2" type="radio" name="ib"></input><label for="ib2">Tea</label></p>

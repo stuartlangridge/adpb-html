@@ -101,17 +101,17 @@ then in your password file you store the hash <em>and</em> the salt. This makes
 guessing much harder. LinkedIn didn&#8217;t do this, sadly enough. So, given
 that you have a list of hashed passwords, you can guess a password and
 see whether it&#8217;s in the list. With your <code>SHA1.txt</code> file, try&nbsp;it:</p>
-<div class="highlight"><pre><span></span>$ grep <span class="sb">`</span><span class="nb">echo</span> -n alongpasswordimadeup <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt$
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ grep <span class="sb">`</span><span class="nb">echo</span> -n alongpasswordimadeup <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt$
+</code></pre></div>
 
 
 <p>That didn&#8217;t show anything, so &#8220;alongpasswordimadeup&#8221; isn&#8217;t one of the
 leaked passwords. Let&#8217;s try&nbsp;another:</p>
-<div class="highlight"><pre><span></span>$ grep <span class="sb">`</span><span class="nb">echo</span> -n l1nked0ut <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt 
+<div class="highlight"><pre><span></span><code>$ grep <span class="sb">`</span><span class="nb">echo</span> -n l1nked0ut <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt 
 e7bf10afef5f2ba94b104126d04db1837f423816
 000000afef5f2ba94b104126d04db1837f423816
 $
-</pre></div>
+</code></pre></div>
 
 
 <p>That <em>did</em> show something, so someone on LinkedIn had the password
@@ -122,8 +122,8 @@ characters overwritten with zeroes&#8230; so our unlucky l1nked0ut person is
 doubly punished for their lack of imagination by having a password
 leaked and having had it already guessed by the leakers.&nbsp;Oops.</p>
 <p>So, to check your own password,&nbsp;do:</p>
-<div class="highlight"><pre><span></span>$  grep <span class="sb">`</span><span class="nb">echo</span> -n yourpassword <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt
-</pre></div>
+<div class="highlight"><pre><span></span><code>$  grep <span class="sb">`</span><span class="nb">echo</span> -n yourpassword <span class="p">|</span> shasum <span class="p">|</span> cut -c6-40<span class="sb">`</span> SHA1.txt
+</code></pre></div>
 
 
 <p>Note that there is an <em>extra space</em> before the word &#8220;grep&#8221;: this means

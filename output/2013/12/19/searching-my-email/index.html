@@ -122,7 +122,7 @@ ultranoddy Python script.</p>
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
 <span class="sd">"""mb2md seems to export a bunch of mails from the gmail takeout</span>
 <span class="sd">   mbox dump with a blank second line. Fix those."""</span>
 <span class="kn">import</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">os</span><span class="p">;</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
@@ -134,8 +134,8 @@ ultranoddy Python script.</p>
       <span class="n">lines</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span> <span class="k">del</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">data</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
       <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="n">counter</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-          <span class="k">print</span> <span class="s2">"fixed another fifty files: total fixed"</span><span class="p">,</span> <span class="n">counter</span>
-</pre></div>
+          <span class="nb">print</span> <span class="s2">"fixed another fifty files: total fixed"</span><span class="p">,</span> <span class="n">counter</span>
+</code></pre></div>
 </td></tr></tbody></table>
 
 <p>Once you’ve done that, <code>touch ~/Maildir; touch ~/Maildir/.All*</code> to let
@@ -233,7 +233,7 @@ only has 0.12. So, once more forth into noddy Python scripts.</p>
 73
 74
 75
-76</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+76</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
 
 <span class="kn">import</span> <span class="nn">notmuch</span><span class="o">,</span> <span class="nn">BaseHTTPServer</span><span class="o">,</span> <span class="nn">cgi</span><span class="o">,</span> <span class="nn">urlparse</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">json</span>
 
@@ -309,7 +309,7 @@ only has 0.12. So, once more forth into noddy Python scripts.</p>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">run</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 </td></tr></tbody></table>
 
 <p>To be clear, this is pretty horrid. All the <span class="caps">HTML</span> is baked into it; it

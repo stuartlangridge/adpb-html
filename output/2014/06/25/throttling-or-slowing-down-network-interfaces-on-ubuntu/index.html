@@ -70,7 +70,7 @@ points out an <a href="http://www.railsillustrated.com/simulating-a-web-experien
 <p>To remove this&nbsp;delay:</p>
 <p><code>sudo tc qdisc del dev lo root</code></p>
 <p>Since those commands are pretty alarmingly impenetrable, I put together a tiny little app to do it for you instead. Grab the Python code below and run it, and then you can enable throttling by just ticking a box, and drag the sliders to set the amount you want to slow down your connection. Try it next time you&#8217;re building an app which talks to the network &#8212; you may find it enlightening (although depressing) how badly your app (or the framework you&#8217;re using) deals with slow connections&#8230; and half your users will have those slow connections. So we need to get better at dealing with&nbsp;them.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">Gtk</span><span class="p">,</span> <span class="n">GLib</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">Gtk</span><span class="p">,</span> <span class="n">GLib</span>
 <span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">fcntl</span><span class="o">,</span> <span class="nn">struct</span><span class="o">,</span> <span class="nn">array</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">which</span><span class="p">(</span><span class="n">program</span><span class="p">):</span>
@@ -88,7 +88,7 @@ points out an <a href="http://www.railsillustrated.com/simulating-a-web-experien
             <span class="n">exe_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">program</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">is_exe</span><span class="p">(</span><span class="n">exe_file</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">exe_file</span>
-    <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="kc">None</span>
 
 <span class="k">def</span> <span class="nf">all_interfaces</span><span class="p">():</span>
     <span class="n">max_possible</span> <span class="o">=</span> <span class="mi">128</span> <span class="c1"># arbitrary. raise if needed.</span>
@@ -110,8 +110,8 @@ points out an <a href="http://www.railsillustrated.com/simulating-a-web-experien
         <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;eth&quot;</span><span class="p">):</span> <span class="n">friendly</span> <span class="o">=</span> <span class="s2">&quot;Wired connection </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;eth&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;wlan&quot;</span><span class="p">):</span> <span class="n">friendly</span> <span class="o">=</span> <span class="s2">&quot;Wifi connection </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;eth&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
         <span class="n">lst</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span><span class="p">(</span>
-            <span class="p">{</span><span class="s2">&quot;friendly&quot;</span><span class="p">:</span> <span class="n">friendly</span><span class="p">,</span> <span class="s2">&quot;action_timer&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;current_real_value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-             <span class="s2">&quot;toggled_by_code&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+            <span class="p">{</span><span class="s2">&quot;friendly&quot;</span><span class="p">:</span> <span class="n">friendly</span><span class="p">,</span> <span class="s2">&quot;action_timer&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;current_real_value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+             <span class="s2">&quot;toggled_by_code&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">lst</span>
 
@@ -138,16 +138,16 @@ points out an <a href="http://www.railsillustrated.com/simulating-a-web-experien
             <span class="n">tb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;toggled&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">toggle_button</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;checkbox&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tb</span>
             <span class="n">sl</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">HScale</span><span class="p">()</span>
-            <span class="n">sl</span><span class="o">.</span><span class="n">set_draw_value</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">sl</span><span class="o">.</span><span class="n">set_draw_value</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">sl</span><span class="o">.</span><span class="n">set_increments</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
             <span class="n">sl</span><span class="o">.</span><span class="n">set_range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">980</span><span class="p">)</span>
             <span class="n">sl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;value_changed&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_changed</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-            <span class="n">sl</span><span class="o">.</span><span class="n">set_sensitive</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">sl</span><span class="o">.</span><span class="n">set_sensitive</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">tbl</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">sl</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;slider&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sl</span>
             <span class="n">row</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">box</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">spacing</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-        <span class="n">box</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">tbl</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">box</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">tbl</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
         <span class="n">win</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
         <span class="n">win</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_tc</span><span class="p">()</span>
@@ -155,45 +155,45 @@ points out an <a href="http://www.railsillustrated.com/simulating-a-web-experien
     <span class="k">def</span> <span class="nf">toggle_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;slider&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_sensitive</span><span class="p">(</span><span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">())</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;toggled_by_code&quot;</span><span class="p">]:</span>
-            <span class="k">print</span> <span class="s2">&quot;ignoring toggle button because it was toggled by code, not user&quot;</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;toggled_by_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="nb">print</span> <span class="s2">&quot;ignoring toggle button because it was toggled by code, not user&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;toggled_by_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">return</span>
-        <span class="k">print</span> <span class="s2">&quot;toggled to&quot;</span><span class="p">,</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="s2">&quot;toggled to&quot;</span><span class="p">,</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">turn_on_throttling</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">turn_off_throttling</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">value_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slider</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s2">&quot;value_changed&quot;</span><span class="p">,</span> <span class="n">slider</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="s2">&quot;value_changed&quot;</span><span class="p">,</span> <span class="n">slider</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">slider</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;current_real_value&quot;</span><span class="p">]:</span>
-            <span class="k">print</span> <span class="s2">&quot;Not setting if because it already is that value&quot;</span>
+            <span class="nb">print</span> <span class="s2">&quot;Not setting if because it already is that value&quot;</span>
             <span class="k">return</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">turn_on_throttling</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_tc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s2">&quot;getting tc&quot;</span>
+        <span class="nb">print</span> <span class="s2">&quot;getting tc&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">def</span> <span class="nf">get_tc_output</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">condition</span><span class="p">):</span>
-            <span class="k">print</span> <span class="s2">&quot;got tc output&quot;</span><span class="p">,</span> <span class="n">condition</span>
+            <span class="nb">print</span> <span class="s2">&quot;got tc output&quot;</span><span class="p">,</span> <span class="n">condition</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-            <span class="k">print</span> <span class="s2">&quot;got tc line&quot;</span><span class="p">,</span> <span class="n">line</span>
+            <span class="nb">print</span> <span class="s2">&quot;got tc line&quot;</span><span class="p">,</span> <span class="n">line</span>
             <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;qdisc&quot;</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;netem&quot;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span><span class="p">[</span><span class="n">parts</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)}</span>
             <span class="k">if</span> <span class="n">condition</span> <span class="o">==</span> <span class="n">GLib</span><span class="o">.</span><span class="n">IO_IN</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">True</span>
+                <span class="k">return</span> <span class="kc">True</span>
             <span class="k">elif</span> <span class="n">condition</span> <span class="o">==</span> <span class="n">GLib</span><span class="o">.</span><span class="n">IO_HUP</span><span class="o">|</span><span class="n">GLib</span><span class="o">.</span><span class="n">IO_IN</span><span class="p">:</span>
                 <span class="n">GLib</span><span class="o">.</span><span class="n">source_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_id</span><span class="p">)</span>
-                <span class="k">print</span> <span class="s2">&quot;throttled IFs are&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span>
+                <span class="nb">print</span> <span class="s2">&quot;throttled IFs are&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">update_throttled_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">throttled_ifs</span><span class="p">)</span>
-                <span class="k">return</span> <span class="bp">False</span>
+                <span class="k">return</span> <span class="kc">False</span>
 
         <span class="n">pid</span><span class="p">,</span> <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">spawn_async</span><span class="p">(</span>
             <span class="p">[</span><span class="s2">&quot;tc&quot;</span><span class="p">,</span> <span class="s2">&quot;qdisc&quot;</span><span class="p">],</span>
             <span class="n">flags</span><span class="o">=</span><span class="n">GLib</span><span class="o">.</span><span class="n">SpawnFlags</span><span class="o">.</span><span class="n">SEARCH_PATH</span><span class="p">,</span>
-            <span class="n">standard_output</span><span class="o">=</span><span class="bp">True</span>
+            <span class="n">standard_output</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
         <span class="n">io</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">IOChannel</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">source_id</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">add_watch</span><span class="p">(</span><span class="n">GLib</span><span class="o">.</span><span class="n">IO_IN</span><span class="o">|</span><span class="n">GLib</span><span class="o">.</span><span class="n">IO_HUP</span><span class="p">,</span> <span class="n">get_tc_output</span><span class="p">,</span> 
@@ -201,33 +201,33 @@ points out an <a href="http://www.railsillustrated.com/simulating-a-web-experien
         <span class="n">pid</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">actually_turn_on_throttling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s2">&quot;actually throttling&quot;</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="n">value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="nb">print</span> <span class="s2">&quot;actually throttling&quot;</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;pkexec tc qdisc replace dev </span><span class="si">%s</span><span class="s2"> root handle 1:0 netem delay </span><span class="si">%s</span><span class="s2">msec&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">interface</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">),)</span>
-        <span class="k">print</span> <span class="n">cmd</span>
+        <span class="nb">print</span> <span class="n">cmd</span>
         <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">turn_on_throttling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
         <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;slider&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s2">&quot;aborting previous throttle request for&quot;</span><span class="p">,</span> <span class="n">interface</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;aborting previous throttle request for&quot;</span><span class="p">,</span> <span class="n">interface</span>
             <span class="n">GLib</span><span class="o">.</span><span class="n">source_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">])</span>
-        <span class="k">print</span> <span class="s2">&quot;throttling&quot;</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="n">val</span>
+        <span class="nb">print</span> <span class="s2">&quot;throttling&quot;</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="n">val</span>
         <span class="n">source_id</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">timeout_add_seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">actually_turn_on_throttling</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source_id</span>
 
     <span class="k">def</span> <span class="nf">actually_turn_off_throttling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s2">&quot;actually unthrottling&quot;</span><span class="p">,</span> <span class="n">interface</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="nb">print</span> <span class="s2">&quot;actually unthrottling&quot;</span><span class="p">,</span> <span class="n">interface</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;pkexec tc qdisc del dev </span><span class="si">%s</span><span class="s2"> root&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">interface</span><span class="p">,)</span>
-        <span class="k">print</span> <span class="n">cmd</span>
+        <span class="nb">print</span> <span class="n">cmd</span>
         <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">turn_off_throttling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s2">&quot;aborting previous throttle request for&quot;</span><span class="p">,</span> <span class="n">interface</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;aborting previous throttle request for&quot;</span><span class="p">,</span> <span class="n">interface</span>
             <span class="n">GLib</span><span class="o">.</span><span class="n">source_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">])</span>
-        <span class="k">print</span> <span class="s2">&quot;unthrottling&quot;</span><span class="p">,</span> <span class="n">interface</span>
+        <span class="nb">print</span> <span class="s2">&quot;unthrottling&quot;</span><span class="p">,</span> <span class="n">interface</span>
         <span class="n">source_id</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">timeout_add_seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">actually_turn_off_throttling</span><span class="p">,</span> <span class="n">interface</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">interface</span><span class="p">][</span><span class="s2">&quot;action_timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source_id</span>
 
@@ -236,23 +236,23 @@ points out an <a href="http://www.railsillustrated.com/simulating-a-web-experien
             <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">throttled_ifs</span><span class="p">:</span>
                 <span class="n">current</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">current</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;toggled_by_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-                    <span class="n">v</span><span class="p">[</span><span class="s2">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;toggled_by_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">v</span><span class="p">[</span><span class="s2">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
                     <span class="n">delay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">throttled_ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;delay&quot;</span><span class="p">])</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">ifs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;current_real_value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">delay</span>
                     <span class="n">v</span><span class="p">[</span><span class="s2">&quot;slider&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">current</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
-                    <span class="n">v</span><span class="p">[</span><span class="s2">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+                    <span class="n">v</span><span class="p">[</span><span class="s2">&quot;checkbox&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;pkexec&quot;</span><span class="p">):</span> 
-        <span class="k">print</span> <span class="s2">&quot;You need pkexec installed.&quot;</span>
+        <span class="nb">print</span> <span class="s2">&quot;You need pkexec installed.&quot;</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="p">()</span>
     <span class="n">Gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2014/05/15/mozilla-add-html5-drm-sadly-but-inevitably/">Previous post</a></li>

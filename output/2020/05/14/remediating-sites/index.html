@@ -66,7 +66,7 @@
 <p>The way I do this is with <a href="https://addons.mozilla.org/en-GB/firefox/addon/greasemonkey/">Greasemonkey</a>. Greasemonkey, or its Chrome-ish cousin <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">Tampermonkey</a>, has been around forever, and it lets you write custom scripts which it then takes care of loading for you when you visit a specified <span class="caps">URL</span>. Great stuff: write your thing as a Greasemonkey script to test it and then when you&#8217;re happy, send the script file to the client and you&#8217;re&nbsp;done.</p>
 <p>There is a little nuance here, though. A Greasemonkey script isn&#8217;t exactly the same as a script in the page. This is partially because of browser security restrictions, and partially because <span class="caps">GM</span> scripts have certain magic privileged access that scripts in the page don&#8217;t have. What this means is that the Greasemonkey script environment is quite sandboxed away; it doesn&#8217;t have direct access to stuff in the page, and stuff in the page doesn&#8217;t have direct access to it (in the early days, there were security problems where in-page script walked its way back up the object tree until it got hold of one of the magic Greasemonkey objects and then used that to do all sorts of naughty privileged things that it shouldn&#8217;t have been able to, and so it all got rigorously sandboxed away to prevent that). So, if the page loads jQuery, say, and you want to use that, then you can&#8217;t, because your script is in its own little world with a peephole to the page, and getting hold of in-page objects is awkward. Obviously, your remediation script can&#8217;t be relying on any of these magic <span class="caps">GM</span> privileges (because it won&#8217;t have them when it&#8217;s deployed for real), so you don&#8217;t intend to use them, but because <span class="caps">GM</span> doesn&#8217;t know that, it still isolates your script away. Fortunately, there&#8217;s a neat little trick to have the best of both worlds; to create the script in <span class="caps">GM</span> to make it easy to test and iterate, but have the script run in the context of the page so it gets the environment it&nbsp;expects.</p>
 <p>What you do is, put all your code in a function, stringify it, and then push that string into an in-page script. Like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><span class="c1">// ==UserScript==</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// ==UserScript==</span>
 <span class="c1">// @name     Stuart&#39;s GM remediation script</span>
 <span class="c1">// @version  1</span>
 <span class="c1">// @grant    none</span>
@@ -83,7 +83,7 @@
 <span class="kd">let</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">);</span>
 <span class="nx">script</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nx">main</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;)();&quot;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>That&#8217;s it. Your code is defined in Greasemonkey, but it&#8217;s actually executed as though it were a <code>script</code> element in the page. You should basically pretend that that code doesn&#8217;t exist and just write whatever you planned to inside the <code>main()</code> function. You can define other functions, add event handlers, whatever you fancy. This is a neat trick; I&#8217;m not sure if I invented it or picked it up from somewhere else years ago (and if someone knows, tell me and I&#8217;ll happily link to whoever invented it), but it&#8217;s really useful; you build the remediation script, doing whatever you want it to do, and then when you&#8217;re happy with it, copy whatever&#8217;s <em>inside</em> the <code>main()</code> function to a new file called <code>whatever.js</code> and send that to the client, and tell them: upload this to your creaky old <span class="caps">CMS</span> and then link to it with a <code>script</code> element. Job done. Easier for you, easier for&nbsp;them!</p>
@@ -126,6 +126,11 @@
 			Bruce Lawson. At home. responded at
 		<a href="https://twitter.com/brucel/status/1263076082506518528">twitter.com</a>
 		<span class="wm-summary">			Remediating sites kryogenix.org/days/2020/05/1… "you need to make alterations to a web page that already exists, and where you can’t change the HTML,&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1268171639331737602/M7kMlBuB.jpg">
+			Chris Heilmann responded at
+		<a href="https://twitter.com/codepo8/status/1271157284907945985">twitter.com</a>
+		<span class="wm-summary">			Interesting article by @sil on how you can fix web sites without having access to their files. He's using Greasemonkey for that. kryogenix.org/days/2&hellip;
 </span></li>
 	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">

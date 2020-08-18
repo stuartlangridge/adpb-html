@@ -76,7 +76,7 @@ don&#8217;t share it around. If there&#8217;s a way of making an <span class="ca
 limited rights to just create posts and that&#8217;s it, I don&#8217;t know that
 way; if you do know that way, tell me! Once you&#8217;ve got your <span class="caps">API</span> key, and
 your username, fill them into the script as <span class="caps">APIKEY</span> and <span class="caps">APIUSERNAME</span>.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># apt-get install python-requests</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># apt-get install python-requests</span>
 <span class="c1"># based on https://github.com/discoursehosting/discourse-api-php/blob/master/lib/DiscourseAPI.php</span>
 
 <span class="c1"># log all the things so you can see what&#39;s going on</span>
@@ -115,7 +115,7 @@ your username, fill them into the script as <span class="caps">APIKEY</span> and
 <span class="n">disc_data</span><span class="p">[</span><span class="s2">&quot;FORUM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FORUM</span>
 <span class="k">print</span> <span class="s2">&quot;The link to your new post is: &quot;</span>
 <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%(FORUM)s</span><span class="s2">t/</span><span class="si">%(topic_slug)s</span><span class="s2">/</span><span class="si">%(topic_id)s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">disc_data</span>
-</pre></div>
+</code></pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/">Previous post</a></li>

@@ -76,13 +76,13 @@ were halfway through typing in, doesn’t forget where you’d scrolled to.</p>
 <p>To use it, just add <code>StateSaver.properties</code> to the Item you want to save
 things for. So, for example, if you want your ListView to remember the
 position it was scrolled to, do this:</p>
-<div class="highlight"><pre><span></span>ListView {
-  id: mylistview
-  model: someModel
-  delegate: ListItem.Standard { text: "row " + model.index }
-  StateSaver.properties: "contentY"
-}
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">ListView {</span>
+<span class="err">  id: mylistview</span>
+<span class="err">  model: someModel</span>
+<span class="err">  delegate: ListItem.Standard { text: "row " + model.index }</span>
+<span class="err">  StateSaver.properties: "contentY"</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>Just that one thing. Now your ListView remembers where it was scrolled
@@ -128,7 +128,7 @@ did it automatically, as noted.) Good work, Ubuntu <span class="caps">SDK</span>
 needs more publicity!</p>
 <p>Longer code example, which remembers which tab you were looking at,
 where the list is scrolled to, and what was typed in the text field:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">QtQuick</span> <span class="mf">2.0</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">QtQuick</span> <span class="mf">2.0</span>
 <span class="kn">import</span> <span class="nn">Ubuntu.Components</span> <span class="mf">0.1</span>
 <span class="kn">import</span> <span class="nn">Ubuntu.Components.ListItems</span> <span class="mf">0.1</span> <span class="k">as</span> <span class="n">ListItem</span>
 
@@ -185,7 +185,7 @@ where the list is scrolled to, and what was typed in the text field:</p>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div><ol class="simple-footnotes"><li id="sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1">how did I not know this existed! Big thanks to Florian for cueing
+</code></pre></div><ol class="simple-footnotes"><li id="sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1">how did I not know this existed! Big thanks to Florian for cueing
 me in <a href="#sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

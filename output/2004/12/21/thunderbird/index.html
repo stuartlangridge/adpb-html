@@ -71,21 +71,21 @@ seem to show up in the dropdown, so I thought I’d bang it into <strong>Custom
 Mail Reader</strong>. So, what do you put in? I’d have thought
 <code>mozilla-thunderbird %s</code>. Nope. That doesn’t work. Moreover, if you try
 that from the&nbsp;command-line:</p>
-<div class="highlight"><pre><span></span>mozilla-thunderbird someone@example.org
-/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client: Error: Failed to send command: 509 internal error
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">mozilla-thunderbird someone@example.org</span>
+<span class="err">/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client: Error: Failed to send command: 509 internal error</span>
+</code></pre></div>
 
 
 <p>That’s no good. On the other hand, what’s a
 <code>mozilla-thunderbird-xremote-client</code>?</p>
-<div class="highlight"><pre><span></span>/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client someone@example.org
-/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client: Error: Failed to send command: 500 command not parsable: someone@example.org
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client someone@example.org</span>
+<span class="err">/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client: Error: Failed to send command: 500 command not parsable: someone@example.org</span>
+</code></pre></div>
 
 
 <p>Ah, “command not parsable“. It must take the <a href="http://www.mozilla.org/unix/remote.html">-remote commands</a>.</p>
-<div class="highlight"><pre><span></span>/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client &quot;mailto(someone@example.org)&quot;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client &quot;mailto(someone@example.org)&quot;</span>
+</code></pre></div>
 
 
 <p>That works! Yay! So, let’s try that in the <strong>Custom Mail Reader</strong> box in

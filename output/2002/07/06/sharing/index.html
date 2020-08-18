@@ -95,7 +95,7 @@ server-side and checks whether the cookie time is older than the update
 time from blo.gs, and writes <strong>(new!)</strong> if it is. See? Nothing to it.
 Changed server-side Castalian code below &#8212; the &#8220;visitBlog&#8221; stuff is all
 the new&nbsp;bit.</p>
-<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="err">?</span><span class="n">cas</span>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="err">?</span><span class="n">cas</span>
 <span class="kn">import</span> <span class="nn">xml.dom.minidom</span><span class="o">,</span><span class="nn">urllib</span><span class="o">,</span><span class="nn">rfc822</span><span class="o">,</span><span class="nn">time</span>
 
 <span class="c1"># The favourites file is fetched from blo.gs once per hour by cron</span>
@@ -128,7 +128,7 @@ the new&nbsp;bit.</p>
                         <span class="n">updatedText</span> <span class="o">=</span> <span class="n">updatedText</span> <span class="o">+</span> <span class="s2">&quot; (new!)&quot;</span>
             <span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&lt;a onclick=&quot;visitBlog(this.href)&quot; href=&quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="si">%s</span><span class="s1">&lt;/a&gt; &lt;span style=&quot;font-size:75</span><span class="si">%%</span><span class="s1">&quot;&gt;</span><span class="si">%s</span><span class="s1">&lt;/span&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">nam</span><span class="p">,</span><span class="n">updatedText</span><span class="p">))</span>
 <span class="err">?</span><span class="o">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>We (meaning &#8220;the weblogging community&#8221;) need to be doing loads more

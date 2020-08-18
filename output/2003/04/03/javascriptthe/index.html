@@ -104,30 +104,30 @@ to an element and that application is <em>not</em> reflected in the computed
 style, we assume that the browser doesn&#8217;t understand it, and we can then
 go on to manually apply quotes as Simon&#8217;s code&nbsp;does.</p>
 <p>How do we check for <code>quotes</code> showing up in the computed style? Like&nbsp;so:</p>
-<div class="highlight"><pre><span></span>quotesElements = document.getElementsByTagName(&quot;q&quot;);
-if (quotesElements.length &gt; 0) {
-  q=quotesElements[0];
+<div class="highlight"><pre><span></span><code><span class="n">quotesElements</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="ss">&quot;q&quot;</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">quotesElements</span><span class="p">.</span><span class="k">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="err">{</span>
+  <span class="n">q</span><span class="o">=</span><span class="n">quotesElements</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 
-  if (q.currentStyle) {
-    s = q.currentStyle;
-  } else if (document.defaultView &amp;&amp;
-document.defaultView.getComputedStyle) {
-    s = document.defaultView.getComputedStyle(q,&#39;&#39;);
-  }
-  supportsQuotes = false;
-  for (prop in s) {
-    if (prop.toLowerCase() == &#39;quotes&#39;) {
-      supportsQuotes = true;
-      break;
-    }
-  }
-  if (supportsQuotes) {
-    alert(&quot;Supports quotes declaration&quot;);
-  } else {
-    alert(&quot;Does not support quotes declaration&quot;);
-  }
-}
-</pre></div>
+  <span class="k">if</span> <span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">currentStyle</span><span class="p">)</span> <span class="err">{</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">currentStyle</span><span class="p">;</span>
+  <span class="err">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">document</span><span class="p">.</span><span class="n">defaultView</span> <span class="o">&amp;&amp;</span>
+<span class="n">document</span><span class="p">.</span><span class="n">defaultView</span><span class="p">.</span><span class="n">getComputedStyle</span><span class="p">)</span> <span class="err">{</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">defaultView</span><span class="p">.</span><span class="n">getComputedStyle</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="err">}</span>
+  <span class="n">supportsQuotes</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">prop</span> <span class="k">in</span> <span class="n">s</span><span class="p">)</span> <span class="err">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">prop</span><span class="p">.</span><span class="n">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;quotes&#39;</span><span class="p">)</span> <span class="err">{</span>
+      <span class="n">supportsQuotes</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+      <span class="n">break</span><span class="p">;</span>
+    <span class="err">}</span>
+  <span class="err">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">supportsQuotes</span><span class="p">)</span> <span class="err">{</span>
+    <span class="n">alert</span><span class="p">(</span><span class="ss">&quot;Supports quotes declaration&quot;</span><span class="p">);</span>
+  <span class="err">}</span> <span class="k">else</span> <span class="err">{</span>
+    <span class="n">alert</span><span class="p">(</span><span class="ss">&quot;Does not support quotes declaration&quot;</span><span class="p">);</span>
+  <span class="err">}</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>This code checks for a <code>quotes</code> declaration in the computed style of

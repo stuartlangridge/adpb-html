@@ -139,10 +139,10 @@ icon! So this suppresses the &#8220;external link&#8221; indicator for that
 particular link (which is defined as class &#8220;googlelink&#8221; in the <span class="caps">MT</span>&nbsp;templates).</p>
 <p>Note that flashy people could have defined the third and fifth rules as
 one rule, because you can add multiple selectors on a rule; this should&nbsp;work:</p>
-<div class="highlight"><pre><span></span>div.blogbody a[href^=&quot;http://www.kryogenix.org&quot;], div.blogbody a[href^=&quot;http:&quot;].googlelink {
-    etc etc etc
-}
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">div.blogbody a[href^=&quot;http://www.kryogenix.org&quot;], div.blogbody a[href^=&quot;http:&quot;].googlelink {</span>
+<span class="err">    etc etc etc</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>but I wanted to take my time over this, because <span class="caps">CSS3</span> selectors aren&#8217;t

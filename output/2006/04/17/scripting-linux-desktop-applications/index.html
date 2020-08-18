@@ -81,29 +81,29 @@ provide. The JavaScript gets lots of extra objects made available to it,
 and everyone has to learn about those objects, which is way harder than
 just learning <span class="caps">JS</span> itself. Writing a file using JavaScript and the Windows
 Scripting Host looks something like&nbsp;this:</p>
-<div class="highlight"><pre><span></span>var fso = new ActiveXObject(&quot;Scripting.FileSystemObject&quot;);
-var fp = fso.CreateTextFile(savefile);
-fp.WriteLine(&quot;Blah blah blah&quot;);
-fp.Close();
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">var fso = new ActiveXObject(&quot;Scripting.FileSystemObject&quot;);</span>
+<span class="err">var fp = fso.CreateTextFile(savefile);</span>
+<span class="err">fp.WriteLine(&quot;Blah blah blah&quot;);</span>
+<span class="err">fp.Close();</span>
+</code></pre></div>
 
 
 <p>Writing a file using JavaScript inside Mozilla (which uses <span class="caps">XPCOM</span>) looks
 something like&nbsp;this:</p>
-<div class="highlight"><pre><span></span>var file = Components.classes[&quot;@mozilla.org/file/local;1&quot;]
-        .createInstance(Components.interfaces.nsILocalFile);
-    file.initWithPath( savefile );
-    if ( file.exists() == false ) {
-        alert( &quot;Creating file... &quot; );
-        file.create( Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420 );
-    }
-    var outputStream = Components.classes[&quot;@mozilla.org/network/file-output-stream;1&quot;]
-        .createInstance( Components.interfaces.nsIFileOutputStream );
-    outputStream.init( file, 0x04 | 0x08 | 0x20, 420, 0 );
-    var output = document.getElementById(&#39;blog&#39;).value;
-    var result = outputStream.write( output, output.length );
-    outputStream.close();
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">var file = Components.classes[&quot;@mozilla.org/file/local;1&quot;]</span>
+<span class="err">        .createInstance(Components.interfaces.nsILocalFile);</span>
+<span class="err">    file.initWithPath( savefile );</span>
+<span class="err">    if ( file.exists() == false ) {</span>
+<span class="err">        alert( &quot;Creating file... &quot; );</span>
+<span class="err">        file.create( Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420 );</span>
+<span class="err">    }</span>
+<span class="err">    var outputStream = Components.classes[&quot;@mozilla.org/network/file-output-stream;1&quot;]</span>
+<span class="err">        .createInstance( Components.interfaces.nsIFileOutputStream );</span>
+<span class="err">    outputStream.init( file, 0x04 | 0x08 | 0x20, 420, 0 );</span>
+<span class="err">    var output = document.getElementById(&#39;blog&#39;).value;</span>
+<span class="err">    var result = outputStream.write( output, output.length );</span>
+<span class="err">    outputStream.close();</span>
+</code></pre></div>
 
 
 <p>To be honest with you, I think that the AppleScript approach is a better

@@ -89,31 +89,31 @@ stuff can be done with proper <span class="caps">GUI</span> tools, but I don&#82
 machine because it&#8217;s a server and I&#8217;m trying to converse disc space.
 This bit&#8217;s also from memory, so be very careful and don&#8217;t just slavishly
 follow&nbsp;it.</p>
-<div class="highlight"><pre><span></span># First, make the partition available to LVM, by 
-# making it a &quot;physical volume&quot;. This is LVM-speak for 
-# &quot;a bit of a disk that I can use&quot;
-pvcreate /dev/hda3 # the big partition on the first disc
-pvcreate /dev/hdb # and all of the second disc
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="k">First</span><span class="p">,</span> <span class="n">make</span> <span class="n">the</span> <span class="n">partition</span> <span class="n">available</span> <span class="k">to</span> <span class="n">LVM</span><span class="p">,</span> <span class="k">by</span> 
+<span class="o">#</span> <span class="n">making</span> <span class="n">it</span> <span class="n">a</span> <span class="ss">&quot;physical volume&quot;</span><span class="p">.</span> <span class="n">This</span> <span class="k">is</span> <span class="n">LVM</span><span class="o">-</span><span class="n">speak</span> <span class="k">for</span> 
+<span class="o">#</span> <span class="ss">&quot;a bit of a disk that I can use&quot;</span>
+<span class="n">pvcreate</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda3</span> <span class="o">#</span> <span class="n">the</span> <span class="n">big</span> <span class="n">partition</span> <span class="k">on</span> <span class="n">the</span> <span class="k">first</span> <span class="n">disc</span>
+<span class="n">pvcreate</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hdb</span> <span class="o">#</span> <span class="k">and</span> <span class="k">all</span> <span class="k">of</span> <span class="n">the</span> <span class="k">second</span> <span class="n">disc</span>
 
-# Now, create a &quot;volume group&quot;. This is LVM-speak for 
-# &quot;a big block of disc space all managed together&quot;
-vgcreate volumegroup /dev/hda3 /dev/hdb
+<span class="o">#</span> <span class="n">Now</span><span class="p">,</span> <span class="k">create</span> <span class="n">a</span> <span class="ss">&quot;volume group&quot;</span><span class="p">.</span> <span class="n">This</span> <span class="k">is</span> <span class="n">LVM</span><span class="o">-</span><span class="n">speak</span> <span class="k">for</span> 
+<span class="o">#</span> <span class="ss">&quot;a big block of disc space all managed together&quot;</span>
+<span class="n">vgcreate</span> <span class="n">volumegroup</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda3</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hdb</span>
 
-# Next, create a &quot;logical volume&quot;. LVM-speak: &quot;something
-# that looks like a disc drive, so you can mount it&quot;
-# First, find out how big it can be
-vgdisplay | grep &quot;Total PE&quot;
-  Total PE              11833
-# now create the logical volume at that size
-lvcreate -l 11833 volumegroup -n logical1
+<span class="o">#</span> <span class="k">Next</span><span class="p">,</span> <span class="k">create</span> <span class="n">a</span> <span class="ss">&quot;logical volume&quot;</span><span class="p">.</span> <span class="n">LVM</span><span class="o">-</span><span class="n">speak</span><span class="p">:</span> <span class="ss">&quot;something</span>
+<span class="ss"># that looks like a disc drive, so you can mount it&quot;</span>
+<span class="o">#</span> <span class="k">First</span><span class="p">,</span> <span class="n">find</span> <span class="k">out</span> <span class="n">how</span> <span class="n">big</span> <span class="n">it</span> <span class="n">can</span> <span class="n">be</span>
+<span class="n">vgdisplay</span> <span class="o">|</span> <span class="n">grep</span> <span class="ss">&quot;Total PE&quot;</span>
+  <span class="n">Total</span> <span class="n">PE</span>              <span class="mi">11833</span>
+<span class="o">#</span> <span class="n">now</span> <span class="k">create</span> <span class="n">the</span> <span class="n">logical</span> <span class="n">volume</span> <span class="k">at</span> <span class="n">that</span> <span class="k">size</span>
+<span class="n">lvcreate</span> <span class="o">-</span><span class="n">l</span> <span class="mi">11833</span> <span class="n">volumegroup</span> <span class="o">-</span><span class="n">n</span> <span class="n">logical1</span>
 
-# You now have a device /dev/volumegroup/logical1
-# which you can treat as if it were a disc
-# Create a dir to put it in
-mkdir /space
-# and add it to /etc/fstab so it gets mounted. Add the line:
-/dev/volumegroup/logical1 /space auto   defaults        0       0
-</pre></div>
+<span class="o">#</span> <span class="n">You</span> <span class="n">now</span> <span class="n">have</span> <span class="n">a</span> <span class="n">device</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">volumegroup</span><span class="o">/</span><span class="n">logical1</span>
+<span class="o">#</span> <span class="n">which</span> <span class="n">you</span> <span class="n">can</span> <span class="k">treat</span> <span class="k">as</span> <span class="k">if</span> <span class="n">it</span> <span class="n">were</span> <span class="n">a</span> <span class="n">disc</span>
+<span class="o">#</span> <span class="k">Create</span> <span class="n">a</span> <span class="n">dir</span> <span class="k">to</span> <span class="n">put</span> <span class="n">it</span> <span class="k">in</span>
+<span class="n">mkdir</span> <span class="o">/</span><span class="k">space</span>
+<span class="o">#</span> <span class="k">and</span> <span class="k">add</span> <span class="n">it</span> <span class="k">to</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span> <span class="n">so</span> <span class="n">it</span> <span class="n">gets</span> <span class="n">mounted</span><span class="p">.</span> <span class="k">Add</span> <span class="n">the</span> <span class="n">line</span><span class="p">:</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">volumegroup</span><span class="o">/</span><span class="n">logical1</span> <span class="o">/</span><span class="k">space</span> <span class="n">auto</span>   <span class="k">defaults</span>        <span class="mi">0</span>       <span class="mi">0</span>
+</code></pre></div>
 
 
 <p>After that complex little bit (again, if you aren&#8217;t tight like me, do it
@@ -128,22 +128,22 @@ folder for each machine, and there should be in there a folder per day.
 Each folder should look like a complete backup, but if a file hasn&#8217;t
 changed since yesterday it shouldn&#8217;t take up any more disc space. So,
 the folder structure should look, say, like&nbsp;this:</p>
-<div class="highlight"><pre><span></span>/space
-  /stuart
-    /2006-10-24
-      /folder1
-        /file1
-        /file2
-        /newfile1
-      /folder2
-        /file3
-    /2006-10-23
-      /folder1
-        /file1
-        /file2
-      /folder2
-        /file3
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">/space</span>
+<span class="err">  /stuart</span>
+<span class="err">    /2006-10-24</span>
+<span class="err">      /folder1</span>
+<span class="err">        /file1</span>
+<span class="err">        /file2</span>
+<span class="err">        /newfile1</span>
+<span class="err">      /folder2</span>
+<span class="err">        /file3</span>
+<span class="err">    /2006-10-23</span>
+<span class="err">      /folder1</span>
+<span class="err">        /file1</span>
+<span class="err">        /file2</span>
+<span class="err">      /folder2</span>
+<span class="err">        /file3</span>
+</code></pre></div>
 
 
 <p>and the <code>2006-10-24</code> folder should have all the files in it but only
@@ -204,7 +204,7 @@ executable with <code>chmod +x /space/begin-backup</code>, and looks like&nbsp;t
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="nv">PERSON</span><span class="o">=</span><span class="nv">$1</span>
 <span class="nv">BROOT</span><span class="o">=</span>/space
@@ -232,7 +232,7 @@ cp -al <span class="s2">&quot;</span><span class="k">$(</span>readlink -f <span 
 <span class="c1"># and link current to the new hardlink tree</span>
 rm <span class="nv">$PDIR</span>/current
 ln -s <span class="nv">$DT</span> <span class="nv">$PDIR</span>/current
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>We&#8217;ll come back to how you run this in a&nbsp;minute.  </p>
@@ -241,10 +241,10 @@ ln -s <span class="nv">$DT</span> <span class="nv">$PDIR</span>/current
 done with <code>rsync</code>, which is complex but brilliantly clever. In essence,
 rsync is like <code>copy</code> (or <code>cp</code>), except that it compares the source and
 the destination and only sends the changes over. On my laptop, I can&nbsp;do</p>
-<div class="highlight"><pre><span></span>rsync -avz --delete -e ssh 
-    /some/folder/to/back/up 
-    myserver:/space/stuart/current/
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">rsync -avz --delete -e ssh </span>
+<span class="err">    /some/folder/to/back/up </span>
+<span class="err">    myserver:/space/stuart/current/</span>
+</code></pre></div>
 
 
 <p>and that will copy <code>/some/folder/to/back/up</code> over to the server.
@@ -305,7 +305,7 @@ actually does the work, just does the above steps, and looks like&nbsp;this:</p>
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Do backups to the rsync server</span>
 <span class="c1"># You must have already set up a passphraseless ssh key to the ssh server</span>
@@ -322,13 +322,13 @@ python <span class="nv">$BK</span>/findemblem.py backup <span class="p">|</span>
   rsync -avzq --delete -e ssh <span class="s2">&quot;</span><span class="nv">$fn</span><span class="s2">&quot;</span> 
     servername:/space/<span class="nv">$BKNAME</span>/current
 <span class="k">done</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>All that remains now is to schedule this script to run every night, by
 editing your tasklist with <code>crontab -e</code> and adding the&nbsp;line</p>
-<div class="highlight"><pre><span></span>40  4  *   *   *     /full/path/to/dobackup.sh
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">40  4  *   *   *     /full/path/to/dobackup.sh</span>
+</code></pre></div>
 
 
 <p>And, lo and behold, you have overnight backups. All done and dusted.&nbsp;Phew.</p>

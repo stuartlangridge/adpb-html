@@ -66,34 +66,34 @@ Brendan Gregg be <a href="http://blogs.sun.com/brendan/entry/dtrace_meets_javasc
 those o&#8217; ye scurvy dogs that dunno, DTrace be this marvellous thing on
 Solaris that traces kernel calls. Apparently it be for more than that,
 though; see Brandan trace the JavaScript&nbsp;code</p>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">padZero</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">function</span><span class="w"> </span><span class="nf">padZero</span><span class="p">(</span>i<span class="p">)</span><span class="w"></span>
 <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&quot;0&quot;</span> <span class="o">+</span> <span class="nx">i</span>
-        <span class="k">return</span> <span class="nx">i</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="k">return</span> <span class="s">&quot;0&quot;</span> <span class="o">+</span> <span class="nb">i</span>
+        <span class="n">return</span> <span class="s">i</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">startTime</span><span class="p">()</span>
+<span class="k">function</span><span class="w"> </span><span class="nf">startTime</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span>
-        <span class="kd">var</span> <span class="nx">time</span> <span class="o">=</span> <span class="nx">padZero</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getHours</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span>
-            <span class="nx">padZero</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span>
-            <span class="nx">padZero</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
-        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;clock&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;time: &quot;</span> <span class="o">+</span> <span class="nx">time</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span>
-        <span class="kd">var</span> <span class="nx">timeout</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="s1">&#39;startTime()&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+        <span class="n">var</span> <span class="s">now</span> <span class="s">=</span> <span class="s">new</span> <span class="s">Date</span>
+        <span class="n">var</span> <span class="s">time</span> <span class="s">=</span> <span class="s">padZero(now.getHours())</span> <span class="s">+</span> <span class="s">&quot;:&quot;</span> <span class="s">+</span>
+            <span class="n">padZero</span><span class="p">(</span><span class="n">now</span><span class="p">.</span><span class="n">getMinutes</span><span class="p">())</span> <span class="o">+</span> <span class="s">&quot;:&quot;</span> <span class="o">+</span>
+            <span class="n">padZero</span><span class="p">(</span><span class="n">now</span><span class="p">.</span><span class="n">getSeconds</span><span class="p">());</span>
+        <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;clock&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="p">=</span> <span class="s">&quot;time: &quot;</span> <span class="o">+</span> <span class="n">time</span> <span class="o">+</span> <span class="s">&quot;&quot;</span>
+        <span class="n">var</span> <span class="s">timeout</span> <span class="s">=</span> <span class="s">setTimeout(&#39;startTime()&#39;,</span> <span class="s">1000)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>and be gettin&#8217; the followin&#8217;&nbsp;output:</p>
-<div class="highlight"><pre><span></span> FILE                   FUNC                          CALLS
- clock.html             getElementById                    9
- clock.html             getHours                          9
- clock.html             getMinutes                        9
- clock.html             getSeconds                        9
- clock.html             setTimeout                        9
- clock.html             startTime                         9
- clock.html             padZero                          27
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err"> FILE                   FUNC                          CALLS</span>
+<span class="err"> clock.html             getElementById                    9</span>
+<span class="err"> clock.html             getHours                          9</span>
+<span class="err"> clock.html             getMinutes                        9</span>
+<span class="err"> clock.html             getSeconds                        9</span>
+<span class="err"> clock.html             setTimeout                        9</span>
+<span class="err"> clock.html             startTime                         9</span>
+<span class="err"> clock.html             padZero                          27</span>
+</code></pre></div>
 
 
 <p>as well as much more complex output t&#8217; be seen below. Every day I be

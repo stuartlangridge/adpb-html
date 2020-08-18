@@ -78,21 +78,21 @@ recurring&nbsp;again.</p>
 There are two steps to this. First, edit
 <code>/path/to/your/repos/db/DB_CONFIG</code>. Buried in there there will be some
 of the following&nbsp;lines:</p>
-<div class="highlight"><pre><span></span>set_lk_max_locks   2000
-set_lk_max_lockers 2000
-set_lk_max_objects 2000
-set_lg_bsize     262144
-set_lg_max      1048576
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">set_lk_max_locks   2000</span>
+<span class="err">set_lk_max_lockers 2000</span>
+<span class="err">set_lk_max_objects 2000</span>
+<span class="err">set_lg_bsize     262144</span>
+<span class="err">set_lg_max      1048576</span>
+</code></pre></div>
 
 
 <p>I&#8217;m not sure exactly which to change, so I changed lots of them, as&nbsp;follows:</p>
-<div class="highlight"><pre><span></span>set_lk_max_locks   3000
-set_lk_max_lockers 3000
-set_lk_max_objects 3000
-set_lg_bsize    2097152
-set_lg_max      8388608
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">set_lk_max_locks   3000</span>
+<span class="err">set_lk_max_lockers 3000</span>
+<span class="err">set_lk_max_objects 3000</span>
+<span class="err">set_lg_bsize    2097152</span>
+<span class="err">set_lg_max      8388608</span>
+</code></pre></div>
 
 
 <p>However, that alone won&#8217;t work. Berkeley <span class="caps">DB</span> seems to cache the settings.
@@ -108,10 +108,10 @@ anything. Now do the long-term fix,&nbsp;below.  </p>
 people advise you to not use it now in favour of their own format, fsfs.
 I&#8217;m sure that <span class="caps">BDB</span> is a great and powerful program, but it does seem to
 get lots of locking errors and so forth. So, you should <a href="http://subversion.tigris.org/faq.html#bdb-fsfs-convert">convert your repository to fsfs format</a>. Do this like&nbsp;so:</p>
-<div class="highlight"><pre><span></span>mv /path/to/repos /path/to/repos.old
-svnadmin create -fs-type fsfs /path/to/repos
-svnadmin dump /path/to/repos.old | svnadmin load /path/to/repos
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">mv /path/to/repos /path/to/repos.old</span>
+<span class="err">svnadmin create -fs-type fsfs /path/to/repos</span>
+<span class="err">svnadmin dump /path/to/repos.old | svnadmin load /path/to/repos</span>
+</code></pre></div>
 
 
 <p>That renames your existing repository to <em>repos</em>.old and then creates a

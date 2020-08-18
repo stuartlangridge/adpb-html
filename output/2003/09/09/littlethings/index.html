@@ -89,13 +89,13 @@ the default run action for all movies when clicked&nbsp;on:</p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 disable-xscreensaver <span class="p">&amp;</span> <span class="nv">DISABLE_PID</span><span class="o">=</span><span class="nv">$!</span>
 <span class="nb">echo</span> <span class="s2">&quot;Disabling screensaver (PID </span><span class="nv">$DISABLE_PID</span><span class="s2">)&quot;</span>
 mplayer -vo xvidix -ao oss -framedrop <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> -really-quiet <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
 <span class="nb">echo</span> Re-enabling screensaver
 <span class="nb">kill</span> <span class="nv">$DISABLE_PID</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>and <code>disable-xscreensaver</code> is:</p>
@@ -103,12 +103,12 @@ mplayer -vo xvidix -ao oss -framedrop <span class="s2">&quot;</span><span class=
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> 
     sleep <span class="m">59</span>
     xscreensaver-command -deactivate <span class="p">&amp;</span>
 <span class="k">done</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>That tells the screensaver every 59 seconds to reset its inactivity

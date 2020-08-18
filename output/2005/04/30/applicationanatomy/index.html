@@ -147,14 +147,14 @@ two page process as follows: page1 contains the form, which submits to
 page2; Page2 saves the data and then displays the message. I don’t do it
 like that; I have the form on page1 submit <strong>to</strong> page1, and page1 is
 structured as&nbsp;follows:</p>
-<div class="highlight"><pre><span></span>if data has been submitted
-  save the data in the database
-  redirect to page 2
-  end page
-end if
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="k">data</span> <span class="n">has</span> <span class="n">been</span> <span class="n">submitted</span>
+  <span class="n">save</span> <span class="n">the</span> <span class="k">data</span> <span class="k">in</span> <span class="n">the</span> <span class="k">database</span>
+  <span class="n">redirect</span> <span class="k">to</span> <span class="n">page</span> <span class="mi">2</span>
+  <span class="k">end</span> <span class="n">page</span>
+<span class="k">end</span> <span class="k">if</span>
 
-display the form
-</pre></div>
+<span class="n">display</span> <span class="n">the</span> <span class="n">form</span>
+</code></pre></div>
 
 
 <p>So, in actuality, the “add a request for image generation” part is done

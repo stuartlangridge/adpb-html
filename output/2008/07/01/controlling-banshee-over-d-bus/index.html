@@ -64,22 +64,22 @@
 			<p>I needed to be able to control Banshee from another application, and it
 turns out it has a lovely D-Bus <span class="caps">API</span>. Skip to the next
 song<span style="color:red" title="Feel free to translate to languages other than Python">*</span>:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dbus</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">dbus</span>
 <span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
 <span class="n">banshee</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s2">&quot;org.bansheeproject.Banshee&quot;</span><span class="p">,</span> 
   <span class="s2">&quot;/org/bansheeproject/Banshee/PlaybackController&quot;</span><span class="p">)</span>
 <span class="n">banshee</span><span class="o">.</span><span class="n">Next</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span> <span class="c1"># use banshee.Previous(False) to skip back one song</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Start Banshee playing (this works even if Banshee isn&#8217;t running; D-Bus
 starts it&nbsp;up!):</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dbus</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">dbus</span>
 <span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
 <span class="n">banshee</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s2">&quot;org.bansheeproject.Banshee&quot;</span><span class="p">,</span> 
   <span class="s2">&quot;/org/bansheeproject/Banshee/PlayerEngine&quot;</span><span class="p">)</span> <span class="c1"># note PlayerEngine, not PlaybackController</span>
 <span class="n">banshee</span><span class="o">.</span><span class="n">Play</span><span class="p">()</span> <span class="c1"># use banshee.Pause() to pause playback</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>I found these commands using

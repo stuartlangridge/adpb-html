@@ -94,13 +94,13 @@ corner could actually be useful. On Ubuntu, you need to edit (actually,
 you probably need to <em>create</em>) a file called <code>.Xresources</code> in your home
 folder<span style="color: red" title="And on Debian. On other distros it might be called .Xdefaults">*</span>.
 In that file, you put the configuration for yeahconsole, like&nbsp;this:</p>
-<div class="highlight"><pre><span></span>yeahconsole*toggleKey: None+F2
-yeahconsole*consoleHeight: 20
-yeahconsole*aniDelay: 0
-yeahconsole*stepSize: 10
-yeahconsole*faceName: ProFontWindows:style=Regular
-yeahconsole*faceSize: 9
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">yeahconsole*toggleKey: None+F2</span>
+<span class="err">yeahconsole*consoleHeight: 20</span>
+<span class="err">yeahconsole*aniDelay: 0</span>
+<span class="err">yeahconsole*stepSize: 10</span>
+<span class="err">yeahconsole*faceName: ProFontWindows:style=Regular</span>
+<span class="err">yeahconsole*faceSize: 9</span>
+</code></pre></div>
 
 
 <p>The toggleKey one is the important one: it sets which key you use to
@@ -119,9 +119,9 @@ thing: if you hit Ctrl-D to log out by mistake, it&#8217;ll close yeahconsole
 (tilda did this too), and that&#8217;s really irritating. To fix this, put the
 following in a file called <code>bashloop</code> in your home&nbsp;folder:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> bash<span class="p">;</span> <span class="k">done</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>and change your Startup Programs command above to be
