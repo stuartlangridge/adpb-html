@@ -34,7 +34,11 @@ function wm_rx_live_update(j) {
             // so we fix them up
             var m = wm.author.photo.match(/twitter.com\/(.*)\/profile_image/);
             if (m) {
-                imgsrc = "https://unavatar.now.sh/twitter/" + m[1];
+                // avatars.io died https://shkspr.mobi/blog/2020/07/goodbye-avatars-io-hello-unavatar/
+                // imgsrc = "https://avatars.io/twitter/" + m[1];
+                // unavatar.now.sh broke for twitter https://github.com/Kikobeats/unavatar/issues/121
+                // imgsrc = "https://unavatar.now.sh/twitter/" + m[1];
+                imgsrc = "https://api.microlink.io/?url=https://twitter.com/" + m[1] + "&embed=image.url";
             } else {
                 imgsrc = wm.author.photo;
             }
