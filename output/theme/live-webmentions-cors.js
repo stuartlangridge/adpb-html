@@ -34,7 +34,7 @@ function wm_rx_live_update(j) {
             // so we fix them up
             var m = wm.author.photo.match(/twitter.com\/(.*)\/profile_image/);
             if (m) {
-                imgsrc = "https://avatars.io/twitter/" + m[1];
+                imgsrc = "https://unavatar.now.sh/twitter/" + m[1];
             } else {
                 imgsrc = wm.author.photo;
             }
