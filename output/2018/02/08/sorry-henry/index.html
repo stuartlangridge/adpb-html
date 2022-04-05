@@ -85,6 +85,7 @@ table.dudeney td:not(.t):not(:empty) {
     padding-bottom: 25px;
     height: 0;
     box-sizing: border-box;
+    color: red;
 }
 table.dudeney td.t { text-align: right; }
 </style>
@@ -112,22 +113,24 @@ judgment and&nbsp;patience.</p>
 <hr>
 
 <p>But, you know what? I don&#8217;t think he&#8217;s right. Now, I appreciate that he probably had to spend hours or days trying out possibilities with a piece of paper and a fountain pen, and I just wrote the following 15 lines of Python in five minutes, but hey, he didn&#8217;t have to bear with his government trying to ban encryption, so let&#8217;s call it&nbsp;even.</p>
-<pre><code>from itertools import permutations
-nums = [1,2,3,4,5,6,7,8,9]
-values = []
-for p in permutations(nums, 9):
-    one   = p[0]*100 + p[1]*10 + p[2]
-    two   = p[3]*10 + p[4]
-    three = p[5]*10 + p[6]
-    four  = p[7]*10 + p[8]
-    if four > three: continue # or we'll see fg*hi and hi*fg as different
-    if one*two == three*four:
-        expression = "%s*%s = %s*%s = %s" % (
-            one, two, three, four, one*two)
-        values.append((expression, one*two))
-values.sort(key=lambda x:x[1])
-print("Solution for 1-9")
-print("\n".join([x[0] for x in values]))</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+    <span class="n">one</span>   <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">two</span>   <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">three</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">four</span>  <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">four</span> <span class="o">&gt;</span> <span class="n">three</span><span class="p">:</span> <span class="k">continue</span> <span class="c1"># or we&#39;ll see fg*hi and hi*fg as different</span>
+    <span class="k">if</span> <span class="n">one</span><span class="o">*</span><span class="n">two</span> <span class="o">==</span> <span class="n">three</span><span class="o">*</span><span class="n">four</span><span class="p">:</span>
+        <span class="n">expression</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">*</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">*</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">one</span><span class="p">,</span> <span class="n">two</span><span class="p">,</span> <span class="n">three</span><span class="p">,</span> <span class="n">four</span><span class="p">,</span> <span class="n">one</span><span class="o">*</span><span class="n">two</span><span class="p">)</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">expression</span><span class="p">,</span> <span class="n">one</span><span class="o">*</span><span class="n">two</span><span class="p">))</span>
+<span class="n">values</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solution for 1-9&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]))</span>
+</code></pre></div>
+
 
 <p>The key point here is this: the little programme above indeed recognises his proposed solutions (<code>158*32 = 79*64 = 5056</code> and <code>174*32 = 96*58 = 5568</code>) but it also finds two larger ones: <code>584*12 = 96*73 = 7008</code> and <code>532*14 = 98*76 = 7448</code>. Did I miss something about the puzzle? Or am I actually in the rare position of finding an error in a Dudeney book? And all it took was seventy years of computer technology advancement to put me in that position. Maths, eh?&nbsp;Tch.</p>
 <p>It&#8217;s an interesting book. There are lots of money puzzles, in which I have to carefully remember that ha&#8217;pennies and farthings are a thing (a farthing is a quarter of a penny), there are 12 pennies in a shilling, and twenty shillings in a pound. There&#8217;s some rather racist portrayals of comic-opera Chinese characters in a few of the puzzles. And my heart sank when I read a puzzle about husbands and wives crossing a river in a boat, where no man would permit his wife to be in the boat with another man without him, because I assumed that the solution would also say something like &#8220;and of course the women cannot be expected to row the boat&#8221;, and I was then pleasantly surprised to discover that this was not the case and indeed they were described as probably being capable oarswomen and it was likely their boat to begin with! Writings from another time. But still as good as any puzzle book today, if not&nbsp;better.</p>
