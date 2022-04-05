@@ -91,27 +91,27 @@ decide whether I&#8217;m prepared to run the risk or not. Because what you&#8217
 asking for is that I replace&nbsp;this:</p>
 <p><code>localStorage.setItem("key", "value");</code></p>
 <p>with&nbsp;this</p>
-<div class="highlight"><pre><span></span><code><span class="err">storeSomething = function(key, value) {</span>
-<span class="err">    var request = indexedDB.open(&quot;mydbname&quot;,</span>
-<span class="err">        &quot;This is a description of the database.&quot;);</span>
-<span class="err">    request.onsuccess = function(e) {</span>
-<span class="err">        var v = &quot;1.0&quot;;</span>
-<span class="err">        var db = e.target.result;</span>
-<span class="err">        if (v!= db.version) {</span>
-<span class="err">            var setVrequest = db.setVersion(v);</span>
-<span class="err">            setVrequest.onsuccess = function(e) {</span>
-<span class="err">                var store = db.createObjectStore(</span>
-<span class="err">                    &quot;myobjectstore&quot;, </span>
-<span class="err">                    {keyPath: &quot;timeStamp&quot;});</span>
-<span class="err">                var request = store.put({key: value, </span>
-<span class="err">                    &quot;timeStamp&quot; : new Date().getTime()});</span>
-<span class="err">                request.onsuccess = function(e) {</span>
-<span class="err">                    // now carry on with what I was doing</span>
-<span class="err">                };</span>
-<span class="err">            };</span>
-<span class="err">        }</span>
-<span class="err">    };</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="nx">storeSomething</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">indexedDB</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&quot;mydbname&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;This is a description of the database.&quot;</span><span class="p">);</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="o">!=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">version</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">setVrequest</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">setVersion</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+            <span class="nx">setVrequest</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">createObjectStore</span><span class="p">(</span>
+                    <span class="s2">&quot;myobjectstore&quot;</span><span class="p">,</span> 
+                    <span class="p">{</span><span class="nx">keyPath</span><span class="o">:</span> <span class="s2">&quot;timeStamp&quot;</span><span class="p">});</span>
+                <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">put</span><span class="p">({</span><span class="nx">key</span><span class="o">:</span> <span class="nx">value</span><span class="p">,</span> 
+                    <span class="s2">&quot;timeStamp&quot;</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">()});</span>
+                <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// now carry on with what I was doing</span>
+                <span class="p">};</span>
+            <span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">}</span>
 </code></pre></div>
 
 

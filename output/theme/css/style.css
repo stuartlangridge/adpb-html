@@ -976,7 +976,6 @@ code {
 
 div.highlight pre {
     background: white;
-    font-size: 11px;
     overflow-x: auto;
     padding: 0.5em;
     border: 1px solid #eee;
@@ -1039,14 +1038,15 @@ strong { font-weight: bold; }
         color: rgba(255,180,180,0.7);
     }
     div.highlight pre {
-    	background: #ddd;
-    	color: #222;
-    	filter: invert(100);
+    	background: #005;
     }
     code {
  	  	background: #005;
     	color: #d73;
     	border-color: #336;
+	}
+    .highlight code {
+    	border-width: 0;
 	}
 }
 
