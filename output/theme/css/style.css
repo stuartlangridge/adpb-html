@@ -1060,3 +1060,9 @@ strong { font-weight: bold; }
 	padding: 1.5em 2em;
 	text-align: justify;
 }
+
+p.trending {
+	font-size: 0.7em;
+	text-transform: uppercase;
+	text-align: right;
+}

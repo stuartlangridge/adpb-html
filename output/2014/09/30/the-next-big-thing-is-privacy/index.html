@@ -253,15 +253,15 @@
 			Jude Gibbons responded at
 		<a href="https://twitter.com/sil/status/625093804501172224">likes this.</a>
 (twitter.com)		<span class="wm-summary"></span></li>
-		<li><img src="https://twitter.com/personalbcouk/profile_image?size=original">
-			Personal Branding responded at
-		<a href="https://twitter.com/personalbcouk/status/643516268021157890">twitter.com</a>
-		<span class="wm-summary">			@lukeglen — The next big thing is privacy ow.ly/ScH1I Was @SpotiD too ahead of its tme? goo.gl/z9a2ty
-</span></li>
 		<li><img src="https://twitter.com/markwing/profile_image?size=original">
 			Mark Wing responded at
 		<a href="https://twitter.com/markwing/status/643516267786317824">twitter.com</a>
 		<span class="wm-summary">			@lukeglen — The next big thing is privacy ow.ly/ScH1F Was @SpotiD too ahead of its tme? goo.gl/z9a2ty
+</span></li>
+		<li><img src="https://twitter.com/personalbcouk/profile_image?size=original">
+			Personal Branding responded at
+		<a href="https://twitter.com/personalbcouk/status/643516268021157890">twitter.com</a>
+		<span class="wm-summary">			@lukeglen — The next big thing is privacy ow.ly/ScH1I Was @SpotiD too ahead of its tme? goo.gl/z9a2ty
 </span></li>
 		<li><img src="https://twitter.com/Interrel8ed/profile_image?size=original">
 			Interrelated responded at
@@ -317,6 +317,29 @@ if (!tooNewForOldComments) {
 		}
 	};
 	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
 }
 </script>
 
