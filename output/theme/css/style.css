@@ -944,10 +944,11 @@ ul.neighbours-links li a {
 	}
 }
 
-#webmentions {
+#webmentions, #similar_posts {
 	text-align: left;
 	padding: 10px;
 }
+#webmentions h4 { margin-top: 0; }
 #webmentions ul {
 	margin: 0;
 	padding: 0;
