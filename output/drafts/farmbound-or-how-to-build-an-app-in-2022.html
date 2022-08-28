@@ -68,6 +68,11 @@
 		</h2>
 		<div class="entry-content e-content">
 			<p>So, I made a game. It&#8217;s called <a href="https://kryogenix.org/farmbound">Farmbound</a>. It&#8217;s a puzzle; you get a sequence of farm things &#8212; seeds, crops, knives, water &#8212; and they combine to make better items and to give you points. Knives next to crops and fields continually harvest them for points; seeds combine to make crops which combine to make fields; water and manure grow a seed into a crop and a crop into a field. Think of it like a cross between a match-3 game and Little Alchemy. The wrinkle is that the sequence of items you get is the same for the whole day: if you play again, you&#8217;ll get the same things in the same order, so you can learn and refine your strategy. It&#8217;s rather fun: <a href="https://kryogenix.org/farmbound">give it a try</a>.</p>
+<figure>
+    <figcaption>Farmbound, on a mobile, in light mode</figcaption>
+    <img src="https://kryogenix.org/random/farmbound-lightmode-mobile.png" alt="">
+</figure>
+
 <p>It&#8217;s a web app. Works for everyone. And I thought it would be useful to explain why it is, why I think that&#8217;s the way to do things, and some of the interesting parts of building an app for everyone to play which is delivered over the web rather than via app stores and&nbsp;downloads.</p>
 <h3>Why&#8217;s it a web app and not a platform-specific native&nbsp;app?</h3>
 <p>Well, there are a bunch of practical reasons. You get completely immediate play with a web app; someone taps on a share link, and they&#8217;re playing. No installation, no platform detection, it Just Works (to coin a phrase which nobody has ever used before about apps ever in the history of technology). And for something like this, an app with platform-specific code isn&#8217;t needed: sure, if you&#8217;re talking to some hardware devices, or doing low-level device fiddling or operating system integration, you might need to build and deliver something separately to each platform. But Farmbound is not that. There is nothing (well, nearly nothing, and see later) that Farmbound needs that requires a native app. So it isn&#8217;t&nbsp;one.</p>
