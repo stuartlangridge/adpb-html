@@ -308,6 +308,7 @@ a:hover {
 .entry-content p { text-indent: 1.25em; }
 .entry-content a img {
 	border: 10px solid transparent;
+	max-width: 100%;
 }
 .entry-content a:hover img {
 	border: 10px solid rgba(255,255,255,0.6);
