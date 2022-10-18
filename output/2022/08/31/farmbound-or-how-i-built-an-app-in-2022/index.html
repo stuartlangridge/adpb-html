@@ -96,7 +96,7 @@
 <p>Building and debugging and testing a service worker is still <em>so hard</em>. Working out why this page is cached, or why it isn&#8217;t cached, or why it isn&#8217;t loading, is incredibly baffling and infuriating still, and I just don&#8217;t get it. I tried using &#8220;workbox&#8221;, but that doesn&#8217;t actually explain how to use it properly. In particular, for this use case, a completely static unchanging site, what I want is &#8220;cache this actual page and all its dependencies forever, unless there&#8217;s a change&#8221;. However, all the docs assume that I&#8217;m building an &#8220;app shell&#8221; which then uses <code>fetch()</code> to get data off the server repeatedly, and so won&#8217;t shut up about &#8220;network first&#8221; and &#8220;cache first, falling back&#8221; and so on rather than the &#8220;just cache it all because it&#8217;s static, and then shut up&#8221; methodology. And getting insight into why a thing loaded or didn&#8217;t is really hard! Sure, also having Cloudflare caching stuff and my browser caching stuff as well really doesn&#8217;t help here. But I am not even slightly convinced that I&#8217;ve done all this correctly, and I don&#8217;t really know how to be better. It&#8217;s too hard,&nbsp;still.</p>
 <h3>Conclusion</h3>
 <p>So that&#8217;s why Farmbound is the way it is. It&#8217;s been interesting to create, and I am very grateful to the Elite Farmbound Testing Team for a great deal of feedback and helping me refine the idea and the play: lots of love to <a href="https://popey.com">popey</a>, <a href="https://twitter.com/ralight">Roger</a>, <a href="https://twitter.com/simonjbutcher">Simon</a>, <a href="https://wimpysworld.com">Martin</a>, and <a href="https://barrenfrozenwasteland.com/">Mark</a>, as well as Handy Matt and my&nbsp;mum!</p>
-<p>There are still some things I might do in the future (achievements? maybe), and I might change the design (I&#8217;m not great at visual design, as you can tell), and I really wish that I could have done all the animations with Shared Element Transitions because it would have been 312 times easier than the way I did it (a bunch of them add generated content and then web-animations-api move the ::before around, which I thought was quite neat but is also daft by comparison with <span class="caps">SET</span>). But I&#8217;m pleased with the implementation, and most importantly it&#8217;s actually fun to play. Getting over a thousand points is really good (although sometimes impossible, on some days), and I don&#8217;t really think the best strategies have been worked out yet. Is it better to make fields and tractors, or not go that far? Is water a boon or an annoyance? I&#8217;d be interested in your thoughts. Go play <a href="https://kryogenix.org/farmbound/">Farmbound</a>, and share your results with <a href="https://twitter.com/sil">me on Twitter</a>.</p>
+<p>There are still some things I might do in the future (achievements? maybe), and I might change the design (I&#8217;m not great at visual design, as you can tell), and I really wish that I could have done all the animations with Shared Element Transitions because it would have been 312 times easier than the way I did it (a bunch of them add generated content and then web-animations-api move the ::before around, which I thought was quite neat but is also daft by comparison with <span class="caps">SET</span>). But I&#8217;m pleased with the implementation, and most importantly it&#8217;s actually fun to play. Getting over a thousand points is really good (although sometimes impossible, on some days), and I don&#8217;t really think the best strategies have been worked out yet. Is it better to make fields and tractors, or not go that far? Is water a boon or an annoyance? I&#8217;d be interested in your thoughts. Go play <a href="https://kryogenix.org/farmbound/">Farmbound</a>, and share your results with <a href="https://twitter.com/sil">me on Twitter</a>!</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2022/06/17/help-the-cma-help-the-web/">Previous post</a></li>
@@ -112,7 +112,249 @@
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul><li>(no mentions, yet.)</li></ul>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465">twitter.com</a>
+		<span class="wm-summary">			For those of you who are techie or web types, there's a whole big writeup about why Farmbound is built the way it is (a web app, no native here) inclu&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1548986379127988225/-2d00F2c.jpg">
+			FarmboundGame responded at
+		<a href="https://twitter.com/FarmBoundGame/status/1564958617656332288">twitter.com</a>
+		<span class="wm-summary">			For those of you who are techie or web types, there's a whole big writeup about why Farmbound is built the way it is (a web app, no native here) inclu&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1536284028332122112/ae3GEAV3.jpg">
+			Alan Pope 🍺🐧🐱💉💉💉 responded at
+		<a href="https://twitter.com/popey/status/1564959515417665543">twitter.com</a>
+		<span class="wm-summary">			I've helped test Farmbound for a while now, along with some friends. It's been fun to play each day and see who gets the highest score. Maybe you'll s&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1146790773427449857/iJGmvdKH.png">
+			⊥ᵒᵚ Cᵸᵎᶺᵋᶫ∸ᵒᵘ ✗ responded at
+		<a href="https://twitter.com/thefalken/status/1564965576505790465">twitter.com</a>
+		<span class="wm-summary">			For those of you who are techie or web types, there's a whole big writeup about why Farmbound is built the way it is (a web app, no native here) inclu&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1532125442504724481/sOJrJD-K.jpg">
+			Joshua Hoover responded at
+		<a href="https://twitter.com/joshuahoover/status/1564968569493864450">twitter.com</a>
+		<span class="wm-summary">			For those of you who are techie or web types, there's a whole big writeup about why Farmbound is built the way it is (a web app, no native here) inclu&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000401486587/58fd754dfcd844ffad63794e19ff822a.png">
+			Roderick Gadellaa responded at
+		<a href="https://twitter.com/RGadellaa/status/1564969088786505729">twitter.com</a>
+		<span class="wm-summary">			Building games on the web is a thing now! \o/ Just click a link and play. Want to get back to it? Add it to the home screen! It can even work offline&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1252594551807754246/--PG7H_D.jpg">
+			Jessica Rose responded at
+		<a href="https://twitter.com/jesslynnrose/status/1564970735705231362">twitter.com</a>
+		<span class="wm-summary">			Theres also a technical write up, if you’re into that kind of thing:
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1507106663039320066/1gOrRGjl.jpg">
+			Jeff Miller responded at
+		<a href="https://twitter.com/jmeowmeow/status/1564973200361996288">twitter.com</a>
+		<span class="wm-summary">			For those of you who are techie or web types, there's a whole big writeup about why Farmbound is built the way it is (a web app, no native here) inclu&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/917080328400814080/NVFfU2GQ.jpg">
+			Lobsters responded at
+		<a href="https://twitter.com/lobsters/status/1564976338519396353">twitter.com</a>
+		<span class="wm-summary">			Farmbound, or how I built an app in 2022 via @popey lobste.rs/s/p6apmq #games #mobile #web kryogenix.org/days/2022/08/3…
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			popey responded at
+		<a href="https://lobste.rs/s/p6apmq">3...</a>
+(lobste.rs)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1440801521302532096/SkZG2AAx.jpg">
+			Peer Reynders responded at
+		<a href="https://twitter.com/PeerReynders/status/1564976365983653888">twitter.com</a>
+		<span class="wm-summary">			A nice discussion of the architectural trade offs that is often lacking when people write about their tech choices. I'm also finding Google's "just u&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1564976894570799104">twitter.com</a>
+		<span class="wm-summary">			The discussion of the tradeoffs is a large part of why I wanted to write down all the thoughts while I had them, indeed! So others could see why I mad&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1228067445153452033/_A8Uq2VY.jpg">
+			Terence Eden responded at
+		<a href="https://twitter.com/edent/status/1565001999288094721">twitter.com</a>
+		<span class="wm-summary">			FYI, I didn't get an add to home screen pop up in Firefox for Android.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1534873946243596289/p4UcpIA4.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/DataAugmented/status/1565002166380929024">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Farmbound, or how I built an app in 2022 kryogenix.org/days/2022/08/3… So, I made a game. It’s called Farmbound. It’s a puzzle; you&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75.jpeg">
+			Simon Willison responded at
+		<a href="https://twitter.com/simonw/status/1565015555379040257">twitter.com</a>
+		<span class="wm-summary">			For those of you who are techie or web types, there's a whole big writeup about why Farmbound is built the way it is (a web app, no native here) inclu&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1526328812153327620/rowprIw3.jpg">
+			Robert Goss responded at
+		<a href="https://twitter.com/robgoss/status/1565023013363499016">twitter.com</a>
+		<span class="wm-summary">			Top story: as days pass by — Farmbound, or how I built an app in 2022 kryogenix.org/days/2022/08/3…, see more tweetedtimes.com/robgoss?s=tnp
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1419812278665310210/Q8-5uaX_.jpg">
+			Gwyn! responded at
+		<a href="https://twitter.com/gwynforthewyn/status/1565064659274584065">twitter.com</a>
+		<span class="wm-summary">			@weitzelb Aq’s a legend and a solid writer. You’ll dig this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1529578035736870913/VCbIB_my.jpg">
+			Webdev Weekly responded at
+		<a href="https://twitter.com/WebdevDiscu/status/1565224678167379971">twitter.com</a>
+		<span class="wm-summary">			Farmbound, or how I built an app in 2022 kryogenix.org/days/2022/08/3… Discussions: discu.eu/q/https://www.… #games #mobile #webdev
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/793123097222213632/-8PD3aeR.jpg">
+			Simon Brunning responded at
+		<a href="https://twitter.com/brunns/status/1565227175221100544">twitter.com</a>
+		<span class="wm-summary">			"Not that you’ll listen to this advice, because I never do either." Truth.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1549130972070830080/KMGy3BvN.jpg">
+			Ramón Huidobro responded at
+		<a href="https://twitter.com/hola_soy_milk/status/1565262185781149697">twitter.com</a>
+		<span class="wm-summary">			For those of you who are techie or web types, there's a whole big writeup about why Farmbound is built the way it is (a web app, no native here) inclu&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/806835896322551808/BlHJUS2n.jpg">
+			John Sear responded at
+		<a href="https://twitter.com/MrJohnSear/status/1565302044478656518">twitter.com</a>
+		<span class="wm-summary">			Awesome! Thanks for the write-up. And yes - special cases for Safari on iOS! Every single time 😂
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/676148336559267840/ATooNCJn.jpg">
+			Matt Round responded at
+		<a href="https://twitter.com/mattround/status/1565310835131666434">twitter.com</a>
+		<span class="wm-summary">			...but this puzzle game doesn't kryogenix.org/farmbound/ Domain thing is covered in this: kryogenix.org/days/2022/08/3…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1302907139757924353/3a0F6OAr.jpg">
+			Simon Plenderleith responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-34583">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/684010918116765696/PBqw_NHT.jpg">
+			Tyndyll responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-19344990">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1534108573084655616/O19JmTJG.jpg">
+			Raul Murciano responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-8402022">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1532125442504724481/sOJrJD-K.jpg">
+			Joshua Hoover responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-8491482">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/663686446/IMGP4132.jpg">
+			elkarrde responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-109389420">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/778659975610728448/GriCj0QS.jpg">
+			Sturm Flut responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-3264158807">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000401486587/58fd754dfcd844ffad63794e19ff822a.png">
+			Roderick Gadellaa responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-211862760">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1219475050195144704/k3SK9ojf.jpg">
+			sid.eth responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-830419192134250496">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1548986379127988225/-2d00F2c.jpg">
+			FarmboundGame responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-1548983200147456002">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1549130972070830080/KMGy3BvN.jpg">
+			Ramón Huidobro responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-17062069">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2983888654/339dd5d58ae01fa07b3f5deeb6471c3d.jpeg">
+			Mark Schaller responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-90767220">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1462951962979094532/2gg2H-zD.jpg">
+			Joyce Park responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-37114816">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75.jpeg">
+			Simon Willison responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-12497">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1419812278665310210/Q8-5uaX_.jpg">
+			Gwyn! responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-284181879">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1536284028332122112/ae3GEAV3.jpg">
+			Alan Pope 🍺🐧🐱💉💉💉 responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-12325402">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/585600106063331330/JgyLF5bf.jpg">
+			Andrew Hayzen responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-3124962087">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/570216558400507904/ghaa9ggH.png">
+			Alf Eaton responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-695043">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1552924468787531777/3dGkgImD.jpg">
+			Mellon responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-1062644123730100224">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1826838332/bibo.jpg">
+			bibo responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-36925560">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/825295560655646721/YauMultg.jpg">
+			Andrew Aylett responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-10193892">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/857323483788869637/TARs8QEv.jpg">
+			Gunnar Gissel Is immune responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-289739768">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1548808275730190336/6Aq1BMTU.jpg">
+			Jamie Witter, Esq. (he/him/his) responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-146196745">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1507106663039320066/1gOrRGjl.jpg">
+			Jeff Miller responded at
+		<a href="https://twitter.com/sil/status/1564957791877566465#favorited-by-8253712">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1470778278101278730/jxVeueXc.jpg">
+			consider the climate responded at
+		<a href="https://twitter.com/weitzelb/status/1565495628888584193">twitter.com</a>
+		<span class="wm-summary">			Write up is fun, thanks @gwynforthewyn. Also the game is legit fun! Cool game, @sil, thanks!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1470778278101278730/jxVeueXc.jpg">
+			consider the climate responded at
+		<a href="https://twitter.com/weitzelb/status/1565497491637735424">twitter.com</a>
+		<span class="wm-summary">			Farmbound 02/09/2022: 22 🌱🔪🔪🌱 🌿🌿🌱🌿 🌾🌱🌿🌱 🌿🌱🌾🌱 kryogenix.org/farmbound Pretty impressive. Daily worst is something I can get behind.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1470778278101278730/jxVeueXc.jpg">
+			consider the climate responded at
+		<a href="https://twitter.com/weitzelb/status/1565498649274068992">twitter.com</a>
+		<span class="wm-summary">			Haha! I'm going to try and "clear" the puzzle each day. Farmbound 02/09/2022: 0 Moves: 35 🌾🌱🌿🌱 🌿🌿🌾🌿 🌱🌱🌿🌱 🔪🔪🌱🔪 kryogenix.org/farmbound
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1565503272970031104">twitter.com</a>
+		<span class="wm-summary">			You may also find this discussion interesting: the idea of getting zero points in Farmbound does seem to interest players as well :-)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1518525557536813056/D3j-gXXh.jpg">
+			Angsuman Chakraborty responded at
+		<a href="https://twitter.com/angsuman/status/1566039778818080768">twitter.com</a>
+		<span class="wm-summary">			"Farmbound, or how I built an app in 2022" kryogenix.org/days/2022/08/3…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/909579010228731904/yuHK0IqS.jpg">
+			Pinboard Popular responded at
+		<a href="https://twitter.com/pinboard_pop/status/1566108783205548032">twitter.com</a>
+		<span class="wm-summary">			as days pass by — Farmbound, or how I built an app in 2022 kryogenix.org/days/2022/08/3…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/554866964896571393/1h69-q3W.jpeg">
+			Ryan Williams responded at
+		<a href="https://twitter.com/ryanwi/status/1566115896690888704">twitter.com</a>
+		<span class="wm-summary">			as days pass by — Farmbound, or how I built an app in 2022 kryogenix.org/days/2022/08/3…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/491494058292809728/oGSxtt0o.jpeg">
+			Adactio Links responded at
+		<a href="https://twitter.com/adactioLinks/status/1567842220069330944">twitter.com</a>
+		<span class="wm-summary">			as days pass by — Farmbound, or how I built an app in 2022 kryogenix.org/days/2022/08/3…
+</span></li>
+	</ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
