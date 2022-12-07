@@ -1068,3 +1068,19 @@ p.trending {
 	text-transform: uppercase;
 	text-align: right;
 }
+
+.webring .webring_membersList {
+	display: flex;
+	list-style: none;
+}
+.webring .webring_membersList li {
+	list-style: none;
+}
+.webring .webring_membersList a {
+	color: black;
+}
+@media (prefers-color-scheme: dark) {
+	.webring .webring_membersList a {
+		color: white;
+	}
+}
