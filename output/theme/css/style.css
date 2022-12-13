@@ -1084,3 +1084,8 @@ p.trending {
 		color: white;
 	}
 }
+
+the-claw-webring-widget {
+	opacity: 0.45; /* background/foreground still meets WCAG AAA contrast requirements, but
+	                  looks a bit less bright and so fits in more with the adpb vibe */
+}
