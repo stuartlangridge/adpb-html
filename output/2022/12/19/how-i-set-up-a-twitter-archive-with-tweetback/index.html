@@ -12,8 +12,10 @@
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/index.html.og_image.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/index.html.og_image.png">
 		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -57,14 +59,14 @@
 
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
-		<div class="date"><a href="https://www.kryogenix.org/days/drafts/how-i-set-up-a-twitter-archive-with-tweetback.html"><time 
-			class="dt-published" datetime="2022-11-29T12:40:00+00:00">Nov 29 2022</time></a>
+		<div class="date"><a href="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/"><time 
+			class="dt-published" datetime="2022-12-19T10:40:00+00:00">Dec 19 2022</time></a>
 			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/drafts/how-i-set-up-a-twitter-archive-with-tweetback.html" title="Permalink to How I set up a Twitter archive with Tweetback" rel="bookmark">How I set up a Twitter archive with&nbsp;Tweetback</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/" title="Permalink to How I set up a Twitter archive with Tweetback" rel="bookmark">How I set up a Twitter archive with&nbsp;Tweetback</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Twitter currently has problems. Well, one specific problem, which is the bloke who bought it. My solution to this problem has been to move to Mastodon (<a href="https://mastodon.social/@sil">@sil@mastodon.social</a> if you want to do the same), but I&#8217;ve invested fifteen years of my life providing twitter.com with free content so I don&#8217;t really want it to go away. Since there&#8217;s a chance that the whole site might vanish, or that it continues on its current journey until I don&#8217;t even want my name associated with it any more, it makes sense to have a backup. And obviously, I don&#8217;t want all that lovely writing to disappear from the web (how would you all cope without me complaining about some random pub&#8217;s music in 2011?!), so I wanted to have that backup published somewhere I control&#8230; by which I mean my own&nbsp;website.</p>
@@ -175,6 +177,7 @@ rsync -e <span class="s2">&quot;ssh&quot;</span> -az _site/ kryogenix.org:public
 <p>You may, or may not, want to get off Twitter. Maybe you&#8217;re looking to get as far away as possible; maybe you just don&#8217;t want to lose the years of investment you&#8217;ve put in. But it&#8217;s never a bad thing to have your data under your control when you can. Tweetback helps make that happen. Cheers to Zach and the other contributors for creating it, so the rest of us didn&#8217;t have to. Tell them thank&nbsp;you.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2022/12/06/transferring-to-a-new-phone-network-2022-edition/">Previous post</a></li>
 		</ul>
 
 		<div class="hireme">
@@ -191,7 +194,7 @@ rsync -e <span class="s2">&quot;ssh&quot;</span> -az _site/ kryogenix.org:public
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
-	<input type="hidden" name="target" value="https://www.kryogenix.org/days/drafts/how-i-set-up-a-twitter-archive-with-tweetback.html">
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/">
 	<input type="submit" value="Add link">
 </form>
 <script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
@@ -199,7 +202,7 @@ rsync -e <span class="s2">&quot;ssh&quot;</span> -az _site/ kryogenix.org:public
 
 <p id="oldcomments"></p>
 <script>
-var aurl = 'drafts/how-i-set-up-a-twitter-archive-with-tweetback.html';
+var aurl = '2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
 var tooNewForOldComments = false;
