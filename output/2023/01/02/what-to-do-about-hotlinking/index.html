@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; What to do about hotlinking</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
+		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; What to do about hotlinking">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/"><time 
+			class="dt-published" datetime="2023-01-02T18:10:00+00:00">Jan 02 2023</time></a>
+			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/" title="Permalink to What to do about hotlinking" rel="bookmark">What to do about&nbsp;hotlinking</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Hotlinking, in the context I want to discuss here, is the act of using a resource on your website by linking to it on someone else’s website. This might be any resource: a script, an image, anything that is referenced by <span class="caps">URL</span>.</p>
+<p>It’s a bit of an anti-social practice, to be honest. Essentially, you’re offloading the responsibility for the bandwidth of serving that resource to someone else, but it’s your site and your users who get the benefit of that. That’s not all that nice.</p>
+<p>Now, if the “other person’s website” is a <span class="caps">CDN</span> — that is, a site deliberately set up <em>in order</em> to serve resources to someone else — then that’s different. There are many CDNs, and using resources served from them is not a bad thing. That’s not what I’m talking about. But if you’re including something direct from someone else’s not-a-<span class="caps">CDN</span> site, then… what, if anything, should the owner of that site do about it?</p>
+<p>I’ve got a fairly popular, small, piece of JavaScript: <a href="https://kryogenix.org/code/browser/sorttable">sorttable.js</a>, which makes an <span class="caps">HTML</span> table be sortable by clicking on the headers. It’s existed for a <em>long</em> time now (the very first version was written twenty years ago!) and I get an email about it once a week or so from people looking to customise how it works or ask questions about how to do a thing they want. It’s open source, and I encourage people to use it; it’s deliberately designed to be simple<sup id="sf-what-to-do-about-hotlinking-1-back"><a href="#sf-what-to-do-about-hotlinking-1" class="simple-footnote" title="and will stay simple; I’d rather sorttable were simple and relatively bulletproof than comprehensive and complicated. This also explains why it’s not written in very “modern” JS style; the best assurance I have that it works in old browsers that are hard to test in now is that it DID work in them and I haven’t changed it much">1</a></sup>, because the target audience is really people who aren’t hugely experienced with web development and who can add sortability to their <span class="caps">HTML</span> tables with a couple of lines of code. </p>
+<p>The instructions for sorttable are pretty clear: download the library, then put it in your web space and include it. However, some sites skip that first step, and instead just link directly to the copy on my website with a <code>&lt;script&gt;</code> element. Having looked at my bandwidth usage recently, this happens quite a lot<sup id="sf-what-to-do-about-hotlinking-2-back"><a href="#sf-what-to-do-about-hotlinking-2" class="simple-footnote" title="in the last two weeks I’ve had about 200,000 hits on sorttable.js from sites that hotlink it, which ain’t nothin’">2</a></sup>, and on some quite high-profile sites. I’m not going to name and shame anyone<sup id="sf-what-to-do-about-hotlinking-3-back"><a href="#sf-what-to-do-about-hotlinking-3" class="simple-footnote" title="yet, at least, so don’t ask">3</a></sup>, but I’d quite like to encourage people to not do that, if there’s a way to do it. So I’ve been thinking about ways that I might discourage hotlinking the script directly, while doing so in a reasonable and humane fashion. I’m also interested in suggestions: hit me up on Mastodon at <a href="https://mastodon.social/@sil">@sil@mastodon.social</a> or Twitter<sup id="sf-what-to-do-about-hotlinking-4-back"><a href="#sf-what-to-do-about-hotlinking-4" class="simple-footnote" title="if you must">4</a></sup> as @sil.</p>
+<h2>Move the script to a different <span class="caps">URL</span></h2>
+<p>This is the obvious thing to do: I move the script and update my page to link to the new location, so anyone coming to my page to get the script will be wholly unaffected and unaware I did it. I do not want to do this, for two big reasons: it’s kicking the can down the road, and it’s unfriendly.</p>
+<p>It’s can-kicking because it doesn’t actually solve the problem: if I do nothing else to discourage the practice of hotlinking, then a few years from now I’ll have people hotlinking to the new location and I’ll have to do it again. <span class="caps">OK</span>, that’s not exactly a lot of work, but it’s still not a great answer.</p>
+<p>But more importantly, it’s unfriendly. If I do that, I’ll be deliberately breaking everyone who’s hotlinking the script. You might think that they deserve it, but it’s not actually them who feel the effect; it’s their users. And their users didn’t do it. One of the big motives behind the web’s general underlying principle of “don’t break the web” is that it’s not reasonable to punish a site’s users for the bad actions of the site’s creators. This applies to browsers, to libraries, to websites, the whole lot. I would like to find a less harsh method than this.</p>
+<h2>Move the script to a different <em>dynamic</em> <span class="caps">URL</span></h2>
+<p>That is: do the above, but link to a <span class="caps">URL</span> which changes automatically every month or every minute or something. The reason that I don’t want to do this (apart from the unfriendly one from above, which still applies even though this fixes the can-kicking) is that this requires server collusion; I’d need to make my main page be dynamic in some way, so that links to the script also update along with the script name change. This involves faffery with cron jobs, or turning the existing static <span class="caps">HTML</span> page into a server-generated page, both of which are annoying. I know how to do this, but it feels like an inelegant solution; this isn’t really a technical problem, it’s a social one, where developers are doing an anti-social thing. Attempting to solve social problems with technical measures is pretty much always a bad idea, and so it is in this case.</p>
+<h2>Contact the highest-profile site developers about it</h2>
+<p>I’m leaning in this direction. I’m <span class="caps">OK</span> with smaller sites hotlinking (well, I’m not really, but I’m prepared to handwave it; I made the script and made it easy to use exactly to help people, and if a small part of that general donation to the universe includes me providing bandwidth for it, then I can live with that). The issue here is that it’s not always easy to tell who those heavy-bandwidth-consuming sites <em>are</em>. It relies on the referrer being provided, which it isn’t always. It’s also a bit more work on my part, because I would want to send an email saying “hey, Site X developers, you’re hotlinking my script as you can see on page sitex.example.com/sometable.html and it would be nice if you didn’t do that”, but I have no good way of identifying those pages; the document referrer isn’t always that specific. If I send an email saying “you’re hotlinking my script somewhere, who knows where, please don’t do that” then the site developers are quite likely to put this request at the very bottom of their list, and I don’t blame them.</p>
+<h2>Move the script and maliciously break the old one</h2>
+<p>This is: I move the script somewhere else and update my links, and then I change the previous <span class="caps">URL</span> to be the same script but it does something like barf a complaint into the console log, or (in extreme cases based on suggestions I’ve had) pops up an alert box or does something equally obnoxious. Obviously, I don’t wanna do this.</p>
+<h2>Legal-ish things</h2>
+<p>That is: contact the highest profile users, but instead of being conciliatory, be threatening. “You’re hotlinking this, stop doing it, or pay the Hotlink Licence Fee which is one cent per user per day” or similar. I think the people who suggest this sort of thing (and the previous malicious approach) must have had another website do something terrible to them in a previous life or something and now are out for revenge. I liked John Wick as much as the next poorly-socialised revenge-fantasy tech nerd, but he’s not a good model for collaborative software development, y’know?</p>
+<h2>Put the page (or whole site) behind a <span class="caps">CDN</span></h2>
+<p>I could put the site behind Cloudflare (or perhaps a better, less troubling <span class="caps">CDN</span>) and then not worry about it; it’s not <em>my</em> bandwidth then, it’s theirs, and they’re fine with it. This used to be the case, but recently I moved web hosts<sup id="sf-what-to-do-about-hotlinking-5-back"><a href="#sf-what-to-do-about-hotlinking-5" class="simple-footnote" title="to the excellent Mythic Beasts, who are way better than the previous hosts">5</a></sup> and stepped away from Cloudflare in so doing. While this would work… it feels like giving up, a bit. I’m not actually solving the problem, I’m just giving it to someone else who is <span class="caps">OK</span> with it.</p>
+<h2>Live with it</h2>
+<p>This isn’t overrunning my bandwidth allocation or anything. I’m not actually <em>affected</em> by this. My complaint isn’t important; it’s more a sort of distaste for the process. I’d like to make this better, rather than ignoring it, even if ignoring it doesn’t mean much, as long as I’m not put to more inconvenience by fixing it. We want things to be better, after all, not simply tolerable.</p>
+<p>So… what do you think, gentle reader? What would you do about it? Answers on a postcard.</p><ol class="simple-footnotes"><li id="sf-what-to-do-about-hotlinking-1">and will stay simple; I’d rather sorttable were simple and relatively bulletproof than comprehensive and complicated. This also explains why it’s not written in very “modern” <span class="caps">JS</span> style; the best assurance I have that it works in old browsers that are hard to test in now is that it <span class="caps">DID</span> work in them and I haven’t changed it much <a href="#sf-what-to-do-about-hotlinking-1-back" class="simple-footnote-back">↩</a></li><li id="sf-what-to-do-about-hotlinking-2">in the last two weeks I’ve had about 200,000 hits on sorttable.js from sites that hotlink it, which ain’t nothin’ <a href="#sf-what-to-do-about-hotlinking-2-back" class="simple-footnote-back">↩</a></li><li id="sf-what-to-do-about-hotlinking-3">yet, at least, so don’t ask <a href="#sf-what-to-do-about-hotlinking-3-back" class="simple-footnote-back">↩</a></li><li id="sf-what-to-do-about-hotlinking-4">if you must <a href="#sf-what-to-do-about-hotlinking-4-back" class="simple-footnote-back">↩</a></li><li id="sf-what-to-do-about-hotlinking-5">to the excellent <a href="https://www.mythic-beasts.com/hosting">Mythic Beasts</a>, who are way better than the previous hosts <a href="#sf-what-to-do-about-hotlinking-5-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/">Previous post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2023/01/02/what-to-do-about-hotlinking/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
+			<the-claw-webring-widget />
+			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
+			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
+			<script>
+  				window.dataLayer = window.dataLayer || [];
+  				function gtag(){dataLayer.push(arguments);}
+  				gtag('js', new Date());
+  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
+			</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
