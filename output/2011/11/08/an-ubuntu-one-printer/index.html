@@ -129,25 +129,24 @@ your daemon would look roughly like&nbsp;this:</p>
     <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">glib2reactor</span>
     <span class="n">glib2reactor</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
     <span class="kn">from</span> <span class="nn">dbus.mainloop.glib</span> <span class="kn">import</span> <span class="n">DBusGMainLoop</span>
-    <span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">defer</span><span class="p">,</span> <span class="n">reactor</span>
 <span class="kn">from</span> <span class="nn">ubuntuone.platform.tools</span> <span class="kn">import</span> <span class="n">SyncDaemonTool</span>
 <span class="n">EXPECTED</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ubuntuone/Print Queues/&#39;</span><span class="p">)</span>
 
-<span class="nd">@defer.inlineCallbacks</span>
+<span class="nd">@defer</span><span class="o">.</span><span class="n">inlineCallbacks</span>
 <span class="k">def</span> <span class="nf">track_file_download</span><span class="p">():</span>
     <span class="n">sd</span> <span class="o">=</span> <span class="n">SyncDaemonTool</span><span class="p">()</span>
     <span class="n">success_filter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">EXPECTED</span><span class="p">)</span>
     <span class="n">path</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">sd</span><span class="o">.</span><span class="n">wait_for_signals</span><span class="p">(</span><span class="n">signal_ok</span><span class="o">=</span><span class="s1">&#39;DownloadFinished&#39;</span><span class="p">,</span>
                                            <span class="n">success_filter</span><span class="o">=</span><span class="n">success_filter</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s1">&#39;==========n&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span>
+    <span class="nb">print</span> <span class="s1">&#39;==========n&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">reactor</span><span class="o">.</span><span class="n">callWhenRunning</span><span class="p">(</span><span class="n">track_file_download</span><span class="p">)</span>
     <span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
-
 
 <p>This, as noted, requires a very very recent build of Ubuntu One, so it&#8217;s
 probably not useful right now (it will be in the future, though, so if
@@ -157,9 +156,9 @@ signal on the <code>com.ubuntuone.SyncDaemon.Status</code> D-Bus interface: that
 code would look something like&nbsp;this:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">dbus</span><span class="o">,</span> <span class="nn">gobject</span>
 <span class="kn">from</span> <span class="nn">dbus.mainloop.glib</span> <span class="kn">import</span> <span class="n">DBusGMainLoop</span>
-<span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">track_file_download</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
-    <span class="k">print</span> <span class="n">path</span>
+    <span class="nb">print</span> <span class="n">path</span>
 <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span><span class="o">.</span><span class="n">add_signal_receiver</span><span class="p">(</span><span class="n">handler_function</span><span class="o">=</span><span class="n">track_file_download</span><span class="p">,</span>
     <span class="n">signal_name</span><span class="o">=</span><span class="s2">&quot;DownloadFinished&quot;</span><span class="p">,</span> 
     <span class="n">dbus_interface</span><span class="o">=</span><span class="s2">&quot;com.ubuntuone.SyncDaemon.Status&quot;</span><span class="p">,</span>
@@ -167,7 +166,6 @@ code would look something like&nbsp;this:</p>
 <span class="n">loop</span> <span class="o">=</span> <span class="n">gobject</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
 <span class="n">loop</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
-
 
 <p>A note: most files can&#8217;t be printed as is: they need the application
 that generated them to print them. However, printing systems know
@@ -179,7 +177,7 @@ hacking on this, I&#8217;d love to hear from&nbsp;you!</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2011/10/18/the-four-personality-types-on-the-spectrum-of-facial-hair/">Previous post</a></li>
-		<li><a href="https://www.kryogenix.org/days/2011/11/08/box-diagrams-in-html-and-unicode/">Next post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/">Next post</a></li>
 		</ul>
 
 		<div class="hireme">

@@ -89,30 +89,28 @@ provide. The JavaScript gets lots of extra objects made available to it,
 and everyone has to learn about those objects, which is way harder than
 just learning <span class="caps">JS</span> itself. Writing a file using JavaScript and the Windows
 Scripting Host looks something like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">var fso = new ActiveXObject(&quot;Scripting.FileSystemObject&quot;);</span>
-<span class="err">var fp = fso.CreateTextFile(savefile);</span>
-<span class="err">fp.WriteLine(&quot;Blah blah blah&quot;);</span>
-<span class="err">fp.Close();</span>
+<div class="highlight"><pre><span></span><code><span class="k">var</span><span class="w"> </span><span class="n">fso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Scripting.FileSystemObject&quot;</span><span class="p">);</span>
+<span class="k">var</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fso</span><span class="o">.</span><span class="n">CreateTextFile</span><span class="p">(</span><span class="n">savefile</span><span class="p">);</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Blah blah blah&quot;</span><span class="p">);</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">Close</span><span class="p">();</span>
 </code></pre></div>
-
 
 <p>Writing a file using JavaScript inside Mozilla (which uses <span class="caps">XPCOM</span>) looks
 something like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">var file = Components.classes[&quot;@mozilla.org/file/local;1&quot;]</span>
-<span class="err">        .createInstance(Components.interfaces.nsILocalFile);</span>
-<span class="err">    file.initWithPath( savefile );</span>
-<span class="err">    if ( file.exists() == false ) {</span>
-<span class="err">        alert( &quot;Creating file... &quot; );</span>
-<span class="err">        file.create( Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420 );</span>
-<span class="err">    }</span>
-<span class="err">    var outputStream = Components.classes[&quot;@mozilla.org/network/file-output-stream;1&quot;]</span>
-<span class="err">        .createInstance( Components.interfaces.nsIFileOutputStream );</span>
-<span class="err">    outputStream.init( file, 0x04 | 0x08 | 0x20, 420, 0 );</span>
-<span class="err">    var output = document.getElementById(&#39;blog&#39;).value;</span>
-<span class="err">    var result = outputStream.write( output, output.length );</span>
-<span class="err">    outputStream.close();</span>
+<div class="highlight"><pre><span></span><code><span class="k">var</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Components</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="s2">&quot;@mozilla.org/file/local;1&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="o">.</span><span class="n">createInstance</span><span class="p">(</span><span class="n">Components</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">nsILocalFile</span><span class="p">);</span>
+<span class="w">    </span><span class="n">file</span><span class="o">.</span><span class="n">initWithPath</span><span class="p">(</span><span class="w"> </span><span class="n">savefile</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">file</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="bp">false</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">alert</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;Creating file... &quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">        </span><span class="n">file</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="w"> </span><span class="n">Components</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">nsIFile</span><span class="o">.</span><span class="n">NORMAL_FILE_TYPE</span><span class="p">,</span><span class="w"> </span><span class="mi">420</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">outputStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Components</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="s2">&quot;@mozilla.org/network/file-output-stream;1&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="o">.</span><span class="n">createInstance</span><span class="p">(</span><span class="w"> </span><span class="n">Components</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">nsIFileOutputStream</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="n">outputStream</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="mh">0x04</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x08</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x20</span><span class="p">,</span><span class="w"> </span><span class="mi">420</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputStream</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">.</span><span class="n">length</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="n">outputStream</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
 </code></pre></div>
-
 
 <p>To be honest with you, I think that the AppleScript approach is a better
 one than the <span class="caps">MS</span> <span class="caps">COM</span>/Mozilla <span class="caps">XPCOM</span> approach. In <span class="caps">COM</span>, each app exports an

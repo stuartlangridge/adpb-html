@@ -75,31 +75,28 @@ quite possibly because it&#8217;s being hammered by people. I deleted my log
 and then waited an hour to see if I was being hit a lot (the log was
 <span class="caps">200MB</span>! in less than an hour!) and then pulled out the 5 most persistent
 offenders&nbsp;with</p>
-<div class="highlight"><pre><span></span><code><span class="err">cut -d&quot; &quot; -f1 /var/log/apache2/kryogenix.org-access.log | sort | uniq -c | sort -n | tail -5</span>
+<div class="highlight"><pre><span></span><code><span class="n">cut</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">-</span><span class="n">f1</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">kryogenix</span><span class="o">.</span><span class="n">org</span><span class="o">-</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">uniq</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tail</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span>
 </code></pre></div>
-
 
 <p>which gave&nbsp;me</p>
-<div class="highlight"><pre><span></span><code><span class="err">    324 217.112.126.122</span>
-<span class="err">    381 81.133.81.248</span>
-<span class="err">    421 82.108.113.14</span>
-<span class="err">   2060 213.249.154.101</span>
-<span class="err">   2391 81.159.133.111</span>
+<div class="highlight"><pre><span></span><code>    324 217.112.126.122
+    381 81.133.81.248
+    421 82.108.113.14
+   2060 213.249.154.101
+   2391 81.159.133.111
 </code></pre></div>
-
 
 <p>Those last two are a bit high, I think; two thousand hits in an hour? I
 mean, I appreciate all you people reading the good word of the
 Langridge, but I&#8217;m not that good a writer. So, they get banned, which is
 nice and easy. Following <a href="http://diveintomark.org/archives/2003/02/26/how_to_block_spambots_ban_spybots_and_tell_unwanted_robots_to_go_to_hell">Mark Pilgrim&#8217;s explanation</a>, I added the
 following lines to <code>.htaccess</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="err"># all your DoS are belong to us. Ban ban ban.</span>
-<span class="err">RewriteCond %{REMOTE_ADDR} ^213.249.154.101$</span>
-<span class="err">RewriteRule .* - [F,L]</span>
-<span class="err">RewriteCond %{REMOTE_ADDR} ^81.159.133.111$</span>
-<span class="err">RewriteRule .* - [F,L]</span>
+<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">your</span><span class="w"> </span><span class="nv">DoS</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="nv">belong</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nv">us</span><span class="o">.</span><span class="w"> </span><span class="nv">Ban</span><span class="w"> </span><span class="nv">ban</span><span class="w"> </span><span class="nv">ban</span><span class="o">.</span>
+<span class="nv">RewriteCond</span><span class="w"> </span><span class="nv">%</span><span class="p">{</span><span class="nv">REMOTE_ADDR</span><span class="p">}</span><span class="w"> </span><span class="o">^</span><span class="mf">213.249</span><span class="o">.</span><span class="mf">154.101</span><span class="p">$</span>
+<span class="nv">RewriteRule</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="nv">F</span><span class="p">,</span><span class="nv">L</span><span class="p">]</span>
+<span class="nv">RewriteCond</span><span class="w"> </span><span class="nv">%</span><span class="p">{</span><span class="nv">REMOTE_ADDR</span><span class="p">}</span><span class="w"> </span><span class="o">^</span><span class="mf">81.159</span><span class="o">.</span><span class="mf">133.111</span><span class="p">$</span>
+<span class="nv">RewriteRule</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="nv">F</span><span class="p">,</span><span class="nv">L</span><span class="p">]</span>
 </code></pre></div>
-
 
 <p>and&#8230;no more hits from those IPs. Beware, people sucking down my
 bandwidth: I have plenty of room in <code>.htaccess</code> for more of those&nbsp;lines.</p>

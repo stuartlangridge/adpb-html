@@ -81,75 +81,74 @@ like. Being able to browse around your database with a web browser is
 dead handy for writing this sort of thing, I have to say :-) At the
 moment, this is the sort of direction we&#8217;re heading in. A CouchDB
 document is <span class="caps">JSON</span>, and an example contact looks like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">{</span><span class="w"></span>
-<span class="w">   </span><span class="ss">&quot;_id&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;362cbeae5f408d6863bb70892d5ba345&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="ss">&quot;_rev&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;1-182987891&quot;</span><span class="p">,</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">{</span>
+<span class="w">   </span><span class="ss">&quot;_id&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;362cbeae5f408d6863bb70892d5ba345&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="ss">&quot;_rev&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;1-182987891&quot;</span><span class="p">,</span>
 
-<span class="w">   </span><span class="ss">&quot;record_type&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;http://example.com/contact-record&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="ss">&quot;record_type_version&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;1.0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="ss">&quot;record_type&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;http://example.com/contact-record&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="ss">&quot;record_type_version&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;1.0&quot;</span><span class="p">,</span>
 
-<span class="w">   </span><span class="ss">&quot;first_name&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Joshua&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="ss">&quot;last_name&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Molby&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="ss">&quot;birth_date&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;1945-07-04&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="ss">&quot;first_name&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Joshua&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="ss">&quot;last_name&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Molby&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="ss">&quot;birth_date&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;1945-07-04&quot;</span><span class="p">,</span>
 
-<span class="w">   </span><span class="ss">&quot;addresses&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">       </span><span class="ss">&quot;85cf156f-fcf6-4901-9201-82ee90859213&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;city&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Bedford&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;state&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;home&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;country&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Scotland&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;postalcode&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;cw12 3hi&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;address1&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Nicol Street&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;address2&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;pobox&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="err">}</span><span class="p">,</span><span class="w"></span>
-<span class="w">       </span><span class="ss">&quot;d20f7364-e80b-47a2-a7e7-0677cb293745&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;city&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Bedford&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;state&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;work&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;country&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;England&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;postalcode&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;dk12 3av&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;address1&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Rush Street&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;address2&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;pobox&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="err">}</span><span class="w"></span>
-<span class="w">   </span><span class="err">}</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="ss">&quot;phone_numbers&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">       </span><span class="ss">&quot;f0bac2a0-83a3-46f9-b079-d41533b87391&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;priority&quot;</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;number&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;+84 63 6220 9178&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;work&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="err">}</span><span class="p">,</span><span class="w"></span>
-<span class="w">       </span><span class="ss">&quot;cf01fc9c-703b-4ae4-b303-fcc6f8ce5a53&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;priority&quot;</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;number&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;+91 99 6920 2837&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;home&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="err">}</span><span class="p">,</span><span class="w"></span>
-<span class="w">       </span><span class="ss">&quot;f0c05bf4-de4a-48f2-bbaf-f9698e52d491&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;priority&quot;</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;number&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;+97 52 9211 6455&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;other&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="err">}</span><span class="w"></span>
-<span class="w">   </span><span class="err">}</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="ss">&quot;email_addresses&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">       </span><span class="ss">&quot;6e3178d8-fee6-45b1-b95a-2c76be090e2b&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;home&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;address&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Joshua1.Molby@uck.com&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="err">}</span><span class="p">,</span><span class="w"></span>
-<span class="w">       </span><span class="ss">&quot;adb1fc2a-0468-4deb-bb6c-974db23ef7fd&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;work&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="ss">&quot;address&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Joshua1.Molby@vkc.com&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="err">}</span><span class="w"></span>
-<span class="w">   </span><span class="err">}</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="ss">&quot;application_annotations&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">       </span><span class="ss">&quot;Funambol&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">             </span><span class="ss">&quot;jobTitle&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Director&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">             </span><span class="ss">&quot;company&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;ACME Ltd&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="err">}</span><span class="w"></span>
-<span class="w">   </span><span class="err">}</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
+<span class="w">   </span><span class="ss">&quot;addresses&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">       </span><span class="ss">&quot;85cf156f-fcf6-4901-9201-82ee90859213&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">           </span><span class="ss">&quot;city&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Bedford&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;state&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;home&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;country&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Scotland&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;postalcode&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;cw12 3hi&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;address1&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Nicol Street&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;address2&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;pobox&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span>
+<span class="w">       </span><span class="err">}</span><span class="p">,</span>
+<span class="w">       </span><span class="ss">&quot;d20f7364-e80b-47a2-a7e7-0677cb293745&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">           </span><span class="ss">&quot;city&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Bedford&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;state&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;work&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;country&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;England&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;postalcode&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;dk12 3av&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;address1&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Rush Street&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;address2&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;pobox&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;&quot;</span>
+<span class="w">       </span><span class="err">}</span>
+<span class="w">   </span><span class="err">}</span><span class="p">,</span>
+<span class="w">   </span><span class="ss">&quot;phone_numbers&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">       </span><span class="ss">&quot;f0bac2a0-83a3-46f9-b079-d41533b87391&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">           </span><span class="ss">&quot;priority&quot;</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;number&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;+84 63 6220 9178&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;work&quot;</span>
+<span class="w">       </span><span class="err">}</span><span class="p">,</span>
+<span class="w">       </span><span class="ss">&quot;cf01fc9c-703b-4ae4-b303-fcc6f8ce5a53&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">           </span><span class="ss">&quot;priority&quot;</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;number&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;+91 99 6920 2837&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;home&quot;</span>
+<span class="w">       </span><span class="err">}</span><span class="p">,</span>
+<span class="w">       </span><span class="ss">&quot;f0c05bf4-de4a-48f2-bbaf-f9698e52d491&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">           </span><span class="ss">&quot;priority&quot;</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;number&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;+97 52 9211 6455&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;other&quot;</span>
+<span class="w">       </span><span class="err">}</span>
+<span class="w">   </span><span class="err">}</span><span class="p">,</span>
+<span class="w">   </span><span class="ss">&quot;email_addresses&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">       </span><span class="ss">&quot;6e3178d8-fee6-45b1-b95a-2c76be090e2b&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;home&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;address&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Joshua1.Molby@uck.com&quot;</span>
+<span class="w">       </span><span class="err">}</span><span class="p">,</span>
+<span class="w">       </span><span class="ss">&quot;adb1fc2a-0468-4deb-bb6c-974db23ef7fd&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">           </span><span class="ss">&quot;description&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;work&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="ss">&quot;address&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Joshua1.Molby@vkc.com&quot;</span>
+<span class="w">       </span><span class="err">}</span>
+<span class="w">   </span><span class="err">}</span><span class="p">,</span>
+<span class="w">   </span><span class="ss">&quot;application_annotations&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">       </span><span class="ss">&quot;Funambol&quot;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">             </span><span class="ss">&quot;jobTitle&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Director&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="ss">&quot;company&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;ACME Ltd&quot;</span>
+<span class="w">       </span><span class="err">}</span>
+<span class="w">   </span><span class="err">}</span>
+<span class="err">}</span>
 </code></pre></div>
-
 
 <p>Fields in this are as&nbsp;follows:</p>
 <dl>

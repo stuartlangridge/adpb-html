@@ -70,11 +70,6 @@
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1064990816.0:-->
-
-<!--category::-->
-
-<!--author:sil:-->
-
 <p>Been browsing through some of <a href="http://www.diveintomark.org/">Mark&#8217;s</a> <a href="http://www.diveintomark.org/archives/">old posts</a>, and I have
 learned three&nbsp;things.</p>
 <p>First: all Bruce Schneier&#8217;s excellent <a href="http://www.schneier.com/crypto-gram.html">Crypto-Gram newsletters</a> are on
@@ -116,11 +111,10 @@ idea would have broken; he linked to
 <a href="http://www.kryogenix.org/days/000138.cas">http://www.kryogenix.org/days/000138.cas</a>, and the post is now at
 <a href="http://www.kryogenix.org/days/80.html">http://www.kryogenix.org/days/80.html</a>. To handle this, I set up the
 following rules in .htaccess for my&nbsp;weblog:</p>
-<div class="highlight"><pre><span></span><code><span class="err">rewriteengine on</span>
-<span class="err">rewritebase /days</span>
-<span class="err">rewriterule ^([0-9]+).cas$ /days/mt2v.cgi?id=$1</span>
+<div class="highlight"><pre><span></span><code>rewriteengine on
+rewritebase /days
+rewriterule ^([0-9]+).cas$ /days/mt2v.cgi?id=$1
 </code></pre></div>
-
 
 <p>and <code>mt2v.cgi</code> is a Python <span class="caps">CGI</span> with a great big lookup list in it. I
 could have just added a massive load of Alias directives or something
@@ -136,6 +130,7 @@ individually created and named pages, then be prepared to build a big
 set of redirects every time you redesign anything on the back end,
 because you&#8217;ll realise you want to change the URIs then&nbsp;too.</p>
 <p>None</p>
+<!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2003/09/30/personal/">Previous post</a></li>

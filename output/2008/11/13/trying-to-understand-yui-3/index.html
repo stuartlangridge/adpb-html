@@ -108,12 +108,11 @@ drifts in space. It&#8217;s not wrapped in an onDOMContentLoaded or anything.
 people down with infrastructure just so they can write a click
 function.) So, since there&#8217;s a working example in the page, I looked in
 the source myself, and we&nbsp;get</p>
-<div class="highlight"><pre><span></span><code><span class="err">YUI({combine: true, timeout: 10000}).use(&quot;node&quot;,</span>
-<span class="err">function(Y) {</span>
-<span class="err"> ... code from the example...</span>
-<span class="err">});</span>
+<div class="highlight"><pre><span></span><code><span class="nt">YUI</span><span class="o">(</span><span class="p">{</span><span class="n">combine</span><span class="p">:</span><span class="w"> </span><span class="n">true</span><span class="p">,</span><span class="w"> </span><span class="n">timeout</span><span class="o">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">}</span><span class="o">)</span><span class="p">.</span><span class="nc">use</span><span class="o">(</span><span class="s2">&quot;node&quot;</span><span class="o">,</span>
+<span class="nt">function</span><span class="o">(</span><span class="nt">Y</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">example...</span>
+<span class="p">}</span><span class="o">);</span>
 </code></pre></div>
-
 
 <p>Ah, <span class="caps">OK</span>, so that&#8217;s onDOMContentLoaded, is it? a new <span class="caps">YUI</span> function. I&#8217;m
 sure it&#8217;ll be explained later. Moving on, the next example explains

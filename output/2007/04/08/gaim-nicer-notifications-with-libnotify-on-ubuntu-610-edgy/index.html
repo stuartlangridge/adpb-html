@@ -81,12 +81,11 @@ the development release, Ubuntu feisty. Here&#8217;s how to install it (and
 this acts as a very tiny <span class="caps">HOWTO</span> for how to install stuff from an Ubuntu
 release other than the one you&#8217;re on). Basically, this involves building
 the package from the source code. First, then, you have to tell Ubuntu
-that it can get source code from Ubuntu feisty. Go <strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">System >
-Administration > Software Sources</strong>. In the <strong>Third Party</strong> tab, click
+that it can get source code from Ubuntu feisty. Go <strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">System &gt;
+Administration &gt; Software Sources</strong>. In the <strong>Third Party</strong> tab, click
 <strong>Add</strong>, and put in the <strong><span class="caps">APT</span> line:</strong>&nbsp;textbox:</p>
-<div class="highlight"><pre><span></span><code><span class="k">deb-src</span> <span class="s">http://gb.archive.ubuntu.com/ubuntu/</span> <span class="kp">feisty</span> <span class="kp">main</span> <span class="kp">universe</span>
+<div class="highlight"><pre><span></span><code><span class="k">deb-src</span><span class="w"> </span><span class="s">http://gb.archive.ubuntu.com/ubuntu/</span><span class="w"> </span><span class="kp">feisty</span><span class="w"> </span><span class="kp">main</span><span class="w"> </span><span class="kp">universe</span>
 </code></pre></div>
-
 
 <p><strong>Add Source</strong>, <strong>Close</strong>, and <strong>Reload</strong> when it tells you that the
 information about available software is out of date. <img alt="Ubuntu's Software
@@ -95,24 +94,21 @@ you need to get the Gaim libnotify package. I&#8217;m assuming here that
 you&#8217;ve built packages before; if not, you&#8217;ll need to install
 <strong>build-essential</strong> from Synaptic (or with
 <code>sudo aptitude install build-essential</code> in a terminal). Create a
-temporary folder to do the build in (<strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">Places > Home Folder</strong>,
+temporary folder to do the build in (<strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">Places &gt; Home Folder</strong>,
 then right-click in your home folder window and say <strong>Create Folder</strong>,
-and call the new folder <code>tmp</code>). In a terminal (<strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">Applications >
-Accessories > Terminal</strong>), change into your created temporary&nbsp;folder</p>
-<div class="highlight"><pre><span></span><code><span class="err">cd tmp</span>
+and call the new folder <code>tmp</code>). In a terminal (<strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">Applications &gt;
+Accessories &gt; Terminal</strong>), change into your created temporary&nbsp;folder</p>
+<div class="highlight"><pre><span></span><code>cd tmp
 </code></pre></div>
-
 
 <p>and install first the things you need to build the&nbsp;package</p>
-<div class="highlight"><pre><span></span><code><span class="err">sudo aptitude install libnotify-dev gaim-dev fakeroot cdbs</span>
+<div class="highlight"><pre><span></span><code>sudo aptitude install libnotify-dev gaim-dev fakeroot cdbs
 </code></pre></div>
-
 
 <p>(you could also install those three packages from Synaptic if you
 prefer), and then fetch and automatically build the gaim libnotify&nbsp;package</p>
-<div class="highlight"><pre><span></span><code><span class="err">fakeroot apt-get --build source gaim-libnotify</span>
+<div class="highlight"><pre><span></span><code>fakeroot apt-get --build source gaim-libnotify
 </code></pre></div>
-
 
 <p>That will take a little while. Once it&#8217;s finished, go back to your Home
 Folder window and look in the <code>tmp</code> temporary folder you created. There
@@ -120,7 +116,7 @@ should be a file called gaim-libnotify_0.12-1_i386.deb <img alt="gaim" src="http
 file. The Package Installer window will pop up; click <strong>Install
 Package</strong>. This will install the new notifications (it may ask for your
 password to do the installation). Now, you need to enable the plugin. If
-Gaim isn&#8217;t running, run it (<strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">Applications > Internet > Gaim
+Gaim isn&#8217;t running, run it (<strong><img alt="ubuntu" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/application-ubuntu.png">Applications &gt; Internet &gt; Gaim
 Internet Messenger</strong>), and right-click on its notification-area icon;
 choose <strong>Plugins</strong>: <img alt="plugins" src="http://www.kryogenix.org/days/wp-content/uploads/2007/04/gaimpluginsmenu.png"> In the Plugins window, tick <strong>Libnotify
 popups</strong>. Remember to untick <strong>Guifications</strong> if you were using it

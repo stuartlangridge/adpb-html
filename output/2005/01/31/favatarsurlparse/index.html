@@ -79,7 +79,6 @@ template that defines how a comment is output looks like&nbsp;this:</p>
 `<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>`
 </code></pre></div>
 
-
 <p>The key bit in there is the
 <code>&lt;img class="favatar" alt="" src="http://www.kryogenix.org/favatars/$cmt_link"&gt;</code>.
 http://www.kryogenix.org/favatars/*<span class="caps">SOMETHING</span>* goes to a Python
@@ -104,7 +103,6 @@ like with “/favicon.ico“. The key thing there is the / at the beginning.&nbs
 <span class="s1">&#39;/favicon.ico&#39;</span>
 </code></pre></div>
 
-
 <p>So, if you join the <span class="caps"><span class="caps">URL</span></span> the punter left with
 “/favicon.ico“, then you get the <span class="caps"><span class="caps">URL</span></span> for
 favicon.ico at the root of their domain. If they fill in something that
@@ -120,7 +118,7 @@ also caches icons so that it works faster. You can <a href="http://kryogenix.org
 favatar.cgi</a> if you would like more details; it won’t work directly
 for you without some tweaking. You’ll also want a line similar to this
 in your .htaccess&nbsp;file:</p>
-<div class="highlight"><pre><span></span><code><span class="err">RewriteRule   ^favatars/(.*)            /pyblosxom/favatar.cgi?url=$1</span>
+<div class="highlight"><pre><span></span><code>RewriteRule   ^favatars/(.*)            /pyblosxom/favatar.cgi?url=$1
 </code></pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

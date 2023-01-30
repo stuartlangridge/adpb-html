@@ -84,14 +84,13 @@ were halfway through typing in, doesn’t forget where you’d scrolled to.</p>
 <p>To use it, just add <code>StateSaver.properties</code> to the Item you want to save
 things for. So, for example, if you want your ListView to remember the
 position it was scrolled to, do this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">ListView {</span>
-<span class="err">  id: mylistview</span>
-<span class="err">  model: someModel</span>
-<span class="err">  delegate: ListItem.Standard { text: "row " + model.index }</span>
-<span class="err">  StateSaver.properties: "contentY"</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>ListView {
+  id: mylistview
+  model: someModel
+  delegate: ListItem.Standard { text: "row " + model.index }
+  StateSaver.properties: "contentY"
+}
 </code></pre></div>
-
 
 <p>Just that one thing. Now your ListView remembers where it was scrolled
 to after a restart. You can do the same with a set of <code>Tabs</code> (just add

@@ -304,33 +304,27 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">rows</span><span class="o">=</span><span class="s">3</span> <span class="na">cols</span><span class="o">=</span><span class="s">40</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
-<div class="highlight"><pre><span></span><code><span class="nt">twitter-circle-count</span> <span class="p">{</span>
-  <span class="k">width</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
-  <span class="k">height</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
-  <span class="err">--</span><span class="n">track-color</span><span class="p">:</span> <span class="mh">#ddd</span><span class="p">;</span>
-  <span class="err">--</span><span class="n">circle-color</span><span class="p">:</span> <span class="mh">#333</span><span class="p">;</span>
-  <span class="err">--</span><span class="n">text-color</span><span class="p">:</span> <span class="mh">#888</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">twitter-circle-count</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--track-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ddd</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--circle-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#333</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#888</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="c1">// we use input, not keyup, because that fires when text is cut or pasted</span>
 <span class="c1">// thank you Dave MN for that insight</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"input"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"twitter-circle-count"</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"value"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
-<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"input"</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"twitter-circle-count"</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"value"</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 </code></pre></div>
-
 
 <p>and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a <a href="https://www.webcomponents.org/polyfills">polyfill</a> to add support in browsers that don’t have it.<sup id="sf-i-wrote-a-web-component-7-back"><a href="#sf-i-wrote-a-web-component-7" class="simple-footnote" title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering.">7</a></sup></p>
 <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script>
-
 <p>Here’s the counter: <twitter-circle-count value="0" max="280"></twitter-circle-count></p>
-
 <p>Type some text in here:</p>
-
-<p><textarea rows="3" cols="20"></textarea>
+<textarea rows="3" cols="20"></textarea>
 <style>
 twitter-circle-count {
   width: 30px;
@@ -348,7 +342,7 @@ twitter-circle-count {
 <style>
 pre code { font-size: 12px; }
 pre code span { opacity: 0.25; }
-</style></p><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google’s web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a href="#sf-i-wrote-a-web-component-1-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. <a href="#sf-i-wrote-a-web-component-2-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it’s a bit more complicated than this. One step at a time. <a href="#sf-i-wrote-a-web-component-3-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. <a href="#sf-i-wrote-a-web-component-4-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-5"><span class="caps">QML</span> does this by setting “aliases”; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a href="#sf-i-wrote-a-web-component-5-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn’t seem to support this yet, either <code>:host</code> or scoping styles so they don’t leak out of the component, so I’ve also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal <span class="caps">CSS</span>. This should be fixed soon. <a href="#sf-i-wrote-a-web-component-6-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a href="#sf-i-wrote-a-web-component-7-back" class="simple-footnote-back">↩</a></li></ol>
+</style><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google’s web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a href="#sf-i-wrote-a-web-component-1-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. <a href="#sf-i-wrote-a-web-component-2-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it’s a bit more complicated than this. One step at a time. <a href="#sf-i-wrote-a-web-component-3-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. <a href="#sf-i-wrote-a-web-component-4-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-5"><span class="caps">QML</span> does this by setting “aliases”; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a href="#sf-i-wrote-a-web-component-5-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn’t seem to support this yet, either <code>:host</code> or scoping styles so they don’t leak out of the component, so I’ve also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal <span class="caps">CSS</span>. This should be fixed soon. <a href="#sf-i-wrote-a-web-component-6-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a href="#sf-i-wrote-a-web-component-7-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/">Previous post</a></li>

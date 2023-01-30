@@ -70,11 +70,6 @@
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1043148659.0:-->
-
-<!--category::-->
-
-<!--author:sil:-->
-
 <p>I had this problem where you&#8217;d visit the front page of kryogenix and all
 you&#8217;d see is, &#8220;Missing include file ../days/posts.html&#8221;. The reason for
 this was that posts.html is a file created by <a href="/code/vellum/">Vellum</a> that lists the
@@ -88,6 +83,7 @@ file wasn&#8217;t there to&nbsp;include!</p>
 <p>So I fixed it by making the front page do an <span class="caps">HTTP</span> request for the file&nbsp;instead:</p>
 <p><code>&lt;?cas import urllib pfp = urllib.urlopen("http://www.kryogenix.org/days/posts.html") response.write(pfp.read()) pfp.close() ?&gt;</code></p>
 <p>I do like <a href="/code/castalian">Castalian</a>.</p>
+<!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2003/01/20/velluma908683299091/">Previous post</a></li>

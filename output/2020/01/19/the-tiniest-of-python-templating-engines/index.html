@@ -74,13 +74,11 @@
 <div class="highlight"><pre><span></span><code><span class="s2">&quot;My name is </span><span class="si">{name}</span><span class="s2"> and I am </span><span class="si">{age}</span><span class="s2"> years old&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Stuart&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">43</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>and <code>string.Template</code> like&nbsp;this:</p>
 <div class="highlight"><pre><span></span><code><span class="n">t</span><span class="o">=</span><span class="n">string</span><span class="o">.</span><span class="n">Template</span><span class="p">(</span>
     <span class="s2">&quot;My name is $name and I am $age years old&quot;</span>
     <span class="p">)</span><span class="o">.</span><span class="n">safe_substitute</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Stuart&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">43</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Both of which are pretty <span class="caps">OK</span>.</p>
 <p>However, what they&#8217;re missing is loops; having more than one of a thing in your template, and looping over a list, substituting it each time. Every even fractionally-more-featureful templating system has this, whether <a href="http://mustache.github.io/">Mustache</a> or <a href="https://jinja.palletsprojects.com/en/2.10.x/">Jinja</a> or whatever, of course, but I didn&#8217;t want another dependency. All I needed was <code>str.format</code> but with loops. So, I thought, I&#8217;ll write one, in about four lines of code, so I can just drop the function in to my Python file and then I&#8217;m&nbsp;good.</p>
@@ -93,7 +91,6 @@
                   <span class="n">loophandler</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">ctx</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>And lo, twas so. So I can now&nbsp;do </p>
 <div class="highlight"><pre><span></span><code><span class="n">LoopTemplate</span><span class="p">(</span>
     <span class="s2">&quot;I am </span><span class="si">{name}</span><span class="s2"> and my imps&#39; names are: {loop imps}</span><span class="si">{name}{endloop}</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -105,7 +102,6 @@
     <span class="p">}</span>
 <span class="p">)</span>
 </code></pre></div>
-
 
 <p>and it all works. Not revolutionary, of course, but I was mildly pleased with&nbsp;myself.</p>
 <p>Much internal debate about whether <code>loophandler()</code> should have been a <code>lambda</code>, but I eventually decided it was more confusing that way, on the grounds that it was confusing <em>me</em> and I knew what it was meant to be&nbsp;doing.</p>

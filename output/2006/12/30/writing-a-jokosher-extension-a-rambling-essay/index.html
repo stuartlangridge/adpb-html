@@ -112,27 +112,26 @@ certain things. Those things are: Three variables, EXTENSION_NAME,
 EXTENSION_DESCRIPTION, and EXTENSION_VERSION Two functions, startup()
 and shutdown() So, to make a Python file into an extension, you add
 something like this to the bottom of&nbsp;it:</p>
-<div class="highlight"><pre><span></span><code><span class="n">def</span> <span class="n">startup</span><span class="p">(</span><span class="n">API</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code>def startup(API):
 
-    <span class="n">pass</span>
-
-
-
-<span class="n">def</span> <span class="n">shutdown</span><span class="p">():</span>
-
-    <span class="n">pass</span>
+    pass
 
 
 
-<span class="n">EXTENSION_NAME</span> <span class="o">=</span> <span class="ss">&quot;Freesound search&quot;</span>
+def shutdown():
 
-<span class="n">EXTENSION_DESCRIPTION</span> <span class="o">=</span> <span class="ss">&quot;Searches the Freesound library of &quot;</span> <span class="o">+</span>
+    pass
 
-  <span class="ss">&quot;freely licenceable and useable sound clips&quot;</span>
 
-<span class="n">EXTENSION_VERSION</span> <span class="o">=</span> <span class="ss">&quot;0.01&quot;</span>
+
+EXTENSION_NAME = &quot;Freesound search&quot;
+
+EXTENSION_DESCRIPTION = &quot;Searches the Freesound library of &quot; +
+
+  &quot;freely licenceable and useable sound clips&quot;
+
+EXTENSION_VERSION = &quot;0.01&quot;
 </code></pre></div>
-
 
 <p>The variables are needed so that Jokosher knows what your extension is
 called, and can display a useful description to the person using it.
@@ -147,10 +146,9 @@ Jokosher&#8217;s Extensions menu, and then when the user clicks that menu item
 we start doing the work. The <span class="caps">API</span> object has a function called,
 amazingly, add_menu_item() to do exactly that. So, our startup
 function should actually&nbsp;be:</p>
-<div class="highlight"><pre><span></span><code><span class="err">def startup(API):  </span>
-<span class="err">    menu_item = API.add_menu_item(&quot;Search Freesound&quot;, callback_function)</span>
+<div class="highlight"><pre><span></span><code>def startup(API):  
+    menu_item = API.add_menu_item(&quot;Search Freesound&quot;, callback_function)
 </code></pre></div>
-
 
 <p>What this will do is add a menu item &#8220;Search Freesound&#8221;, and when the
 user clicks on it it&#8217;ll call callback_function(), which is defined in
@@ -161,19 +159,18 @@ extension. In our case, we need to remove that menu item, which is done
 using the menu item&#8217;s destroy() method. So, change startup() so that
 menu_item is a global variable (so it&#8217;s available to shutdown() as
 well), and change shutdown() so it removes&nbsp;it:</p>
-<div class="highlight"><pre><span></span><code><span class="n">def</span> <span class="n">startup</span><span class="p">(</span><span class="n">API</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code>def startup(API):
 
-    <span class="k">global</span> <span class="n">menu_item</span>
+    global menu_item
 
-    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">API</span><span class="p">.</span><span class="n">add_menu_item</span><span class="p">(</span><span class="ss">&quot;Search Freesound&quot;</span><span class="p">,</span> <span class="n">mainwindow</span><span class="p">.</span><span class="n">menu_cb</span><span class="p">)</span>
+    menu_item = API.add_menu_item(&quot;Search Freesound&quot;, mainwindow.menu_cb)
 
 
 
-<span class="n">def</span> <span class="n">shutdown</span><span class="p">():</span>
+def shutdown():
 
-    <span class="n">menu_item</span><span class="p">.</span><span class="k">destroy</span><span class="p">()</span>
+    menu_item.destroy()
 </code></pre></div>
-
 
 <p>That takes care of hooking the extension into Jokosher; the user can now
 start up and use anything that the extension can do. (Since this little
@@ -188,18 +185,17 @@ Jokosher instrument and it&#8217;ll work. So the Freesound extension just has
 to know how to allow users to drag things from it. Technically, this is
 called being a drag source. How to do this in Python is described in
 <a href="http://www.pygtk.org/pygtk2tutorial/sec-DNDMethods.html">the PyGtk Tutorial</a> &#8212; basically, you use code something like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="n">e</span><span class="p">.</span><span class="n">drag_source_set</span><span class="p">(</span><span class="n">gtk</span><span class="p">.</span><span class="n">gdk</span><span class="p">.</span><span class="n">BUTTON1_MASK</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">88</span><span class="p">)],</span><span class="n">gtk</span><span class="p">.</span><span class="n">gdk</span><span class="p">.</span><span class="n">ACTION_COPY</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nv">e</span>.<span class="nv">drag_source_set</span><span class="ss">(</span><span class="nv">gtk</span>.<span class="nv">gdk</span>.<span class="nv">BUTTON1_MASK</span>,<span class="w"> </span>[<span class="ss">(</span><span class="s1">&#39;text/plain&#39;</span>,<span class="mi">0</span>,<span class="mi">88</span><span class="ss">)</span>],<span class="nv">gtk</span>.<span class="nv">gdk</span>.<span class="nv">ACTION_COPY</span><span class="ss">)</span>
 
-<span class="n">e</span><span class="p">.</span><span class="k">connect</span><span class="p">(</span><span class="ss">&quot;drag_data_get&quot;</span><span class="p">,</span> <span class="k">self</span><span class="p">.</span><span class="n">returndata</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+<span class="nv">e</span>.<span class="k">connect</span><span class="ss">(</span><span class="s2">&quot;drag_data_get&quot;</span>,<span class="w"> </span><span class="nv">self</span>.<span class="nv">returndata</span>,<span class="w"> </span><span class="nv">sample</span><span class="ss">)</span>
 
 
-<span class="p">...</span>
+...
 
-<span class="n">def</span> <span class="n">returndata</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">drag_context</span><span class="p">,</span> <span class="n">selection_data</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="k">time</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+<span class="nv">def</span><span class="w"> </span><span class="nv">returndata</span><span class="ss">(</span><span class="nv">self</span>,<span class="w"> </span><span class="nv">widget</span>,<span class="w"> </span><span class="nv">drag_context</span>,<span class="w"> </span><span class="nv">selection_data</span>,<span class="w"> </span><span class="nv">info</span>,<span class="w"> </span><span class="nv">time</span>,<span class="w"> </span><span class="nv">sample</span><span class="ss">)</span>:
 
-    <span class="n">selection_data</span><span class="p">.</span><span class="k">set</span> <span class="p">(</span><span class="n">selection_data</span><span class="p">.</span><span class="n">target</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="n">sample</span><span class="p">.</span><span class="n">previewURL</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">selection_data</span>.<span class="nv">set</span><span class="w"> </span><span class="ss">(</span><span class="nv">selection_data</span>.<span class="nv">target</span>,<span class="mi">8</span>,<span class="w"> </span><span class="nv">sample</span>.<span class="nv">previewURL</span><span class="ss">)</span>
 </code></pre></div>
-
 
 <p>where &#8220;e&#8221; in the first snippet is the widget displaying the sample, and
 &#8220;sample&#8221; is our actual Sample object which we&#8217;ve created from the

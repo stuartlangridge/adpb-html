@@ -95,7 +95,7 @@ your username, fill them into the script as <span class="caps">APIKEY</span> and
 <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 <span class="n">requests_log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
 <span class="n">requests_log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-<span class="n">requests_log</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">requests_log</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># api key created in discourse admin. probably super-secret, so don&#39;t tell anyone.</span>
 <span class="n">APIKEY</span><span class="o">=</span><span class="s2">&quot;whatever the api key is&quot;</span>
@@ -117,12 +117,12 @@ your username, fill them into the script as <span class="caps">APIKEY</span> and
 <span class="p">}</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">FORUM</span> <span class="o">+</span> <span class="s2">&quot;posts&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">QSPARAMS</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">post_details</span><span class="p">,</span> 
     <span class="n">cookies</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;_forum_session&quot;</span><span class="p">:</span> <span class="n">SESSION_COOKIE</span><span class="p">})</span>
-<span class="k">print</span> <span class="s2">&quot;Various details of the response from discourse&quot;</span>
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
+<span class="nb">print</span> <span class="s2">&quot;Various details of the response from discourse&quot;</span>
+<span class="nb">print</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
 <span class="n">disc_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 <span class="n">disc_data</span><span class="p">[</span><span class="s2">&quot;FORUM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FORUM</span>
-<span class="k">print</span> <span class="s2">&quot;The link to your new post is: &quot;</span>
-<span class="k">print</span> <span class="s2">&quot;</span><span class="si">%(FORUM)s</span><span class="s2">t/</span><span class="si">%(topic_slug)s</span><span class="s2">/</span><span class="si">%(topic_id)s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">disc_data</span>
+<span class="nb">print</span> <span class="s2">&quot;The link to your new post is: &quot;</span>
+<span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%(FORUM)s</span><span class="s2">t/</span><span class="si">%(topic_slug)s</span><span class="s2">/</span><span class="si">%(topic_id)s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">disc_data</span>
 </code></pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

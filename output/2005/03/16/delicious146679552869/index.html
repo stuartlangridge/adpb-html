@@ -100,11 +100,9 @@ snippet, and then include that snippet in the&nbsp;page.</p>
 <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div>
 
-
 <p>Then throw a line in crontab to actually run it, with <code>crontab -e</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="err">@hourly python /var/www/kryogenix.org/scripts/get-delicious-recent.py</span>
+<div class="highlight"><pre><span></span><code><span class="err">@</span><span class="n">hourly</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">kryogenix</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">get</span><span class="o">-</span><span class="n">delicious</span><span class="o">-</span><span class="n">recent</span><span class="o">.</span><span class="n">py</span>
 </code></pre></div>
-
 
 <p>And finally a brief snippet to include it in the index page, which is a
 <a href="http://www.kryogenix.org/code/castalian/">Castalian</a>&nbsp;page:</p>
@@ -115,7 +113,6 @@ snippet, and then include that snippet in the&nbsp;page.</p>
 <span class="nx">pfp</span><span class="o">.</span><span class="nx">close</span><span class="p">()</span>
 <span class="cp">?&gt;</span>
 </code></pre></div>
-
 
 <p>and that’s it. Move complete. No more maintaining my own linklog.&nbsp;:)</p>
 <p>(Updated: changed the crontab call and the script so that if there’s a

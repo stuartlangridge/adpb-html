@@ -75,22 +75,21 @@
 <p>This was a dead clever idea. It relies on me having a machine which is sshable from the outside world, but I <em>do</em>, so that’s <span class="caps">OK</span>.</p>
 <p>Obviously, something needs to set the tunnel up. So, first I set things up so that his machine could ssh into mine with key authentication and without a password needed (see <code>ssh-copy-id</code> or <a href="http://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">a guide</a> for that), and then I wrote this little script:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-createTunnel<span class="o">()</span> <span class="o">{</span>
-  date
-  ssh -N -o <span class="nv">BatchMode</span><span class="o">=</span>yes -R <span class="m">9102</span>:localhost:22 mylogin@mysshablemachine
-  <span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nb">echo</span> Tunnel created successfully
-  <span class="k">else</span>
-    <span class="nb">echo</span> An error occurred creating a tunnel. RC was <span class="nv">$?</span>
-  <span class="k">fi</span>
+createTunnel<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span>date
+<span class="w">  </span>ssh<span class="w"> </span>-N<span class="w"> </span>-o<span class="w"> </span><span class="nv">BatchMode</span><span class="o">=</span>yes<span class="w"> </span>-R<span class="w"> </span><span class="m">9102</span>:localhost:22<span class="w"> </span>mylogin@mysshablemachine
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>Tunnel<span class="w"> </span>created<span class="w"> </span>successfully
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>An<span class="w"> </span>error<span class="w"> </span>occurred<span class="w"> </span>creating<span class="w"> </span>a<span class="w"> </span>tunnel.<span class="w"> </span>RC<span class="w"> </span>was<span class="w"> </span><span class="nv">$?</span>
+<span class="w">  </span><span class="k">fi</span>
 <span class="o">}</span>
-/bin/pidof ssh &gt; /dev/null
-<span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-  <span class="nb">echo</span> Creating new tunnel connection
-  createTunnel
+/bin/pidof<span class="w"> </span>ssh<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span>Creating<span class="w"> </span>new<span class="w"> </span>tunnel<span class="w"> </span>connection
+<span class="w">  </span>createTunnel
 <span class="k">fi</span>
 </code></pre></div>
-
 
 <p>which creates this ssh tunnel connection. There’s a hack there: it assumes that if there’s an ssh process, it’s our ssh process. If you regularly ssh from the box you’re doing this on, you’ll want to do something cleverer. In this case I don’t, so I keep it easy. Couple of little tricks in the script: there’s a <code>date</code> command, so the output mentions when this happened, which is useful for the log file in the next bit (and this is also why the script generates no output if the tunnel is already up). Secondly, <code>-o BatchMode=yes</code> in the ssh options means that it’ll instantly fail if you haven’t got key auth set up right, rather than hanging forever waiting for a password, and it’ll send server keepalives every 300 seconds and kill the connection if they break, which means that if the connection hangs but doesn’t terminate, it’ll get terminated. This is what we want, because we want some monitoring process to restart the tunnel if it dies. There are all sorts of clever ways to do this: upstart, systemd, whatever<sup id="sf-reverse-ssh-tunnels-6-back"><a href="#sf-reverse-ssh-tunnels-6" class="simple-footnote" title="not /etc/init.d though. This is a user-level process. It should not be being run by system-level stuff. System level belongs to apt.">6</a></sup>, but I just put this line in the crontab<sup id="sf-reverse-ssh-tunnels-7-back"><a href="#sf-reverse-ssh-tunnels-7" class="simple-footnote" title="a file which defines jobs to be run at specific times; it’s like a super-techie Scheduled Tasks wizard, and it usefully will run things even when you’re not logged in. You can edit yours from the command line with crontab -e.">7</a></sup>:</p>
 <pre><code>*/1 * * * * /path/to/above/script.sh &gt;&gt; /path/to/tunnel.log 2&gt;&amp;1</code></pre>

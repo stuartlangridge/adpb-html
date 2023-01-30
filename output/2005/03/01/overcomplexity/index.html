@@ -88,11 +88,10 @@ dynamically, but the resultant <span class="caps"><span class="caps">HTML</span>
 page is the same every time), why don’t I just spider the lot and serve
 the resultant saved static <span class="caps"><span class="caps">HTML</span></span>? So that’s
 what I did, with the&nbsp;command</p>
-<div class="highlight"><pre><span></span><code><span class="err">wget --no-host-directories </span>
-<span class="err">--directory-prefix=/var/www/lugradio.org/static </span>
-<span class="err">-p -E --mirror http://secretlocation.lugradio.org/</span>
+<div class="highlight"><pre><span></span><code><span class="n">wget</span><span class="w"> </span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">host</span><span class="o">-</span><span class="n">directories</span><span class="w"> </span>
+<span class="o">--</span><span class="n">directory</span><span class="o">-</span><span class="n">prefix</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">lugradio</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="k">static</span><span class="w"> </span>
+<span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="n">E</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">secretlocation</span><span class="o">.</span><span class="n">lugradio</span><span class="o">.</span><span class="n">org</span><span class="o">/</span>
 </code></pre></div>
-
 
 <p>so the previously existing pyblosxom version now exists at
 http://secretlocation.lugradio.org/ and www.lugradio.org points at the

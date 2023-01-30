@@ -79,22 +79,19 @@ seem to show up in the dropdown, so I thought I’d bang it into <strong>Custom
 Mail Reader</strong>. So, what do you put in? I’d have thought
 <code>mozilla-thunderbird %s</code>. Nope. That doesn’t work. Moreover, if you try
 that from the&nbsp;command-line:</p>
-<div class="highlight"><pre><span></span><code><span class="err">mozilla-thunderbird someone@example.org</span>
-<span class="err">/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client: Error: Failed to send command: 509 internal error</span>
+<div class="highlight"><pre><span></span><code><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="w"> </span><span class="n">someone</span><span class="nv">@example</span><span class="p">.</span><span class="n">org</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="nl">client</span><span class="p">:</span><span class="w"> </span><span class="nl">Error</span><span class="p">:</span><span class="w"> </span><span class="n">Failed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">send</span><span class="w"> </span><span class="nl">command</span><span class="p">:</span><span class="w"> </span><span class="mi">509</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span>
 </code></pre></div>
-
 
 <p>That’s no good. On the other hand, what’s a
 <code>mozilla-thunderbird-xremote-client</code>?</p>
-<div class="highlight"><pre><span></span><code><span class="err">/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client someone@example.org</span>
-<span class="err">/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client: Error: Failed to send command: 500 command not parsable: someone@example.org</span>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="n">client</span><span class="w"> </span><span class="n">someone</span><span class="nv">@example</span><span class="p">.</span><span class="n">org</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="nl">client</span><span class="p">:</span><span class="w"> </span><span class="nl">Error</span><span class="p">:</span><span class="w"> </span><span class="n">Failed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">send</span><span class="w"> </span><span class="nl">command</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nl">parsable</span><span class="p">:</span><span class="w"> </span><span class="n">someone</span><span class="nv">@example</span><span class="p">.</span><span class="n">org</span>
 </code></pre></div>
-
 
 <p>Ah, “command not parsable“. It must take the <a href="http://www.mozilla.org/unix/remote.html">-remote commands</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">/usr/lib/mozilla-thunderbird/mozilla-thunderbird-xremote-client &quot;mailto(someone@example.org)&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="n">client</span><span class="w"> </span><span class="ss">&quot;mailto(someone@example.org)&quot;</span>
 </code></pre></div>
-
 
 <p>That works! Yay! So, let’s try that in the <strong>Custom Mail Reader</strong> box in
 <strong>Preferred Applications</strong>. Nope. Dammit. It pops up a mail window, no

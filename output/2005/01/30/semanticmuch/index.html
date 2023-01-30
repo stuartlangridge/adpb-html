@@ -112,7 +112,6 @@ you specified with a comment, threw it through <strong>tidy</strong>, threw that
 <div class="highlight"><pre><span></span><code><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;from xml.dom import minidom;import sys;d=minidom.parseString(sys.stdin.read());print [n.getAttribute(&#39;href&#39;) for n in d.getElementsByTagName(&#39;link&#39;) if n.getAttribute(&#39;title&#39;) == &#39;FOAF&#39;][0]&quot;</span>
 </code></pre></div>
 
-
 <p>and so on. Not sure what the problem was, but by eyeballing it there
 weren’t that many it failed for. (Failed for my own site, ironically
 enough. Aquarion’s, too.) This is my fault for being lazy, rather than

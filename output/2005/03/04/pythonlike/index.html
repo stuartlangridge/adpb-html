@@ -99,10 +99,9 @@ anyone writing anything even vaguely substantial in Python uses <span class="cap
 it. But constricting the user to write in <span class="caps">OO</span> style is a <em>massive pain in
 the arse</em> when you just want to throw out a quick script. I find myself
 doing things&nbsp;like</p>
-<div class="highlight"><pre><span></span><code><span class="n">grep</span> <span class="s2">&quot;some regexp&quot;</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="nb">file</span> <span class="o">|</span> 
+<div class="highlight"><pre><span></span><code><span class="n">grep</span> <span class="s2">&quot;some regexp&quot;</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">file</span> <span class="o">|</span> 
 <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys;print &#39;n&#39;.join([x.split()[3] for x in sys.stdin.readlines if x.split()[6] == &#39;word&#39;])&quot;</span>
 </code></pre></div>
-
 
 <p>If I had to wrap that in a load of <span class="caps">OO</span> bullshit it’d be loads more
 complex for <em>no reason</em>. Similarly, a lot of the Python I write is short

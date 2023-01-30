@@ -72,13 +72,12 @@
 			<p>My dad’s got a Brother <span class="caps">DCP</span>-7055W printer/scanner, and he wanted to be able to set it up as a network scanner to his Ubuntu machine. This was more fiddly than it should be, and involved a bunch of annoying terminal work, so I’m documenting it here so I don’t lose track of how to do it should I have to do it again. It would be nice if Brother made this easier, but I suppose that it working at all under Ubuntu is an improvement on nothing.</p>
 <p>Anyway. First, go off to the Brother website and download the scanner software. At time of writing, https://www.brother.co.uk/support/dcp7055/downloads has the software, but if that’s not there when you read this, search the Brother site for <span class="caps">DCP</span>-7055 and choose Downloads, then Linux and Linux (deb), and get the Driver Installer Tool. That’ll get you a shell script; run it. This should give you two new commands in the Terminal: <code>brsaneconfig4</code> and <code>brscan-skey</code>.</p>
 <p>Next, teach the computer about the scanner. This is what <code>brsaneconfig4</code> is for, and is all done in the Terminal. You need to know the scanner’s <span class="caps">IP</span> address; you can find this out from the scanner itself, or you can use <code>avahi-resolve -v -a -r</code> to search your network for it. This will dump out a whole load of stuff, some of which should look like this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">=  wlan0 IPv4 Brother DCP-7055W                             UNIX Printer         local</span>
-<span class="err">   hostname = [BRN008092CCEE10.local]</span>
-<span class="err">   address = [192.168.1.21]</span>
-<span class="err">   port = [515]</span>
-<span class="err">   txt = ["TBCP=F" "Transparent=T" "Binary=T" "PaperCustom=T" "Duplex=F" "Copies=T" "Color=F" "usb_MDL=DCP-7055W" "usb_MFG=Brother" "priority=75" "adminurl=http://BRN008092CCEE10.local./" "product=(Brother DCP-7055W)" "ty=Brother DCP-7055W" "rp=duerqxesz5090" "pdl=application/vnd.brother-hbp" "qtotal=1" "txtvers=1"]</span>
+<div class="highlight"><pre><span></span><code>=  wlan0 IPv4 Brother DCP-7055W                             UNIX Printer         local
+   hostname = [BRN008092CCEE10.local]
+   address = [192.168.1.21]
+   port = [515]
+   txt = ["TBCP=F" "Transparent=T" "Binary=T" "PaperCustom=T" "Duplex=F" "Copies=T" "Color=F" "usb_MDL=DCP-7055W" "usb_MFG=Brother" "priority=75" "adminurl=http://BRN008092CCEE10.local./" "product=(Brother DCP-7055W)" "ty=Brother DCP-7055W" "rp=duerqxesz5090" "pdl=application/vnd.brother-hbp" "qtotal=1" "txtvers=1"]
 </code></pre></div>
-
 
 <p>That’s your Brother scanner. The thing you want from that is <code>address</code>, which in this case is <code>192.168.1.21</code>.</p>
 <p>Run <code>brsaneconfig4 -a name="My7055WScanner" model="DCP-7055" ip=192.168.1.21</code>. This should teach the computer about the scanner. You can test this with <code>brsaneconfig4 -p</code> which will ping the scanner, and <code>brsaneconfig4 -q</code> which will list all the scanner types it knows about and then list your added scanner at the end under <code>Devices on network</code>. (If your Brother scanner isn’t a <span class="caps">DCP</span>-7055W, you can find the other codenames for types it knows about with <code>brsaneconfig4 -q</code> and then use one of those as the <code>model</code> with <code>brsaneconfig4 -a</code>.)</p>

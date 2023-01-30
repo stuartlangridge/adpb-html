@@ -78,15 +78,14 @@ The beauty of this is that if an app has gone mad, I can just go into
 Applications/Settings, find the settings file or folder for an app, and
 delete it. No grovelling around on the command line. It&#8217;s lovely. To do
 it, put this in <code>.gnomerc*</code>:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="nb">export</span> <span class="nv">XDG_DATA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/Applications/Data
-<span class="nb">export</span> <span class="nv">XDG_CONFIG_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/Applications/Settings
-<span class="nb">export</span> <span class="nv">XDG_CACHE_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/Applications/Cache
-</code></pre></div>
-</td></tr></table>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDG_DATA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/Applications/Data
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDG_CONFIG_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/Applications/Settings
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDG_CACHE_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/Applications/Cache
+</code></pre></div></td></tr></table></div>
 
 <p>and then all proper applications just store their data in there. Couple
 of other tiny benefits: it&#8217;s easy to see what you&#8217;ve got installed, and

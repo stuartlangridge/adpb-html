@@ -135,12 +135,12 @@ the mouse around, here you&nbsp;go.</p>
 
 <span class="c1"># now, convert each surface to a PIL PNG then write as a gif</span>
 
-<span class="nb">buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
-<span class="nb">buffer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">CURSOR</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;base64&quot;</span><span class="p">))</span>
-<span class="nb">buffer</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">cursor_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">buffer</span><span class="p">)</span>
+<span class="n">buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+<span class="n">buffer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">CURSOR</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;base64&quot;</span><span class="p">))</span>
+<span class="n">buffer</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cursor_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
 <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;anim.gif&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span>
-<span class="n">previous</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">previous</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">surface</span> <span class="ow">in</span> <span class="n">surfaces</span><span class="p">:</span>
     <span class="n">sio</span> <span class="o">=</span> <span class="n">StringIO</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
     <span class="n">surface</span><span class="o">.</span><span class="n">write_to_png</span><span class="p">(</span><span class="n">sio</span><span class="p">)</span>
@@ -160,7 +160,7 @@ the mouse around, here you&nbsp;go.</p>
     <span class="n">previous</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="k">print</span> <span class="s2">&quot;Now optimise with gifsicle -b -O3 anim.gif&quot;</span>
+<span class="nb">print</span> <span class="s2">&quot;Now optimise with gifsicle -b -O3 anim.gif&quot;</span>
 </code></pre></div>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

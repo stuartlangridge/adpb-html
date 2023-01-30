@@ -86,14 +86,14 @@ wrote to confirm that I understood the thing&nbsp;properly.</p>
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">ubuntuone.platform.credentials</span> <span class="kn">import</span> <span class="n">CredentialsManagementTool</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="n">CredentialsManagementTool</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">CredentialsManagementTool</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="kn">import</span> <span class="nn">urlparse</span><span class="o">,</span> <span class="nn">urllib</span>
 <span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha1</span>
 <span class="kn">from</span> <span class="nn">ubuntuone.couch</span> <span class="kn">import</span> <span class="n">auth</span>
 
 <span class="n">CONTENT</span> <span class="o">=</span> <span class="s2">&quot;This is the content of the file.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">1000</span>
 
-<span class="n">_u1creds</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_u1creds</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="k">def</span> <span class="nf">get_ubuntuone_credentials_synchronous</span><span class="p">():</span>
     <span class="s2">&quot;find_credentials is async, but be sync here with a temporary mainloop&quot;</span>
     <span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">GObject</span>
@@ -102,7 +102,7 @@ wrote to confirm that I understood the thing&nbsp;properly.</p>
 
     <span class="k">global</span> <span class="n">_u1creds</span>
 
-    <span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">loop</span> <span class="o">=</span> <span class="n">GObject</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
@@ -172,22 +172,22 @@ wrote to confirm that I understood the thing&nbsp;properly.</p>
     <span class="c1"># real strings, not dbus</span>
     <span class="n">credentials</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">credentials</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
 
-    <span class="k">print</span> <span class="s2">&quot;Creating a file with the REST API&quot;</span>
+    <span class="nb">print</span> <span class="s2">&quot;Creating a file with the REST API&quot;</span>
     <span class="n">success</span> <span class="o">=</span> <span class="n">make_rest_file</span><span class="p">(</span><span class="s2">&quot;~/Ubuntu One/u1-test-magic-uploads.txt&quot;</span><span class="p">,</span> 
         <span class="n">CONTENT</span><span class="p">,</span> <span class="n">credentials</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s2">&quot;Failed, somehow&quot;</span>
+        <span class="nb">print</span> <span class="s2">&quot;Failed, somehow&quot;</span>
         <span class="k">return</span>
-    <span class="k">print</span> <span class="s2">&quot;Succeeded.&quot;</span>
-    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Now, try uploading a new file, but by magic, &quot;</span>
+    <span class="nb">print</span> <span class="s2">&quot;Succeeded.&quot;</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Now, try uploading a new file, but by magic, &quot;</span>
         <span class="s2">&quot;so we will not actually upload it.&quot;</span><span class="p">)</span>
     <span class="n">success</span> <span class="o">=</span> <span class="n">make_rest_file_by_magic</span><span class="p">(</span>
         <span class="s2">&quot;~/Ubuntu One/u1-test-magic-uploads-magic-2.txt&quot;</span><span class="p">,</span>
         <span class="n">CONTENT</span><span class="p">,</span> <span class="n">credentials</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s2">&quot;Successful magic upload!&quot;</span>
+        <span class="nb">print</span> <span class="s2">&quot;Successful magic upload!&quot;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Magic upload didn&#39;t succeed; you have to &quot;</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Magic upload didn&#39;t succeed; you have to &quot;</span>
             <span class="s2">&quot;upload in the normal way.&quot;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

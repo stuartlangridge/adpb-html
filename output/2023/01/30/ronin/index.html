@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Accessing Ubuntu One file storage via FTP from any OS</title>
+		<title>as days pass by &mdash; Ronin</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
 		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Accessing Ubuntu One file storage via FTP from any OS">
+        <meta property="og:title" content="as days pass by &mdash; Ronin">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
-        <meta property="og:image" content="https://www.kryogenix.org/days/2012/09/11/accessing-ubuntu-one-file-storage-via-ftp-from-any-os/index.html.og_image.png">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2023/01/30/ronin/index.html.og_image.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
-        <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/09/11/accessing-ubuntu-one-file-storage-via-ftp-from-any-os/index.html.og_image.png">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2023/01/30/ronin/index.html.og_image.png">
 		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -59,75 +59,29 @@
 
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
-		<div class="date"><a href="https://www.kryogenix.org/days/2012/09/11/accessing-ubuntu-one-file-storage-via-ftp-from-any-os/"><time 
-			class="dt-published" datetime="2012-09-11T16:00:00+01:00">Sep 11 2012</time></a>
+		<div class="date"><a href="https://www.kryogenix.org/days/2023/01/30/ronin/"><time 
+			class="dt-published" datetime="2023-01-30T15:44:00+00:00">Jan 30 2023</time></a>
 			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/09/11/accessing-ubuntu-one-file-storage-via-ftp-from-any-os/" title="Permalink to Accessing Ubuntu One file storage via FTP from any OS" rel="bookmark">Accessing Ubuntu One file storage via <span class="caps">FTP</span> from any <span class="caps">OS</span></a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2023/01/30/ronin/" title="Permalink to Ronin" rel="bookmark">Ronin</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Recently, James Henstridge from my team at Ubuntu One <a href="http://blogs.gnome.org/jamesh/2012/07/05/u1ftp/">released
-u1ftp</a>, a simple app to provide <span class="caps">FTP</span> access to Ubuntu One. It&#8217;s
-deliberately designed so that it works across platforms; whether you&#8217;re
-on Windows or <span class="caps">OS</span> X or Ubuntu or Kubuntu or Fedora or whatever, it should
-work for you, so you can access your Ubuntu One storage via <span class="caps">FTP</span>, and
-therefore if you want to you can mount your U1 storage as a drive in
-your file&nbsp;manager.</p>
-<p>As James says, just download <code>u1ftp-0.1.zip</code> from
-<a href="https://launchpad.net/u1ftp/+download">https://launchpad.net/u1ftp/+download</a>, and then run it with
-<code>python u1ftp-0.1.zip</code>, on any
-platform<span style="color:red" title="On Windows, you'll need to install Python and pywin32">*</span>.
-(You don&#8217;t need to unzip&nbsp;it!)</p>
-<p>You can then use your file manager, or a dedicated <span class="caps">FTP</span> client, to
-connect to <code>localhost</code>, port <code>2121</code>, log in with your Ubuntu One
-username and password, and then you have your Ubuntu One storage right
-there. This should be useful if you don&#8217;t have Ubuntu One set up on a
-particular machine or if it&#8217;s not yet available on that machine, for
-headless servers, for copying lots of files into and out of Ubuntu One
-all in one go; let us know what you&#8217;re doing with&nbsp;it!</p>
-<h3><a href="http://youtu.be/_77At3FyU2A">u1ftp on&nbsp;Ubuntu</a></h3>
-<iframe width="400" height="225" src="http://www.youtube.com/embed/_77At3FyU2A?rel=0" frameborder="0" allowfullscreen></iframe>
-
-<h3><a href="http://youtu.be/1_jRo6-iuEg">u1ftp on&nbsp;Fedora</a></h3>
-<iframe width="400" height="225" src="http://www.youtube.com/embed/1_jRo6-iuEg?rel=0" frameborder="0" allowfullscreen></iframe>
-
-<h3><a href="http://youtu.be/r6-ZYPhH95w">u1ftp on&nbsp;Windows</a></h3>
-<iframe width="400" height="225" src="http://www.youtube.com/embed/r6-ZYPhH95w?rel=0" frameborder="0" allowfullscreen></iframe>
-
-<h3><a href="http://youtu.be/NAtrvakQlms">u1ftp on Mac <span class="caps">OS</span>&nbsp;X</a></h3>
-<iframe width="400" height="225" src="http://www.youtube.com/embed/NAtrvakQlms?rel=0" frameborder="0" allowfullscreen></iframe>
-
-<h3>u1ftp on a headless Linux&nbsp;server</h3>
-<p>~~~~ {style=&#8221;font-size: 0.7em&#8221;}
-$ sudo apt-get install curlftpfs # or install your own&nbsp;way</p>
-<h1>it&nbsp;installs&#8230;</h1>
-<p>$ wget https://launchpad.net/u1ftp/trunk/0.1/+download/u1ftp-0.1.zip
-&#8212;2012-07-17 13:01:10&#8212;  https://launchpad.net/u1ftp/trunk/0.1/+download/u1ftp-0.1.zip
-<span class="caps">HTTP</span> request sent, awaiting response&#8230; 200 <span class="caps">OK</span>
-Length: 289783 (283K) [application/zip]
-Saving to: <code>u1ftp-0.1.zip'
-2012-07-17 13:01:11 (1.08 MB/s) -</code>u1ftp-0.1.zip&#8217; saved [289783/289783]
-$ python u1ftp-0.1.zip 
-Listening on&nbsp;ftp://127.0.0.1:2121/</p>
-<h1>in a different terminal, mount your U1 storage in a&nbsp;folder&#8230;</h1>
-<p>$ mkdir u1storage
-$ curlftpfs ftp://my.u1.email%40address:myU1password@localhost:2121/&nbsp;u1storage/ </p>
-<h1>or use netrc(5) to keep password&nbsp;secret</h1>
-<h1>you may be asked to create and enter a keyring password in the u1ftp&nbsp;terminal</h1>
-<p>$ ls u1storage/
-deja-dup_faith          Music_Audiobooks               Pictures - Nexus S
-Documents               Music_Everything               Purchased Music
-Scratch                 Thunderbird Attachments
-Sent to Ubuntu One      Ubuntu&nbsp;One</p>
-<h1>do whatever you want with your U1&nbsp;storage&#8230;</h1>
-<p>$ fusermount -u u1storage/ # unmount the folder&nbsp;~~~~</p>
+			<p>In 1701, Asano Naganori, a feudal lord in Japan, was summoned to the shogun&#8217;s court in Edo, the town now called Tokyo. He was a provincial chieftain, and knew little about court etiquette, and the etiquette master of the court, Kira Kozuke-no-Suke, took offence. It&#8217;s not exactly clear why; it&#8217;s suggested that Asano didn&#8217;t bribe Kira sufficiently or at all, or that Kira felt that Asano should have shown more deference. Whatever the reasoning, Kira ridiculed Asano in the shogun&#8217;s presence, and Asano defended his honour by attacking Kira with a&nbsp;dagger.</p>
+<p>Baring steel in the shogun&#8217;s castle was a grievous offence, and the shogun commanded Asano to atone through suicide. Asano obeyed, faithful to his overlord. The shogun further commanded that Asano&#8217;s retainers, over 300 samurai, were to be dispossessed and made leaderless, and forbade those retainers from taking revenge on Kira so as to prevent an escalating cycle of bloodshed. The leader of those samurai offered to divide Asano&#8217;s wealth between all of them, but this was a test. Those who took him up on the offer were paid and told to leave. Forty-seven refused this offer, knowing it to be honourless, and those remaining 47 reported to the shogun that they disavowed any loyalty to their dead lord. The shogun made them rōnin, masterless samurai, and required that they disperse. Before they did, they swore a secret oath among themselves that one day they would return and avenge their master. Then each went their separate ways. These 47 rōnin immersed themselves into the population, seemingly forgoing any desire for revenge, and acting without honour to indicate that they no longer followed their code. The shogun sent spies to monitor the actions of the rōnin, to ensure that their unworthy behaviour was not a trick, but their dishonour continued for a month, two, three. For a year and a half each acted dissolutely, appallingly; drunkards and criminals all, as their swords went to rust and their reputations the&nbsp;same.</p>
+<p>A year and a half later, the forty-seven rōnin gathered together again. They subdued or killed and wounded Kira&#8217;s guards, they found a secret passage hidden behind a scroll, and in the hidden courtyard they found Kira and demanded that he die by suicide to satisfy their lord&#8217;s honour. When the etiquette master refused, the rōnin cut off Kira&#8217;s head and laid it on Asano&#8217;s grave. Then they came to the shogun, surrounded by a public in awe of their actions, and confessed. The shogun considered having them executed as criminals but instead required that they too die by suicide, and the rōnin obeyed. They were buried, all except one who was not present and who lived on, in front of the tomb of their master. The tombs are a place to be visited even today, and the story of the 47 rōnin is a famous one both inside and outside&nbsp;Japan.</p>
+<p>You might think: why have I been told this story? Well, there were 47 of them. 47 is a good number. It&#8217;s the atomic number of silver, which is interesting stuff; the most electrically conductive metal. (During World War <span class="caps">II</span>, the Manhattan Project couldn&#8217;t get enough copper for the miles of wiring they needed because it was going elsewhere for the war effort, so they took all the silver out of Fort Knox and melted it down to make wire instead.) It&#8217;s strictly non-palindromic, which means that it&#8217;s not only not a palindrome, it remains not a palindrome in any base smaller than itself. And it&#8217;s how old I am&nbsp;today.</p>
+<p>Yes! It&#8217;s my birthday!&nbsp;Hooray!</p>
+<p><img src="https://kryogenix.org/images/bday-1.jpg" alt="A glowing message board reading 'BDAY BASH 47'"></p>
+<p>I have had a good birthday this year. The family and I had delightful Greek dinner at Mythos in the Arcadian, and then yesterday a bunch of us went to the pub and had an absolute whale of an afternoon and evening, during which I became heartily intoxicated and wore a bag on my head like Lord Farrow, among other things. And I got a picture of the Solvay Conference from&nbsp;Bruce.</p>
+<p><img src="https://kryogenix.org/images/bday-3.jpg" alt="A framed picture of the Solvay Conference 1927, which is a bunch of stern-looking male physicists and Marie Curie arranged like a school photo"></p>
+<p>This year is shaping up well; I have some interesting projects coming up, including one will-be-public thing that I&#8217;ve been working on and which I&#8217;ll be revealing more about in due course, a much-delayed family thing is very near its end (finally!), and in general it&#8217;s just gotta be better than the ongoing car crash that the last few years have been. Fingers crossed; ask me again in twelve months, anyway. I&#8217;ve been writing these little posts for 21 years now (<a href="https://www.kryogenix.org/days/2022/01/30/the-forty-sixers-club/">last year</a> has more links) and there have been ups and downs, but this year I feel quite hopeful about the future for the first time in a while. This is good news. Happy birthday,&nbsp;me.</p>
+<p><img src="https://kryogenix.org/images/bday-2.jpg" alt="Me wearing a peach-coloured card gift bag on my head in the pub"></p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
-		<li><a href="https://www.kryogenix.org/days/2012/08/28/realistic-dice-throw-rendering-with-ode-python-opengl-and-pov-ray/">Previous post</a></li>
-		<li><a href="https://www.kryogenix.org/days/2012/10/04/eppur-si-muove/">Next post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/">Previous post</a></li>
 		</ul>
 
 		<div class="hireme">
@@ -144,7 +98,7 @@ Sent to Ubuntu One      Ubuntu&nbsp;One</p>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
-	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2012/09/11/accessing-ubuntu-one-file-storage-via-ftp-from-any-os/">
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2023/01/30/ronin/">
 	<input type="submit" value="Add link">
 </form>
 <script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
@@ -152,7 +106,7 @@ Sent to Ubuntu One      Ubuntu&nbsp;One</p>
 
 <p id="oldcomments"></p>
 <script>
-var aurl = '2012/09/11/accessing-ubuntu-one-file-storage-via-ftp-from-any-os/';
+var aurl = '2023/01/30/ronin/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
 var tooNewForOldComments = false;

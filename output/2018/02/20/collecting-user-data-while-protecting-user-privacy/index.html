@@ -90,7 +90,6 @@
 <p>The key point here is that, although <em>you</em> can see in the graph which answers are truth and which are incorrect, the company <em>can&#8217;t</em>. They don&#8217;t get told whether an answer is truth or lies; they just get the information and no indication of how true it is. They&#8217;ll know the percentage chance that an answer is untrue, but they won&#8217;t know whether any one given answer&nbsp;is.</p>
 <p>Can we be more inaccurate? Well, here&#8217;s a graph to play with. You can adjust what percentage of users&#8217; computers lie about their survey results by dragging the slider, and see what that does to the&nbsp;data.</p>
 <canvas id="graph_both" class="lie_graphs" width="750" height="700"></canvas>
-
 <div id="tweak">
     <p>0% <input id="lie_range" type="range" min="0" max="0.5" step="0.05" onchange="move_range(this)" value="0.1">&nbsp;100%</p>
     <p><output id="lie_output">20%</output> of submissions are deliberately&nbsp;incorrect</p>
@@ -202,7 +201,6 @@ canvas.lie_graphs {
 }
 
 </style>
-
 <script>
 
 var BAR_WIDTH = 50;

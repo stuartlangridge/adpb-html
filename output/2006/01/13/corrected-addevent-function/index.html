@@ -72,14 +72,12 @@
 			<p>Most of my <a href="http://www.kryogenix.org/code/browser/">unobtrusive <span class="caps">DHTML</span> scripts</a> use the addEvent function,
 which has been copied from all over the place. The Opera people have
 very kindly dropped me a mail to tell me that it&#8217;s wrong; it uses the&nbsp;line</p>
-<div class="highlight"><pre><span></span><code><span class="err">obj.addEventListener(evType, fn, true);</span>
+<div class="highlight"><pre><span></span><code>obj.addEventListener(evType, fn, true);
 </code></pre></div>
-
 
 <p>when instead that line should&nbsp;be</p>
-<div class="highlight"><pre><span></span><code><span class="err">obj.addEventListener(evType, fn, false);</span>
+<div class="highlight"><pre><span></span><code>obj.addEventListener(evType, fn, false);
 </code></pre></div>
-
 
 <p>The &#8220;true&#8221; and &#8220;false&#8221; bits relate to whether the event is &#8220;capturing&#8221;
 or not. Firefox has <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=235441">a bug</a> where it treats &#8220;capturing&#8221; and &#8220;non

@@ -70,11 +70,6 @@
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1025843832.0:-->
-
-<!--category::-->
-
-<!--author:sil:-->
-
 <p><a href="http://www.aarondot.com/">Aarondot</a>&#8216;s front page doesn&#8217;t display extended text in a blog entry
 by default, but makes it appear on clicking by using the <span class="caps">DOM</span> in modern
 browsers. Well, this site does it too, and does it better to boot. :-)
@@ -90,12 +85,13 @@ looks like this:
 After that, edit your <span class="caps">MT</span> templates and change the MTEntryIfExtended
 portion to look like this:
 <code>&lt;MTEntryIfExtended&gt;         &lt;span class="extended"&gt;&lt;a href="&lt;$MTEntryLink$&gt;#&lt;$MTEntryID pad="1"$&gt;" onclick="toggleExtended('&lt;$MTEntryID$&gt;',this);return false;"&gt;&amp;gt;&amp;gt;&lt;/a&gt;&lt;/span&gt;&lt;br /&gt;         &lt;div style="display: none" id="extended-&lt;$MTEntryID$&gt;"&gt;         &lt;$MTEntryMore$&gt;         &lt;/div&gt;         &lt;/MTEntryIfExtended&gt;</code>
-Note that this will make your &#8220;expand&#8221; link be <strong>>></strong> and your
+Note that this will make your &#8220;expand&#8221; link be <strong>&gt;&gt;</strong> and your
 &#8220;collapse&#8221; link be <strong>\&lt;\&lt;</strong> &#8212; to change this, alter the <strong>highlighted</strong>
 parts in both bits of code. This will show/hide the text in
 <span class="caps">DOM</span>-supporting browsers, and will take users to the individual page for
 that comment in non-<span class="caps">DOM</span>-supporting or non-Javascript-supporting
 browsers.&nbsp;&#8212;&#8212;-</p>
+<!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2002/07/05/icons/">Previous post</a></li>

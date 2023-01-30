@@ -73,19 +73,19 @@
 irc channel which told us about commits. I thought: I bet that&#8217;s not too
 hard, and it&#8217;ll give me an excuse to learn <a href="http://www.twistedmatrix.com">Twisted</a>.  </p>
 <blockquote>
-<p>\&lt;jokbot> New commit (r574) by laszlop: A better fix for ticket
+<p>\&lt;jokbot&gt; New commit (r574) by laszlop: A better fix for ticket
 #150. This code is more maintainable and replaces the other fix
 committed in r566. <br>
- \&lt;aquarius> jokbot: help<br>
- \&lt;jokbot> For help on Jokosher, see http://jokosher.org. You can
+ \&lt;aquarius&gt; jokbot: help<br>
+ \&lt;jokbot&gt; For help on Jokosher, see http://jokosher.org. You can
 also ask questions here; please be patient for an answer! Commands I
 understand: ticket <ticket number> - shows a bug in the bugtracker &#8230;
 download count - shows count of downloads of Jokosher &#8230; help - This
 message &#8230; revision <revision number> - shows a revision from <span class="caps">SVN</span><br>
- \&lt;aquarius> jokbot: download count<br>
- \&lt;jokbot> src:87 deb:281 rpm:74 srcrpm:7<br>
- \&lt;aquarius> jokbot: ticket 7<br>
- \&lt;jokbot> Recording quality settings -
+ \&lt;aquarius&gt; jokbot: download count<br>
+ \&lt;jokbot&gt; src:87 deb:281 rpm:74 srcrpm:7<br>
+ \&lt;aquarius&gt; jokbot: ticket 7<br>
+ \&lt;jokbot&gt; Recording quality settings -
 http://jokosher.python-hosting.com/ticket/7</revision></ticket></p>
 </blockquote>
 <p>The bot&#8217;s based on the <a href="http://twistedmatrix.com/projects/words/documentation/examples/ircLogBot.py">Twisted example ircLogBot</a>, and the basic code
@@ -97,7 +97,7 @@ everything directed at it on the #jokbottest channel with the following
 <span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="k">class</span> <span class="nc">JokBot</span><span class="p">(</span><span class="n">irc</span><span class="o">.</span><span class="n">IRCClient</span><span class="p">):</span>
-  <span class="sd">&#39;&#39;&#39;The Jokosher IRC bot.&#39;&#39;&#39;</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;The Jokosher IRC bot.&#39;&#39;&#39;</span>
   <span class="n">nickname</span> <span class="o">=</span> <span class="s1">&#39;jokbot&#39;</span>
   <span class="n">channel</span> <span class="o">=</span> <span class="s1">&#39;jokbottest&#39;</span>
 
@@ -109,7 +109,7 @@ everything directed at it on the #jokbottest channel with the following
   <span class="k">def</span> <span class="nf">signedOn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">privmsg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;This will get called when the bot receives a message.&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;This will get called when the bot receives a message.&#39;&#39;&#39;</span>
     <span class="n">user</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Check to see if they&#39;re sending me a private message</span>
@@ -137,7 +137,6 @@ everything directed at it on the #jokbottest channel with the following
   <span class="n">reactor</span><span class="o">.</span><span class="n">connectTCP</span><span class="p">(</span><span class="s1">&#39;irc.freenode.net&#39;</span><span class="p">,</span> <span class="mi">6667</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
   <span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
-
 
 <p>That&#8217;s all you need for a very simple <span class="caps">IRC</span> bot. The jokbot code does a
 couple of other neat-ish things; it has a plugin structure, so the bot

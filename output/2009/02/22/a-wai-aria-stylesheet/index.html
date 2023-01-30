@@ -82,50 +82,46 @@ have an &#8220;aria stylesheet&#8221;, where instead of
 <code>#myslider { role: slider }</code> in a separate <span class="caps">ARIA</span> &#8220;stylesheet&#8221; file? And
 Matt said, hm, dunno, why don&#8217;t you write something to do that? So here
 it is. This is in no way complete. Requires jQuery, too. What you do is&nbsp;add</p>
-<div class="highlight"><pre><span></span><code><span class="err">&lt;link rel=&quot;aria&quot; href=&quot;first.aria&quot;&gt;</span>
+<div class="highlight"><pre><span></span><code>&lt;link rel=&quot;aria&quot; href=&quot;first.aria&quot;&gt;
 </code></pre></div>
-
 
 <p>to the head of the page, then include&nbsp;jQuery:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;script</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div>
-
 
 <p>and then finally have this snippet of&nbsp;code:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;script&gt;</span>
 $(document).ready(function(){
-  $(&quot;link[rel=aria]&quot;).each(function(){
-    $.get(this.getAttribute(&quot;href&quot;), function(data) {
-      $.each(data.split(&quot;}&quot;),function(idx, stanza){
-        var parts = stanza.split(&quot;{&quot;);
-        if (parts.length != 2) return;
-        var sel = parts[0];
-        $.each(parts[1].split(&quot;;&quot;), function(idx, directive) {
-          var bits = directive.split(&quot;:&quot;);
-          if (bits.length != 2) return;
-          $(sel).attr(&quot;aria-&quot;+bits[0].replace(/^s+|s+$/g,&#39;&#39;), 
-          bits[1].replace(/^s+|s+$/g,&#39;&#39;));
-        });
-      });
-    });
-  });
+<span class="w">  </span>$(&quot;link[rel=aria]&quot;).each(function(){
+<span class="w">    </span>$.get(this.getAttribute(&quot;href&quot;),<span class="w"> </span>function(data)<span class="w"> </span>{
+<span class="w">      </span>$.each(data.split(&quot;}&quot;),function(idx,<span class="w"> </span>stanza){
+<span class="w">        </span>var<span class="w"> </span>parts<span class="w"> </span>=<span class="w"> </span>stanza.split(&quot;{&quot;);
+<span class="w">        </span>if<span class="w"> </span>(parts.length<span class="w"> </span>!=<span class="w"> </span>2)<span class="w"> </span>return;
+<span class="w">        </span>var<span class="w"> </span>sel<span class="w"> </span>=<span class="w"> </span>parts[0];
+<span class="w">        </span>$.each(parts[1].split(&quot;;&quot;),<span class="w"> </span>function(idx,<span class="w"> </span>directive)<span class="w"> </span>{
+<span class="w">          </span>var<span class="w"> </span>bits<span class="w"> </span>=<span class="w"> </span>directive.split(&quot;:&quot;);
+<span class="w">          </span>if<span class="w"> </span>(bits.length<span class="w"> </span>!=<span class="w"> </span>2)<span class="w"> </span>return;
+<span class="w">          </span>$(sel).attr(&quot;aria-&quot;+bits[0].replace(/^s+|s+$/g,&#39;&#39;),<span class="w"> </span>
+<span class="w">          </span>bits[1].replace(/^s+|s+$/g,&#39;&#39;));
+<span class="w">        </span>});
+<span class="w">      </span>});
+<span class="w">    </span>});
+<span class="w">  </span>});
 });
 <span class="nt">&lt;/script&gt;</span>
 </code></pre></div>
 
-
 <p>which takes an &#8220;<span class="caps">ARIA</span> stylesheet&#8221; which looks&nbsp;like</p>
-<div class="highlight"><pre><span></span><code><span class="err">#first {</span>
-<span class="err">  role: slider;</span>
-<span class="err">  described-by: #second;</span>
-<span class="err">  value-min: 10;</span>
-<span class="err">  value-max: 30;</span>
-<span class="err">}</span>
-<span class="err">p + p {</span>
-<span class="err">  role: main;</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">first</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">role</span><span class="p">:</span><span class="w"> </span><span class="n">slider</span><span class="p">;</span>
+<span class="w">  </span><span class="n">described-by</span><span class="p">:</span><span class="w"> </span><span class="mh">#second</span><span class="p">;</span>
+<span class="w">  </span><span class="n">value-min</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">  </span><span class="n">value-max</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">role</span><span class="p">:</span><span class="w"> </span><span class="n">main</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>and applies the specified <span class="caps">ARIA</span> attributes to the specified elements, by
 <span class="caps">CSS</span> selector. This is rambunctiously untested, and the parser for the

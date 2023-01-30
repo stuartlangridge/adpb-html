@@ -72,18 +72,17 @@
 			<p>If you’re doing a lot of JavaScript debugging, you tend to put <code>alert()</code>
 statements all over the place (well, I do, anyway). They can interrupt
 things somewhat. Instead, stick this in an included <span class="caps">JS</span> file&nbsp;somewhere:</p>
-<div class="highlight"><pre><span></span><code><span class="err">alert = function(s) { </span>
-<span class="err">  var ta = document.getElementById(&#39;debug&#39;);</span>
-<span class="err">  if (!ta) {</span>
-<span class="err">    var ta = document.createElement(&#39;textarea&#39;);</span>
-<span class="err">    ta.id = &#39;debug&#39;;</span>
-<span class="err">    ta.rows = 8; ta.cols = 80;</span>
-<span class="err">    document.body.appendChild(ta);</span>
-<span class="err">  }</span>
-<span class="err">  ta.value += s+&#39;n&#39;;</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">alert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">function</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ta</span><span class="o">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;debug&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ta</span><span class="o">.</span><span class="n">rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">ta</span><span class="o">.</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+<span class="w">    </span><span class="n">document</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">ta</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">ta</span><span class="o">.</span><span class="n">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">s</span><span class="o">+</span><span class="s1">&#39;n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>Then, whenever you do <code>alert('whatever');</code>, it’ll just add to a textarea
 that it creates in your page. You can scroll back through the errors,

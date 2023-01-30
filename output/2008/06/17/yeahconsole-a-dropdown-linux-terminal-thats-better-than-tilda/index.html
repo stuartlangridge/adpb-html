@@ -90,7 +90,7 @@ features, I want a shell. I don&#8217;t use tabbed terminal windows, for
 example. Just simplicity, that&#8217;s what I want. Yeahconsole is available
 in the Ubuntu repositories (<a href="apt:yeahconsole">click to install on Ubuntu</a>). Here&#8217;s how
 I set it up. First, it needs to run every time I log in. So, go to
-<strong>System > Preferences > Session</strong>, select <strong>Startup Programs</strong>, click
+<strong>System &gt; Preferences &gt; Session</strong>, select <strong>Startup Programs</strong>, click
 <strong>Add</strong>, and add a new command, name &#8220;YeahConsole&#8221;, command
 &#8220;yeahconsole&#8221;. Next, it looks a bit rubbish when you start it up. Here&#8217;s
 how bare-bones yeahconsole is: you configure it with X resources. Party
@@ -102,14 +102,13 @@ corner could actually be useful. On Ubuntu, you need to edit (actually,
 you probably need to <em>create</em>) a file called <code>.Xresources</code> in your home
 folder<span style="color: red" title="And on Debian. On other distros it might be called .Xdefaults">*</span>.
 In that file, you put the configuration for yeahconsole, like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">yeahconsole*toggleKey: None+F2</span>
-<span class="err">yeahconsole*consoleHeight: 20</span>
-<span class="err">yeahconsole*aniDelay: 0</span>
-<span class="err">yeahconsole*stepSize: 10</span>
-<span class="err">yeahconsole*faceName: ProFontWindows:style=Regular</span>
-<span class="err">yeahconsole*faceSize: 9</span>
+<div class="highlight"><pre><span></span><code>yeahconsole*toggleKey: None+F2
+yeahconsole*consoleHeight: 20
+yeahconsole*aniDelay: 0
+yeahconsole*stepSize: 10
+yeahconsole*faceName: ProFontWindows:style=Regular
+yeahconsole*faceSize: 9
 </code></pre></div>
-
 
 <p>The toggleKey one is the important one: it sets which key you use to
 summon the terminal. I like F2, myself, but pick whatever. What all this
@@ -126,11 +125,10 @@ Tilda, but one that won&#8217;t keep crashing and make you cry. One other
 thing: if you hit Ctrl-D to log out by mistake, it&#8217;ll close yeahconsole
 (tilda did this too), and that&#8217;s really irritating. To fix this, put the
 following in a file called <code>bashloop</code> in your home&nbsp;folder:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> bash<span class="p">;</span> <span class="k">done</span>
-</code></pre></div>
-</td></tr></table>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>bash<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</code></pre></div></td></tr></table></div>
 
 <p>and change your Startup Programs command above to be
 <code>yeahconsole -e /home/username/bashloop</code>. Now Ctrl-D won&#8217;t close

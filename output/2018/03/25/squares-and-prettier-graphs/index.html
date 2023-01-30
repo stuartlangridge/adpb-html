@@ -78,7 +78,6 @@
 67² + 22² = 4973
 </code></pre></div>
 
-
 <p>which is a nice little result. I like this sort of recreational maths, so I spent a little time wondering whether this was the only such cycle, or the longest, or whether there were longer ones. A brief bit of Python scripting later, and the truth is revealed: it&#8217;s not the only cycle, but it is the longest one, with six&nbsp;entries. </p>
 <p><img src="https://kryogenix.org/images/squares2.png" alt=""></p>
 <p>There are no other 6-cycles; there&#8217;s a 5-cycle (start from <code>68²+50²=7124</code>), a 4-cycle (<code>47²+56²=5345</code>) and interestingly two 1-cycles, numbers which lead to themselves: <code>12²+33²=1233</code> and <code>88²+33²=8833</code>. That&#8217;s rather&nbsp;cool.</p>
@@ -87,34 +86,32 @@
 <p>but sadly they&#8217;re really boring; there&#8217;s a 2-cycle (<code>137²+461²=231290, 231²+290²=137461</code>), another 1-cycle (<code>990²+100²=990100</code>) and that&#8217;s it. Nonetheless, quite an interesting little property to fiddle around&nbsp;with.</p>
 <h2>Prettier&nbsp;graphs</h2>
 <p>Originally I was going to make my script count the lengths of the cycles and show the largest one and so on, but I realised that that was annoying and fiddly and what I ought to do is just display a nice picture of them and that&#8217;d be clear to my eyes immediately and take no code at all. My go-to tool for this sort of thing, where I&#8217;m drawing graphs (in the mathematical nodes-and-edges sense) programmatically, is <a href="https://www.graphviz.org/">Graphviz</a>, because it&#8217;s really easy; you basically write out your graph as obvious simple words with&nbsp;arrows:</p>
-<div class="highlight"><pre><span></span><code><span class="err">digraph {</span>
-<span class="err">    &quot;get up&quot; -&gt; &quot;go to work&quot;;</span>
-<span class="err">    &quot;go to work&quot; -&gt; &quot;come home again&quot;;</span>
-<span class="err">    &quot;come home again&quot; -&gt; &quot;go to sleep&quot;;</span>
-<span class="err">    &quot;go to sleep&quot; -&gt; &quot;get up&quot;;</span>
+<div class="highlight"><pre><span></span><code><span class="n">digraph</span><span class="w"> </span><span class="err">{</span>
+<span class="w">    </span><span class="ss">&quot;get up&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;go to work&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="ss">&quot;go to work&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;come home again&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="ss">&quot;come home again&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;go to sleep&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="ss">&quot;go to sleep&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;get up&quot;</span><span class="p">;</span>
 <span class="err">}</span>
 </code></pre></div>
-
 
 <p>and then you can make it a graph with one command: <code>dot -Tpng simple.dot &gt; output.png</code>:</p>
 <p><img src="https://kryogenix.org/images/basic-graphviz.png" alt="A basic graphviz graph of the above code; plain black and white, and not pretty"></p>
 <p>That looks pretty terrible, though; plain black and white, ugly. I tweaked my graph above to look a bit nicer, with some colours, and that&#8217;s really easy; you just add a few extra properties to the nodes (the things to do) and edges (the arrows) in your graph&nbsp;specification:</p>
-<div class="highlight"><pre><span></span><code><span class="n">digraph</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">digraph</span><span class="w"> </span><span class="err">{</span>
 
 <span class="w">    </span><span class="n">node</span><span class="o">[</span><span class="n">shape=&quot;rectangle&quot; style=&quot;rounded,filled&quot; gradientangle=&quot;270&quot; </span>
 <span class="n">        fillcolor=&quot;#990033:#f5404f&quot; color=&quot;#991111&quot; </span>
-<span class="n">        fontcolor=&quot;#ffffff&quot; fontname=&quot;Arial&quot;</span><span class="o">]</span><span class="w"></span>
+<span class="n">        fontcolor=&quot;#ffffff&quot; fontname=&quot;Arial&quot;</span><span class="o">]</span>
 
-<span class="w">    </span><span class="n">edge</span><span class="w"> </span><span class="o">[</span><span class="n">color=&quot;#006699&quot; len=2.5</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">edge</span><span class="w"> </span><span class="o">[</span><span class="n">color=&quot;#006699&quot; len=2.5</span><span class="o">]</span>
 
 
-<span class="w">    </span><span class="ss">&quot;get up&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;go to work&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="ss">&quot;go to work&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;come home again&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="ss">&quot;come home again&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;go to sleep&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="ss">&quot;go to sleep&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;get up&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="ss">&quot;get up&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;go to work&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="ss">&quot;go to work&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;come home again&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="ss">&quot;come home again&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;go to sleep&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="ss">&quot;go to sleep&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">&quot;get up&quot;</span><span class="p">;</span>
+<span class="err">}</span>
 </code></pre></div>
-
 
 <p>and then you get something a bit&nbsp;nicer:</p>
 <p><img src="https://kryogenix.org/images/nicer-graphviz.png" alt="Same graph, but with a little colour and niceness"></p>

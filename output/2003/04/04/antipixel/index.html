@@ -70,55 +70,47 @@
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1049455121.0:-->
-
-<!--category::-->
-
-<!--author:sil:-->
-
 <p>Last night I got the idea of trying to replicate the pretty <a href="http://www.antipixel.com/blog/archives/2002/10/22/steal_these_buttons.html">Antipixel
 buttons</a> without using images (prompted by <a href="http://www.antipixel.com/blog/archives/2002/10/22/steal_these_buttons.html#jamie_zawinski_000679">a comment there</a> from
 jwz). Then I fell asleep in my chair. This morning I discover that Marek
 Prokop has already <a href="http://www.sovavsiti.cz/css/w3c_buttons.html">done the right thing</a> here. However, I think his
 styling&#8217;s a little overwrought. Marek creates his buttons as a <span class="caps">DIV</span> and
 then adds a link inside, and spans inside&nbsp;that:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;w3cbutton3&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;w3c&quot;</span><span class="nt">&gt;</span>W3C<span class="nt">&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;spec&quot;</span><span class="nt">&gt;</span>XHTML 1.0<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;w3cbutton3&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;span</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;w3c&quot;</span><span class="nt">&gt;</span>W3C<span class="nt">&lt;/span&gt;</span><span class="w"> </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;spec&quot;</span><span class="nt">&gt;</span>XHTML<span class="w"> </span>1.0<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/div&gt;</span>
 </code></pre></div>
-
 
 <p>I prefer a slightly simpler&nbsp;version:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;silbutton&quot;</span> <span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;strong&gt;</span>W3C<span class="nt">&lt;/strong&gt;</span>
-<span class="nt">&lt;em&gt;</span>XHTML 1.0<span class="nt">&lt;/em&gt;&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;silbutton&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;strong&gt;</span>W3C<span class="nt">&lt;/strong&gt;</span>
+<span class="nt">&lt;em&gt;</span>XHTML<span class="w"> </span>1.0<span class="nt">&lt;/em&gt;&lt;/a&gt;</span>
 </code></pre></div>
-
 
 <p>Then you change Marek&#8217;s <span class="caps">CSS</span>&nbsp;slightly:</p>
-<div class="highlight"><pre><span></span><code>    <span class="p">.</span><span class="nc">silbutton</span> <span class="p">{</span>
-      <span class="k">margin</span><span class="p">:</span> <span class="mi">1</span><span class="kt">em</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="k">width</span><span class="p">:</span> <span class="mi">9</span><span class="kt">em</span><span class="p">;</span>
-      <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#ccc</span><span class="p">;</span>
-      <span class="k">font-family</span><span class="p">:</span> <span class="n">helvetica</span><span class="p">,</span><span class="n">arial</span><span class="p">,</span><span class="kc">sans-serif</span><span class="p">;</span>
-      <span class="k">font-size</span><span class="p">:</span> <span class="mi">70</span><span class="kt">%</span><span class="p">;</span>
-      <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
-      <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">link</span><span class="o">,</span> <span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">visited</span><span class="o">,</span> <span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
-      <span class="k">background-color</span><span class="p">:</span> <span class="mh">#fc6</span><span class="p">;</span>
-      <span class="k">color</span><span class="p">:</span> <span class="mh">#000</span><span class="p">;</span>
-      <span class="k">text-decoration</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">.</span><span class="nc">silbutton</span> <span class="nt">span</span><span class="p">.</span><span class="nc">w3cstrong</span> <span class="p">{</span>
-      <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span> <span class="mf">0.4</span><span class="kt">em</span><span class="p">;</span>
-      <span class="k">background-color</span><span class="p">:</span> <span class="mh">#fff</span><span class="p">;</span>
-      <span class="k">color</span><span class="p">:</span> <span class="mh">#0c479d</span><span class="p">;</span>
-      <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">.</span><span class="nc">silbutton</span> <span class="nt">em</span> <span class="p">{</span>
-      <span class="k">font-style</span><span class="p">:</span> <span class="kc">normal</span><span class="p">;</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="nc">silbutton</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">      </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">      </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+<span class="w">      </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="n">helvetica</span><span class="p">,</span><span class="n">arial</span><span class="p">,</span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="w">      </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">      </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="w">      </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">link</span><span class="o">,</span><span class="w"> </span><span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">visited</span><span class="o">,</span><span class="w"> </span><span class="p">.</span><span class="nc">silbutton</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#fc6</span><span class="p">;</span>
+<span class="w">      </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#000</span><span class="p">;</span>
+<span class="w">      </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">.</span><span class="nc">silbutton</span><span class="w"> </span><span class="nt">span</span><span class="p">.</span><span class="nc">w3cstrong</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">0.4</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff</span><span class="p">;</span>
+<span class="w">      </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0c479d</span><span class="p">;</span>
+<span class="w">      </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">.</span><span class="nc">silbutton</span><span class="w"> </span><span class="nt">em</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">font-style</span><span class="p">:</span><span class="w"> </span><span class="kc">normal</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-
 
 <p>(i.e., style the A element directly, rather than wrapping it in a div
 and styling the div). I&#8217;ve also used semantic tags that seem
@@ -129,6 +121,7 @@ over ordinary&nbsp;text.</p>
 actual (very pretty, but still all text and colours and borders, which
 should be doable in pure <span class="caps">HTML</span> and <span class="caps">CSS</span>) buttons, which I shall have a
 crack at later if someone doesn&#8217;t beat me to it&nbsp;:)</p>
+<!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2003/04/03/javascriptthe/">Previous post</a></li>

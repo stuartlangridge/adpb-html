@@ -77,40 +77,37 @@ as my mail client. So, here’s what I’ve done so far: Installed procmail:
 <code>apt-get install procmail</code> Got spambayes: download and unpack the
 archive into <code>$HOME/src/spambayes</code> Created a <code>sb_filter</code> shell script
 that invokes SpamBayes’&nbsp;filter:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/src/spambayes/spambayes <span class="nv">$HOME</span>/src/spambayes/spambayes/scripts/sb_filter.py -d <span class="nv">$HOME</span>/.hammie.db <span class="nv">$*</span>
-</code></pre></div>
-</td></tr></table>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/src/spambayes/spambayes<span class="w"> </span><span class="nv">$HOME</span>/src/spambayes/spambayes/scripts/sb_filter.py<span class="w"> </span>-d<span class="w"> </span><span class="nv">$HOME</span>/.hammie.db<span class="w"> </span><span class="nv">$*</span>
+</code></pre></div></td></tr></table></div>
 
 <p>Told procmail to filter my mail through SpamBayes, by putting in
 \$<span class="caps">HOME</span>/.procmailrc:</p>
-<div class="highlight"><pre><span></span><code><span class="err">PYTHONPATH=$HOME/src/spambayes/spambayes</span>
-<span class="err">:0fw:hamlock</span>
-<span class="err">| $HOME/src/spambayes/spambayes/scripts/sb_filter.py -d $HOME/.hammie.db</span>
+<div class="highlight"><pre><span></span><code>PYTHONPATH=$HOME/src/spambayes/spambayes
+:0fw:hamlock
+| $HOME/src/spambayes/spambayes/scripts/sb_filter.py -d $HOME/.hammie.db
 </code></pre></div>
-
 
 <p>Set up keybindings for mutt: I use “s” to save the current message into
 a folder, and I never save spam into a folder, so I want to train any
 saved message as ham (non-spam). I bind “S” to mean “this is spam, so
 train it <strong>as</strong> spam and then delete it“. In&nbsp;.muttrc:</p>
-<div class="highlight"><pre><span></span><code>## Lower case s saves the message after training it as ham.
-    ## Upper-case S deletes the message after training it as spam.
+<div class="highlight"><pre><span></span><code>##<span class="w"> </span>Lower<span class="w"> </span>case<span class="w"> </span>s<span class="w"> </span>saves<span class="w"> </span>the<span class="w"> </span>message<span class="w"> </span>after<span class="w"> </span>training<span class="w"> </span>it<span class="w"> </span>as<span class="w"> </span>ham.
+<span class="w">    </span>##<span class="w"> </span>Upper-case<span class="w"> </span>S<span class="w"> </span>deletes<span class="w"> </span>the<span class="w"> </span>message<span class="w"> </span>after<span class="w"> </span>training<span class="w"> </span>it<span class="w"> </span>as<span class="w"> </span>spam.
 
-    macro index s &quot;|sb_filter <span class="nt">&lt;del&gt;</span>g -f &gt; /dev/nulln<span class="nt">&lt;save</span><span class="err">&lt;/del</span><span class="nt">&gt;</span>message&gt;&quot;
-macro pager s &quot;|sb_filter <span class="nt">&lt;del&gt;</span>g -f &gt; /dev/nulln<span class="nt">&lt;save</span><span class="err">&lt;/del</span><span class="nt">&gt;</span>message&gt;&quot;
-color index red black &quot;~h &#39;X-Spambayes-Disposition: spam&#39; ~F&quot;
+<span class="w">    </span>macro<span class="w"> </span>index<span class="w"> </span>s<span class="w"> </span>&quot;|sb_filter<span class="w"> </span><span class="nt">&lt;del&gt;</span>g<span class="w"> </span>-f<span class="w"> </span>&gt;<span class="w"> </span>/dev/nulln<span class="nt">&lt;save</span><span class="err">&lt;/del</span><span class="nt">&gt;</span>message&gt;&quot;
+macro<span class="w"> </span>pager<span class="w"> </span>s<span class="w"> </span>&quot;|sb_filter<span class="w"> </span><span class="nt">&lt;del&gt;</span>g<span class="w"> </span>-f<span class="w"> </span>&gt;<span class="w"> </span>/dev/nulln<span class="nt">&lt;save</span><span class="err">&lt;/del</span><span class="nt">&gt;</span>message&gt;&quot;
+color<span class="w"> </span>index<span class="w"> </span>red<span class="w"> </span>black<span class="w"> </span>&quot;~h<span class="w"> </span>&#39;X-Spambayes-Disposition:<span class="w"> </span>spam&#39;<span class="w"> </span>~F&quot;
 
-    macro index S &quot;<span class="nt">&lt;delete-message&gt;</span>|sb_filter -s -f &gt; /dev/nulln&quot;
-macro pager S &quot;<span class="nt">&lt;delete-message&gt;</span>|sb_filter -s -f &gt; /dev/nulln&quot;
+<span class="w">    </span>macro<span class="w"> </span>index<span class="w"> </span>S<span class="w"> </span>&quot;<span class="nt">&lt;delete-message&gt;</span>|sb_filter<span class="w"> </span>-s<span class="w"> </span>-f<span class="w"> </span>&gt;<span class="w"> </span>/dev/nulln&quot;
+macro<span class="w"> </span>pager<span class="w"> </span>S<span class="w"> </span>&quot;<span class="nt">&lt;delete-message&gt;</span>|sb_filter<span class="w"> </span>-s<span class="w"> </span>-f<span class="w"> </span>&gt;<span class="w"> </span>/dev/nulln&quot;
 
 
 
-    Stop Mutt saying &quot;Press any key to continue&quot; after training
-set wait_key=no
+<span class="w">    </span>Stop<span class="w"> </span>Mutt<span class="w"> </span>saying<span class="w"> </span>&quot;Press<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>to<span class="w"> </span>continue&quot;<span class="w"> </span>after<span class="w"> </span>training
+set<span class="w"> </span>wait_key=no
 </code></pre></div>
-
 
 <p>And that’s it. I still have to delete all my spam, but now SpamBayes is
 learning what spam is. Once I’ve been doing this for a little while,

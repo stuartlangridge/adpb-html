@@ -70,11 +70,6 @@
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1049396151.0:-->
-
-<!--category::-->
-
-<!--author:sil:-->
-
 <p>Simon has put together <a href="http://simon.incutio.com/archive/2003/04/03/fixingQuotesWithJavascript">a semi-solution</a> for <span class="caps">IE</span>&#8217;s failure to obey the
 <span class="caps">CSS</span> <code>quotes</code> declaration. He goes on to note a couple of problems with
 his&nbsp;solution:</p>
@@ -112,34 +107,34 @@ to an element and that application is <em>not</em> reflected in the computed
 style, we assume that the browser doesn&#8217;t understand it, and we can then
 go on to manually apply quotes as Simon&#8217;s code&nbsp;does.</p>
 <p>How do we check for <code>quotes</code> showing up in the computed style? Like&nbsp;so:</p>
-<div class="highlight"><pre><span></span><code><span class="n">quotesElements</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="ss">&quot;q&quot;</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">quotesElements</span><span class="p">.</span><span class="k">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">q</span><span class="o">=</span><span class="n">quotesElements</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><span class="nv">quotesElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">document</span>.<span class="nv">getElementsByTagName</span><span class="ss">(</span><span class="s2">&quot;q&quot;</span><span class="ss">)</span><span class="c1">;</span>
+<span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">quotesElements</span>.<span class="nv">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">  </span><span class="nv">q</span><span class="o">=</span><span class="nv">quotesElements</span>[<span class="mi">0</span>]<span class="c1">;</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">currentStyle</span><span class="p">)</span> <span class="err">{</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">currentStyle</span><span class="p">;</span>
-  <span class="err">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">document</span><span class="p">.</span><span class="n">defaultView</span> <span class="o">&amp;&amp;</span>
-<span class="n">document</span><span class="p">.</span><span class="n">defaultView</span><span class="p">.</span><span class="n">getComputedStyle</span><span class="p">)</span> <span class="err">{</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">defaultView</span><span class="p">.</span><span class="n">getComputedStyle</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-  <span class="err">}</span>
-  <span class="n">supportsQuotes</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">prop</span> <span class="k">in</span> <span class="n">s</span><span class="p">)</span> <span class="err">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">prop</span><span class="p">.</span><span class="n">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;quotes&#39;</span><span class="p">)</span> <span class="err">{</span>
-      <span class="n">supportsQuotes</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
-      <span class="n">break</span><span class="p">;</span>
-    <span class="err">}</span>
-  <span class="err">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">supportsQuotes</span><span class="p">)</span> <span class="err">{</span>
-    <span class="n">alert</span><span class="p">(</span><span class="ss">&quot;Supports quotes declaration&quot;</span><span class="p">);</span>
-  <span class="err">}</span> <span class="k">else</span> <span class="err">{</span>
-    <span class="n">alert</span><span class="p">(</span><span class="ss">&quot;Does not support quotes declaration&quot;</span><span class="p">);</span>
-  <span class="err">}</span>
-<span class="err">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">q</span>.<span class="nv">currentStyle</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span><span class="nv">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">q</span>.<span class="nv">currentStyle</span><span class="c1">;</span>
+<span class="w">  </span>}<span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">document</span>.<span class="nv">defaultView</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="nv">document</span>.<span class="nv">defaultView</span>.<span class="nv">getComputedStyle</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span><span class="nv">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">document</span>.<span class="nv">defaultView</span>.<span class="nv">getComputedStyle</span><span class="ss">(</span><span class="nv">q</span>,<span class="s1">&#39;&#39;</span><span class="ss">)</span><span class="c1">;</span>
+<span class="w">  </span>}
+<span class="w">  </span><span class="nv">supportsQuotes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">false</span><span class="c1">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="ss">(</span><span class="nv">prop</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">s</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">prop</span>.<span class="nv">toLowerCase</span><span class="ss">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;quotes&#39;</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">      </span><span class="nv">supportsQuotes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">true</span><span class="c1">;</span>
+<span class="w">      </span><span class="k">break</span><span class="c1">;</span>
+<span class="w">    </span>}
+<span class="w">  </span>}
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">supportsQuotes</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span><span class="nv">alert</span><span class="ss">(</span><span class="s2">&quot;Supports quotes declaration&quot;</span><span class="ss">)</span><span class="c1">;</span>
+<span class="w">  </span>}<span class="w"> </span><span class="k">else</span><span class="w"> </span>{
+<span class="w">    </span><span class="nv">alert</span><span class="ss">(</span><span class="s2">&quot;Does not support quotes declaration&quot;</span><span class="ss">)</span><span class="c1">;</span>
+<span class="w">  </span>}
+}
 </code></pre></div>
 
-
 <p>This code checks for a <code>quotes</code> declaration in the computed style of
-your first \&lt;Q> element.</p>
+your first \&lt;Q&gt;&nbsp;element.</p>
+<!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2003/04/02/javascriptpower/">Previous post</a></li>

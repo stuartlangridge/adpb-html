@@ -71,12 +71,11 @@
 <p><img src="https://kryogenix.org/images/css-jagged-1.png" alt="demonstrating the banner image and the same banner image given the jagged sawtooth bottom edge"></p>
 <p>Now, the way that theme did it was by wrapping the <code>&lt;img&gt;</code> element in a wrapper, then giving the wrapper an <code>::after</code> generated content layer, and adding a repeating background image to the <code>::after</code> of a tiny <span class="caps">SVG</span> sawtooth triangle in the background colour. Imagine our background colour is blue. Then the <span class="caps">SVG</span> looks like this:</p>
 <p>https://codepen.io/stuartlangridge/pen/mdJzMbo</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span>
-    <span class="na">viewBox=</span><span class="s">"0 0 1 1"</span> <span class="na">preserveAspectRatio=</span><span class="s">"none"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;polygon</span> <span class="na">style=</span><span class="s">"fill:blue;"</span> <span class="na">points=</span><span class="s">"1,0 1,1 0,1 "</span><span class="nt">/&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;svg</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span>
+<span class="w">    </span><span class="na">viewBox=</span><span class="s">"0 0 1 1"</span><span class="w"> </span><span class="na">preserveAspectRatio=</span><span class="s">"none"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;polygon</span><span class="w"> </span><span class="na">style=</span><span class="s">"fill:blue;"</span><span class="w"> </span><span class="na">points=</span><span class="s">"1,0 1,1 0,1 "</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/svg&gt;</span>
 </code></pre></div>
-
 
 <p>and displays thus:</p>
 <p><svg style="width: 100px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:blue;" points="1,0 1,1 0,1 "></polygon></svg></p>
@@ -87,26 +86,24 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
-<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">jagged-wrapper</span> <span class="p">{</span>
-    <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">jagged-wrapper</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">relative</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="p">#</span><span class="nn">jagged-wrapper</span> <span class="nt">img</span> <span class="p">{</span>
-    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-    <span class="k">z-index</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">#</span><span class="nn">jagged-wrapper</span><span class="w"> </span><span class="nt">img</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">    </span><span class="k">z-index</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="p">#</span><span class="nn">jagged-wrapper</span><span class="p">::</span><span class="nd">after</span> <span class="p">{</span>
-    <span class="k">content</span><span class="p">:</span> <span class="s2">""</span><span class="p">;</span>
-    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">...the SVG as a data URL...</span><span class="p">);</span>
-    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">height</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-    <span class="k">bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">z-index</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">#</span><span class="nn">jagged-wrapper</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span>
+<span class="w">    </span><span class="k">background-image</span><span class="p">:</span><span class="w"> </span><span class="nb">url</span><span class="p">(</span><span class="sx">...the SVG as a data URL...</span><span class="p">);</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">    </span><span class="k">bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">right</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">z-index</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <div id="jagged-page">
     <div id="jagged-wrapper">
@@ -149,7 +146,6 @@
 <p>So what we need is an image similar to the <span class="caps">SVG</span> above; one sawtooth, this time with the top-left half in white and the bottom-left half transparent. And ideally not an actual <span class="caps">SVG</span>, since we’d have to make it a data <span class="caps">URL</span> to get it into <span class="caps">CSS</span> and then that’s ugly again.<sup id="sf-css-masks-and-jagged-edges-2-back"><a href="#sf-css-masks-and-jagged-edges-2" class="simple-footnote" title="you might be thinking: embed the SVG in the CSS directly and define a mask in it and then point the CSS at the mask ID in the SVG! Which is certainly doable, if you can edit the HTML. In this case, I was working on a WordPress theme, and I really wanted to confine my changes to pure CSS and not inject extra parts into the HTML, which would have been a lot more work.">2</a></sup></p>
 <p>To create such a triangle, we can use a <span class="caps">CSS</span> gradient: <code>linear-gradient(to bottom right, white, white 50%, transparent 50%, transparent)</code> looks like this (on a radial background, so you can see it’s really transparent):</p>
 <div id="css-sawtooth-bg"><div id="css-sawtooth-actual"></div></div>
-
 <style>
 #css-sawtooth-bg {
     background: radial-gradient(circle, #ac1d1c, #eca);
@@ -170,18 +166,16 @@
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"banner.jpg"</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
-<div class="highlight"><pre><span></span><code><span class="nt">img</span> <span class="p">{</span>
-    <span class="k">mask-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">bottom</span> <span class="kc">right</span><span class="p">,</span> <span class="kc">white</span><span class="p">,</span> <span class="kc">white</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span>
-                                <span class="kc">transparent</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">transparent</span><span class="p">);</span>
-    <span class="k">mask-size</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">mask-repeat</span><span class="p">:</span> <span class="kc">repeat-x</span><span class="p">;</span>
-    <span class="k">mask-position</span><span class="p">:</span> <span class="kc">left</span> <span class="kc">bottom</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">img</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">mask-image</span><span class="p">:</span><span class="w"> </span><span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span><span class="w"> </span><span class="kc">bottom</span><span class="w"> </span><span class="kc">right</span><span class="p">,</span><span class="w"> </span><span class="kc">white</span><span class="p">,</span><span class="w"> </span><span class="kc">white</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span>
+<span class="w">                                </span><span class="kc">transparent</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="kc">transparent</span><span class="p">);</span>
+<span class="w">    </span><span class="k">mask-size</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">mask-repeat</span><span class="p">:</span><span class="w"> </span><span class="kc">repeat-x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">mask-position</span><span class="p">:</span><span class="w"> </span><span class="kc">left</span><span class="w"> </span><span class="kc">bottom</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-
-<p><img id="css-jagged-fail-1" src="https://kryogenix.org/images/css-jagged-banner.jpg">
+<p><img id="css-jagged-fail-1" src="https://kryogenix.org/images/css-jagged-banner.jpg"></p>
 <style>
 img#css-jagged-fail-1 {
     mask-image: linear-gradient(to bottom right, white, white 50%,
@@ -190,12 +184,12 @@ img#css-jagged-fail-1 {
     mask-repeat: repeat-x;
     mask-position: left bottom;
 }
-</style></p>
+</style>
+
 <p>failure 2 (with -webkit): https://codepen.io/stuartlangridge/pen/rNVqzxz</p>
 <p>Nuh-uh. The problem here is that is you confine the mask to just the bottom stripe of the image with <code>mask-size</code>, then the rest of the image has no <code>mask-image</code> at all over it… and so gets entirely masked out. So we can’t have just the sawtooth as a mask. What we need is a <code>mask-image</code> which is a rectangle the size of the image with just a sawtooth at the bottom. Something like this, in fact:</p>
 <p>https://codepen.io/stuartlangridge/pen/VwLEzaq</p>
 <div id="css-hightooth-bg"><div id="css-hightooth-actual"></div></div>
-
 <style>
 #css-hightooth-bg {
     background: radial-gradient(circle, #ac1d1c, #eca);
@@ -219,19 +213,17 @@ img#css-jagged-fail-1 {
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"banner.jpg"</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
-<div class="highlight"><pre><span></span><code><span class="nt">img</span> <span class="p">{</span>
-    <span class="k">mask-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">bottom</span> <span class="kc">right</span><span class="p">,</span> <span class="kc">white</span><span class="p">,</span> <span class="kc">white</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span>
-                                <span class="kc">transparent</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">transparent</span><span class="p">),</span>
-        <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">top</span><span class="p">,</span> <span class="kc">transparent</span> <span class="mi">30</span><span class="kt">px</span><span class="p">,</span> <span class="kc">black</span> <span class="mi">30</span><span class="kt">px</span><span class="p">,</span> <span class="kc">white</span><span class="p">);</span>
-    <span class="k">mask-size</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span> <span class="mi">30</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">%</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">mask-repeat</span><span class="p">:</span> <span class="kc">repeat-x</span><span class="p">;</span>
-    <span class="k">mask-position</span><span class="p">:</span> <span class="kc">left</span> <span class="kc">bottom</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">img</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">mask-image</span><span class="p">:</span><span class="w"> </span><span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span><span class="w"> </span><span class="kc">bottom</span><span class="w"> </span><span class="kc">right</span><span class="p">,</span><span class="w"> </span><span class="kc">white</span><span class="p">,</span><span class="w"> </span><span class="kc">white</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span>
+<span class="w">                                </span><span class="kc">transparent</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="kc">transparent</span><span class="p">),</span>
+<span class="w">        </span><span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span><span class="w"> </span><span class="kc">top</span><span class="p">,</span><span class="w"> </span><span class="kc">transparent</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">,</span><span class="w"> </span><span class="kc">black</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">,</span><span class="w"> </span><span class="kc">white</span><span class="p">);</span>
+<span class="w">    </span><span class="k">mask-size</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">mask-repeat</span><span class="p">:</span><span class="w"> </span><span class="kc">repeat-x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">mask-position</span><span class="p">:</span><span class="w"> </span><span class="kc">left</span><span class="w"> </span><span class="kc">bottom</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-
-<p><img id="css-jagged-success" src="https://kryogenix.org/images/css-jagged-banner.jpg">
+<p><img id="css-jagged-success" src="https://kryogenix.org/images/css-jagged-banner.jpg"></p>
 <style>
 img#css-jagged-success {
     mask-image: linear-gradient(to bottom right, white, white 50%, 
@@ -241,7 +233,8 @@ img#css-jagged-success {
     mask-repeat: repeat-x;
     mask-position: left bottom;
 }
-</style></p>
+</style>
+
 <p>And there we have it.</p><ol class="simple-footnotes"><li id="sf-css-masks-and-jagged-edges-1">in this example. There’s a bunch more complicated stuff which you can do, with decreasing degrees of browser support; check the specs and <span class="caps">MDN</span> for more <a href="#sf-css-masks-and-jagged-edges-1-back" class="simple-footnote-back">↩</a></li><li id="sf-css-masks-and-jagged-edges-2">you might be thinking: embed the <span class="caps">SVG</span> in the <span class="caps">CSS</span> directly and define a mask in it and then point the <span class="caps">CSS</span> at the mask <span class="caps">ID</span> in the <span class="caps">SVG</span>! Which is certainly doable, <em>if</em> you can edit the <span class="caps">HTML</span>. In this case, I was working on a WordPress theme, and I really wanted to confine my changes to pure <span class="caps">CSS</span> and not inject extra parts into the <span class="caps">HTML</span>, which would have been a lot more work. <a href="#sf-css-masks-and-jagged-edges-2-back" class="simple-footnote-back">↩</a></li><li id="sf-css-masks-and-jagged-edges-3">the way we’re using it here, as mentioned; it can be made to care about colour instead of alpha, but Here Be Dragons <a href="#sf-css-masks-and-jagged-edges-3-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

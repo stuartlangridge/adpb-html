@@ -116,41 +116,37 @@ Relations Certificate Authority</a>; download this AppleWWDRCA.cer file
 and keep it around&nbsp;somewhere.</p>
 <h4>Development p12&nbsp;key</h4>
 <p>Now, set yourself up a development p12 key as&nbsp;follows.</p>
-<div class="highlight"><pre><span></span><code><span class="err"># Generate your private key</span>
-<span class="err">openssl genrsa -out private.key 2048</span>
-<span class="err"># Generate a certificate signing request. Use your own email address!</span>
-<span class="err">openssl req -new -key private.key -out CertificateSigningRequest.certSigningRequest  -subj &#39;/emailAddress=joe@example.com, CN=Joe Example, C=UK&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Generate</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">private</span><span class="w"> </span><span class="k">key</span>
+<span class="n">openssl</span><span class="w"> </span><span class="n">genrsa</span><span class="w"> </span><span class="o">-</span><span class="k">out</span><span class="w"> </span><span class="n">private</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="mi">2048</span>
+<span class="err">#</span><span class="w"> </span><span class="n">Generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">signing</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="w"> </span><span class="k">Use</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">own</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="n">address</span><span class="err">!</span>
+<span class="n">openssl</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">-</span><span class="k">new</span><span class="w"> </span><span class="o">-</span><span class="k">key</span><span class="w"> </span><span class="n">private</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="o">-</span><span class="k">out</span><span class="w"> </span><span class="n">CertificateSigningRequest</span><span class="p">.</span><span class="n">certSigningRequest</span><span class="w">  </span><span class="o">-</span><span class="n">subj</span><span class="w"> </span><span class="s1">&#39;/emailAddress=joe@example.com, CN=Joe Example, C=UK&#39;</span>
 </code></pre></div>
-
 
 <p>On the &#8220;What type of certificate do you need?&#8221; Apple page, say &#8220;iOS App
 Development&#8221;. Go through its little wizard and upload your
 <code>CertificateSigningRequest.certSigningRequest</code> file. It will give you
 back a <code>ios_development.cer</code> file.</p>
-<div class="highlight"><pre><span></span><code><span class="err"># Convert ios_development.cer to ios_development.pem</span>
-<span class="err">openssl x509 -in ios_development.cer -inform DER -out ios_development.pem -outform PEM</span>
-<span class="err"># Convert ios_development.pem to ios_development.p12.  Enter a password and remember it for later.</span>
-<span class="err">openssl pkcs12 -export -inkey private.key -in ios_development.pem -out ios_development.p12</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Convert ios_development.cer to ios_development.pem</span>
+<span class="n">openssl</span><span class="w"> </span><span class="n">x509</span><span class="w"> </span><span class="o">-</span><span class="ow">in</span><span class="w"> </span><span class="n">ios_development</span><span class="o">.</span><span class="n">cer</span><span class="w"> </span><span class="o">-</span><span class="n">inform</span><span class="w"> </span><span class="n">DER</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">ios_development</span><span class="o">.</span><span class="n">pem</span><span class="w"> </span><span class="o">-</span><span class="n">outform</span><span class="w"> </span><span class="n">PEM</span>
+<span class="c1"># Convert ios_development.pem to ios_development.p12.  Enter a password and remember it for later.</span>
+<span class="n">openssl</span><span class="w"> </span><span class="n">pkcs12</span><span class="w"> </span><span class="o">-</span><span class="k">export</span><span class="w"> </span><span class="o">-</span><span class="n">inkey</span><span class="w"> </span><span class="n">private</span><span class="o">.</span><span class="n">key</span><span class="w"> </span><span class="o">-</span><span class="ow">in</span><span class="w"> </span><span class="n">ios_development</span><span class="o">.</span><span class="n">pem</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">ios_development</span><span class="o">.</span><span class="n">p12</span>
 </code></pre></div>
-
 
 <h4>Distribution p12&nbsp;key</h4>
 <p>Now, generate a distribution p12 key in the same&nbsp;way:</p>
-<div class="highlight"><pre><span></span><code><span class="err"># Generate a certificate signing request. Use your own email address!</span>
-<span class="err">openssl req -new -key private.key -out DistCertificateSigningRequest.certSigningRequest  -subj &#39;/emailAddress=joe@example.com, CN=Joe Example, C=UK&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">signing</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="w"> </span><span class="k">Use</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">own</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="n">address</span><span class="err">!</span>
+<span class="n">openssl</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">-</span><span class="k">new</span><span class="w"> </span><span class="o">-</span><span class="k">key</span><span class="w"> </span><span class="n">private</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="o">-</span><span class="k">out</span><span class="w"> </span><span class="n">DistCertificateSigningRequest</span><span class="p">.</span><span class="n">certSigningRequest</span><span class="w">  </span><span class="o">-</span><span class="n">subj</span><span class="w"> </span><span class="s1">&#39;/emailAddress=joe@example.com, CN=Joe Example, C=UK&#39;</span>
 </code></pre></div>
-
 
 <p>On the &#8220;What type of certificate do you need?&#8221; Apple page, say &#8220;iOS App
 Development&#8221;. Go through its little wizard and upload your
 <code>DistCertificateSigningRequest.certSigningRequest</code> file. It will give
 you back a <code>ios_distribution.cer</code> file.</p>
-<div class="highlight"><pre><span></span><code><span class="err"># Convert ios_distribution.cer to ios_distribution.pem</span>
-<span class="err">openssl x509 -in ios_distribution.cer -inform DER -out ios_distribution.pem -outform PEM</span>
-<span class="err"># Convert ios_distribution.pem to ios_distribution.p12.  Enter a password and remember it for later.</span>
-<span class="err">openssl pkcs12 -export -inkey private.key -in ios_distribution.pem -out ios_distribution.p12</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Convert ios_distribution.cer to ios_distribution.pem</span>
+<span class="n">openssl</span><span class="w"> </span><span class="n">x509</span><span class="w"> </span><span class="o">-</span><span class="ow">in</span><span class="w"> </span><span class="n">ios_distribution</span><span class="o">.</span><span class="n">cer</span><span class="w"> </span><span class="o">-</span><span class="n">inform</span><span class="w"> </span><span class="n">DER</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">ios_distribution</span><span class="o">.</span><span class="n">pem</span><span class="w"> </span><span class="o">-</span><span class="n">outform</span><span class="w"> </span><span class="n">PEM</span>
+<span class="c1"># Convert ios_distribution.pem to ios_distribution.p12.  Enter a password and remember it for later.</span>
+<span class="n">openssl</span><span class="w"> </span><span class="n">pkcs12</span><span class="w"> </span><span class="o">-</span><span class="k">export</span><span class="w"> </span><span class="o">-</span><span class="n">inkey</span><span class="w"> </span><span class="n">private</span><span class="o">.</span><span class="n">key</span><span class="w"> </span><span class="o">-</span><span class="ow">in</span><span class="w"> </span><span class="n">ios_distribution</span><span class="o">.</span><span class="n">pem</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">ios_distribution</span><span class="o">.</span><span class="n">p12</span>
 </code></pre></div>
-
 
 <h3>Add your phone as a&nbsp;Device</h3>
 <p>On the Apple page, on the left, it has a &#8220;Devices&#8221; section. Add a new
@@ -165,7 +161,7 @@ your Ubuntu machine with <span class="caps">USB</span>, and then&nbsp;run</p>
 <p>The <code>iSerial</code> is your <em>actual</em> <span class="caps">UDID</span>. Use it to add your phone as a new
 Device on the Apple developer&nbsp;portal.</p>
 <h3>Add your&nbsp;app</h3>
-<p>Also on the left of the Apple page, there&#8217;s Identifiers > App IDs. Add
+<p>Also on the left of the Apple page, there&#8217;s Identifiers &gt; App IDs. Add
 a new App <span class="caps">ID</span> for the app you&#8217;re planning to&nbsp;build.</p>
 <h3>Get a Provisioning&nbsp;Profile</h3>
 <p>You now need a Provisioning Profile. This is a certificate which is

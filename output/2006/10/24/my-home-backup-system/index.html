@@ -97,32 +97,31 @@ stuff can be done with proper <span class="caps">GUI</span> tools, but I don&#82
 machine because it&#8217;s a server and I&#8217;m trying to converse disc space.
 This bit&#8217;s also from memory, so be very careful and don&#8217;t just slavishly
 follow&nbsp;it.</p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="k">First</span><span class="p">,</span> <span class="n">make</span> <span class="n">the</span> <span class="n">partition</span> <span class="n">available</span> <span class="k">to</span> <span class="n">LVM</span><span class="p">,</span> <span class="k">by</span> 
-<span class="o">#</span> <span class="n">making</span> <span class="n">it</span> <span class="n">a</span> <span class="ss">&quot;physical volume&quot;</span><span class="p">.</span> <span class="n">This</span> <span class="k">is</span> <span class="n">LVM</span><span class="o">-</span><span class="n">speak</span> <span class="k">for</span> 
-<span class="o">#</span> <span class="ss">&quot;a bit of a disk that I can use&quot;</span>
-<span class="n">pvcreate</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda3</span> <span class="o">#</span> <span class="n">the</span> <span class="n">big</span> <span class="n">partition</span> <span class="k">on</span> <span class="n">the</span> <span class="k">first</span> <span class="n">disc</span>
-<span class="n">pvcreate</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hdb</span> <span class="o">#</span> <span class="k">and</span> <span class="k">all</span> <span class="k">of</span> <span class="n">the</span> <span class="k">second</span> <span class="n">disc</span>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">First</span>,<span class="w"> </span><span class="nv">make</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">partition</span><span class="w"> </span><span class="nv">available</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">LVM</span>,<span class="w"> </span><span class="nv">by</span><span class="w"> </span>
+#<span class="w"> </span><span class="nv">making</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="s2">&quot;physical volume&quot;</span>.<span class="w"> </span><span class="nv">This</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">LVM</span><span class="o">-</span><span class="nv">speak</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>
+#<span class="w"> </span><span class="s2">&quot;a bit of a disk that I can use&quot;</span>
+<span class="nv">pvcreate</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">hda3</span><span class="w"> </span>#<span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">big</span><span class="w"> </span><span class="nv">partition</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">first</span><span class="w"> </span><span class="nv">disc</span>
+<span class="nv">pvcreate</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">hdb</span><span class="w"> </span>#<span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">second</span><span class="w"> </span><span class="nv">disc</span>
 
-<span class="o">#</span> <span class="n">Now</span><span class="p">,</span> <span class="k">create</span> <span class="n">a</span> <span class="ss">&quot;volume group&quot;</span><span class="p">.</span> <span class="n">This</span> <span class="k">is</span> <span class="n">LVM</span><span class="o">-</span><span class="n">speak</span> <span class="k">for</span> 
-<span class="o">#</span> <span class="ss">&quot;a big block of disc space all managed together&quot;</span>
-<span class="n">vgcreate</span> <span class="n">volumegroup</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda3</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hdb</span>
+#<span class="w"> </span><span class="nv">Now</span>,<span class="w"> </span><span class="nv">create</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="s2">&quot;volume group&quot;</span>.<span class="w"> </span><span class="nv">This</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">LVM</span><span class="o">-</span><span class="nv">speak</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>
+#<span class="w"> </span><span class="s2">&quot;a big block of disc space all managed together&quot;</span>
+<span class="nv">vgcreate</span><span class="w"> </span><span class="nv">volumegroup</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">hda3</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">hdb</span>
 
-<span class="o">#</span> <span class="k">Next</span><span class="p">,</span> <span class="k">create</span> <span class="n">a</span> <span class="ss">&quot;logical volume&quot;</span><span class="p">.</span> <span class="n">LVM</span><span class="o">-</span><span class="n">speak</span><span class="p">:</span> <span class="ss">&quot;something</span>
-<span class="ss"># that looks like a disc drive, so you can mount it&quot;</span>
-<span class="o">#</span> <span class="k">First</span><span class="p">,</span> <span class="n">find</span> <span class="k">out</span> <span class="n">how</span> <span class="n">big</span> <span class="n">it</span> <span class="n">can</span> <span class="n">be</span>
-<span class="n">vgdisplay</span> <span class="o">|</span> <span class="n">grep</span> <span class="ss">&quot;Total PE&quot;</span>
-  <span class="n">Total</span> <span class="n">PE</span>              <span class="mi">11833</span>
-<span class="o">#</span> <span class="n">now</span> <span class="k">create</span> <span class="n">the</span> <span class="n">logical</span> <span class="n">volume</span> <span class="k">at</span> <span class="n">that</span> <span class="k">size</span>
-<span class="n">lvcreate</span> <span class="o">-</span><span class="n">l</span> <span class="mi">11833</span> <span class="n">volumegroup</span> <span class="o">-</span><span class="n">n</span> <span class="n">logical1</span>
+#<span class="w"> </span><span class="k">Next</span>,<span class="w"> </span><span class="nv">create</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="s2">&quot;logical volume&quot;</span>.<span class="w"> </span><span class="nv">LVM</span><span class="o">-</span><span class="nv">speak</span>:<span class="w"> </span><span class="err">&quot;something</span>
+#<span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">looks</span><span class="w"> </span><span class="nv">like</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">disc</span><span class="w"> </span><span class="nv">drive</span>,<span class="w"> </span><span class="nv">so</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">mount</span><span class="w"> </span><span class="nv">it</span><span class="err">&quot;</span>
+<span class="err"># First, find out how big it can be</span>
+<span class="nv">vgdisplay</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">grep</span><span class="w"> </span><span class="s2">&quot;Total PE&quot;</span>
+<span class="w">  </span><span class="nv">Total</span><span class="w"> </span><span class="nv">PE</span><span class="w">              </span><span class="mi">11833</span>
+#<span class="w"> </span><span class="nv">now</span><span class="w"> </span><span class="nv">create</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">logical</span><span class="w"> </span><span class="nv">volume</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">size</span>
+<span class="nv">lvcreate</span><span class="w"> </span><span class="o">-</span><span class="nv">l</span><span class="w"> </span><span class="mi">11833</span><span class="w"> </span><span class="nv">volumegroup</span><span class="w"> </span><span class="o">-</span><span class="nv">n</span><span class="w"> </span><span class="nv">logical1</span>
 
-<span class="o">#</span> <span class="n">You</span> <span class="n">now</span> <span class="n">have</span> <span class="n">a</span> <span class="n">device</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">volumegroup</span><span class="o">/</span><span class="n">logical1</span>
-<span class="o">#</span> <span class="n">which</span> <span class="n">you</span> <span class="n">can</span> <span class="k">treat</span> <span class="k">as</span> <span class="k">if</span> <span class="n">it</span> <span class="n">were</span> <span class="n">a</span> <span class="n">disc</span>
-<span class="o">#</span> <span class="k">Create</span> <span class="n">a</span> <span class="n">dir</span> <span class="k">to</span> <span class="n">put</span> <span class="n">it</span> <span class="k">in</span>
-<span class="n">mkdir</span> <span class="o">/</span><span class="k">space</span>
-<span class="o">#</span> <span class="k">and</span> <span class="k">add</span> <span class="n">it</span> <span class="k">to</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span> <span class="n">so</span> <span class="n">it</span> <span class="n">gets</span> <span class="n">mounted</span><span class="p">.</span> <span class="k">Add</span> <span class="n">the</span> <span class="n">line</span><span class="p">:</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">volumegroup</span><span class="o">/</span><span class="n">logical1</span> <span class="o">/</span><span class="k">space</span> <span class="n">auto</span>   <span class="k">defaults</span>        <span class="mi">0</span>       <span class="mi">0</span>
+#<span class="w"> </span><span class="nv">You</span><span class="w"> </span><span class="nv">now</span><span class="w"> </span><span class="nv">have</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">device</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">volumegroup</span><span class="o">/</span><span class="nv">logical1</span>
+#<span class="w"> </span><span class="nv">which</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">treat</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">were</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">disc</span>
+#<span class="w"> </span><span class="nv">Create</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">dir</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">put</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">in</span>
+<span class="nv">mkdir</span><span class="w"> </span><span class="o">/</span><span class="nv">space</span>
+#<span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">add</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">fstab</span><span class="w"> </span><span class="nv">so</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">gets</span><span class="w"> </span><span class="nv">mounted</span>.<span class="w"> </span><span class="nv">Add</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">line</span>:
+<span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">volumegroup</span><span class="o">/</span><span class="nv">logical1</span><span class="w"> </span><span class="o">/</span><span class="nv">space</span><span class="w"> </span><span class="nv">auto</span><span class="w">   </span><span class="nv">defaults</span><span class="w">        </span><span class="mi">0</span><span class="w">       </span><span class="mi">0</span>
 </code></pre></div>
-
 
 <p>After that complex little bit (again, if you aren&#8217;t tight like me, do it
 with the <span class="caps">GUI</span>, it&#8217;s easier), you will have a directory <code>/space</code> on the
@@ -136,23 +135,22 @@ folder for each machine, and there should be in there a folder per day.
 Each folder should look like a complete backup, but if a file hasn&#8217;t
 changed since yesterday it shouldn&#8217;t take up any more disc space. So,
 the folder structure should look, say, like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">/space</span>
-<span class="err">  /stuart</span>
-<span class="err">    /2006-10-24</span>
-<span class="err">      /folder1</span>
-<span class="err">        /file1</span>
-<span class="err">        /file2</span>
-<span class="err">        /newfile1</span>
-<span class="err">      /folder2</span>
-<span class="err">        /file3</span>
-<span class="err">    /2006-10-23</span>
-<span class="err">      /folder1</span>
-<span class="err">        /file1</span>
-<span class="err">        /file2</span>
-<span class="err">      /folder2</span>
-<span class="err">        /file3</span>
+<div class="highlight"><pre><span></span><code>/space
+  /stuart
+    /2006-10-24
+      /folder1
+        /file1
+        /file2
+        /newfile1
+      /folder2
+        /file3
+    /2006-10-23
+      /folder1
+        /file1
+        /file2
+      /folder2
+        /file3
 </code></pre></div>
-
 
 <p>and the <code>2006-10-24</code> folder should have all the files in it but only
 take up as much space as <code>newfile1</code>. Complicated, but part of the reason
@@ -185,63 +183,62 @@ actually&nbsp;becomes:</p>
 </ol>
 <p>The script that does this is stored in <code>/space/begin-backup</code>, made
 executable with <code>chmod +x /space/begin-backup</code>, and looks like&nbsp;this:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="nv">PERSON</span><span class="o">=</span><span class="nv">$1</span>
 <span class="nv">BROOT</span><span class="o">=</span>/space
 
-<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;</span><span class="nv">$PERSON</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-  <span class="nb">echo</span> You must pass the name of a backup dir
-  <span class="nb">exit</span> <span class="m">1</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PERSON</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span>You<span class="w"> </span>must<span class="w"> </span>pass<span class="w"> </span>the<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>backup<span class="w"> </span>dir
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="k">fi</span>
 
 <span class="nv">PDIR</span><span class="o">=</span><span class="nv">$BROOT</span>/<span class="nv">$PERSON</span>/
 
 <span class="c1"># If person dir doesn&#39;t exist, create it</span>
-<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PDIR</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> mkdir <span class="nv">$PDIR</span><span class="p">;</span> <span class="k">fi</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="nv">$PDIR</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>mkdir<span class="w"> </span><span class="nv">$PDIR</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
 
 <span class="c1"># If there&#39;s no current dir, create an empty one and link it</span>
-<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PDIR</span>/current <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-  mkdir <span class="nv">$PDIR</span>/first
-  ln -s first <span class="nv">$PDIR</span>/current
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="nv">$PDIR</span>/current<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>mkdir<span class="w"> </span><span class="nv">$PDIR</span>/first
+<span class="w">  </span>ln<span class="w"> </span>-s<span class="w"> </span>first<span class="w"> </span><span class="nv">$PDIR</span>/current
 <span class="k">fi</span>
 
-<span class="nv">DT</span><span class="o">=</span><span class="k">$(</span>date -Iseconds<span class="k">)</span>
+<span class="nv">DT</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>-Iseconds<span class="k">)</span>
 
 <span class="c1"># Hardlink-tree the existing recent dir</span>
-cp -al <span class="s2">&quot;</span><span class="k">$(</span>readlink -f <span class="nv">$PDIR</span>/current<span class="k">)</span><span class="s2">&quot;</span> <span class="nv">$PDIR</span>/<span class="nv">$DT</span>
+cp<span class="w"> </span>-al<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>readlink<span class="w"> </span>-f<span class="w"> </span><span class="nv">$PDIR</span>/current<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">$PDIR</span>/<span class="nv">$DT</span>
 <span class="c1"># and link current to the new hardlink tree</span>
-rm <span class="nv">$PDIR</span>/current
-ln -s <span class="nv">$DT</span> <span class="nv">$PDIR</span>/current
-</code></pre></div>
-</td></tr></table>
+rm<span class="w"> </span><span class="nv">$PDIR</span>/current
+ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$DT</span><span class="w"> </span><span class="nv">$PDIR</span>/current
+</code></pre></div></td></tr></table></div>
 
 <p>We&#8217;ll come back to how you run this in a&nbsp;minute.  </p>
 <h3>Rsync</h3>
@@ -249,11 +246,10 @@ ln -s <span class="nv">$DT</span> <span class="nv">$PDIR</span>/current
 done with <code>rsync</code>, which is complex but brilliantly clever. In essence,
 rsync is like <code>copy</code> (or <code>cp</code>), except that it compares the source and
 the destination and only sends the changes over. On my laptop, I can&nbsp;do</p>
-<div class="highlight"><pre><span></span><code><span class="err">rsync -avz --delete -e ssh </span>
-<span class="err">    /some/folder/to/back/up </span>
-<span class="err">    myserver:/space/stuart/current/</span>
+<div class="highlight"><pre><span></span><code>rsync -avz --delete -e ssh 
+    /some/folder/to/back/up 
+    myserver:/space/stuart/current/
 </code></pre></div>
-
 
 <p>and that will copy <code>/some/folder/to/back/up</code> over to the server.
 Importantly, if that folder is <em>already</em> in the backup space, in the
@@ -274,7 +270,7 @@ machine and add it to every file or folder that needs backing up. (This
 will, if applied to a folder, back up everything inside it. If you need
 it to back up only some of the stuff inside it then you&#8217;ll have to not
 apply it to the folder. Yes, this is awkward, but I don&#8217;t need to do
-that.) Applying emblems is also <a href="http://www.gnome.org/learn/users-guide/latest/gosnautilus-203.html">in the documentation</a>; a quick way if you&#8217;re doing this a lot is to pop up the <strong>Edit >
+that.) Applying emblems is also <a href="http://www.gnome.org/learn/users-guide/latest/gosnautilus-203.html">in the documentation</a>; a quick way if you&#8217;re doing this a lot is to pop up the <strong>Edit &gt;
 Backgrounds and Emblems</strong> window and just repeatedly drag your new
 backup emblem to&nbsp;everything.  </p>
 <h2><span class="caps">SSH</span> with no&nbsp;password</h2>
@@ -297,47 +293,45 @@ happen. To summarise, then, to do a backup, we need&nbsp;to:</p>
 <p>To get the list, we can use my <a href="http://www.kryogenix.org/days/2006/10/23/find-files-with-an-emblem">findemblem.py</a> script (and you thought
 I just wrote it for fun!). The final script, <code>dobackup.sh</code>, which
 actually does the work, just does the above steps, and looks like&nbsp;this:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Do backups to the rsync server</span>
 <span class="c1"># You must have already set up a passphraseless ssh key to the ssh server</span>
 <span class="c1"># so that &quot;ssh servername&quot; just logs you in.</span>
 
-<span class="nv">BK</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>
+<span class="nv">BK</span><span class="o">=</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$0</span><span class="k">)</span>
 <span class="nv">BKNAME</span><span class="o">=</span>stuart
 
 <span class="c1"># First, tell it to clock over the backup</span>
-ssh servername /space/begin-backup <span class="nv">$BKNAME</span>
+ssh<span class="w"> </span>servername<span class="w"> </span>/space/begin-backup<span class="w"> </span><span class="nv">$BKNAME</span>
 
 <span class="c1"># Now, do the backup</span>
-python <span class="nv">$BK</span>/findemblem.py backup <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> fn<span class="p">;</span> <span class="k">do</span>
-  rsync -avzq --delete -e ssh <span class="s2">&quot;</span><span class="nv">$fn</span><span class="s2">&quot;</span> 
-    servername:/space/<span class="nv">$BKNAME</span>/current
+python<span class="w"> </span><span class="nv">$BK</span>/findemblem.py<span class="w"> </span>backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>fn<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span>rsync<span class="w"> </span>-avzq<span class="w"> </span>--delete<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$fn</span><span class="s2">&quot;</span><span class="w"> </span>
+<span class="w">    </span>servername:/space/<span class="nv">$BKNAME</span>/current
 <span class="k">done</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
 
 <p>All that remains now is to schedule this script to run every night, by
 editing your tasklist with <code>crontab -e</code> and adding the&nbsp;line</p>
-<div class="highlight"><pre><span></span><code><span class="err">40  4  *   *   *     /full/path/to/dobackup.sh</span>
+<div class="highlight"><pre><span></span><code><span class="mf">40</span><span class="w">  </span><span class="mf">4</span><span class="w">  </span><span class="o">*</span><span class="w">   </span><span class="o">*</span><span class="w">   </span><span class="o">*</span><span class="w">     </span><span class="o">/</span><span class="n">full</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="kr">to</span><span class="o">/</span><span class="n">dobackup</span><span class="mf">.</span><span class="n">sh</span>
 </code></pre></div>
-
 
 <p>And, lo and behold, you have overnight backups. All done and dusted.&nbsp;Phew.</p>
 		</div> <!--/#entry-content-->

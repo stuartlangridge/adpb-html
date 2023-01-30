@@ -122,7 +122,6 @@
     <span class="n">Gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 
-
 <p>Lots of little tricks in there: the widget acts as a widget (that is: it stays glued to the desktop, and doesn’t vanish when you <code>Show Desktop</code>) because of the <code>Gdk.WindowTypeHint.DOCK</code>, <code>skip_pager_hint=True</code>, <code>skip_taskbar_hint=True</code>, and <code>set_keep_below(True)</code> parts; it’s transparent because the <span class="caps">HTML</span> file sets its background colour to <code>rgba(0,0,0,0)</code> with <span class="caps">CSS</span> and then we use <code>override_background_color</code> to make that actually be transparent; the window has no decorations because of <code>set_decorated(False)</code>. Then I just add it to Startup Applications and we’re&nbsp;done.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">

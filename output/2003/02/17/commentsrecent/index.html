@@ -70,11 +70,6 @@
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1045494859.0:-->
-
-<!--category::-->
-
-<!--author:sil:-->
-
 <p>A recent comments list is a neat innovation that lots of people are
 using (<a href="http://weblog.burningbird.net/fires/000719.htm">Burningbird</a> has a set of instructions for
 <acronym title="Movable Type"><span class="caps">MT</span></acronym>). Seemed like a nice idea, so
@@ -89,18 +84,17 @@ said template, and then include the built file somewhere on your&nbsp;pages.</p>
 <span class="n">comments</span> <span class="o">=</span> <span class="n">vellum</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">audience</span><span class="o">.</span><span class="n">all_audience</span><span class="p">()</span>
 <span class="n">comments</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="o">==</span><span class="s1">&#39;comment&#39;</span><span class="p">,</span><span class="n">comments</span><span class="p">)</span>
 
-<span class="n">comments</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="nb">cmp</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">posted</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">posted</span><span class="p">))</span>
+<span class="n">comments</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">cmp</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">posted</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">posted</span><span class="p">))</span>
 
-<span class="k">print</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span>
+<span class="nb">print</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span>
 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">comments</span><span class="p">[:</span><span class="n">COMMENTS_TO_DISPLAY</span><span class="p">]:</span>
   <span class="n">e</span> <span class="o">=</span> <span class="n">vellum</span><span class="o">.</span><span class="n">Entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">entryid</span><span class="p">)</span>
-  <span class="k">print</span> <span class="s1">&#39;&lt;li&gt;</span><span class="si">%s</span><span class="s1"> on &lt;a href=&quot;</span><span class="si">%s</span><span class="s1">#au</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="si">%s</span><span class="s1">&lt;/a&gt;&lt;/li&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ref</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">permalink</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">ti</span>
+  <span class="nb">print</span> <span class="s1">&#39;&lt;li&gt;</span><span class="si">%s</span><span class="s1"> on &lt;a href=&quot;</span><span class="si">%s</span><span class="s1">#au</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="si">%s</span><span class="s1">&lt;/a&gt;&lt;/li&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ref</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">permalink</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">ti</span>
 <span class="n">tle</span><span class="p">)</span>
 <span class="n">end</span>
-<span class="k">print</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span>
+<span class="nb">print</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span>
 <span class="o">%&gt;</span>
 </code></pre></div>
-
 
 <p>(this has changed from my original posting: use this version, because it
 doesn&#8217;t have to individually load all the entries from disk, which is
@@ -123,6 +117,7 @@ somewhere, but bear in mind that, owing to Vellum&#8217;s funky caching, it
 won&#8217;t be there until it&#8217;s requested specifically. I get around this by
 having the &#8220;include&#8221; from my main page actually do an <span class="caps">HTTP</span> request to
 localhost to get the&nbsp;file.</p>
+<!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2003/02/14/changing/">Previous post</a></li>

@@ -100,9 +100,8 @@ to think that a one-finger tap is actually a two-finger tap. This is
 bad, because a two-finger tap means the middle button. I don’t know
 whether that’s a fault on the touchpad or a consequence of me having fat
 fingers, but I fixed it by&nbsp;adding</p>
-<div class="highlight"><pre><span></span><code><span class="err">Option          &quot;TapButton2&quot;            &quot;1&quot;</span>
+<div class="highlight"><pre><span></span><code>Option          &quot;TapButton2&quot;            &quot;1&quot;
 </code></pre></div>
-
 
 <p>to the “Synaptics Touchpad” section of <code>/etc/X11/xorg.conf</code>, which fixes
 it. Similarly, I can’t seem to get the corners to work as different

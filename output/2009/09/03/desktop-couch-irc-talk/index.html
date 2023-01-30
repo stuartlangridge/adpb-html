@@ -169,29 +169,29 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
     top of the mountain&nbsp;:)</li>
 <li>mandel_macaque&#8217;s question was: will there be a &#8220;group&#8221; that will
     try to define standard&nbsp;records?</li>
-<li>\&lt;mhall119|work> <span class="caps">QUESTION</span>: how does desktopcouch differ
+<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: how does desktopcouch differ
     from/replace&nbsp;gconf?</li>
 <li>mhall119|work, desktopcouch is for storing all sorts of user data.
     It&#8217;s not just about preferences, although you could store
     preferences in&nbsp;it</li>
-<li>\&lt;sandy|lu1k> <span class="caps">QUESTION</span>: What about performance? Why would
+<li>\&lt;sandy|lu1k&gt; <span class="caps">QUESTION</span>: What about performance? Why would
     Banshee/rhythmbox switch to a slower way to store&nbsp;metadata?</li>
 <li>sandy|lu1k, performance hasn&#8217;t really been an issue in our testing,
     and couchdb provides some serious advantages over existing things
     like sqlite or text files, like replication and user&nbsp;browseability</li>
-<li>\&lt;mandel_macaque> <span class="caps">QUESTIONS</span>: Is desktopcouch creating the required
+<li>\&lt;mandel_macaque&gt; <span class="caps">QUESTIONS</span>: Is desktopcouch creating the required
     infrastructure to allow user sync, or should applications take care
     of&nbsp;that?</li>
 <li>desktopcouch is providing infrastructure and <span class="caps">UI</span> to &#8220;pair&#8221; machines
     and handle all the replication; applications do not have to know or
     worry about data being replicated to your other&nbsp;computers</li>
-<li>\&lt;jopojop> <span class="caps">QUESTION</span>: can you store media like images, audio and&nbsp;video?</li>
+<li>\&lt;jopojop&gt; <span class="caps">QUESTION</span>: can you store media like images, audio and&nbsp;video?</li>
 <li>jopojop, not really &#8212; couchdb is designed for textual, key/value
     pair, dictionary data, not for binary&nbsp;data</li>
 <li>it&#8217;s possible to store binary data in desktopcouch, but I&#8217;d suggest
     not importing your whole mp3 collection into it; store the metadata.
     The filesystem is good at handling binary&nbsp;data</li>
-<li>\&lt;sandy|lu1k> <span class="caps">QUESTION</span> the real performance concern that media apps
+<li>\&lt;sandy|lu1k&gt; <span class="caps">QUESTION</span> the real performance concern that media apps
     have is query speed for doing quick&nbsp;searches</li>
 <li>sandy|lu1k, that&#8217;s something we&#8217;d really like to see more
     experimentation with. couchdb&#8217;s views architecture makes it really,
@@ -253,27 +253,27 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>\&lt;mandel_macaque> <span class="caps">QUESTION</span>: (about views) which is the policy for
+<li>\&lt;mandel_macaque&gt; <span class="caps">QUESTION</span>: (about views) which is the policy for
     design documents (views), one per&nbsp;app?</li>
 <li>mandel_macaque, no policy, thus far. Create whichever design docs
     you want to &#8212; having one per app sounds sensible, but an app might
     want more than&nbsp;one</li>
 <li>mandel_macaque, this is an ideal topic to bring up for discussion
     on the mailing list&nbsp;:)</li>
-<li>\&lt;test1> <span class="caps">QUESTION</span>: Does desktopCouch/CouchDB provide a means
+<li>\&lt;test1&gt; <span class="caps">QUESTION</span>: Does desktopCouch/CouchDB provide a means
     controls access to my data on a per application basis? I would not
     necessarily want any application to be able to access any data - I
     might want to silo two mail apps to different databases,&nbsp;etc.</li>
 <li>test1, at the moment it does not (in much the same way as the
     filesystem doesn&#8217;t), but it would be possible to build that&nbsp;in</li>
-<li>\&lt;mhall119|work> <span class="caps">QUESTION</span>: how does the <span class="caps">HTML</span> interact with couchdb?&nbsp;Javascript?</li>
+<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: how does the <span class="caps">HTML</span> interact with couchdb?&nbsp;Javascript?</li>
 <li>mhall119|work, (I assume you mean: how does the <span class="caps">HTML</span> web interface
     for browsing your data interact with couchdb?) yes,&nbsp;JavaScript</li>
-<li>\&lt;AntoineLeclair> <span class="caps">QUESTION</span>: so when I do <span class="caps">CRUD</span>, it&#8217;s done locally,
+<li>\&lt;AntoineLeclair&gt; <span class="caps">QUESTION</span>: so when I do <span class="caps">CRUD</span>, it&#8217;s done locally,
     then replicated on the web <span class="caps">DB</span>? (and replicated locally from the web
     some other time to keep&nbsp;sync?)</li>
 <li>AntoineLeclair, yes,&nbsp;broadly</li>
-<li>\&lt;F30> <span class="caps">QUESTION</span>: So far, this sounds a bit like the registry which
+<li>\&lt;F30&gt; <span class="caps">QUESTION</span>: So far, this sounds a bit like the registry which
     we all know and hate from the Windows world: Do you really think all
     applications should put there data into one monolithic databse,
     which in the end gets messed&nbsp;up?</li>
@@ -281,7 +281,7 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
     that data and make generalisations about it. We have the advantage
     that desktopcouch is built on couchdb, which is not only dead robust
     but also open source, unlike the registry&nbsp;:)</li>
-<li>\&lt;test1> In terms of replication - does CouchDb automate data
+<li>\&lt;test1&gt; In terms of replication - does CouchDb automate data
     merging (i.e. how does it handle conflict resolution) if I were to
     modify my bookmarks on multiple machines before replication took&nbsp;place?</li>
 <li>test1, couch&#8217;s approach is &#8220;eventual consistency&#8221;. In the case of
@@ -332,7 +332,7 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>\&lt;mandel_macaque> <span class="caps">QUESTION</span>: taking as an example the contacts
+<li>\&lt;mandel_macaque&gt; <span class="caps">QUESTION</span>: taking as an example the contacts
     record, when we have to perform a diff we will have to take into
     account the application_annotations key, which is share among apps.
     How can my app know aht to do with other app&nbsp;data?</li>
@@ -347,7 +347,7 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
 <li>mandel_macaque, what you have to do with data in
     application_annotations is preserve it. You are on your honour to
     not delete another app&#8217;s metadata&nbsp;:)</li>
-<li>\&lt;mhall119|work> <span class="caps">QUESTION</span>: might it be better to standardize on
+<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: might it be better to standardize on
     views, rather than records? So, Evolution and TBird might have their
     own database, with their own Contact record, but a single &#8220;All
     Contacts&#8221; view would aggregate&nbsp;both?</li>
@@ -355,7 +355,7 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
     co-operates on the actual data rather than views. So it&#8217;s better if
     each app stores the data in a standard format on which they
     collaborate, and then has its own views to get that data how *it*&nbsp;wants.</li>
-<li>\&lt;<span class="caps">FND</span>> mandel_macaque: what if I wanted to wipe all Firefox data
+<li>\&lt;<span class="caps">FND</span>&gt; mandel_macaque: what if I wanted to wipe all Firefox data
     because I want a fresh start? right now, I can just delete&nbsp;\~/.mozilla/firefox/myProfile</li>
 <li>I&#8217;m concerned that as a power user, I lose direct&nbsp;access</li>
 <li><span class="caps">FND</span>, you can delete the firefox database from the web interface, or
@@ -363,7 +363,7 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
 <li>or using desktopcouch.records, which is nicer &#8212; python -c &#8220;from
     desktopcouch.records.server import CouchDatabase; db =
     CouchDatabase(&#8216;firefox&#8217;);&nbsp;db.delete()&#8221;</li>
-<li>\&lt;mgunes> <span class="caps">QUESTION</span>: Wouldn&#8217;t deleting your profile simply reflect
+<li>\&lt;mgunes&gt; <span class="caps">QUESTION</span>: Wouldn&#8217;t deleting your profile simply reflect
     as deleted records on the CouchDB&nbsp;instance?</li>
 <li>mgunes, how deletions affect applications that used the deleted data
     depends on the application. For example, there&#8217;s obviously a
@@ -371,11 +371,11 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
     one&#8221; and &#8220;I deleted this but I want to be able to get it back&nbsp;later&#8221;</li>
 <li>the couchdb upstream team are currently working on having full
     history for all records, which will make this sort of work&nbsp;easier</li>
-<li>\&lt;mhall119|work> <span class="caps">QUESTION</span>: if collaboration is to be done on the
+<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: if collaboration is to be done on the
     database level, there wouldn&#8217;t be a &#8220;Firefox&#8221; database, there would
     be a &#8220;Bookmarks&#8221; database,&nbsp;correct?</li>
 <li>mhall119|work, yes, absolutely. My mistake in typing, sorry&nbsp;:)</li>
-<li>\&lt;mhall119|work> <span class="caps">QUESTION</span>: for those that don&#8217;t want to mess with
+<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: for those that don&#8217;t want to mess with
     python of curl, will there be a <span class="caps">CLI</span> program for manipulating&nbsp;couchdb?</li>
 <li>mhall119|work, there isn&#8217;t at the moment (curl or
     desktopcouch.records are pretty easy, we think) but I&#8217;m sure the
@@ -383,7 +383,7 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
     a set of bash aliases) in short order if there was desire for&nbsp;it</li>
 <li>:-)</li>
 <li>that would be a cool addition to&nbsp;desktopcouch</li>
-<li>\&lt;mandel_macaque> <span class="caps">QUESTION</span>: Since couchdb stores all the version
+<li>\&lt;mandel_macaque&gt; <span class="caps">QUESTION</span>: Since couchdb stores all the version
     of my documents, will we have something like time machine in <span class="caps">OS</span> X?
     The data will already be there&nbsp;:D</li>
 <li>mandel_macaque, certainly the infrastructure for that would be
@@ -398,9 +398,9 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
 <li>Some example code (I don&#8217;t know much about C, but rodrigo_ wrote
     couchdb-glib and can answer all your questions&nbsp;:-))</li>
 <li><code>couchdb = couchdb_new (hostname);</code></li>
-<li>Create a database -> <code>couchdb_create_database()</code></li>
-<li>Delete a database -> <code>couchdb_delete_database()</code></li>
-<li>List documents in a database -> <code>couchdb_list_documents()</code></li>
+<li>Create a database -&gt; <code>couchdb_create_database()</code></li>
+<li>Delete a database -&gt; <code>couchdb_delete_database()</code></li>
+<li>List documents in a database -&gt; <code>couchdb_list_documents()</code></li>
 <li>More details are available for couchdb-glib at
     <a href="http://git.gnome.org./cgit/couchdb-glib/tree/README">http://git.gnome.org./cgit/couchdb-glib/tree/<span class="caps">README</span></a></li>
 <li>We&#8217;re also working on a library to access desktopcouch from
@@ -451,14 +451,14 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>\&lt;mgunes> <span class="caps">QUESTION</span>: Is there any plan/need for Desktopcouch itself
+<li>\&lt;mgunes&gt; <span class="caps">QUESTION</span>: Is there any plan/need for Desktopcouch itself
     to talk to Midgard, for access to data stored by applications that
     use it? And did you investigate Midgard before going with&nbsp;CouchDB?</li>
 <li>There&#8217;s been a lot of conversation between Midgard and CouchDB and
     desktopcouch and&nbsp;others</li>
 <li>midgard implements the CouchDB replication <span class="caps">API</span>, so you can replicate
     your desktopcouch data to a midgard&nbsp;server</li>
-<li>\&lt;<span class="caps">FND</span>> to clarify, another way to express my concerns - and I hate
+<li>\&lt;<span class="caps">FND</span>&gt; to clarify, another way to express my concerns - and I hate
     to be such a nagging naysayer here - is &#8220;transparency&#8221; - inspecting
     files is generally a whole lot more obvious than inspecting a <span class="caps">DB</span>
     (even if there&#8217;s a nifty web <span class="caps">UI</span>)</li>
@@ -466,7 +466,7 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
     files anyway, because of the advantages you get from a database &#8212;
     as was asked about above, media players are using sqlite DBs and so
     on for quick searchability and&nbsp;indexability</li>
-<li>\&lt;bas89> <span class="caps">QUESTION</span>: is couchDB an ubuntu-only project or will it be
+<li>\&lt;bas89&gt; <span class="caps">QUESTION</span>: is couchDB an ubuntu-only project or will it be
     avaiable on fedora or my mobile&nbsp;phone?</li>
 <li>couchdb runs, like, everywhere. It&#8217;s available on Ubuntu, Fedora,
     other Linux distros, Windows, <span class="caps">OS</span>&nbsp;X&#8230;</li>
@@ -478,7 +478,7 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
     there&#8217;s a chap looking at getting it running on&nbsp;fedora)</li>
 <li>and since it&#8217;s all Python it should be possible to have it on other
     platforms too, like Windows or the&nbsp;Mac.</li>
-<li>\&lt;<span class="caps">FND</span>> <span class="caps">QUESTION</span>: by making applications rely on CouchDB, isn&#8217;t
+<li>\&lt;<span class="caps">FND</span>&gt; <span class="caps">QUESTION</span>: by making applications rely on CouchDB, isn&#8217;t
     there a risk of diverging from other&nbsp;distros</li>
 <li>desktopcouch isn&#8217;t Ubuntu-specific. There was lots of interest at
     the Gran Canaria Desktop Summit this&nbsp;year</li>
@@ -549,11 +549,11 @@ and are reposted here (with some nicer formatting&nbsp;:))  </p>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>\&lt;bas69> <span class="caps">QUESTION</span>: whats about akonadi? is there&nbsp;competition?</li>
+<li>\&lt;bas69&gt; <span class="caps">QUESTION</span>: whats about akonadi? is there&nbsp;competition?</li>
 <li>akonadi has a desktopcouch back end for contacts, which was
     demonstrated at the Gran Canaria Desktop Summit &#8212; it&#8217;s dead neat to
     save a contact with Akonadi and then load it with Evolution&nbsp;:)</li>
-<li>\&lt;alourie> aquarius: <span class="caps">QUESTION</span>: does that mean that ubuntuone also
+<li>\&lt;alourie&gt; aquarius: <span class="caps">QUESTION</span>: does that mean that ubuntuone also
     uses&nbsp;it?</li>
 <li>desktopcouch lets you replicate your data between all your machines
     on your network &#8212; Ubuntu One has a cloud service so you can also

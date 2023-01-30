@@ -79,36 +79,33 @@
 <p>Now, you need to clone the <a href="https://github.com/tweetback/tweetback">Tweetback repository</a> from Github. On the command line, this looks like <code>git clone https://github.com/tweetback/tweetback.git</code>; if you&#8217;re using Github Desktop, follow their instructions to <a href="https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop">clone a repository</a>. This should give you the Tweetback code, in a folder on your computer. Make a note of where that folder&nbsp;is.</p>
 <h1>Step 3: install the Tweetback&nbsp;code</h1>
 <p>Open a Terminal on your machine and <code>cd</code> into the Tweetback folder, wherever you put it. Now, run <code>npm install</code> to install all of Tweetback&#8217;s dependencies. Since you have node.js installed from above, this ought to just work. If it doesn&#8217;t&#8230; you get to debug a bit. Sorry about that. This should end up looking something like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code>$ npm install
-npm WARN deprecated @npmcli/move-file@1.1.2: This functionality has been moved to @npmcli/fs
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>install
+npm<span class="w"> </span>WARN<span class="w"> </span>deprecated<span class="w"> </span>@npmcli/move-file@1.1.2:<span class="w"> </span>This<span class="w"> </span>functionality<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>moved<span class="w"> </span>to<span class="w"> </span>@npmcli/fs
 
-added <span class="m">347</span> packages, and audited <span class="m">348</span> packages in 30s
+added<span class="w"> </span><span class="m">347</span><span class="w"> </span>packages,<span class="w"> </span>and<span class="w"> </span>audited<span class="w"> </span><span class="m">348</span><span class="w"> </span>packages<span class="w"> </span><span class="k">in</span><span class="w"> </span>30s
 
-<span class="m">52</span> packages are looking <span class="k">for</span> funding
-  run <span class="sb">`</span>npm fund<span class="sb">`</span> <span class="k">for</span> details
+<span class="m">52</span><span class="w"> </span>packages<span class="w"> </span>are<span class="w"> </span>looking<span class="w"> </span><span class="k">for</span><span class="w"> </span>funding
+<span class="w">  </span>run<span class="w"> </span><span class="sb">`</span>npm<span class="w"> </span>fund<span class="sb">`</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details
 
-found <span class="m">0</span> vulnerabilities
+found<span class="w"> </span><span class="m">0</span><span class="w"> </span>vulnerabilities
 </code></pre></div>
-
 
 <h1>Step 4: configure Tweetback with your tweet&nbsp;archive</h1>
 <p>From here, you&#8217;re following Tweetback&#8217;s own <span class="caps">README</span> instructions: they&#8217;re online at <a href="https://github.com/tweetback/tweetback#usage">https://github.com/tweetback/tweetback#usage</a> and also are in the <span class="caps">README</span> file in your current&nbsp;directory.</p>
 <p>Open up the zip file you downloaded from Twitter, and get the <code>data/tweets.js</code> file from it. Put that in the <code>database</code> folder in your Tweetback folder, then edit that file to change <code>window.YTD.tweet.part0</code> on the first line to <code>module.exports</code>, as the <span class="caps">README</span> says. This means that your <code>database/tweets.js</code> file will now have the first couple of lines look like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="p">{</span>
-    <span class="s2">&quot;tweet&quot;</span> <span class="o">:</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;tweet&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 </code></pre></div>
-
 
 <p>Now, run <code>npm run import</code>. This will go through your <code>tweets.js</code> file and load it all into a database, so it can be more easily read later on. You only need to do this step once. This will print a bunch of lines that look like <code>{ existingRecordsFound: 0, missingTweets: 122 }</code>, and then a bunch of lines that look like <code>Finished count { count: 116 }</code>, and then it&#8217;ll finish. This should be <em>relatively</em> quick, but if you&#8217;ve got a lot of tweets (I have 68,000!) then it might take a little while. Get yourself a cup of tea and a couple of biscuits and it&#8217;ll be done when you&#8217;ve poured&nbsp;it.</p>
 <h1>Step 5: Configure a subdirectory&nbsp;(optional)</h1>
 <p>If you&#8217;re setting up your own (sub)domain for your twitter archive, so it&#8217;ll be at the root of the website (so, <code>https://twitter.example.com</code> or whatever) then you can skip this step. However, if you&#8217;re going to put your archive in its own directory, so it&#8217;s <em>not</em> at the root (which I did, for example, at <a href="https://kryogenix.org/twitter/">kryogenix.org/twitter</a>), then you need to tell your setup about&nbsp;that.</p>
 <p>To do this, edit the file <code>eleventy.config.js</code>, and at the end, before the closing <code>}</code>, add a new line, so the end of the file looks like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code>    <span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addPlugin</span><span class="p">(</span><span class="nx">EleventyHtmlBasePlugin</span><span class="p">);</span>
-    <span class="k">return</span> <span class="p">{</span><span class="nx">pathPrefix</span><span class="o">:</span> <span class="s2">&quot;/twitter/&quot;</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addPlugin</span><span class="p">(</span><span class="nx">EleventyHtmlBasePlugin</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="nx">pathPrefix</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/twitter/&quot;</span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-
 
 <p>The string <code>"/twitter/"</code> should be whatever you want the path to the root of your Twitter archive to be, so if you&#8217;re going to put it at <code>mywebsite.example.com/my-twitter-archive</code>, set <code>pathPrefix</code> to be <code>"/my-twitter-archive"</code>. This is only a path, not a full <span class="caps">URL</span>; you do not need to fill in the domain where you&#8217;ll be hosting this&nbsp;here.</p>
 <h1>Step 6: add&nbsp;metadata</h1>
@@ -122,14 +119,13 @@ found <span class="m">0</span> vulnerabilities
 <p>Run <code>npm run build</code>.</p>
 <p>If you&#8217;ve got a lot of tweets, this can take a <em>long</em> time. It took me a couple of hours, I think, the first time I ran it. Subsequent runs take a lot less time (a couple of minutes for me, maybe even shorter for you if you&#8217;re less mouthy on Twitter), but the first run takes <em>ages</em> because it has to fetch all the images for all the tweets you&#8217;ve ever written. You&#8217;ll want a second cup of tea here, and perhaps&nbsp;dinner.</p>
 <p>It should look something like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code>$ npm run build
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
 
-&gt; tweetback@1.0.0 build
-&gt; npx @11ty/eleventy --quiet
+&gt;<span class="w"> </span>tweetback@1.0.0<span class="w"> </span>build
+&gt;<span class="w"> </span>npx<span class="w"> </span>@11ty/eleventy<span class="w"> </span>--quiet
 
-<span class="o">[</span>11ty<span class="o">]</span> Copied <span class="m">1868</span> files / Wrote <span class="m">68158</span> files in <span class="m">248</span>.58 seconds <span class="o">(</span><span class="m">3</span>.6ms each, v2.0.0-canary.18<span class="o">)</span>
+<span class="o">[</span>11ty<span class="o">]</span><span class="w"> </span>Copied<span class="w"> </span><span class="m">1868</span><span class="w"> </span>files<span class="w"> </span>/<span class="w"> </span>Wrote<span class="w"> </span><span class="m">68158</span><span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">248</span>.58<span class="w"> </span>seconds<span class="w"> </span><span class="o">(</span><span class="m">3</span>.6ms<span class="w"> </span>each,<span class="w"> </span>v2.0.0-canary.18<span class="o">)</span>
 </code></pre></div>
-
 
 <p>You may get errors in here about being unable to fetch URLs (<code>Image request error Bad response for https://pbs.twimg.com/media/C1VJJUVXEAE3VGE.jpg (404): Not Found</code> and the like); this is because some Tweets link to images that aren&#8217;t there any more. There&#8217;s not a lot you can do about this, but it doesn&#8217;t stop the rest of the site&nbsp;building.</p>
 <p>Once this is all done, you should have a directory called <code>_site</code>, which is a website containing your Twitter archive! Hooray! Now you publish that directory, however you choose: copy it up to your website, push it to <a href="https://github.com/tweetback/tweetback/blob/main/docs/deploy-with-github-pages.md">github pages</a> or Netlify or whatever. You only need the contents of the <code>_site</code> directory; that&#8217;s your whole Twitter archive website, completely self-contained; all the other stuff is only used for generating the archive website, not for running it once it&#8217;s&nbsp;generated.</p>
@@ -139,33 +135,31 @@ found <span class="m">0</span> vulnerabilities
 <p>To do this, as the Tweetback readme says, you will need a Twitter bearer token. To get one of those, you need to be a Twitter developer, and to be that, you have to fill in a bunch of forms and ask for permission and be manually reviewed. Twitter&#8217;s documentation explains about <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">bearer tokens</a>, and explains that you need to sign up for a Twitter developer account to get them. Go ahead and do that. This is an annoying process where they ask a bunch of questions about what you plan to do with the Twitter <span class="caps">API</span>, and then you wait until someone manually reviews your answers and decides whether to grant you access or not, and possibly makes you clarify your answers to questions. I have no good suggestions here; go through the process and wait.&nbsp;Sorry.</p>
 <p>Once you are a Twitter developer, create an app, and then get its bearer token. You only get this once, so be sure to make a note of it. In a clear allusion to the delight that this whole process brings to users, it probably will begin by screaming <code>AAAAAAAAAAAAAAA</code> and then look like a bunch of incomprehensible&nbsp;gibberish.</p>
 <p>Now to pull in new data,&nbsp;run:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">TWITTER_BEARER_TOKEN</span><span class="o">=</span>AAAAAAAAAAAAAAAAAAq3874nh93q npm run fetch-new-data
+<div class="highlight"><pre><span></span><code><span class="nv">TWITTER_BEARER_TOKEN</span><span class="o">=</span>AAAAAAAAAAAAAAAAAAq3874nh93q<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>fetch-new-data
 </code></pre></div>
-
 
 <p>(substituting in the value of your token, of course, which will be&nbsp;longer.)</p>
 <p>This will fetch any tweets that aren&#8217;t in the database because you made them since! And then run <code>npm run build</code> again to rebuild the <code>_site</code> directory, and re-publish it&nbsp;all.</p>
 <p>I personally run these steps (<code>fetch-new-data</code>, then <code>build</code>, then publish) daily in a cron job, which runs a script with contents&nbsp;(approximately):</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="nb">cd</span> <span class="s2">&quot;</span><span class="k">$(</span>dirname <span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span>
 
-<span class="nb">echo</span> Begin publish at <span class="k">$(</span>date<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span>Begin<span class="w"> </span>publish<span class="w"> </span>at<span class="w"> </span><span class="k">$(</span>date<span class="k">)</span>
 
-<span class="nb">echo</span> Updating Twitter archive
-<span class="nb">echo</span> <span class="o">========================</span>
-<span class="nv">TWITTER_BEARER_TOKEN</span><span class="o">=</span>AAAAAAAAAAAAAA9mh8j9808jhey9w34cvj3g3 npm run fetch-new-data <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="nb">echo</span><span class="w"> </span>Updating<span class="w"> </span>Twitter<span class="w"> </span>archive
+<span class="nb">echo</span><span class="w"> </span><span class="o">========================</span>
+<span class="nv">TWITTER_BEARER_TOKEN</span><span class="o">=</span>AAAAAAAAAAAAAA9mh8j9808jhey9w34cvj3g3<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>fetch-new-data<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
 
-<span class="nb">echo</span> Updating site from archive
-<span class="nb">echo</span> <span class="o">==========================</span>
-npm run build <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="nb">echo</span><span class="w"> </span>Updating<span class="w"> </span>site<span class="w"> </span>from<span class="w"> </span>archive
+<span class="nb">echo</span><span class="w"> </span><span class="o">==========================</span>
+npm<span class="w"> </span>run<span class="w"> </span>build<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
 
-<span class="nb">echo</span> Publishing site
-<span class="nb">echo</span> <span class="o">===============</span>
-rsync -e <span class="s2">&quot;ssh&quot;</span> -az _site/ kryogenix.org:public_html/twitter <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="nb">echo</span><span class="w"> </span>Publishing<span class="w"> </span>site
+<span class="nb">echo</span><span class="w"> </span><span class="o">===============</span>
+rsync<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;ssh&quot;</span><span class="w"> </span>-az<span class="w"> </span>_site/<span class="w"> </span>kryogenix.org:public_html/twitter<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
 
-<span class="nb">echo</span> Finish publish at <span class="k">$(</span>date<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span>Finish<span class="w"> </span>publish<span class="w"> </span>at<span class="w"> </span><span class="k">$(</span>date<span class="k">)</span>
 </code></pre></div>
-
 
 <p>but how you publish and rebuild, and how often you do that, is of course up to&nbsp;you.</p>
 <h1>Step 9: improve the archive (optional, but&nbsp;good)</h1>

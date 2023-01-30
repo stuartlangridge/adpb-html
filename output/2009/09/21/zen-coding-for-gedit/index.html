@@ -78,19 +78,23 @@ complicated constructs; essentially, you type what amounts to a <span class="cap
 selector and then hit Ctrl+E and it expands that into <span class="caps">HTML</span>. It can
 handle some really complex stuff. For example,
 <code>cc:ie6&gt;p+blockquote#sample$.so.many.classes*2</code> expands to \&lt;!&#8212;[if lte
-<span class="caps">IE</span> 6]> \&lt;p>\&lt;/p> \&lt;blockquote id=&#8221;sample1&#8221; class=&#8221;so many
-classes&#8221;>\&lt;/blockquote> \&lt;blockquote id=&#8221;sample2&#8221; class=&#8221;so many
-classes&#8221;>\&lt;/blockquote> \&lt;![endif]&#8212;> For more detail on how it all
-works, see the <a href="http://code.google.com/p/zen-coding/">zen-coding</a> site itself and <a href="http://mondaybynoon.com/2009/08/17/the-art-of-zen-coding-bringing-snippets-to-a-new-level/">Christopher&#8217;s Zen Coding
-writeup at Monday by Noon</a>. One other genuinely neat thing about it is
-that they&#8217;re trying quite hard to support lots of editors. Currently
-they have plugins for TextMate, Aptana, Coda, NetBeans, and Espresso,
-with IntelliJ <span class="caps">IDEA</span> and ScitE in the pipeline. Me, I use gedit, so I did
-a basic port of the plugin to gedit. You can <a href="http://svn.kryogenix.org/svn/zen-coding-gedit/">browse the code</a>, or, if
+<span class="caps">IE</span> 6]&gt; \&lt;p&gt;\f the plugin to gedit. You can <a href="http://svn.kryogenix.org/svn/zen-coding-gedit/">browse the code</a>, or, if
 you want to use it, run
 <code>svn export --force http://svn.kryogenix.org/svn/zen-coding-gedit $HOME/.gnome2/gedit/plugins</code>
-on the command line. (You&#8217;ll then need to enable the plugin, in Edit >
-Preferences > Plugins.) The install process isn&#8217;t easier because I
+on the command line. (You&#8217;ll then need to enable the plugin, in Edit &gt; \&lt;blockquote id=&#8221;sample1&#8221; class=&#8221;so many
+classes&#8221;&gt;\ use it, run
+<code>svn export --force http://svn.kryogenix.org/svn/zen-coding-gedit $HOME/.gnome2/gedit/plugins</code>
+on the command line. (You&#8217;ll then need to enable the plugin, in Edit &gt; \&lt;blockquote id=&#8221;sample2&#8221; class=&#8221;so many
+classes&#8221;&gt;\ &#8212;force http://svn.kryogenix.org/svn/zen-coding-gedit $<span class="caps">HOME</span>/.gnome2/gedit/plugins<code>on the command line. (You'll then need to enable the plugin, in Edit \&gt; \&lt;![endif]--\&gt; For more detail on how it all
+works, see the [zen-coding][] site itself and [Christopher's Zen Coding
+writeup at Monday by Noon][]. One other genuinely neat thing about it is
+that they're trying quite hard to support lots of editors. Currently
+they have plugins for TextMate, Aptana, Coda, NetBeans, and Espresso,
+with IntelliJ IDEA and ScitE in the pipeline. Me, I use gedit, so I did
+a basic port of the plugin to gedit. You can [browse the code][], or, if
+you want to use it, run</code>svn export &#8212;force http://svn.kryogenix.org/svn/zen-coding-gedit $<span class="caps">HOME</span>/.gnome2/gedit/plugins`
+on the command line. (You&#8217;ll then need to enable the plugin, in Edit &gt;
+Preferences &gt; Plugins.) The install process isn&#8217;t easier because I
 don&#8217;t want to be distributing this; I want to get it upstream into the
 zen-coding tree. My gedit plugin is very basic; in particular, it
 doesn&#8217;t handle placeholders. Placeholders are possible &#8212; the gedit

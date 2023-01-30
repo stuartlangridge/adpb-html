@@ -84,13 +84,11 @@ Ubuntu as <a href="http://apt.ubuntu.com/python-evolution">python-evolution</a>.
 <span class="p">[</span><span class="s1">&#39;My first task&#39;</span><span class="p">,</span> <span class="s1">&#39;My second task&#39;</span><span class="p">]</span>
 </code></pre></div>
 
-
 <p>And we can also add new tasks to an existing&nbsp;list:</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">new_task</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">ECalComponent</span><span class="p">(</span><span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_COMPONENT_TODO</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">new_task</span><span class="o">.</span><span class="n">set_summary</span><span class="p">(</span><span class="s1">&#39;Write task scripts&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">personal_list_source</span><span class="o">.</span><span class="n">add_object</span><span class="p">(</span><span class="n">new_task</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>What I can&#8217;t seem to do, though, is create a new task list. I ought to
 be able to. Lists created in Evolution itself seem to have a list uri
@@ -103,7 +101,6 @@ should&nbsp;work:</p>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">new_task_2</span><span class="o">.</span><span class="n">set_summary</span><span class="p">(</span><span class="s1">&#39;New task in a new list&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">new_list_source</span><span class="o">.</span><span class="n">add_object</span><span class="p">(</span><span class="n">new_task_2</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>&#8230;but it does not. No errors are thrown, and the newly created source
 doesn&#8217;t seem to be invalid (that is: I can add a newly created task to

@@ -100,32 +100,29 @@ one, but we don&#8217;t need it&nbsp;anyway.)</dd>
 </dl>
 <h3>Installing Adobe&nbsp;Flex</h3>
 <p>So, first step: make a folder, download the Flex 3 <span class="caps">SDK</span>, and unpack&nbsp;it:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> ~
-$ mkdir flex
-$ <span class="nb">cd</span> flex
-$ wget http://fpdownload.adobe.com/pub/flex/sdk/builds/flex3/flex_sdk_3.4.1.10084_mpl.zip
-$ mkdir flex_3_opensource
-$ unzip -d flex_3_opensource flex_sdk_3.4.1.10084_mpl.zip
+<div class="highlight"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">~</span>
+<span class="o">$</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="n">flex</span>
+<span class="o">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">flex</span>
+<span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">fpdownload</span><span class="o">.</span><span class="n">adobe</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">flex</span><span class="o">/</span><span class="n">sdk</span><span class="o">/</span><span class="n">builds</span><span class="o">/</span><span class="n">flex3</span><span class="o">/</span><span class="n">flex_sdk_3</span><span class="o">.</span><span class="mf">4.1</span><span class="o">.</span><span class="mi">10084</span><span class="n">_mpl</span><span class="o">.</span><span class="n">zip</span>
+<span class="o">$</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="n">flex_3_opensource</span>
+<span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">flex_3_opensource</span><span class="w"> </span><span class="n">flex_sdk_3</span><span class="o">.</span><span class="mf">4.1</span><span class="o">.</span><span class="mi">10084</span><span class="n">_mpl</span><span class="o">.</span><span class="n">zip</span>
 </code></pre></div>
-
 
 <p>There&#8217;s a small, weird problem with Flex 3: the executable scripts are
 in <span class="caps">DOS</span> format, which Ubuntu doesn&#8217;t like, and they&#8217;re not executable.
 (This is fixed in Flex 4, but as noted Flex 4 doesn&#8217;t work.) So, let&#8217;s
 convert&nbsp;them:</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt-get install dos2unix
-$ chmod +x flex_3_opensource/bin/mxmlc
-$ dos2unix flex_3_opensource/bin/mxmlc
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>dos2unix
+$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>flex_3_opensource/bin/mxmlc
+$<span class="w"> </span>dos2unix<span class="w"> </span>flex_3_opensource/bin/mxmlc
 </code></pre></div>
-
 
 <p>We also need Sun&#8217;s Java - the Flex <span class="caps">SDK</span> is written in Java - and it needs
 to be set as the default
 Java.<span title="strictly it doesn't (you can just set JAVA_HOME) but if you know that then you know enough to do it" style="color: red">*</span></p>
-<div class="highlight"><pre><span></span><code>$ sudo apt-get install sun-java6-jdk
-$ sudo update-alternatives --config java
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>sun-java6-jdk
+$<span class="w"> </span>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--config<span class="w"> </span>java
 </code></pre></div>
-
 
 <p>&#8230;and in the list of possible Javas, choose
 <code>/usr/lib/jvm/java-6-sun/jre/bin/java</code>.</p>
@@ -134,34 +131,31 @@ it should say something about &#8220;a target file must be specified&#8221;, whi
 means that it&#8217;s&nbsp;working.)</p>
 <h3>Getting Flixel and a&nbsp;game</h3>
 <p>Next step is to get the Flixel&nbsp;source.</p>
-<div class="highlight"><pre><span></span><code>$ wget --no-check-certificate -O flixel2.zip http://github.com/AdamAtomic/flixel/zipball/master
-$ unzip flixel2.zip
-$ mv AdamAtomic-flixel* flixel
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>--no-check-certificate<span class="w"> </span>-O<span class="w"> </span>flixel2.zip<span class="w"> </span>http://github.com/AdamAtomic/flixel/zipball/master
+$<span class="w"> </span>unzip<span class="w"> </span>flixel2.zip
+$<span class="w"> </span>mv<span class="w"> </span>AdamAtomic-flixel*<span class="w"> </span>flixel
 </code></pre></div>
-
 
 <p>And let&#8217;s get a Flixel game: <a href="http://flixel.org/flxinvaders/">FlxInvaders</a> is one of the Flixel
 examples, and the source is&nbsp;available.</p>
-<div class="highlight"><pre><span></span><code>$ wget --no-check-certificate -O flxinvaders.zip https://github.com/AdamAtomic/Flx-Invaders/zipball/master
-$ unzip flxinvaders.zip
-$ mv AdamAtomic-Flx-Invaders* flxinvaders
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>--no-check-certificate<span class="w"> </span>-O<span class="w"> </span>flxinvaders.zip<span class="w"> </span>https://github.com/AdamAtomic/Flx-Invaders/zipball/master
+$<span class="w"> </span>unzip<span class="w"> </span>flxinvaders.zip
+$<span class="w"> </span>mv<span class="w"> </span>AdamAtomic-Flx-Invaders*<span class="w"> </span>flxinvaders
 </code></pre></div>
-
 
 <p>One final thing: Flixel is, by default, set up for Flex 4, and we&#8217;re
 using Flex 3. So, you need to edit <code>flixel/org/flixel/FlxGame.as</code>:
 there&#8217;s a section which looks like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code>     <span class="o">//</span> <span class="nt">NOTE</span><span class="o">:</span> <span class="nt">Flex</span> <span class="nt">4</span> <span class="nt">introduces</span> <span class="nt">DefineFont4</span><span class="o">,</span> <span class="nt">which</span> <span class="nt">is</span> <span class="nt">used</span> <span class="nt">by</span> <span class="nt">default</span> <span class="nt">and</span> <span class="nt">does</span> <span class="nt">not</span> <span class="nt">work</span> <span class="nt">in</span> <span class="nt">native</span> <span class="nt">text</span> <span class="nt">fields</span><span class="o">.</span>
-        <span class="o">//</span> <span class="nt">Use</span> <span class="nt">the</span> <span class="nt">embedAsCFF</span><span class="o">=</span><span class="s2">&quot;false&quot;</span> <span class="nt">param</span> <span class="nt">to</span> <span class="nt">switch</span> <span class="nt">back</span> <span class="nt">to</span> <span class="nt">DefineFont4</span><span class="o">.</span> <span class="nt">In</span> <span class="nt">earlier</span> <span class="nt">Flex</span> <span class="nt">4</span> <span class="nt">SDKs</span> <span class="nt">this</span> <span class="nt">was</span> <span class="nt">cff</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="o">.</span>
-        <span class="o">//</span> <span class="nt">So</span> <span class="nt">if</span> <span class="nt">you</span> <span class="nt">are</span> <span class="nt">using</span> <span class="nt">the</span> <span class="nt">Flex</span> <span class="nt">3</span><span class="p">.</span><span class="nc">x</span> <span class="nt">SDK</span> <span class="nt">compiler</span><span class="o">,</span> <span class="nt">switch</span> <span class="nt">the</span> <span class="nt">embed</span> <span class="nt">statment</span> <span class="nt">below</span> <span class="nt">to</span> <span class="nt">expose</span> <span class="nt">the</span> <span class="nt">correct</span> <span class="nt">version</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="w">     </span><span class="o">//</span><span class="w"> </span><span class="n">NOTE</span><span class="p">:</span><span class="w"> </span><span class="n">Flex</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">introduces</span><span class="w"> </span><span class="n">DefineFont4</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">native</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="n">fields</span><span class="o">.</span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">Use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">embedAsCFF</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="w"> </span><span class="n">param</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">switch</span><span class="w"> </span><span class="n">back</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">DefineFont4</span><span class="o">.</span><span class="w"> </span><span class="n">In</span><span class="w"> </span><span class="n">earlier</span><span class="w"> </span><span class="n">Flex</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">SDKs</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">cff</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="o">.</span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">So</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Flex</span><span class="w"> </span><span class="mf">3.</span><span class="n">x</span><span class="w"> </span><span class="n">SDK</span><span class="w"> </span><span class="n">compiler</span><span class="p">,</span><span class="w"> </span><span class="n">switch</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">embed</span><span class="w"> </span><span class="n">statment</span><span class="w"> </span><span class="n">below</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">expose</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">correct</span><span class="w"> </span><span class="n">version</span><span class="o">.</span>
 
-        <span class="o">//</span><span class="nt">Flex</span> <span class="nt">v4</span><span class="p">.</span><span class="nc">x</span> <span class="nt">SDK</span> <span class="nt">only</span> <span class="o">(</span><span class="nt">see</span> <span class="nt">note</span> <span class="nt">above</span><span class="o">):</span>
-        <span class="cp">[</span><span class="nx">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="p">,</span><span class="n">embedAsCFF</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="p">)</span><span class="cp">]</span> <span class="nt">protected</span> <span class="nt">var</span> <span class="nt">junk</span><span class="p">:</span><span class="nd">String</span><span class="o">;</span>
+<span class="w">        </span><span class="o">//</span><span class="n">Flex</span><span class="w"> </span><span class="n">v4</span><span class="o">.</span><span class="n">x</span><span class="w"> </span><span class="n">SDK</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="p">(</span><span class="n">see</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">above</span><span class="p">):</span>
+<span class="w">        </span><span class="p">[</span><span class="n">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="p">,</span><span class="n">embedAsCFF</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="p">)]</span><span class="w"> </span><span class="n">protected</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">junk</span><span class="p">:</span><span class="nb nb-Type">String</span><span class="p">;</span>
 
-        <span class="o">//</span><span class="nt">Flex</span> <span class="nt">v3</span><span class="p">.</span><span class="nc">x</span> <span class="nt">SDK</span> <span class="nt">only</span> <span class="o">(</span><span class="nt">see</span> <span class="nt">note</span> <span class="nt">above</span><span class="o">):</span>
-        <span class="o">//</span><span class="cp">[</span><span class="nx">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="p">)</span><span class="cp">]</span> <span class="nt">protected</span> <span class="nt">var</span> <span class="nt">junk</span><span class="p">:</span><span class="nd">String</span><span class="o">;</span>
+<span class="w">        </span><span class="o">//</span><span class="n">Flex</span><span class="w"> </span><span class="n">v3</span><span class="o">.</span><span class="n">x</span><span class="w"> </span><span class="n">SDK</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="p">(</span><span class="n">see</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">above</span><span class="p">):</span>
+<span class="w">        </span><span class="o">//</span><span class="p">[</span><span class="n">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="p">)]</span><span class="w"> </span><span class="n">protected</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">junk</span><span class="p">:</span><span class="nb nb-Type">String</span><span class="p">;</span>
 </code></pre></div>
-
 
 <p>and as per its instructions, comment out the Flex 4 line, and uncomment
 the Flex 3&nbsp;line.</p>
@@ -170,10 +164,9 @@ the Flex 3&nbsp;line.</p>
 <p>This bit&#8217;s easy; everything&#8217;s set up, so now you can just build the game
 with one command. We need to call <code>mxmlc</code>, the compiler, and since the
 flxinvaders source requires flixel, we need to tell it where flixel&nbsp;is.</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> flxinvaders/src
-$ ../../flex_3_opensource/bin/mxmlc -compiler.source-path<span class="o">=</span>../../flixel FlxInvaders.as
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>flxinvaders/src
+$<span class="w"> </span>../../flex_3_opensource/bin/mxmlc<span class="w"> </span>-compiler.source-path<span class="o">=</span>../../flixel<span class="w"> </span>FlxInvaders.as
 </code></pre></div>
-
 
 <p>Lo and behold, you should now have <code>FlxInvaders.swf</code>, which is your own
 copy of the FlxInvaders game, built on Ubuntu with open source tools.

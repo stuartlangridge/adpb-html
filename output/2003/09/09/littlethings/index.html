@@ -70,11 +70,6 @@
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1063063061.0:-->
-
-<!--category::-->
-
-<!--author:sil:-->
-
 <p>I rather like Stephen Watson&#8217;s <a href="http://www.kerofin.demon.co.uk/rox/">NetStat applet</a> for the <span class="caps">ROX</span> panel,
 although I need to hack it so that it shows the window first and
 populates it afterwards when you ask it to show sockets, rather than
@@ -92,32 +87,30 @@ virtually no cost! Why are manufacturers not doing&nbsp;this?</p>
 to not display (which stops the screensaver popping up while you&#8217;re
 watching films), I wrote a (very) little script. This is <code>mpl</code>, which is
 the default run action for all movies when clicked&nbsp;on:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-disable-xscreensaver <span class="p">&amp;</span> <span class="nv">DISABLE_PID</span><span class="o">=</span><span class="nv">$!</span>
-<span class="nb">echo</span> <span class="s2">&quot;Disabling screensaver (PID </span><span class="nv">$DISABLE_PID</span><span class="s2">)&quot;</span>
-mplayer -vo xvidix -ao oss -framedrop <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> -really-quiet <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-<span class="nb">echo</span> Re-enabling screensaver
-<span class="nb">kill</span> <span class="nv">$DISABLE_PID</span>
-</code></pre></div>
-</td></tr></table>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+disable-xscreensaver<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="nv">DISABLE_PID</span><span class="o">=</span><span class="nv">$!</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Disabling screensaver (PID </span><span class="nv">$DISABLE_PID</span><span class="s2">)&quot;</span>
+mplayer<span class="w"> </span>-vo<span class="w"> </span>xvidix<span class="w"> </span>-ao<span class="w"> </span>oss<span class="w"> </span>-framedrop<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span>-really-quiet<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="nb">echo</span><span class="w"> </span>Re-enabling<span class="w"> </span>screensaver
+<span class="nb">kill</span><span class="w"> </span><span class="nv">$DISABLE_PID</span>
+</code></pre></div></td></tr></table></div>
 
 <p>and <code>disable-xscreensaver</code> is:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> 
-    sleep <span class="m">59</span>
-    xscreensaver-command -deactivate <span class="p">&amp;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">59</span>
+<span class="w">    </span>xscreensaver-command<span class="w"> </span>-deactivate<span class="w"> </span><span class="p">&amp;</span>
 <span class="k">done</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
 
 <p>That tells the screensaver every 59 seconds to reset its inactivity
 timer, which works&nbsp;fine.</p>
@@ -137,6 +130,7 @@ bits I want out of the waveform and save them as separate files and set
 the id3 tags myself. Any suggestions for software that can handle it?
 Sweep&#8217;s a <em>really</em> nice audio editor, except for this one small&nbsp;thing.</p>
 <p>None&nbsp;&#8212;&#8212;-</p>
+<!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2003/09/06/premieres/">Previous post</a></li>

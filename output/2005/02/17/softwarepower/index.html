@@ -77,14 +77,13 @@ went and downloaded <a href="http://www.graphviz.org/">GraphViz</a>. Great littl
 used it in anger before, but I’ve heard about it. Five minutes reading
 the manuals, and I discover that it’s an utter piece of piss. Simply
 create a file, <code>mygraph.dot</code>, like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">digraph mygraph {</span>
-<span class="err"> system1 -&gt; system2; </span>
-<span class="err"> system2 -&gt; system3;</span>
-<span class="err"> system1 -&gt; system3;</span>
-<span class="err"> system3 -&gt; &quot;The Big Complex System&quot;;</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">digraph</span><span class="w"> </span><span class="n">mygraph</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="n">system1</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">system2</span><span class="p">;</span><span class="w"> </span>
+<span class="w"> </span><span class="n">system2</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">system3</span><span class="p">;</span>
+<span class="w"> </span><span class="n">system1</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">system3</span><span class="p">;</span>
+<span class="w"> </span><span class="n">system3</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;The Big Complex System&quot;</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>and get a lovely <span class="caps"><span class="caps">PNG</span></span> of the output with
 <code>dot -Tpng mygraph.dot -o mygraph.png</code>.</p>

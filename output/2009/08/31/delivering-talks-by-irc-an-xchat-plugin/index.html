@@ -84,12 +84,11 @@ and people ask questions on <code>#ubuntu-classroom-chat</code>. So there&#8217;
 interaction with the audience. So, what I wanted was a way to deliver
 the talk, line by line, and be able to stop when I wanted. Enter an
 xchat plugin: <a href="http://svn.kryogenix.org/svn/xchat-give-talk/xchat-give-talk.py">xchat-give-talk</a>. To use: enable the XChat Python
-plugin (Edit > Preferences > Scripts and Plugins > Python in
+plugin (Edit &gt; Preferences &gt; Scripts and Plugins &gt; Python in
 xchat-gnome), and&nbsp;then:</p>
-<div class="highlight"><pre><span></span><code><span class="err">/py load /path/to/xchat-give-talk.py</span>
-<span class="err">/talkload /path/to/talk/as/a/text/file.txt</span>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">py</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">xchat</span><span class="o">-</span><span class="n">give</span><span class="o">-</span><span class="n">talk</span><span class="o">.</span><span class="n">py</span>
+<span class="o">/</span><span class="n">talkload</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">talk</span><span class="o">/</span><span class="k">as</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">text</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">txt</span>
 </code></pre></div>
-
 
 <p>and then <code>/talknext</code> will send the next line of your talk to the
 channel. (If you lose your place, <code>/talkinfo</code> will tell you how far you

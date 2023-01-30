@@ -86,36 +86,34 @@ means that you can summon your side panel with pure <span class="caps">CSS</span
 the panel be hidden and then showing is to position it off screen.
 Simple way to do this (remembering that the &#8220;default state&#8221; of our panel
 is &#8220;offscreen&#8221;, and <code>#panel:target</code> is &#8220;on&nbsp;screen&#8221;):</p>
-<div class="highlight"><pre><span></span><code><span class="err">#panel { </span>
-<span class="err">    position: absolute;</span>
-<span class="err">    top: 0;</span>
-<span class="err">    bottom: 0;</span>
-<span class="err">    right: -200px;</span>
-<span class="err">    width: 200px;</span>
-<span class="err">    transition: right 0.3s ease-in-out;</span>
-<span class="err">}</span>
-<span class="err">#panel:target {</span>
-<span class="err">    right: 0;</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">panel</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">    </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">right</span><span class="p">:</span><span class="w"> </span><span class="mi">-200</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="kc">right</span><span class="w"> </span><span class="mf">0.3</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease-in-out</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">panel</span><span class="p">:</span><span class="nd">target</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">right</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>Of course, we are good people and we know that <a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/">you should only animate transform properties and opacity if you want smooth animations</a>,
 so the obvious response is to change that&nbsp;to</p>
-<div class="highlight"><pre><span></span><code><span class="err">#panel { </span>
-<span class="err">    position: absolute;</span>
-<span class="err">    top: 0;</span>
-<span class="err">    bottom: 0;</span>
-<span class="err">    right: 0;</span>
-<span class="err">    width: 200px;</span>
-<span class="err">    transform: translateX(200px);</span>
-<span class="err">    transition: transform 0.3s ease-in-out;</span>
-<span class="err">}</span>
-<span class="err">#panel:target {</span>
-<span class="err">    transform: translateX(0);</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">panel</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">    </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">right</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">translateX</span><span class="p">(</span><span class="mi">200</span><span class="kt">px</span><span class="p">);</span>
+<span class="w">    </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">transform</span><span class="w"> </span><span class="mf">0.3</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease-in-out</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">panel</span><span class="p">:</span><span class="nd">target</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">translateX</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>However, then we have a thing: you&#8217;ll get a horizontal scrollbar now
 because there&#8217;s stuff off the right-hand-side of the screen. You can of
@@ -125,21 +123,20 @@ up screwing me up at some point. One alternative approach is to not move
 the panel around at all, but instead to scale it down to almost nothing
 (animating a scale is fast, because it&#8217;s a transform property) and then
 scale it up. Like&nbsp;this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">#panel { </span>
-<span class="err">    position: absolute;</span>
-<span class="err">    top: 0;</span>
-<span class="err">    bottom: 0;</span>
-<span class="err">    right: 0;</span>
-<span class="err">    width: 200px;</span>
-<span class="err">    transform: scaleX(0.00001);</span>
-<span class="err">    transform-origin: 100% 50%;</span>
-<span class="err">    transition: transform 0.3s ease-in-out;</span>
-<span class="err">}</span>
-<span class="err">#panel:target {</span>
-<span class="err">    transform: scaleX(1);</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">panel</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">    </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">right</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">scaleX</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">);</span>
+<span class="w">    </span><span class="k">transform-origin</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">transform</span><span class="w"> </span><span class="mf">0.3</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease-in-out</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">panel</span><span class="p">:</span><span class="nd">target</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">scaleX</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>See <a href="http://jsbin.com/epuVOVA/1/edit">the jsbin</a> for a simple&nbsp;demo.</p>
 <p>Note that people will expect to be able to swipe the panel away on a

@@ -70,11 +70,6 @@
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1030709841.0:-->
-
-<!--category::-->
-
-<!--author:sil:-->
-
 <p>A few days ago, Mark Pilgrim wrote up some details on how to
 <a href="http://diveintomark.org/archives/2002/08/22.html#automatically_inserting_images_before_offsite_links">automatically insert an image before off-site links</a>, using Movable
 Type macros. I don&#8217;t like doing it that way; it&#8217;s possible with pure <span class="caps">CSS</span>
@@ -87,7 +82,7 @@ off site links, and then styling those links accordingly. Using <span class="cap
 selectors, we can style off-site links directly without having to assign
 them a class or run any server-side code. Here&#8217;s the code to do it, and
 then we&#8217;ll discuss how it&nbsp;works.</p>
-<p>
+<!--category::--><!--author:sil:--><p>
     /* Add an external-link icon to absolute links */
 
     div.blogbody a[href^=&#8221;http:&#8221;] {
@@ -121,7 +116,6 @@ then we&#8217;ll discuss how it&nbsp;works.</p>
             background: transparent;&nbsp;}
 
 </p>
-
 <p>This all works by using the <span class="caps">CSS3</span> &#8220;starts-with&#8221; selector, <strong>\^=</strong>, on
 attributes. Where we have a selector <code>a[href^="http:"]</code>, that means
 &#8220;select all <strong>a</strong> tags where the <strong>href</strong> attribute <strong>starts with</strong> the
@@ -147,11 +141,10 @@ icon! So this suppresses the &#8220;external link&#8221; indicator for that
 particular link (which is defined as class &#8220;googlelink&#8221; in the <span class="caps">MT</span>&nbsp;templates).</p>
 <p>Note that flashy people could have defined the third and fifth rules as
 one rule, because you can add multiple selectors on a rule; this should&nbsp;work:</p>
-<div class="highlight"><pre><span></span><code><span class="err">div.blogbody a[href^=&quot;http://www.kryogenix.org&quot;], div.blogbody a[href^=&quot;http:&quot;].googlelink {</span>
-<span class="err">    etc etc etc</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>div.blogbody a[href^=&quot;http://www.kryogenix.org&quot;], div.blogbody a[href^=&quot;http:&quot;].googlelink {
+    etc etc etc
+}
 </code></pre></div>
-
 
 <p>but I wanted to take my time over this, because <span class="caps">CSS3</span> selectors aren&#8217;t
 all that widely&nbsp;supported.</p>
