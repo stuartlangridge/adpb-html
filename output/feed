@@ -11,8 +11,10 @@
 &lt;span class="x"&gt;$timestamp = isset($_SERVER[&amp;#39;HTTP_X_SIGNATURE_TIMESTAMP&amp;#39;]) ? &lt;/span&gt;
 &lt;span class="x"&gt;    $_SERVER[&amp;#39;HTTP_X_SIGNATURE_TIMESTAMP&amp;#39;] : &amp;quot;&amp;quot;;&lt;/span&gt;
 &lt;span class="x"&gt;/* check the signature */&lt;/span&gt;
-&lt;span class="x"&gt;$sigok = sodium_crypto_sign_verify_detached(hex2bin($signature), &lt;/span&gt;
-&lt;span class="x"&gt;    $timestamp . $postData, hex2bin($client_public_key));&lt;/span&gt;
+&lt;span class="x"&gt;$sigok = sodium_crypto_sign_verify_detached(&lt;/span&gt;
+&lt;span class="x"&gt;    hex2bin($signature), &lt;/span&gt;
+&lt;span class="x"&gt;    $timestamp . $postData,&lt;/span&gt;
+&lt;span class="x"&gt;    hex2bin($client_public_key));&lt;/span&gt;
 &lt;span class="x"&gt;/* If signature is not OK, reject the request */&lt;/span&gt;
 &lt;span class="x"&gt;if (!$sigok) {&lt;/span&gt;
 &lt;span class="x"&gt;    http_response_code(401);&lt;/span&gt;
@@ -24,7 +26,7 @@
 &lt;p&gt;Next, interpret the incoming request and do things with it. The only thing we have to respond to here is a &lt;code&gt;ping&lt;/code&gt; message; Discord will send them as part of their irregular testing, and expects to get back a correctly-formatted &lt;code&gt;pong&lt;/code&gt; message.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="x"&gt;$data = json_decode($postData);&lt;/span&gt;
 &lt;span class="x"&gt;if ($data-&amp;gt;type == 1) { // this is a ping message&lt;/span&gt;
-&lt;span class="x"&gt;    echo json_encode(array(&amp;#39;type&amp;#39; =&amp;gt; 1)); // respond with a pong message&lt;/span&gt;
+&lt;span class="x"&gt;    echo json_encode(array(&amp;#39;type&amp;#39; =&amp;gt; 1)); // response: pong&lt;/span&gt;
 &lt;span class="x"&gt;    die();&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -37,10 +39,12 @@
     &lt;span class="s2"&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Do the thing&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="n"&gt;discord_endpoint&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://discord.com/api/v10/applications/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;APP_ID&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/commands&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;PUT&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;discord_endpoint&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;MY_COMMAND&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;Authorization&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bot &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;BOT_TOKEN&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;User-Agent&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;mybotname (myboturl, 1.0.0)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="n"&gt;discord_endpoint&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;
+    &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://discord.com/api/v10/applications/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;APP_ID&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/commands&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;PUT&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;discord_endpoint&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+    &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;MY_COMMAND&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;Authorization&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bot &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;BOT_TOKEN&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;User-Agent&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;mybotname (myboturl, 1.0.0)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="p"&gt;})&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 

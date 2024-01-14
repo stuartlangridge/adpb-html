@@ -81,8 +81,10 @@
 <span class="x">$timestamp = isset($_SERVER[&#39;HTTP_X_SIGNATURE_TIMESTAMP&#39;]) ? </span>
 <span class="x">    $_SERVER[&#39;HTTP_X_SIGNATURE_TIMESTAMP&#39;] : &quot;&quot;;</span>
 <span class="x">/* check the signature */</span>
-<span class="x">$sigok = sodium_crypto_sign_verify_detached(hex2bin($signature), </span>
-<span class="x">    $timestamp . $postData, hex2bin($client_public_key));</span>
+<span class="x">$sigok = sodium_crypto_sign_verify_detached(</span>
+<span class="x">    hex2bin($signature), </span>
+<span class="x">    $timestamp . $postData,</span>
+<span class="x">    hex2bin($client_public_key));</span>
 <span class="x">/* If signature is not OK, reject the request */</span>
 <span class="x">if (!$sigok) {</span>
 <span class="x">    http_response_code(401);</span>
@@ -94,7 +96,7 @@
 <p>Next, interpret the incoming request and do things with it. The only thing we have to respond to here is a <code>ping</code> message; Discord will send them as part of their irregular testing, and expects to get back a correctly-formatted <code>pong</code> message.</p>
 <div class="highlight"><pre><span></span><code><span class="x">$data = json_decode($postData);</span>
 <span class="x">if ($data-&gt;type == 1) { // this is a ping message</span>
-<span class="x">    echo json_encode(array(&#39;type&#39; =&gt; 1)); // respond with a pong message</span>
+<span class="x">    echo json_encode(array(&#39;type&#39; =&gt; 1)); // response: pong</span>
 <span class="x">    die();</span>
 <span class="x">}</span>
 </code></pre></div>
@@ -107,10 +109,12 @@
     <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s1">&#39;Do the thing&#39;</span><span class="p">,</span>
     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">}</span>
-<span class="n">discord_endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://discord.com/api/v10/applications/</span><span class="si">{</span><span class="n">APP_ID</span><span class="si">}</span><span class="s2">/commands&quot;</span>
-<span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="n">discord_endpoint</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">[</span><span class="n">MY_COMMAND</span><span class="p">],</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bot </span><span class="si">{</span><span class="n">BOT_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s1">&#39;mybotname (myboturl, 1.0.0)&#39;</span><span class="p">,</span>
+<span class="n">discord_endpoint</span> <span class="o">=</span> <span class="n">_</span>
+    <span class="sa">f</span><span class="s2">&quot;https://discord.com/api/v10/applications/</span><span class="si">{</span><span class="n">APP_ID</span><span class="si">}</span><span class="s2">/commands&quot;</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="n">discord_endpoint</span><span class="p">,</span> 
+    <span class="n">json</span><span class="o">=</span><span class="p">[</span><span class="n">MY_COMMAND</span><span class="p">],</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bot </span><span class="si">{</span><span class="n">BOT_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s1">&#39;mybotname (myboturl, 1.0.0)&#39;</span><span class="p">,</span>
 <span class="p">})</span>
 </code></pre></div>
 
