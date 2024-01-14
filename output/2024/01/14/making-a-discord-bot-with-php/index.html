@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Making a Discord bot with PHP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
+		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Making a Discord bot with PHP">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style type="text/css">
+			body.custom-background {
+				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
+			}
+		</style>
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
+		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/"><time 
+			class="dt-published" datetime="2024-01-14T21:57:00+00:00">Jan 14 2024</time></a>
+			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/" title="Permalink to Making a Discord bot with PHP" rel="bookmark">Making a Discord bot with <span class="caps">PHP</span></a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Discord have changed the way bots work quite a few times. Recently, though, they built a system that lets you create and register &#8220;slash commands&#8221; &#8212; commands that you can type into the Discord chat and which do things, like <code>/hello</code> &#8212; and which are powered by &#8220;webhooks&#8221;. That is: when someone uses your command, it sends an <span class="caps">HTTP</span> request to a <span class="caps">URL</span> of your choice, and your <span class="caps">URL</span> then responds, and that process powers what your users see in Discord. Importantly, this means that operating a Discord bot does not require a long-running server process. You don&#8217;t need to host it somewhere where you worry about the bot process crashing, how you&#8217;re going to recover from that, all that stuff. No daemon required. In fact, you can make a complete Discord bot in one single <span class="caps">PHP</span> file. You don&#8217;t even need any <span class="caps">PHP</span> libraries. One file, which you upload to your completely-standard shared hosting webspace, the same way you might upload any other simple <span class="caps">PHP</span> thing. Here&#8217;s some notes on how I did&nbsp;that.</p>
+<p>The <a href="https://discord.com/developers/docs/getting-started">Discord documentation</a> is pretty annoying and difficult to follow; all the stuff you need is in there, somewhere, but it&#8217;s often hard to find where, and there&#8217;s very little that explains <em>why</em> a thing is the way it is. It&#8217;s tough to grasp the &#8220;Zen&#8221; of how Discord <em>wants</em> you to work with their stuff. But in essence, you&#8217;ll need to create a Discord app: <a href="https://discord.com/developers/docs/getting-started#step-1-creating-an-app">follow their instructions</a> to do that. Then, we&#8217;ll write our small <span class="caps">PHP</span> file, and upload it; finally, fill in the <span class="caps">URL</span> of that <span class="caps">PHP</span> file as the &#8220;interactive endpoint <span class="caps">URL</span>&#8221; in your newly-created app&#8217;s general information page in the Discord developer admin. You can then add the bot to a server by visiting the <span class="caps">URL</span> from the &#8220;<span class="caps">URL</span> generator&#8221; for your app in the Discord dev&nbsp;admin.</p>
+<p>The <span class="caps">PHP</span> file will get sent blocks of <span class="caps">JSON</span>, which describe what a user is doing &#8212; a command they&#8217;ve typed, parameters to that command, or whatever &#8212; and respond with something which is shown to the user &#8212; the text of a message which is your bot&#8217;s reply, or a command to alter the text of a previous message, or add a clickable button to it, and the like. I won&#8217;t go into detail about all the things you can do here (if that would be interesting, let me know and maybe I&#8217;ll write a followup or two), but the basic structure of your bot needs to be that it <strong>authenticates</strong> the incoming request from Discord, it <strong>interprets</strong> that request, and it <strong>responds</strong> to that&nbsp;request.</p>
+<p>Authentication first. When you create your app, you get a <code>client_public_key</code> value, a big long string of hex digits that will look like <code>c78c32c3c7871369fa67</code> or whatever. Your <span class="caps">PHP</span> file needs to know this value somehow. (How you do that is up to you; think of this like a MySQL username and password, and handle this the same way you do those.) Then, every request that comes in will have two important <span class="caps">HTTP</span> headers: <code>X-Signature-ED25519</code> and <code>X-Signature-Timestamp</code>. You use a combination of these (which provide a signature for the incoming request) and your public key to check whether the request is legitimate. There are <span class="caps">PHP</span> libraries to do this, but fortunately we don&#8217;t need them; <span class="caps">PHP</span> has the relevant <a href="https://www.php.net/manual/en/function.sodium-crypto-sign-verify-detached.php">signature verification</a> stuff built in, these days. So, to read the content of the incoming post and verify the signature on&nbsp;it:</p>
+<div class="highlight"><pre><span></span><code><span class="x">/* read the incoming request data */</span>
+<span class="x">$postData = file_get_contents(&#39;php://input&#39;);</span>
+<span class="x">/* get the signature and timestamp header values */</span>
+<span class="x">$signature = isset($_SERVER[&#39;HTTP_X_SIGNATURE_ED25519&#39;]) ? </span>
+<span class="x">    $_SERVER[&#39;HTTP_X_SIGNATURE_ED25519&#39;] : &quot;&quot;;</span>
+<span class="x">$timestamp = isset($_SERVER[&#39;HTTP_X_SIGNATURE_TIMESTAMP&#39;]) ? </span>
+<span class="x">    $_SERVER[&#39;HTTP_X_SIGNATURE_TIMESTAMP&#39;] : &quot;&quot;;</span>
+<span class="x">/* check the signature */</span>
+<span class="x">$sigok = sodium_crypto_sign_verify_detached(hex2bin($signature), </span>
+<span class="x">    $timestamp . $postData, hex2bin($client_public_key));</span>
+<span class="x">/* If signature is not OK, reject the request */</span>
+<span class="x">if (!$sigok) {</span>
+<span class="x">    http_response_code(401);</span>
+<span class="x">    die();</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>We need to correctly reject invalidly signed requests, because Discord will check that we do &#8212; they will occasionally send test requests with bad signatures to confirm that you&#8217;re doing the check. (They do this when you first add the <span class="caps">URL</span> to the Discord admin screens; if it won&#8217;t let you save the settings, then it&#8217;s because Discord thinks your <span class="caps">URL</span> returned the wrong thing. This is annoying, because you have no idea <em>why</em> Discord didn&#8217;t like it; best bet is to add lots of <code>error_log()</code> logging of inputs and outputs to your <span class="caps">PHP</span> file and inspect the results&nbsp;carefully.)</p>
+<p>Next, interpret the incoming request and do things with it. The only thing we have to respond to here is a <code>ping</code> message; Discord will send them as part of their irregular testing, and expects to get back a correctly-formatted <code>pong</code> message.</p>
+<div class="highlight"><pre><span></span><code><span class="x">$data = json_decode($postData);</span>
+<span class="x">if ($data-&gt;type == 1) { // this is a ping message</span>
+<span class="x">    echo json_encode(array(&#39;type&#39; =&gt; 1)); // respond with a pong message</span>
+<span class="x">    die();</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>The magic numbers there (1 for a <code>ping</code>, 1 for a <code>pong</code>) are both defined in the Discord docs (incoming values being the <a href="https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-type">&#8220;Interaction Type&#8221; field</a> and outgoing values the <a href="https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-type">&#8220;Interaction Callback Type&#8221;</a>.)</p>
+<p>After that, the world&#8217;s approximately your oyster. You check the incoming <code>type</code> field for the type of incoming thing this is &#8212; a slash command, a button click in a message, whatever &#8212; and respond appropriately. This is all stuff for future posts if there&#8217;s interest, but the docs (in particular the <a href="https://discord.com/developers/docs/interactions/receiving-and-responding">&#8220;receiving and responding</a> and <a href="https://discord.com/developers/docs/interactions/message-components">&#8220;message components&#8221;</a> sections) have all the detail. For your bot to provide a slash command, you have to <a href="https://discord.com/developers/docs/interactions/application-commands#registering-a-command">register it first</a>, which is a faff; I wrote a little Python script to do that. You only have to do it once. The script looks approximately like this; you&#8217;ll need your APP_ID and your BOT_TOKEN from the Discord&nbsp;dashboard.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
+<span class="n">MY_COMMAND</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;doit&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s1">&#39;Do the thing&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="n">discord_endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://discord.com/api/v10/applications/</span><span class="si">{</span><span class="n">APP_ID</span><span class="si">}</span><span class="s2">/commands&quot;</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="n">discord_endpoint</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">[</span><span class="n">MY_COMMAND</span><span class="p">],</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bot </span><span class="si">{</span><span class="n">BOT_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s1">&#39;mybotname (myboturl, 1.0.0)&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</code></pre></div>
+
+<p>Once you&#8217;ve done that, you can use <code>/doit</code> in a channel with your bot in, and your <span class="caps">PHP</span> bot <span class="caps">URL</span> will receive the incoming request for you to&nbsp;process.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2023/10/05/a-software-matter-device-that-alexa-can-talk-to/">Previous post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2024/01/14/making-a-discord-bot-with-php/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
+			<the-claw-webring-widget />
+			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
+			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
+			<script>
+  				window.dataLayer = window.dataLayer || [];
+  				function gtag(){dataLayer.push(arguments);}
+  				gtag('js', new Date());
+  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
+			</script>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
