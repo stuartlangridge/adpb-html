@@ -223,3 +223,27 @@ footer::after {
   padding: 10px 20px;
   border: 1px solid hsl(15.5, 83.4%, 27.3%);
 }
+
+
+#webmentions, #similar_posts {
+  text-align: left;
+  padding: 10px;
+}
+#webmentions h4 { margin-top: 0; }
+#webmentions ul {
+  margin: 0;
+  padding: 0;
+}
+#webmentions li {
+  list-style: none;
+}
+#webmentions li img {
+  height: 24px;
+}
+#webmentions span.wm-summary {
+  display: block;
+  font-style: italic;
+}
+#webmentions form {
+  margin-top: 10px;
+}
