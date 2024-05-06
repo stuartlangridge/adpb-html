@@ -73,19 +73,19 @@
 <p>You should be able to communicate <strong>a few hundred <span class="caps">KB</span> of data</strong> to the device <strong>locally</strong>, <strong>without needing a cloud service</strong> by using <strong>a web app rather than a native app</strong> from <strong>an Android phone</strong>.</p>
 <p>Here&#8217;s why that doesn&#8217;t work. Android and Chrome, I am very disappointed in&nbsp;you.</p>
 <p><strong>Bluetooth <span class="caps">LE</span></strong></p>
-<p><img src="https://kryogenix.org/images/iot-chrome-s1.png" alt=""></p>
+<p><img src="https://kryogenix.org/images/iot-chrome-s1.png" alt="start, connect via LE, upload image, done"></p>
 <p>The first reaction here is to use Bluetooth <span class="caps">LE</span>. This is what it&#8217;s for; it&#8217;s easy to use, phones support it, Chrome on Android has <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">Web Bluetooth</a>, everything&#8217;s gravy,&nbsp;right?</p>
 <p>No, sadly. Because of the &#8220;a few hundred <span class="caps">KB</span> of data&#8221; requirement. This is, honestly, not a <em>lot</em> of data; a few hundred kilobytes at most. However&#8230; that&#8217;s too much for poor old Bluetooth <span class="caps">LE</span>. <a href="https://aimconsulting.com/insights/blog/wi-fi-vs-bluetooth-classic-vs-bluetooth-low-energy-ble-choosing-the-right-technology-when-designing-for-iot/">An excellent article from <span class="caps">AIM</span> Consulting</a> goes into this in a little detail and there&#8217;s a <a href="https://www.novelbits.io/bluetooth-5-speed-maximum-throughput/">much more detailed article from Novelbits</a>, but transferring tens or hundreds of <span class="caps">KB</span> of data over <span class="caps">BLE</span> just isn&#8217;t practical. Maybe you can get speeds of a few hundred kilo <em>bits</em> per second in theory, but in practice it&#8217;s nothing like that; I was getting speeds of <strong>twenty</strong> <em>bytes</em> per second, which is utterly unhelpful. Sure, maybe it can be more efficient than that, but it&#8217;s just never going to be fast enough: nobody&#8217;s going to want to send a <span class="caps">40KB</span> image and wait three minutes for it to do so. <span class="caps">BLE</span>&#8217;s good for small amounts of data; not for even medium&nbsp;amounts.</p>
 <p><strong>WiFi to your local <span class="caps">AP</span></strong></p>
-<p><img src="https://kryogenix.org/images/iot-chrome-s2.png" alt=""></p>
+<p><img src="https://kryogenix.org/images/iot-chrome-s2.png" alt="start, connect via LE is crossed off, connect via AP, upload image, done"></p>
 <p>The next idea, therefore, is to connect the device to the wifi router in your house. This is how most IoT devices work; you teach them about your wifi network and they connect to it. But&#8230; <em>how</em> do you teach them that? Normally, you put them in some sort of &#8220;setup&#8221; mode and the device creates its own wifi network, and then you connect your phone to that, teach it about your wifi network, and then it stops its own <span class="caps">AP</span> and connects to yours instead. This is maybe <span class="caps">OK</span> if the device never moves from your house and it only has one wifi network to connect to; it&#8217;s <em>terrible</em> if it&#8217;s something that moves around to different places. But you still need to connect to its private <span class="caps">AP</span> first to do that setup, and so let&#8217;s talk about&nbsp;that.</p>
 <p><strong>WiFi to the&nbsp;device</strong></p>
-<p><img src="https://kryogenix.org/images/iot-chrome-s3.png" alt=""></p>
+<p><img src="https://kryogenix.org/images/iot-chrome-s3.png" alt="start, connect via LE and connect via AP are crossed off, connect via device, upload image, done"></p>
 <p>The device creates its own WiFi network; it becomes a wifi router. You then connect your phone to it, and then you can talk to it. The device can even be a web server, so you can load the controlling web app from the device itself. This is ideal; exactly what I&nbsp;planned.</p>
 <p>Except it doesn&#8217;t work, and as far as I can tell it&#8217;s Android&#8217;s fault. Bah&nbsp;humbug.</p>
 <p>You see, the device&#8217;s wifi network obviously doesn&#8217;t have a route to the internet. So, when you connect your phone to it, Android says &#8220;hey! there&#8217;s no route to the internet here! this wifi network sucks and clearly you don&#8217;t want to be connected to it!&#8221; and, after ten seconds or so, disconnects you. Boom. You have no chance to use the web app on the device to configure the device, because Android (10, at least) disconnects you from the device&#8217;s wifi network before you can do&nbsp;so.</p>
 <p>Now, there is the concept of a &#8220;captive portal&#8221;. This is the thing you get in hotels and airports and so on, where you have to fill in some details or pay some money or something to be able to use the wifi; what happens is that all web accesses get redirected to the captive portal page where you do or pay whatever&#8217;s necessary and then the network suddenly becomes able to access the internet. Android will helpfully detect these networks and show you that captive portal login page so you can sign in. Can we have our device be a captive&nbsp;portal?</p>
-<p><img src="https://kryogenix.org/images/iot-chrome-s4.png" alt=""></p>
+<p><img src="https://kryogenix.org/images/iot-chrome-s4.png" alt="start, connect via LE, AP, device are crossed off, connect via CNA, upload image, done"></p>
 <p>No. Well, we can, but it doesn&#8217;t&nbsp;help.</p>
 <p>You see, Android shows you the captive portal login page in a special cut-down &#8220;browser&#8221;. This captive portal browser (Apple calls it a <span class="caps">CNA</span>, for Captive Network Assistant, so I shall too&#8230; but we&#8217;re not talking about iOS here, which is an entirely different kettle of fish for a different article), this <span class="caps">CNA</span> isn&#8217;t <em>really</em> a browser. Obviously, our IoT device can&#8217;t provide a route to the internet; it&#8217;s not that it has one but won&#8217;t let you see it, like a hotel; it doesn&#8217;t have one at all. So you can&#8217;t fill anything into the <span class="caps">CNA</span> that will make that happen. If you try to switch back to the real browser in order to access the website being served from the device, Android says &#8220;aha, you closed the <span class="caps">CNA</span> and there&#8217;s still no route to the internet!&#8221; and disconnects you from the device wifi. That doesn&#8217;t&nbsp;work.</p>
 <p>You can&#8217;t open a page in the real browser <em>from</em> the <span class="caps">CNA</span>, either. You used to be able to do <a href="https://stackoverflow.com/questions/59585783/open-app-browser-android-using-captive-portal-error-social-login-with-facebook">some shenanigans with a link pointing to an <code>intent://</code> <span class="caps">URL</span></a> but that doesn&#8217;t work any&nbsp;more.</p>
@@ -100,7 +100,7 @@
 <p>You can use a native app. Native apps can avoid the whole &#8220;this wifi network has no internet access so I will disconnect you from it for your own good&#8221; approach by calling <a href="https://stackoverflow.com/questions/62320720/android-disconnects-automatically-from-wifi-without-internet-below-android-10">various native APIs in the connectivity manager</a>. A web app can&#8217;t do this. So you&#8217;re somewhat forced into using a native app even though you really shouldn&#8217;t have&nbsp;to.</p>
 <p>Or you can use something other than Android; iOS, it seems, <a href="https://stackoverflow.com/questions/55138577/how-to-redirect-to-default-browser-from-captive-portal-cna-browser">has a workaround</a> although it&#8217;s a bit&nbsp;dodgy.</p>
 <p>None of these are good answers. Currently I&#8217;m looking at building native apps, which I really don&#8217;t think I should have to do; this is exactly the sort of thing that the web should be good at, and is available on every platform and to everyone, and I can&#8217;t use the web for it because a bunch of decisions have been taken to prevent that. There are good reasons for those decisions, certainly; I want my phone to be helpful when I&#8217;m on some stupid hotel wifi with a signin. But it&#8217;s also breaking a perfectly legitimate use case and forcing me to use native apps rather than the&nbsp;web.</p>
-<p><img src="https://kryogenix.org/images/iot-chrome-s5.png" alt=""></p>
+<p><img src="https://kryogenix.org/images/iot-chrome-s5.png" alt="start, connect via LE, AP, device, CNA are crossed off, connect via native app (sigh), upload image, done"></p>
 <p>Unless I&#8217;m wrong? If I am&#8230; this is where you tell me how to do it. Something with a pleasant user experience, that non-technical people can easily do. If it doesn&#8217;t match that, I ain&#8217;t doin&#8217; it, just to warn you. But if you know how this can be done to meet my list of criteria, I&#8217;m happy to&nbsp;listen.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
@@ -118,158 +118,7 @@
 </div>  <!--/#post-->
 <div id="webmentions">
 <h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
-	<ul>
-		<li><img src="https://pbs.twimg.com/profile_images/1200330815386861575/MX06nup-.jpg">
-			Gamer Geek responded at
-		<a href="https://twitter.com/DataAugmented/status/1295730384609533952">twitter.com</a>
-		<span class="wm-summary">			Stuart Langridge: IoT devices and Android and disappointment kryogenix.org/days/2020/08/1…
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1173961905469382661/DrdCGk8W.jpg">
-			Nicholas Shiell responded at
-		<a href="https://twitter.com/nshiell/status/1295734597360156672">twitter.com</a>
-		<span class="wm-summary">			Sounds like a very frustrating problem :( I wounder how well Chrome handles being inside an old-school Intranet - as in a web app running inside a LAN&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1436565667/267835_10150234306102413_677307412_7753510_5237669_n.jpg">
-			Ben Thorp responded at
-		<a href="https://twitter.com/benthorp/status/1295735313625751555">twitter.com</a>
-		<span class="wm-summary">			Can't believe I'm suggesting these, but what about either using WPS to connect your device to the router, or using WiFi Direct between your device and&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295739776692375554">twitter.com</a>
-		<span class="wm-summary">			wifi direct is SPECTACULARLY undocumented. I cannot work out how to actually _do_ it. You also can't do it from a web app; you need a native app to ki&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295739855499075584">twitter.com</a>
-		<span class="wm-summary">			I have no idea. I assume: badly :)
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295739989540720640">twitter.com</a>
-		<span class="wm-summary">			the problem with WPS is that it might not be your router; imagine you're in a cafe, for example, where you don't get to press the button on top of the&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1436565667/267835_10150234306102413_677307412_7753510_5237669_n.jpg">
-			Ben Thorp responded at
-		<a href="https://twitter.com/benthorp/status/1295744079695876096">twitter.com</a>
-		<span class="wm-summary">			Ah. I was hoping that wifi direct could handle making a local network with the android device, and then serve the web app to the phone
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295745036450177024">twitter.com</a>
-		<span class="wm-summary">			you would think, wouldn't you? That's what I thought too. But either I'm too stupid to work that out, it's not actually possible, or it is possible an&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1436565667/267835_10150234306102413_677307412_7753510_5237669_n.jpg">
-			Ben Thorp responded at
-		<a href="https://twitter.com/benthorp/status/1295745154469560321">twitter.com</a>
-		<span class="wm-summary">			Completely random third option - I wonder whether if you used your phone as a wifi hotspot that the device connected to, what you can serve over that&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/905419897945153536/b1g0nd9o.jpg">
-			Matthew Somerville responded at
-		<a href="https://twitter.com/dracos/status/1295745373894520832">twitter.com</a>
-		<span class="wm-summary">			Can your device fake the response to the request to connectivitycheck.gstatic.com?
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1436565667/267835_10150234306102413_677307412_7753510_5237669_n.jpg">
-			Ben Thorp responded at
-		<a href="https://twitter.com/benthorp/status/1295747445788413958">twitter.com</a>
-		<span class="wm-summary">			This guy seems to have got something working on an Arduino..... forum.arduino.cc/index.php?topi…
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295754054916886532">twitter.com</a>
-		<span class="wm-summary">			Yes, probably (that's how it's suggested that one does this on iOS). I'm concerned about that because then the phone will believe it's online and all&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295754528961310720">twitter.com</a>
-		<span class="wm-summary">			that's not wifi direct. That's "using wifi, direct to the device"; half the problem with researching this topic is that people use the phrase "wifi di&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1436565667/267835_10150234306102413_677307412_7753510_5237669_n.jpg">
-			Ben Thorp responded at
-		<a href="https://twitter.com/benthorp/status/1295755568112705541">twitter.com</a>
-		<span class="wm-summary"></span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/747711906656444416/jNAAGNH3.jpg">
-			Andy Buckingham responded at
-		<a href="https://twitter.com/andybee/status/1295756227599892482">twitter.com</a>
-		<span class="wm-summary">			I'm almost certain you've thought about this, but, wouldn't the WiFi credentials be small enough to send over BLE? e.g. the browser handshakes, asks f&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/905419897945153536/b1g0nd9o.jpg">
-			Matthew Somerville responded at
-		<a href="https://twitter.com/dracos/status/1295757091903344647">twitter.com</a>
-		<span class="wm-summary">			The former, well, that’s the same as plenty of captive portals after they have connected :) The latter, given private networks etc, I don’t think it w&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295787613434019841">twitter.com</a>
-		<span class="wm-summary">			yup. But you can't connect to a wifi network from a web page; you have to be a native app for that. Connecting to the device AP will disconnect becau&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295787872419753985">twitter.com</a>
-		<span class="wm-summary">			interesting. Which Android version? Mine (10) disconnects, unless I put up a captive portal page, and then it disconnects if I close down the CPA brow&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/905419897945153536/b1g0nd9o.jpg">
-			Matthew Somerville responded at
-		<a href="https://twitter.com/dracos/status/1295789327214161920">twitter.com</a>
-		<span class="wm-summary">			Umm... 7.1.2. It may be called “Wi-Fi Assistant” or “Auto Network Switch” or “Smart Network Switch” or “Avoid Poor Connections”, loads of names it see&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1146790773427449857/iJGmvdKH.png">
-			⊥ᵒᵚ Cᵸᵎᶺᵋᶫ∸ᵒᵘ responded at
-		<a href="https://twitter.com/thefalken/status/1295796387343478784">twitter.com</a>
-		<span class="wm-summary">			I'm trying to build something which seems an ideal job for the web -- configuring a small local IoT device, where I shouldn't need a native
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295798185034756096">twitter.com</a>
-		<span class="wm-summary">			ah, it's been suggested by Neil McP that the "disconnect from no-internet wifi" thing is caused by (a) newer versions of android and (b) still having&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1436565667/267835_10150234306102413_677307412_7753510_5237669_n.jpg">
-			Ben Thorp responded at
-		<a href="https://twitter.com/sil/status/1295723283309101060#favorited-by-20581020">twitter.com</a>
-		<span class="wm-summary"></span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1146790773427449857/iJGmvdKH.png">
-			⊥ᵒᵚ Cᵸᵎᶺᵋᶫ∸ᵒᵘ responded at
-		<a href="https://twitter.com/thefalken/status/1295801474103029760">twitter.com</a>
-		<span class="wm-summary">			Android 8 certainly has a "use mobile data if Internet unavailable" toggle in WiFi settings. Would be OK as occasional set up thing to teach a new net&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/823504375213654016/jRppVmyL.jpg">
-			MichaelP responded at
-		<a href="https://twitter.com/sil/status/1295723283309101060#favorited-by-9347542">twitter.com</a>
-		<span class="wm-summary"></span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/3115818707/ef997054de583c881d2f31ae32c1b3d2.jpeg">
-			Will Cooke responded at
-		<a href="https://twitter.com/sil/status/1295723283309101060#favorited-by-38729048">twitter.com</a>
-		<span class="wm-summary"></span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/747711906656444416/jNAAGNH3.jpg">
-			Andy Buckingham responded at
-		<a href="https://twitter.com/andybee/status/1295815493820063752">twitter.com</a>
-		<span class="wm-summary">			Ah, so is the issue that the web page that sets it up could disappear if the operator went bump?
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://twitter.com/sil/status/1295823636818010113">twitter.com</a>
-		<span class="wm-summary">			that's a risk, but it'd be easy enough to fix for dedicated users. The problem is that having to teach the device about the wifi network in each place&hellip;
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/1175656218205065216/djhZlovP.jpg">
-			Dr. Roy Schestowitz (罗伊) responded at
-		<a href="https://twitter.com/schestowitz/status/1295914445022072832">twitter.com</a>
-		<span class="wm-summary">			#IoT devices and #Android and disappointment kryogenix.org/days/2020/08/1…
-</span></li>
-		<li><img src="https://pbs.twimg.com/profile_images/742138036243292160/cTSLtCgB.jpg">
-			Šime Vidas responded at
-		<a href="https://twitter.com/simevidas/status/1300783146774953984">twitter.com</a>
-		<span class="wm-summary">			I think I’ve found the best example yet of “technically good contrast but kinda hard to read.” (kryogenix.org/days/2020/08/1…)
-</span></li>
-		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
-			Stuart Langridge responded at
-		<a href="https://mastodon.social/@sil/111744174806344082">mastodon.social</a>
-		<span class="wm-summary">			@brianleroux and, honestly, make working with service workers less baffling. But this is not browsers' fault :)@owa @rem
-</span></li>
-		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/309/731/761/003/534/original/f0ced9354960bc1f.jpg">
-			Brian LeRoux 💚 responded at
-		<a href="https://mastodon.social/@sil/111744136842295047#favorited-by-109309731761003534">mastodon.social</a>
-		<span class="wm-summary"></span></li>
-	</ul>
+	<ul><li>(no mentions, yet.)</li></ul>
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>

@@ -426,7 +426,7 @@ found&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt
 &lt;p&gt;&lt;code&gt;username&lt;/code&gt; is your Twitter username. Mine is &lt;code&gt;sil&lt;/code&gt;: yours isn&amp;#8217;t. Don&amp;#8217;t include the &lt;code&gt;@&lt;/code&gt; at the&amp;nbsp;beginning.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;homeLabel&lt;/code&gt; is the thing that appears in the top corner of your Twitter archive once generated; it will be a link to your own homepage. (Note: &lt;em&gt;not&lt;/em&gt; the homepage of this Twitter archive! This will be the text of a link which takes you out of the Twitter archive and to your own&amp;nbsp;home.)&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;homeURL&lt;/code&gt; is the full &lt;span class="caps"&gt;URL&lt;/span&gt; to your homepage. (This is &amp;#8220;https://kryogenix.org/&amp;#8221; for me, for example. It is the &lt;span class="caps"&gt;URL&lt;/span&gt; that &lt;code&gt;homeLabel&lt;/code&gt; links&amp;nbsp;to.)&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://kryogenix.org/random/tweetback-homelabel.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://kryogenix.org/random/tweetback-homelabel.png" alt="the home label is top left of the website"&gt;&lt;/p&gt;
 &lt;h1&gt;Step 7: (drum roll, please!) Build the&amp;nbsp;site&lt;/h1&gt;
 &lt;p&gt;&lt;span class="caps"&gt;OK&lt;/span&gt;. Now you&amp;#8217;ve done all the setup. This step actually takes all of that and builds a website from all your&amp;nbsp;tweets.&lt;/p&gt;
 &lt;p&gt;Run &lt;code&gt;npm run build&lt;/code&gt;.&lt;/p&gt;
