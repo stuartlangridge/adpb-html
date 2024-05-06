@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Using Thunderbird as default client on Ubuntu</title>
+		<title>as days pass by &mdash; Using Thunderbird as default client on Ubuntu</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Using Thunderbird as default client on Ubuntu">
+        <meta property="og:title" content="as days pass by &mdash; Using Thunderbird as default client on Ubuntu">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/12/21/thunderbird/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,12 +47,11 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2004/12/21/thunderbird/"><time 
 			class="dt-published" datetime="2004-12-21T11:00:00+00:00">Dec 21 2004</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/12/21/thunderbird/" title="Permalink to Using Thunderbird as default client on Ubuntu" rel="bookmark">Using Thunderbird as default client on&nbsp;Ubuntu</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/12/21/thunderbird/">Using Thunderbird as default client on Ubuntu</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>For my sins, <a href="http://www.kryogenix.org/days/2004/06/21/evolution">I installed Evolution</a> in the past. I don’t use it; I
@@ -74,11 +59,11 @@ use Thunderbird. But clicking a mailto link in Firefox starts up Evo.
 Big no-no. So, I had a poke around. In <strong>Computer | Desktop Preferences
 | Preferred Applications</strong> you can choose <strong>Mail Reader</strong> to configure
 your default mail reader.
-<acronym title="Thunderbird. Not tuberculosis."><span class="caps">TB</span></acronym> doesn’t
+<acronym title="Thunderbird. Not tuberculosis.">TB</acronym> doesn’t
 seem to show up in the dropdown, so I thought I’d bang it into <strong>Custom
 Mail Reader</strong>. So, what do you put in? I’d have thought
 <code>mozilla-thunderbird %s</code>. Nope. That doesn’t work. Moreover, if you try
-that from the&nbsp;command-line:</p>
+that from the command-line:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="w"> </span><span class="n">someone</span><span class="nv">@example</span><span class="p">.</span><span class="n">org</span>
 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">/</span><span class="n">mozilla</span><span class="o">-</span><span class="n">thunderbird</span><span class="o">-</span><span class="n">xremote</span><span class="o">-</span><span class="nl">client</span><span class="p">:</span><span class="w"> </span><span class="nl">Error</span><span class="p">:</span><span class="w"> </span><span class="n">Failed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">send</span><span class="w"> </span><span class="nl">command</span><span class="p">:</span><span class="w"> </span><span class="mi">509</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span>
 </code></pre></div>
@@ -95,7 +80,7 @@ that from the&nbsp;command-line:</p>
 
 <p>That works! Yay! So, let’s try that in the <strong>Custom Mail Reader</strong> box in
 <strong>Preferred Applications</strong>. Nope. Dammit. It pops up a mail window, no
-problem…with “%s” in the To box. Dammit. Any&nbsp;suggestions?</p>
+problem…with “%s” in the To box. Dammit. Any suggestions?</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2004/12/20/christmaslugradio/">Previous post</a></li>
@@ -172,24 +157,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

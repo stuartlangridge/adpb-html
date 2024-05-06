@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Pure CSS toggle switch with two labels</title>
+		<title>as days pass by &mdash; Pure CSS toggle switch with two labels</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Pure CSS toggle switch with two labels">
+        <meta property="og:title" content="as days pass by &mdash; Pure CSS toggle switch with two labels">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2013/06/01/pure-css-toggle-switch-with-two-labels/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,22 +47,21 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2013/06/01/pure-css-toggle-switch-with-two-labels/"><time 
 			class="dt-published" datetime="2013-06-01T19:25:00+01:00">Jun 01 2013</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/06/01/pure-css-toggle-switch-with-two-labels/" title="Permalink to Pure CSS toggle switch with two labels" rel="bookmark">Pure <span class="caps">CSS</span> toggle switch with two&nbsp;labels</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/06/01/pure-css-toggle-switch-with-two-labels/">Pure CSS toggle switch with two labels</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>For an upcoming web project, I needed a switch which chose between two
-options. Not &#8220;on or off&#8221;, like a checkbox; more &#8220;tea or coffee&#8221;, one
+options. Not "on or off", like a checkbox; more "tea or coffee", one
 choice or the other. That could indeed be a checkbox (<em>checked</em> means
-&#8220;tea&#8221;, <em>unchecked</em> means &#8220;coffee&#8221;) but that&#8217;s not really right; it&#8217;s,
+"tea", <em>unchecked</em> means "coffee") but that's not really right; it's,
 semantically, two radio buttons. But visually it was meant to look like
-a toggle switch with two labels: &#8220;tea&#8221; and &#8220;coffee&#8221;, and a switch to
-switch between&nbsp;them.</p>
-<p>So, a bit of <span class="caps">CSS</span> trickery and it all works out. Evolving step by&nbsp;step:</p>
+a toggle switch with two labels: "tea" and "coffee", and a switch to
+switch between them.</p>
+<p>So, a bit of CSS trickery and it all works out. Evolving step by step:</p>
 <style>
 div.css-toggle-demo label { display: inline-block; }
 div.css-toggle-demo p.demoing {
@@ -152,9 +137,9 @@ transition: all 0.3s ease;
 </style>
 <div class="css-toggle-demo"></div>
 
-<p>First, start with just the plain <span class="caps">HTML</span> we want. Two radio buttons, each
+<p>First, start with just the plain HTML we want. Two radio buttons, each
 with a label. Note that clicking the label sets the radio button to
-checked, as you&#8217;d&nbsp;expect.</p>
+checked, as you'd expect.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;input</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;radio&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;radiocoffee&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;drink&quot;</span><span class="w"> </span><span class="err">checked</span><span class="nt">&gt;&lt;label</span><span class="w"> </span>
 <span class="na">for=</span><span class="s">&quot;radiocoffee&quot;</span><span class="nt">&gt;</span>Coffee<span class="nt">&lt;/label&gt;&lt;input</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;radio&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;radiotea&quot;</span><span class="w"> </span>
 <span class="na">name=</span><span class="s">&quot;drink&quot;</span><span class="nt">&gt;&lt;label</span><span class="w"> </span><span class="na">for=</span><span class="s">&quot;radiotea&quot;</span><span class="nt">&gt;</span>Tea<span class="nt">&lt;/label&gt;</span>
@@ -162,15 +147,15 @@ checked, as you&#8217;d&nbsp;expect.</p>
 
 <p><input id="i11" type="radio" checked="checked" name="i1"></input><label for="i11">Coffee</label><input id="i12" type="radio" name="i1"></input><label for="i12">Tea</label></p>
 <p>We need the radio buttons because they do the work, and we need them
-semantically, but we don&#8217;t want to see them. Hide them&nbsp;away.</p>
+semantically, but we don't want to see them. Hide them away.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">input</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span><span class="w"> </span><span class="k">opacity</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <p><input id="i21" type="radio" checked="checked" name="i2"></input><label for="i21">Coffee</label><input id="i22" type="radio" name="i2"></input><label for="i22">Tea</label></p>
 <p>Now, we need somewhere to put the body of our switch. Take the left-hand
-label, and using <span class="caps">CSS</span> generated content, reserve a block of space to put
+label, and using CSS generated content, reserve a block of space to put
 our switch in. (Note: we also temporarily colour various parts for this
-demo and offset them, so you can see what&#8217;s going&nbsp;on.)</p>
+demo and offset them, so you can see what's going on.)</p>
 <div class="highlight"><pre><span></span><code><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
@@ -187,7 +172,7 @@ demo and offset them, so you can see what&#8217;s going&nbsp;on.)</p>
 
 <p><input id="i31" type="radio" checked="checked" name="i3"></input><label for="i31">Coffee</label><input id="i32" type="radio" name="i3"></input><label for="i32">Tea</label></p>
 <p>Now, the switch part of the switch needs to go somewhere. Reserve some
-space on the left of the second label to put that switch part&nbsp;in.</p>
+space on the left of the second label to put that switch part in.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">padding-right</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
@@ -198,8 +183,8 @@ space on the left of the second label to put that switch part&nbsp;in.</p>
 <p><input id="i41" type="radio" checked="checked" name="i4"></input><label for="i41">Coffee</label><input id="i42" type="radio" name="i4"></input><label for="i42">Tea</label></p>
 <p>Actually draw the switch body, with a <code>border</code> and <code>border-radius</code>. This
 is why the space for the switch body was reserved with <code>::after</code>
-generated content, rather than right padding on the label &#8212; so that the
-switch body can have its own border and&nbsp;styles.</p>
+generated content, rather than right padding on the label -- so that the
+switch body can have its own border and styles.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
 <span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="kt">px</span><span class="p">;</span>
@@ -208,9 +193,9 @@ switch body can have its own border and&nbsp;styles.</p>
 
 <p><input id="i51" type="radio" checked="checked" name="i5"></input><label for="i51">Coffee</label><input id="i52" type="radio" name="i5"></input><label for="i52">Tea</label></p>
 <p>Draw the switch part of the switch as a circle, by using a radial
-gradient on the background of the right-hand label. Obviously you&#8217;ll
-need to add vendor prefixes to <code>radial-gradient</code>, or use Lea Verou&#8217;s
-<a href="http://leaverou.github.io/prefixfree/">prefixfree</a> or&nbsp;similar.</p>
+gradient on the background of the right-hand label. Obviously you'll
+need to add vendor prefixes to <code>radial-gradient</code>, or use Lea Verou's
+<a href="http://leaverou.github.io/prefixfree/">prefixfree</a> or similar.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">background-image</span><span class="p">:</span><span class="w"> </span><span class="nb">radial-gradient</span><span class="p">(</span><span class="kc">circle</span><span class="p">,</span><span class="w"> </span><span class="kc">transparent</span><span class="w"> </span><span class="mi">0</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="kc">transparent</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="kc">black</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="kc">black</span><span class="w"> </span><span class="mi">54</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="kc">transparent</span><span class="w"> </span><span class="mi">59</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="kc">transparent</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
 <span class="w">    </span><span class="k">background-position</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="mi">-1</span><span class="kt">px</span><span class="p">;</span>
@@ -220,38 +205,38 @@ need to add vendor prefixes to <code>radial-gradient</code>, or use Lea Verou&#8
 </code></pre></div>
 
 <p><input id="i61" type="radio" checked="checked" name="i6"></input><label for="i61">Coffee</label><input id="i62" type="radio" name="i6"></input><label for="i62">Tea</label></p>
-<p>(If you&#8217;re not sure precisely how that circle gets drawn by a radial
-gradient, it&#8217;s morally similar to a trick with using gradients to make
+<p>(If you're not sure precisely how that circle gets drawn by a radial
+gradient, it's morally similar to a trick with using gradients to make
 patterns (which <a href="http://lea.verou.me/css3patterns/">Lea Verou has been doing for ages</a>) and the basic
 principle (make some parts transparent, some parts a colour) dates back
-to Tantek Çelik&#8217;s <a href="http://tantek.com/CSS/Examples/polygons.html">A Study of Regular Polygons</a>, which was twelve and
-a half years ago (blimey). Here&#8217;s the same gradient with only the
-colours changed, which might make it more obvious how it&nbsp;works.)</p>
+to Tantek Çelik's <a href="http://tantek.com/CSS/Examples/polygons.html">A Study of Regular Polygons</a>, which was twelve and
+a half years ago (blimey). Here's the same gradient with only the
+colours changed, which might make it more obvious how it works.)</p>
 <p><input id="i71" type="radio" checked="checked" name="i7"></input><label for="i71">Coffee</label><input id="i72" type="radio" name="i7"></input><label for="i72">Tea</label></p>
-<p>Remove our deliberate misalignment so everything lines up&nbsp;properly:</p>
+<p>Remove our deliberate misalignment so everything lines up properly:</p>
 <p><input id="i81" type="radio" checked="checked" name="i8"></input><label for="i81">Coffee</label><input id="i82" type="radio" name="i8"></input><label for="i82">Tea</label></p>
-<p>Right! Now it looks like we wanted. (Well, it doesn&#8217;t; it obviously
+<p>Right! Now it looks like we wanted. (Well, it doesn't; it obviously
 looks plain, black-and-white, and boring. Making it look swishy and in
 keeping with your own beautiful designs is left as an exercise for the
-reader; use whichever cool <span class="caps">CSS3</span> border tricks and gradients you want.)
-However, it doesn&#8217;t <strong>do</strong> anything, yet. As you saw on the very first
+reader; use whichever cool CSS3 border tricks and gradients you want.)
+However, it doesn't <strong>do</strong> anything, yet. As you saw on the very first
 example, clicking the labels does toggle the radio button correctly, but
-we&#8217;re not seeing that here. What we want is to change the position of
-the switch when the radio button is toggled, and for that there&#8217;s
-another fairly standard trick, using <span class="caps">CSS</span>&#8217;s <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:checked">:checked pseudo-class</a>
-and <code>+</code> adjacent-sibling selectors. Basically, if you&#8217;ve got a radio
+we're not seeing that here. What we want is to change the position of
+the switch when the radio button is toggled, and for that there's
+another fairly standard trick, using CSS's <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:checked">:checked pseudo-class</a>
+and <code>+</code> adjacent-sibling selectors. Basically, if you've got a radio
 button or checkbox, and you put its label immediately after it in the
 source, then <code>input:checked + label</code> will select that label for styling,
 only if the checkbox is checked! And clicking the label toggles the
 checkbox. So you get the visual effect that clicking the label toggles
-<em>the appearance of the label itself</em>, but it&#8217;s all using decent semantic
-<span class="caps">HTML</span> so it doesn&#8217;t need JavaScript, it all ought to be accessible
-correctly because it&#8217;s decent semantic <span class="caps">HTML</span>, and <em>you don&#8217;t have to do
+<em>the appearance of the label itself</em>, but it's all using decent semantic
+HTML so it doesn't need JavaScript, it all ought to be accessible
+correctly because it's decent semantic HTML, and <em>you don't have to do
 any coding at all</em> because the browser does it all for you. Dolla, dolla
-bills,&nbsp;y&#8217;all.</p>
+bills, y'all.</p>
 <p>All we do is decrease the size of the reserved space for the switch part
-of the switch&#8230;which has the visual effect of moving it to the right,
-closer to its label. Click the switch below and you&#8217;ll see it&nbsp;working.</p>
+of the switch...which has the visual effect of moving it to the right,
+closer to its label. Click the switch below and you'll see it working.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">input</span><span class="p">:</span><span class="nd">checked</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
 <span class="w">    </span><span class="k">margin-left</span><span class="p">:</span><span class="w"> </span><span class="mi">-40</span><span class="kt">px</span><span class="p">;</span>
@@ -259,25 +244,25 @@ closer to its label. Click the switch below and you&#8217;ll see it&nbsp;working
 </code></pre></div>
 
 <p><input id="i91" type="radio" checked="checked" name="i9"></input><label for="i91">Coffee</label><input id="i92" type="radio" name="i9"></input><label for="i92">Tea</label></p>
-<p>It&#8217;d be nice to indicate which label is selected, too; here, we colour
-it&nbsp;red:</p>
+<p>It'd be nice to indicate which label is selected, too; here, we colour
+it red:</p>
 <div class="highlight"><pre><span></span><code><span class="n">input</span><span class="o">:</span><span class="n">checked</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">color</span><span class="o">:</span><span class="w"> </span><span class="n">red</span><span class="o">;</span><span class="w"> </span><span class="o">}</span>
 </code></pre></div>
 
 <p><input id="ia1" type="radio" checked="checked" name="ia"></input><label for="ia1">Coffee</label><input id="ia2" type="radio" name="ia"></input><label for="ia2">Tea</label></p>
 <p>And finally, the switch change ought to animate, which is simply doable
-with <span class="caps">CSS</span> transitions (which, again, may need to be vendor&nbsp;prefixed).</p>
+with CSS transitions (which, again, may need to be vendor prefixed).</p>
 <div class="highlight"><pre><span></span><code><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="kc">all</span><span class="w"> </span><span class="mf">0.3</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <p><input id="ib1" type="radio" checked="checked" name="ib"></input><label for="ib1">Coffee</label><input id="ib2" type="radio" name="ib"></input><label for="ib2">Tea</label></p>
 </div>
-<p>And that&#8217;s the whole thing. It glues together a few different things
-from various places, but none of this is especially complex, and it&#8217;s
-all long-existing, well-supported (by modern browsers) <span class="caps">CSS</span>. It&#8217;s often a
+<p>And that's the whole thing. It glues together a few different things
+from various places, but none of this is especially complex, and it's
+all long-existing, well-supported (by modern browsers) CSS. It's often a
 bit counter-intuitive, this sort of thing, but it ought to be possible,
 most of the time, to achieve the visual look you want without having to
-resort to <span class="caps">JS</span>, without having to give up on the underlying <span class="caps">HTML</span>, and
+resort to JS, without having to give up on the underlying HTML, and
 without any images. I like that. Actual code all in one place at
 <a href="http://jsbin.com/ofadon/2/edit">http://jsbin.com/ofadon/2/edit</a> or in a gist at
 <a href="https://gist.github.com/stuartlangridge/5691475">https://gist.github.com/stuartlangridge/5691475</a>.</p>
@@ -358,24 +343,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

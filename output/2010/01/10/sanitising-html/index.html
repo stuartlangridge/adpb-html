@@ -5,8 +5,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
         <meta property="og:title" content="as days pass by &mdash; Sanitising HTML">
         <meta property="og:type" content="website">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2010/01/10/sanitising-html/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,30 +47,30 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2010/01/10/sanitising-html/"><time 
 			class="dt-published" datetime="2010-01-10T22:42:00+00:00">Jan 10 2010</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2010/01/10/sanitising-html/" title="Permalink to Sanitising HTML" rel="bookmark">Sanitising <span class="caps">HTML</span></a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2010/01/10/sanitising-html/">Sanitising HTML</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>It was pointed out to me that comments on my old posts were showing as
-raw <span class="caps">HTML</span> (you know, a sort of \&lt;p&gt;this is a comment\&lt;/p&gt; sort of
+raw HTML (you know, a sort of \&lt;p&gt;this is a comment\&lt;/p&gt; sort of
 thing). I knew this. However, the reason it was like that is because it
 occurred to me about five minutes after releasing thort, the engine that
-now runs this place, that comment <span class="caps">HTML</span> was just displayed.&nbsp;Unsanitised.</p>
-<p>Cross-site scripting, anyone?&nbsp;Oops.</p>
-<p>So I just threw an &#8220;escape&#8221; filter into my comment template (which uses
-the great <a href="http://code.google.com/p/trimpath/wiki/JavaScriptTemplates">Trimpath JavaScript templating engine</a>) so that I couldn&#8217;t
-be brutally pwnt by anyone posting a&nbsp;comment.</p>
-<p>Finally this evening I thought: I&#8217;d better do something about that. Two
-minutes of Googling brought me to <a href="http://lahosken.san-francisco.ca.us/new/2008/12/link-cajas-html-sanitizer-for.html">Caja&#8217;s <span class="caps">HTML</span> sanitizer</a>, written in
+now runs this place, that comment HTML was just displayed. Unsanitised.</p>
+<p>Cross-site scripting, anyone? Oops.</p>
+<p>So I just threw an "escape" filter into my comment template (which uses
+the great <a href="http://code.google.com/p/trimpath/wiki/JavaScriptTemplates">Trimpath JavaScript templating engine</a>) so that I couldn't
+be brutally pwnt by anyone posting a comment.</p>
+<p>Finally this evening I thought: I'd better do something about that. Two
+minutes of Googling brought me to <a href="http://lahosken.san-francisco.ca.us/new/2008/12/link-cajas-html-sanitizer-for.html">Caja's HTML sanitizer</a>, written in
 JavaScript. It was the work of but a moment to throw that into <a href="http://svn.kryogenix.org/svn/thort/thort/views/posts_and_comments/map.js">the
-CouchDB view that generates comments</a> so that outputted comment <span class="caps">HTML</span>
+CouchDB view that generates comments</a> so that outputted comment HTML
 was sanitized. It was the work of but one more moment to also throw that
-into the client-side JavaScript that displays a posted comment. It&#8217;s
-really nice being able to use exactly the same code on client and&nbsp;server.</p>
+into the client-side JavaScript that displays a posted comment. It's
+really nice being able to use exactly the same code on client and
+server.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2010/01/10/if-i-had-a-phone/">Previous post</a></li>
@@ -161,24 +147,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

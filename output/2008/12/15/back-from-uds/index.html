@@ -5,8 +5,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
         <meta property="og:title" content="as days pass by &mdash; Back from UDS">
         <meta property="og:type" content="website">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2008/12/15/back-from-uds/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,35 +47,34 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2008/12/15/back-from-uds/"><time 
 			class="dt-published" datetime="2008-12-15T20:07:00+00:00">Dec 15 2008</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/12/15/back-from-uds/" title="Permalink to Back from UDS" rel="bookmark">Back from <span class="caps">UDS</span></a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/12/15/back-from-uds/">Back from UDS</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Last week I was at the <a href="https://wiki.ubuntu.com/UDSJaunty">Ubuntu Developer Summit</a>, the six-monthly big
 meetup for Canonical employees and the Ubuntu community to get together
-and work out what&#8217;s in the next version of Ubuntu Linux and how to do
+and work out what's in the next version of Ubuntu Linux and how to do
 it. It was fascinating meeting everyone and seeing it all up close. Lots
-of stuff went on: I got interviewed by the Ubuntu <span class="caps">UK</span> guys for their
-podcast; I caught up with a few people I hadn&#8217;t seen for a while and
-lots of people I&#8217;d never met face-to-face before; I threw together a
-quick &#8220;lifestream&#8221; bit of JavaScript which would track a tag across
+of stuff went on: I got interviewed by the Ubuntu UK guys for their
+podcast; I caught up with a few people I hadn't seen for a while and
+lots of people I'd never met face-to-face before; I threw together a
+quick "lifestream" bit of JavaScript which would track a tag across
 various sites and <a href="https://code.launchpad.net/udstream">it ended up on Launchpad</a> (so if you want a trivial
 way to display a lifestream for a conference, grab the script and make
 it better); I asked everyone I could think of whether I should insist on
 buying a laptop with Ubuntu on it and which one I should get; we went to
 the <a href="http://www.computerhistory.org/">Computer History Museum</a> and indulged in the geek oneupmanship
-game of saying &#8220;owned one of those, owned one of those, wanted one of
-those&#8221; (apparently the PlayStation 1 is now Computer History); and I
+game of saying "owned one of those, owned one of those, wanted one of
+those" (apparently the PlayStation 1 is now Computer History); and I
 drank a fair amount of beer. Was a good week. I was there because I was
 paid to be so by Canonical. I start work for them at the beginning of
 January. While there I met the people who will be my team when I start,
-and saw some of what they&#8217;re working on, and I&#8217;m really rather excited.
-I&#8217;m going to be part of Online Services. Can&#8217;t wait to get going on it.
-I get to make the desktop I use be&nbsp;better.</p>
+and saw some of what they're working on, and I'm really rather excited.
+I'm going to be part of Online Services. Can't wait to get going on it.
+I get to make the desktop I use be better.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2008/12/10/sending-posts-from-twitter-to-identica-part-2/">Previous post</a></li>
@@ -166,24 +151,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

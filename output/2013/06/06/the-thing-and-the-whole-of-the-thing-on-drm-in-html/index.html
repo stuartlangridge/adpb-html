@@ -5,8 +5,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
         <meta property="og:title" content="as days pass by &mdash; The thing and the whole of the thing: on DRM in HTML">
         <meta property="og:type" content="website">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2013/06/06/the-thing-and-the-whole-of-the-thing-on-drm-in-html/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,98 +47,97 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2013/06/06/the-thing-and-the-whole-of-the-thing-on-drm-in-html/"><time 
 			class="dt-published" datetime="2013-06-06T16:36:00+01:00">Jun 06 2013</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/06/06/the-thing-and-the-whole-of-the-thing-on-drm-in-html/" title="Permalink to The thing and the whole of the thing: on DRM in HTML" rel="bookmark">The thing and the whole of the thing: on <span class="caps">DRM</span> in <span class="caps">HTML</span></a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/06/06/the-thing-and-the-whole-of-the-thing-on-drm-in-html/">The thing and the whole of the thing: on DRM in HTML</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Bruce Lawson <a href="http://www.brucelawson.co.uk/2013/more-on-drm-in-html5/">started a very interesting discussion about the Encrypted
-Media Extensions to <span class="caps">HTML</span></a> a few months ago, with learned and
+Media Extensions to HTML</a> a few months ago, with learned and
 interesting commentary from John Foliot and others. After devoting some
 thought to this, I believe that the amount of argument around this
 subject is at least partially caused by its separation of the web from
-the spirit of the&nbsp;web.</p>
-<p>A few things to dismiss first. This is about <span class="caps">DRM</span>. John&#8217;s technically
-right that that&#8217;s not all that <span class="caps">EME</span> is about, but that&#8217;s frankly
-disingenuous. <span class="caps">DRM</span> is most of what <span class="caps">EME</span> is about, it&#8217;s all of what
+the spirit of the web.</p>
+<p>A few things to dismiss first. This is about DRM. John's technically
+right that that's not all that EME is about, but that's frankly
+disingenuous. DRM is most of what EME is about, it's all of what
 objectors object to, and pointing at the other reasons is like walking
-into St. Thomas&#8217;s Hospital and saying that smoking reduces the risk of
-Alzheimer&#8217;s. It does&#8230;but you are missing the&nbsp;point.</p>
-<p>Secondly, this discussion is not about whether <span class="caps">DRM</span> is a good idea at
+into St. Thomas's Hospital and saying that smoking reduces the risk of
+Alzheimer's. It does...but you are missing the point.</p>
+<p>Secondly, this discussion is not about whether DRM is a good idea at
 all. Certainly many people have an opinion on that. It is also
-reasonable, if you dislike <span class="caps">DRM</span>, to believe that <span class="caps">EME</span> is a bad idea
-because it further legitimises <span class="caps">DRM</span>, and to make an argument in those
-terms. But if you fundamentally disagree with <span class="caps">DRM</span> then your argument is
+reasonable, if you dislike DRM, to believe that EME is a bad idea
+because it further legitimises DRM, and to make an argument in those
+terms. But if you fundamentally disagree with DRM then your argument is
 better directed either at movie studios (to stop them producing movies
-with it) or at ordinary purchasers (to convince them that avoiding <span class="caps">DRM</span>
+with it) or at ordinary purchasers (to convince them that avoiding DRM
 is more important than watching movies). I do not believe that anyone
-rationally discussing <span class="caps">EME</span> is acting in genuine bad faith - there is no
-big conspiracy here. From what I&#8217;ve seen, this is a discussion of
-pragmatism: given that <span class="caps">DRM</span> exists and movies use it and people want
-movies, is it a good idea to integrate <span class="caps">DRM</span> movie playback more tightly
-with the web? I do not propose that anyone&#8217;s sacred right to be heard is
+rationally discussing EME is acting in genuine bad faith - there is no
+big conspiracy here. From what I've seen, this is a discussion of
+pragmatism: given that DRM exists and movies use it and people want
+movies, is it a good idea to integrate DRM movie playback more tightly
+with the web? I do not propose that anyone's sacred right to be heard is
 compromised: what I suggest is that arguments are best directed against
-those most able to fix it. If you hate <span class="caps">DRM</span>, send your ire against
-Paramount or your neighbours, not your web&nbsp;browser.</p>
-<p><span class="caps">OK</span>, those distractions aside, the point I was making is this: one of the
+those most able to fix it. If you hate DRM, send your ire against
+Paramount or your neighbours, not your web browser.</p>
+<p>OK, those distractions aside, the point I was making is this: one of the
 really nice things about the web is that it is set up to be open, and in
 order to participate, you have to be too. Stuff on the web is available
 to accessibility technologies; you can read the code that makes up a
-page; it&#8217;s available on many devices including ones you&#8217;ve never heard
-of; it&#8217;s backwards compatible right down to text browsers. Of course
-it&#8217;s possible to build stuff on the web which fails to meet these
-things, but in general, participation in the web means that you&#8217;re
-automatically building something that meets those goals, because that&#8217;s
+page; it's available on many devices including ones you've never heard
+of; it's backwards compatible right down to text browsers. Of course
+it's possible to build stuff on the web which fails to meet these
+things, but in general, participation in the web means that you're
+automatically building something that meets those goals, because that's
 built in to the whole concept. There is a reason that the web took off
-rather than Hypercard or FoxPro. So, historically, &#8220;let&#8217;s get this new
-technology onto the web&#8221; meant, at least partially, that that new
+rather than Hypercard or FoxPro. So, historically, "let's get this new
+technology onto the web" meant, at least partially, that that new
 technology would need to become accessible and available to everyone on
 every operating system and every device and open. So adding a new
 technology to the web was a good thing for people who wanted to use that
-technology in places that weren&#8217;t anticipated by the tech owners. The
-web enables everybody; therefore, everybody&#8217;s in favour of things being
-on the web. <span class="caps">QED</span>.</p>
+technology in places that weren't anticipated by the tech owners. The
+web enables everybody; therefore, everybody's in favour of things being
+on the web. QED.</p>
 <p>The Encrypted Media Extensions are not like that. They are explicitly
 designed to provide a framework to plug in other technologies, with no
 guarantee whatsoever that those other technologies are actually
 available. What this actually means, in practice, is that Microsoft will
-build a shim layer between <span class="caps">EME</span> and the PlayReady <span class="caps">DRM</span> parts of
-Silverlight, and then we&#8217;ll be in exactly the situation we are in now:
-if you have Silverlight now, you&#8217;ll be able to use <span class="caps">EME</span> then. If you
-don&#8217;t, you won&#8217;t. All that&#8217;s happened is that <span class="caps">DRM</span> plugins have now been
-blessed as being &#8220;part of the web&#8221; &#8212; PlayReady can now claim to be
-&#8220;<span class="caps">HTML5</span>&#8221; rather than a plugin. Hooray. What have we&nbsp;gained?</p>
+build a shim layer between EME and the PlayReady DRM parts of
+Silverlight, and then we'll be in exactly the situation we are in now:
+if you have Silverlight now, you'll be able to use EME then. If you
+don't, you won't. All that's happened is that DRM plugins have now been
+blessed as being "part of the web" -- PlayReady can now claim to be
+"HTML5" rather than a plugin. Hooray. What have we gained?</p>
 <p>Well, there are some benefits. Given that DRMed video will be available
-through <span class="caps">HTML</span>&#8217;s <code>&lt;video&gt;</code> element (I assume), we&#8217;ll be able to, say, put
-that video on the side of a 3D <span class="caps">CSS</span> rotating cube, and other similar
+through HTML's <code>&lt;video&gt;</code> element (I assume), we'll be able to, say, put
+that video on the side of a 3D CSS rotating cube, and other similar
 effects. Obviously not all video manipulation will be possible; at the
-moment it&#8217;s quite easy to digitally manipulate a <code>&lt;video&gt;</code> through a
-<code>&lt;canvas&gt;</code>, and that&#8217;ll have to be stopped if you&#8217;re trying to
-manipulate a DRMed video. It&#8217;s nice that DRMed video will at least
-partially be part of the <span class="caps">HTML</span> world rather than siloed off in a little
-plugin&nbsp;window.</p>
-<p>However, I don&#8217;t think that that justifies the work. Adding <span class="caps">EME</span> to <span class="caps">HTML</span>
+moment it's quite easy to digitally manipulate a <code>&lt;video&gt;</code> through a
+<code>&lt;canvas&gt;</code>, and that'll have to be stopped if you're trying to
+manipulate a DRMed video. It's nice that DRMed video will at least
+partially be part of the HTML world rather than siloed off in a little
+plugin window.</p>
+<p>However, I don't think that that justifies the work. Adding EME to HTML
 will mean that everyone who can already watch Harry Potter movies can
 continue to watch them. It will not extend this any further; it will not
 widen the viewing audience; it will not decentralise the control; and it
 will divide the web further into the haves and the have-nots. One of the
 big reasons that the web is a good idea is that it stops there <em>being</em>
-any have-nots. <span class="caps">EME</span> bringing <span class="caps">DRM</span> to <code>&lt;video&gt;</code> will stomp all over that.
+any have-nots. EME bringing DRM to <code>&lt;video&gt;</code> will stomp all over that.
 There is no difference, none, between a a <code>&lt;video&gt;</code> tag which requires a
 platform-specific plugin to work and an <code>&lt;object&gt;</code> tag which plays a
 video and requires a platform-specific plugin to work. The argument has
-been made that if the web doesn&#8217;t embrace this stuff, people won&#8217;t stop
-watching videos: they&#8217;ll just go somewhere other than the web to get
+been made that if the web doesn't embrace this stuff, people won't stop
+watching videos: they'll just go somewhere other than the web to get
 them, and that is a correct argument. But what is the <em>point</em> in
 bringing people to the web to watch their videos, if in order to do so
 the web becomes platform-specific and unopen and balkanised? The goal
-wasn&#8217;t &#8220;get everyone on the web&#8221;, it was &#8220;bring knowledge and
-entertainment and everything to everyone&#8221;, and the web was the best way
-to do that. If getting the &#8220;everything&#8221; means giving up on the
-&#8220;everyone&#8221;, we&#8217;re doing it&nbsp;wrong.</p>
+wasn't "get everyone on the web", it was "bring knowledge and
+entertainment and everything to everyone", and the web was the best way
+to do that. If getting the "everything" means giving up on the
+"everyone", we're doing it wrong.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2013/06/05/a-tall-shadow/">Previous post</a></li>
@@ -229,24 +214,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

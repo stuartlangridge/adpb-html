@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Tracking bugs for sorttable</title>
+		<title>as days pass by &mdash; Tracking bugs for sorttable</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Tracking bugs for sorttable">
+        <meta property="og:title" content="as days pass by &mdash; Tracking bugs for sorttable">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,53 +47,52 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/"><time 
 			class="dt-published" datetime="2007-09-14T00:23:00+01:00">Sep 14 2007</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/" title="Permalink to Tracking bugs for sorttable" rel="bookmark">Tracking bugs for&nbsp;sorttable</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/">Tracking bugs for sorttable</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>I get lots of people mailing me for help with things I&#8217;ve written, and
+			<p>I get lots of people mailing me for help with things I've written, and
 <a href="http://www.kryogenix.org/code/browser/sorttable">sorttable</a> is way up at the top of the list. People find it useful,
 which is good, and they mail me to say thanks. I like that. On the other
-hand, they also mail me to say that there are a few things it doesn&#8217;t
-do. Now, they&#8217;re right; there are a couple of bugs that slipped through,
+hand, they also mail me to say that there are a few things it doesn't
+do. Now, they're right; there are a couple of bugs that slipped through,
 and more importantly there are a couple of things that never crossed my
-mind until people started asking whether sorttable could handle them &#8212;
+mind until people started asking whether sorttable could handle them --
 loading tables with Ajax, tables with zebra stripes, that sort of thing.
-I&#8217;m now at the stage where in my &#8220;sorttable unprocessed&#8221; folder I&#8217;ve got
+I'm now at the stage where in my "sorttable unprocessed" folder I've got
 over 150 emails, and an awful lot of them are about the same things. So,
-a bug tracker seemed like a good idea. However, I don&#8217;t want one where
+a bug tracker seemed like a good idea. However, I don't want one where
 everyone can submit bugs into it. I get little enough time to hack on
 projects as it is, without having to triage bugs as well. So, I wanted
 something which was basically read-only; a place where I could point
-people to say &#8220;look, here, the problem you have identified is a known
+people to say "look, here, the problem you have identified is a known
 issue, and I am planning on fixing it, and you can subscribe to this and
-get notified when I <em>do</em> fix it&#8221;. So: <a href="http://www.kryogenix.org/bugs/sorttable">the sorttable bug tracker</a>.
-It&#8217;s shamelessly borrowed from the <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/">PuTTY wishlist</a> in almost all
+get notified when I <em>do</em> fix it". So: <a href="http://www.kryogenix.org/bugs/sorttable">the sorttable bug tracker</a>.
+It's shamelessly borrowed from the <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/">PuTTY wishlist</a> in almost all
 particulars, right down to the differing levels of priority. Simon
 Tatham actually pointed me, when I asked, at the code they use to run
 that wishlist. I had a couple of extra wrinkles I wanted to add, though,
-and their code is in Perl and I&#8217;m not much cop at Perl, so I built my
+and their code is in Perl and I'm not much cop at Perl, so I built my
 own very similar thing. You can read my <a href="http://www.kryogenix.org/wiki/Read-onlybugtracker">spec for a read-only bug
 tracker</a> if you like; essentially, the bugs themselves are in a
-(secured) folder in my Subversion repository as <span class="caps">RFC822</span>-style files, and
-then there&#8217;s a little collection of scripts which know how to build a
-static <span class="caps">HTML</span> collection of bugs for the project. I&#8217;d like to make the
-scripts available so other people can do the same thing, but they&#8217;ve got
+(secured) folder in my Subversion repository as RFC822-style files, and
+then there's a little collection of scripts which know how to build a
+static HTML collection of bugs for the project. I'd like to make the
+scripts available so other people can do the same thing, but they've got
 passwords hardcoded into them (because the bug area in svn is secured,
-because there are bugs in projects that I can&#8217;t make public). If I can
-think of a way of making the code available, I&#8217;ll do it, but it&#8217;s
-relatively trivial anyway. At the moment I&#8217;m only tracking sorttable
-bugs in here, but I&#8217;m gradually going to bring all my other projects
-that are me-develop-you-use things into it. It&#8217;s not suitable for
+because there are bugs in projects that I can't make public). If I can
+think of a way of making the code available, I'll do it, but it's
+relatively trivial anyway. At the moment I'm only tracking sorttable
+bugs in here, but I'm gradually going to bring all my other projects
+that are me-develop-you-use things into it. It's not suitable for
 something like Jackfield, which will eventually develop more of a
 community around it (and will therefore be a lot more collaborative);
-sorttable isn&#8217;t a big enough deal to be a community-maintained project,
-but I do need somewhere I can point people at when they say &#8220;why doesn&#8217;t
-it handle Ajax-created tables?&#8221;, and now I have that&nbsp;somewhere.</p>
+sorttable isn't a big enough deal to be a community-maintained project,
+but I do need somewhere I can point people at when they say "why doesn't
+it handle Ajax-created tables?", and now I have that somewhere.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2007/09/10/which-video-card-should-i-buy/">Previous post</a></li>
@@ -184,24 +169,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

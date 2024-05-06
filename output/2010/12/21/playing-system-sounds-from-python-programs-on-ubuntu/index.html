@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Playing system sounds from Python programs on Ubuntu</title>
+		<title>as days pass by &mdash; Playing system sounds from Python programs on Ubuntu</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Playing system sounds from Python programs on Ubuntu">
+        <meta property="og:title" content="as days pass by &mdash; Playing system sounds from Python programs on Ubuntu">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,51 +47,51 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/"><time 
 			class="dt-published" datetime="2010-12-21T09:13:00+00:00">Dec 21 2010</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/" title="Permalink to Playing system sounds from Python programs on Ubuntu" rel="bookmark">Playing system sounds from Python programs on&nbsp;Ubuntu</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/">Playing system sounds from Python programs on Ubuntu</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p><a href="http://www.jonobacon.org/">Jono</a> asked me yesterday how you play a system beep from a Python
-program on Ubuntu. Now, the way you&#8217;re meant to play system sounds is by
-using <a href="http://0pointer.de/lennart/projects/libcanberra/">libcanberra</a>; it&#8217;s the standard platform library for playing a
+program on Ubuntu. Now, the way you're meant to play system sounds is by
+using <a href="http://0pointer.de/lennart/projects/libcanberra/">libcanberra</a>; it's the standard platform library for playing a
 sound. Sounds come from your <em>sound theme</em>.</p>
-<h4>A sidebar: themes in&nbsp;Ubuntu</h4>
+<h4>A sidebar: themes in Ubuntu</h4>
 <p>The icons used by your desktop are part of an <em>icon theme</em>. This means
-that there are a set of names defined for particular things &#8212; there&#8217;s
-an icon name for &#8220;sound at maximum volume&#8221;, another name for &#8220;sound at
-minimum volume&#8221;, another for &#8220;wireless network connected&#8221;, and so on.
+that there are a set of names defined for particular things -- there's
+an icon name for "sound at maximum volume", another name for "sound at
+minimum volume", another for "wireless network connected", and so on.
 Then the applications on the desktop use those icons by name, so the
-Sound indicator displays the &#8220;sound at maximum volume&#8221; icon in the panel
-at the top of the screen when your sound&#8217;s at maximum volume. This means
+Sound indicator displays the "sound at maximum volume" icon in the panel
+at the top of the screen when your sound's at maximum volume. This means
 that you can change the look of your desktop by providing a different
 icon theme (a whole set of icons, named after the specified names), and
 all your applications use your new icons so they all look consistent. A
 sound theme works on the same principle; there are a <a href="http://freedesktop.org/wiki/Specifications/sound-theme-spec">defined</a> set of
-sounds (there&#8217;s one for &#8220;your battery is low&#8221;, one for &#8220;a window has
-been maximised&#8221;, one for &#8220;you have logged in&#8221;, and so on), and your
+sounds (there's one for "your battery is low", one for "a window has
+been maximised", one for "you have logged in", and so on), and your
 sound theme defines what those sounds are. So you can switch in a
 different sound theme, and now all your applications will change to use
-the sounds from your sound theme. End of&nbsp;sidebar.</p>
+the sounds from your sound theme. End of sidebar.</p>
 <p>What all this boils down to is that you ought to be able to play the
-standard warning sound by telling libcanberra to &#8220;play a sound named
-<code>dialog-warning</code><span class="dquo">&#8220;</span>, and it&#8217;ll play the correct&nbsp;sound.</p>
-<p>However, there isn&#8217;t a Python version of libcanberra, sad to say. I
+standard warning sound by telling libcanberra to "play a sound named
+<code>dialog-warning</code>", and it'll play the correct sound.</p>
+<p>However, there isn't a Python version of libcanberra, sad to say. I
 <a href="http://twitter.com/sil/status/16998483579904001">complained about this on twitter</a>, and psykoyiko brilliantly
 responded with <a href="http://twitter.com/#!/psykoyiko/status/17142647932067840">a pointer</a> to a Python libcanberra library he wrote:
 <a href="https://github.com/psykoyiko/pycanberra/raw/master/pycanberra.py">pycanberra.py</a>. So, you can now play system sounds from your Python
-program, because this is basically a set of Python bindings for&nbsp;libcanberra.</p>
-<p>To play a&nbsp;sound:</p>
+program, because this is basically a set of Python bindings for
+libcanberra.</p>
+<p>To play a sound:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pycanberra</span>
 <span class="n">canberra</span> <span class="o">=</span> <span class="n">pycanberra</span><span class="o">.</span><span class="n">Canberra</span><span class="p">()</span>
 <span class="n">canberra</span><span class="o">.</span><span class="n">easy_play_sync</span><span class="p">(</span><span class="s2">&quot;dialog-warning&quot;</span><span class="p">)</span>
 <span class="n">canberra</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
 </code></pre></div>
 
-<p>Hooray! Good job psykoyiko! Someone should get this into&nbsp;Ubuntu.</p>
+<p>Hooray! Good job psykoyiko! Someone should get this into Ubuntu.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2010/12/02/send-us-to-the-world-cup/">Previous post</a></li>
@@ -182,24 +168,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

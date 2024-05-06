@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; WebKit browser on Linux</title>
+		<title>as days pass by &mdash; WebKit browser on Linux</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; WebKit browser on Linux">
+        <meta property="og:title" content="as days pass by &mdash; WebKit browser on Linux">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/04/08/webkit-browser-on-linux/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,37 +47,36 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2007/04/08/webkit-browser-on-linux/"><time 
 			class="dt-published" datetime="2007-04-08T11:12:00+01:00">Apr 08 2007</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/04/08/webkit-browser-on-linux/" title="Permalink to WebKit browser on Linux" rel="bookmark">WebKit browser on&nbsp;Linux</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/04/08/webkit-browser-on-linux/">WebKit browser on Linux</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p><strong>Update: the trivial WebKit browser is now included in Ubuntu. Simply
 install <a href="apt:libwebkitgdk0d">libwebkitgdk0d</a> on Ubuntu gutsy (<em>just click the package name
-there to install it if you&#8217;re running gutsy now</em>) and then run
+there to install it if you're running gutsy now</em>) and then run
 <code>/usr/lib/WebKit/GdkLauncher</code> to get a simple WebKit browser for testing
-your code.</strong> You too can test <a href="http://www.webkit.org/">WebKit</a>, Apple&#8217;s web rendering engine
-and the thing that makes Safari work, on Linux. The <span class="caps">KDE</span> teams have been
-working hard on making it work inside Qt, the <span class="caps">KDE</span> widget set, and indeed
+your code.</strong> You too can test <a href="http://www.webkit.org/">WebKit</a>, Apple's web rendering engine
+and the thing that makes Safari work, on Linux. The KDE teams have been
+working hard on making it work inside Qt, the KDE widget set, and indeed
 it does work! A few simple steps are required. First, check out the
 WebKit source code. There is loads of it, so this will take a while.
-You&#8217;ll need Subversion for this.
+You'll need Subversion for this.
 <code>svn checkout http://svn.webkit.org/repository/webkit/trunk WebKit</code> That
-will give you a folder called <code>WebKit</code>. You&#8217;ll now need a few
+will give you a folder called <code>WebKit</code>. You'll now need a few
 requirements; the key one is Qt4. On Ubuntu 6.10 (edgy), get this like
 so: <code>sudo aptitude install libqt4-dev</code> Now build your Qt-based WebKit
 browser: <code>QTDIR=/usr/share/qt4/ WebKit/WebKitTools/Scripts/build-webkit</code>
 Finally, run it:
 <code>WebKit/WebKitBuild/Release/WebKitQt/QtLauncher/QtLauncher about:blank</code>
 I created a menu entry to run it (right-click on the Applications menu,
-say &#8220;Edit Menus&#8221;). Now I can test stuff in WebKit! Note that the
+say "Edit Menus"). Now I can test stuff in WebKit! Note that the
 Subversion version of WebKit is miiiiiiiiles ahead of what Safari is
-using in released versions of Mac <span class="caps">OS</span> X, so don&#8217;t think that just because
-something works in your little WebKit browser it&#8217;ll work in Safari.
-Nonetheless,&nbsp;cool.</p>
+using in released versions of Mac OS X, so don't think that just because
+something works in your little WebKit browser it'll work in Safari.
+Nonetheless, cool.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2007/04/08/ies4linux/">Previous post</a></li>
@@ -168,24 +153,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

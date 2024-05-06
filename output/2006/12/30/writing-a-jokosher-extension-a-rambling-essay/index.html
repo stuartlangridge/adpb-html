@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Writing a Jokosher extension: a rambling essay</title>
+		<title>as days pass by &mdash; Writing a Jokosher extension: a rambling essay</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Writing a Jokosher extension: a rambling essay">
+        <meta property="og:title" content="as days pass by &mdash; Writing a Jokosher extension: a rambling essay">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2006/12/30/writing-a-jokosher-extension-a-rambling-essay/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,57 +47,56 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2006/12/30/writing-a-jokosher-extension-a-rambling-essay/"><time 
 			class="dt-published" datetime="2006-12-30T08:15:00+00:00">Dec 30 2006</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/12/30/writing-a-jokosher-extension-a-rambling-essay/" title="Permalink to Writing a Jokosher extension: a rambling essay" rel="bookmark">Writing a Jokosher extension: a rambling&nbsp;essay</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/12/30/writing-a-jokosher-extension-a-rambling-essay/">Writing a Jokosher extension: a rambling essay</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Jokosher is an extensible bit of software. We knew that we&#8217;d never be
+			<p>Jokosher is an extensible bit of software. We knew that we'd never be
 able to think of all the stuff that people would want to do with an
-audio editor, so we&#8217;ve set up Jokosher so that people can write their
+audio editor, so we've set up Jokosher so that people can write their
 own extensions to it. So if you want to do something particular,
-something very specific, something we don&#8217;t like, or something we just
-haven&#8217;t got around to yet, you can roll up your sleeves and do it
+something very specific, something we don't like, or something we just
+haven't got around to yet, you can roll up your sleeves and do it
 yourself. This is the story of how I built the Freesound extension,
 which lets you easily browse the comprehensive library of sampleable
 Creative Commons licenced stuff at <a href="http://freesound.iua.upf.edu/">the Freesound system</a> and then
 easily drop the samples you like into your Jokosher project. Jokosher
 extensions are, basically, tiny separate programs that can talk to
 Jokosher itself in certain specific ways. So, the Freesound extension
-isn&#8217;t really an extension so much as it&#8217;s a graphical browser for
+isn't really an extension so much as it's a graphical browser for
 Freesound, which happens to know how to talk to Jokosher a bit. For the
-moment, let&#8217;s pretend it&#8217;s a separate program without any Jokosher bits
-at all. It works like&nbsp;this:</p>
+moment, let's pretend it's a separate program without any Jokosher bits
+at all. It works like this:</p>
 <ol>
-<li>The program starts&nbsp;up</li>
+<li>The program starts up</li>
 <li>It checks to see if it knows what your Freesound username and
-    password&nbsp;are</li>
-<li>If it doesn&#8217;t, it pops up a dialog for you to enter them, and then
-    saves them away for next time when you do type them&nbsp;in</li>
-<li>It shows a window containing a search box and a Go&nbsp;button</li>
+    password are</li>
+<li>If it doesn't, it pops up a dialog for you to enter them, and then
+    saves them away for next time when you do type them in</li>
+<li>It shows a window containing a search box and a Go button</li>
 <li>When you type something to search for in the search box, it runs a
     query at Freesound using your username and password, and the thing
-    you searched for, and gets back some <span class="caps">XML</span> describing&nbsp;matches</li>
+    you searched for, and gets back some XML describing matches</li>
 <li>It puts a list of all the matches in the window, each with a
-    description (that it gets in the <span class="caps">XML</span>), and a little waveform image
-    (that it gets in the <span class="caps">XML</span>), and a play button (that it creates
-    itself, but that plays the file directly from a <span class="caps">URL</span> that it gets in
-    the <span class="caps">XML</span>)</li>
+    description (that it gets in the XML), and a little waveform image
+    (that it gets in the XML), and a play button (that it creates
+    itself, but that plays the file directly from a URL that it gets in
+    the XML)</li>
 </ol>
-<p>&#8230;and that&#8217;s it. The integration with Jokosher only comes in two parts;
+<p>...and that's it. The integration with Jokosher only comes in two parts;
 firstly, starting it up, and secondly, allowing you to add samples that
-it&#8217;s displaying to a Jokosher project. The first part&#8217;s pretty easy.
-Jokosher allows an extension to add itself to Jokosher&#8217;s Extensions
+it's displaying to a Jokosher project. The first part's pretty easy.
+Jokosher allows an extension to add itself to Jokosher's Extensions
 menu. The way you do this is pretty simple. To write a Jokosher
 extension, you need to first create a Python file. In order for that
 Python file to *work* as a Jokosher extension, it needs to define
 certain things. Those things are: Three variables, EXTENSION_NAME,
 EXTENSION_DESCRIPTION, and EXTENSION_VERSION Two functions, startup()
 and shutdown() So, to make a Python file into an extension, you add
-something like this to the bottom of&nbsp;it:</p>
+something like this to the bottom of it:</p>
 <div class="highlight"><pre><span></span><code>def startup(API):
 
     pass
@@ -136,29 +121,29 @@ EXTENSION_VERSION = &quot;0.01&quot;
 <p>The variables are needed so that Jokosher knows what your extension is
 called, and can display a useful description to the person using it.
 When Jokosher starts up, and loads your extension, it calls your
-extension&#8217;s startup() function, and it passes it one object: above,
-we&#8217;ve set the startup() function to call that passed parameter &#8220;<span class="caps">API</span>&#8221;.
-The <span class="caps">API</span> object is how extensions can talk to Jokosher. Now, it&#8217;s
-important to note that you don&#8217;t make your extension do all its work in
+extension's startup() function, and it passes it one object: above,
+we've set the startup() function to call that passed parameter "API".
+The API object is how extensions can talk to Jokosher. Now, it's
+important to note that you don't make your extension do all its work in
 the startup() function. That gets called as Jokosher itself starts up.
 Instead, we want the Freesound extension to add a menu item to
-Jokosher&#8217;s Extensions menu, and then when the user clicks that menu item
-we start doing the work. The <span class="caps">API</span> object has a function called,
+Jokosher's Extensions menu, and then when the user clicks that menu item
+we start doing the work. The API object has a function called,
 amazingly, add_menu_item() to do exactly that. So, our startup
-function should actually&nbsp;be:</p>
+function should actually be:</p>
 <div class="highlight"><pre><span></span><code>def startup(API):  
     menu_item = API.add_menu_item(&quot;Search Freesound&quot;, callback_function)
 </code></pre></div>
 
-<p>What this will do is add a menu item &#8220;Search Freesound&#8221;, and when the
-user clicks on it it&#8217;ll call callback_function(), which is defined in
+<p>What this will do is add a menu item "Search Freesound", and when the
+user clicks on it it'll call callback_function(), which is defined in
 our extension somewhere. Another minor thing is that anything you do in
 the startup() function has to be un-done in the shutdown() function. The
 reason for this is that shutdown() gets run if a user disables your
 extension. In our case, we need to remove that menu item, which is done
-using the menu item&#8217;s destroy() method. So, change startup() so that
-menu_item is a global variable (so it&#8217;s available to shutdown() as
-well), and change shutdown() so it removes&nbsp;it:</p>
+using the menu item's destroy() method. So, change startup() so that
+menu_item is a global variable (so it's available to shutdown() as
+well), and change shutdown() so it removes it:</p>
 <div class="highlight"><pre><span></span><code>def startup(API):
 
     global menu_item
@@ -174,17 +159,17 @@ def shutdown():
 
 <p>That takes care of hooking the extension into Jokosher; the user can now
 start up and use anything that the extension can do. (Since this little
-discussion is about how to write Jokosher extensions, we won&#8217;t discuss
+discussion is about how to write Jokosher extensions, we won't discuss
 how exactly the extension talks to Freesound. Just take it as read.) The
-part that&#8217;s left is: how do you get samples from the extension into your
+part that's left is: how do you get samples from the extension into your
 project itself? The way the user does it is to drag a sample from the
 extension window onto an instrument in Jokosher. Now, Jokosher
 understands dragged-and-dropped files; you can drag a music clip from
 Nautilus or from Firefox or from any other application straight onto a
-Jokosher instrument and it&#8217;ll work. So the Freesound extension just has
+Jokosher instrument and it'll work. So the Freesound extension just has
 to know how to allow users to drag things from it. Technically, this is
 called being a drag source. How to do this in Python is described in
-<a href="http://www.pygtk.org/pygtk2tutorial/sec-DNDMethods.html">the PyGtk Tutorial</a> &#8212; basically, you use code something like&nbsp;this:</p>
+<a href="http://www.pygtk.org/pygtk2tutorial/sec-DNDMethods.html">the PyGtk Tutorial</a> -- basically, you use code something like this:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">e</span>.<span class="nv">drag_source_set</span><span class="ss">(</span><span class="nv">gtk</span>.<span class="nv">gdk</span>.<span class="nv">BUTTON1_MASK</span>,<span class="w"> </span>[<span class="ss">(</span><span class="s1">&#39;text/plain&#39;</span>,<span class="mi">0</span>,<span class="mi">88</span><span class="ss">)</span>],<span class="nv">gtk</span>.<span class="nv">gdk</span>.<span class="nv">ACTION_COPY</span><span class="ss">)</span>
 
 <span class="nv">e</span>.<span class="k">connect</span><span class="ss">(</span><span class="s2">&quot;drag_data_get&quot;</span>,<span class="w"> </span><span class="nv">self</span>.<span class="nv">returndata</span>,<span class="w"> </span><span class="nv">sample</span><span class="ss">)</span>
@@ -197,27 +182,27 @@ called being a drag source. How to do this in Python is described in
 <span class="w">    </span><span class="nv">selection_data</span>.<span class="nv">set</span><span class="w"> </span><span class="ss">(</span><span class="nv">selection_data</span>.<span class="nv">target</span>,<span class="mi">8</span>,<span class="w"> </span><span class="nv">sample</span>.<span class="nv">previewURL</span><span class="ss">)</span>
 </code></pre></div>
 
-<p>where &#8220;e&#8221; in the first snippet is the widget displaying the sample, and
-&#8220;sample&#8221; is our actual Sample object which we&#8217;ve created from the
-FreeSound <span class="caps">XML</span>. In essence, the Freesound extension works like Firefox;
-when you drag a sample to a Jokosher instrument, Jokosher says &#8220;what&#8217;s
-this thing you&#8217;ve dragged to me?&#8221; and the extension says &#8220;it is a <span class="caps">URL</span> at
-Freesound&#8221;; Jokosher then thinks &#8220;aha, I know how to load URLs&#8221;, and
-loads the sample from that <span class="caps">URL</span>. This is a good example of how working
-with the Jokosher team can be important for extensions. Jokosher didn&#8217;t,
-when I started writing it, know how to load a sample from a <span class="caps">URL</span> (it only
+<p>where "e" in the first snippet is the widget displaying the sample, and
+"sample" is our actual Sample object which we've created from the
+FreeSound XML. In essence, the Freesound extension works like Firefox;
+when you drag a sample to a Jokosher instrument, Jokosher says "what's
+this thing you've dragged to me?" and the extension says "it is a URL at
+Freesound"; Jokosher then thinks "aha, I know how to load URLs", and
+loads the sample from that URL. This is a good example of how working
+with the Jokosher team can be important for extensions. Jokosher didn't,
+when I started writing it, know how to load a sample from a URL (it only
 knew how to load one from your hard drive). To make it work, that needed
-to be added to Jokosher. (In this case, I added it myself, because I&#8217;m a
-Jokosher developer, but if I wasn&#8217;t then the team would have happily
-added it for me.) The Extension <span class="caps">API</span>, the way that extensions talk to
-Jokosher, deliberately isn&#8217;t complete; we&#8217;ve put the infrastructure in
-place but we haven&#8217;t tried to think up everything that everyone would
-want to do. Instead, if you&#8217;re writing an extension and you realise that
-you need Jokosher to be able to do something that it currently can&#8217;t for
-your extension to work, talk to us: we&#8217;ll add that extra part to
+to be added to Jokosher. (In this case, I added it myself, because I'm a
+Jokosher developer, but if I wasn't then the team would have happily
+added it for me.) The Extension API, the way that extensions talk to
+Jokosher, deliberately isn't complete; we've put the infrastructure in
+place but we haven't tried to think up everything that everyone would
+want to do. Instead, if you're writing an extension and you realise that
+you need Jokosher to be able to do something that it currently can't for
+your extension to work, talk to us: we'll add that extra part to
 Jokosher so that your extension works. This has been a relatively brief
-summary of writing a Jokosher extension, but hopefully it&#8217;ll give you
-some ideas. Now you can get&nbsp;extending!</p>
+summary of writing a Jokosher extension, but hopefully it'll give you
+some ideas. Now you can get extending!</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2006/12/24/the-fog-of-libraries/">Previous post</a></li>
@@ -294,24 +279,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Emulating IE in Mozilla: further thoughts</title>
+		<title>as days pass by &mdash; Emulating IE in Mozilla: further thoughts</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Emulating IE in Mozilla: further thoughts">
+        <meta property="og:title" content="as days pass by &mdash; Emulating IE in Mozilla: further thoughts">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/06/23/emulating/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,63 +47,62 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2004/06/23/emulating/"><time 
 			class="dt-published" datetime="2004-06-23T11:00:00+01:00">Jun 23 2004</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/06/23/emulating/" title="Permalink to Emulating IE in Mozilla: further thoughts" rel="bookmark">Emulating <span class="caps">IE</span> in Mozilla: further&nbsp;thoughts</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/06/23/emulating/">Emulating IE in Mozilla: further thoughts</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>In my previous post, I suggested that <a href="http://www.kryogenix.org/days/2004/06/23/location">an <span class="caps">IE</span> emulator extension for
+			<p>In my previous post, I suggested that <a href="http://www.kryogenix.org/days/2004/06/23/location">an IE emulator extension for
 Firefox would be a good idea</a>. On doing a bit of further research
 through the <a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;field0-0-0=product&amp;type0-0-0=substring&amp;value0-0-0=evangelism&amp;field0-0-1=component&amp;type0-0-1=substring&amp;value0-0-1=evangelism&amp;field0-0-2=short_desc&amp;type0-0-2=substring&amp;value0-0-2=evangelism&amp;field0-0-3=status_whiteboard&amp;type0-0-3=substring&amp;value0-0-3=evangelism">Mozilla Tech Evangelism bug list</a>, it seems that sites
-that work in <span class="caps">IE</span> and don’t in Mozilla fall into one (or more) of the
-following&nbsp;categories:</p>
+that work in IE and don’t in Mozilla fall into one (or more) of the
+following categories:</p>
 <ol>
-<li>Use of <span class="caps"><span class="caps">DOM0</span> </span>Mozilla-unsupported
+<li>Use of <span class="caps">DOM0 </span>Mozilla-unsupported
     JavaScript, like <code>window.event</code> and <code>document.all</code></li>
-<li>Browser detects that prevent access to the page at&nbsp;all</li>
-<li>Coding for <span class="caps">IE</span> bugs like not applying <code>height</code> correctly in
-    <span class="caps"><span class="caps">CSS</span></span> or specifying sizes without units
-    (“30” instead of&nbsp;“30px“)</li>
-<li><span class="caps"><span class="caps">MIME</span></span> type bugs where pages are served as
+<li>Browser detects that prevent access to the page at all</li>
+<li>Coding for IE bugs like not applying <code>height</code> correctly in
+    <span class="caps">CSS</span> or specifying sizes without units
+    (“30” instead of “30px“)</li>
+<li><span class="caps">MIME</span> type bugs where pages are served as
     <code>text/plain</code><br>
     Point 1 can be, I would think, mostly fixed with the Firefox
     extension I mentioned. (In fact, WebFX’s Erik Arvidsson has already
     done most of this work with <a href="http://webfx.eae.net/dhtml/ieemu/">IEEmu</a>, but I don’t know what the
     licencing requirements are on it).<br>
     Point 2 might be fixable and might not; we could search the in-page
-    <span class="caps">JS</span> code for something that looks like a browser detect, but it would
+    JS code for something that looks like a browser detect, but it would
     be bloody hard to know whether it correctly detected Mozilla and
-    allowed it through, or whether it blocked it (or all non-<span class="caps">IE</span>
+    allowed it through, or whether it blocked it (or all non-IE
     browsers) even though it could render the content. This might
-    require user interaction to say “pretend to be <span class="caps">IE</span> for this page
+    require user interaction to say “pretend to be IE for this page
     only“, but that’s a bit against the proposed unobtrusive nature of
     this extension. It might be possible to
-    <span class="caps"><span class="caps">DWIM</span></span> it with some thought.<br>
+    <span class="caps">DWIM</span> it with some thought.<br>
     Point 3 might be fixable and might not; it could be fixed in
     stylesheets and <code>style</code> attributes, which might take care of a lot
     of the problems, but to have it fixed properly would require Mozilla
     to honour unitless dimensions as <code>px</code>, which might not be easily
     doable from an extension.<br>
-    Point 4 probably can’t be fixed; <span class="caps">IE</span> ignores the server-supplied
+    Point 4 probably can’t be fixed; IE ignores the server-supplied
     Content-Type if it likes, and Moz doesn’t. If we fix the above
     cases, though, we’ll cover a large majority of “broken” sites.<br>
     The extension would probably want to hook a page’s load event and
     run before any in-page script. It would then scan for use of any of
     the stuff that it “fixes”: if it finds any, it changes the
-    <span class="caps"><span class="caps">DOM</span></span> by adding <span class="caps">IE</span>-specific features to it
-    and overriding some (working) Mozilla features in favour of the <span class="caps">IE</span>
-    versions, and it alters the page’s <span class="caps"><span class="caps">HTML</span></span> to
+    <span class="caps">DOM</span> by adding IE-specific features to it
+    and overriding some (working) Mozilla features in favour of the IE
+    versions, and it alters the page’s <span class="caps">HTML</span> to
     be compliant where it needs to. This wouldn’t cover inline script
     that isn’t event-driven, however. The extension’s actions should be
     overridable in both directions: you should be able to tell it “do
-    the <span class="caps">IE</span> thing on this page even though you don’t think you need to”
+    the IE thing on this page even though you don’t think you need to”
     and “don’t do it even though you think you should“, but, critically,
     the user <em>should not have to use these things</em>. It needs to work
     invisibly and automatically, and then it stands a good chance of
-    being a&nbsp;success.</li>
+    being a success.</li>
 </ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
@@ -195,24 +180,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

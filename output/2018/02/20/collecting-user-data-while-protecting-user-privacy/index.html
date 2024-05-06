@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Collecting user data while protecting user privacy</title>
+		<title>as days pass by &mdash; Collecting user data while protecting user privacy</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Collecting user data while protecting user privacy">
+        <meta property="og:title" content="as days pass by &mdash; Collecting user data while protecting user privacy">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,45 +47,44 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/"><time 
 			class="dt-published" datetime="2018-02-20T23:58:00+00:00">Feb 20 2018</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/" title="Permalink to Collecting user data while protecting user privacy" rel="bookmark">Collecting user data while protecting user&nbsp;privacy</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/">Collecting user data while protecting user privacy</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Lots of companies want to collect data about their users. This is a good thing, generally; being data-driven is important, and it&#8217;s jolly hard to know where best to focus your efforts if you don&#8217;t know what your people are like. However, this sort of data collection also gives people a sense of disquiet; what are you going to do with that data about me? How do I get you to stop using it? What conclusions are you drawing from it? I&#8217;ve spoken about <a href="https://kryogenix.org/code/privacy-could-be-the-next-big-thing-hackference/">this sense of disquiet</a> in the past, and you can watch (or read) that talk for a lot more detail about how and why people don&#8217;t like&nbsp;it.</p>
-<p>So, what can we do about it? As I said, being data-driven is a good thing, and you can&#8217;t be data-driven if you haven&#8217;t got any data to be driven by. How do we enable people to collect data about you without compromising your&nbsp;privacy?</p>
-<p>Well, there are some ways. Before I dive into them, though, a couple of brief asides: there are some people who believe that you shouldn&#8217;t be allowed to collect any data on your users whatsoever; that the mere act of wanting to do so is in itself a compromise of privacy. This is not addressed to those people. What I want is a way that both sides can get what they want: companies and projects can be data-driven, <em>and</em> users don&#8217;t get their privacy compromised. If what you want is that companies are banned from collecting anything&#8230; this is not for you. Most people are basically <span class="caps">OK</span> with the idea of data collection, they just don&#8217;t want to be victimised by it, now or in the future, and it&#8217;s that property that we want to&nbsp;protect.</p>
-<p>Similarly, if you&#8217;re a company who <em>wants</em> to know everything about each individual one of your users so you can sell that data for money, or exploit it on a user-by-user basis, this isn&#8217;t for you either. Stop doing&nbsp;that.</p>
+			<p>Lots of companies want to collect data about their users. This is a good thing, generally; being data-driven is important, and it's jolly hard to know where best to focus your efforts if you don't know what your people are like. However, this sort of data collection also gives people a sense of disquiet; what are you going to do with that data about me? How do I get you to stop using it? What conclusions are you drawing from it? I've spoken about <a href="https://kryogenix.org/code/privacy-could-be-the-next-big-thing-hackference/">this sense of disquiet</a> in the past, and you can watch (or read) that talk for a lot more detail about how and why people don't like it.</p>
+<p>So, what can we do about it? As I said, being data-driven is a good thing, and you can't be data-driven if you haven't got any data to be driven by. How do we enable people to collect data about you without compromising your privacy?</p>
+<p>Well, there are some ways. Before I dive into them, though, a couple of brief asides: there are some people who believe that you shouldn't be allowed to collect any data on your users whatsoever; that the mere act of wanting to do so is in itself a compromise of privacy. This is not addressed to those people. What I want is a way that both sides can get what they want: companies and projects can be data-driven, <em>and</em> users don't get their privacy compromised. If what you want is that companies are banned from collecting anything... this is not for you. Most people are basically OK with the idea of data collection, they just don't want to be victimised by it, now or in the future, and it's that property that we want to protect.</p>
+<p>Similarly, if you're a company who <em>wants</em> to know everything about each individual one of your users so you can sell that data for money, or exploit it on a user-by-user basis, this isn't for you either. Stop doing that.</p>
 <h3>Aggregation</h3>
-<p>The key point here is that, if you&#8217;re collecting data about a load of users, you&#8217;re usually doing so in order to look at it in <em>aggregate</em>; to draw conclusions about the general trends and the general distribution of your user base. And it&#8217;s possible to do that data collection in ways that maintain the aggregate properties of it while making it hard or impossible for the company to use it to target individual users. That&#8217;s what we want here: some way that the company can still draw correct conclusions from all the data when collected together, while preventing them from targeting individuals or knowing what a specific person&nbsp;said.</p>
-<p>In the 1960s, Warner and Greenberg put together the <a href="https://en.wikipedia.org/wiki/Randomized_response">randomised response technique</a> for social science interviews. Basically, the idea here is that if you want to ask people questions about sensitive topics &#8212; have they committed a crime? what are their sexual preferences? &#8212; then you need to be able to draw aggregate conclusions about what percentages of people have done various things, but any one individual&#8217;s ballot shouldn&#8217;t be a confession that can be used against them. The technique varies a lot in exactly how it&#8217;s applied, but the basic concept is that for any question, there&#8217;s a random chance that the answerer should <em>lie</em> in their response. If some people lie in one direction (saying that they did a thing, when they didn&#8217;t), and the same proportion of people lie in the other direction (saying they didn&#8217;t do the thing when they did), then if you&#8217;ve got enough answerers, all the lies pretty much cancel out. So your aggregate statistics are still pretty much accurate &#8212; you know that X percent of people did the thing &#8212; but any one individual person&#8217;s response isn&#8217;t incriminating, because they might have been lying. This gives us the privacy protection we need for people, while preserving the aggregate properties that allow the survey-analysers to draw accurate&nbsp;conclusions.</p>
-<p>It&#8217;s something like whether you&#8217;ll find a ticket inspector on a train. Train companies realised a long time ago that you don&#8217;t need to put a ticket inspector on every single train. Instead, you can put inspectors on <em>enough</em> trains that the chance of fare-dodgers being caught is high enough that they don&#8217;t want to take the risk. This randomised response is similar; if you get a ballot from someone saying that they smoked marijuana, then you can&#8217;t know whether they were one of those who were randomly selected to lie about their answer, and therefore that answer isn&#8217;t incriminating, but the overall percentage of people who <em>say</em> they smoked will be roughly equal to the percentage of people who actually <em>did</em>.</p>
-<h3>A worked&nbsp;example</h3>
-<p>Let&#8217;s imagine you&#8217;re, say, an operating system vendor. You&#8217;d like to know what sorts of machines your users are installing on (Ubuntu are <a href="https://www.omgubuntu.co.uk/2018/02/ubuntu-data-collection-opt-out">looking</a> to do this as most other OSes already do), and so how much <span class="caps">RAM</span> those machines have would be a useful figure to know. (Lots of other stats would also be useful, of course, but we&#8217;ll just look at one for now while we&#8217;re explaining the process. And remember this all applies to any statistic you want to collect; it&#8217;s not particular to <span class="caps">OS</span> vendors, or <span class="caps">RAM</span>. If you want to know how often your users open your app, or what country they&#8217;re in, this process works&nbsp;too.)</p>
-<p>So, we assume that the <em>actual truth</em> about how much <span class="caps">RAM</span> the users&#8217; computers have looks something like this graph. Remember, the company does not know this. They <em>want</em> to know it, but they currently&nbsp;don&#8217;t.</p>
+<p>The key point here is that, if you're collecting data about a load of users, you're usually doing so in order to look at it in <em>aggregate</em>; to draw conclusions about the general trends and the general distribution of your user base. And it's possible to do that data collection in ways that maintain the aggregate properties of it while making it hard or impossible for the company to use it to target individual users. That's what we want here: some way that the company can still draw correct conclusions from all the data when collected together, while preventing them from targeting individuals or knowing what a specific person said.</p>
+<p>In the 1960s, Warner and Greenberg put together the <a href="https://en.wikipedia.org/wiki/Randomized_response">randomised response technique</a> for social science interviews. Basically, the idea here is that if you want to ask people questions about sensitive topics -- have they committed a crime? what are their sexual preferences? -- then you need to be able to draw aggregate conclusions about what percentages of people have done various things, but any one individual's ballot shouldn't be a confession that can be used against them. The technique varies a lot in exactly how it's applied, but the basic concept is that for any question, there's a random chance that the answerer should <em>lie</em> in their response. If some people lie in one direction (saying that they did a thing, when they didn't), and the same proportion of people lie in the other direction (saying they didn't do the thing when they did), then if you've got enough answerers, all the lies pretty much cancel out. So your aggregate statistics are still pretty much accurate -- you know that X percent of people did the thing -- but any one individual person's response isn't incriminating, because they might have been lying. This gives us the privacy protection we need for people, while preserving the aggregate properties that allow the survey-analysers to draw accurate conclusions.</p>
+<p>It's something like whether you'll find a ticket inspector on a train. Train companies realised a long time ago that you don't need to put a ticket inspector on every single train. Instead, you can put inspectors on <em>enough</em> trains that the chance of fare-dodgers being caught is high enough that they don't want to take the risk. This randomised response is similar; if you get a ballot from someone saying that they smoked marijuana, then you can't know whether they were one of those who were randomly selected to lie about their answer, and therefore that answer isn't incriminating, but the overall percentage of people who <em>say</em> they smoked will be roughly equal to the percentage of people who actually <em>did</em>.</p>
+<h3>A worked example</h3>
+<p>Let's imagine you're, say, an operating system vendor. You'd like to know what sorts of machines your users are installing on (Ubuntu are <a href="https://www.omgubuntu.co.uk/2018/02/ubuntu-data-collection-opt-out">looking</a> to do this as most other OSes already do), and so how much RAM those machines have would be a useful figure to know. (Lots of other stats would also be useful, of course, but we'll just look at one for now while we're explaining the process. And remember this all applies to any statistic you want to collect; it's not particular to OS vendors, or RAM. If you want to know how often your users open your app, or what country they're in, this process works too.)</p>
+<p>So, we assume that the <em>actual truth</em> about how much RAM the users' computers have looks something like this graph. Remember, the company does not know this. They <em>want</em> to know it, but they currently don't.</p>
 <canvas id="graph_truth" class="lie_graphs" width="750" height="350"></canvas>
 
-<p>So, how can they collect data to know this graph, without being able to tell how much <span class="caps">RAM</span> any one specific user&nbsp;has?</p>
-<p>As described above, the way to do this is to randomise the responses. Let&#8217;s say that we tell 20% of users to lie about their answer, one category up or down. So if you&#8217;ve really got <span class="caps">8GB</span> of <span class="caps">RAM</span>, then there&#8217;s an 80% chance you tell the truth, and a 20% chance you lie; 10% of users lie in a &#8220;downwards&#8221; direction, so they claim to have <span class="caps">4GB</span> of <span class="caps">RAM</span> when they&#8217;ve actually got <span class="caps">8GB</span>, and 10% of users lie in an &#8220;upwards&#8221; direction and claim to have <span class="caps">16GB</span>. Obviously, we wouldn&#8217;t actually have the users lie &#8212; the software that collects this info would randomly either produce the correct information or not with the above probabilities, and people wouldn&#8217;t even know it was doing it; the deliberately incorrect data is only provided to the survey. (Your computer doesn&#8217;t lie to <em>you</em> about how much <span class="caps">RAM</span> it&#8217;s got, just the company.) What does that do to the graph&nbsp;data?</p>
+<p>So, how can they collect data to know this graph, without being able to tell how much RAM any one specific user has?</p>
+<p>As described above, the way to do this is to randomise the responses. Let's say that we tell 20% of users to lie about their answer, one category up or down. So if you've really got 8GB of RAM, then there's an 80% chance you tell the truth, and a 20% chance you lie; 10% of users lie in a "downwards" direction, so they claim to have 4GB of RAM when they've actually got 8GB, and 10% of users lie in an "upwards" direction and claim to have 16GB. Obviously, we wouldn't actually have the users lie -- the software that collects this info would randomly either produce the correct information or not with the above probabilities, and people wouldn't even know it was doing it; the deliberately incorrect data is only provided to the survey. (Your computer doesn't lie to <em>you</em> about how much RAM it's got, just the company.) What does that do to the graph data?</p>
 <canvas id="graph_lies" class="lie_graphs" width="750" height="350"></canvas>
 
-<p>We show in this graph the users that gave accurate information in green, and inaccurate lies in red. And the graph looks pretty much the same! Any one given user&#8217;s answers are unreliable and can&#8217;t be trusted, but the overall shape of the graph is pretty similar to the actual truth. There are still peaks at the most popular points, and still troughs at the unpopular ones. Each bar in the graph is reasonably accurate (accuracy figures are shown below each bar, and they&#8217;ll normally be around 90-95%, although because it&#8217;s random it may fluctuate a little for you.) So our company can draw conclusions from this data, and they&#8217;ll be generally correct. They&#8217;ll have to take those conclusions with a small pinch of salt, because we&#8217;ve deliberately introduced inaccuracy into them, but the trends and the overall shape of the data will be&nbsp;good.</p>
-<p>The key point here is that, although <em>you</em> can see in the graph which answers are truth and which are incorrect, the company <em>can&#8217;t</em>. They don&#8217;t get told whether an answer is truth or lies; they just get the information and no indication of how true it is. They&#8217;ll know the percentage chance that an answer is untrue, but they won&#8217;t know whether any one given answer&nbsp;is.</p>
-<p>Can we be more inaccurate? Well, here&#8217;s a graph to play with. You can adjust what percentage of users&#8217; computers lie about their survey results by dragging the slider, and see what that does to the&nbsp;data.</p>
+<p>We show in this graph the users that gave accurate information in green, and inaccurate lies in red. And the graph looks pretty much the same! Any one given user's answers are unreliable and can't be trusted, but the overall shape of the graph is pretty similar to the actual truth. There are still peaks at the most popular points, and still troughs at the unpopular ones. Each bar in the graph is reasonably accurate (accuracy figures are shown below each bar, and they'll normally be around 90-95%, although because it's random it may fluctuate a little for you.) So our company can draw conclusions from this data, and they'll be generally correct. They'll have to take those conclusions with a small pinch of salt, because we've deliberately introduced inaccuracy into them, but the trends and the overall shape of the data will be good.</p>
+<p>The key point here is that, although <em>you</em> can see in the graph which answers are truth and which are incorrect, the company <em>can't</em>. They don't get told whether an answer is truth or lies; they just get the information and no indication of how true it is. They'll know the percentage chance that an answer is untrue, but they won't know whether any one given answer is.</p>
+<p>Can we be more inaccurate? Well, here's a graph to play with. You can adjust what percentage of users' computers lie about their survey results by dragging the slider, and see what that does to the data.</p>
 <canvas id="graph_both" class="lie_graphs" width="750" height="700"></canvas>
 <div id="tweak">
-    <p>0% <input id="lie_range" type="range" min="0" max="0.5" step="0.05" onchange="move_range(this)" value="0.1">&nbsp;100%</p>
-    <p><output id="lie_output">20%</output> of submissions are deliberately&nbsp;incorrect</p>
+    <p>0% <input id="lie_range" type="range" min="0" max="0.5" step="0.05" onchange="move_range(this)" value="0.1"> 100%</p>
+    <p><output id="lie_output">20%</output> of submissions are deliberately incorrect</p>
 </div>
 
-<p>Even if you make <em>every single user</em> lie about their values, the graph shape isn&#8217;t <em>too</em> bad. Lying tends to &#8220;flatten out&#8221; the graph; it makes tall peaks less tall, and short troughs more tall, and every single person lying probably flattens out things so much that conclusions you draw are probably now going to be wrong. But you can see from this that it ought to be possible to run the numbers and come up with a &#8220;lie&#8221; percentage which accurately balances the company&#8217;s need for accurate information with the user&#8217;s need to not provide&nbsp;accuracy.</p>
-<p>It is of course critical to this whole procedure that the lies cancel out, which means that they need to be evenly distributed. If everyone just makes up random answers then obviously this doesn&#8217;t work; answers have to start with the truth and then (maybe) lie in one direction or&nbsp;another.</p>
-<p>This is a fairly simple description of this whole process of introducing noise into the data, and data scientists would be able to bring much more learning to bear on this. For example, how much does it affect accuracy if user information can lie by more than one &#8220;step&#8221; in every direction? Do we make it so instead of n% truth and 100-n% lies, we distribute the lies normally across the graph with the centrepoint being the truth? Is it possible to do this data collection without flattening out the graph to such an extent? And the state of the data art has moved on since the 1960s, too: Dwork wrote an influential 2006 paper on <a href="https://en.wikipedia.org/wiki/Differential_privacy">differential privacy</a> which goes into this in more detail. Obviously we&#8217;ll be collecting data on more than one number &#8212; someone looking for data on computers on which their <span class="caps">OS</span> is installed will want for example version info, network connectivity, lots of hardware stats, device vendor, and so on. And that&#8217;s <span class="caps">OK</span>, because it&#8217;s safe to collect this data now&#8230; so how do our accuracy figures change when there are lots of stats and not just one? There will be better statistical ways to quantify <em>how</em> inaccurate the results are than my simple single-bar percentage measure, and how to tweak the percentage-of-lying to give the best results for everyone. This whole topic seems like something that data scientists in various communities could really get their teeth into and provide great suggestions and help to companies who want to collect data in a responsible&nbsp;way.</p>
-<p>Of course, this applies to <em>any</em> data you want to collect. Do you want analytics on how often your users open your app? What times of day they do that? Which <span class="caps">OS</span> version they&#8217;re on? How long do they spend using it? All your data still works in aggregate, but the things you&#8217;re collecting aren&#8217;t so personally invasive, because you don&#8217;t know if a user&#8217;s records are lies. This needs careful thought &#8212; there has been plenty of research on deanonymising data and similar things, and the <span class="caps">EFF</span>&#8217;s <a href="https://panopticlick.eff.org/">Panopticlick</a> project shows how a combination of data can be cross-referenced and that needs protecting against too, but that&#8217;s what data science is for; to tune the parameters used here so that individual privacy isn&#8217;t compromised while aggregate properties are&nbsp;preserved.</p>
-<p>If a company is collecting info about you and they&#8217;re not actually interested in tying your submitted records <em>to</em> you (see previous point about how this doesn&#8217;t apply to companies who <em>do</em> want to do this, who are a whole different problem), then this in theory isn&#8217;t needed. They don&#8217;t have to collect <span class="caps">IP</span> addresses or usernames and record them against each submission, and indeed if they don&#8217;t want that information then they probably don&#8217;t do that. But there&#8217;s always a concern: what if they&#8217;re really doing that and lying about it? Well, this is how we alleviate that problem. Even if a company actually are trying to collect personally-identifiable data and they&#8217;re lying to us about doing that it doesn&#8217;t matter, because we protect ourselves by &#8212; with a specific probability &#8212; lying back to them. And then everyone gets what they want. There&#8217;s a certain sense of justice in&nbsp;that.</p>
+<p>Even if you make <em>every single user</em> lie about their values, the graph shape isn't <em>too</em> bad. Lying tends to "flatten out" the graph; it makes tall peaks less tall, and short troughs more tall, and every single person lying probably flattens out things so much that conclusions you draw are probably now going to be wrong. But you can see from this that it ought to be possible to run the numbers and come up with a "lie" percentage which accurately balances the company's need for accurate information with the user's need to not provide accuracy.</p>
+<p>It is of course critical to this whole procedure that the lies cancel out, which means that they need to be evenly distributed. If everyone just makes up random answers then obviously this doesn't work; answers have to start with the truth and then (maybe) lie in one direction or another.</p>
+<p>This is a fairly simple description of this whole process of introducing noise into the data, and data scientists would be able to bring much more learning to bear on this. For example, how much does it affect accuracy if user information can lie by more than one "step" in every direction? Do we make it so instead of n% truth and 100-n% lies, we distribute the lies normally across the graph with the centrepoint being the truth? Is it possible to do this data collection without flattening out the graph to such an extent? And the state of the data art has moved on since the 1960s, too: Dwork wrote an influential 2006 paper on <a href="https://en.wikipedia.org/wiki/Differential_privacy">differential privacy</a> which goes into this in more detail. Obviously we'll be collecting data on more than one number -- someone looking for data on computers on which their OS is installed will want for example version info, network connectivity, lots of hardware stats, device vendor, and so on. And that's OK, because it's safe to collect this data now... so how do our accuracy figures change when there are lots of stats and not just one? There will be better statistical ways to quantify <em>how</em> inaccurate the results are than my simple single-bar percentage measure, and how to tweak the percentage-of-lying to give the best results for everyone. This whole topic seems like something that data scientists in various communities could really get their teeth into and provide great suggestions and help to companies who want to collect data in a responsible way.</p>
+<p>Of course, this applies to <em>any</em> data you want to collect. Do you want analytics on how often your users open your app? What times of day they do that? Which OS version they're on? How long do they spend using it? All your data still works in aggregate, but the things you're collecting aren't so personally invasive, because you don't know if a user's records are lies. This needs careful thought -- there has been plenty of research on deanonymising data and similar things, and the EFF's <a href="https://panopticlick.eff.org/">Panopticlick</a> project shows how a combination of data can be cross-referenced and that needs protecting against too, but that's what data science is for; to tune the parameters used here so that individual privacy isn't compromised while aggregate properties are preserved.</p>
+<p>If a company is collecting info about you and they're not actually interested in tying your submitted records <em>to</em> you (see previous point about how this doesn't apply to companies who <em>do</em> want to do this, who are a whole different problem), then this in theory isn't needed. They don't have to collect IP addresses or usernames and record them against each submission, and indeed if they don't want that information then they probably don't do that. But there's always a concern: what if they're really doing that and lying about it? Well, this is how we alleviate that problem. Even if a company actually are trying to collect personally-identifiable data and they're lying to us about doing that it doesn't matter, because we protect ourselves by -- with a specific probability -- lying back to them. And then everyone gets what they want. There's a certain sense of justice in that.</p>
 <style>
 canvas.lie_graphs {
     width: 100%;
@@ -459,24 +444,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

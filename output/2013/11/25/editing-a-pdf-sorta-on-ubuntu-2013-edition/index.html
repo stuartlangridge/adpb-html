@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Editing a PDF (sorta) on Ubuntu, 2013 edition</title>
+		<title>as days pass by &mdash; Editing a PDF (sorta) on Ubuntu, 2013 edition</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Editing a PDF (sorta) on Ubuntu, 2013 edition">
+        <meta property="og:title" content="as days pass by &mdash; Editing a PDF (sorta) on Ubuntu, 2013 edition">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2013/11/25/editing-a-pdf-sorta-on-ubuntu-2013-edition/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,27 +47,27 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2013/11/25/editing-a-pdf-sorta-on-ubuntu-2013-edition/"><time 
 			class="dt-published" datetime="2013-11-25T22:34:00+00:00">Nov 25 2013</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/11/25/editing-a-pdf-sorta-on-ubuntu-2013-edition/" title="Permalink to Editing a PDF (sorta) on Ubuntu, 2013 edition" rel="bookmark">Editing a <span class="caps">PDF</span> (sorta) on Ubuntu, 2013&nbsp;edition</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/11/25/editing-a-pdf-sorta-on-ubuntu-2013-edition/">Editing a PDF (sorta) on Ubuntu, 2013 edition</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Five years ago I noted that sometimes I get sent <span class="caps">PDF</span> contracts where I
+			<p>Five years ago I noted that sometimes I get sent PDF contracts where I
 need to add a little bit of text, or maybe add my signature (which I
-have as a <span class="caps">PNG</span>), and <a href="http://kryogenix.org/days/2008/03/31/editing-a-pdf-sorta-on-ubuntu">I suggested a long-winded approach of converting to <span class="caps">PS</span> and editing in OpenOffice</a>. Fortunately, this is a lot easier now:
+have as a PNG), and <a href="http://kryogenix.org/days/2008/03/31/editing-a-pdf-sorta-on-ubuntu">I suggested a long-winded approach of converting to PS and editing in OpenOffice</a>. Fortunately, this is a lot easier now:
 install <a href="https://apps.ubuntu.com/cat/applications/xournal/">Xournal</a> (Dash &gt; Applications &gt; Xournal &gt; install), and
-that has &#8220;add text&#8221; and &#8220;add image&#8221; tools. Add the text you want; add
-the image(s) you want; save as <span class="caps">PDF</span>. And Robert&#8217;s your mother&#8217;s brother.
-Much easier. Well&nbsp;done.</p>
+that has "add text" and "add image" tools. Add the text you want; add
+the image(s) you want; save as PDF. And Robert's your mother's brother.
+Much easier. Well done.</p>
 <p><strong>Update:</strong> actually, Libreoffice Draw, as recommended by a couple of
 people, is <em>even better</em>. It can happily open multi-page PDFs, it can
 edit the actual text in them rather than just overlaying, and Xournal
-did seem to create a <span class="caps">PDF</span> where my annotations weren&#8217;t readable on some
+did seem to create a PDF where my annotations weren't readable on some
 devices, presumably owing to Font Issues. So, I rescind my above advice
-and change it to this: use Libreoffice Draw. Well done Libreoffice&nbsp;people.</p>
+and change it to this: use Libreoffice Draw. Well done Libreoffice
+people.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2013/11/25/my-daughters-in-the-paper/">Previous post</a></li>
@@ -158,24 +144,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

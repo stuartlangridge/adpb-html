@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; The war over templating</title>
+		<title>as days pass by &mdash; The war over templating</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; The war over templating">
+        <meta property="og:title" content="as days pass by &mdash; The war over templating">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2003/06/06/templating/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,39 +47,39 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2003/06/06/templating/"><time 
 			class="dt-published" datetime="2003-06-06T11:00:00+01:00">Jun 06 2003</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2003/06/06/templating/" title="Permalink to The war over templating" rel="bookmark">The war over&nbsp;templating</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2003/06/06/templating/">The war over templating</a>
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1054911958.0:-->
-<p>I&#8217;m currently looking at Python templating systems, for various reasons.
+<p>I'm currently looking at Python templating systems, for various reasons.
 During my search, I came across the following exchange in a perl.com
 article called <a href="http://www.perl.com/pub/a/2001/08/21/templating.html?page=2">Choosing a Templating System</a>, between fans of
 allowing your real language (in this case, Perl) to be inlined in the
-templates, and fans of having no &#8220;real&#8221; language in the templates and
-instead allowing a &#8220;mini-language&#8221; or just variable&nbsp;substitution:</p>
+templates, and fans of having no "real" language in the templates and
+instead allowing a "mini-language" or just variable substitution:</p>
 <blockquote>
-<p><span class="caps">IN</span>-<span class="caps">LINE</span>: Mini-languages are stupid. I already know Perl and it&#8217;s easy
-enough. Why would you want to use something&nbsp;different?</p>
-<p><span class="caps">MINI</span>-<span class="caps">LANG</span>: Because my <span class="caps">HTML</span> coder doesn&#8217;t know Perl, and this is easier
-for&nbsp;him.</p>
-<p><span class="caps">IN</span>-<span class="caps">LINE</span>: Maybe he should learn some Perl. He&#8217;d get paid&nbsp;more.</p>
-<p><span class="caps">MINI</span>-<span class="caps">LANG</span>: Whatever. You just want to use in-line Perl so you can
+<p>IN-LINE: Mini-languages are stupid. I already know Perl and it's easy
+enough. Why would you want to use something different?</p>
+<p>MINI-LANG: Because my HTML coder doesn't know Perl, and this is easier
+for him.</p>
+<p>IN-LINE: Maybe he should learn some Perl. He'd get paid more.</p>
+<p>MINI-LANG: Whatever. You just want to use in-line Perl so you can
 handle change requests by putting little hacks in the template instead
-of changing your modules. That&#8217;s sloppy&nbsp;coding.</p>
-<p><span class="caps">IN</span>-<span class="caps">LINE</span>: That&#8217;s efficient coding. I can knock out data editing screens
+of changing your modules. That's sloppy coding.</p>
+<p>IN-LINE: That's efficient coding. I can knock out data editing screens
 in half the time it takes you, and then I can go back through, putting
-all the in-line code into modules and just have the templates call&nbsp;them.</p>
-<p><span class="caps">MINI</span>-<span class="caps">LANG</span>: You could, but you&nbsp;won&#8217;t.</p>
-<p><span class="caps">IN</span>-<span class="caps">LINE</span>: Is it chilly up there in that ivory&nbsp;tower?</p>
-<p><span class="caps">MINI</span>-<span class="caps">LANG</span>: Go write some VBScript,&nbsp;weenie.</p>
+all the in-line code into modules and just have the templates call
+them.</p>
+<p>MINI-LANG: You could, but you won't.</p>
+<p>IN-LINE: Is it chilly up there in that ivory tower?</p>
+<p>MINI-LANG: Go write some VBScript, weenie.</p>
 </blockquote>
 <p>I think that that covers the differences rather neatly. And I still
-can&#8217;t&nbsp;decide.</p>
+can't decide.</p>
 <p>None</p>
 <!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
@@ -172,24 +158,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

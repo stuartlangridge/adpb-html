@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Decoding Morse, the computer way</title>
+		<title>as days pass by &mdash; Decoding Morse, the computer way</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Decoding Morse, the computer way">
+        <meta property="og:title" content="as days pass by &mdash; Decoding Morse, the computer way">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2006/09/07/decoding-morse-the-computer-way/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,34 +47,33 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2006/09/07/decoding-morse-the-computer-way/"><time 
 			class="dt-published" datetime="2006-09-07T12:10:00+01:00">Sep 07 2006</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/09/07/decoding-morse-the-computer-way/" title="Permalink to Decoding Morse, the computer way" rel="bookmark">Decoding Morse, the computer&nbsp;way</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/09/07/decoding-morse-the-computer-way/">Decoding Morse, the computer way</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p><a href="http://adactio.com/journal/1174">Jeremy Keith&#8217;s been sent a Morse message</a> and is wondering what it
+			<p><a href="http://adactio.com/journal/1174">Jeremy Keith's been sent a Morse message</a> and is wondering what it
 says. Well, I now know what it says, cos I wrote a program to decode it.
 First, I went and got the <a href="http://odeo.com/a/CTA1yt0pMXQdVeF32FmZD10t74laG4UJ07ly5yS5">mp3 of the message</a> from Odeo and loaded it
-into <a href="http://audacity.sourceforge.net/">Audacity</a>. (No, not Jokosher; I&#8217;m at work, and there&#8217;s no
+into <a href="http://audacity.sourceforge.net/">Audacity</a>. (No, not Jokosher; I'm at work, and there's no
 Jokosher port for Windows. Audacity is still a free software audio
 editor, though, so being able to just download it is very handy indeed.)
 Audacity can read mp3s; I resampled it to 48000Hz (which made the peaks
 clearer) and made it mono (rather than stereo). At this point I could
 theoretically have decoded it by looking at the waveform: as you can see
-from this Audacity screenshot, that&#8217;s clearly the Morse code
+from this Audacity screenshot, that's clearly the Morse code
 <code>.... .. .-.-.-</code> (short sound is a dot, long sound is a dash; that
-decodes to &#8220;<span class="caps">HI</span>.&#8221;) <img alt="morse" src="http://www.kryogenix.org/photoimages/pictures/random/567.png"> However, that&#8217;d be boring and laborious, and
-what if the message was five hours long, eh? You wouldn&#8217;t want to
-transcribe that by hand. So, get the computer to do it! I didn&#8217;t want to
-write an mp3 parser, though, and because I was on a Windows box I didn&#8217;t
+decodes to "HI.") <img alt="morse" src="http://www.kryogenix.org/photoimages/pictures/random/567.png"> However, that'd be boring and laborious, and
+what if the message was five hours long, eh? You wouldn't want to
+transcribe that by hand. So, get the computer to do it! I didn't want to
+write an mp3 parser, though, and because I was on a Windows box I didn't
 have GStreamer available which would have helped with this. So, I
-exported the sound from Audacity as a <span class="caps">WAV</span> file, and then went off and
+exported the sound from Audacity as a WAV file, and then went off and
 got <a href="http://sox.sourceforge.net/">sox</a>, the Swiss Army knife of audio converters and another open
-source program. Sox can convert a sound sample to its &#8220;data&#8221; format,
-which is a load of lines that look like&nbsp;this:</p>
+source program. Sox can convert a sound sample to its "data" format,
+which is a load of lines that look like this:</p>
 <div class="highlight"><pre><span></span><code>               0  -6.1035156e-005
   2.2675737e-005  -3.0517578e-005
   4.5351474e-005                0
@@ -100,13 +85,13 @@ which is a load of lines that look like&nbsp;this:</p>
     0.0001814059  -3.0517578e-005
 </code></pre></div>
 
-<p>where each line represents one sound frame; the first number is &#8220;number
-of seconds since the beginning of the sample&#8221;, and the second is
-&#8220;loudness of this frame&#8221;. So, that&#8217;s the answer! The loudness will be
-high where there was a sound and low where there wasn&#8217;t. I needed to go
+<p>where each line represents one sound frame; the first number is "number
+of seconds since the beginning of the sample", and the second is
+"loudness of this frame". So, that's the answer! The loudness will be
+high where there was a sound and low where there wasn't. I needed to go
 through the data and find all the loud bits and all the quiet bits; a
 long quiet bit is a space, a long loud bit is a dash, and a short loud
-bit is a dot. No problem: quick bit of Python&nbsp;scripting:</p>
+bit is a dot. No problem: quick bit of Python scripting:</p>
 <div class="highlight"><pre><span></span><code><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;jezza4.dat&quot;</span><span class="p">)</span>
 <span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">int</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">float</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">()[</span><span class="mh">1</span><span class="p">]))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">fp</span><span class="p">.</span><span class="n">readlines</span><span class="p">()[</span><span class="mh">2</span><span class="o">:</span><span class="p">]]</span>
 <span class="n">fp</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
@@ -230,24 +215,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

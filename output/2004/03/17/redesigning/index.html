@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Redesigning thoughts</title>
+		<title>as days pass by &mdash; Redesigning thoughts</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Redesigning thoughts">
+        <meta property="og:title" content="as days pass by &mdash; Redesigning thoughts">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/03/17/redesigning/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,12 +47,11 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2004/03/17/redesigning/"><time 
 			class="dt-published" datetime="2004-03-17T11:00:00+00:00">Mar 17 2004</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/03/17/redesigning/" title="Permalink to Redesigning thoughts" rel="bookmark">Redesigning&nbsp;thoughts</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/03/17/redesigning/">Redesigning thoughts</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Got bored of the old design, did a new one. The old one’s still there;
@@ -76,12 +61,12 @@ reasons and one artistic reason. However, there are some nice little
 tricks in it, I think.<br>
 Nice trick no. 1 is that the date, top right of the <a href="http://www.kryogenix.org/">front page</a>, is
 the date of the most recent post. It’s absolutely positioned up there,
-and that date is identified with the <span class="caps"><span class="caps">CSS</span></span>
+and that date is identified with the <span class="caps">CSS</span>
 selector div#blog h2.date:first-child. Naturally, this will only work
 in browsers that support such selectors.<br>
 Nice trick no. 2 is that the most recent post looks like a lead story,
 which is to say that it’s bigger than the others. Again, just standard
-use of <span class="caps"><span class="caps">CSS</span></span> selectors, in this case div#blog
+use of <span class="caps">CSS</span> selectors, in this case div#blog
 h2.date:first-child + div.item (which <a href="http://gallery.theopalgroup.com/selectoracle/" title="according to the SelectOracle, which is invaluable when doing this sort of thing">means</a> “selects any div element
 with a class attribute that contains the word item that immediately
 follows a h2 element with a class attribute that contains the word date
@@ -92,7 +77,7 @@ displayed in the weblog“, i.e., the first post). Blah blah blah browsers
 that support such selectors.<br>
 I am also, I confess it, childishly pleased at how different it is from
 the last one, given that I’ve just changed the
-<span class="caps"><span class="caps">CSS</span></span>. Yeah, yeah, I <em>know</em> that this is the
+<span class="caps">CSS</span>. Yeah, yeah, I <em>know</em> that this is the
 point, and I <em>know</em> the <a href="http://www.csszengarden.com/">Zen garden</a> demonstrates this every day and a
 lot better than I do, but it’s been some time since I’ve had two
 successive designs that were very different and where I was pretty
@@ -136,16 +121,16 @@ artistic talent.<br>
 I can’t have different columns be different widths without hardcoding
 the widths, which is dead fudgy again.<br>
 You can’t format a post into newspaper columns without doing something
-like <a href="http://markpasc.org/weblog/2001/09/14_ihts_flowing_columns.html">the <span class="caps"><span class="caps">IHT</span></span>’s JavaScript super-complex
+like <a href="http://markpasc.org/weblog/2001/09/14_ihts_flowing_columns.html">the <span class="caps">IHT</span>’s JavaScript super-complex
 thing</a> or finding a browser which supports the
-<a href="http://www.w3.org/TR/2001/WD-css3-multicol-20010118/"><span class="caps"><span class="caps">CSS3</span></span> multicol spec</a> (none, as far as I can
+<a href="http://www.w3.org/TR/2001/WD-css3-multicol-20010118/"><span class="caps">CSS3</span> multicol spec</a> (none, as far as I can
 tell), so, dammit, I have to just live without it.<br>
 I can’t think of a way of putting a “More &gt;&gt;” thing at the bottom of
-posts if they overflow either, without using <span class="caps"><span class="caps">JS</span>
+posts if they overflow either, without using <span class="caps">JS
 </span>(which, again, I am thinking of doing).<br>
 I can see how to fix most of my problems (not the one about having the
-artistic ability of a glass hammer) with <span class="caps">JS</span>, I’m just not sure whether I
-want a huge blizzard of <span class="caps">JS</span> to run when someone loads the front page…<br>
+artistic ability of a glass hammer) with JS, I’m just not sure whether I
+want a huge blizzard of JS to run when someone loads the front page…<br>
 <strong>Addendum</strong>: I keep doing redesigns, and then you look back at old
 posts which say “done a new design!” and there’s no clue what that
 design was. So, new policy: all new designs get a screenshot stored away
@@ -227,24 +212,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

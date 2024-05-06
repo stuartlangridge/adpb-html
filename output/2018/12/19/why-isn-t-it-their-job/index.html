@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Why isn’t it their job</title>
+		<title>as days pass by &mdash; Why isn't it their job</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Why isn’t it their job">
+        <meta property="og:title" content="as days pass by &mdash; Why isn't it their job">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2018/12/19/why-isn-t-it-their-job/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,19 +47,18 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2018/12/19/why-isn-t-it-their-job/"><time 
 			class="dt-published" datetime="2018-12-19T11:11:00+00:00">Dec 19 2018</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2018/12/19/why-isn-t-it-their-job/" title="Permalink to Why isn’t it their job" rel="bookmark">Why isn&#8217;t it their&nbsp;job</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2018/12/19/why-isn-t-it-their-job/">Why isn't it their job</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Bruce Lawson has written a rather nice description of <a href="https://www.brucelawson.co.uk/2018/the-practical-value-of-semantic-html/">the practical value of semantic <span class="caps">HTML</span></a>, and you should read it, especially if you&#8217;re a full-stack developer who feels that <span class="caps">HTML</span> is the super-easy part of your toolkit and the components are the most important. But there&#8217;s one extra argument I&#8217;d like to add to his list; less important than some of the others, but a different&nbsp;nuance.</p>
-<p>Sometimes, when I find myself doing a bit of extra work to accommodate some users with unusual requirements, I find myself thinking: why isn&#8217;t it their job to fix this, rather than mine? This is an unworthy thought, and I don&#8217;t like that I have it, and I don&#8217;t <em>respond</em> to this thought; doing the right thing so all my users can use my stuff is important. But I do have the thought, nonetheless. Whether I&#8217;m adding aria labels for screenreaders, or doing extra work to build sites that layer behaviour on top as additional rather than critical, or checking text contrast ratios, or testing on unusual mobile phones I don&#8217;t and won&#8217;t have, there&#8217;s a sneaky little bit of my brain saying &#8220;why is this my problem? if someone wants to buy a weird phone, it&#8217;s their problem that websites don&#8217;t work right, isn&#8217;t&nbsp;it?&#8221;</p>
-<p>Leave aside here, for now, that there is no such thing as a &#8220;normal&#8221; experience, and even saying that people differ from the &#8220;normal&#8221; experience means that you are thinking about things the wrong way because you&#8217;re assuming that there is a normality and then there&#8217;s divergence and that&#8217;s <em>wrong</em>. I know this. You know this too, or at least&nbsp;should.</p>
-<p>Here&#8217;s the secret. Someone who has a web experience different from what the industry perceives as the norm is normally actually pretty happy to try, for themselves, to make their web experience better. Someone with poor motor control generally <em>will</em> be happy to learn the keyboard shortcuts for their browser, which the &#8220;norm&#8221; don&#8217;t bother to do. Someone who listens to the web rather than reads it generally <em>will</em> be happy to learn how to skip over your header using an option available in their tool but not yours, so you don&#8217;t have to add &#8220;skip header&#8221; links. Someone who is desperate for all bold text to appear in bright green and with sparkles generally will be happy to learn how to customise their user stylesheet to make that&nbsp;happen.</p>
-<p>The secret is: if you use semantic <span class="caps">HTML</span>, then they do the work, not you. Their browser does the work, not you. If your pages use semantic <span class="caps">HTML</span>, you&#8217;re not going to get bug reports saying that your web app doesn&#8217;t work in a screenreader, or your buttons don&#8217;t work without mouse clicks, or your site doesn&#8217;t show anything on a Yoyodyne SuperPhone 3 running FailBrowser, because it will and they will and it will. And using semantic <span class="caps">HTML</span> elements is no more effort; it&#8217;s just as easy to use <code>&lt;main&gt;</code> as it is to use <code>&lt;div id="main"&gt;</code>. Easier, even. You get to offload some of that work onto the people who need it, and they are happy to do it, as long as you aren&#8217;t actively working to <em>stop</em>&nbsp;them. </p>
+			<p>Bruce Lawson has written a rather nice description of <a href="https://www.brucelawson.co.uk/2018/the-practical-value-of-semantic-html/">the practical value of semantic HTML</a>, and you should read it, especially if you're a full-stack developer who feels that HTML is the super-easy part of your toolkit and the components are the most important. But there's one extra argument I'd like to add to his list; less important than some of the others, but a different nuance.</p>
+<p>Sometimes, when I find myself doing a bit of extra work to accommodate some users with unusual requirements, I find myself thinking: why isn't it their job to fix this, rather than mine? This is an unworthy thought, and I don't like that I have it, and I don't <em>respond</em> to this thought; doing the right thing so all my users can use my stuff is important. But I do have the thought, nonetheless. Whether I'm adding aria labels for screenreaders, or doing extra work to build sites that layer behaviour on top as additional rather than critical, or checking text contrast ratios, or testing on unusual mobile phones I don't and won't have, there's a sneaky little bit of my brain saying "why is this my problem? if someone wants to buy a weird phone, it's their problem that websites don't work right, isn't it?"</p>
+<p>Leave aside here, for now, that there is no such thing as a "normal" experience, and even saying that people differ from the "normal" experience means that you are thinking about things the wrong way because you're assuming that there is a normality and then there's divergence and that's <em>wrong</em>. I know this. You know this too, or at least should.</p>
+<p>Here's the secret. Someone who has a web experience different from what the industry perceives as the norm is normally actually pretty happy to try, for themselves, to make their web experience better. Someone with poor motor control generally <em>will</em> be happy to learn the keyboard shortcuts for their browser, which the "norm" don't bother to do. Someone who listens to the web rather than reads it generally <em>will</em> be happy to learn how to skip over your header using an option available in their tool but not yours, so you don't have to add "skip header" links. Someone who is desperate for all bold text to appear in bright green and with sparkles generally will be happy to learn how to customise their user stylesheet to make that happen.</p>
+<p>The secret is: if you use semantic HTML, then they do the work, not you. Their browser does the work, not you. If your pages use semantic HTML, you're not going to get bug reports saying that your web app doesn't work in a screenreader, or your buttons don't work without mouse clicks, or your site doesn't show anything on a Yoyodyne SuperPhone 3 running FailBrowser, because it will and they will and it will. And using semantic HTML elements is no more effort; it's just as easy to use <code>&lt;main&gt;</code> as it is to use <code>&lt;div id="main"&gt;</code>. Easier, even. You get to offload some of that work onto the people who need it, and they are happy to do it, as long as you aren't actively working to <em>stop</em> them. </p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2018/10/15/print-to-google-drive-in-a-non-gnome-desktop/">Previous post</a></li>
@@ -150,24 +135,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; On vendor prefixes in CSS and vendors implementing them</title>
+		<title>as days pass by &mdash; On vendor prefixes in CSS and vendors implementing them</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; On vendor prefixes in CSS and vendors implementing them">
+        <meta property="og:title" content="as days pass by &mdash; On vendor prefixes in CSS and vendors implementing them">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,118 +47,118 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/"><time 
 			class="dt-published" datetime="2012-02-09T11:18:00+00:00">Feb 09 2012</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/" title="Permalink to On vendor prefixes in CSS and vendors implementing them" rel="bookmark">On vendor prefixes in <span class="caps">CSS</span> and vendors implementing&nbsp;them</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/">On vendor prefixes in CSS and vendors implementing them</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>On Monday at the <span class="caps">CSS</span> Working Group, Microsoft, Mozilla and Opera
+			<p>On Monday at the CSS Working Group, Microsoft, Mozilla and Opera
 announced that each are considering supporting some <code>-webkit-</code> prefixed
-<span class="caps">CSS</span>&nbsp;properties.</p>
-<p>I include here <a href="http://www.brucelawson.co.uk/2012/on-the-vendor-prefixes-problem/">Bruce Lawson&#8217;s excellent summary</a>:</p>
+CSS properties.</p>
+<p>I include here <a href="http://www.brucelawson.co.uk/2012/on-the-vendor-prefixes-problem/">Bruce Lawson's excellent summary</a>:</p>
 <blockquote>
 <p>Lots of developers, despite evidence to the contrary, have assumed
 that mobile Web = WebKit browsers, because that’s the rendering engine
 in Android and iThings. Suppose the site was made a while ago and used
 the experimental, pre-standardised code <code>-webkit-border-radius</code> and
-<strong>didn’t use the cross-browser future-proof method</strong>. The real <span class="caps">CSS</span>
+<strong>didn’t use the cross-browser future-proof method</strong>. The real CSS
 property <code>border-radius</code> has been long been standardised and supported
 without prefixes in all the major browsers. But the <code>-webkit-</code>
 prefixed version still lingers on in Safari and Chrome, so that legacy
 code looks fine in the webkit browsers, but broken in Opera, Firefox
-and Internet&nbsp;Explorer.</p>
+and Internet Explorer.</p>
 </blockquote>
-<p>We&#8217;ve been through this fight before. A few years back, Internet
-Explorer proposed the <code>X-UA-Compatible</code> header, <a href="http://www.rachelandrew.co.uk/archives/2008/01/22/ie8-and-the-future-of-the-web/">which would mean that <span class="caps">IE8</span> would act like <span class="caps">IE7</span> unless you specifically told it to act like <span class="caps">IE8</span></a>. The proposed solutions back then were similar to what we&#8217;re
-seeing today in response to <code>-webkit-*</code> <span class="caps">CSS</span> in non-WebKit browsers:
-developers shouldn&#8217;t be lazy; developers should do it right; sites
-should break if they use WebKit-only <span class="caps">CSS</span> in order to punish the
-developer; use this library to help you do it right (<a href="http://lesscss.org/"><span class="caps">LESS</span></a> for <span class="caps">CSS</span>
+<p>We've been through this fight before. A few years back, Internet
+Explorer proposed the <code>X-UA-Compatible</code> header, <a href="http://www.rachelandrew.co.uk/archives/2008/01/22/ie8-and-the-future-of-the-web/">which would mean that IE8 would act like IE7 unless you specifically told it to act like IE8</a>. The proposed solutions back then were similar to what we're
+seeing today in response to <code>-webkit-*</code> CSS in non-WebKit browsers:
+developers shouldn't be lazy; developers should do it right; sites
+should break if they use WebKit-only CSS in order to punish the
+developer; use this library to help you do it right (<a href="http://lesscss.org/">LESS</a> for CSS
 pre-processing on the server side, <a href="http://leaverou.github.com/prefixfree/">prefixfree</a> on the client-side);
-WebKit should stop supporting a prefixed <span class="caps">CSS</span> property once it supports
+WebKit should stop supporting a prefixed CSS property once it supports
 the unprefixed version; vendor prefixes are a broken concept and should
-be&nbsp;abandoned.</p>
-<p>None of these approaches will&nbsp;work.</p>
+be abandoned.</p>
+<p>None of these approaches will work.</p>
 <p>Expecting developers to just Do It Right To Begin With™ is a noble goal,
-but it doesn&#8217;t work like that. Everyone has deadline pressures; most
+but it doesn't work like that. Everyone has deadline pressures; most
 people are not on the bleeding edge of the web standards community; the
-tension between &#8220;make it work today&#8221; and &#8220;make it right for the future&#8221;
+tension between "make it work today" and "make it right for the future"
 is never going to go away, no matter that we wish it would. The way to
 success is to align the right way to do it with the easiest way to do
 it; the way to success is to make correctness the path of least
-resistance. This is what informs the <span class="caps">HTML5</span> &#8220;pave the cowpaths&#8221; approach,
-and it&#8217;s that way for a reason; if correctness requires extra work, then
-at least some people will be incorrect through lack of time or lack of&nbsp;knowledge.</p>
+resistance. This is what informs the HTML5 "pave the cowpaths" approach,
+and it's that way for a reason; if correctness requires extra work, then
+at least some people will be incorrect through lack of time or lack of
+knowledge.</p>
 <p>Breaking websites, by having WebKit deliberately stop supporting a
 <code>-webkit</code> property once it supports the unprefixed property, is not
-going to happen. The WebKit team have explicitly stated that they won&#8217;t
-do that, for &#8220;backwards compatibility reasons&#8221;. Also, frankly, expecting
+going to happen. The WebKit team have explicitly stated that they won't
+do that, for "backwards compatibility reasons". Also, frankly, expecting
 them to is naive; they should make websites break just in order to teach
 developers the Right Way To Do Things, when those websites currently
-work? Remember, it&#8217;s not developers who are punished by this; it&#8217;s the
-users of the sites, because those users get a new phone or a phone <span class="caps">OS</span>
-upgrade and suddenly half the sites they use don&#8217;t work. This hurts
-them, and they&#8217;re who we&#8217;re doing this for. The WebKit team are looking
-out for WebKit, but they can&#8217;t be blamed for that; stuff works for them,
-after&nbsp;all.</p>
-<p>There&#8217;s an argument that users who find their sites broken will blame
+work? Remember, it's not developers who are punished by this; it's the
+users of the sites, because those users get a new phone or a phone OS
+upgrade and suddenly half the sites they use don't work. This hurts
+them, and they're who we're doing this for. The WebKit team are looking
+out for WebKit, but they can't be blamed for that; stuff works for them,
+after all.</p>
+<p>There's an argument that users who find their sites broken will blame
 the sites, and then the site developers will fix the problem. I
 disagree. If I decide to try Opera Mobile or Firefox on my phone and
-half the sites I use don&#8217;t work, I&#8217;ll say: oh well, can&#8217;t move to that,
-then, and I&#8217;ll go back to the built-in browser. This is the Microsoft
-argument: one broken program will prevent an upgrade, and they&#8217;re right.
+half the sites I use don't work, I'll say: oh well, can't move to that,
+then, and I'll go back to the built-in browser. This is the Microsoft
+argument: one broken program will prevent an upgrade, and they're right.
 What we get is de-facto lock-in, just the same as all those businesses
-which couldn&#8217;t migrate away from <span class="caps">IE6</span> because of their&nbsp;intranet.</p>
-<p>Using a server-side preprocessor or a client-side <span class="caps">JS</span> patch to turn
+which couldn't migrate away from IE6 because of their intranet.</p>
+<p>Using a server-side preprocessor or a client-side JS patch to turn
 <code>some-property</code> into
 <code>-webkit-some-property, -moz-some-property, -o-some-property, -ms-some-property</code>
-is a useful tool for <em>developers who know what they&#8217;re doing but can&#8217;t
+is a useful tool for <em>developers who know what they're doing but can't
 be bothered to type it all in</em>. Think about it: if I just use the
 unprefixed standardised property right now, then eventually (when the
-browsers all implement it) my site will work! I don&#8217;t have to do
-anything to make that happen; I&#8217;m out in front and waiting for
+browsers all implement it) my site will work! I don't have to do
+anything to make that happen; I'm out in front and waiting for
 technology to catch up with <em>me</em>. It does not help the developers who
 are actually affected here, the ones building sites with only <code>-webkit</code>
-<span class="caps">CSS</span> properties in them, the sites that Bruce calls &#8220;legacy code&#8221; above.
-And it&#8217;s those legacy sites which are compelling Mozilla and Microsoft
-and Opera to debate supporting that WebKit-only <span class="caps">CSS</span>.</p>
-<p>So, then, smart-arse, what&#8217;s the solution, if it&#8217;s none of&nbsp;those?</p>
+CSS properties in them, the sites that Bruce calls "legacy code" above.
+And it's those legacy sites which are compelling Mozilla and Microsoft
+and Opera to debate supporting that WebKit-only CSS.</p>
+<p>So, then, smart-arse, what's the solution, if it's none of those?</p>
 <p>Well, obviously, the evangelism efforts should continue. Progress is
-made. People do learn. It&#8217;s slow, but we get there in the end. What
-we&#8217;re talking about is an interim solution in addition to&nbsp;that.</p>
-<p>I think @<a href="http://lea.verou.me/">leaverou</a>&#8216;s <a href="http://leaverou.github.com/prefixfree/">prefixfree</a> <span class="caps">JS</span> library has the right idea,
-it&#8217;s just backwards. Prefixfree takes proper <span class="caps">CSS</span> (an unprefixed
+made. People do learn. It's slow, but we get there in the end. What
+we're talking about is an interim solution in addition to that.</p>
+<p>I think @<a href="http://lea.verou.me/">leaverou</a>'s <a href="http://leaverou.github.com/prefixfree/">prefixfree</a> JS library has the right idea,
+it's just backwards. Prefixfree takes proper CSS (an unprefixed
 property) and turns it into all the vendor-specific prefixed properties,
-so that you write <span class="caps">CSS</span>-of-the-future and the library turns it into
-<span class="caps">CSS</span>-of-today. It&#8217;s a polyfill. What&#8217;s wanted here, I think, is something
-like prefixfree but which takes <span class="caps">CSS</span>-of-the-past (<code>-webkit-some-property</code>
-and turns it into <span class="caps">CSS</span>-of-today
+so that you write CSS-of-the-future and the library turns it into
+CSS-of-today. It's a polyfill. What's wanted here, I think, is something
+like prefixfree but which takes CSS-of-the-past (<code>-webkit-some-property</code>
+and turns it into CSS-of-today
 (<code>-webkit-some-property, -moz-some-property, -o-some-property, -ms-some-property, some-property</code>).
-This wouldn&#8217;t be a hard polyfill to build (it&#8217;s just prefixfree,
+This wouldn't be a hard polyfill to build (it's just prefixfree,
 tweaked), but then of course you have the problem that no-one knows
-about it. So here&#8217;s the second part of the proposal: common <span class="caps">JS</span> libraries
+about it. So here's the second part of the proposal: common JS libraries
 should do this sort of thing by default. Imagine if jQuery fixed this
 stuff for you. I think, without wishing to sound snobbish, that most
-reasonably-complex websites include some <span class="caps">JS</span> (progressively enhanced,
-ideally), and most of those use a library. The developers we&#8217;re talking
+reasonably-complex websites include some JS (progressively enhanced,
+ideally), and most of those use a library. The developers we're talking
 about (and this is the snobbish part), the people writing legacy
 WebKit-only code, will have that WebKit-only code automatically patched
-to work with all other browsers without having to know that it&#8217;s even
+to work with all other browsers without having to know that it's even
 happening. The ones who are short of time get that time back; the ones
 short of knowledge can learn on their own time and are helped to not
-screw their users in the&nbsp;meantime.</p>
-<p>This sort of view is problematic. I&#8217;m proposing giving a man a fish, not
-teaching a man to fish, and that&#8217;s wrong. I agree. In this instance,
+screw their users in the meantime.</p>
+<p>This sort of view is problematic. I'm proposing giving a man a fish, not
+teaching a man to fish, and that's wrong. I agree. In this instance,
 given the choice between not educating a developer or not screwing some
-of his users, I&#8217;m choosing the users. I don&#8217;t know a way to choose both.
-It&#8217;s also problematic because I&#8217;m suggesting that library developers do
+of his users, I'm choosing the users. I don't know a way to choose both.
+It's also problematic because I'm suggesting that library developers do
 all the work, and everyone using that library takes a performance hit
-even if they don&#8217;t need to. So, I&#8217;m sure there will be other
-suggestions, and I&#8217;d love to hear them. I&#8217;d just like to stop hearing
-all the ones above that don&#8217;t help the problem get&nbsp;fixed.</p>
+even if they don't need to. So, I'm sure there will be other
+suggestions, and I'd love to hear them. I'd just like to stop hearing
+all the ones above that don't help the problem get fixed.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2012/02/04/it-s-cold-outside/">Previous post</a></li>
@@ -249,24 +235,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

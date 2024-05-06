@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; More on favatars, and the urlparse module</title>
+		<title>as days pass by &mdash; More on favatars, and the urlparse module</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; More on favatars, and the urlparse module">
+        <meta property="og:title" content="as days pass by &mdash; More on favatars, and the urlparse module">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/01/31/favatarsurlparse/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,16 +47,15 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2005/01/31/favatarsurlparse/"><time 
 			class="dt-published" datetime="2005-01-31T11:00:00+00:00">Jan 31 2005</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/01/31/favatarsurlparse/" title="Permalink to More on favatars, and the urlparse module" rel="bookmark">More on favatars, and the urlparse&nbsp;module</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/01/31/favatarsurlparse/">More on favatars, and the urlparse module</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Bit more detail on how I implemented the favatars stuff, perhaps. The
-template that defines how a comment is output looks like&nbsp;this:</p>
+template that defines how a comment is output looks like this:</p>
 <div class="highlight"><pre><span></span><code>`<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;au$cmt_time&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;onecomment&quot;</span><span class="p">&gt;</span>`
 `<span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;favatar&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;whatever&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://www.kryogenix.org/favatars/$cmt_link&quot;</span><span class="p">&gt;</span>`
 `<span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>$cmt_author_and_link<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>`
@@ -81,15 +66,16 @@ template that defines how a comment is output looks like&nbsp;this:</p>
 
 <p>The key bit in there is the
 <code>&lt;img class="favatar" alt="" src="http://www.kryogenix.org/favatars/$cmt_link"&gt;</code>.
-http://www.kryogenix.org/favatars/*<span class="caps">SOMETHING</span>* goes to a Python
-<span class="caps"><span class="caps">CGI</span></span>. You call it with a full
-<span class="caps"><span class="caps">URL</span></span>, so
+http://www.kryogenix.org/favatars/*SOMETHING* goes to a Python
+<span class="caps">CGI</span>. You call it with a full
+<span class="caps">URL</span>, so
 http://www.kryogenix.org/favatars/http://simon.incutio.com/ will display
 either the favicon from Simon’s site or my “no icon” icon. This is made
 very easy by Python’s excellent <code>urlparse</code> module. You see, we need to
 get the favicon from the root of the server. To do this, just use
-<code>urlparse.urljoin</code> to join whatever <span class="caps"><span class="caps">URL</span></span> you
-like with “/favicon.ico“. The key thing there is the / at the beginning.&nbsp;Watch:</p>
+<code>urlparse.urljoin</code> to join whatever <span class="caps">URL</span> you
+like with “/favicon.ico“. The key thing there is the / at the beginning.
+Watch:</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urlparse</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s1">&#39;http://www.kryogenix.org/&#39;</span><span class="p">,</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">)</span>
 <span class="s1">&#39;http://www.kryogenix.org/favicon.ico&#39;</span>
@@ -103,21 +89,21 @@ like with “/favicon.ico“. The key thing there is the / at the beginning.&nbs
 <span class="s1">&#39;/favicon.ico&#39;</span>
 </code></pre></div>
 
-<p>So, if you join the <span class="caps"><span class="caps">URL</span></span> the punter left with
-“/favicon.ico“, then you get the <span class="caps"><span class="caps">URL</span></span> for
+<p>So, if you join the <span class="caps">URL</span> the punter left with
+“/favicon.ico“, then you get the <span class="caps">URL</span> for
 favicon.ico at the root of their domain. If they fill in something that
-isn’t a proper <span class="caps"><span class="caps">URL</span></span>, like an email address, a
+isn’t a proper <span class="caps">URL</span>, like an email address, a
 mailto: with email address, blankness, or some bullshit, then you just
 get back “/favicon.ico“. The script checks, and, if the joined
-<span class="caps"><span class="caps">URL</span></span> is “/favicon.ico“, it shows the “no icon”
-icon. If it isn’t, then it fetches the <span class="caps"><span class="caps">URL</span></span>,
-transforms it to a 40×40 <span class="caps"><span class="caps">PNG</span></span>, and streams that
-<span class="caps"><span class="caps">PNG</span></span> for display. All nice and easy, thanks to
+<span class="caps">URL</span> is “/favicon.ico“, it shows the “no icon”
+icon. If it isn’t, then it fetches the <span class="caps">URL</span>,
+transforms it to a 40×40 <span class="caps">PNG</span>, and streams that
+<span class="caps">PNG</span> for display. All nice and easy, thanks to
 the Python urlparse, urllib, StringIO, and Image libraries. The code
 also caches icons so that it works faster. You can <a href="http://kryogenix.org/code/favatar.py.txt">read the code for
 favatar.cgi</a> if you would like more details; it won’t work directly
 for you without some tweaking. You’ll also want a line similar to this
-in your .htaccess&nbsp;file:</p>
+in your .htaccess file:</p>
 <div class="highlight"><pre><span></span><code>RewriteRule   ^favatars/(.*)            /pyblosxom/favatar.cgi?url=$1
 </code></pre></div>
 		</div> <!--/#entry-content-->
@@ -196,24 +182,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

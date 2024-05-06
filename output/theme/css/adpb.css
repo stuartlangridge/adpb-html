@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fauna+One&display=swap');
+
+/* reset (https://piccalil.li/blog/a-more-modern-css-reset/) */
+
+*::before, *::after { box-sizing: border-box; }
+
+html { /* Prevent font size inflation */
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd { /* Remove default margin in favour of better control in authored CSS */
+  margin-block-end: 0; }
+
+ul[role='list'], ol[role='list'] { /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+  list-style: none; }
+
+body { /* Set core body defaults */
+  min-height: 100vh;
+  line-height: 1.5; }
+
+h1, h2, h3, h4,
+button, input, label { /* Set shorter line heights on headings and interactive elements */
+  line-height: 1.1; }
+
+h1, h2, h3, h4 { /* Balance text wrapping on headings */
+  text-wrap: balance; }
+
+a:not([class]) { /* A elements that don't have a class get default styles */
+  text-decoration-skip-ink: auto;
+  color: currentColor; }
+
+img, picture { /* Make images easier to work with */
+  max-width: 100%; display: block; }
+
+input, button, textarea, select {
+  font-family: inherit;
+  font-size: inherit; }
+
+textarea:not([rows]) { min-height: 10em; }
+
+:target { /* Anything that has been anchored to should have extra scroll margin */
+  scroll-margin-block: 5ex; }
+
+
+/* Basic styles */
+
+html {
+  background: antiquewhite;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font: 16px "Fauna One";
+  padding: 0;
+  margin: 0;
+}
+
+#contents {
+  max-width: 38rem;
+  padding: 2rem;
+  margin: auto;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Cinzel;
+}
+
+.entry-title {
+  /* https://codepen.io/BastianAndre/pen/eBBvVz */
+  display: block;
+  position: relative;
+  border-radius: 5px;
+  background: linear-gradient(to right, hsl(15.5, 83.9%, 79.6%) 35%, hsl(15.5, 83.7%, 88.2%) 100%);
+  margin-bottom: 40px;
+  padding: 15px 25px 15px 40px;
+  color: darkslategray;
+  box-shadow: 1px 2px 1px -1px #777;
+  transition: background 200ms ease-in-out;
+  position: relative;
+  margin-top: 0;
+}
+.entry-title:before {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 13px;
+  right: 7px;
+  width: 25%;
+  top: 0;
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(4deg);
+  transition: all 150ms ease-in-out;
+}
+.entry-title:hover {
+  background: linear-gradient(to right, #abbd73 0%, #abbd73 100%)
+}
+.entry-title:hover::before {
+  transform: rotate(0deg);
+  bottom: 20px;
+  z-index: -10;
+}
+.entry-title a {
+  text-decoration: none;
+  color: darkslategrey;
+}
+.entry-meta .date {
+  text-align: right;
+  opacity: 0.3;
+}
+
+nav {
+  position: relative;
+  overflow: hidden;
+  line-height: 2;
+}
+nav:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  top: -100%;
+  left: 0;
+  border-radius: 50% / 5px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+}
+nav ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  margin-top: 20px;
+}
+nav li {
+  text-align: center;
+}
+nav li a {
+  font-family: Cinzel;
+}
+
+header {
+  text-align: center;
+  padding: 0.5em;
+}
+header p, header h2 {
+  opacity: 0.3;
+}
+header h2 {
+  font-family: "Fauna One";
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+header h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+footer {
+  position: relative;
+  padding-top: 20px;
+  overflow: hidden;
+  text-align: center;
+  opacity: 0.3;
+}
+footer::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  top: -100%;
+  left: 0;
+  border-radius: 50% / 5px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+}
+
+#loadtimer {
+  opacity: 0.3;
+  text-align: center;
+}
+
+#contents h1, #contents h2 {
+  --fluid-type-min: 1.5rem;
+  --fluid-type-max: 5rem;
+  --fluid-type-target: 3vw;
+  font-size: clamp(
+    var(--fluid-type-min, 1rem),
+    calc(1rem + var(--fluid-type-target, 3vw)),
+    var(--fluid-type-max, 1.3rem)
+  );
+}
+
+#contents pre {
+  background: hsl(15.5, 83.4%, 27.3%);
+  overflow-x: scroll;
+  padding: 0.5em;
+  font-size: 10px;
+  color: white;
+}
+
+#contents img {
+  max-width: 90%;
+  margin: 0 auto;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+}
+
+.neighbours-links {
+  margin: 40px 0;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.hireme {
+  padding: 10px 20px;
+  border: 1px solid hsl(15.5, 83.4%, 27.3%);
+}

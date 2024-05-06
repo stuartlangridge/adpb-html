@@ -1,54 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; CSS masks and jagged edges</title>
+		<title>as days pass by &mdash; CSS masks and jagged edges</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; CSS masks and jagged edges">
+        <meta property="og:title" content="as days pass by &mdash; CSS masks and jagged edges">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -59,17 +45,16 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/drafts/css-masks-and-jagged-edges.html"><time 
 			class="dt-published" datetime="2020-03-19T18:15:00+00:00">Mar 19 2020</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/drafts/css-masks-and-jagged-edges.html" title="Permalink to CSS masks and jagged edges" rel="bookmark"><span class="caps">CSS</span> masks and jagged&nbsp;edges</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/drafts/css-masks-and-jagged-edges.html">CSS masks and jagged edges</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>For a project I was working on, there was a neat little effect employed where a banner image was given a “sawtooth” jagged edge at the bottom.</p>
+			<p>For a project I was working on, there was a neat little effect employed where a banner image was given a "sawtooth" jagged edge at the bottom.</p>
 <p><img src="https://kryogenix.org/images/css-jagged-1.png" alt="demonstrating the banner image and the same banner image given the jagged sawtooth bottom edge"></p>
-<p>Now, the way that theme did it was by wrapping the <code>&lt;img&gt;</code> element in a wrapper, then giving the wrapper an <code>::after</code> generated content layer, and adding a repeating background image to the <code>::after</code> of a tiny <span class="caps">SVG</span> sawtooth triangle in the background colour. Imagine our background colour is blue. Then the <span class="caps">SVG</span> looks like this:</p>
+<p>Now, the way that theme did it was by wrapping the <code>&lt;img&gt;</code> element in a wrapper, then giving the wrapper an <code>::after</code> generated content layer, and adding a repeating background image to the <code>::after</code> of a tiny SVG sawtooth triangle in the background colour. Imagine our background colour is blue. Then the SVG looks like this:</p>
 <p>https://codepen.io/stuartlangridge/pen/mdJzMbo</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;svg</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span>
 <span class="w">    </span><span class="na">viewBox=</span><span class="s">"0 0 1 1"</span><span class="w"> </span><span class="na">preserveAspectRatio=</span><span class="s">"none"</span><span class="nt">&gt;</span>
@@ -77,9 +62,9 @@
 <span class="nt">&lt;/svg&gt;</span>
 </code></pre></div>
 
-<p>and displays thus:</p>
+<p>and displays thus:</p>
 <p><svg style="width: 100px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:blue;" points="1,0 1,1 0,1 "></polygon></svg></p>
-<p>and so what you do is bundle that <span class="caps">SVG</span> up into a data <span class="caps">URL</span> and then set it as the repeating background on the wrapper:</p>
+<p>and so what you do is bundle that SVG up into a data URL and then set it as the repeating background on the wrapper:</p>
 <p>https://codepen.io/stuartlangridge/pen/BaNqdNB</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"jagged-wrapper"</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"banner.jpg"</span><span class="p">&gt;</span>
@@ -139,12 +124,12 @@
 }
 </style>
 
-<p>But I thought, jeez, that’s a lot of hassle. Incomprehensible base64ed <span class="caps">SVG</span> data URLs? And the <span class="caps">SVG</span> needs to be a tiny triangle <em>of the background colour</em>, or it won’t work. If your background isn’t a solid colour, it won’t work. Isn’t this what masking is for?</p>
-<p>Yes. Yes, this is what masking is for.</p>
-<p>You see, my idea was this: to use an image like the one above as a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask"><span class="caps">CSS</span> mask</a> so that the “missing” bits of the banner image would actually <em>be</em> missing; rather than drawing triangles of the background colour on top of the banner, we should instead mask away those triangles from the banner entirely and let the real background show through. That way it works on backgrounds that aren’t one solid colour, it works if you position this whole banner arrangement on top of, say, some text, or make it a fixed header under which text scrolls, and it’s just more elegant a solution. Masking, at least in the simple way I’m talking about here, is <a href="https://caniuse.com/#search=mask">pretty much supported</a> everywhere now, and this is a progressive enhancement; if masks aren’t supported then you just don’t get the sawtooth effect, which isn’t the end of the world.</p>
-<p>The way a <span class="caps">CSS</span> mask image works<sup id="sf-css-masks-and-jagged-edges-1-back"><a href="#sf-css-masks-and-jagged-edges-1" class="simple-footnote" title="in this example. There’s a bunch more complicated stuff which you can do, with decreasing degrees of browser support; check the specs and MDN for more">1</a></sup> is that you provide an image with an alpha channel as a <code>mask-image</code>. The underlying element, the one that you’re masking, then becomes (semi-)transparent to the degree that the <code>mask-image</code>s alpha channel dictates… so if your mask image is a white teapot on a transparent background, then the masked element will be cut to the shape of the teapot and everything outside that will be hidden.</p>
-<p>So what we need is an image similar to the <span class="caps">SVG</span> above; one sawtooth, this time with the top-left half in white and the bottom-left half transparent. And ideally not an actual <span class="caps">SVG</span>, since we’d have to make it a data <span class="caps">URL</span> to get it into <span class="caps">CSS</span> and then that’s ugly again.<sup id="sf-css-masks-and-jagged-edges-2-back"><a href="#sf-css-masks-and-jagged-edges-2" class="simple-footnote" title="you might be thinking: embed the SVG in the CSS directly and define a mask in it and then point the CSS at the mask ID in the SVG! Which is certainly doable, if you can edit the HTML. In this case, I was working on a WordPress theme, and I really wanted to confine my changes to pure CSS and not inject extra parts into the HTML, which would have been a lot more work.">2</a></sup></p>
-<p>To create such a triangle, we can use a <span class="caps">CSS</span> gradient: <code>linear-gradient(to bottom right, white, white 50%, transparent 50%, transparent)</code> looks like this (on a radial background, so you can see it’s really transparent):</p>
+<p>But I thought, jeez, that's a lot of hassle. Incomprehensible base64ed SVG data URLs? And the SVG needs to be a tiny triangle <em>of the background colour</em>, or it won't work. If your background isn't a solid colour, it won't work. Isn't this what masking is for?</p>
+<p>Yes. Yes, this is what masking is for.</p>
+<p>You see, my idea was this: to use an image like the one above as a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask">CSS mask</a> so that the "missing" bits of the banner image would actually <em>be</em> missing; rather than drawing triangles of the background colour on top of the banner, we should instead mask away those triangles from the banner entirely and let the real background show through. That way it works on backgrounds that aren't one solid colour, it works if you position this whole banner arrangement on top of, say, some text, or make it a fixed header under which text scrolls, and it's just more elegant a solution. Masking, at least in the simple way I'm talking about here, is <a href="https://caniuse.com/#search=mask">pretty much supported</a> everywhere now, and this is a progressive enhancement; if masks aren't supported then you just don't get the sawtooth effect, which isn't the end of the world.</p>
+<p>The way a CSS mask image works<sup id="sf-css-masks-and-jagged-edges-1-back"><a href="#sf-css-masks-and-jagged-edges-1" class="simple-footnote" title="in this example. There's a bunch more complicated stuff which you can do, with decreasing degrees of browser support; check the specs and MDN for more">1</a></sup> is that you provide an image with an alpha channel as a <code>mask-image</code>. The underlying element, the one that you're masking, then becomes (semi-)transparent to the degree that the <code>mask-image</code>s alpha channel dictates... so if your mask image is a white teapot on a transparent background, then the masked element will be cut to the shape of the teapot and everything outside that will be hidden.</p>
+<p>So what we need is an image similar to the SVG above; one sawtooth, this time with the top-left half in white and the bottom-left half transparent. And ideally not an actual SVG, since we'd have to make it a data URL to get it into CSS and then that's ugly again.<sup id="sf-css-masks-and-jagged-edges-2-back"><a href="#sf-css-masks-and-jagged-edges-2" class="simple-footnote" title="you might be thinking: embed the SVG in the CSS directly and define a mask in it and then point the CSS at the mask ID in the SVG! Which is certainly doable, if you can edit the HTML. In this case, I was working on a WordPress theme, and I really wanted to confine my changes to pure CSS and not inject extra parts into the HTML, which would have been a lot more work.">2</a></sup></p>
+<p>To create such a triangle, we can use a CSS gradient: <code>linear-gradient(to bottom right, white, white 50%, transparent 50%, transparent)</code> looks like this (on a radial background, so you can see it's really transparent):</p>
 <div id="css-sawtooth-bg"><div id="css-sawtooth-actual"></div></div>
 <style>
 #css-sawtooth-bg {
@@ -161,7 +146,7 @@
 }
 </style>
 
-<p>So, great! We can just use that as a <code>mask-image</code> on our banner, right? We need to set <code>mask-size</code>, which is like <code>background-size</code>, and <code>mask-repeat</code>, like <code>background-repeat</code>, and we’re good?</p>
+<p>So, great! We can just use that as a <code>mask-image</code> on our banner, right? We need to set <code>mask-size</code>, which is like <code>background-size</code>, and <code>mask-repeat</code>, like <code>background-repeat</code>, and we're good?</p>
 <p>https://codepen.io/stuartlangridge/pen/QWbZMjN</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"banner.jpg"</span><span class="p">&gt;</span>
 </code></pre></div>
@@ -186,8 +171,8 @@ img#css-jagged-fail-1 {
 }
 </style>
 
-<p>failure 2 (with -webkit): https://codepen.io/stuartlangridge/pen/rNVqzxz</p>
-<p>Nuh-uh. The problem here is that is you confine the mask to just the bottom stripe of the image with <code>mask-size</code>, then the rest of the image has no <code>mask-image</code> at all over it… and so gets entirely masked out. So we can’t have just the sawtooth as a mask. What we need is a <code>mask-image</code> which is a rectangle the size of the image with just a sawtooth at the bottom. Something like this, in fact:</p>
+<p>failure 2 (with -webkit): https://codepen.io/stuartlangridge/pen/rNVqzxz</p>
+<p>Nuh-uh. The problem here is that is you confine the mask to just the bottom stripe of the image with <code>mask-size</code>, then the rest of the image has no <code>mask-image</code> at all over it... and so gets entirely masked out. So we can't have just the sawtooth as a mask. What we need is a <code>mask-image</code> which is a rectangle the size of the image with just a sawtooth at the bottom. Something like this, in fact:</p>
 <p>https://codepen.io/stuartlangridge/pen/VwLEzaq</p>
 <div id="css-hightooth-bg"><div id="css-hightooth-actual"></div></div>
 <style>
@@ -208,7 +193,7 @@ img#css-jagged-fail-1 {
 }
 </style>
 
-<p>We do that with <em>two</em> gradient images; the first our sawtooth triangle as above, which is set to <code>repeat-x</code> and position <code>bottom</code> so that it repeats only along the bottom edge of the image. The second is another gradient which is transparent for the bottom <code>30px</code> (so as to not interfere with the sawtooth) and then opaque above that (which is shown in that little demo as going from black to white; <code>mask-image</code> doesn’t care about colour<sup id="sf-css-masks-and-jagged-edges-3-back"><a href="#sf-css-masks-and-jagged-edges-3" class="simple-footnote" title="the way we’re using it here, as mentioned; it can be made to care about colour instead of alpha, but Here Be Dragons">3</a></sup>, just about alpha), and takes up the whole size. Thus:</p>
+<p>We do that with <em>two</em> gradient images; the first our sawtooth triangle as above, which is set to <code>repeat-x</code> and position <code>bottom</code> so that it repeats only along the bottom edge of the image. The second is another gradient which is transparent for the bottom <code>30px</code> (so as to not interfere with the sawtooth) and then opaque above that (which is shown in that little demo as going from black to white; <code>mask-image</code> doesn't care about colour<sup id="sf-css-masks-and-jagged-edges-3-back"><a href="#sf-css-masks-and-jagged-edges-3" class="simple-footnote" title="the way we're using it here, as mentioned; it can be made to care about colour instead of alpha, but Here Be Dragons">3</a></sup>, just about alpha), and takes up the whole size. Thus:</p>
 <p>https://codepen.io/stuartlangridge/pen/oNXaeLa</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"banner.jpg"</span><span class="p">&gt;</span>
 </code></pre></div>
@@ -235,7 +220,7 @@ img#css-jagged-success {
 }
 </style>
 
-<p>And there we have it.</p><ol class="simple-footnotes"><li id="sf-css-masks-and-jagged-edges-1">in this example. There’s a bunch more complicated stuff which you can do, with decreasing degrees of browser support; check the specs and <span class="caps">MDN</span> for more <a href="#sf-css-masks-and-jagged-edges-1-back" class="simple-footnote-back">↩</a></li><li id="sf-css-masks-and-jagged-edges-2">you might be thinking: embed the <span class="caps">SVG</span> in the <span class="caps">CSS</span> directly and define a mask in it and then point the <span class="caps">CSS</span> at the mask <span class="caps">ID</span> in the <span class="caps">SVG</span>! Which is certainly doable, <em>if</em> you can edit the <span class="caps">HTML</span>. In this case, I was working on a WordPress theme, and I really wanted to confine my changes to pure <span class="caps">CSS</span> and not inject extra parts into the <span class="caps">HTML</span>, which would have been a lot more work. <a href="#sf-css-masks-and-jagged-edges-2-back" class="simple-footnote-back">↩</a></li><li id="sf-css-masks-and-jagged-edges-3">the way we’re using it here, as mentioned; it can be made to care about colour instead of alpha, but Here Be Dragons <a href="#sf-css-masks-and-jagged-edges-3-back" class="simple-footnote-back">↩</a></li></ol>
+<p>And there we have it.</p><ol class="simple-footnotes"><li id="sf-css-masks-and-jagged-edges-1">in this example. There's a bunch more complicated stuff which you can do, with decreasing degrees of browser support; check the specs and MDN for more <a href="#sf-css-masks-and-jagged-edges-1-back" class="simple-footnote-back">↩</a></li><li id="sf-css-masks-and-jagged-edges-2">you might be thinking: embed the SVG in the CSS directly and define a mask in it and then point the CSS at the mask ID in the SVG! Which is certainly doable, <em>if</em> you can edit the HTML. In this case, I was working on a WordPress theme, and I really wanted to confine my changes to pure CSS and not inject extra parts into the HTML, which would have been a lot more work. <a href="#sf-css-masks-and-jagged-edges-2-back" class="simple-footnote-back">↩</a></li><li id="sf-css-masks-and-jagged-edges-3">the way we're using it here, as mentioned; it can be made to care about colour instead of alpha, but Here Be Dragons <a href="#sf-css-masks-and-jagged-edges-3-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		</ul>
@@ -310,24 +295,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

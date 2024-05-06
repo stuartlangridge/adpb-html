@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Not blocking the UI in tight JavaScript loops</title>
+		<title>as days pass by &mdash; Not blocking the UI in tight JavaScript loops</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Not blocking the UI in tight JavaScript loops">
+        <meta property="og:title" content="as days pass by &mdash; Not blocking the UI in tight JavaScript loops">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/07/03/not-blocking-the-ui-in-tight-javascript-loops/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,60 +47,59 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2009/07/03/not-blocking-the-ui-in-tight-javascript-loops/"><time 
 			class="dt-published" datetime="2009-07-03T00:55:00+01:00">Jul 03 2009</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/07/03/not-blocking-the-ui-in-tight-javascript-loops/" title="Permalink to Not blocking the UI in tight JavaScript loops" rel="bookmark">Not blocking the <span class="caps">UI</span> in tight JavaScript&nbsp;loops</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/07/03/not-blocking-the-ui-in-tight-javascript-loops/">Not blocking the UI in tight JavaScript loops</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>
-Everyone&#8217;s written a JavaScript loop that just loops over all the {LIs,
+Everyone's written a JavaScript loop that just loops over all the {LIs,
 links, divs} on a
 page<span style="color:red" title="well, everyone who's a JavaScript hacker, and everyone who isn't is clearly unimportant and wrong and not as well-endowed and handsome as us">\*</span>,
-and it&#8217;s pretty standard. Something like
+and it's pretty standard. Something like
 
-    var lis = document.getElementsByTagName(&#8220;li&#8221;);
+    var lis = document.getElementsByTagName("li");
     for (var i=0; i<lis.length; i++) { // yes this could be more efficient, don't care
       // do something here to lis[i]
     };
 
 <p>
-or, if you&#8217;re using jQuery:
+or, if you're using jQuery:
 
-    $(&#8220;li&#8221;).each(function() {
+    $("li").each(function() {
       // do something here to this
     });
 
 <p>
-This is problematic if there are, say, 2000 <span class="caps">LI</span> elements on the page, and
-what you&#8217;re doing in the loop is semi-intensive (imagine you&#8217;re creating
+This is problematic if there are, say, 2000 LI elements on the page, and
+what you're doing in the loop is semi-intensive (imagine you're creating
 a couple of extra elements to append to each of those LIs, or something
 like that). The reason this is a problem is that JavaScript is
-single-threaded. A tight loop like this hangs the browser until it&#8217;s
-finished, you get the &#8220;this script has been running for a long time&#8221;
-dialog, and the user interface doesn&#8217;t update while you&#8217;re in this kind
-of loop. You might think: aha, this will take a long time, so I&#8217;ll have
+single-threaded. A tight loop like this hangs the browser until it's
+finished, you get the "this script has been running for a long time"
+dialog, and the user interface doesn't update while you're in this kind
+of loop. You might think: aha, this will take a long time, so I'll have
 some sort of a progress monitor thing:
 
-    var lis = document.getElementsByTagName(&#8220;li&#8221;);
+    var lis = document.getElementsByTagName("li");
     for (var i=0; i<lis.length; i++) { // yes this could be more efficient, don't care
       // do something here to lis[i]
       progressMonitor.innerHTML = "processing list item " + i; // fail
     };
 
 <p>
-but that doesn&#8217;t work. What happens is that the browser freezes until
+but that doesn't work. What happens is that the browser freezes until
 the loop finishes. Annoying, but there it is. One approach to getting
 around this is with timeouts rather than a `for` loop.
 
-    var lis = document.getElementsByTagName(&#8220;li&#8221;);
+    var lis = document.getElementsByTagName("li");
     var counter = 0;
     function doWork() {
       // do something here to lis[i]
       counter += 1;
-      progressMonitor.innerHTML = &#8220;processing list item &#8221; + counter;
+      progressMonitor.innerHTML = "processing list item " + counter;
       if (counter < lis.length) {
         setTimeout(doWork, 1);
       }
@@ -125,9 +110,9 @@ around this is with timeouts rather than a `for` loop.
 so you move the bit of work you need to do into a function, and that
 function re-schedules itself repeatedly, using `setTimeout`. This time,
 your user interface will indeed update, and your progress monitor will
-show where you&#8217;re up to. There are a couple of caveats with this: it&#8217;ll
-take a bit longer, and you&#8217;re no longer guaranteed to have things
-processed in the order you expect, but they&#8217;re minor issues. For doing
+show where you're up to. There are a couple of caveats with this: it'll
+take a bit longer, and you're no longer guaranteed to have things
+processed in the order you expect, but they're minor issues. For doing
 this in jQuery, a tiny plugin:
 
     jQuery.eachCallback = function(arr, process, callback) {
@@ -162,19 +147,19 @@ this in jQuery, a tiny plugin:
 and now you can do
 
     $.eachCallback(someArray, function() {
-      // &#8220;this&#8221; is the array item, just like $.each
+      // "this" is the array item, just like $.each
     }, function(loopcount) {
-      // here you get to do some <span class="caps">UI</span> updating
+      // here you get to do some UI updating
       // loopcount is how far into the loop you are
     });
 
-    $(&#8220;li&#8221;).eachCallback(function() {
+    $("li").eachCallback(function() {
       // do something to this
     }, function(loopcount) {
-      // update the <span class="caps">UI</span>
+      // update the UI
     });
 
-Not always a useful technique, but when you need it, you need&nbsp;it.
+Not always a useful technique, but when you need it, you need it.
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2009/06/26/why-not-to-use-domain-sockets-for-a-desktop-couchdb/">Previous post</a></li>
@@ -251,24 +236,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

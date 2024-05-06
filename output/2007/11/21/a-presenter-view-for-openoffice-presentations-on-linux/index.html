@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; A “presenter view” for OpenOffice presentations on Linux</title>
+		<title>as days pass by &mdash; A "presenter view" for OpenOffice presentations on Linux</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; A “presenter view” for OpenOffice presentations on Linux">
+        <meta property="og:title" content="as days pass by &mdash; A "presenter view" for OpenOffice presentations on Linux">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/11/21/a-presenter-view-for-openoffice-presentations-on-linux/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,81 +47,80 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2007/11/21/a-presenter-view-for-openoffice-presentations-on-linux/"><time 
 			class="dt-published" datetime="2007-11-21T23:41:00+00:00">Nov 21 2007</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/11/21/a-presenter-view-for-openoffice-presentations-on-linux/" title="Permalink to A “presenter view” for OpenOffice presentations on Linux" rel="bookmark">A &#8220;presenter view&#8221; for OpenOffice presentations on&nbsp;Linux</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/11/21/a-presenter-view-for-openoffice-presentations-on-linux/">A "presenter view" for OpenOffice presentations on Linux</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Earlier this week I was at <a href="http://www.vivabit.com/atmediaAjax/">@media Ajax</a>, and it was great &#8212; more in
+			<p>Earlier this week I was at <a href="http://www.vivabit.com/atmediaAjax/">@media Ajax</a>, and it was great -- more in
 an upcoming post. First, though, a quick bit of scripting I did. You
-see, it&#8217;s become apparent to me that I need a &#8220;presenter view&#8221; when I&#8217;m
+see, it's become apparent to me that I need a "presenter view" when I'm
 presenting; I have my laptop running dualscreen, so that the view I get
 on the laptop screen is not the view that appears on the projector. I
-need this, because I&#8217;m not Derek Featherstone; I can&#8217;t just see the
+need this, because I'm not Derek Featherstone; I can't just see the
 slides and remember everything that I need to say. My slides are often
-just a single word, or a picture, and I can&#8217;t remember the thread of
-what I&#8217;m aiming at without
+just a single word, or a picture, and I can't remember the thread of
+what I'm aiming at without
 notes.<span style="color: red" title="Derek's are too, but he can remember his whole presentation and I can't, because he's better at this than me">*</span>
 So, I used to have notes on a bit of paper. The way I create
-presentations&nbsp;is:</p>
+presentations is:</p>
 <ol>
 <li>Write out, longhand, everything I intend to say, word-for-word, like
-    it&#8217;s an essay or a&nbsp;playscript</li>
+    it's an essay or a playscript</li>
 <li>Go through my longhand script and identify all the slides I want to
-    put in to bolster the&nbsp;points</li>
-<li>Spend some time with <a href="http://flickr.com/creativecommons">Flickr&#8217;s Creative Commons image search</a>
-    finding the images that I want for&nbsp;slides</li>
-<li>Put together a&nbsp;presentation</li>
+    put in to bolster the points</li>
+<li>Spend some time with <a href="http://flickr.com/creativecommons">Flickr's Creative Commons image search</a>
+    finding the images that I want for slides</li>
+<li>Put together a presentation</li>
 <li>Make notes for each slide expressing the bullet points of what I
     want to say, with notes to myself to remind me of any particular
-    phrases I want to specifically&nbsp;remember</li>
-<li>Throw away the longhand&nbsp;script</li>
+    phrases I want to specifically remember</li>
+<li>Throw away the longhand script</li>
 </ol>
-<p>The final step, after that lot, used to be &#8220;write out all of the notes
-in big writing on bits of A4 paper&#8221;. Then it occurred to me: why not use
-the presenter view to put my notes on? I used <a href="http://meyerweb.com/eric/tools/s5/">S5</a>, Eric Meyer&#8217;s
-in-browser <span class="caps">HTML</span>/<span class="caps">CSS</span>/JavaScript based presentation system, for a long
+<p>The final step, after that lot, used to be "write out all of the notes
+in big writing on bits of A4 paper". Then it occurred to me: why not use
+the presenter view to put my notes on? I used <a href="http://meyerweb.com/eric/tools/s5/">S5</a>, Eric Meyer's
+in-browser HTML/CSS/JavaScript based presentation system, for a long
 time to make my talks, and it has a presenter view. However, I got
 increasingly hacked off with it being slow and annoying, and so I
-resolved to use OpenOffice for presentations; it&#8217;s just easier.
-OpenOffice, though, doesn&#8217;t have a presenter view (<a href="http://wiki.services.openoffice.org/wiki/Impress_presenter_mode_specification">there&#8217;s a spec for
-it</a>, but it doesn&#8217;t yet exist). After a bit of casting about, I
-discovered that (a) OpenOffice will export presentations to <span class="caps">PDF</span>, and (b)
+resolved to use OpenOffice for presentations; it's just easier.
+OpenOffice, though, doesn't have a presenter view (<a href="http://wiki.services.openoffice.org/wiki/Impress_presenter_mode_specification">there's a spec for
+it</a>, but it doesn't yet exist). After a bit of casting about, I
+discovered that (a) OpenOffice will export presentations to PDF, and (b)
 Evince, the Gnome document viewer, has a presentation mode. So, thought
 I, I could use that instead. OpenOffice allows you to export the notes
-pages too into your <span class="caps">PDF</span>: if you&#8217;ve got three slides in your
+pages too into your PDF: if you've got three slides in your
 presentation<span style="color: red" title="I refuse to call it a 'slide deck'">*</span>,
-each with notes, and you elect to include notes pages in the <span class="caps">PDF</span> export,
-then you get <em>six</em> pages in the resultant <span class="caps">PDF</span> — the first three are just
+each with notes, and you elect to include notes pages in the PDF export,
+then you get <em>six</em> pages in the resultant PDF — the first three are just
 the slides, and the second three are the slides at the top of the page
 with the notes below. So the idea appeared in my head: why not open the
-<span class="caps">PDF</span> <em>twice</em>, put <span class="caps">PDF</span>-1 on page 1 and display it on the projector, and
-<span class="caps">PDF</span>-2 on page 4 (the first notes page) and display it on my screen? Then
-just get them to advance in lockstep — when I advance the projector <span class="caps">PDF</span>
+PDF <em>twice</em>, put PDF-1 on page 1 and display it on the projector, and
+PDF-2 on page 4 (the first notes page) and display it on my screen? Then
+just get them to advance in lockstep — when I advance the projector PDF
 by one page, it advances the notes view on my laptop screen by one page
 as well — and lo, I have a presenter view. Those of you with (a) modern
 versions of PowerPoint or (b) whatever the Mac presentation thing is
 called are doubtless laughing your heads off right now, and rightfully
-so. I can&#8217;t wait for the OpenOffice people to make this happen properly.
+so. I can't wait for the OpenOffice people to make this happen properly.
 Anyway, to do the advancing, you need a little script. This little
 script uses <a href="http://people.redhat.com/zcerza/dogtail/">dogtail</a> to provide the presenter view, and I used it on
 Monday and it worked perfectly. Be warned: this is not a proper
-solution. It&#8217;s a crappy hack, and if it de-bones your cat and deletes
-everything on your hard drive, don&#8217;t come crying to me. Almost certainly
+solution. It's a crappy hack, and if it de-bones your cat and deletes
+everything on your hard drive, don't come crying to me. Almost certainly
 requires Linux, requires dogtail (and accessibility mode turned on in
-Gnome (<span class="caps">NFI</span> whether <span class="caps">KDE</span> has the same features, but it probably does; if
-you use something other than Gnome or <span class="caps">KDE</span> then you&#8217;re on your own, you
+Gnome (NFI whether KDE has the same features, but it probably does; if
+you use something other than Gnome or KDE then you're on your own, you
 freak)), requires Python and PyGtk, requires Evince (which should be
-called &#8220;Document Viewer&#8221;), requires a <span class="caps">PDF</span> (that has been exported from
+called "Document Viewer"), requires a PDF (that has been exported from
 OpenOffice.org Impress with notes page included) on the command line,
 requires a laptop that can do dualhead (mine seems to set up the two
-screens as One Big Screen, so I don&#8217;t know what happens if you have
+screens as One Big Screen, so I don't know what happens if you have
 something that actually does it properly), probably requires the phase
-of the moon to be right as well.&nbsp;Enjoy.  </p>
-<h3><a href="http://www.kryogenix.org/code/evince-presenter-view.py">Evince presenter&nbsp;view</a></h3>
+of the moon to be right as well. Enjoy.  </p>
+<h3><a href="http://www.kryogenix.org/code/evince-presenter-view.py">Evince presenter view</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">gtk</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">dogtail.tree</span> <span class="kn">import</span> <span class="n">root</span>
 
@@ -257,24 +242,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

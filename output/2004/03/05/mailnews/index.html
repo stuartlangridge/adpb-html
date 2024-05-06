@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Mail and news</title>
+		<title>as days pass by &mdash; Mail and news</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Mail and news">
+        <meta property="og:title" content="as days pass by &mdash; Mail and news">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/03/05/mailnews/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,28 +47,27 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2004/03/05/mailnews/"><time 
 			class="dt-published" datetime="2004-03-05T11:00:00+00:00">Mar 05 2004</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/03/05/mailnews/" title="Permalink to Mail and news" rel="bookmark">Mail and&nbsp;news</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/03/05/mailnews/">Mail and news</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>I read mail, I read mailing lists, and I read Usenet newsgroups. I’m
 trying to decide on the best way to handle these three disparate
-entities. I’d like to use <span class="caps"><span class="caps">GUI</span></span> clients to do
+entities. I’d like to use <span class="caps">GUI</span> clients to do
 these things while I’m sitting at my machine, but I need them to be
 accessible through text-mode clients as well, because I spend a lot of
 time sshed in.<br>
-Currently, I do the&nbsp;following:</p>
+Currently, I do the following:</p>
 <ul>
 <li>Read mail in mutt. My inbox is the default @/var/mail/aquarius@,
     which is a Unix mailbox. My saved mail is stored in Unix mailboxes
-    in&nbsp;\~/Mail.</li>
+    in \~/Mail.</li>
 <li>Run inn as a news server, with suck to fetch new news to it from my
-    <span class="caps"><span class="caps">ISP</span></span>’s news server, and tin to read that
-    news from&nbsp;localhost.</li>
+    <span class="caps">ISP</span>’s news server, and tin to read that
+    news from localhost.</li>
 <li>Subscribe a different address to mailing lists, and use <code>groupie</code>,
     an unreleased newstomail gateway, to turn those mailing lists into
     local inn-based newsgroups. I then tell tin that these local groups
@@ -99,27 +84,28 @@ Currently, I do the&nbsp;following:</p>
     Things I could do to solve all this (which are not necessarily
     mutually exclusive):  <ol>
 <li>Move my mail storage to Maildir, and use a
-<span class="caps"><span class="caps">GUI</span></span> client and mutt to read mail. Poke my
+<span class="caps">GUI</span> client and mutt to read mail. Poke my
 local exim installation to deliver into Maildirs rather than mboxes
-(should be doable with a forward&nbsp;file).  </li>
+(should be doable with a forward file).  </li>
 <li>Install <a href="http://leafnode.sourceforge.net/">leafnode and fetch</a> as a news server. Grab news from
-my <span class="caps"><span class="caps">ISP</span></span> with fetch and feed it to leafnode.
-Use any <span class="caps"><span class="caps">GUI</span></span> news client and tin to read&nbsp;news.  </li>
-<li>Move my mail to <span class="caps"><span class="caps">IMAP</span></span>. Use any
-<span class="caps"><span class="caps">GUI</span></span> mail client that understands
-<span class="caps"><span class="caps">IMAP</span></span> and mutt to read my&nbsp;mail.  </li>
-<li>Move my mail to <a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">Cyrus <span class="caps"><span class="caps">IMAP</span></span></a>, and
+my <span class="caps">ISP</span> with fetch and feed it to leafnode.
+Use any <span class="caps">GUI</span> news client and tin to read
+news.  </li>
+<li>Move my mail to <span class="caps">IMAP</span>. Use any
+<span class="caps">GUI</span> mail client that understands
+<span class="caps">IMAP</span> and mutt to read my mail.  </li>
+<li>Move my mail to <a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">Cyrus <span class="caps">IMAP</span></a>, and
 feed news into it using its <a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html#news">news features</a>. Send mailing lists to
 Cyrus too. This, however, requires an inn installation, so I don’t
-really want to do&nbsp;it.  </li>
-<li>Move mailing lists to <span class="caps"><span class="caps">IMAP</span> </span>(if mail is
-<span class="caps"><span class="caps">IMAP</span></span>). Either implement rules in Exim to
-deliver mailing lists to different <span class="caps"><span class="caps">IMAP</span></span>
-mailboxes, or rules on the <span class="caps"><span class="caps">IMAP</span></span> server to
-deliver mailing lists to different <span class="caps"><span class="caps">IMAP</span></span>
+really want to do it.  </li>
+<li>Move mailing lists to <span class="caps">IMAP </span>(if mail is
+<span class="caps">IMAP</span>). Either implement rules in Exim to
+deliver mailing lists to different <span class="caps">IMAP</span>
+mailboxes, or rules on the <span class="caps">IMAP</span> server to
+deliver mailing lists to different <span class="caps">IMAP</span>
 mailboxes, or rules in each mail client (both
-<span class="caps"><span class="caps">GUI</span></span> and mutt) to filter mailing lists into
-different <span class="caps"><span class="caps">IMAP</span></span>&nbsp;boxes.  </li>
+<span class="caps">GUI</span> and mutt) to filter mailing lists into
+different <span class="caps">IMAP</span> boxes.  </li>
 <li>Move mailing lists to leafnode (if using leafnode) using
 <a href="http://zigzag.lvk.cs.msu.su/leafnode/">MLGroups</a>.  </li>
 <li>Use a <a href="http://www.news2mail.com/">news2mail service</a> to get all my news as mail. Problem:
@@ -130,13 +116,13 @@ to read each. It’s pretty much possible to read them in any
 combination across the clients (I don’t want to read
 non-mailing-list mail in a newsreader), but I don’t know how best to
 do it. It might be nice to use just <strong>one</strong> client to read both mail
-and news, but there has to be two: a <span class="caps"><span class="caps">GUI</span></span>
+and news, but there has to be two: a <span class="caps">GUI</span>
 one and a commandline one.<br>
 I’m open to suggestions on all this stuff. How do you handle this
 problem? I suspect a lot of people don’t have the
-<span class="caps"><span class="caps">GUI</span></span>/commandline requirement, which makes
+<span class="caps">GUI</span>/commandline requirement, which makes
 it a lot easier; you just say “I’ll read it all in Thunderbird“, or
-something&nbsp;similar.</li>
+something similar.</li>
 </ol>
 </li>
 </ul>
@@ -216,24 +202,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

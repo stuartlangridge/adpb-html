@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Seeing my home server from my phone</title>
+		<title>as days pass by &mdash; Seeing my home server from my phone</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Seeing my home server from my phone">
+        <meta property="og:title" content="as days pass by &mdash; Seeing my home server from my phone">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2013/08/14/seeing-my-home-server-from-my-phone/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,70 +47,69 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2013/08/14/seeing-my-home-server-from-my-phone/"><time 
 			class="dt-published" datetime="2013-08-14T15:13:00+01:00">Aug 14 2013</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/08/14/seeing-my-home-server-from-my-phone/" title="Permalink to Seeing my home server from my phone" rel="bookmark">Seeing my home server from my&nbsp;phone</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/08/14/seeing-my-home-server-from-my-phone/">Seeing my home server from my phone</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>I&#8217;ve got a computer in my cellar. It&#8217;s where media lives, and a bunch of
-little web apps that I&#8217;ve written to do stuff that I care about. It&#8217;d be
+			<p>I've got a computer in my cellar. It's where media lives, and a bunch of
+little web apps that I've written to do stuff that I care about. It'd be
 handy to be able to get at those little web apps from my phone,
-wheresoever my phone is. However, I don&#8217;t want to just expose the server
-to the vagaries of the web. So, a few&nbsp;steps.</p>
-<h4>Make sure the server can be connected to by <span class="caps">SSH</span></h4>
-<p><span class="caps">SSH</span>, as I imagine most readers know, is the <em>secure shell</em>; a way to
-connect to a computer&#8217;s command line as if you were sitting at it. (For
+wheresoever my phone is. However, I don't want to just expose the server
+to the vagaries of the web. So, a few steps.</p>
+<h4>Make sure the server can be connected to by SSH</h4>
+<p>SSH, as I imagine most readers know, is the <em>secure shell</em>; a way to
+connect to a computer's command line as if you were sitting at it. (For
 Ubuntu computers, anyway. I think Macs have ssh too; Windows computers
-generally don&#8217;t.) I&#8217;m fairly sure that ssh comes out of the box on
-Ubuntu, but if not there&#8217;s <a href="https://help.ubuntu.com/10.04/serverguide/openssh-server.html">a page in the help guide about setting it
+generally don't.) I'm fairly sure that ssh comes out of the box on
+Ubuntu, but if not there's <a href="https://help.ubuntu.com/10.04/serverguide/openssh-server.html">a page in the help guide about setting it
 up</a>.</p>
-<h4>Make sure that I can connect to that server over <span class="caps">SSH</span> from&nbsp;outside</h4>
-<p>Like most people, I&#8217;ve got a router which connects to my <span class="caps">ISP</span> and
+<h4>Make sure that I can connect to that server over SSH from outside</h4>
+<p>Like most people, I've got a router which connects to my ISP and
 provides wired network and wifi to the house, and the server computer in
-the cellar is connected to it. However, you can&#8217;t connect to computers
+the cellar is connected to it. However, you can't connect to computers
 inside my house from outside the house: your connection gets as far as
 my router and then stops. The way to change this is <em>port forwarding</em>;
 when you try and connect to my router on a particular port, it actually
 sends that connection through the router and into a particular computer
-in the house. <span class="caps">SSH</span> runs on port 22, so set up the router so that it
+in the house. SSH runs on port 22, so set up the router so that it
 forwards port 22 on itself to port 22 on the server computer. (How to do
-this is very router-specific. <span class="caps">RTFM</span>.)</p>
-<h4>Give your house a name on the&nbsp;internet</h4>
-<p>Normally, while the house &#8212; while the router, I should say &#8212; is
-connected to the internet, it can be connected <em>to</em> with its <span class="caps">IP</span> address;
+this is very router-specific. RTFM.)</p>
+<h4>Give your house a name on the internet</h4>
+<p>Normally, while the house -- while the router, I should say -- is
+connected to the internet, it can be connected <em>to</em> with its IP address;
 a string of digits like a telephone number. Of course, these are hard to
 remember, which is why everyone uses domain names: ubuntu.com rather
-than 91.189.94.156. The <span class="caps">IP</span> address for your router will occasionally
-change (most ISPs charge you extra for a &#8220;static <span class="caps">IP</span>&#8221; which does not
+than 91.189.94.156. The IP address for your router will occasionally
+change (most ISPs charge you extra for a "static IP" which does not
 change), so you want something which will give your router a domain
-name, an easy-to-remember alias for the <span class="caps">IP</span> address, and keep it up to
-date when the <span class="caps">IP</span> address changes. For this I use <a href="http://dyndns.org">DynDNS.org</a> who I&#8217;ve
+name, an easy-to-remember alias for the IP address, and keep it up to
+date when the IP address changes. For this I use <a href="http://dyndns.org">DynDNS.org</a> who I've
 had an account with for years. Sign up for an account and you get a
-name, like whatever.dyndns.org, which you can point at your <span class="caps">IP</span>&nbsp;address.</p>
-<h4>Keep the domain name up to date when your <span class="caps">IP</span>&nbsp;changes</h4>
+name, like whatever.dyndns.org, which you can point at your IP address.</p>
+<h4>Keep the domain name up to date when your IP changes</h4>
 <p>To keep the name up to date, I installed <a href="https://apps.ubuntu.com/cat/applications/ddclient/">ddclient</a> on the server
-computer, and taught it about my DynDNS account. Now, when my <span class="caps">IP</span> address
+computer, and taught it about my DynDNS account. Now, when my IP address
 changes, ddclient will update dyndns.org so that my chosen domain name
-correctly points at the new <span class="caps">IP</span>&nbsp;address.</p>
-<h4>Connect from your&nbsp;phone</h4>
+correctly points at the new IP address.</p>
+<h4>Connect from your phone</h4>
 <p>I installed <a href="https://itunes.apple.com/gb/app/vssh-lite/id535055496?mt=8">vSSH Lite</a> from the iPhone app store. I can now connect
 from my phone to <em>mychosenname</em>.dyndns.org and log in with my username
-and password, and I&#8217;ve got the command line on my&nbsp;server!</p>
-<h4>More port forwarding, to connect to the web&nbsp;server</h4>
-<p>But I don&#8217;t really want the command line: what I want is to connect to
-the web apps on the server. For this, use <span class="caps">SSH</span>&#8217;s port forwarding feature.
+and password, and I've got the command line on my server!</p>
+<h4>More port forwarding, to connect to the web server</h4>
+<p>But I don't really want the command line: what I want is to connect to
+the web apps on the server. For this, use SSH's port forwarding feature.
 This is a bit different from the port forwarding above; instead of the
 router passing connections through itself, what this does is make a
 local port on your phone connect to a remote port on the server. So, I
-connect to my server with <span class="caps">SSH</span>, and port forward <em>local port</em> 8080 to
+connect to my server with SSH, and port forward <em>local port</em> 8080 to
 <em>remote port</em> 80. Then, I can open up iPhone Safari and browse to
-http://localhost:8080/ and I&#8217;m <em>actually</em> connecting to the web server
-on my computer in the cellar. Which was the&nbsp;goal.</p>
-<p>Techie people will already know this stuff, of course. But it&#8217;s quite
-cool to be able to glue together all these little&nbsp;parts.</p>
+http://localhost:8080/ and I'm <em>actually</em> connecting to the web server
+on my computer in the cellar. Which was the goal.</p>
+<p>Techie people will already know this stuff, of course. But it's quite
+cool to be able to glue together all these little parts.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2013/08/12/federated-uncertainty/">Previous post</a></li>
@@ -201,24 +186,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

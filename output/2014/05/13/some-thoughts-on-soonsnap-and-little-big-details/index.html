@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Some thoughts on soonsnap and little big details</title>
+		<title>as days pass by &mdash; Some thoughts on soonsnap and little big details</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Some thoughts on soonsnap and little big details">
+        <meta property="og:title" content="as days pass by &mdash; Some thoughts on soonsnap and little big details">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,41 +47,40 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/"><time 
 			class="dt-published" datetime="2014-05-13T14:29:00+01:00">May 13 2014</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/" title="Permalink to Some thoughts on soonsnap and little big details" rel="bookmark">Some thoughts on soonsnap and little big&nbsp;details</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/">Some thoughts on soonsnap and little big details</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>I built a thing called <a href="http://soonsnap.com">soonsnap</a>, and various people said that I should write up how and&nbsp;why.</p>
+			<p>I built a thing called <a href="http://soonsnap.com">soonsnap</a>, and various people said that I should write up how and why.</p>
 <p><img alt="Soonsnap" src="http://kryogenix.org/images/soonsnap.png" title="How Soonsnap looks"></p>
-<p>First, what it&#8217;s&nbsp;for.</p>
-<p>Here&#8217;s the use case. You&#8217;re there in the pub, Friday night, and there&#8217;s a group of people squeezing themselves together behind a table while one of their number takes a photo of them. So you step up, helpful, and say &#8220;hey, let me take that, then you can be in it!&#8221; and whip your phone from your pocket and snap a picture of them all pulling faces and drinking&nbsp;cocktails.</p>
-<p>Great. You&#8217;ve got a picture of them. How do you give that picture to the people in&nbsp;it?</p>
-<p>Here are the&nbsp;constraints:</p>
+<p>First, what it's for.</p>
+<p>Here's the use case. You're there in the pub, Friday night, and there's a group of people squeezing themselves together behind a table while one of their number takes a photo of them. So you step up, helpful, and say "hey, let me take that, then you can be in it!" and whip your phone from your pocket and snap a picture of them all pulling faces and drinking cocktails.</p>
+<p>Great. You've got a picture of them. How do you give that picture to the people in it?</p>
+<p>Here are the constraints:</p>
 <ul>
-<li>You don&#8217;t know these people. This is not a surreptitious excuse to obtain the phone number of the attractive one in the group. So you can&#8217;t ask for a phone number, or add them as a Facebook&nbsp;friend</li>
-<li>You&#8217;re all in the pub having fun; you&#8217;re not at a computer class. You want to get this photo to them as quickly and easily as possible. So if you ask them to do anything complicated to get the photo, such as &#8220;install this app&#8221;, or &#8220;turn on Bluetooth and then tell me your phone&#8217;s Bluetooth name&#8221;, they&#8217;ll just shrug and say &#8220;whatever&#8221; and ignore you like the sad techie lunatic that you&nbsp;are</li>
-<li>Either you or they might not have an iPhone, so no AirDrop for&nbsp;you</li>
-<li>You&#8217;re in the pub. So this is primarily for mobile. Obviously it should work on a big wide screen, but that&#8217;s not what it&#8217;s aimed&nbsp;at</li>
-<li>Me, the person running the server, does not want to pay for lots of hosting, and people in the pub don&#8217;t want photos of them stored forever in someone else&#8217;s cloud. Images are not stored on the server; they&#8217;re transferred as much as possible&nbsp;device-to-device</li>
+<li>You don't know these people. This is not a surreptitious excuse to obtain the phone number of the attractive one in the group. So you can't ask for a phone number, or add them as a Facebook friend</li>
+<li>You're all in the pub having fun; you're not at a computer class. You want to get this photo to them as quickly and easily as possible. So if you ask them to do anything complicated to get the photo, such as "install this app", or "turn on Bluetooth and then tell me your phone's Bluetooth name", they'll just shrug and say "whatever" and ignore you like the sad techie lunatic that you are</li>
+<li>Either you or they might not have an iPhone, so no AirDrop for you</li>
+<li>You're in the pub. So this is primarily for mobile. Obviously it should work on a big wide screen, but that's not what it's aimed at</li>
+<li>Me, the person running the server, does not want to pay for lots of hosting, and people in the pub don't want photos of them stored forever in someone else's cloud. Images are not stored on the server; they're transferred as much as possible device-to-device</li>
 </ul>
-<p>Sometimes, the people asking for a photo will hand you a phone to take it with. At that point, you don&#8217;t need any technology to assist; take the picture, give the phone back, done. But if they don&#8217;t&#8230; you need to get that picture to&nbsp;them.</p>
-<p>The one huge overriding goal here is complete ease of use. Anything at all which can be construed as a barrier will mean that you&#8217;re unsuccessful. &#8220;To get the picture, install this app&#8221; takes too long and is too annoying. &#8220;Turn on Bluetooth&#8221; is too annoying. &#8220;Turn on Android Beam&#8221; is too annoying. This means the solution needs to be on the web, because everybody has&nbsp;that.</p>
-<p>But it should feel like an app, because people are accustomed to that and so the sense of familiarity is important. It&#8217;s a very simple set of actions: either &#8220;take a photo&#8221; or &#8220;receive a photo&#8221;. So the thing I came up with, soonsnap, is&nbsp;this:</p>
+<p>Sometimes, the people asking for a photo will hand you a phone to take it with. At that point, you don't need any technology to assist; take the picture, give the phone back, done. But if they don't... you need to get that picture to them.</p>
+<p>The one huge overriding goal here is complete ease of use. Anything at all which can be construed as a barrier will mean that you're unsuccessful. "To get the picture, install this app" takes too long and is too annoying. "Turn on Bluetooth" is too annoying. "Turn on Android Beam" is too annoying. This means the solution needs to be on the web, because everybody has that.</p>
+<p>But it should feel like an app, because people are accustomed to that and so the sense of familiarity is important. It's a very simple set of actions: either "take a photo" or "receive a photo". So the thing I came up with, soonsnap, is this:</p>
 <ol>
-<li>You hit this website and it tells you to pick or take a&nbsp;photo</li>
-<li>It gives you a simple four-letter code and gives you instructions to read out to them: go to this website, enter the four letters of the&nbsp;code</li>
-<li>They do it: it gives them the&nbsp;photo</li>
-<li>You say &#8220;there you go&#8221;, they say &#8220;thank you!&#8221;, and another little human interaction is improved with technology without getting in the&nbsp;way</li>
+<li>You hit this website and it tells you to pick or take a photo</li>
+<li>It gives you a simple four-letter code and gives you instructions to read out to them: go to this website, enter the four letters of the code</li>
+<li>They do it: it gives them the photo</li>
+<li>You say "there you go", they say "thank you!", and another little human interaction is improved with technology without getting in the way</li>
 </ol>
-<p>So there are two paths through it: the photo taker, and the photo getter. The taker needs to say &#8220;take a photo&#8221;, then take the photo, then get a nice clear set of instructions and a code to tell to the getter. The getter needs to get to the website itself, say &#8220;receive a photo&#8221;, type in the code. That&#8217;s&nbsp;it.</p>
-<p>To this end, all the thinking went into making soonsnap so it&#8217;s really hard to screw the interaction up. Take the codes as an example. They&#8217;re four characters &#8212; long enough that a code isn&#8217;t reasonably guessable, short enough that you can say it to someone else in a crowded bar and they&#8217;ll hear you. The code does not repeat any characters. This is done so that when tapping a letter of the code, that letter disappears and can&#8217;t be used again &#8212; this prevents someone accidentally tapping a letter twice. The characters used for the code could have been all 36 letters and numbers, but it&#8217;s actually only 20: <span class="caps">0123456789ACFHNRUWXY</span>. This is so that all letters which sound the same are removed; this stops someone saying &#8220;did you say <strong>B</strong> zero one two or <strong>P</strong> zero one two?&#8221;, especially if you&#8217;re shouting over the music in a crowded&nbsp;pub. </p>
-<p>And it looks simple but colourful and clear to make it easy to see what&#8217;s going on even if your vision&#8217;s a bit blurry. I wanted it to be attractive partially because of the aesthetic usability effect, and partially just because, well, things should be pretty. I knew I couldn&#8217;t do that, so I talked to <a href="http://snwh.org">Sam Hewitt</a> who put together a great visual design for soonsnap. Thank you,&nbsp;Sam!</p>
-<p>Technologically, soonsnap is designed so that images aren&#8217;t stored on the server. Partially this is for security &#8212; there&#8217;s no big archive there, and your photos aren&#8217;t being kept around by a service you don&#8217;t trust &#8212; and partially for cost, because it&#8217;s not supposed to be a big photo archive. It&#8217;s used to send photos. Soonsnap uses <a href="http://socket.io/">socket.io</a>, which is basically a self-hosted version of something like <a href="http://www.pubnub.com/">pubnub</a>. So the images go <em>through</em> the soonsnap server, but they&#8217;re transmitted from sender to receiver and aren&#8217;t kept around on the server. I&#8217;d have liked to do that with WebRTC so that it&#8217;s genuinely peer-to-peer and doesn&#8217;t involve the server at all, but firstly you need to set up a <span class="caps">STUN</span> server to do that and that&#8217;s complicated, and secondly iPhones don&#8217;t do WebRTC&nbsp;yet.</p>
-<p>Update, May 2020: as a result of <a href="https://github.com/stuartlangridge/pubphoto/issues/4">issue #4</a> I should explain, in addition to the above technical information, why Soonsnap scales images down to 500px before sending them. Soonsnap&#8217;s overriding goal, which takes precedence over everything else, is making the transaction as quick and unobtrusive as possible. We shrink the image to minimise the amount of time taken for the transfer, and to reduce the bandwidth that has to be shipped through the back end, and the screens are all as basic as is possible to avoid confusion. I don&#8217;t think that the benefits from sending a larger image (that you get a higher-quality image) outweigh the deficits (the sending screen is mildly more confusing; transfer takes longer), which is why we shrink the image. If someone else were to wish to deploy soonsnap themselves, getting <a href="https://github.com/stuartlangridge/pubphoto/">the code from github</a> to do so, and they want to relax that restriction, then the 500x500 box for scaling is configured <a href="https://github.com/stuartlangridge/pubphoto/blob/master/index.html#L963">in index.html</a> and can be changed to whatever the deployer&nbsp;prefers.</p>
+<p>So there are two paths through it: the photo taker, and the photo getter. The taker needs to say "take a photo", then take the photo, then get a nice clear set of instructions and a code to tell to the getter. The getter needs to get to the website itself, say "receive a photo", type in the code. That's it.</p>
+<p>To this end, all the thinking went into making soonsnap so it's really hard to screw the interaction up. Take the codes as an example. They're four characters -- long enough that a code isn't reasonably guessable, short enough that you can say it to someone else in a crowded bar and they'll hear you. The code does not repeat any characters. This is done so that when tapping a letter of the code, that letter disappears and can't be used again -- this prevents someone accidentally tapping a letter twice. The characters used for the code could have been all 36 letters and numbers, but it's actually only 20: 0123456789ACFHNRUWXY. This is so that all letters which sound the same are removed; this stops someone saying "did you say <strong>B</strong> zero one two or <strong>P</strong> zero one two?", especially if you're shouting over the music in a crowded pub. </p>
+<p>And it looks simple but colourful and clear to make it easy to see what's going on even if your vision's a bit blurry. I wanted it to be attractive partially because of the aesthetic usability effect, and partially just because, well, things should be pretty. I knew I couldn't do that, so I talked to <a href="http://snwh.org">Sam Hewitt</a> who put together a great visual design for soonsnap. Thank you, Sam!</p>
+<p>Technologically, soonsnap is designed so that images aren't stored on the server. Partially this is for security -- there's no big archive there, and your photos aren't being kept around by a service you don't trust -- and partially for cost, because it's not supposed to be a big photo archive. It's used to send photos. Soonsnap uses <a href="http://socket.io/">socket.io</a>, which is basically a self-hosted version of something like <a href="http://www.pubnub.com/">pubnub</a>. So the images go <em>through</em> the soonsnap server, but they're transmitted from sender to receiver and aren't kept around on the server. I'd have liked to do that with WebRTC so that it's genuinely peer-to-peer and doesn't involve the server at all, but firstly you need to set up a STUN server to do that and that's complicated, and secondly iPhones don't do WebRTC yet.</p>
+<p>Update, May 2020: as a result of <a href="https://github.com/stuartlangridge/pubphoto/issues/4">issue #4</a> I should explain, in addition to the above technical information, why Soonsnap scales images down to 500px before sending them. Soonsnap's overriding goal, which takes precedence over everything else, is making the transaction as quick and unobtrusive as possible. We shrink the image to minimise the amount of time taken for the transfer, and to reduce the bandwidth that has to be shipped through the back end, and the screens are all as basic as is possible to avoid confusion. I don't think that the benefits from sending a larger image (that you get a higher-quality image) outweigh the deficits (the sending screen is mildly more confusing; transfer takes longer), which is why we shrink the image. If someone else were to wish to deploy soonsnap themselves, getting <a href="https://github.com/stuartlangridge/pubphoto/">the code from github</a> to do so, and they want to relax that restriction, then the 500x500 box for scaling is configured <a href="https://github.com/stuartlangridge/pubphoto/blob/master/index.html#L963">in index.html</a> and can be changed to whatever the deployer prefers.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2014/05/12/nomad-chargekey-chargecard-review/">Previous post</a></li>
@@ -172,24 +157,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Desktop Couch IRC talk</title>
+		<title>as days pass by &mdash; Desktop Couch IRC talk</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Desktop Couch IRC talk">
+        <meta property="og:title" content="as days pass by &mdash; Desktop Couch IRC talk">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/09/03/desktop-couch-irc-talk/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,507 +47,524 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2009/09/03/desktop-couch-irc-talk/"><time 
 			class="dt-published" datetime="2009-09-03T08:36:00+01:00">Sep 03 2009</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/09/03/desktop-couch-irc-talk/" title="Permalink to Desktop Couch IRC talk" rel="bookmark">Desktop Couch <span class="caps">IRC</span>&nbsp;talk</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/09/03/desktop-couch-irc-talk/">Desktop Couch IRC talk</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Yesterday I did an introductory talk to Desktop Couch as part of Ubuntu
 Developer Week, talking about what it is, how to use the APIs to store
 data, and who else is using it. The full logs of the session are
 available at <a href="https://wiki.ubuntu.com/MeetingLogs/devweek0909/CouchDB">https://wiki.ubuntu.com/MeetingLogs/devweek0909/CouchDB</a>,
-and are reposted here (with some nicer formatting&nbsp;:))  </p>
+and are reposted here (with some nicer formatting :))  </p>
 <h2>Introduction</h2>
 <ul>
-<li>Hi, all. Welcome to Stuart&#8217;s House Of Desktop Couch&nbsp;Knowledge.</li>
-<li>I&#8217;m Stuart Langridge, and I hack on the desktopcouch&nbsp;project!</li>
-<li>Over the next hour I&#8217;m going to explain what desktopcouch is, how to
+<li>Hi, all. Welcome to Stuart's House Of Desktop Couch Knowledge.</li>
+<li>I'm Stuart Langridge, and I hack on the desktopcouch project!</li>
+<li>Over the next hour I'm going to explain what desktopcouch is, how to
     use it, who else is using it, and some of the things you will find
-    useful to know about the&nbsp;project.</li>
-<li>I&#8217;ll talk for a section, and then stop for&nbsp;questions.</li>
+    useful to know about the project.</li>
+<li>I'll talk for a section, and then stop for questions.</li>
 <li>Please feel free to ask questions in #ubuntu-classroom-chat, and
-    I&#8217;ll look at the end of each section to see which questions have
-    been posted. Ask at any time; you don&#8217;t have to wait until the end
-    of a&nbsp;section.</li>
+    I'll look at the end of each section to see which questions have
+    been posted. Ask at any time; you don't have to wait until the end
+    of a section.</li>
 <li>You should prefix your question in #ubuntu-classroom-chat with
-    <span class="caps">QUESTION</span>: so that I notice it&nbsp;:-)</li>
+    QUESTION: so that I notice it :-)</li>
 </ul>
-<h2>What is&nbsp;desktopcouch?</h2>
+<h2>What is desktopcouch?</h2>
 <ul>
-<li>So, firstly, what&#8217;s&nbsp;desktopcouch?</li>
-<li>Well, it&#8217;s giving every Ubuntu user a CouchDB on their&nbsp;desktop.</li>
+<li>So, firstly, what's desktopcouch?</li>
+<li>Well, it's giving every Ubuntu user a CouchDB on their desktop.</li>
 <li>CouchDB is an Apache project to provide a document-oriented
-    database. If you&#8217;re familiar with <span class="caps">SQL</span> databases, where you define a
+    database. If you're familiar with SQL databases, where you define a
     table and then a table has a number of rows and each row has the
-    same columns in it&#8230;this is not like&nbsp;that.</li>
-<li>Instead, in CouchDB you store &#8220;documents&#8221;, where each document is a
+    same columns in it...this is not like that.</li>
+<li>Instead, in CouchDB you store "documents", where each document is a
     set of key/value pairs. Think of this like a Python dictionary, or a
-    <span class="caps">JSON</span>&nbsp;document.</li>
-<li>So you can store one document like&nbsp;this:</li>
+    JSON document.</li>
+<li>So you can store one document like this:</li>
 <li><code>{ "name": "Stuart Langridge", "project": "Desktop Couch", "hair_colour": "red" }</code></li>
-<li>and another document which is completely&nbsp;different:</li>
+<li>and another document which is completely different:</li>
 <li><code>{ "name": "Stuart Langridge", "outgoings": [ { "shop": "In and Out Burger", "cost": "$12.99" } , { "shop": "Ferrari dealership", "cost": "$175000" } ] }</code></li>
-<li>The interface to CouchDB is pure <span class="caps">HTTP</span>. Just like the web. It&#8217;s
-    RESTful, for those of you who are familiar with web&nbsp;development.</li>
+<li>The interface to CouchDB is pure HTTP. Just like the web. It's
+    RESTful, for those of you who are familiar with web development.</li>
 <li>This means that every programming language already knows how to
-    speak it, at least in basic&nbsp;terms.</li>
+    speak it, at least in basic terms.</li>
 <li>CouchDB also comes with an in-built in-browser editor, so you can
-    look at and browse around and edit all the data stored in&nbsp;it.</li>
+    look at and browse around and edit all the data stored in it.</li>
 <li>So, the desktopcouch project is all about providing these databases
-    for every user, so each user&#8217;s applications can store their data all
-    in one&nbsp;place.</li>
+    for every user, so each user's applications can store their data all
+    in one place.</li>
 <li>You can have as many databases in your desktop Couch as you or your
-    applications want, and storage is&nbsp;unlimited.</li>
+    applications want, and storage is unlimited.</li>
 </ul>
-<h2>Sharing data between&nbsp;machines</h2>
+<h2>Sharing data between machines</h2>
 <ul>
-<li>Desktop Couch is built to do &#8220;replication&#8221;, synchronizing your data
+<li>Desktop Couch is built to do "replication", synchronizing your data
     between different machines. So if you have, say, Firefox storing
     your bookmarks in your desktop Couch on your laptop, those bookmarks
     could be automatically synchronized to your Mini 9 netbook, or to
-    your desktop&nbsp;computer.</li>
+    your desktop computer.</li>
 <li>They can also be synchronized to Ubuntu One, or another
     running-in-the-cloud service, so you can see that data on the web,
-    or synchronize between two machines that aren&#8217;t on the same&nbsp;network.</li>
-<li>So you&#8217;ve got your bookmarks everywhere. Your own personal
-    del.icio.us, but it&#8217;s your data, not locked up solely on anyone
-    else&#8217;s&nbsp;servers.</li>
+    or synchronize between two machines that aren't on the same network.</li>
+<li>So you've got your bookmarks everywhere. Your own personal
+    del.icio.us, but it's your data, not locked up solely on anyone
+    else's servers.</li>
 <li>Imagine if your apps stored their preferences in desktop Couch.
     Santa Claus brings you a new laptop, you plug it in, pair it with
-    your existing machine, and all your apps are set up. No&nbsp;work.</li>
+    your existing machine, and all your apps are set up. No work.</li>
 </ul>
-<h2>Sharing data between&nbsp;applications</h2>
+<h2>Sharing data between applications</h2>
 <ul>
 <li>But sharing data between machines is only half the win. The other
-    half is sharing data between&nbsp;applications.</li>
-<li>I want all my stuff to collaborate. I don&#8217;t want to have to &#8220;import&#8221;
+    half is sharing data between applications.</li>
+<li>I want all my stuff to collaborate. I don't want to have to "import"
     data from one program to another, if I switch from Thunderbird to
-    Evolution to KMail to&nbsp;mutt.</li>
+    Evolution to KMail to mutt.</li>
 <li>I want any application to know about my address book, to allow any
-    application to easily add &#8220;send this to another person&#8221;, so that I
-    can work with people I&nbsp;know.</li>
+    application to easily add "send this to another person", so that I
+    can work with people I know.</li>
 <li>I want to be able to store my songs in Banshee and rate them in
-    Rhythmbox if I want &#8212; when people say that the Ubuntu desktop is
-    about choice, that shouldn&#8217;t mean choosing between different
+    Rhythmbox if I want -- when people say that the Ubuntu desktop is
+    about choice, that shouldn't mean choosing between different
     incompatible data silos. I can choose one application and then
     choose another, you can choose a third, and we can all cooperate on
-    the&nbsp;data.</li>
+    the data.</li>
 <li>My choice should be how I use my applications, and how they work; I
-    shouldn&#8217;t have to choose between underlying data storage. With apps
-    using desktopcouch I don&#8217;t have&nbsp;to.</li>
-<li>All my data is stored in a unified place in a singular way &#8212; and I
+    shouldn't have to choose between underlying data storage. With apps
+    using desktopcouch I don't have to.</li>
+<li>All my data is stored in a unified place in a singular way -- and I
     can look at my data any time I want, no matter which application put
     it there! Collaboration is what the open source desktop is good at,
-    because we&#8217;re all working together. It should be easy to collaborate
-    on&nbsp;data.</li>
-<li>That&#8217;s a brief summary of what desktopcouch *is*: any questions so
-    far before we get on to the meat: how do you actually Use This&nbsp;Thing?</li>
+    because we're all working together. It should be easy to collaborate
+    on data.</li>
+<li>That's a brief summary of what desktopcouch *is*: any questions so
+    far before we get on to the meat: how do you actually Use This
+    Thing?</li>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>mandel_macaque (hey, mandel :)) &#8212; that&#8217;s what the desktopcouch
+<li>mandel_macaque (hey, mandel :)) -- that's what the desktopcouch
     mailing list is for, so people can get together and talk about what
-    should be in a standard&nbsp;record</li>
-<li>there&#8217;s no ivory tower which hands down standard formats from the
-    top of the mountain&nbsp;:)</li>
-<li>mandel_macaque&#8217;s question was: will there be a &#8220;group&#8221; that will
-    try to define standard&nbsp;records?</li>
-<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: how does desktopcouch differ
-    from/replace&nbsp;gconf?</li>
+    should be in a standard record</li>
+<li>there's no ivory tower which hands down standard formats from the
+    top of the mountain :)</li>
+<li>mandel_macaque's question was: will there be a "group" that will
+    try to define standard records?</li>
+<li>\&lt;mhall119|work&gt; QUESTION: how does desktopcouch differ
+    from/replace gconf?</li>
 <li>mhall119|work, desktopcouch is for storing all sorts of user data.
-    It&#8217;s not just about preferences, although you could store
-    preferences in&nbsp;it</li>
-<li>\&lt;sandy|lu1k&gt; <span class="caps">QUESTION</span>: What about performance? Why would
-    Banshee/rhythmbox switch to a slower way to store&nbsp;metadata?</li>
-<li>sandy|lu1k, performance hasn&#8217;t really been an issue in our testing,
+    It's not just about preferences, although you could store
+    preferences in it</li>
+<li>\&lt;sandy|lu1k&gt; QUESTION: What about performance? Why would
+    Banshee/rhythmbox switch to a slower way to store metadata?</li>
+<li>sandy|lu1k, performance hasn't really been an issue in our testing,
     and couchdb provides some serious advantages over existing things
-    like sqlite or text files, like replication and user&nbsp;browseability</li>
-<li>\&lt;mandel_macaque&gt; <span class="caps">QUESTIONS</span>: Is desktopcouch creating the required
+    like sqlite or text files, like replication and user browseability</li>
+<li>\&lt;mandel_macaque&gt; QUESTIONS: Is desktopcouch creating the required
     infrastructure to allow user sync, or should applications take care
-    of&nbsp;that?</li>
-<li>desktopcouch is providing infrastructure and <span class="caps">UI</span> to &#8220;pair&#8221; machines
+    of that?</li>
+<li>desktopcouch is providing infrastructure and UI to "pair" machines
     and handle all the replication; applications do not have to know or
-    worry about data being replicated to your other&nbsp;computers</li>
-<li>\&lt;jopojop&gt; <span class="caps">QUESTION</span>: can you store media like images, audio and&nbsp;video?</li>
-<li>jopojop, not really &#8212; couchdb is designed for textual, key/value
-    pair, dictionary data, not for binary&nbsp;data</li>
-<li>it&#8217;s possible to store binary data in desktopcouch, but I&#8217;d suggest
+    worry about data being replicated to your other computers</li>
+<li>\&lt;jopojop&gt; QUESTION: can you store media like images, audio and
+    video?</li>
+<li>jopojop, not really -- couchdb is designed for textual, key/value
+    pair, dictionary data, not for binary data</li>
+<li>it's possible to store binary data in desktopcouch, but I'd suggest
     not importing your whole mp3 collection into it; store the metadata.
-    The filesystem is good at handling binary&nbsp;data</li>
-<li>\&lt;sandy|lu1k&gt; <span class="caps">QUESTION</span> the real performance concern that media apps
-    have is query speed for doing quick&nbsp;searches</li>
-<li>sandy|lu1k, that&#8217;s something we&#8217;d really like to see more
-    experimentation with. couchdb&#8217;s views architecture makes it really,
-    really quick for some&nbsp;uses,</li>
+    The filesystem is good at handling binary data</li>
+<li>\&lt;sandy|lu1k&gt; QUESTION the real performance concern that media apps
+    have is query speed for doing quick searches</li>
+<li>sandy|lu1k, that's something we'd really like to see more
+    experimentation with. couchdb's views architecture makes it really,
+    really quick for some uses,</li>
 </ul>
-<h2>Using desktopcouch.records, the Python <span class="caps">API</span></h2>
+<h2>Using desktopcouch.records, the Python API</h2>
 <ul>
-<li>ok, let&#8217;s talk about how to use it&nbsp;:)</li>
+<li>ok, let's talk about how to use it :)</li>
 <li>The easiest way to use desktopcouch is from Python, using the
-    desktopcouch.records&nbsp;module.</li>
-<li>This is installed by default in&nbsp;Karmic.</li>
-<li>An individual &#8220;document&#8221; in desktop Couch is called a &#8220;record&#8221;,
+    desktopcouch.records module.</li>
+<li>This is installed by default in Karmic.</li>
+<li>An individual "document" in desktop Couch is called a "record",
     because there are certain extra things that are in a record over and
     above what stock CouchDB requires, and desktopcouch.records takes
-    care of this for&nbsp;you.</li>
-<li>First, a bit of example Python code! This is taken from the docs at&nbsp;/usr/share/doc/python-desktopcouch-records/api/records.txt.</li>
+    care of this for you.</li>
+<li>First, a bit of example Python code! This is taken from the docs at
+    /usr/share/doc/python-desktopcouch-records/api/records.txt.</li>
 <li><code>&gt;&gt;&gt; from desktopcouch.records.server import CouchDatabase</code></li>
 <li><code>&gt;&gt;&gt; from desktopcouch.records.record import Record</code></li>
 <li><code>&gt;&gt;&gt; my_database = CouchDatabase("testing", create=True)</code></li>
-<li># get the &#8220;testing&#8221; database. In your desktop Couch you can have
+<li># get the "testing" database. In your desktop Couch you can have
     many databases; each application can have its own with whatever name
-    it wants. If it doesn&#8217;t exist already, this creates&nbsp;it.</li>
+    it wants. If it doesn't exist already, this creates it.</li>
 <li><code>&gt;&gt;&gt; my_record = Record({ "name": "Stuart Langridge", "project": "Desktop Couch", "hair_colour": "red" }, record_type='http://example.com/testrecord')</code></li>
 <li># Create a record, currently not stored anywhere. Records must have
-    a &#8220;record type&#8221;, a <span class="caps">URL</span> which is unique to this sort of&nbsp;record.</li>
+    a "record type", a URL which is unique to this sort of record.</li>
 <li><code>&gt;&gt;&gt; my_record["weight"] = "too high!"</code></li>
 <li># A record works just like a Python dictionary, so you can add and
-    remove keys from&nbsp;it.</li>
+    remove keys from it.</li>
 <li><code>&gt;&gt;&gt; my_record_id = my_database.put_record(my_record)</code></li>
 <li># Actually save the record into the database. Records each have a
-    unique <span class="caps">ID</span>; if you don&#8217;t specify one, the records <span class="caps">API</span> will choose one
-    for you, and return&nbsp;it.</li>
+    unique ID; if you don't specify one, the records API will choose one
+    for you, and return it.</li>
 <li><code>&gt;&gt;&gt; fetched_record = my_database.get_record(my_record_id)</code></li>
-<li># You can retrieve records by <span class="caps">ID</span></li>
+<li># You can retrieve records by ID</li>
 <li><code>&gt;&gt;&gt; print fetched_record["name"]</code></li>
-<li><span class="dquo">&#8220;</span>Stuart&nbsp;Langridge&#8221;</li>
+<li>"Stuart Langridge"</li>
 <li># and the record you get back is a dictionary, just like when
-    you&#8217;re creating&nbsp;it.</li>
-<li>That&#8217;s some very basic code for working with desktop Couch; it&#8217;s
-    dead easy to save records into the&nbsp;database.</li>
-<li>You can work with it like any key/value pair&nbsp;database.</li>
+    you're creating it.</li>
+<li>That's some very basic code for working with desktop Couch; it's
+    dead easy to save records into the database.</li>
+<li>You can work with it like any key/value pair database.</li>
 <li>And then desktopcouch itself takes care of things like replicating
     your data to your netbook and your desktop without you having to do
-    anything at&nbsp;all.</li>
+    anything at all.</li>
 <li>And the users of your application can see their data directly by
     using the web interface; no more grovelling around in dotfiles or
     sqlite3 databases from the command line to work out what an
-    application has&nbsp;stored.</li>
+    application has stored.</li>
 <li>You can get at the web interface by browsing to
     file:///home/aquarius/.local/share/desktop-couch/couchdb.html in a
-    web browser, which will take you to the right&nbsp;place.</li>
-<li>(er, if your username is aquarius you can, anyway&nbsp;:))</li>
-<li>I&#8217;ll stop there for some questions about this&nbsp;section!</li>
+    web browser, which will take you to the right place.</li>
+<li>(er, if your username is aquarius you can, anyway :))</li>
+<li>I'll stop there for some questions about this section!</li>
 <li>ah, people in the chat channel are trying it out. YOu might need to
-    install&nbsp;python-desktopcouch-records</li>
+    install python-desktopcouch-records</li>
 <li>the version in karmic right now has a couple of strange outstanding
-    bugs which we&#8217;re working on which might make it a little difficult
-    to follow&nbsp;along</li>
+    bugs which we're working on which might make it a little difficult
+    to follow along</li>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>\&lt;mandel_macaque&gt; <span class="caps">QUESTION</span>: (about views) which is the policy for
-    design documents (views), one per&nbsp;app?</li>
+<li>\&lt;mandel_macaque&gt; QUESTION: (about views) which is the policy for
+    design documents (views), one per app?</li>
 <li>mandel_macaque, no policy, thus far. Create whichever design docs
-    you want to &#8212; having one per app sounds sensible, but an app might
-    want more than&nbsp;one</li>
+    you want to -- having one per app sounds sensible, but an app might
+    want more than one</li>
 <li>mandel_macaque, this is an ideal topic to bring up for discussion
-    on the mailing list&nbsp;:)</li>
-<li>\&lt;test1&gt; <span class="caps">QUESTION</span>: Does desktopCouch/CouchDB provide a means
+    on the mailing list :)</li>
+<li>\&lt;test1&gt; QUESTION: Does desktopCouch/CouchDB provide a means
     controls access to my data on a per application basis? I would not
     necessarily want any application to be able to access any data - I
-    might want to silo two mail apps to different databases,&nbsp;etc.</li>
+    might want to silo two mail apps to different databases, etc.</li>
 <li>test1, at the moment it does not (in much the same way as the
-    filesystem doesn&#8217;t), but it would be possible to build that&nbsp;in</li>
-<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: how does the <span class="caps">HTML</span> interact with couchdb?&nbsp;Javascript?</li>
-<li>mhall119|work, (I assume you mean: how does the <span class="caps">HTML</span> web interface
-    for browsing your data interact with couchdb?) yes,&nbsp;JavaScript</li>
-<li>\&lt;AntoineLeclair&gt; <span class="caps">QUESTION</span>: so when I do <span class="caps">CRUD</span>, it&#8217;s done locally,
-    then replicated on the web <span class="caps">DB</span>? (and replicated locally from the web
-    some other time to keep&nbsp;sync?)</li>
-<li>AntoineLeclair, yes,&nbsp;broadly</li>
-<li>\&lt;F30&gt; <span class="caps">QUESTION</span>: So far, this sounds a bit like the registry which
+    filesystem doesn't), but it would be possible to build that in</li>
+<li>\&lt;mhall119|work&gt; QUESTION: how does the HTML interact with couchdb?
+    Javascript?</li>
+<li>mhall119|work, (I assume you mean: how does the HTML web interface
+    for browsing your data interact with couchdb?) yes, JavaScript</li>
+<li>\&lt;AntoineLeclair&gt; QUESTION: so when I do CRUD, it's done locally,
+    then replicated on the web DB? (and replicated locally from the web
+    some other time to keep sync?)</li>
+<li>AntoineLeclair, yes, broadly</li>
+<li>\&lt;F30&gt; QUESTION: So far, this sounds a bit like the registry which
     we all know and hate from the Windows world: Do you really think all
     applications should put there data into one monolithic databse,
-    which in the end gets messed&nbsp;up?</li>
+    which in the end gets messed up?</li>
 <li>F30, having data in one place allows you to do things like replicate
     that data and make generalisations about it. We have the advantage
     that desktopcouch is built on couchdb, which is not only dead robust
-    but also open source, unlike the registry&nbsp;:)</li>
+    but also open source, unlike the registry :)</li>
 <li>\&lt;test1&gt; In terms of replication - does CouchDb automate data
     merging (i.e. how does it handle conflict resolution) if I were to
-    modify my bookmarks on multiple machines before replication took&nbsp;place?</li>
-<li>test1, couch&#8217;s approach is &#8220;eventual consistency&#8221;. In the case of
+    modify my bookmarks on multiple machines before replication took
+    place?</li>
+<li>test1, couch's approach is "eventual consistency". In the case of
     actual conflicts, desktopcouch stores both versions and marks them
-    as conflicting; it&#8217;s up to the application that uses the data to
-    resolve those conflicts in some&nbsp;way</li>
-<li>perhaps by asking the user, or applying some algorthmic&nbsp;knowledge</li>
+    as conflicting; it's up to the application that uses the data to
+    resolve those conflicts in some way</li>
+<li>perhaps by asking the user, or applying some algorthmic knowledge</li>
 <li>the application knows way more about what the data is than couch
-    itself&nbsp;does</li>
+    itself does</li>
 </ul>
-<h2>Using views to query your desktop&nbsp;Couch</h2>
+<h2>Using views to query your desktop Couch</h2>
 <ul>
-<li>Next, on to&nbsp;views.</li>
-<li>Being able to retrieve records one at a time is nice, but it&#8217;s not
-    what you want to do most of the&nbsp;time.</li>
-<li>To get records that match some criteria, use&nbsp;views.</li>
-<li>Views are sort of like <span class="caps">SQL</span> queries and sort of not. Don&#8217;t try and
-    think in terms of a relational&nbsp;database.</li>
+<li>Next, on to views.</li>
+<li>Being able to retrieve records one at a time is nice, but it's not
+    what you want to do most of the time.</li>
+<li>To get records that match some criteria, use views.</li>
+<li>Views are sort of like SQL queries and sort of not. Don't try and
+    think in terms of a relational database.</li>
 <li>The best reference on views is the CouchDB book, available for free
     online (and still being worked on): the views chapter is at
     <a href="http://books.couchdb.org/relax/design-documents/views">http://books.couchdb.org/relax/design-documents/views</a></li>
-<li>Basically, a view is a JavaScript&nbsp;function.</li>
+<li>Basically, a view is a JavaScript function.</li>
 <li>When you request the records from a view, desktopcouch runs your
-    view function against every document in the database and returns the&nbsp;results.</li>
-<li>So, to return all documents with &#8220;name&#8221;: &#8220;Stuart Langridge&#8221;, the
-    view function would look like&nbsp;this:</li>
+    view function against every document in the database and returns the
+    results.</li>
+<li>So, to return all documents with "name": "Stuart Langridge", the
+    view function would look like this:</li>
 <li><code>function(doc) { if (doc.name == "Stuart Langridge") emit(doc._id, doc) }</code></li>
 <li>This sort of thinking takes a little getting used to, but you can do
-    anything you want with it once you get into&nbsp;it</li>
-<li>desktopcouch.records helps you create views and request&nbsp;them</li>
-<li># creating a&nbsp;view</li>
+    anything you want with it once you get into it</li>
+<li>desktopcouch.records helps you create views and request them</li>
+<li># creating a view</li>
 <li><code>&gt;&gt;&gt; map_js = """function(doc) { emit(doc._id, null) }"""</code></li>
 <li><code>&gt;&gt;&gt; db.add_view("name of my view", map_js, None, "name of the view container")</code></li>
-<li># requesting the records that the view&nbsp;returns</li>
+<li># requesting the records that the view returns</li>
 <li><code>&gt;&gt;&gt; result = db.execute_view("name of my view", "name of the view container")</code></li>
-<li>The &#8220;view container&#8221;, called a &#8220;design doc&#8221;, is a collection of
-    views. So you can group your views together into different design&nbsp;docs.</li>
-<li>(hence mandel_macaque&#8217;s question earlier about whether each app
+<li>The "view container", called a "design doc", is a collection of
+    views. So you can group your views together into different design
+    docs.</li>
+<li>(hence mandel_macaque's question earlier about whether each app
     that uses the data in a database should have its own design doc(s).
-    I suggest&nbsp;yes.)</li>
+    I suggest yes.)</li>
 <li>Advanced people who know about map/reduce should know that this is a
-    map/reduce&nbsp;approach.</li>
-<li>You can also specify a reduce function (that&#8217;s the None parameter in
-    the add_view function&nbsp;above)</li>
-<li>The CouchDB book has all the information you&#8217;ll need on views and
-    the complexities of&nbsp;them.</li>
-<li>Questions on views?&nbsp;:-)</li>
+    map/reduce approach.</li>
+<li>You can also specify a reduce function (that's the None parameter in
+    the add_view function above)</li>
+<li>The CouchDB book has all the information you'll need on views and
+    the complexities of them.</li>
+<li>Questions on views? :-)</li>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>\&lt;mandel_macaque&gt; <span class="caps">QUESTION</span>: taking as an example the contacts
+<li>\&lt;mandel_macaque&gt; QUESTION: taking as an example the contacts
     record, when we have to perform a diff we will have to take into
     account the application_annotations key, which is share among apps.
-    How can my app know aht to do with other app&nbsp;data?</li>
+    How can my app know aht to do with other app data?</li>
 <li>(bit of background for those not quite as au fait with desktopcouch:
     each desktopcouch record has a key called
-    &#8220;application_annotations&#8221;, and under that there is a key for each
+    "application_annotations", and under that there is a key for each
     application that wants to store data specific to that application
-    about this&nbsp;record)</li>
+    about this record)</li>
 <li>(so Firefox, for example, while storing a bookmark, would store url
-    and title as top-level fields, and the Firefox internal <span class="caps">ID</span> of the
-    bookmark as application_annotations.Firefox.internal_id or&nbsp;similar)</li>
+    and title as top-level fields, and the Firefox internal ID of the
+    bookmark as application_annotations.Firefox.internal_id or
+    similar)</li>
 <li>mandel_macaque, what you have to do with data in
     application_annotations is preserve it. You are on your honour to
-    not delete another app&#8217;s metadata&nbsp;:)</li>
-<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: might it be better to standardize on
+    not delete another app's metadata :)</li>
+<li>\&lt;mhall119|work&gt; QUESTION: might it be better to standardize on
     views, rather than records? So, Evolution and TBird might have their
-    own database, with their own Contact record, but a single &#8220;All
-    Contacts&#8221; view would aggregate&nbsp;both?</li>
+    own database, with their own Contact record, but a single "All
+    Contacts" view would aggregate both?</li>
 <li>mhall119|work, the idea behind collaboration is that everyone
-    co-operates on the actual data rather than views. So it&#8217;s better if
+    co-operates on the actual data rather than views. So it's better if
     each app stores the data in a standard format on which they
-    collaborate, and then has its own views to get that data how *it*&nbsp;wants.</li>
-<li>\&lt;<span class="caps">FND</span>&gt; mandel_macaque: what if I wanted to wipe all Firefox data
-    because I want a fresh start? right now, I can just delete&nbsp;\~/.mozilla/firefox/myProfile</li>
-<li>I&#8217;m concerned that as a power user, I lose direct&nbsp;access</li>
-<li><span class="caps">FND</span>, you can delete the firefox database from the web interface, or
-    from the command line. &#8220;curl -X delete&nbsp;http://localhost:5984/firefox&#8221;</li>
-<li>or using desktopcouch.records, which is nicer &#8212; python -c &#8220;from
+    collaborate, and then has its own views to get that data how *it*
+    wants.</li>
+<li>\&lt;FND&gt; mandel_macaque: what if I wanted to wipe all Firefox data
+    because I want a fresh start? right now, I can just delete
+    \~/.mozilla/firefox/myProfile</li>
+<li>I'm concerned that as a power user, I lose direct access</li>
+<li>FND, you can delete the firefox database from the web interface, or
+    from the command line. "curl -X delete
+    http://localhost:5984/firefox"</li>
+<li>or using desktopcouch.records, which is nicer -- python -c "from
     desktopcouch.records.server import CouchDatabase; db =
-    CouchDatabase(&#8216;firefox&#8217;);&nbsp;db.delete()&#8221;</li>
-<li>\&lt;mgunes&gt; <span class="caps">QUESTION</span>: Wouldn&#8217;t deleting your profile simply reflect
-    as deleted records on the CouchDB&nbsp;instance?</li>
+    CouchDatabase('firefox'); db.delete()"</li>
+<li>\&lt;mgunes&gt; QUESTION: Wouldn't deleting your profile simply reflect
+    as deleted records on the CouchDB instance?</li>
 <li>mgunes, how deletions affect applications that used the deleted data
-    depends on the application. For example, there&#8217;s obviously a
-    distinction between &#8220;I deleted this because I want to create a new
-    one&#8221; and &#8220;I deleted this but I want to be able to get it back&nbsp;later&#8221;</li>
+    depends on the application. For example, there's obviously a
+    distinction between "I deleted this because I want to create a new
+    one" and "I deleted this but I want to be able to get it back later"</li>
 <li>the couchdb upstream team are currently working on having full
-    history for all records, which will make this sort of work&nbsp;easier</li>
-<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: if collaboration is to be done on the
-    database level, there wouldn&#8217;t be a &#8220;Firefox&#8221; database, there would
-    be a &#8220;Bookmarks&#8221; database,&nbsp;correct?</li>
-<li>mhall119|work, yes, absolutely. My mistake in typing, sorry&nbsp;:)</li>
-<li>\&lt;mhall119|work&gt; <span class="caps">QUESTION</span>: for those that don&#8217;t want to mess with
-    python of curl, will there be a <span class="caps">CLI</span> program for manipulating&nbsp;couchdb?</li>
-<li>mhall119|work, there isn&#8217;t at the moment (curl or
-    desktopcouch.records are pretty easy, we think) but I&#8217;m sure the
-    bunch of talented people I&#8217;m talking to could whip up a program (or
-    a set of bash aliases) in short order if there was desire for&nbsp;it</li>
+    history for all records, which will make this sort of work easier</li>
+<li>\&lt;mhall119|work&gt; QUESTION: if collaboration is to be done on the
+    database level, there wouldn't be a "Firefox" database, there would
+    be a "Bookmarks" database, correct?</li>
+<li>mhall119|work, yes, absolutely. My mistake in typing, sorry :)</li>
+<li>\&lt;mhall119|work&gt; QUESTION: for those that don't want to mess with
+    python of curl, will there be a CLI program for manipulating
+    couchdb?</li>
+<li>mhall119|work, there isn't at the moment (curl or
+    desktopcouch.records are pretty easy, we think) but I'm sure the
+    bunch of talented people I'm talking to could whip up a program (or
+    a set of bash aliases) in short order if there was desire for it</li>
 <li>:-)</li>
-<li>that would be a cool addition to&nbsp;desktopcouch</li>
-<li>\&lt;mandel_macaque&gt; <span class="caps">QUESTION</span>: Since couchdb stores all the version
-    of my documents, will we have something like time machine in <span class="caps">OS</span> X?
-    The data will already be there&nbsp;:D</li>
+<li>that would be a cool addition to desktopcouch</li>
+<li>\&lt;mandel_macaque&gt; QUESTION: Since couchdb stores all the version
+    of my documents, will we have something like time machine in OS X?
+    The data will already be there :D</li>
 <li>mandel_macaque, certainly the infrastructure for that would be
-    there once couchdb has full history and lots of apps are using&nbsp;desktopcouch</li>
-<li>if someone writes it I&#8217;ll use it&nbsp;;-0</li>
+    there once couchdb has full history and lots of apps are using
+    desktopcouch</li>
+<li>if someone writes it I'll use it ;-0</li>
 </ul>
-<h2>Accessing desktop Couch from other&nbsp;languages</h2>
+<h2>Accessing desktop Couch from other languages</h2>
 <ul>
-<li>It&#8217;s not just Python, though. The Python Records <span class="caps">API</span> is in package
-    python-desktopcouch-records, but there are also&nbsp;others.</li>
-<li>couchdb-glib is a library to access desktopcouch from&nbsp;C.</li>
-<li>Some example code (I don&#8217;t know much about C, but rodrigo_ wrote
-    couchdb-glib and can answer all your questions&nbsp;:-))</li>
+<li>It's not just Python, though. The Python Records API is in package
+    python-desktopcouch-records, but there are also others.</li>
+<li>couchdb-glib is a library to access desktopcouch from C.</li>
+<li>Some example code (I don't know much about C, but rodrigo_ wrote
+    couchdb-glib and can answer all your questions :-))</li>
 <li><code>couchdb = couchdb_new (hostname);</code></li>
 <li>Create a database -&gt; <code>couchdb_create_database()</code></li>
 <li>Delete a database -&gt; <code>couchdb_delete_database()</code></li>
 <li>List documents in a database -&gt; <code>couchdb_list_documents()</code></li>
 <li>More details are available for couchdb-glib at
-    <a href="http://git.gnome.org./cgit/couchdb-glib/tree/README">http://git.gnome.org./cgit/couchdb-glib/tree/<span class="caps">README</span></a></li>
-<li>We&#8217;re also working on a library to access desktopcouch from
-    JavaScript, so you can use it from things like Firefox extensions of&nbsp;gjs.</li>
-<li>er, *or* gjs&nbsp;:)</li>
-<li>And because the access method for desktop Couch is <span class="caps">HTTP</span>, it&#8217;s easy
-    to write an access library for any other language that you&nbsp;choose.</li>
-<li>You can, of course, talk directly to desktop Couch using <span class="caps">HTTP</span>
-    yourself, if you choose; you don&#8217;t have to use the Records <span class="caps">API</span>, or
+    <a href="http://git.gnome.org./cgit/couchdb-glib/tree/README">http://git.gnome.org./cgit/couchdb-glib/tree/README</a></li>
+<li>We're also working on a library to access desktopcouch from
+    JavaScript, so you can use it from things like Firefox extensions of
+    gjs.</li>
+<li>er, *or* gjs :)</li>
+<li>And because the access method for desktop Couch is HTTP, it's easy
+    to write an access library for any other language that you choose.</li>
+<li>You can, of course, talk directly to desktop Couch using HTTP
+    yourself, if you choose; you don't have to use the Records API, or
     you might be implementing an access library for Ruby or Perl or
-    Befunge or Smalltalk or Vala or&nbsp;something.</li>
+    Befunge or Smalltalk or Vala or something.</li>
 </ul>
-<h2>Underlying desktopcouch technical&nbsp;detail</h2>
+<h2>Underlying desktopcouch technical detail</h2>
 <ul>
 <li>desktopcouch.records (and couchdb-glib) do a certain amount of
-    undercover work for you which you&#8217;ll need to do, and to explain that
-    I need to delve into some deeper technical&nbsp;detail.</li>
-<li>Your desktop Couch runs on a <span class="caps">TCP</span> port, listening to localhost only,
-    which is randomly selected when it starts up. There is a D-Bus <span class="caps">API</span>
-    to get that&nbsp;port.</li>
-<li>So, to find out which port you need to connect to by <span class="caps">HTTP</span>, call the
-    D-Bus <span class="caps">API</span>. (This <span class="caps">API</span> will also start your desktop Couch if it&#8217;s not
-    already&nbsp;running.)</li>
-<li>\$ dbus-send &#8212;session &#8212;dest=org.desktopcouch.CouchDB &#8212;print-reply
-    &#8212;type=method_call /&nbsp;org.desktopcouch.CouchDB.getPort</li>
-<li>(desktopcouch.records does this for&nbsp;you.)</li>
+    undercover work for you which you'll need to do, and to explain that
+    I need to delve into some deeper technical detail.</li>
+<li>Your desktop Couch runs on a TCP port, listening to localhost only,
+    which is randomly selected when it starts up. There is a D-Bus API
+    to get that port.</li>
+<li>So, to find out which port you need to connect to by HTTP, call the
+    D-Bus API. (This API will also start your desktop Couch if it's not
+    already running.)</li>
+<li>\$ dbus-send --session --dest=org.desktopcouch.CouchDB --print-reply
+    --type=method_call / org.desktopcouch.CouchDB.getPort</li>
+<li>(desktopcouch.records does this for you.)</li>
 <li>You must also be authenticated to read any data from your desktop
-    Couch. Authentication is done with OAuth, so every <span class="caps">HTTP</span> request to
-    desktopcouch must have a valid OAuth&nbsp;signature.</li>
-<li>The OAuth details you need to sign requests are stored in the Gnome&nbsp;keyring.</li>
-<li>(again, desktopcouch.records takes care of this for you so you don&#8217;t
-    have to think about&nbsp;it.)</li>
-<li>As I said above, every record must have a record_type, a <span class="caps">URL</span> which
+    Couch. Authentication is done with OAuth, so every HTTP request to
+    desktopcouch must have a valid OAuth signature.</li>
+<li>The OAuth details you need to sign requests are stored in the Gnome
+    keyring.</li>
+<li>(again, desktopcouch.records takes care of this for you so you don't
+    have to think about it.)</li>
+<li>As I said above, every record must have a record_type, a URL which
     identifies what sort of record this is. So, if your recipe
     application stores all your favourite recipes in desktopcouch, you
-    need to define a <span class="caps">URL</span> as the record type for &#8220;recipe&nbsp;records&#8221;.</li>
-<li>That <span class="caps">URL</span> should point to a human-readable description of the fields
+    need to define a URL as the record type for "recipe records".</li>
+<li>That URL should point to a human-readable description of the fields
     in records of that type: so for a recipe document you might have
-    name, ingredients, cooking instructions, oven&nbsp;heat.</li>
-<li>The <span class="caps">URL</span> is there so other developers can find out what should be
+    name, ingredients, cooking instructions, oven heat.</li>
+<li>The URL is there so other developers can find out what should be
     stored in a record, so more than one application can collaborate on
-    storing&nbsp;data.</li>
+    storing data.</li>
 <li>If I write a different recipe application, mine should work with
-    records of the same format; that way I don&#8217;t lose all my recipes if
+    records of the same format; that way I don't lose all my recipes if
     I change applications, and me and the developers of the first app
-    can&nbsp;collaborate.</li>
-<li>Let&#8217;s take some more&nbsp;questions.</li>
+    can collaborate.</li>
+<li>Let's take some more questions.</li>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>\&lt;mgunes&gt; <span class="caps">QUESTION</span>: Is there any plan/need for Desktopcouch itself
+<li>\&lt;mgunes&gt; QUESTION: Is there any plan/need for Desktopcouch itself
     to talk to Midgard, for access to data stored by applications that
-    use it? And did you investigate Midgard before going with&nbsp;CouchDB?</li>
-<li>There&#8217;s been a lot of conversation between Midgard and CouchDB and
-    desktopcouch and&nbsp;others</li>
-<li>midgard implements the CouchDB replication <span class="caps">API</span>, so you can replicate
-    your desktopcouch data to a midgard&nbsp;server</li>
-<li>\&lt;<span class="caps">FND</span>&gt; to clarify, another way to express my concerns - and I hate
-    to be such a nagging naysayer here - is &#8220;transparency&#8221; - inspecting
-    files is generally a whole lot more obvious than inspecting a <span class="caps">DB</span>
-    (even if there&#8217;s a nifty web <span class="caps">UI</span>)</li>
-<li><span class="caps">FND</span>, applications are increasingly using databases rather than flat
-    files anyway, because of the advantages you get from a database &#8212;
+    use it? And did you investigate Midgard before going with CouchDB?</li>
+<li>There's been a lot of conversation between Midgard and CouchDB and
+    desktopcouch and others</li>
+<li>midgard implements the CouchDB replication API, so you can replicate
+    your desktopcouch data to a midgard server</li>
+<li>\&lt;FND&gt; to clarify, another way to express my concerns - and I hate
+    to be such a nagging naysayer here - is "transparency" - inspecting
+    files is generally a whole lot more obvious than inspecting a DB
+    (even if there's a nifty web UI)</li>
+<li>FND, applications are increasingly using databases rather than flat
+    files anyway, because of the advantages you get from a database --
     as was asked about above, media players are using sqlite DBs and so
-    on for quick searchability and&nbsp;indexability</li>
-<li>\&lt;bas89&gt; <span class="caps">QUESTION</span>: is couchDB an ubuntu-only project or will it be
-    avaiable on fedora or my mobile&nbsp;phone?</li>
-<li>couchdb runs, like, everywhere. It&#8217;s available on Ubuntu, Fedora,
-    other Linux distros, Windows, <span class="caps">OS</span>&nbsp;X&#8230;</li>
+    on for quick searchability and indexability</li>
+<li>\&lt;bas89&gt; QUESTION: is couchDB an ubuntu-only project or will it be
+    avaiable on fedora or my mobile phone?</li>
+<li>couchdb runs, like, everywhere. It's available on Ubuntu, Fedora,
+    other Linux distros, Windows, OS X...</li>
 <li>the couchdb upstream project love the idea of things like mobile
-    phones running couch, and they&#8217;re working on that&nbsp;:)</li>
+    phones running couch, and they're working on that :)</li>
 <li>desktopcouch, which sets up an individual couchdb for every user, is
-    all written in Python and doesn&#8217;t do anything Ubuntu-specific, so it
+    all written in Python and doesn't do anything Ubuntu-specific, so it
     should be perfectly possible to run it on other Linux distros (and
-    there&#8217;s a chap looking at getting it running on&nbsp;fedora)</li>
-<li>and since it&#8217;s all Python it should be possible to have it on other
-    platforms too, like Windows or the&nbsp;Mac.</li>
-<li>\&lt;<span class="caps">FND</span>&gt; <span class="caps">QUESTION</span>: by making applications rely on CouchDB, isn&#8217;t
-    there a risk of diverging from other&nbsp;distros</li>
-<li>desktopcouch isn&#8217;t Ubuntu-specific. There was lots of interest at
-    the Gran Canaria Desktop Summit this&nbsp;year</li>
+    there's a chap looking at getting it running on fedora)</li>
+<li>and since it's all Python it should be possible to have it on other
+    platforms too, like Windows or the Mac.</li>
+<li>\&lt;FND&gt; QUESTION: by making applications rely on CouchDB, isn't
+    there a risk of diverging from other distros</li>
+<li>desktopcouch isn't Ubuntu-specific. There was lots of interest at
+    the Gran Canaria Desktop Summit this year</li>
 </ul>
 <h2>Using <a href="http://wiki.ubuntu.com/quickly">Quickly</a></h2>
 <ul>
 <li>There is an Even Easier way to have applications use desktop Couch
-    for data&nbsp;storage.</li>
-<li>One of the really cool things in karmic is Quickly:&nbsp;https://wiki.ubuntu.com/Quickly</li>
-<li>quickly helps you make applications&#8230;quickly.&nbsp;:-)</li>
-<li>and apps created with Quickly use desktopcouch for data&nbsp;storage.</li>
-<li>If you haven&#8217;t seen Quickly, it&#8217;s a way of easily handling all the
-    boilerplate stuff you have to do to get a project going; &#8220;quickly
-    create ubuntu-project myproject&#8221; gives you a &#8220;myproject&#8221; folder
-    containing a Python project that works but doesn&#8217;t do&nbsp;anything.</li>
+    for data storage.</li>
+<li>One of the really cool things in karmic is Quickly:
+    https://wiki.ubuntu.com/Quickly</li>
+<li>quickly helps you make applications...quickly. :-)</li>
+<li>and apps created with Quickly use desktopcouch for data storage.</li>
+<li>If you haven't seen Quickly, it's a way of easily handling all the
+    boilerplate stuff you have to do to get a project going; "quickly
+    create ubuntu-project myproject" gives you a "myproject" folder
+    containing a Python project that works but doesn't do anything.</li>
 <li>So you can concentrate on writing the code to do what you want,
-    rather than boilerplate to get&nbsp;started.</li>
-<li>It&#8217;s dead neat&nbsp;:)</li>
+    rather than boilerplate to get started.</li>
+<li>It's dead neat :)</li>
 <li>Anyway, quickly projects are set up to save application preferences
     into desktop Couch by default. So you get the advantages of using
     desktop Couch (replication, browsing of data) for every quickly
-    project&nbsp;automatically.</li>
+    project automatically.</li>
 <li>The quickly guys have also contributed CouchGrid, a gtk.TreeView
     which is built on top of desktopcouch, so that it will display
-    records from a desktopcouch&nbsp;database.</li>
-<li><span class="dquo">&#8220;</span>quickly tutorial ubuntu-project&#8221; has lots of information about
-    CouchGrid and how to use&nbsp;it.</li>
-<li>Any questions about quickly? (I can&#8217;t guarantee to be able to answer
-    them, but #quickly is great for&nbsp;this.)</li>
-<li>I&#8217;m going to race throught he last section since I have 3 mins, and
-    then try and answer the last few questions&nbsp;:)</li>
+    records from a desktopcouch database.</li>
+<li>"quickly tutorial ubuntu-project" has lots of information about
+    CouchGrid and how to use it.</li>
+<li>Any questions about quickly? (I can't guarantee to be able to answer
+    them, but #quickly is great for this.)</li>
+<li>I'm going to race throught he last section since I have 3 mins, and
+    then try and answer the last few questions :)</li>
 </ul>
-<h2>Who&#8217;s using desktop Couch&nbsp;already?</h2>
+<h2>Who's using desktop Couch already?</h2>
 <ul>
-<li>So, who&#8217;s already using&nbsp;desktopcouch?</li>
+<li>So, who's already using desktopcouch?</li>
 <li>Quickly, as mentioned, uses desktopcouch for preferences in projects
-    it&nbsp;creates.</li>
-<li>The Gwibber team are working on using desktopcouch for data&nbsp;storage</li>
+    it creates.</li>
+<li>The Gwibber team are working on using desktopcouch for data storage</li>
 <li>Bindwood (<a href="http://launchpad.net/bindwood">http://launchpad.net/bindwood</a>) is a Firefox extension to
-    store bookmarks in&nbsp;desktopcouch</li>
+    store bookmarks in desktopcouch</li>
 <li>Macaco-contacts is transitioning to work with desktopcouch for
     contacts storage (<a href="http://www.themacaque.com/?p=248">http://www.themacaque.com/?p=248</a>)</li>
-<li>(perhaps&nbsp;:-))</li>
+<li>(perhaps :-))</li>
 <li>Evolution can now, in the evolution-couchdb package, store all
-    contacts in&nbsp;desktopcouch</li>
-<li>Akonadi, the <span class="caps">KDE</span> project&#8217;s contacts and <span class="caps">PIM</span> server, can also store
-    contacts in&nbsp;desktopcouch</li>
-<li>These last three are interesting, because everyone&#8217;s collaborating
-    on a standard record type and record format for &#8220;contacts&#8221;, so
-    Evolution and Akonadi and Macaco-contacts will all share&nbsp;information.</li>
-<li>So if you switch from Gnome to <span class="caps">KDE</span>, you won&#8217;t lose your address&nbsp;book.</li>
-<li>I&#8217;m really keen that this happens, that applications that store
+    contacts in desktopcouch</li>
+<li>Akonadi, the KDE project's contacts and PIM server, can also store
+    contacts in desktopcouch</li>
+<li>These last three are interesting, because everyone's collaborating
+    on a standard record type and record format for "contacts", so
+    Evolution and Akonadi and Macaco-contacts will all share
+    information.</li>
+<li>So if you switch from Gnome to KDE, you won't lose your address
+    book.</li>
+<li>I'm really keen that this happens, that applications that store
     similar data (think of mail clients and addressbooks, as above, or
     media players storing metadata and ratings, for example) should
-    collaborate on standard&nbsp;formats.</li>
+    collaborate on standard formats.</li>
 <li>Details about the desktopcouch project can be found at
     <a href="http://www.freedesktop.org/wiki/Specifications/desktopcouch">http://www.freedesktop.org/wiki/Specifications/desktopcouch</a></li>
-<li>There&#8217;s a mailing list at
+<li>There's a mailing list at
     <a href="http://groups.google.com/group/desktop-couchdb">http://groups.google.com/group/desktop-couchdb</a></li>
 <li>The code is developed in Launchpad:
     <a href="http://launchpad.net/desktopcouch">http://launchpad.net/desktopcouch</a></li>
 <li>The best place to ask questions generally is the #ubuntuone
-    channel; all the desktopcouch developers are hanging out&nbsp;there</li>
-<li>The best place to ask questions that you have right now is&#8230;right
-    now, so go ahead and ask in #ubuntu-classroom-chat, and I&#8217;ll answer
-    any other questions you&nbsp;have!</li>
-<li>in the two minutes I have remaining&nbsp;;-)</li>
+    channel; all the desktopcouch developers are hanging out there</li>
+<li>The best place to ask questions that you have right now is...right
+    now, so go ahead and ask in #ubuntu-classroom-chat, and I'll answer
+    any other questions you have!</li>
+<li>in the two minutes I have remaining ;-)</li>
 </ul>
 <h2>Questions</h2>
 <ul>
-<li>\&lt;bas69&gt; <span class="caps">QUESTION</span>: whats about akonadi? is there&nbsp;competition?</li>
+<li>\&lt;bas69&gt; QUESTION: whats about akonadi? is there competition?</li>
 <li>akonadi has a desktopcouch back end for contacts, which was
-    demonstrated at the Gran Canaria Desktop Summit &#8212; it&#8217;s dead neat to
-    save a contact with Akonadi and then load it with Evolution&nbsp;:)</li>
-<li>\&lt;alourie&gt; aquarius: <span class="caps">QUESTION</span>: does that mean that ubuntuone also
-    uses&nbsp;it?</li>
+    demonstrated at the Gran Canaria Desktop Summit -- it's dead neat to
+    save a contact with Akonadi and then load it with Evolution :)</li>
+<li>\&lt;alourie&gt; aquarius: QUESTION: does that mean that ubuntuone also
+    uses it?</li>
 <li>desktopcouch lets you replicate your data between all your machines
-    on your network &#8212; Ubuntu One has a cloud service so you can also
+    on your network -- Ubuntu One has a cloud service so you can also
     send your data up into the cloud, so you can get at it from the web
-    and replicate between machines anywhere on the&nbsp;internet</li>
-<li>mgunes, yes indeed&nbsp;:)</li>
+    and replicate between machines anywhere on the internet</li>
+<li>mgunes, yes indeed :)</li>
 <li>ok I need to stop now, out of time. Next is kees, who I hope will
-    forgive me for&nbsp;overrunning!</li>
+    forgive me for overrunning!</li>
 </ul>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
@@ -639,24 +642,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

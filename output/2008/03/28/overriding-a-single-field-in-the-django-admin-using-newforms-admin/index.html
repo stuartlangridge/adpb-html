@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Overriding a single field in the Django admin, using newforms-admin</title>
+		<title>as days pass by &mdash; Overriding a single field in the Django admin, using newforms-admin</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Overriding a single field in the Django admin, using newforms-admin">
+        <meta property="og:title" content="as days pass by &mdash; Overriding a single field in the Django admin, using newforms-admin">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2008/03/28/overriding-a-single-field-in-the-django-admin-using-newforms-admin/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,23 +47,22 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2008/03/28/overriding-a-single-field-in-the-django-admin-using-newforms-admin/"><time 
 			class="dt-published" datetime="2008-03-28T12:33:00+00:00">Mar 28 2008</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/03/28/overriding-a-single-field-in-the-django-admin-using-newforms-admin/" title="Permalink to Overriding a single field in the Django admin, using newforms-admin" rel="bookmark">Overriding a single field in the Django admin, using&nbsp;newforms-admin</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/03/28/overriding-a-single-field-in-the-django-admin-using-newforms-admin/">Overriding a single field in the Django admin, using newforms-admin</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p><a href="http://www.djangoproject.com">Django</a> has been gradually changing the way their
 automatically-created admin system works to use the <em>newforms-admin</em>
 code, which makes lots of cool new things possible. However, because
-newforms-admin is rather new (ha!), it&#8217;s not brilliantly documented. One
+newforms-admin is rather new (ha!), it's not brilliantly documented. One
 of the things I wanted to do today was to make one field use a custom
-field-editing widget that I&#8217;d created, rather than Django&#8217;s default
+field-editing widget that I'd created, rather than Django's default
 textbox, in the Django admin system. You do that like this. In
 newforms-admin, you specify admin options for a model by creating an
-extra ModelAdmin class for&nbsp;it:</p>
+extra ModelAdmin class for it:</p>
 <div class="highlight"><pre><span></span><code><span class="n">class</span><span class="w"> </span><span class="n">Vehicle</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">)</span><span class="o">:</span>
 <span class="w">  </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">()</span>
 <span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">()</span>
@@ -92,9 +77,9 @@ extra ModelAdmin class for&nbsp;it:</p>
 choose a colour by clicking on a colour swatch. To do this, you need to
 actually create your custom widget. So, in a file <code>custom_widgets.py</code>,
 you create your widget. The easiest way to do this is to subclass one of
-the existing widgets (TextInput is a good one here, because that&#8217;s a
+the existing widgets (TextInput is a good one here, because that's a
 normal textbox, which is what gets used by default for CharFields) and
-then change its render&nbsp;method:</p>
+then change its render method:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">django.newforms</span> <span class="k">as</span> <span class="nn">forms</span>
 <span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">Template</span>
 <span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
@@ -106,16 +91,16 @@ then change its render&nbsp;method:</p>
 </code></pre></div>
 
 <p>There are a few interesting wrinkles in there. First, overriding
-<code>render()</code> changes the <span class="caps">HTML</span> that your widget prints when asked to
-display itself by the admin system. (I haven&#8217;t actually implemented the
+<code>render()</code> changes the HTML that your widget prints when asked to
+display itself by the admin system. (I haven't actually implemented the
 widget there; left as an exercise for the reader, that bit.) Second, you
-need to call <code>mark_safe()</code> on the <span class="caps">HTML</span> you return, otherwise the admin
+need to call <code>mark_safe()</code> on the HTML you return, otherwise the admin
 will escape it. Third, all input to <code>mark_safe()</code> must be Unicode, hence
 the <code>u"""</code> at the beginning of the string. The parameter <code>value</code> already
 is Unicode, but any strings you provide must also be explicitly Unicode
-strings; otherwise, <code>mark_safe()</code> fails silently &#8212; the string will be
-escaped. Fourth, you don&#8217;t have to use <code>string.Template</code>, but it&#8217;s
-pretty convenient. Once you&#8217;ve created your custom widget, you have to
+strings; otherwise, <code>mark_safe()</code> fails silently -- the string will be
+escaped. Fourth, you don't have to use <code>string.Template</code>, but it's
+pretty convenient. Once you've created your custom widget, you have to
 hook it up to your model. In our example, we need to change
 <code>VehicleAdmin</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">custom_widgets</span> <span class="kn">import</span> <span class="n">ColourChooserWidget</span>
@@ -135,7 +120,7 @@ fields in your model; for the one we care about (<code>colour</code> in this
 example), override <code>widget</code> in the <code>kwargs</code> and then carry on with the
 rest of the function, and that hooks it up. That should be it; now, in
 the Django admin system, your <code>colour</code> field will use your
-<code>ColourChooserWidget</code> for&nbsp;editing.</p>
+<code>ColourChooserWidget</code> for editing.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2008/03/28/aaron-bockovers-gong-a-thong-lightbulb-talk-extravaganza/">Previous post</a></li>
@@ -212,24 +197,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

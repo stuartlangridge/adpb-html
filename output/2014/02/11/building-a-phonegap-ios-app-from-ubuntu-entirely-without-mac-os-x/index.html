@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Building a (PhoneGap) iOS app from Ubuntu entirely without Mac OS X</title>
+		<title>as days pass by &mdash; Building a (PhoneGap) iOS app from Ubuntu entirely without Mac OS X</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Building a (PhoneGap) iOS app from Ubuntu entirely without Mac OS X">
+        <meta property="og:title" content="as days pass by &mdash; Building a (PhoneGap) iOS app from Ubuntu entirely without Mac OS X">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/02/11/building-a-phonegap-ios-app-from-ubuntu-entirely-without-mac-os-x/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,12 +47,11 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2014/02/11/building-a-phonegap-ios-app-from-ubuntu-entirely-without-mac-os-x/"><time 
 			class="dt-published" datetime="2014-02-11T11:11:00+00:00">Feb 11 2014</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/02/11/building-a-phonegap-ios-app-from-ubuntu-entirely-without-mac-os-x/" title="Permalink to Building a (PhoneGap) iOS app from Ubuntu entirely without Mac OS X" rel="bookmark">Building a (PhoneGap) iOS app from Ubuntu entirely without Mac <span class="caps">OS</span>&nbsp;X</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/02/11/building-a-phonegap-ios-app-from-ubuntu-entirely-without-mac-os-x/">Building a (PhoneGap) iOS app from Ubuntu entirely without Mac OS X</a>
 		</h2>
 		<div class="entry-content e-content">
 			<blockquote>
@@ -76,54 +61,54 @@
  Basil: And the starling was in the garden, and the rat was <em>nowhere
 at all</em>.</p>
 </blockquote>
-<p>It is possible, with the aid of <a href="http://phonegap.com/">PhoneGap</a> and Adobe&#8217;s <a href="http://build.phonegap.com">PhoneGap
+<p>It is possible, with the aid of <a href="http://phonegap.com/">PhoneGap</a> and Adobe's <a href="http://build.phonegap.com">PhoneGap
 Build</a> service, to make an app for iOS, get it signed, and deploy it
 to an iPhone without having a Mac involved at all. Up until yesterday I
 would have sworn up and down that this was not possible, and I told a
-bunch of people that; making a PhoneGap app isn&#8217;t a problem from Ubuntu,
+bunch of people that; making a PhoneGap app isn't a problem from Ubuntu,
 but getting the necessary keys to get it signed is. However, thanks to
-<a href="http://www.breezejs.com/bridging-phone-gap">a writeup from BreezeJS</a> I now know that this is not the truth. It&#8217;s
-possible to make an iOS app in Ubuntu and get it signed, I&#8217;ve done it,
-and now I&#8217;ll walk through that process. This description owes a lot to
-the Breeze writeup without which I&#8217;d be nowhere, but exactly what the
+<a href="http://www.breezejs.com/bridging-phone-gap">a writeup from BreezeJS</a> I now know that this is not the truth. It's
+possible to make an iOS app in Ubuntu and get it signed, I've done it,
+and now I'll walk through that process. This description owes a lot to
+the Breeze writeup without which I'd be nowhere, but exactly what the
 screens look like has changed a little. Links and instructions correct
-as of 11th February&nbsp;2014.</p>
-<h3>Make a PhoneGap&nbsp;app</h3>
+as of 11th February 2014.</p>
+<h3>Make a PhoneGap app</h3>
 <p>No instructions for this bit. Read the PhoneGap documentation. Once
-you&#8217;ve built that, you&#8217;ll have a <code>www/</code> folder with the <span class="caps">HTML</span>, <span class="caps">CSS</span>, and
-JavaScript of your app in&nbsp;it.</p>
-<h3>Get a <a href="http://build.phonegap.com">PhoneGap Build</a> account and add your&nbsp;app</h3>
+you've built that, you'll have a <code>www/</code> folder with the HTML, CSS, and
+JavaScript of your app in it.</p>
+<h3>Get a <a href="http://build.phonegap.com">PhoneGap Build</a> account and add your app</h3>
 <p>Also no instructions for this bit, other than to say this: the app
 bundle that you upload or pull from Github does not have to contain just
 the contents of your <code>www</code> folder. I pointed
-<abbr title="PhoneGap Build"><span class="caps">PGB</span></abbr> at a Github repos which had the
+<abbr title="PhoneGap Build">PGB</abbr> at a Github repos which had the
 <code>www/</code> folder at top level and other things in the repos too, and it
-worked fine. Remember that your <code>config.xml</code> file which configures <span class="caps">PGB</span>
+worked fine. Remember that your <code>config.xml</code> file which configures PGB
 needs to be in the same folder as <code>index.html</code>.</p>
-<h3>Get an iOS developer&nbsp;account</h3>
+<h3>Get an iOS developer account</h3>
 <p>Sign up for the <a href="https://developer.apple.com/programs/start/standard/">Apple Developer Programme</a>. To build iOS apps this
 will cost you sixty quid. Once you get an email saying that you have
-access to iTunes Connect, you&#8217;ve been approved. Do what it tells you and
-fill out a bunch of forms about your bank account and address and so&nbsp;on.</p>
-<h3>Set up&nbsp;certificates</h3>
+access to iTunes Connect, you've been approved. Do what it tells you and
+fill out a bunch of forms about your bank account and address and so on.</p>
+<h3>Set up certificates</h3>
 <p>Go to the <a href="https://developer.apple.com/membercenter/index.action">Apple Developer Member Centre</a> and choose <a href="https://developer.apple.com/account/overview.action">Certificates,
-Identifiers <span class="amp">&amp;</span> Profiles</a>, then under iOS Apps choose <a href="https://developer.apple.com/account/ios/certificate/certificateList.action">Certificates</a>.
-You&#8217;ll probably see a screen saying &#8220;What type of certificate do you
-need?&#8221;; if you don&#8217;t, there&#8217;s a [+] button to add a new&nbsp;certificate.</p>
+Identifiers &amp; Profiles</a>, then under iOS Apps choose <a href="https://developer.apple.com/account/ios/certificate/certificateList.action">Certificates</a>.
+You'll probably see a screen saying "What type of certificate do you
+need?"; if you don't, there's a [+] button to add a new certificate.</p>
 <p>The first thing you need is the Apple intermediate signing certificate,
 available from this screen. At the bottom it says <a href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer">Worldwide Developer
 Relations Certificate Authority</a>; download this AppleWWDRCA.cer file
-and keep it around&nbsp;somewhere.</p>
-<h4>Development p12&nbsp;key</h4>
-<p>Now, set yourself up a development p12 key as&nbsp;follows.</p>
+and keep it around somewhere.</p>
+<h4>Development p12 key</h4>
+<p>Now, set yourself up a development p12 key as follows.</p>
 <div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Generate</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">private</span><span class="w"> </span><span class="k">key</span>
 <span class="n">openssl</span><span class="w"> </span><span class="n">genrsa</span><span class="w"> </span><span class="o">-</span><span class="k">out</span><span class="w"> </span><span class="n">private</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="mi">2048</span>
 <span class="err">#</span><span class="w"> </span><span class="n">Generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">signing</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="w"> </span><span class="k">Use</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">own</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="n">address</span><span class="err">!</span>
 <span class="n">openssl</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">-</span><span class="k">new</span><span class="w"> </span><span class="o">-</span><span class="k">key</span><span class="w"> </span><span class="n">private</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="o">-</span><span class="k">out</span><span class="w"> </span><span class="n">CertificateSigningRequest</span><span class="p">.</span><span class="n">certSigningRequest</span><span class="w">  </span><span class="o">-</span><span class="n">subj</span><span class="w"> </span><span class="s1">&#39;/emailAddress=joe@example.com, CN=Joe Example, C=UK&#39;</span>
 </code></pre></div>
 
-<p>On the &#8220;What type of certificate do you need?&#8221; Apple page, say &#8220;iOS App
-Development&#8221;. Go through its little wizard and upload your
+<p>On the "What type of certificate do you need?" Apple page, say "iOS App
+Development". Go through its little wizard and upload your
 <code>CertificateSigningRequest.certSigningRequest</code> file. It will give you
 back a <code>ios_development.cer</code> file.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Convert ios_development.cer to ios_development.pem</span>
@@ -132,14 +117,14 @@ back a <code>ios_development.cer</code> file.</p>
 <span class="n">openssl</span><span class="w"> </span><span class="n">pkcs12</span><span class="w"> </span><span class="o">-</span><span class="k">export</span><span class="w"> </span><span class="o">-</span><span class="n">inkey</span><span class="w"> </span><span class="n">private</span><span class="o">.</span><span class="n">key</span><span class="w"> </span><span class="o">-</span><span class="ow">in</span><span class="w"> </span><span class="n">ios_development</span><span class="o">.</span><span class="n">pem</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">ios_development</span><span class="o">.</span><span class="n">p12</span>
 </code></pre></div>
 
-<h4>Distribution p12&nbsp;key</h4>
-<p>Now, generate a distribution p12 key in the same&nbsp;way:</p>
+<h4>Distribution p12 key</h4>
+<p>Now, generate a distribution p12 key in the same way:</p>
 <div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">signing</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="w"> </span><span class="k">Use</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">own</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="n">address</span><span class="err">!</span>
 <span class="n">openssl</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">-</span><span class="k">new</span><span class="w"> </span><span class="o">-</span><span class="k">key</span><span class="w"> </span><span class="n">private</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="o">-</span><span class="k">out</span><span class="w"> </span><span class="n">DistCertificateSigningRequest</span><span class="p">.</span><span class="n">certSigningRequest</span><span class="w">  </span><span class="o">-</span><span class="n">subj</span><span class="w"> </span><span class="s1">&#39;/emailAddress=joe@example.com, CN=Joe Example, C=UK&#39;</span>
 </code></pre></div>
 
-<p>On the &#8220;What type of certificate do you need?&#8221; Apple page, say &#8220;iOS App
-Development&#8221;. Go through its little wizard and upload your
+<p>On the "What type of certificate do you need?" Apple page, say "iOS App
+Development". Go through its little wizard and upload your
 <code>DistCertificateSigningRequest.certSigningRequest</code> file. It will give
 you back a <code>ios_distribution.cer</code> file.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Convert ios_distribution.cer to ios_distribution.pem</span>
@@ -148,42 +133,42 @@ you back a <code>ios_distribution.cer</code> file.</p>
 <span class="n">openssl</span><span class="w"> </span><span class="n">pkcs12</span><span class="w"> </span><span class="o">-</span><span class="k">export</span><span class="w"> </span><span class="o">-</span><span class="n">inkey</span><span class="w"> </span><span class="n">private</span><span class="o">.</span><span class="n">key</span><span class="w"> </span><span class="o">-</span><span class="ow">in</span><span class="w"> </span><span class="n">ios_distribution</span><span class="o">.</span><span class="n">pem</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">ios_distribution</span><span class="o">.</span><span class="n">p12</span>
 </code></pre></div>
 
-<h3>Add your phone as a&nbsp;Device</h3>
-<p>On the Apple page, on the left, it has a &#8220;Devices&#8221; section. Add a new
-device. For this, you&#8217;ll need the <span class="caps">UDID</span> of your iPhone. Do <code>not</code> use one
+<h3>Add your phone as a Device</h3>
+<p>On the Apple page, on the left, it has a "Devices" section. Add a new
+device. For this, you'll need the UDID of your iPhone. Do <code>not</code> use one
 of the apps on the App Store to get this: Apple changed things in iOS 7
-so that apps can&#8217;t read your <em>real</em> <span class="caps">UDID</span>: they get a vendor-specific
-fake one. If you&#8217;ve got what you think is the <span class="caps">UDID</span> of your phone and it
-begins in <span class="caps">FFFF</span> then it&#8217;s not your actual <span class="caps">UDID</span>; it&#8217;s a vendor-specific
-fake <span class="caps">UDID</span>, and that will not work here. Instead, plug your iPhone into
-your Ubuntu machine with <span class="caps">USB</span>, and then&nbsp;run</p>
+so that apps can't read your <em>real</em> UDID: they get a vendor-specific
+fake one. If you've got what you think is the UDID of your phone and it
+begins in FFFF then it's not your actual UDID; it's a vendor-specific
+fake UDID, and that will not work here. Instead, plug your iPhone into
+your Ubuntu machine with USB, and then run</p>
 <p><code>$ lsusb -v 2&gt;/dev/null | grep -e "Apple Inc" -A 2   iManufacturer           1 Apple Inc.   iProduct                2 iPhone   iSerial                 3 472585[censored]</code></p>
-<p>The <code>iSerial</code> is your <em>actual</em> <span class="caps">UDID</span>. Use it to add your phone as a new
-Device on the Apple developer&nbsp;portal.</p>
-<h3>Add your&nbsp;app</h3>
-<p>Also on the left of the Apple page, there&#8217;s Identifiers &gt; App IDs. Add
-a new App <span class="caps">ID</span> for the app you&#8217;re planning to&nbsp;build.</p>
-<h3>Get a Provisioning&nbsp;Profile</h3>
+<p>The <code>iSerial</code> is your <em>actual</em> UDID. Use it to add your phone as a new
+Device on the Apple developer portal.</p>
+<h3>Add your app</h3>
+<p>Also on the left of the Apple page, there's Identifiers &gt; App IDs. Add
+a new App ID for the app you're planning to build.</p>
+<h3>Get a Provisioning Profile</h3>
 <p>You now need a Provisioning Profile. This is a certificate which is
 specific to a (p12 key, app, device(s)) combination; that is, you need a
 new one of these for each combination of app-to-install and
 device-to-install-it-on. You can add more than one device to a
-provisioning certificate,&nbsp;though.</p>
+provisioning certificate, though.</p>
 <p>Under Provisioning Profiles on the left on the Apple page, add a new
 profile for your chosen combination of (key, app, device). It will give
-you a <code>something.mobileprovision</code> file to&nbsp;download.</p>
-<h3>Add keys to PhoneGap&nbsp;Build</h3>
+you a <code>something.mobileprovision</code> file to download.</p>
+<h3>Add keys to PhoneGap Build</h3>
 <p>In the PhoneGap Build Edit Account page, go to Signing Keys and upload
 your p12 key and mobileprovision file. Unlock the key by entering the
-password you created for it. On your app&#8217;s <span class="caps">PGB</span> page you should now be
+password you created for it. On your app's PGB page you should now be
 able to select that key under iOS and build your app for iOS. Finally,
-point your selected device&#8217;s Safari browser at the download <span class="caps">URL</span> for your
+point your selected device's Safari browser at the download URL for your
 iOS app (https://build.phonegap.com/apps/PGB_APPID/download/ios) and
-you&#8217;ll be able to install&nbsp;it.</p>
+you'll be able to install it.</p>
 <p>Done. An iOS app built with Ubuntu. Thank you to Apple for opening up
 the ability to administer this stuff through the web, PhoneGap for
 providing the Build service, and Breeze for working out how to tie it
-all&nbsp;together.</p>
+all together.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/">Previous post</a></li>
@@ -260,24 +245,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; How I checked whether my LinkedIn password was leaked</title>
+		<title>as days pass by &mdash; How I checked whether my LinkedIn password was leaked</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; How I checked whether my LinkedIn password was leaked">
+        <meta property="og:title" content="as days pass by &mdash; How I checked whether my LinkedIn password was leaked">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/06/06/how-i-checked-whether-my-linkedin-password-was-leaked/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,59 +47,58 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2012/06/06/how-i-checked-whether-my-linkedin-password-was-leaked/"><time 
 			class="dt-published" datetime="2012-06-06T19:25:00+01:00">Jun 06 2012</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/06/06/how-i-checked-whether-my-linkedin-password-was-leaked/" title="Permalink to How I checked whether my LinkedIn password was leaked" rel="bookmark">How I checked whether my LinkedIn password was&nbsp;leaked</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/06/06/how-i-checked-whether-my-linkedin-password-was-leaked/">How I checked whether my LinkedIn password was leaked</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Those of you who read technical news will likely have seen that <a href="http://www.bbc.co.uk/news/technology-18338956">six
-million hashed LinkedIn passwords were leaked today</a>. There&#8217;s
-obviously a worry here; was your own password&nbsp;leaked?</p>
+million hashed LinkedIn passwords were leaked today</a>. There's
+obviously a worry here; was your own password leaked?</p>
 <p>First: go change your LinkedIn password. It cannot hurt to do so
 regardless. Some people are deleting their LinkedIn accounts over this,
-but I&#8217;m&nbsp;not.</p>
+but I'm not.</p>
 <p>Second, you can check whether your password was leaked. People are
 throwing together websites to do this: leakedin.org for one. They seem
-like sensible people, and they carefully ensure that your password isn&#8217;t
-passed to their server, but it&#8217;s bad practice to type your password into
-someone else&#8217;s website, secure or not, in my opinion. So here&#8217;s how I
-checked it&nbsp;myself.</p>
+like sensible people, and they carefully ensure that your password isn't
+passed to their server, but it's bad practice to type your password into
+someone else's website, secure or not, in my opinion. So here's how I
+checked it myself.</p>
 <p>The leaked password file is available for download. I got it from <a href="http://www.mediafire.com/?n307hutksjstow3">a
 MediaFire link</a>, found at <a href="http://news.ycombinator.com/item?id=4073309">Hacker News</a>, but that might be dead by
 the time you go there. There seem to be a couple of different versions
-out there. The one I got was a <span class="caps">116MB</span> <span class="caps">RAR</span> archive file named
+out there. The one I got was a 116MB RAR archive file named
 <code>SHA1.txt_1.rar</code>. Download it and click it to uncompress it; you should
 get a file named <code>SHA1.txt</code>.</p>
-<p>Now that you&#8217;ve got that file, you can look for passwords in it. The
-file (and what was stored at LinkedIn) isn&#8217;t a list of passwords:
-instead, it&#8217;s a list of <em>hashes</em> of passwords; to hash a password, you
+<p>Now that you've got that file, you can look for passwords in it. The
+file (and what was stored at LinkedIn) isn't a list of passwords:
+instead, it's a list of <em>hashes</em> of passwords; to hash a password, you
 take that password and perform a mathematical transformation on it. So
-the word &#8220;ubuntu&#8221; becomes the hash
-&#8220;24bf68e341ce0fbd9259a5d51feed79682ea4eba&#8221;. The important point about
-hashing is that it&#8217;s easy to go from &#8220;ubuntu&#8221; to
-&#8220;24bf68e341ce0fbd9259a5d51feed79682ea4eba&#8221; but it&#8217;s very hard to go
-<em>back</em> again; you can&#8217;t start with the hash and get the&nbsp;word.</p>
-<p>However, the flaw here is that if you&#8217;ve got a big list of hashes, you
-can just guess passwords and see if they&#8217;re in the list. The way you&#8217;re
+the word "ubuntu" becomes the hash
+"24bf68e341ce0fbd9259a5d51feed79682ea4eba". The important point about
+hashing is that it's easy to go from "ubuntu" to
+"24bf68e341ce0fbd9259a5d51feed79682ea4eba" but it's very hard to go
+<em>back</em> again; you can't start with the hash and get the word.</p>
+<p>However, the flaw here is that if you've got a big list of hashes, you
+can just guess passwords and see if they're in the list. The way you're
 meant to prevent this is by <em>salting</em> the passwords: that is, instead of
-hashing &#8220;ubuntu&#8221; to get &#8220;24bf68e341ce0fbd9259a5d51feed79682ea4eba&#8221;, you
+hashing "ubuntu" to get "24bf68e341ce0fbd9259a5d51feed79682ea4eba", you
 invent some random characters, called the <code>salt</code>, and glue them on the
 front of the password first, and then hash <em>that</em>, and then store the
-hash: so you don&#8217;t hash &#8220;ubuntu&#8221;, you invent random characters &#8220;acjup&#8221;,
-and then hash &#8220;acjupubuntu&#8221; to get
-&#8220;ec329e9cefc6138288b5baf1e25008da3f488ad8&#8221;, something different&#8230; and
+hash: so you don't hash "ubuntu", you invent random characters "acjup",
+and then hash "acjupubuntu" to get
+"ec329e9cefc6138288b5baf1e25008da3f488ad8", something different... and
 then in your password file you store the hash <em>and</em> the salt. This makes
-guessing much harder. LinkedIn didn&#8217;t do this, sadly enough. So, given
+guessing much harder. LinkedIn didn't do this, sadly enough. So, given
 that you have a list of hashed passwords, you can guess a password and
-see whether it&#8217;s in the list. With your <code>SHA1.txt</code> file, try&nbsp;it:</p>
+see whether it's in the list. With your <code>SHA1.txt</code> file, try it:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>alongpasswordimadeup<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c6-40<span class="sb">`</span><span class="w"> </span>SHA1.txt$
 </code></pre></div>
 
-<p>That didn&#8217;t show anything, so &#8220;alongpasswordimadeup&#8221; isn&#8217;t one of the
-leaked passwords. Let&#8217;s try&nbsp;another:</p>
+<p>That didn't show anything, so "alongpasswordimadeup" isn't one of the
+leaked passwords. Let's try another:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>l1nked0ut<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c6-40<span class="sb">`</span><span class="w"> </span>SHA1.txt<span class="w"> </span>
 e7bf10afef5f2ba94b104126d04db1837f423816
 000000afef5f2ba94b104126d04db1837f423816
@@ -121,29 +106,30 @@ $
 </code></pre></div>
 
 <p>That <em>did</em> show something, so someone on LinkedIn had the password
-&#8220;l1nked0ut&#8221;, and it&#8217;s been leaked. Worse, there are two hits: the
+"l1nked0ut", and it's been leaked. Worse, there are two hits: the
 hackers seem to already be working on this file to guess passwords with
-it, and ones that they&#8217;ve identified are in the file with the first five
-characters overwritten with zeroes&#8230; so our unlucky l1nked0ut person is
+it, and ones that they've identified are in the file with the first five
+characters overwritten with zeroes... so our unlucky l1nked0ut person is
 doubly punished for their lack of imagination by having a password
-leaked and having had it already guessed by the leakers.&nbsp;Oops.</p>
-<p>So, to check your own password,&nbsp;do:</p>
+leaked and having had it already guessed by the leakers. Oops.</p>
+<p>So, to check your own password, do:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w">  </span>grep<span class="w"> </span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>yourpassword<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c6-40<span class="sb">`</span><span class="w"> </span>SHA1.txt
 </code></pre></div>
 
-<p>Note that there is an <em>extra space</em> before the word &#8220;grep&#8221;: this means
+<p>Note that there is an <em>extra space</em> before the word "grep": this means
 that that command will not go into your command history (and so your
-password won&#8217;t be in&nbsp;there).</p>
-<p>If a result shows&#8230; your password was leaked. Go and change&nbsp;it.</p>
-<p>If you get no result&#8230; go and change your password anyway. And don&#8217;t
-use the same password as you use&nbsp;elsewhere.</p>
-<p>Mine wasn&#8217;t in it, pleasingly enough, although that&#8217;s just&nbsp;luck.</p>
+password won't be in there).</p>
+<p>If a result shows... your password was leaked. Go and change it.</p>
+<p>If you get no result... go and change your password anyway. And don't
+use the same password as you use elsewhere.</p>
+<p>Mine wasn't in it, pleasingly enough, although that's just luck.</p>
 <p>If you want to understand this stuff more, read about encryption and
 secure passwords and salting. There is much literature out there about
-this stuff. (That is: don&#8217;t treat my explanations above as gospel: read
-real documentation from experts and understand!) It&#8217;s disappointing that
+this stuff. (That is: don't treat my explanations above as gospel: read
+real documentation from experts and understand!) It's disappointing that
 LinkedIn made the schoolchild error of not salting stored passwords,
-certainly. Let&#8217;s hope that others learn from their mistake, if nothing&nbsp;else.</p>
+certainly. Let's hope that others learn from their mistake, if nothing
+else.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/">Previous post</a></li>
@@ -220,24 +206,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

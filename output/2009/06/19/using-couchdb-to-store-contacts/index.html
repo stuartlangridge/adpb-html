@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Using CouchDB to store contacts</title>
+		<title>as days pass by &mdash; Using CouchDB to store contacts</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Using CouchDB to store contacts">
+        <meta property="og:title" content="as days pass by &mdash; Using CouchDB to store contacts">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,26 +47,25 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/"><time 
 			class="dt-published" datetime="2009-06-19T11:51:00+01:00">Jun 19 2009</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/" title="Permalink to Using CouchDB to store contacts" rel="bookmark">Using CouchDB to store&nbsp;contacts</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/">Using CouchDB to store contacts</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>One of the things I&#8217;m looking at is using CouchDB to store data for
+			<p>One of the things I'm looking at is using CouchDB to store data for
 applications on your desktop as part of the <a href="http://blogs.gnome.org/rodrigo/2009/06/03/desktop-datasettings-replication/">desktop data/settings</a>
-idea that Rodrigo&#8217;s already written about. Obviously one of the great
+idea that Rodrigo's already written about. Obviously one of the great
 things here is that applications can collaborate on data stored in
 there; obviously one of the pre-requisites for collaboration is that
-everyone&#8217;s speaking the same language! So various people working on a
+everyone's speaking the same language! So various people working on a
 number of different mail clients for the Linux desktop and so on are
 working out what the schema for contact records in CouchDB should look
 like. Being able to browse around your database with a web browser is
 dead handy for writing this sort of thing, I have to say :-) At the
-moment, this is the sort of direction we&#8217;re heading in. A CouchDB
-document is <span class="caps">JSON</span>, and an example contact looks like&nbsp;this:</p>
+moment, this is the sort of direction we're heading in. A CouchDB
+document is JSON, and an example contact looks like this:</p>
 <div class="highlight"><pre><span></span><code><span class="err">{</span>
 <span class="w">   </span><span class="ss">&quot;_id&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;362cbeae5f408d6863bb70892d5ba345&quot;</span><span class="p">,</span>
 <span class="w">   </span><span class="ss">&quot;_rev&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;1-182987891&quot;</span><span class="p">,</span>
@@ -150,30 +135,31 @@ document is <span class="caps">JSON</span>, and an example contact looks like&nb
 <span class="err">}</span>
 </code></pre></div>
 
-<p>Fields in this are as&nbsp;follows:</p>
+<p>Fields in this are as follows:</p>
 <dl>
-<dt>CouchDB&nbsp;fields</dt>
+<dt>CouchDB fields</dt>
 <dd>
 <dl>
 <dt><code>_id</code></dt>
-<dd>Unique document <span class="caps">ID</span>, provided by CouchDB (or you can choose it
-explicitly if you&nbsp;want)</dd>
+<dd>Unique document ID, provided by CouchDB (or you can choose it
+explicitly if you want)</dd>
 <dt><code>_rev</code></dt>
-<dd>revision number for this document. Managed by&nbsp;CouchDB.</dd>
+<dd>revision number for this document. Managed by CouchDB.</dd>
 </dl>
 </dd>
-<dt>Contact schema&nbsp;fields</dt>
+<dt>Contact schema fields</dt>
 <dd>The contact schema is the list of fields that are stored for a
 contact. Since this is a shared schema, everyone can rely on it.
-Fields that aren&#8217;t in this list can be stored by applications in
-<code>application_annotations</code>, if an application cares about extra&nbsp;stuff.</dd>
+Fields that aren't in this list can be stored by applications in
+<code>application_annotations</code>, if an application cares about extra
+stuff.</dd>
 <dd>
 <ul>
 <li><code>first_name</code> (string)</li>
 <li><code>last_name</code> (string)</li>
-<li><code>birth_date</code> (string, &#8220;<span class="caps">YYYY</span>-<span class="caps">MM</span>-<span class="caps">DD</span>&#8221;)</li>
+<li><code>birth_date</code> (string, "YYYY-MM-DD")</li>
 <li>
-<p><code>addresses</code> (MergeableSet of &#8220;address&#8221;&nbsp;dictionaries)</p>
+<p><code>addresses</code> (MergeableSet of "address" dictionaries)</p>
 <ul>
 <li><code>city</code> (string)</li>
 <li><code>address1</code> (string)</li>
@@ -182,18 +168,18 @@ Fields that aren&#8217;t in this list can be stored by applications in
 <li><code>state</code> (string)</li>
 <li><code>country</code> (string)</li>
 <li><code>postalcode</code> (string)</li>
-<li><code>description</code> (string, e.g.,&nbsp;&#8220;Home&#8221;)</li>
+<li><code>description</code> (string, e.g., "Home")</li>
 </ul>
 </li>
 <li>
-<p><code>email_addresses</code> (MergeableSet of &#8220;emailaddress&#8221;&nbsp;dictionaries)</p>
+<p><code>email_addresses</code> (MergeableSet of "emailaddress" dictionaries)</p>
 <ul>
 <li><code>address</code> (string),</li>
 <li><code>description</code> (string)</li>
 </ul>
 </li>
 <li>
-<p><code>phone_numbers</code> (MergeableSet of &#8220;phone number&#8221;&nbsp;dictionaries)</p>
+<p><code>phone_numbers</code> (MergeableSet of "phone number" dictionaries)</p>
 <ul>
 <li><code>number</code> (string)</li>
 <li><code>description</code> (string)</li>
@@ -201,36 +187,37 @@ Fields that aren&#8217;t in this list can be stored by applications in
 </li>
 </ul>
 </dd>
-<dt>Basic &#8220;record schema&#8221;&nbsp;fields</dt>
-<dd>The record schema is the basic format we&#8217;re talking about for
-storing <em>any</em> data in CouchDB; it&#8217;s a couple of fields that are in
-every record that everyone can rely&nbsp;on.</dd>
+<dt>Basic "record schema" fields</dt>
+<dd>The record schema is the basic format we're talking about for
+storing <em>any</em> data in CouchDB; it's a couple of fields that are in
+every record that everyone can rely on.</dd>
 <dd>
 <dl>
 <dt><code>record_type</code></dt>
-<dd>A <span class="caps">URL</span> which is a unique identifier for this type of record. It
-would be good if that <span class="caps">URL</span> had a page at it describing the record
+<dd>A URL which is a unique identifier for this type of record. It
+would be good if that URL had a page at it describing the record
 schema, but (importantly) this is not a reference to some sort
-of <span class="caps">JSON</span> <span class="caps">DTD</span> or&nbsp;anything</dd>
+of JSON DTD or anything</dd>
 <dt><code>record_type_version</code></dt>
 <dd>Version of this record type schema (so you can make updated
-versions if you want to make changes to field names,&nbsp;etc)</dd>
+versions if you want to make changes to field names, etc)</dd>
 <dt><code>application_annotations</code></dt>
 <dd>The <code>application_annotations</code> section of the document is where
-apps put their own data that isn&#8217;t part of the schema. For
-example, Funambol knows about &#8220;company&#8221; for a contact, but the
-contact schema doesn&#8217;t directly include that field. So Funambol
+apps put their own data that isn't part of the schema. For
+example, Funambol knows about "company" for a contact, but the
+contact schema doesn't directly include that field. So Funambol
 stores it on the contact record in a Funambol-specific section,
 so it can happily get it back later. If it turns out that
-everyone&#8217;s storing their own version of the same field, then
+everyone's storing their own version of the same field, then
 that field is probably a good candidate for being in the schema
 (making this sort of change is what the <code>record_type_version</code>
-field is for&nbsp;:))</dd>
+field is for :))</dd>
 </dl>
 </dd>
 </dl>
 <p>Quick script to drop contacts in this schema into a CouchDB database:
-<a href="http://www.kryogenix.org/code/createCouchContacts.py.txt">createCouchContacts.py</a>. Requires python-couchdb (and Couch,&nbsp;obviously).</p>
+<a href="http://www.kryogenix.org/code/createCouchContacts.py.txt">createCouchContacts.py</a>. Requires python-couchdb (and Couch,
+obviously).</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2009/06/11/filmage/">Previous post</a></li>
@@ -307,24 +294,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

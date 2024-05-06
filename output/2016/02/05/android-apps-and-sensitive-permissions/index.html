@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Android apps and sensitive permissions</title>
+		<title>as days pass by &mdash; Android apps and sensitive permissions</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Android apps and sensitive permissions">
+        <meta property="og:title" content="as days pass by &mdash; Android apps and sensitive permissions">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2016/02/05/android-apps-and-sensitive-permissions/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,23 +47,22 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2016/02/05/android-apps-and-sensitive-permissions/"><time 
 			class="dt-published" datetime="2016-02-05T12:52:00+00:00">Feb 05 2016</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2016/02/05/android-apps-and-sensitive-permissions/" title="Permalink to Android apps and sensitive permissions" rel="bookmark">Android apps and sensitive&nbsp;permissions</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2016/02/05/android-apps-and-sensitive-permissions/">Android apps and sensitive permissions</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>In the last two days, I&#8217;ve installed two Android apps (names redacted because it&#8217;s not their fault!) which, on install, have popped up a custom notification saying that the app &#8220;requests Sensitive&nbsp;Permissions&#8221;.</p>
-<p><strong><span class="caps">UPDATE</span>: this is not these apps&#8217;s fault. It is <u><span class="caps">ES</span> File Explorer&#8217;s</u> fault. Uninstall <span class="caps">ES</span> File Explorer. And everything below applies to the <span class="caps">ES</span> File Explorer&nbsp;people.</strong></p>
+			<p>In the last two days, I've installed two Android apps (names redacted because it's not their fault!) which, on install, have popped up a custom notification saying that the app "requests Sensitive Permissions".</p>
+<p><strong>UPDATE: this is not these apps's fault. It is <u>ES File Explorer's</u> fault. Uninstall ES File Explorer. And everything below applies to the ES File Explorer people.</strong></p>
 <p><img src="http://kryogenix.org/images/android-sensitive-permissions/notification.png" alt="a popup notification" style="max-width: 90%; margin: auto; display: block; box-shadow: 3px 3px 3px #000;"></p>
-<p>Tapping this notification pops up a thing named &#8220;Apps Analyze&#8221; which pretends to be analysing the stuff on your phone and then shows you a bunch of irrelevant information about your phone and weather and Facebook info, which have nothing whatsoever to do with the app you&nbsp;installed.</p>
+<p>Tapping this notification pops up a thing named "Apps Analyze" which pretends to be analysing the stuff on your phone and then shows you a bunch of irrelevant information about your phone and weather and Facebook info, which have nothing whatsoever to do with the app you installed.</p>
 <p><img src="http://kryogenix.org/images/android-sensitive-permissions/splash.png" alt="a popup notification" style="max-width: 90%; margin: auto; display: block; box-shadow: 3px 3px 3px #000;"></p>
 <p><img src="http://kryogenix.org/images/android-sensitive-permissions/apps-analyze.png" alt="a popup notification" style="max-width: 90%; margin: auto; display: block; box-shadow: 3px 3px 3px #000;"></p>
-<p>Let me be clear. This is <em>bullshit</em>. This is nothing more than malware. I wanted to dim my screen, or buy a sandwich. I did not want to have my phone &#8220;analysed&#8221;; I did not want &#8220;sensitive permissions&#8221;. I don&#8217;t think this thing needs permissions at all; at the very best it&#8217;s a completely unwanted bundled thing, like Oracle bundling adware with their Java installer. At worst, it&#8217;s some sort of unpleasant malware which harvests data from my phone and ships it off somewhere. I don&#8217;t know what it does; it&#8217;s certainly bloatware at the very least; there&#8217;s a <a href="https://www.reddit.com/r/Android/comments/43fkl5/es_file_explorer_appears_to_have_moved_from/">Reddit thread</a> about&nbsp;it.</p>
-<p><s>I don&#8217;t know where this is coming from; since it&#8217;s shown up in two separate apps, it&#8217;s presumably some sort of third-party component, and presumably the authors of it pay app developers to include it.</s> <strong> I do know where it&#8217;s coming from; it&#8217;s from <span class="caps">ES</span> File Explorer.</strong> If you are an Android app developer and you are using this thing, fucking pack it in. This is a hysterical betrayal of your users&#8217; trust. I know it&#8217;s hard work to monetise software that you write. I know it&#8217;s tempting to scrape the barrel like this. But if you are using this, you are a terrible person and you should sit down and have a bloody word with yourself. Stop it. You&#8217;re pissing in the waterhole and ruining things for everyone. Do you <em>really</em> want to be part of this race to the&nbsp;bottom?</p>
-<p><s>It&#8217;s possible that this is an official Android thing, since it&#8217;s also showing up in Google Sheets and so on. If so, Android people, what the hell are you thinking of?</s></p>
+<p>Let me be clear. This is <em>bullshit</em>. This is nothing more than malware. I wanted to dim my screen, or buy a sandwich. I did not want to have my phone "analysed"; I did not want "sensitive permissions". I don't think this thing needs permissions at all; at the very best it's a completely unwanted bundled thing, like Oracle bundling adware with their Java installer. At worst, it's some sort of unpleasant malware which harvests data from my phone and ships it off somewhere. I don't know what it does; it's certainly bloatware at the very least; there's a <a href="https://www.reddit.com/r/Android/comments/43fkl5/es_file_explorer_appears_to_have_moved_from/">Reddit thread</a> about it.</p>
+<p><s>I don't know where this is coming from; since it's shown up in two separate apps, it's presumably some sort of third-party component, and presumably the authors of it pay app developers to include it.</s> <strong> I do know where it's coming from; it's from ES File Explorer.</strong> If you are an Android app developer and you are using this thing, fucking pack it in. This is a hysterical betrayal of your users' trust. I know it's hard work to monetise software that you write. I know it's tempting to scrape the barrel like this. But if you are using this, you are a terrible person and you should sit down and have a bloody word with yourself. Stop it. You're pissing in the waterhole and ruining things for everyone. Do you <em>really</em> want to be part of this race to the bottom?</p>
+<p><s>It's possible that this is an official Android thing, since it's also showing up in Google Sheets and so on. If so, Android people, what the hell are you thinking of?</s></p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2016/01/31/what-i-did-on-my-holidays/">Previous post</a></li>
@@ -154,24 +139,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

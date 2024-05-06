@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; YeahConsole: a dropdown Linux terminal that’s better than Tilda</title>
+		<title>as days pass by &mdash; YeahConsole: a dropdown Linux terminal that's better than Tilda</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; YeahConsole: a dropdown Linux terminal that’s better than Tilda">
+        <meta property="og:title" content="as days pass by &mdash; YeahConsole: a dropdown Linux terminal that's better than Tilda">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2008/06/17/yeahconsole-a-dropdown-linux-terminal-thats-better-than-tilda/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,47 +47,46 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2008/06/17/yeahconsole-a-dropdown-linux-terminal-thats-better-than-tilda/"><time 
 			class="dt-published" datetime="2008-06-17T23:57:00+01:00">Jun 17 2008</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/06/17/yeahconsole-a-dropdown-linux-terminal-thats-better-than-tilda/" title="Permalink to YeahConsole: a dropdown Linux terminal that’s better than Tilda" rel="bookmark">YeahConsole: a dropdown Linux terminal that&#8217;s better than&nbsp;Tilda</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/06/17/yeahconsole-a-dropdown-linux-terminal-thats-better-than-tilda/">YeahConsole: a dropdown Linux terminal that's better than Tilda</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>I&#8217;ve been a big fan of Tilda, the dropdown terminal window for Linux,
+			<p>I've been a big fan of Tilda, the dropdown terminal window for Linux,
 for a long while; pressing F2 to grab a terminal is hardwired into my
-fingers now, and I&#8217;m crippled without it. However, Tilda&#8217;s been getting
-steadily shitter as time&#8217;s gone on; more crashy, more unresponsive.
+fingers now, and I'm crippled without it. However, Tilda's been getting
+steadily shitter as time's gone on; more crashy, more unresponsive.
 Recently, it stopped taking keyboard focus when you brought it up, which
 has led more than once to me pressing F2 and then typing half the shell
 command I wanted into my (still focused) Firefox window. Not only is
-this incredibly annoying, but at some point I&#8217;m going to type my
-password into an <span class="caps">IRC</span> channel. It&#8217;s gotta stop. The obvious replacement
-is yakuake, the <span class="caps">KDE</span> dropdown terminal. However, I hate it. I don&#8217;t even
+this incredibly annoying, but at some point I'm going to type my
+password into an IRC channel. It's gotta stop. The obvious replacement
+is yakuake, the KDE dropdown terminal. However, I hate it. I don't even
 know why, to be honest; it just feels weird to me in a way that Tilda
-doesn&#8217;t. So I looked around for alternatives, and found two: Guake,
+doesn't. So I looked around for alternatives, and found two: Guake,
 which is supposedly a better Tilda and Yakuake for the Gnome desktop,
 and yeahconsole. Sadly for the Guake team, I found yeahconsole first, so
-that&#8217;s what I&#8217;m using. Actually, I rather like the out-and-out
-simplicity and bare-bones nature of yeahconsole, which is why I&#8217;m
-sticking with it; when I need to do shell things, I don&#8217;t want flashy
-features, I want a shell. I don&#8217;t use tabbed terminal windows, for
-example. Just simplicity, that&#8217;s what I want. Yeahconsole is available
-in the Ubuntu repositories (<a href="apt:yeahconsole">click to install on Ubuntu</a>). Here&#8217;s how
+that's what I'm using. Actually, I rather like the out-and-out
+simplicity and bare-bones nature of yeahconsole, which is why I'm
+sticking with it; when I need to do shell things, I don't want flashy
+features, I want a shell. I don't use tabbed terminal windows, for
+example. Just simplicity, that's what I want. Yeahconsole is available
+in the Ubuntu repositories (<a href="apt:yeahconsole">click to install on Ubuntu</a>). Here's how
 I set it up. First, it needs to run every time I log in. So, go to
 <strong>System &gt; Preferences &gt; Session</strong>, select <strong>Startup Programs</strong>, click
-<strong>Add</strong>, and add a new command, name &#8220;YeahConsole&#8221;, command
-&#8220;yeahconsole&#8221;. Next, it looks a bit rubbish when you start it up. Here&#8217;s
+<strong>Add</strong>, and add a new command, name "YeahConsole", command
+"yeahconsole". Next, it looks a bit rubbish when you start it up. Here's
 how bare-bones yeahconsole is: you configure it with X resources. Party
-like it&#8217;s 1989! I had to go look up how to do this; for the more tender
+like it's 1989! I had to go look up how to do this; for the more tender
 in years among us, X resources were a sort of central configuration for
 all your apps, round about the same time that humanity was fighting off
 sabre-toothed tigers and wondering whether that hot flamey thing in the
 corner could actually be useful. On Ubuntu, you need to edit (actually,
 you probably need to <em>create</em>) a file called <code>.Xresources</code> in your home
 folder<span style="color: red" title="And on Debian. On other distros it might be called .Xdefaults">*</span>.
-In that file, you put the configuration for yeahconsole, like&nbsp;this:</p>
+In that file, you put the configuration for yeahconsole, like this:</p>
 <div class="highlight"><pre><span></span><code>yeahconsole*toggleKey: None+F2
 yeahconsole*consoleHeight: 20
 yeahconsole*aniDelay: 0
@@ -116,23 +101,23 @@ stuff means is documented in the man page (<a href="man:yeahconsole">man yeahcon
 from which font to use. This is the faceName and faceSize options above,
 and here you have to delve a bit (I told you this was old-fashioned; I
 started writing a yeahconsole-properties configuration utility that did
-all this for you, but couldn&#8217;t be bothered). In a terminal, run
+all this for you, but couldn't be bothered). In a terminal, run
 <code>fc-list</code>. This lists all the TrueType fonts that you can use in an
 xterm. Choose one, and put it in faceName above. Now, simply start
 yeahconsole for the first time (press Alt+F2, type <code>yeahconsole</code>), and
 then press F2 (or your key of choice). Pow, a dropdown terminal, like
-Tilda, but one that won&#8217;t keep crashing and make you cry. One other
-thing: if you hit Ctrl-D to log out by mistake, it&#8217;ll close yeahconsole
-(tilda did this too), and that&#8217;s really irritating. To fix this, put the
-following in a file called <code>bashloop</code> in your home&nbsp;folder:</p>
+Tilda, but one that won't keep crashing and make you cry. One other
+thing: if you hit Ctrl-D to log out by mistake, it'll close yeahconsole
+(tilda did this too), and that's really irritating. To fix this, put the
+following in a file called <code>bashloop</code> in your home folder:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>bash<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div></td></tr></table></div>
 
 <p>and change your Startup Programs command above to be
-<code>yeahconsole -e /home/username/bashloop</code>. Now Ctrl-D won&#8217;t close
-yeahconsole.&nbsp;Win.</p>
+<code>yeahconsole -e /home/username/bashloop</code>. Now Ctrl-D won't close
+yeahconsole. Win.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2008/06/17/lugradio-live-uk-2008-is-coming/">Previous post</a></li>
@@ -209,24 +194,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

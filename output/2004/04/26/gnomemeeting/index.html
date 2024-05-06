@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Gnomemeeting and Smoothwall</title>
+		<title>as days pass by &mdash; Gnomemeeting and Smoothwall</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Gnomemeeting and Smoothwall">
+        <meta property="og:title" content="as days pass by &mdash; Gnomemeeting and Smoothwall">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/04/26/gnomemeeting/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,28 +47,27 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2004/04/26/gnomemeeting/"><time 
 			class="dt-published" datetime="2004-04-26T11:00:00+01:00">Apr 26 2004</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/04/26/gnomemeeting/" title="Permalink to Gnomemeeting and Smoothwall" rel="bookmark">Gnomemeeting and&nbsp;Smoothwall</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/04/26/gnomemeeting/">Gnomemeeting and Smoothwall</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>I’ve been using <a href="http://www.gnomemeeting.org/">Gnomemeeting</a> to talk to <a href="http://www.jonobacon.org/">Jono</a>, and it rocks a
-bollock. Took a little while to set up, though. Things you should&nbsp;check:</p>
+bollock. Took a little while to set up, though. Things you should check:</p>
 <ul>
 <li>Does your sound work? I’m using kernel 2.6, so it had
-    <span class="caps"><span class="caps">ALSA</span></span> in it and the mic worked fine without
-    me having to do any&nbsp;work.</li>
-<li>Have you got the mic volume turned up? Use alsamixer to&nbsp;check.</li>
-<li>Port forward all the ports mentioned in <a href="http://www.gnomemeeting.org/index.php?rub=3&amp;pos=0&amp;faqpage=x266.html">the Gnomemeeting <span class="caps">FAQ</span></a> to your machine (you have to do
-    them all individually; <span class="caps"><span class="caps">SW1</span></span>.0 doesn’t
-    support port&nbsp;ranges).</li>
+    <span class="caps">ALSA</span> in it and the mic worked fine without
+    me having to do any work.</li>
+<li>Have you got the mic volume turned up? Use alsamixer to check.</li>
+<li>Port forward all the ports mentioned in <a href="http://www.gnomemeeting.org/index.php?rub=3&amp;pos=0&amp;faqpage=x266.html">the Gnomemeeting FAQ</a> to your machine (you have to do
+    them all individually; <span class="caps">SW1</span>.0 doesn’t
+    support port ranges).</li>
 <li>Make sure those ports are also available in the “services/external
-    service access” section in your smoothwall&nbsp;configuration.</li>
-<li>Turn on “Enable <span class="caps">IP</span> translation” in the H.323 advanced section of the
-    Gnomemeeting&nbsp;preferences.</li>
+    service access” section in your smoothwall configuration.</li>
+<li>Turn on “Enable IP translation” in the H.323 advanced section of the
+    Gnomemeeting preferences.</li>
 </ul>
 <hr>
 		</div> <!--/#entry-content-->
@@ -161,24 +146,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

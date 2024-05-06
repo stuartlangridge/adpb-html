@@ -5,8 +5,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
         <meta property="og:title" content="as days pass by &mdash; Negative numbers in the Google Chart API">
         <meta property="og:type" content="website">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/12/08/negative-numbers-in-the-google-chart-api/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,62 +47,61 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2007/12/08/negative-numbers-in-the-google-chart-api/"><time 
 			class="dt-published" datetime="2007-12-08T00:37:00+00:00">Dec 08 2007</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/12/08/negative-numbers-in-the-google-chart-api/" title="Permalink to Negative numbers in the Google Chart API" rel="bookmark">Negative numbers in the Google Chart <span class="caps">API</span></a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/12/08/negative-numbers-in-the-google-chart-api/">Negative numbers in the Google Chart API</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Google&#8217;s new <a href="http://code.google.com/apis/chart/">Chart <span class="caps">API</span></a> is a useful little thing that returns a <span class="caps">PNG</span>
-of a chart based on the <span class="caps">URL</span> you feed it, so you can create graphs like
+			<p>Google's new <a href="http://code.google.com/apis/chart/">Chart API</a> is a useful little thing that returns a PNG
+of a chart based on the URL you feed it, so you can create graphs like
 this: <img alt="a simple example line graph" src="http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:helloWorld&amp;chxt=x,y&amp;chxl=0:|0|10|20"> by just specifying the
 <code>&lt;img&gt; src</code> attribute as
 <a href="http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:helloWorld&amp;chxt=x,y&amp;chxl=0:|0|10|20">http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:helloWorld&amp;chxt=x,y&amp;chxl=0:|0|10|20</a>
-However, as <a href="http://gulopine.gamemusic.org/2007/12/google-chart-api.html">Marty Alchin rightfully complains about</a>, it doesn&#8217;t
+However, as <a href="http://gulopine.gamemusic.org/2007/12/google-chart-api.html">Marty Alchin rightfully complains about</a>, it doesn't
 handle negative numbers at all. Obviously Google, being the internet
 success story that it is, never has any numbers for anything that dip
-below zero, but not everyone&#8217;s so lucky. However, there are ways to
-handle negative numbers in the Google Chart <span class="caps">API</span>. Sort of, anyway. This
-is a bodge. Hold your nose and dive in. I&#8217;m sure Google will forcibly
+below zero, but not everyone's so lucky. However, there are ways to
+handle negative numbers in the Google Chart API. Sort of, anyway. This
+is a bodge. Hold your nose and dive in. I'm sure Google will forcibly
 inject clue into their charting engine at some point, but until then you
 can sorta-kinda get around the problem like this. <img alt="a simple line graph
 with negative numbers" src="http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;chd=s:eelloWorld&amp;chco=ff8000&amp;chls=3,6,3&amp;chxt=y&amp;chxl=0:|-10|0|10&amp;chg=0,50,1,0"> For line graphs with negative numbers, you need
 to do two things. First, lie about the values on the y axis (so you
 display on the graph that the y axis goes between -10 and 10, in the
-above example, even though it actually goes between 0 and 20). You&#8217;ll
+above example, even though it actually goes between 0 and 20). You'll
 obviously need to transform your numbers appropriately, so a data series
 [-10, -5, 0, 5, 10] should be fed to the graphing engine as [0, 5, 10,
 15, 20]. The second thing to do is to draw a horizontal line at 0 on the
-y axis; if we had real negative number support then that&#8217;s where the x
-axis should be, and so the extra drawn line &#8220;stands in&#8221; for it. That&#8217;s
+y axis; if we had real negative number support then that's where the x
+axis should be, and so the extra drawn line "stands in" for it. That's
 easy enough to do, using the <a href="http://code.google.com/apis/chart/#grid">grid lines chg parameter</a>; just make
 the grid only exist horizontally, and have the grid divide the graph
 into two 50% parts, with <code>chg=0,50,1,0</code>. The four parameters 0, 50, 1, 0
-mean &#8220;don&#8217;t draw vertical grid lines (0)&#8221;, &#8220;draw a horizontal grid line
-every 50% of the y axis (50)&#8221;, and &#8220;make the line solid with no gaps
-(1,0)&#8221;. It&#8217;s also possible for bar graphs, although it requires a small
+mean "don't draw vertical grid lines (0)", "draw a horizontal grid line
+every 50% of the y axis (50)", and "make the line solid with no gaps
+(1,0)". It's also possible for bar graphs, although it requires a small
 amount more ingenuity. <img alt="a bar graph with negative numbers" src="http://chart.apis.google.com/chart?cht=bvs&amp;chd=t:50,50,50,30,50|0,0,0,20,0|20,10,30,0,30&amp;chco=00000000,ff0000,0000ff&amp;chs=200x125&amp;chg=0,51,1,0&amp;chxt=y&amp;chxl=0:|-50|0|50"> This graph
-has negatives, right? Well, how it&#8217;s done might be clearer if you see
+has negatives, right? Well, how it's done might be clearer if you see
 this graph: <img alt="a bar graph without negative numbers, with the parts 'below the line' coloured in" src="http://chart.apis.google.com/chart?cht=bvs&amp;chd=t:50,50,50,30,50|0,0,0,20,0|20,10,30,0,30&amp;chco=006600ff,ff0000,0000ff&amp;chs=200x125&amp;chg=0,51,1,0&amp;chxt=y&amp;chxl=0:|-50|0|50"> Yep, you just stack up the bars, and
 make the bottom bit of the stack be transparent (note that in the first
 graph we have <code>chco=00000000,ff0000,0000ff</code>, which specifies colours for
 each data series; the first item in there is <code>00000000</code>, which is in
-format <span class="caps">RRGGBBAA</span>, meaning 0% red, 0% green, 0% blue, and 0% visible.
+format RRGGBBAA, meaning 0% red, 0% green, 0% blue, and 0% visible.
 Actually, it could have been <code>ffffff00</code>, or <code>deaded00</code>, or anything; all
 colours are the same when they have 0 opacity! The second graph is
 exactly the same, except now the transparent bars are shown in green so
-you can see how it&#8217;s done. You&#8217;ll note that all these graphs still have
-the &#8220;real&#8221; x axis (the line at the bottom of the graph) still visible.
-This is because there&#8217;s no way to turn it off, which is unfortunate both
-for this fake-the-negatives approach and because you can&#8217;t do decent
+you can see how it's done. You'll note that all these graphs still have
+the "real" x axis (the line at the bottom of the graph) still visible.
+This is because there's no way to turn it off, which is unfortunate both
+for this fake-the-negatives approach and because you can't do decent
 sparkline graphs if you have to display the axes. Both of the tricks
 above are horrible fudges which only need to exist until the Google
-Chart people rediscover the minus sign on their keyboards, which I&#8217;m
-sure is already in their bugtracker somewhere. If it&#8217;s not, then here,
+Chart people rediscover the minus sign on their keyboards, which I'm
+sure is already in their bugtracker somewhere. If it's not, then here,
 Google, take some of these: - - - - - - - - - - - - - - - - - - - -.
-Hope you find them&nbsp;useful.</p>
+Hope you find them useful.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2007/12/05/epiphany/">Previous post</a></li>
@@ -193,24 +178,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

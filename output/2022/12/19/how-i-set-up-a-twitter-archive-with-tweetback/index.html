@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; How I set up a Twitter archive with Tweetback</title>
+		<title>as days pass by &mdash; How I set up a Twitter archive with Tweetback</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; How I set up a Twitter archive with Tweetback">
+        <meta property="og:title" content="as days pass by &mdash; How I set up a Twitter archive with Tweetback">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,24 +47,23 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/"><time 
 			class="dt-published" datetime="2022-12-19T10:40:00+00:00">Dec 19 2022</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/" title="Permalink to How I set up a Twitter archive with Tweetback" rel="bookmark">How I set up a Twitter archive with&nbsp;Tweetback</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/">How I set up a Twitter archive with Tweetback</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>Twitter currently has problems. Well, one specific problem, which is the bloke who bought it. My solution to this problem has been to move to Mastodon (<a href="https://mastodon.social/@sil">@sil@mastodon.social</a> if you want to do the same), but I&#8217;ve invested fifteen years of my life providing twitter.com with free content so I don&#8217;t really want it to go away. Since there&#8217;s a chance that the whole site might vanish, or that it continues on its current journey until I don&#8217;t even want my name associated with it any more, it makes sense to have a backup. And obviously, I don&#8217;t want all that lovely writing to disappear from the web (how would you all cope without me complaining about some random pub&#8217;s music in 2011?!), so I wanted to have that backup published somewhere I control&#8230; by which I mean my own&nbsp;website.</p>
-<p>So, it would be nice to be able to download a list of all my tweets, and then turn that into some sort of website so it&#8217;s all still available and published by&nbsp;me.</p>
-<p>Fortunately, <a href="https://www.zachleat.com/">Zach Leatherman</a> came to save us by building a tool, <a href="https://github.com/tweetback/tweetback">Tweetback</a>, which does a lot of the heavy lifting on this. Nice one, that man. Here I&#8217;ll describe how I used Tweetback to set up <a href="https://kryogenix.org/twitter">my own personal Twitter archive</a>. This is unavoidably a bit of a developer-ish process, involving the Terminal and so on; if you&#8217;re not at least a little comfortable with doing that, this might not be for&nbsp;you.</p>
-<h1>Step 1: get a backup from&nbsp;Twitter</h1>
-<p>This part is mandatory. Twitter graciously permit you to download a big list of all the tweets you&#8217;ve given them over the years, and you&#8217;ll need it for this. As they describe in their <a href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive">help page</a>, go to your Twitter account settings and choose <strong>Your account &gt; Download an archive of your data</strong>. You&#8217;ll have to confirm your identity and then say <strong>Request data</strong>. They then go away and start constructing an archive of all your Twitter stuff. This can take a couple of days; they send you an email when it&#8217;s done, and you can follow the link in that email to download a zip file. This is your Twitter backup; it contains all your tweets (and some other stuff). Stash it somewhere; you&#8217;ll need a file from it&nbsp;shortly.</p>
-<h1>Step 2: get the <a href="https://github.com/tweetback/tweetback">Tweetback</a>&nbsp;code</h1>
-<p>You&#8217;ll need both node.js and git installed to do this. If you don&#8217;t have node.js, go to <a href="https://nodejs.org">nodejs.org</a> and follow their instructions for how to download and install it for your computer. (This process can be fiddly; sorry about that. I suspect that most people reading this will already have node installed, but if you don&#8217;t, hopefully you can manage it.) You&#8217;ll also need git installed: <a href="https://docs.github.com/en/get-started/quickstart/set-up-git">Github have some instructions on how to install git</a> or Github Desktop, which should explain how to do this stuff if you don&#8217;t already have it set&nbsp;up.</p>
-<p>Now, you need to clone the <a href="https://github.com/tweetback/tweetback">Tweetback repository</a> from Github. On the command line, this looks like <code>git clone https://github.com/tweetback/tweetback.git</code>; if you&#8217;re using Github Desktop, follow their instructions to <a href="https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop">clone a repository</a>. This should give you the Tweetback code, in a folder on your computer. Make a note of where that folder&nbsp;is.</p>
-<h1>Step 3: install the Tweetback&nbsp;code</h1>
-<p>Open a Terminal on your machine and <code>cd</code> into the Tweetback folder, wherever you put it. Now, run <code>npm install</code> to install all of Tweetback&#8217;s dependencies. Since you have node.js installed from above, this ought to just work. If it doesn&#8217;t&#8230; you get to debug a bit. Sorry about that. This should end up looking something like&nbsp;this:</p>
+			<p>Twitter currently has problems. Well, one specific problem, which is the bloke who bought it. My solution to this problem has been to move to Mastodon (<a href="https://mastodon.social/@sil">@sil@mastodon.social</a> if you want to do the same), but I've invested fifteen years of my life providing twitter.com with free content so I don't really want it to go away. Since there's a chance that the whole site might vanish, or that it continues on its current journey until I don't even want my name associated with it any more, it makes sense to have a backup. And obviously, I don't want all that lovely writing to disappear from the web (how would you all cope without me complaining about some random pub's music in 2011?!), so I wanted to have that backup published somewhere I control... by which I mean my own website.</p>
+<p>So, it would be nice to be able to download a list of all my tweets, and then turn that into some sort of website so it's all still available and published by me.</p>
+<p>Fortunately, <a href="https://www.zachleat.com/">Zach Leatherman</a> came to save us by building a tool, <a href="https://github.com/tweetback/tweetback">Tweetback</a>, which does a lot of the heavy lifting on this. Nice one, that man. Here I'll describe how I used Tweetback to set up <a href="https://kryogenix.org/twitter">my own personal Twitter archive</a>. This is unavoidably a bit of a developer-ish process, involving the Terminal and so on; if you're not at least a little comfortable with doing that, this might not be for you.</p>
+<h1>Step 1: get a backup from Twitter</h1>
+<p>This part is mandatory. Twitter graciously permit you to download a big list of all the tweets you've given them over the years, and you'll need it for this. As they describe in their <a href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive">help page</a>, go to your Twitter account settings and choose <strong>Your account &gt; Download an archive of your data</strong>. You'll have to confirm your identity and then say <strong>Request data</strong>. They then go away and start constructing an archive of all your Twitter stuff. This can take a couple of days; they send you an email when it's done, and you can follow the link in that email to download a zip file. This is your Twitter backup; it contains all your tweets (and some other stuff). Stash it somewhere; you'll need a file from it shortly.</p>
+<h1>Step 2: get the <a href="https://github.com/tweetback/tweetback">Tweetback</a> code</h1>
+<p>You'll need both node.js and git installed to do this. If you don't have node.js, go to <a href="https://nodejs.org">nodejs.org</a> and follow their instructions for how to download and install it for your computer. (This process can be fiddly; sorry about that. I suspect that most people reading this will already have node installed, but if you don't, hopefully you can manage it.) You'll also need git installed: <a href="https://docs.github.com/en/get-started/quickstart/set-up-git">Github have some instructions on how to install git</a> or Github Desktop, which should explain how to do this stuff if you don't already have it set up.</p>
+<p>Now, you need to clone the <a href="https://github.com/tweetback/tweetback">Tweetback repository</a> from Github. On the command line, this looks like <code>git clone https://github.com/tweetback/tweetback.git</code>; if you're using Github Desktop, follow their instructions to <a href="https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop">clone a repository</a>. This should give you the Tweetback code, in a folder on your computer. Make a note of where that folder is.</p>
+<h1>Step 3: install the Tweetback code</h1>
+<p>Open a Terminal on your machine and <code>cd</code> into the Tweetback folder, wherever you put it. Now, run <code>npm install</code> to install all of Tweetback's dependencies. Since you have node.js installed from above, this ought to just work. If it doesn't... you get to debug a bit. Sorry about that. This should end up looking something like this:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>install
 npm<span class="w"> </span>WARN<span class="w"> </span>deprecated<span class="w"> </span>@npmcli/move-file@1.1.2:<span class="w"> </span>This<span class="w"> </span>functionality<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>moved<span class="w"> </span>to<span class="w"> </span>@npmcli/fs
 
@@ -90,35 +75,35 @@ added<span class="w"> </span><span class="m">347</span><span class="w"> </span>p
 found<span class="w"> </span><span class="m">0</span><span class="w"> </span>vulnerabilities
 </code></pre></div>
 
-<h1>Step 4: configure Tweetback with your tweet&nbsp;archive</h1>
-<p>From here, you&#8217;re following Tweetback&#8217;s own <span class="caps">README</span> instructions: they&#8217;re online at <a href="https://github.com/tweetback/tweetback#usage">https://github.com/tweetback/tweetback#usage</a> and also are in the <span class="caps">README</span> file in your current&nbsp;directory.</p>
-<p>Open up the zip file you downloaded from Twitter, and get the <code>data/tweets.js</code> file from it. Put that in the <code>database</code> folder in your Tweetback folder, then edit that file to change <code>window.YTD.tweet.part0</code> on the first line to <code>module.exports</code>, as the <span class="caps">README</span> says. This means that your <code>database/tweets.js</code> file will now have the first couple of lines look like&nbsp;this:</p>
+<h1>Step 4: configure Tweetback with your tweet archive</h1>
+<p>From here, you're following Tweetback's own README instructions: they're online at <a href="https://github.com/tweetback/tweetback#usage">https://github.com/tweetback/tweetback#usage</a> and also are in the README file in your current directory.</p>
+<p>Open up the zip file you downloaded from Twitter, and get the <code>data/tweets.js</code> file from it. Put that in the <code>database</code> folder in your Tweetback folder, then edit that file to change <code>window.YTD.tweet.part0</code> on the first line to <code>module.exports</code>, as the README says. This means that your <code>database/tweets.js</code> file will now have the first couple of lines look like this:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;tweet&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 </code></pre></div>
 
-<p>Now, run <code>npm run import</code>. This will go through your <code>tweets.js</code> file and load it all into a database, so it can be more easily read later on. You only need to do this step once. This will print a bunch of lines that look like <code>{ existingRecordsFound: 0, missingTweets: 122 }</code>, and then a bunch of lines that look like <code>Finished count { count: 116 }</code>, and then it&#8217;ll finish. This should be <em>relatively</em> quick, but if you&#8217;ve got a lot of tweets (I have 68,000!) then it might take a little while. Get yourself a cup of tea and a couple of biscuits and it&#8217;ll be done when you&#8217;ve poured&nbsp;it.</p>
-<h1>Step 5: Configure a subdirectory&nbsp;(optional)</h1>
-<p>If you&#8217;re setting up your own (sub)domain for your twitter archive, so it&#8217;ll be at the root of the website (so, <code>https://twitter.example.com</code> or whatever) then you can skip this step. However, if you&#8217;re going to put your archive in its own directory, so it&#8217;s <em>not</em> at the root (which I did, for example, at <a href="https://kryogenix.org/twitter/">kryogenix.org/twitter</a>), then you need to tell your setup about&nbsp;that.</p>
-<p>To do this, edit the file <code>eleventy.config.js</code>, and at the end, before the closing <code>}</code>, add a new line, so the end of the file looks like&nbsp;this:</p>
+<p>Now, run <code>npm run import</code>. This will go through your <code>tweets.js</code> file and load it all into a database, so it can be more easily read later on. You only need to do this step once. This will print a bunch of lines that look like <code>{ existingRecordsFound: 0, missingTweets: 122 }</code>, and then a bunch of lines that look like <code>Finished count { count: 116 }</code>, and then it'll finish. This should be <em>relatively</em> quick, but if you've got a lot of tweets (I have 68,000!) then it might take a little while. Get yourself a cup of tea and a couple of biscuits and it'll be done when you've poured it.</p>
+<h1>Step 5: Configure a subdirectory (optional)</h1>
+<p>If you're setting up your own (sub)domain for your twitter archive, so it'll be at the root of the website (so, <code>https://twitter.example.com</code> or whatever) then you can skip this step. However, if you're going to put your archive in its own directory, so it's <em>not</em> at the root (which I did, for example, at <a href="https://kryogenix.org/twitter/">kryogenix.org/twitter</a>), then you need to tell your setup about that.</p>
+<p>To do this, edit the file <code>eleventy.config.js</code>, and at the end, before the closing <code>}</code>, add a new line, so the end of the file looks like this:</p>
 <div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addPlugin</span><span class="p">(</span><span class="nx">EleventyHtmlBasePlugin</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="nx">pathPrefix</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/twitter/&quot;</span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
-<p>The string <code>"/twitter/"</code> should be whatever you want the path to the root of your Twitter archive to be, so if you&#8217;re going to put it at <code>mywebsite.example.com/my-twitter-archive</code>, set <code>pathPrefix</code> to be <code>"/my-twitter-archive"</code>. This is only a path, not a full <span class="caps">URL</span>; you do not need to fill in the domain where you&#8217;ll be hosting this&nbsp;here.</p>
-<h1>Step 6: add&nbsp;metadata</h1>
-<p>As the Tweetback <span class="caps">README</span> describes, edit the file <code>_data/metadata.js</code>. You&#8217;ll want to change three values in here: <code>username</code>, <code>homeLabel</code>, and <code>homeURL</code>.</p>
-<p><code>username</code> is your Twitter username. Mine is <code>sil</code>: yours isn&#8217;t. Don&#8217;t include the <code>@</code> at the&nbsp;beginning.</p>
-<p><code>homeLabel</code> is the thing that appears in the top corner of your Twitter archive once generated; it will be a link to your own homepage. (Note: <em>not</em> the homepage of this Twitter archive! This will be the text of a link which takes you out of the Twitter archive and to your own&nbsp;home.)</p>
-<p><code>homeURL</code> is the full <span class="caps">URL</span> to your homepage. (This is &#8220;https://kryogenix.org/&#8221; for me, for example. It is the <span class="caps">URL</span> that <code>homeLabel</code> links&nbsp;to.)</p>
+<p>The string <code>"/twitter/"</code> should be whatever you want the path to the root of your Twitter archive to be, so if you're going to put it at <code>mywebsite.example.com/my-twitter-archive</code>, set <code>pathPrefix</code> to be <code>"/my-twitter-archive"</code>. This is only a path, not a full URL; you do not need to fill in the domain where you'll be hosting this here.</p>
+<h1>Step 6: add metadata</h1>
+<p>As the Tweetback README describes, edit the file <code>_data/metadata.js</code>. You'll want to change three values in here: <code>username</code>, <code>homeLabel</code>, and <code>homeURL</code>.</p>
+<p><code>username</code> is your Twitter username. Mine is <code>sil</code>: yours isn't. Don't include the <code>@</code> at the beginning.</p>
+<p><code>homeLabel</code> is the thing that appears in the top corner of your Twitter archive once generated; it will be a link to your own homepage. (Note: <em>not</em> the homepage of this Twitter archive! This will be the text of a link which takes you out of the Twitter archive and to your own home.)</p>
+<p><code>homeURL</code> is the full URL to your homepage. (This is "https://kryogenix.org/" for me, for example. It is the URL that <code>homeLabel</code> links to.)</p>
 <p><img src="https://kryogenix.org/random/tweetback-homelabel.png" alt="the home label is top left of the website"></p>
-<h1>Step 7: (drum roll, please!) Build the&nbsp;site</h1>
-<p><span class="caps">OK</span>. Now you&#8217;ve done all the setup. This step actually takes all of that and builds a website from all your&nbsp;tweets.</p>
+<h1>Step 7: (drum roll, please!) Build the site</h1>
+<p>OK. Now you've done all the setup. This step actually takes all of that and builds a website from all your tweets.</p>
 <p>Run <code>npm run build</code>.</p>
-<p>If you&#8217;ve got a lot of tweets, this can take a <em>long</em> time. It took me a couple of hours, I think, the first time I ran it. Subsequent runs take a lot less time (a couple of minutes for me, maybe even shorter for you if you&#8217;re less mouthy on Twitter), but the first run takes <em>ages</em> because it has to fetch all the images for all the tweets you&#8217;ve ever written. You&#8217;ll want a second cup of tea here, and perhaps&nbsp;dinner.</p>
-<p>It should look something like&nbsp;this:</p>
+<p>If you've got a lot of tweets, this can take a <em>long</em> time. It took me a couple of hours, I think, the first time I ran it. Subsequent runs take a lot less time (a couple of minutes for me, maybe even shorter for you if you're less mouthy on Twitter), but the first run takes <em>ages</em> because it has to fetch all the images for all the tweets you've ever written. You'll want a second cup of tea here, and perhaps dinner.</p>
+<p>It should look something like this:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
 
 &gt;<span class="w"> </span>tweetback@1.0.0<span class="w"> </span>build
@@ -127,20 +112,20 @@ found<span class="w"> </span><span class="m">0</span><span class="w"> </span>vul
 <span class="o">[</span>11ty<span class="o">]</span><span class="w"> </span>Copied<span class="w"> </span><span class="m">1868</span><span class="w"> </span>files<span class="w"> </span>/<span class="w"> </span>Wrote<span class="w"> </span><span class="m">68158</span><span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">248</span>.58<span class="w"> </span>seconds<span class="w"> </span><span class="o">(</span><span class="m">3</span>.6ms<span class="w"> </span>each,<span class="w"> </span>v2.0.0-canary.18<span class="o">)</span>
 </code></pre></div>
 
-<p>You may get errors in here about being unable to fetch URLs (<code>Image request error Bad response for https://pbs.twimg.com/media/C1VJJUVXEAE3VGE.jpg (404): Not Found</code> and the like); this is because some Tweets link to images that aren&#8217;t there any more. There&#8217;s not a lot you can do about this, but it doesn&#8217;t stop the rest of the site&nbsp;building.</p>
-<p>Once this is all done, you should have a directory called <code>_site</code>, which is a website containing your Twitter archive! Hooray! Now you publish that directory, however you choose: copy it up to your website, push it to <a href="https://github.com/tweetback/tweetback/blob/main/docs/deploy-with-github-pages.md">github pages</a> or Netlify or whatever. You only need the contents of the <code>_site</code> directory; that&#8217;s your whole Twitter archive website, completely self-contained; all the other stuff is only used for generating the archive website, not for running it once it&#8217;s&nbsp;generated.</p>
-<h1>Step 8: updating the site with newer tweets&nbsp;(optional)</h1>
-<p>If you&#8217;re still using Twitter, you may post more Tweets after your downloadable archive was generated. If so, it&#8217;d be nice to update the archive with the contents of those tweets without having to request a full archive from Twitter and wait two days. Fortunately, this is possible. Unfortunately, you gotta do some hoop-jumping to get&nbsp;it.</p>
-<p>You see, to do this, you need access to the Twitter <span class="caps">API</span>. In the old days, people built websites with an <span class="caps">API</span> because they wanted to encourage others to interact with that website programmatically as well as in a browser: you built an ecosystem, right? But Twitter are not like that; they don&#8217;t really want you to interact with their stuff unless they like what you&#8217;re doing. So you have to apply for permission to be a Twitter developer in order to use the <span class="caps">API</span>.</p>
-<p>To do this, as the Tweetback readme says, you will need a Twitter bearer token. To get one of those, you need to be a Twitter developer, and to be that, you have to fill in a bunch of forms and ask for permission and be manually reviewed. Twitter&#8217;s documentation explains about <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">bearer tokens</a>, and explains that you need to sign up for a Twitter developer account to get them. Go ahead and do that. This is an annoying process where they ask a bunch of questions about what you plan to do with the Twitter <span class="caps">API</span>, and then you wait until someone manually reviews your answers and decides whether to grant you access or not, and possibly makes you clarify your answers to questions. I have no good suggestions here; go through the process and wait.&nbsp;Sorry.</p>
-<p>Once you are a Twitter developer, create an app, and then get its bearer token. You only get this once, so be sure to make a note of it. In a clear allusion to the delight that this whole process brings to users, it probably will begin by screaming <code>AAAAAAAAAAAAAAA</code> and then look like a bunch of incomprehensible&nbsp;gibberish.</p>
-<p>Now to pull in new data,&nbsp;run:</p>
+<p>You may get errors in here about being unable to fetch URLs (<code>Image request error Bad response for https://pbs.twimg.com/media/C1VJJUVXEAE3VGE.jpg (404): Not Found</code> and the like); this is because some Tweets link to images that aren't there any more. There's not a lot you can do about this, but it doesn't stop the rest of the site building.</p>
+<p>Once this is all done, you should have a directory called <code>_site</code>, which is a website containing your Twitter archive! Hooray! Now you publish that directory, however you choose: copy it up to your website, push it to <a href="https://github.com/tweetback/tweetback/blob/main/docs/deploy-with-github-pages.md">github pages</a> or Netlify or whatever. You only need the contents of the <code>_site</code> directory; that's your whole Twitter archive website, completely self-contained; all the other stuff is only used for generating the archive website, not for running it once it's generated.</p>
+<h1>Step 8: updating the site with newer tweets (optional)</h1>
+<p>If you're still using Twitter, you may post more Tweets after your downloadable archive was generated. If so, it'd be nice to update the archive with the contents of those tweets without having to request a full archive from Twitter and wait two days. Fortunately, this is possible. Unfortunately, you gotta do some hoop-jumping to get it.</p>
+<p>You see, to do this, you need access to the Twitter API. In the old days, people built websites with an API because they wanted to encourage others to interact with that website programmatically as well as in a browser: you built an ecosystem, right? But Twitter are not like that; they don't really want you to interact with their stuff unless they like what you're doing. So you have to apply for permission to be a Twitter developer in order to use the API.</p>
+<p>To do this, as the Tweetback readme says, you will need a Twitter bearer token. To get one of those, you need to be a Twitter developer, and to be that, you have to fill in a bunch of forms and ask for permission and be manually reviewed. Twitter's documentation explains about <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">bearer tokens</a>, and explains that you need to sign up for a Twitter developer account to get them. Go ahead and do that. This is an annoying process where they ask a bunch of questions about what you plan to do with the Twitter API, and then you wait until someone manually reviews your answers and decides whether to grant you access or not, and possibly makes you clarify your answers to questions. I have no good suggestions here; go through the process and wait. Sorry.</p>
+<p>Once you are a Twitter developer, create an app, and then get its bearer token. You only get this once, so be sure to make a note of it. In a clear allusion to the delight that this whole process brings to users, it probably will begin by screaming <code>AAAAAAAAAAAAAAA</code> and then look like a bunch of incomprehensible gibberish.</p>
+<p>Now to pull in new data, run:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">TWITTER_BEARER_TOKEN</span><span class="o">=</span>AAAAAAAAAAAAAAAAAAq3874nh93q<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>fetch-new-data
 </code></pre></div>
 
-<p>(substituting in the value of your token, of course, which will be&nbsp;longer.)</p>
-<p>This will fetch any tweets that aren&#8217;t in the database because you made them since! And then run <code>npm run build</code> again to rebuild the <code>_site</code> directory, and re-publish it&nbsp;all.</p>
-<p>I personally run these steps (<code>fetch-new-data</code>, then <code>build</code>, then publish) daily in a cron job, which runs a script with contents&nbsp;(approximately):</p>
+<p>(substituting in the value of your token, of course, which will be longer.)</p>
+<p>This will fetch any tweets that aren't in the database because you made them since! And then run <code>npm run build</code> again to rebuild the <code>_site</code> directory, and re-publish it all.</p>
+<p>I personally run these steps (<code>fetch-new-data</code>, then <code>build</code>, then publish) daily in a cron job, which runs a script with contents (approximately):</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span>
 
@@ -161,14 +146,14 @@ rsync<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;ss
 <span class="nb">echo</span><span class="w"> </span>Finish<span class="w"> </span>publish<span class="w"> </span>at<span class="w"> </span><span class="k">$(</span>date<span class="k">)</span>
 </code></pre></div>
 
-<p>but how you publish and rebuild, and how often you do that, is of course up to&nbsp;you.</p>
-<h1>Step 9: improve the archive (optional, but&nbsp;good)</h1>
-<p>What Tweetback actually <em>does</em> is use your twitter backup to build an <a href="https://www.11ty.dev/">11ty</a> static website. (This is not all that surprising, since 11ty is also Zach&#8217;s static site builder.) This means that if you&#8217;re into 11ty you could make the archive better and more comprehensive by adding stuff. There are already some neat graphs of most popular tweets, most recent tweets, the emoji you use a lot (sigh) and so on; if you find things that you wish that your Twitter archive contained, <a href="https://github.com/tweetback/tweetback/issues">file an issue</a> with Tweetback, or better still write the change and submit it back so everyone gets&nbsp;it!</p>
-<h1>Step 10: add yourself to the list of people using the archive (optional, but you know you&nbsp;wanna)</h1>
-<p>Go to <a href="https://github.com/tweetback/tweetback-canonical">tweetback/tweetback-canonical</a> and add yourself to the <code>mapping.js</code> file. What&#8217;s neat about this is that that file is used by tweetback itself. This means that if someone else with a Tweetback archive has a tweet which links to one of <em>your</em> Tweets, now their archive will link to your archive directly instead! It&#8217;s not just a bunch of separate sites, it&#8217;s a bunch of sites all of which are connected! Lots of connections between sites without any central authority! We could call this a collection of connections. Or a pile of connections. Or&#8230; a <em>web</em>!</p>
-<p>That&#8217;s a good idea. Someone should do something with that&nbsp;concept.</p>
-<h1>Step 11: big hugs for&nbsp;Zach</h1>
-<p>You may, or may not, want to get off Twitter. Maybe you&#8217;re looking to get as far away as possible; maybe you just don&#8217;t want to lose the years of investment you&#8217;ve put in. But it&#8217;s never a bad thing to have your data under your control when you can. Tweetback helps make that happen. Cheers to Zach and the other contributors for creating it, so the rest of us didn&#8217;t have to. Tell them thank&nbsp;you.</p>
+<p>but how you publish and rebuild, and how often you do that, is of course up to you.</p>
+<h1>Step 9: improve the archive (optional, but good)</h1>
+<p>What Tweetback actually <em>does</em> is use your twitter backup to build an <a href="https://www.11ty.dev/">11ty</a> static website. (This is not all that surprising, since 11ty is also Zach's static site builder.) This means that if you're into 11ty you could make the archive better and more comprehensive by adding stuff. There are already some neat graphs of most popular tweets, most recent tweets, the emoji you use a lot (sigh) and so on; if you find things that you wish that your Twitter archive contained, <a href="https://github.com/tweetback/tweetback/issues">file an issue</a> with Tweetback, or better still write the change and submit it back so everyone gets it!</p>
+<h1>Step 10: add yourself to the list of people using the archive (optional, but you know you wanna)</h1>
+<p>Go to <a href="https://github.com/tweetback/tweetback-canonical">tweetback/tweetback-canonical</a> and add yourself to the <code>mapping.js</code> file. What's neat about this is that that file is used by tweetback itself. This means that if someone else with a Tweetback archive has a tweet which links to one of <em>your</em> Tweets, now their archive will link to your archive directly instead! It's not just a bunch of separate sites, it's a bunch of sites all of which are connected! Lots of connections between sites without any central authority! We could call this a collection of connections. Or a pile of connections. Or... a <em>web</em>!</p>
+<p>That's a good idea. Someone should do something with that concept.</p>
+<h1>Step 11: big hugs for Zach</h1>
+<p>You may, or may not, want to get off Twitter. Maybe you're looking to get as far away as possible; maybe you just don't want to lose the years of investment you've put in. But it's never a bad thing to have your data under your control when you can. Tweetback helps make that happen. Cheers to Zach and the other contributors for creating it, so the rest of us didn't have to. Tell them thank you.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2022/12/06/transferring-to-a-new-phone-network-2022-edition/">Previous post</a></li>
@@ -245,24 +230,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

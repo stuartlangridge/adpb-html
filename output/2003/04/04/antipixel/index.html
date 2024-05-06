@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Antipixel buttons without images</title>
+		<title>as days pass by &mdash; Antipixel buttons without images</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Antipixel buttons without images">
+        <meta property="og:title" content="as days pass by &mdash; Antipixel buttons without images">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2003/04/04/antipixel/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,12 +47,11 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2003/04/04/antipixel/"><time 
 			class="dt-published" datetime="2003-04-04T11:00:00+01:00">Apr 04 2003</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2003/04/04/antipixel/" title="Permalink to Antipixel buttons without images" rel="bookmark">Antipixel buttons without&nbsp;images</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2003/04/04/antipixel/">Antipixel buttons without images</a>
 		</h2>
 		<div class="entry-content e-content">
 			<!--timestamp:1049455121.0:-->
@@ -74,19 +59,19 @@
 buttons</a> without using images (prompted by <a href="http://www.antipixel.com/blog/archives/2002/10/22/steal_these_buttons.html#jamie_zawinski_000679">a comment there</a> from
 jwz). Then I fell asleep in my chair. This morning I discover that Marek
 Prokop has already <a href="http://www.sovavsiti.cz/css/w3c_buttons.html">done the right thing</a> here. However, I think his
-styling&#8217;s a little overwrought. Marek creates his buttons as a <span class="caps">DIV</span> and
-then adds a link inside, and spans inside&nbsp;that:</p>
+styling's a little overwrought. Marek creates his buttons as a DIV and
+then adds a link inside, and spans inside that:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;w3cbutton3&quot;</span><span class="nt">&gt;</span>
 <span class="w">      </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;span</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;w3c&quot;</span><span class="nt">&gt;</span>W3C<span class="nt">&lt;/span&gt;</span><span class="w"> </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;spec&quot;</span><span class="nt">&gt;</span>XHTML<span class="w"> </span>1.0<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/div&gt;</span>
 </code></pre></div>
 
-<p>I prefer a slightly simpler&nbsp;version:</p>
+<p>I prefer a slightly simpler version:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;silbutton&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://validator.w3.org/check/referer&quot;</span><span class="nt">&gt;&lt;strong&gt;</span>W3C<span class="nt">&lt;/strong&gt;</span>
 <span class="nt">&lt;em&gt;</span>XHTML<span class="w"> </span>1.0<span class="nt">&lt;/em&gt;&lt;/a&gt;</span>
 </code></pre></div>
 
-<p>Then you change Marek&#8217;s <span class="caps">CSS</span>&nbsp;slightly:</p>
+<p>Then you change Marek's CSS slightly:</p>
 <div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="nc">silbutton</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">      </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="kt">em</span><span class="p">;</span>
@@ -113,14 +98,14 @@ then adds a link inside, and spans inside&nbsp;that:</p>
 </code></pre></div>
 
 <p>(i.e., style the A element directly, rather than wrapping it in a div
-and styling the div). I&#8217;ve also used semantic tags that seem
-appropriate, rather than named spans; it seems to me that &#8220;<span class="caps">W3C</span>&#8221; <em>should</em>
+and styling the div). I've also used semantic tags that seem
+appropriate, rather than named spans; it seems to me that "W3C" <em>should</em>
 be strongly emphasised in this, and your level of compliance emphasised
-over ordinary&nbsp;text.</p>
-<p>Anyway, only minor tweaks. It would be nicer to emulate Antipixel&#8217;s
+over ordinary text.</p>
+<p>Anyway, only minor tweaks. It would be nicer to emulate Antipixel's
 actual (very pretty, but still all text and colours and borders, which
-should be doable in pure <span class="caps">HTML</span> and <span class="caps">CSS</span>) buttons, which I shall have a
-crack at later if someone doesn&#8217;t beat me to it&nbsp;:)</p>
+should be doable in pure HTML and CSS) buttons, which I shall have a
+crack at later if someone doesn't beat me to it :)</p>
 <!--category::--><!--author:sil:-->
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
@@ -198,24 +183,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

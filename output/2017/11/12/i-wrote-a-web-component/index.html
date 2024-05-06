@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; I wrote a Web Component</title>
+		<title>as days pass by &mdash; I wrote a Web Component</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; I wrote a Web Component">
+        <meta property="og:title" content="as days pass by &mdash; I wrote a Web Component">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,25 +47,24 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/"><time 
 			class="dt-published" datetime="2017-11-12T11:31:00+00:00">Nov 12 2017</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/" title="Permalink to I wrote a Web Component" rel="bookmark">I wrote a Web&nbsp;Component</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/">I wrote a Web Component</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>I’ve been meaning to play with Web Components for a little while now. After I saw <a href="https://twitter.com/BenNadel/status/929383549584789504">Ben Nadel create a Twitter tweet progress indicator with Angular</a> and <a href="https://github.com/LucasLeandro1204/vue-twitter-counter">Lucas Leandro did the same with Vue.js</a> I thought, here’s a chance to experiment.</p>
-<p>Web Components involve a whole bunch of different dovetailing specs; <span class="caps">HTML</span> imports, custom elements, shadow <span class="caps">DOM</span>, <span class="caps">HTML</span> templates. I didn’t want to have to use the <span class="caps">HTML</span> template and import stuff if I could avoid it, and pleasantly you actually don’t need it. Essentially, you can create a custom element named <code>whatever-you-want</code> and then just add <code>&lt;whatever-you-want someattr="somevalue"&gt;content here&lt;/whatever-you-want&gt;</code> elements to your page, and it all works. This is good.</p>
-<p>To define a new type of element, you use <code>window.customElements.define('your-element-name', YourClass)</code>.<sup id="sf-i-wrote-a-web-component-1-back"><a href="#sf-i-wrote-a-web-component-1" class="simple-footnote" title="I relied for a lot of this understanding on Google’s web components documentation by Eric Bidelman.">1</a></sup> <code>YourClass</code> is an <span class="caps">ES2016</span> JavaScript class. <sup id="sf-i-wrote-a-web-component-2-back"><a href="#sf-i-wrote-a-web-component-2" class="simple-footnote" title="All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later.">2</a></sup> So, we start like this:</p>
+			<p>I've been meaning to play with Web Components for a little while now. After I saw <a href="https://twitter.com/BenNadel/status/929383549584789504">Ben Nadel create a Twitter tweet progress indicator with Angular</a> and <a href="https://github.com/LucasLeandro1204/vue-twitter-counter">Lucas Leandro did the same with Vue.js</a> I thought, here's a chance to experiment.</p>
+<p>Web Components involve a whole bunch of different dovetailing specs; HTML imports, custom elements, shadow DOM, HTML templates. I didn't want to have to use the HTML template and import stuff if I could avoid it, and pleasantly you actually don't need it. Essentially, you can create a custom element named <code>whatever-you-want</code> and then just add <code>&lt;whatever-you-want someattr="somevalue"&gt;content here&lt;/whatever-you-want&gt;</code> elements to your page, and it all works. This is good.</p>
+<p>To define a new type of element, you use <code>window.customElements.define('your-element-name', YourClass)</code>.<sup id="sf-i-wrote-a-web-component-1-back"><a href="#sf-i-wrote-a-web-component-1" class="simple-footnote" title="I relied for a lot of this understanding on Google's web components documentation by Eric Bidelman.">1</a></sup> <code>YourClass</code> is an ES2016 JavaScript class. <sup id="sf-i-wrote-a-web-component-2-back"><a href="#sf-i-wrote-a-web-component-2" class="simple-footnote" title="All this stuff is present already in Chrome; for other browsers you may need polyfills, and I'll get to that later.">2</a></sup> So, we start like this:</p>
 <pre><code>
 window.customElements.define('twitter-circle-count', class extends HTMLElement {
 });
 </code></pre>
 
-<p>The class has a <code>constructor</code> method which sets everything up. In our case, we’re going to create an <span class="caps">SVG</span> with two circles: the “indicator” (which is the one that changes colour and fills in as you add characters), and the “track” (which is the one that’s always present and shows where the line of the circle goes). Then we shrink and grow the “indicator” circle by using <a href="https://jakearchibald.com/2013/animated-line-drawing-svg/">Jake Archibald’s dash-offset technique</a>. This is all perfectly expressed by Ben Nadel’s diagram, which I hope he doesn’t mind me borrowing because it’s great.</p>
+<p>The class has a <code>constructor</code> method which sets everything up. In our case, we're going to create an SVG with two circles: the "indicator" (which is the one that changes colour and fills in as you add characters), and the "track" (which is the one that's always present and shows where the line of the circle goes). Then we shrink and grow the "indicator" circle by using <a href="https://jakearchibald.com/2013/animated-line-drawing-svg/">Jake Archibald's dash-offset technique</a>. This is all perfectly expressed by Ben Nadel's diagram, which I hope he doesn't mind me borrowing because it's great.</p>
 <p><img src="https://kryogenix.org/images/twitter-progress-indicator-concept-angular5.png" alt="Ben's diagram"></p>
-<p>So, we need to dynamically create an <span class="caps">SVG</span>. The <span class="caps">SVG</span> we want will look basically like this:</p>
+<p>So, we need to dynamically create an SVG. The SVG we want will look basically like this:</p>
 <pre><code>
 &lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"&gt;
   &lt;circle cx="50" cy="50" r="45" 
@@ -89,7 +74,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 &lt;/svg&gt;
 </code></pre>
 
-<p>Let’s set that <span class="caps">SVG</span> up in our element’s constructor:</p>
+<p>Let's set that SVG up in our element's constructor:</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {</span>
   constructor() {
@@ -116,7 +101,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 <span>});</span>
 </code></pre>
 
-<p>Now we need to actually add that created <span class="caps">SVG</span> to the document. For that, we create a <em>shadow root</em>. This is basically a little separate <span class="caps">HTML</span> document, inside your element, which is isolated from the rest of the page. Styles set in the main page won’t apply to stuff in your component; styles set in your component won’t leak out to the rest of the page.<sup id="sf-i-wrote-a-web-component-3-back"><a href="#sf-i-wrote-a-web-component-3" class="simple-footnote" title="Pedant posse: yes, it’s a bit more complicated than this. One step at a time.">3</a></sup> This is easy with <code>attachShadow</code>, which returns you this shadow root, which you can then treat like a normal node:</p>
+<p>Now we need to actually add that created SVG to the document. For that, we create a <em>shadow root</em>. This is basically a little separate HTML document, inside your element, which is isolated from the rest of the page. Styles set in the main page won't apply to stuff in your component; styles set in your component won't leak out to the rest of the page.<sup id="sf-i-wrote-a-web-component-3-back"><a href="#sf-i-wrote-a-web-component-3" class="simple-footnote" title="Pedant posse: yes, it's a bit more complicated than this. One step at a time.">3</a></sup> This is easy with <code>attachShadow</code>, which returns you this shadow root, which you can then treat like a normal node:</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
   constructor() {
@@ -138,9 +123,9 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 });</span>
 </code></pre>
 
-<p>Now, we want to allow people to set the colours of our circles. The way to do this is with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*"><span class="caps">CSS</span> custom properties</a>. Basically, you can invent any new property name you like, as long as it’s prefixed with <code>--</code>. So we invent two: <code>--track-color</code> and <code>--circle-color</code>. We then set the two circles to be those colours by using <span class="caps">CSS</span>’s <code>var()</code> syntax; this lets us say “use this variable if it’s set, or use this default value if it isn’t”. So our user can style our element with <code>twitter-circle-count { --track-color: #eee; }</code> and it’ll work.</p>
-<p>Annoyingly, it doesn’t seem to be easily possible to use <em>existing</em> <span class="caps">CSS</span> properties for this; there doesn’t seem to be a good way to have the standard property <code>color</code> set the circle colour.<sup id="sf-i-wrote-a-web-component-4-back"><a href="#sf-i-wrote-a-web-component-4" class="simple-footnote" title="It would be possible to have color apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare.">4</a></sup> One has to use a custom variable even if there’s a “real” <span class="caps">CSS</span> property that would be appropriate. I’m hoping I’m wrong about this and there is a sensible way to do it that I just haven’t discovered.<sup id="sf-i-wrote-a-web-component-5-back"><a href="#sf-i-wrote-a-web-component-5" class="simple-footnote" title="QML does this by setting “aliases”; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow.">5</a></sup>
-(Update: Matt Machell <a href="https://twitter.com/shuckle/status/929710831620820993">mentions <code>currentColor</code></a> which would work perfectly for this example, but it <em>only</em> works for <code>color</code>; there’s no way of setting other properties like, say, <code>font-size</code> on the component and having that explicitly propagate down to a particular element <em>in</em> the component; there’s no <code>currentFontSize</code>. I don’t know why <code>color</code> gets special treatment, even though the special treatment would solve my particular problem.)</p>
+<p>Now, we want to allow people to set the colours of our circles. The way to do this is with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">CSS custom properties</a>. Basically, you can invent any new property name you like, as long as it's prefixed with <code>--</code>. So we invent two: <code>--track-color</code> and <code>--circle-color</code>. We then set the two circles to be those colours by using CSS's <code>var()</code> syntax; this lets us say "use this variable if it's set, or use this default value if it isn't". So our user can style our element with <code>twitter-circle-count { --track-color: #eee; }</code> and it'll work.</p>
+<p>Annoyingly, it doesn't seem to be easily possible to use <em>existing</em> CSS properties for this; there doesn't seem to be a good way to have the standard property <code>color</code> set the circle colour.<sup id="sf-i-wrote-a-web-component-4-back"><a href="#sf-i-wrote-a-web-component-4" class="simple-footnote" title="It would be possible to have color apply to our circle colour by monitoring changes to the element's style, but that's a nightmare.">4</a></sup> One has to use a custom variable even if there's a "real" CSS property that would be appropriate. I'm hoping I'm wrong about this and there is a sensible way to do it that I just haven't discovered.<sup id="sf-i-wrote-a-web-component-5-back"><a href="#sf-i-wrote-a-web-component-5" class="simple-footnote" title='QML does this by setting "aliases"; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow.'>5</a></sup>
+(Update: Matt Machell <a href="https://twitter.com/shuckle/status/929710831620820993">mentions <code>currentColor</code></a> which would work perfectly for this example, but it <em>only</em> works for <code>color</code>; there's no way of setting other properties like, say, <code>font-size</code> on the component and having that explicitly propagate down to a particular element <em>in</em> the component; there's no <code>currentFontSize</code>. I don't know why <code>color</code> gets special treatment, even though the special treatment would solve my particular problem.)</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
   constructor() {
@@ -163,7 +148,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 });</span>
 </code></pre>
 
-<p>We want our little element to be <code>inline-block</code>. To set properties on the element itself, from inside the element, there is a special <span class="caps">CSS</span> selector, <code>:host</code>.<sup id="sf-i-wrote-a-web-component-6-back"><a href="#sf-i-wrote-a-web-component-6" class="simple-footnote" title="Firefox doesn’t seem to support this yet, either :host or scoping styles so they don’t leak out of the component, so I’ve also set display:inline-block and position:relative on the twitter-circle-count selector in my normal CSS. This should be fixed soon.">6</a></sup> Add a <code>&lt;style&gt;</code> element inside the component and it only applies to the component (this is special “scoped style” magic), and setting <code>:host</code> styles the root of your element:</p>
+<p>We want our little element to be <code>inline-block</code>. To set properties on the element itself, from inside the element, there is a special CSS selector, <code>:host</code>.<sup id="sf-i-wrote-a-web-component-6-back"><a href="#sf-i-wrote-a-web-component-6" class="simple-footnote" title="Firefox doesn't seem to support this yet, either :host or scoping styles so they don't leak out of the component, so I've also set display:inline-block and position:relative on the twitter-circle-count selector in my normal CSS. This should be fixed soon.">6</a></sup> Add a <code>&lt;style&gt;</code> element inside the component and it only applies to the component (this is special "scoped style" magic), and setting <code>:host</code> styles the root of your element:</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
   constructor() {
@@ -189,7 +174,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 });</span>
 </code></pre>
 
-<p>Next, we need to be able to set the properties which define the value of the counter — how much progress it should show. Having <code>value</code> and <code>max</code> properties similar to an <code>&lt;input type="range"&gt;</code> seems logical here. For this, we define a little function <code>setDashOffset</code> which sets the <code>stroke-dashoffset</code> style on our indicator. We then call that function in two places. One is in <code>connectedCallback</code>, a method which is called when our custom element is first inserted into the document. The second is whenever our <code>value</code> or <code>max</code> attributes change. That gets set up by defining <code>observedAttributes</code>, which returns a list of attributes that we want to watch; whenever one of those attributes changes, <code>attributeChangedCallback</code> is called.</p>
+<p>Next, we need to be able to set the properties which define the value of the counter -- how much progress it should show. Having <code>value</code> and <code>max</code> properties similar to an <code>&lt;input type="range"&gt;</code> seems logical here. For this, we define a little function <code>setDashOffset</code> which sets the <code>stroke-dashoffset</code> style on our indicator. We then call that function in two places. One is in <code>connectedCallback</code>, a method which is called when our custom element is first inserted into the document. The second is whenever our <code>value</code> or <code>max</code> attributes change. That gets set up by defining <code>observedAttributes</code>, which returns a list of attributes that we want to watch; whenever one of those attributes changes, <code>attributeChangedCallback</code> is called.</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {</span>
   static get observedAttributes() {
@@ -240,7 +225,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 <span>});</span>
 </code></pre>
 
-<p>This works if the user of the component does <code>counter.setAttribute("value", "50")</code>, but it doesn’t make <code>counter.value = 50</code> work, and it’s nice to provide these direct JavaScript APIs as well. For that we need to define a getter and a setter for each.</p>
+<p>This works if the user of the component does <code>counter.setAttribute("value", "50")</code>, but it doesn't make <code>counter.value = 50</code> work, and it's nice to provide these direct JavaScript APIs as well. For that we need to define a getter and a setter for each.</p>
 <pre><code>
 <span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
   static get observedAttributes() {
@@ -298,7 +283,7 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 });</span>
 </code></pre>
 
-<p>And that’s all we need. We can now create our <code>twitter-circle-count</code> element and hook it up to a <code>textarea</code> like this:</p>
+<p>And that's all we need. We can now create our <code>twitter-circle-count</code> element and hook it up to a <code>textarea</code> like this:</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">twitter-circle-count</span> <span class="na">value</span><span class="o">=</span><span class="s">"0"</span> <span class="na">max</span><span class="o">=</span><span class="s">"280"</span><span class="p">&gt;&lt;/</span><span class="nt">twitter-circle-count</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Type in here<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">rows</span><span class="o">=</span><span class="s">3</span> <span class="na">cols</span><span class="o">=</span><span class="s">40</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
@@ -320,10 +305,10 @@ window.customElements.define('twitter-circle-count', class extends HTMLElement {
 <span class="p">},</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 </code></pre></div>
 
-<p>and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a <a href="https://www.webcomponents.org/polyfills">polyfill</a> to add support in browsers that don’t have it.<sup id="sf-i-wrote-a-web-component-7-back"><a href="#sf-i-wrote-a-web-component-7" class="simple-footnote" title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering.">7</a></sup></p>
+<p>and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a <a href="https://www.webcomponents.org/polyfills">polyfill</a> to add support in browsers that don't have it.<sup id="sf-i-wrote-a-web-component-7-back"><a href="#sf-i-wrote-a-web-component-7" class="simple-footnote" title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering.">7</a></sup></p>
 <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script>
-<p>Here’s the counter: <twitter-circle-count value="0" max="280"></twitter-circle-count></p>
-<p>Type some text in here:</p>
+<p>Here's the counter: <twitter-circle-count value="0" max="280"></twitter-circle-count></p>
+<p>Type some text in here:</p>
 <textarea rows="3" cols="20"></textarea>
 <style>
 twitter-circle-count {
@@ -342,7 +327,7 @@ twitter-circle-count {
 <style>
 pre code { font-size: 12px; }
 pre code span { opacity: 0.25; }
-</style><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google’s web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a href="#sf-i-wrote-a-web-component-1-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I’ll get to that later. <a href="#sf-i-wrote-a-web-component-2-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it’s a bit more complicated than this. One step at a time. <a href="#sf-i-wrote-a-web-component-3-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element’s style, but that’s a nightmare. <a href="#sf-i-wrote-a-web-component-4-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-5"><span class="caps">QML</span> does this by setting “aliases”; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a href="#sf-i-wrote-a-web-component-5-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn’t seem to support this yet, either <code>:host</code> or scoping styles so they don’t leak out of the component, so I’ve also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal <span class="caps">CSS</span>. This should be fixed soon. <a href="#sf-i-wrote-a-web-component-6-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a href="#sf-i-wrote-a-web-component-7-back" class="simple-footnote-back">↩</a></li></ol>
+</style><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google's web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a href="#sf-i-wrote-a-web-component-1-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I'll get to that later. <a href="#sf-i-wrote-a-web-component-2-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it's a bit more complicated than this. One step at a time. <a href="#sf-i-wrote-a-web-component-3-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element's style, but that's a nightmare. <a href="#sf-i-wrote-a-web-component-4-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-5">QML does this by setting "aliases"; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a href="#sf-i-wrote-a-web-component-5-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn't seem to support this yet, either <code>:host</code> or scoping styles so they don't leak out of the component, so I've also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal CSS. This should be fixed soon. <a href="#sf-i-wrote-a-web-component-6-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a href="#sf-i-wrote-a-web-component-7-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/">Previous post</a></li>
@@ -419,24 +404,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

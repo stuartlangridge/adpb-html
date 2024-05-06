@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Moving Jokosher to Launchpad</title>
+		<title>as days pass by &mdash; Moving Jokosher to Launchpad</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Moving Jokosher to Launchpad">
+        <meta property="og:title" content="as days pass by &mdash; Moving Jokosher to Launchpad">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2006/11/01/moving-jokosher-to-launchpad/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,12 +47,11 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2006/11/01/moving-jokosher-to-launchpad/"><time 
 			class="dt-published" datetime="2006-11-01T15:22:00+00:00">Nov 01 2006</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/11/01/moving-jokosher-to-launchpad/" title="Permalink to Moving Jokosher to Launchpad" rel="bookmark">Moving Jokosher to&nbsp;Launchpad</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/11/01/moving-jokosher-to-launchpad/">Moving Jokosher to Launchpad</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>The <a href="http://www.jokosher.org/">Jokosher</a> project tracks its bugs and does development stuff
@@ -74,63 +59,63 @@ through a hosted Trac installation at <a href="http://python-hosting.com">Python
 free Trac installs for open source projects, which is pretty useful.
 However, we were having some pretty serious problems with bug spam.
 There are Trac plugins to help with this sort of thing, but Python
-Hosting don&#8217;t let you install plugins to their free Trac installs (which
-isn&#8217;t too unreasonable a policy, to be honest). Since we need people to
-be able to file bugs, we had three options open to&nbsp;us:</p>
+Hosting don't let you install plugins to their free Trac installs (which
+isn't too unreasonable a policy, to be honest). Since we need people to
+be able to file bugs, we had three options open to us:</p>
 <ol>
 <li>Open up anonymous bug submission or account signup on our Trac, and
-    try and stay on top of deleting the bugspam. Don&#8217;t wanna do that,
-    because it&#8217;s really&nbsp;annoying.</li>
+    try and stay on top of deleting the bugspam. Don't wanna do that,
+    because it's really annoying.</li>
 <li>Write a separate bug form, which people use to submit bugs, and have
     that submit the bugs for them (by giving it an account on our Trac
     that it can log into). I had about 90% of this done, but it was
     pretty fiddly and susceptible to breakage (because it had to pretend
-    to be a web browser to submit the&nbsp;bugs)</li>
-<li>Move bugtracking somewhere&nbsp;else.</li>
+    to be a web browser to submit the bugs)</li>
+<li>Move bugtracking somewhere else.</li>
 </ol>
-<p>After some consideration, we&#8217;ve decided on option 3. Where we&#8217;ve gone is
+<p>After some consideration, we've decided on option 3. Where we've gone is
 <a href="http://launchpad.net">Launchpad</a>. We were already handling Jokosher translations through
 Launchpad anyway, so it made sense to move there (our other major
 options were running our own Trac or the Gnome bugzilla). A few issues
-have come about while looking at the move. Firstly, there doesn&#8217;t appear
-to be a bug import. I&#8217;m still talking to the Launchpad developers about
-this, but there isn&#8217;t any easy way of importing bugs from an existing
+have come about while looking at the move. Firstly, there doesn't appear
+to be a bug import. I'm still talking to the Launchpad developers about
+this, but there isn't any easy way of importing bugs from an existing
 system. I think this is pretty important; for Launchpad to succeed in
-the goal of managing lots of projects, it&#8217;s gotta be easy to move your
+the goal of managing lots of projects, it's gotta be easy to move your
 existing project from wherever it is at the moment to Launchpad, and
-that means importing the existing bugs. It wouldn&#8217;t matter to us
+that means importing the existing bugs. It wouldn't matter to us
 (although it might matter to others) if the import went through a
-&#8220;translation&#8221; format: imagine a textfile which listed all the bugs in
+"translation" format: imagine a textfile which listed all the bugs in
 it, where you get your existing system to dump out all the bugs to that
 text format and teach Launchpad to import that format. Moveable Type
 sorted this out for weblog posts some time ago, and it makes it
 relatively easy to do imports; most weblogging systems support the
 Moveable Type export format. The Launchpad hackers could even write
 scripts that dumped a Trac or Bugzilla or Mantis set of bugs into the
-format, to make things easier. (Obviously it&#8217;d be easier still if the
+format, to make things easier. (Obviously it'd be easier still if the
 import process merely asked where your current bug system was and then
-did the import itself (by screenscraping or whatever), but then it&#8217;ll
+did the import itself (by screenscraping or whatever), but then it'll
 only work for systems that the Launchpad guys have catered for.)
 Secondly, the whole Launchpad concept of teams and projects and products
-is pretty confusing. Now, I understand why they&#8217;ve done it; you need a
+is pretty confusing. Now, I understand why they've done it; you need a
 pretty complex set of data structures to represent and handle a project
 like Ubuntu, where there are many teams working on many bits of software
-with many people in them. However, Jokosher&#8217;s not like that. It would be
-highly handy if, when you sign up a &#8220;product&#8221; (which is Launchpad-speak
-for one particular software program), there was a &#8220;simple&#8221; version where
+with many people in them. However, Jokosher's not like that. It would be
+highly handy if, when you sign up a "product" (which is Launchpad-speak
+for one particular software program), there was a "simple" version where
 you specified the name of the product and the core devs and it took care
 of creating a bug team, a driver, a product, and linked them all
-together for you. It&#8217;s also pretty heavily tied in to bzr as a source
-code control system. We&#8217;re a Subversion project, and likely to stay that
+together for you. It's also pretty heavily tied in to bzr as a source
+code control system. We're a Subversion project, and likely to stay that
 way for the near future at least, so we need to keep using our external
-<span class="caps">SVN</span> hosting (at Python Hosting, for which we&#8217;re still very grateful).
-I&#8217;m still undecided about Launchpad, I think. On the one hand, it&#8217;s
-pretty cool. On the other, it&#8217;s pretty confusing at times. I&#8217;m given to
-understand that it&#8217;s being worked on and the next version will Win Big,
+SVN hosting (at Python Hosting, for which we're still very grateful).
+I'm still undecided about Launchpad, I think. On the one hand, it's
+pretty cool. On the other, it's pretty confusing at times. I'm given to
+understand that it's being worked on and the next version will Win Big,
 which is great news. As one final point, I do like the fact that you can
 run a project and get external hosting for all the key software
 management bits; bugtracking, source code, specs, releases, everything.
-That&#8217;s great. I like that. We need to get more of that on the desktop,
+That's great. I like that. We need to get more of that on the desktop,
 <a href="http://www.kryogenix.org/days/2006/01/22/living-life-online">as I have remarked before</a>.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
@@ -208,24 +193,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

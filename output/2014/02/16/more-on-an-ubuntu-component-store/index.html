@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; More on an Ubuntu Component Store</title>
+		<title>as days pass by &mdash; More on an Ubuntu Component Store</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; More on an Ubuntu Component Store">
+        <meta property="og:title" content="as days pass by &mdash; More on an Ubuntu Component Store">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/02/16/more-on-an-ubuntu-component-store/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,46 +47,46 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2014/02/16/more-on-an-ubuntu-component-store/"><time 
 			class="dt-published" datetime="2014-02-16T14:21:00+00:00">Feb 16 2014</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/02/16/more-on-an-ubuntu-component-store/" title="Permalink to More on an Ubuntu Component Store" rel="bookmark">More on an Ubuntu Component&nbsp;Store</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/02/16/more-on-an-ubuntu-component-store/">More on an Ubuntu Component Store</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>After yesterday’s <a href="http://www.kryogenix.org/days/2014/02/15/bad-voltage-apps-and-generic-components-for-ubuntu/">musings
-on a “component store” for Ubuntu developers</a>, a few people said “hm that sounds interesting, how would it work?” So
-I’ve thrown together a little demo.</p>
-<p>I should be clear: this is a <strong>demo</strong>. It’s not a component store; it’s not
-for real use; you can’t add things to it; you can’t use it in your apps. This
+			<p>After yesterday's <a href="http://www.kryogenix.org/days/2014/02/15/bad-voltage-apps-and-generic-components-for-ubuntu/">musings
+on a "component store" for Ubuntu developers</a>, a few people said "hm that sounds interesting, how would it work?" So
+I've thrown together a little demo.</p>
+<p>I should be clear: this is a <strong>demo</strong>. It's not a component store; it's not
+for real use; you can't add things to it; you can't use it in your apps. This
 is just enough of a test implementation to allow people to talk about whether
-this is a good idea or not. None of the code I’ve written would be used in a
-real implementation, if such a thing existed: I don’t do any error checking, I
-don’t have any tests. It’s just to give a demo of what I think the developer
-experience of a component store might be like <em>if it existed</em>, which it does not.</p>
+this is a good idea or not. None of the code I've written would be used in a
+real implementation, if such a thing existed: I don't do any error checking, I
+don't have any tests. It's just to give a demo of what I think the developer
+experience of a component store might be like <em>if it existed</em>, which it does
+not.</p>
 <p>First you need the utility which searches the store, which is called <code>ucs</code>.
 Get it with <code>bzr branch lp:~sil/+junk/ucs-cli</code>. You now have a utility named 
 <code>ucs</code> which can search the component store for components you might find
-useful in your apps.</p>
-<p>Next, an app which uses it. Grab a demo with <code>bzr branch lp:~sil/+junk/ucs-demo-app</code>. You can now load that app into the Ubuntu <span class="caps">SDK</span> editor, or just run it from the command line with <code>qmlscene ucs-demo-app/UCSDemoApp.qml</code>. If you do that, you’ll see that it’s missing components: <code>UCSDemoApp.qml:3 "ubuntu_component_store": no such directory</code>. So, the app needs components and they aren’t installed, which is correct. Change to the app’s folder and run <code>ucs install</code>.<sup id="sf-more-on-an-ubuntu-component-store-1-back"><a href="#sf-more-on-an-ubuntu-component-store-1" class="simple-footnote" title="fill in a path to the ucs utility wherever you branched it, of course, or put it on your $PATH">1</a></sup></p>
+useful in your apps.</p>
+<p>Next, an app which uses it. Grab a demo with <code>bzr branch lp:~sil/+junk/ucs-demo-app</code>. You can now load that app into the Ubuntu SDK editor, or just run it from the command line with <code>qmlscene ucs-demo-app/UCSDemoApp.qml</code>. If you do that, you'll see that it's missing components: <code>UCSDemoApp.qml:3 "ubuntu_component_store": no such directory</code>. So, the app needs components and they aren't installed, which is correct. Change to the app's folder and run <code>ucs install</code>.<sup id="sf-more-on-an-ubuntu-component-store-1-back"><a href="#sf-more-on-an-ubuntu-component-store-1" class="simple-footnote" title="fill in a path to the ucs utility wherever you branched it, of course, or put it on your $PATH">1</a></sup></p>
 <pre><code>$ cd ucs-demo-app
 $ ucs install
 Installing RedButton</code></pre>
 
-<p>and now the app should work: <code>qmlscene UCSDemoApp.qml</code> shows an app with a red button in it. If you look at the source of the app in the <code>ucs-demo-app</code> folder, you’ll see two things that make it different from a stock app:</p>
+<p>and now the app should work: <code>qmlscene UCSDemoApp.qml</code> shows an app with a red button in it. If you look at the source of the app in the <code>ucs-demo-app</code> folder, you'll see two things that make it different from a stock app:</p>
 <ol>
 <li>
-<p><code>import "ubuntu_component_store"</code> at the top of <code>UCSDemoApp.qml</code>. This includes components installed from the <span class="caps">UCS</span> into the app. You don’t need to individually name the components you import: just <code>import "ubuntu_component_store"</code>. The app can then use all the components it asks for, such as the <code>RedButton {}</code> <span class="caps">QML</span> Item.</p>
+<p><code>import "ubuntu_component_store"</code> at the top of <code>UCSDemoApp.qml</code>. This includes components installed from the UCS into the app. You don't need to individually name the components you import: just <code>import "ubuntu_component_store"</code>. The app can then use all the components it asks for, such as the <code>RedButton {}</code> QML Item.</p>
 </li>
 <li>
-<p>there is an <code>ubuntu_component_store.json</code> file in the app’s folder. This ships with the app, and it describes the components that this app uses. Basically, it is <span class="caps">JSON</span> like this: <code>{ dependencies: { RedButton: "*" }}</code>, describing that this app requires a component called <code>RedButton</code> and doesn’t care about its version number (hence <code>"*"</code>).</p>
+<p>there is an <code>ubuntu_component_store.json</code> file in the app's folder. This ships with the app, and it describes the components that this app uses. Basically, it is JSON like this: <code>{ dependencies: { RedButton: "*" }}</code>, describing that this app requires a component called <code>RedButton</code> and doesn't care about its version number (hence <code>"*"</code>).</p>
 </li>
 </ol>
-<p>So the process for working on an app which uses components from the store is: get the app source, then <code>ucs install</code>. That will install all the components that the app requires, and then you can start hacking on the app.</p>
-<p>The process for <em>developing</em> an app which needs components: if you want to add a component to your app-in-progress, then <code>ucs list</code> will show the list of all components (which in this demo is one, <code>RedButton</code>), and <code>ucs install RedButton</code> will install that component<sup id="sf-more-on-an-ubuntu-component-store-2-back"><a href="#sf-more-on-an-ubuntu-component-store-2" class="simple-footnote" title="from wherever the store says it’s hosted. This RedButton component is on github, mainly because ucs downloads a zip file of the component and github helpfully provides them for you, which Launchpad doesn’t. Note that I think that components should not themselves be uploaded to the store; the store just stores a URL for them.">2</a></sup> <em>and</em> update <code>ubuntu_component_store.json</code> to add it to your dependency list. So when developing, just <code>ucs install ComponentINeed</code>, and then make sure that <code>ubuntu_component_store.json</code> is checked into source control and that the <code>ubuntu_component_store/</code> folder <em>isn’t</em> checked in.</p>
-<p>Those of you who have worked with node.js and <code>npm</code> will be thinking: this looks a lot like <code>npm</code>. You are not wrong. I think that that’s an excellent model for building projects. There will be people who say “but what if I want the same component in two projects but I don’t want to have it on my disk twice?” Ignore these people. Make a component store which works on a project-by-project basis; it’s so much nicer. Clearly there’d need to be a bunch more work on all this: <code>ucs search</code> and <code>ucs submit</code> and <code>ucs remove</code> and a web <span class="caps">UI</span> to browse everything and <span class="caps">API</span> specifications and server scaling and re-running <code>ucs install</code> after you install a component in case that component <em>itself</em> has dependencies and deciding what happens if two components in the same project have the same dependency and actually paying attention to version numbers and, and, and. There’s a bunch of integration which could be done with the Ubuntu <span class="caps">SDK</span> editor: if your app ships with an <code>ubuntu_component_store.json</code> file, then run <code>ucs install</code> when you open it. Ship <code>ucs</code> with the <span class="caps">SDK</span>. Automatically add <code>ubuntu_component_store/</code> to <code>bzr ignore</code>. Provide a graphical browser for the list of components. This is not an implementation: it’s a demo. A real version would need a decent amount of thought.</p>
-<p>I don’t know whether this would actually take off. I don’t know whether there are sufficient people developing reusable components for Ubuntu apps to justify it. But I think that, if there are, then this might be a good way for someone to go about it.</p><ol class="simple-footnotes"><li id="sf-more-on-an-ubuntu-component-store-1">fill in a path to the <code>ucs</code> utility wherever you branched it, of course, or put it on your <code>$PATH</code> <a href="#sf-more-on-an-ubuntu-component-store-1-back" class="simple-footnote-back">↩</a></li><li id="sf-more-on-an-ubuntu-component-store-2">from wherever the store says it’s hosted. This <code>RedButton</code> component is on github, mainly because <code>ucs</code> downloads a zip file of the component and github helpfully provides them for you, which Launchpad doesn’t. Note that I think that components should not <em>themselves</em> be uploaded to the store; the store just stores a <span class="caps">URL</span> for them. <a href="#sf-more-on-an-ubuntu-component-store-2-back" class="simple-footnote-back">↩</a></li></ol>
+<p>So the process for working on an app which uses components from the store is: get the app source, then <code>ucs install</code>. That will install all the components that the app requires, and then you can start hacking on the app.</p>
+<p>The process for <em>developing</em> an app which needs components: if you want to add a component to your app-in-progress, then <code>ucs list</code> will show the list of all components (which in this demo is one, <code>RedButton</code>), and <code>ucs install RedButton</code> will install that component<sup id="sf-more-on-an-ubuntu-component-store-2-back"><a href="#sf-more-on-an-ubuntu-component-store-2" class="simple-footnote" title="from wherever the store says it's hosted. This RedButton component is on github, mainly because ucs downloads a zip file of the component and github helpfully provides them for you, which Launchpad doesn't. Note that I think that components should not themselves be uploaded to the store; the store just stores a URL for them.">2</a></sup> <em>and</em> update <code>ubuntu_component_store.json</code> to add it to your dependency list. So when developing, just <code>ucs install ComponentINeed</code>, and then make sure that <code>ubuntu_component_store.json</code> is checked into source control and that the <code>ubuntu_component_store/</code> folder <em>isn't</em> checked in.</p>
+<p>Those of you who have worked with node.js and <code>npm</code> will be thinking: this looks a lot like <code>npm</code>. You are not wrong. I think that that's an excellent model for building projects. There will be people who say "but what if I want the same component in two projects but I don't want to have it on my disk twice?" Ignore these people. Make a component store which works on a project-by-project basis; it's so much nicer. Clearly there'd need to be a bunch more work on all this: <code>ucs search</code> and <code>ucs submit</code> and <code>ucs remove</code> and a web UI to browse everything and API specifications and server scaling and re-running <code>ucs install</code> after you install a component in case that component <em>itself</em> has dependencies and deciding what happens if two components in the same project have the same dependency and actually paying attention to version numbers and, and, and. There's a bunch of integration which could be done with the Ubuntu SDK editor: if your app ships with an <code>ubuntu_component_store.json</code> file, then run <code>ucs install</code> when you open it. Ship <code>ucs</code> with the SDK. Automatically add <code>ubuntu_component_store/</code> to <code>bzr ignore</code>. Provide a graphical browser for the list of components. This is not an implementation: it's a demo. A real version would need a decent amount of thought.</p>
+<p>I don't know whether this would actually take off. I don't know whether there are sufficient people developing reusable components for Ubuntu apps to justify it. But I think that, if there are, then this might be a good way for someone to go about it.</p><ol class="simple-footnotes"><li id="sf-more-on-an-ubuntu-component-store-1">fill in a path to the <code>ucs</code> utility wherever you branched it, of course, or put it on your <code>$PATH</code> <a href="#sf-more-on-an-ubuntu-component-store-1-back" class="simple-footnote-back">↩</a></li><li id="sf-more-on-an-ubuntu-component-store-2">from wherever the store says it's hosted. This <code>RedButton</code> component is on github, mainly because <code>ucs</code> downloads a zip file of the component and github helpfully provides them for you, which Launchpad doesn't. Note that I think that components should not <em>themselves</em> be uploaded to the store; the store just stores a URL for them. <a href="#sf-more-on-an-ubuntu-component-store-2-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2014/02/15/bad-voltage-apps-and-generic-components-for-ubuntu/">Previous post</a></li>
@@ -177,24 +163,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

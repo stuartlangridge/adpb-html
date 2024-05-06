@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; “Slide in” side panels with pure CSS and scaling</title>
+		<title>as days pass by &mdash; "Slide in" side panels with pure CSS and scaling</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; “Slide in” side panels with pure CSS and scaling">
+        <meta property="og:title" content="as days pass by &mdash; "Slide in" side panels with pure CSS and scaling">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,31 +47,30 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/"><time 
 			class="dt-published" datetime="2013-11-09T16:59:00+00:00">Nov 09 2013</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/" title="Permalink to “Slide in” side panels with pure CSS and scaling" rel="bookmark"><span class="dquo">&#8220;</span>Slide in&#8221; side panels with pure <span class="caps">CSS</span> and&nbsp;scaling</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/">"Slide in" side panels with pure CSS and scaling</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>One rather neat little user interface &#8220;pattern&#8221; that comes up a lot,
+			<p>One rather neat little user interface "pattern" that comes up a lot,
 especially in mobile apps, is a side panel which slides in to get at
 extra stuff. There are approximately <a href="https://www.google.co.uk/search?q=slide+in+panel+css">1.5 million people explaining how to do this</a>, most of which do two things: use jQuery, and animate the
 position of the side panel. An interesting alternative is to do neither
-of those&nbsp;things.</p>
-<p>First, pure <span class="caps">CSS</span>. I&#8217;m by no means the first person to suggest this, but
-it&#8217;s a neat trick: the <span class="caps">CSS</span> <code>:target</code> pseudo-selector lets you style the
-thing that the <span class="caps">URL</span> hash fragment is referencing. So if you&#8217;ve got your
-panel as <code>id="panel"</code>, then <code>#panel:target { whatever }</code> in your <span class="caps">CSS</span>
-sets the styles for it when the <span class="caps">URL</span> is <code>thispage.html#panel</code>, which
-means that you can summon your side panel with pure <span class="caps">CSS</span>, excellent.
+of those things.</p>
+<p>First, pure CSS. I'm by no means the first person to suggest this, but
+it's a neat trick: the CSS <code>:target</code> pseudo-selector lets you style the
+thing that the URL hash fragment is referencing. So if you've got your
+panel as <code>id="panel"</code>, then <code>#panel:target { whatever }</code> in your CSS
+sets the styles for it when the URL is <code>thispage.html#panel</code>, which
+means that you can summon your side panel with pure CSS, excellent.
 (Then dismissing it is clicking a link to some fragment <em>other than</em>
-<code>#panel</code>, so <code>&lt;a href="#"&gt;</code> is&nbsp;fine.)</p>
+<code>#panel</code>, so <code>&lt;a href="#"&gt;</code> is fine.)</p>
 <p>The second part is a bit different, though. The way people normally have
 the panel be hidden and then showing is to position it off screen.
-Simple way to do this (remembering that the &#8220;default state&#8221; of our panel
-is &#8220;offscreen&#8221;, and <code>#panel:target</code> is &#8220;on&nbsp;screen&#8221;):</p>
+Simple way to do this (remembering that the "default state" of our panel
+is "offscreen", and <code>#panel:target</code> is "on screen"):</p>
 <div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">panel</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
 <span class="w">    </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -100,7 +85,7 @@ is &#8220;offscreen&#8221;, and <code>#panel:target</code> is &#8220;on&nbsp;scr
 </code></pre></div>
 
 <p>Of course, we are good people and we know that <a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/">you should only animate transform properties and opacity if you want smooth animations</a>,
-so the obvious response is to change that&nbsp;to</p>
+so the obvious response is to change that to</p>
 <div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">panel</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
 <span class="w">    </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -115,14 +100,14 @@ so the obvious response is to change that&nbsp;to</p>
 <span class="p">}</span>
 </code></pre></div>
 
-<p>However, then we have a thing: you&#8217;ll get a horizontal scrollbar now
-because there&#8217;s stuff off the right-hand-side of the screen. You can of
+<p>However, then we have a thing: you'll get a horizontal scrollbar now
+because there's stuff off the right-hand-side of the screen. You can of
 course avoid that by setting <code>overflow: hidden</code> on the container, but
-that&#8217;s potentially annoying, and hiding stuff with overflow always ends
+that's potentially annoying, and hiding stuff with overflow always ends
 up screwing me up at some point. One alternative approach is to not move
 the panel around at all, but instead to scale it down to almost nothing
-(animating a scale is fast, because it&#8217;s a transform property) and then
-scale it up. Like&nbsp;this:</p>
+(animating a scale is fast, because it's a transform property) and then
+scale it up. Like this:</p>
 <div class="highlight"><pre><span></span><code><span class="p">#</span><span class="nn">panel</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
 <span class="w">    </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -138,12 +123,12 @@ scale it up. Like&nbsp;this:</p>
 <span class="p">}</span>
 </code></pre></div>
 
-<p>See <a href="http://jsbin.com/epuVOVA/1/edit">the jsbin</a> for a simple&nbsp;demo.</p>
+<p>See <a href="http://jsbin.com/epuVOVA/1/edit">the jsbin</a> for a simple demo.</p>
 <p>Note that people will expect to be able to swipe the panel away on a
-mobile screen. You need <span class="caps">JS</span> for that, so this is no panacea. Similarly,
-scaling may have an odd appearance depending on what&#8217;s in your side
-panel, and so this idea might not actually work for what you&#8217;re doing.
-Have an experiment with the approach and tell me about&nbsp;it.</p>
+mobile screen. You need JS for that, so this is no panacea. Similarly,
+scaling may have an odd appearance depending on what's in your side
+panel, and so this idea might not actually work for what you're doing.
+Have an experiment with the approach and tell me about it.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2013/11/06/offline-first/">Previous post</a></li>
@@ -220,24 +205,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

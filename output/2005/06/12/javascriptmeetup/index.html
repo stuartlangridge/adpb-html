@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; JavaScript meetup</title>
+		<title>as days pass by &mdash; JavaScript meetup</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; JavaScript meetup">
+        <meta property="og:title" content="as days pass by &mdash; JavaScript meetup">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,12 +47,11 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/"><time 
 			class="dt-published" datetime="2005-06-12T11:00:00+01:00">Jun 12 2005</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/" title="Permalink to JavaScript meetup" rel="bookmark">JavaScript&nbsp;meetup</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/">JavaScript meetup</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Yesterday, as previously mentioned, <a href="http://www.kryogenix.org/days/2005/06/05/javascriptLove">lots of people met up to talk about
@@ -75,40 +60,42 @@ time, which was great. And we talked about things. The original idea was
 to talk about some <a href="http://www.quirksmode.org/blog/archives/2005/06/11_june_london.html#link2">fairly heavy technical stuff</a> like what to do
 about the onload handler, but after <a href="http://atmedia2005.co.uk/programme.php#behaviour">Jeremy’s presentation at @media
 2005</a> it became clear that we need less effort going into solving
-minor technical minutiae and lots more effort going into <span class="caps">PR</span> for&nbsp;JavaScript.</p>
-<p>You see, developers out there seem to fall into the following&nbsp;categories:</p>
+minor technical minutiae and lots more effort going into PR for
+JavaScript.</p>
+<p>You see, developers out there seem to fall into the following
+categories:</p>
 <ol>
 <li>People who already know about the power of the
-    <span class="caps"><span class="caps">DOM</span></span> and unobtrusive scripting. A good
-    proportion of whom were in the pub yesterday talking about&nbsp;this.</li>
+    <span class="caps">DOM</span> and unobtrusive scripting. A good
+    proportion of whom were in the pub yesterday talking about this.</li>
 <li>People who have bought into web standards, are using tableless
-    design with <span class="caps"><span class="caps">CSS</span></span>, don’t really know about
+    design with <span class="caps">CSS</span>, don’t really know about
     JavaScript, but <em>want</em> to know more. This is a large proportion, we
-    think, of current <span class="caps"><span class="caps">CSS</span></span>&nbsp;hackers.</li>
+    think, of current <span class="caps">CSS</span> hackers.</li>
 <li>People who used JavaScript a while ago and have since dismissed it
     because it was a pointless language that let you do image rollovers
-    and make websites that <em>depended</em> on&nbsp;it.</li>
-<li>People who haven’t bought into the web standards deal at&nbsp;all.</li>
+    and make websites that <em>depended</em> on it.</li>
+<li>People who haven’t bought into the web standards deal at all.</li>
 </ol>
 <p>Clearly we can’t target everyone at once, and the consensus was that the
 people to target are category 2, experienced
-<span class="caps"><span class="caps">CSS</span></span> hackers. The advantage here is that they
+<span class="caps">CSS</span> hackers. The advantage here is that they
 are <em>already</em> using clean markup and modern techniques; since
-<span class="caps"><span class="caps">DOM</span></span> scripting pretty much requires this
+<span class="caps">DOM</span> scripting pretty much requires this
 approach, we don’t have to sell these people on the benefits of web
-standards, because they’re already doing&nbsp;it.</p>
+standards, because they’re already doing it.</p>
 <p>The major flaw, it seems, is that if you’re not a programmer then
 JavaScript is a bit difficult to get to grips with, and
-<span class="caps"><span class="caps">CSS</span></span> designers are, in the main, not
+<span class="caps">CSS</span> designers are, in the main, not
 programmers. For people like me, it’s easy to gloss over the basics:
 what a variable is, what an array is, what an object is, what a function
 is. You see, all the power and elegance in JavaScript, the thing that
-makes it really great for putting together <span class="caps"><span class="caps">DOM</span></span>
+makes it really great for putting together <span class="caps">DOM</span>
 applications, is that objects and functions and arrays are <em>all the same
 thing</em>. When you realise this then a whole vista of power opens before
-you; if you get this and how the <span class="caps"><span class="caps">DOM</span></span> works
+you; if you get this and how the <span class="caps">DOM</span> works
 then everything else that’s doable, all the cool scripts and techniques,
-becomes obvious. Pretty much,&nbsp;anyway.</p>
+becomes obvious. Pretty much, anyway.</p>
 <p>So, what we need is things that explain how the basics work. The issue
 with that, though, which Dean Edwards pointed out, is that you’re not
 trying to teach people JavaScript, you’re trying to teach them
@@ -123,13 +110,13 @@ list of all the tooltips”: explain what a list is and how it works.
 Don’t try and explain <em>everything</em> from first principles, just one
 thing. And over time, people can pick up cool reusable techniques, which
 everyone likes, and learn about one important building block <em>at the
-same time</em>. Look for articles along these lines from various&nbsp;people.</p>
+same time</em>. Look for articles along these lines from various people.</p>
 <p>The <a href="http://webstandards.org/">WaSP</a> are also going to hopefully get on board; there were four
 WaSPs at the meeting, which helps (<a href="http://www.setmajer.com/">Chris Kaminski</a> being one I hadn’t
 met before), and they have a lot of mindshare in the community, which
-should&nbsp;help.</p>
+should help.</p>
 <p>The brave new future we’ve talked about is coming. It’s time to show
-everyone else how they can be part of&nbsp;it.</p>
+everyone else how they can be part of it.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2005/06/10/utopiareview/">Previous post</a></li>
@@ -206,24 +193,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

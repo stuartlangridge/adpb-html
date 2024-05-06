@@ -5,8 +5,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
         <meta property="og:title" content="as days pass by &mdash; Ronin">
         <meta property="og:type" content="website">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2023/01/30/ronin/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,23 +47,22 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2023/01/30/ronin/"><time 
 			class="dt-published" datetime="2023-01-30T15:44:00+00:00">Jan 30 2023</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2023/01/30/ronin/" title="Permalink to Ronin" rel="bookmark">Ronin</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2023/01/30/ronin/">Ronin</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>In 1701, Asano Naganori, a feudal lord in Japan, was summoned to the shogun&#8217;s court in Edo, the town now called Tokyo. He was a provincial chieftain, and knew little about court etiquette, and the etiquette master of the court, Kira Kozuke-no-Suke, took offence. It&#8217;s not exactly clear why; it&#8217;s suggested that Asano didn&#8217;t bribe Kira sufficiently or at all, or that Kira felt that Asano should have shown more deference. Whatever the reasoning, Kira ridiculed Asano in the shogun&#8217;s presence, and Asano defended his honour by attacking Kira with a&nbsp;dagger.</p>
-<p>Baring steel in the shogun&#8217;s castle was a grievous offence, and the shogun commanded Asano to atone through suicide. Asano obeyed, faithful to his overlord. The shogun further commanded that Asano&#8217;s retainers, over 300 samurai, were to be dispossessed and made leaderless, and forbade those retainers from taking revenge on Kira so as to prevent an escalating cycle of bloodshed. The leader of those samurai offered to divide Asano&#8217;s wealth between all of them, but this was a test. Those who took him up on the offer were paid and told to leave. Forty-seven refused this offer, knowing it to be honourless, and those remaining 47 reported to the shogun that they disavowed any loyalty to their dead lord. The shogun made them rōnin, masterless samurai, and required that they disperse. Before they did, they swore a secret oath among themselves that one day they would return and avenge their master. Then each went their separate ways. These 47 rōnin immersed themselves into the population, seemingly forgoing any desire for revenge, and acting without honour to indicate that they no longer followed their code. The shogun sent spies to monitor the actions of the rōnin, to ensure that their unworthy behaviour was not a trick, but their dishonour continued for a month, two, three. For a year and a half each acted dissolutely, appallingly; drunkards and criminals all, as their swords went to rust and their reputations the&nbsp;same.</p>
-<p>A year and a half later, the forty-seven rōnin gathered together again. They subdued or killed and wounded Kira&#8217;s guards, they found a secret passage hidden behind a scroll, and in the hidden courtyard they found Kira and demanded that he die by suicide to satisfy their lord&#8217;s honour. When the etiquette master refused, the rōnin cut off Kira&#8217;s head and laid it on Asano&#8217;s grave. Then they came to the shogun, surrounded by a public in awe of their actions, and confessed. The shogun considered having them executed as criminals but instead required that they too die by suicide, and the rōnin obeyed. They were buried, all except one who was not present and who lived on, in front of the tomb of their master. The tombs are a place to be visited even today, and the story of the 47 rōnin is a famous one both inside and outside&nbsp;Japan.</p>
-<p>You might think: why have I been told this story? Well, there were 47 of them. 47 is a good number. It&#8217;s the atomic number of silver, which is interesting stuff; the most electrically conductive metal. (During World War <span class="caps">II</span>, the Manhattan Project couldn&#8217;t get enough copper for the miles of wiring they needed because it was going elsewhere for the war effort, so they took all the silver out of Fort Knox and melted it down to make wire instead.) It&#8217;s strictly non-palindromic, which means that it&#8217;s not only not a palindrome, it remains not a palindrome in any base smaller than itself. And it&#8217;s how old I am&nbsp;today.</p>
-<p>Yes! It&#8217;s my birthday!&nbsp;Hooray!</p>
+			<p>In 1701, Asano Naganori, a feudal lord in Japan, was summoned to the shogun's court in Edo, the town now called Tokyo. He was a provincial chieftain, and knew little about court etiquette, and the etiquette master of the court, Kira Kozuke-no-Suke, took offence. It's not exactly clear why; it's suggested that Asano didn't bribe Kira sufficiently or at all, or that Kira felt that Asano should have shown more deference. Whatever the reasoning, Kira ridiculed Asano in the shogun's presence, and Asano defended his honour by attacking Kira with a dagger.</p>
+<p>Baring steel in the shogun's castle was a grievous offence, and the shogun commanded Asano to atone through suicide. Asano obeyed, faithful to his overlord. The shogun further commanded that Asano's retainers, over 300 samurai, were to be dispossessed and made leaderless, and forbade those retainers from taking revenge on Kira so as to prevent an escalating cycle of bloodshed. The leader of those samurai offered to divide Asano's wealth between all of them, but this was a test. Those who took him up on the offer were paid and told to leave. Forty-seven refused this offer, knowing it to be honourless, and those remaining 47 reported to the shogun that they disavowed any loyalty to their dead lord. The shogun made them rōnin, masterless samurai, and required that they disperse. Before they did, they swore a secret oath among themselves that one day they would return and avenge their master. Then each went their separate ways. These 47 rōnin immersed themselves into the population, seemingly forgoing any desire for revenge, and acting without honour to indicate that they no longer followed their code. The shogun sent spies to monitor the actions of the rōnin, to ensure that their unworthy behaviour was not a trick, but their dishonour continued for a month, two, three. For a year and a half each acted dissolutely, appallingly; drunkards and criminals all, as their swords went to rust and their reputations the same.</p>
+<p>A year and a half later, the forty-seven rōnin gathered together again. They subdued or killed and wounded Kira's guards, they found a secret passage hidden behind a scroll, and in the hidden courtyard they found Kira and demanded that he die by suicide to satisfy their lord's honour. When the etiquette master refused, the rōnin cut off Kira's head and laid it on Asano's grave. Then they came to the shogun, surrounded by a public in awe of their actions, and confessed. The shogun considered having them executed as criminals but instead required that they too die by suicide, and the rōnin obeyed. They were buried, all except one who was not present and who lived on, in front of the tomb of their master. The tombs are a place to be visited even today, and the story of the 47 rōnin is a famous one both inside and outside Japan.</p>
+<p>You might think: why have I been told this story? Well, there were 47 of them. 47 is a good number. It's the atomic number of silver, which is interesting stuff; the most electrically conductive metal. (During World War II, the Manhattan Project couldn't get enough copper for the miles of wiring they needed because it was going elsewhere for the war effort, so they took all the silver out of Fort Knox and melted it down to make wire instead.) It's strictly non-palindromic, which means that it's not only not a palindrome, it remains not a palindrome in any base smaller than itself. And it's how old I am today.</p>
+<p>Yes! It's my birthday! Hooray!</p>
 <p><img src="https://kryogenix.org/images/bday-1.jpg" alt="A glowing message board reading 'BDAY BASH 47'"></p>
-<p>I have had a good birthday this year. The family and I had delightful Greek dinner at Mythos in the Arcadian, and then yesterday a bunch of us went to the pub and had an absolute whale of an afternoon and evening, during which I became heartily intoxicated and wore a bag on my head like Lord Farrow, among other things. And I got a picture of the Solvay Conference from&nbsp;Bruce.</p>
+<p>I have had a good birthday this year. The family and I had delightful Greek dinner at Mythos in the Arcadian, and then yesterday a bunch of us went to the pub and had an absolute whale of an afternoon and evening, during which I became heartily intoxicated and wore a bag on my head like Lord Farrow, among other things. And I got a picture of the Solvay Conference from Bruce.</p>
 <p><img src="https://kryogenix.org/images/bday-3.jpg" alt="A framed picture of the Solvay Conference 1927, which is a bunch of stern-looking male physicists and Marie Curie arranged like a school photo"></p>
-<p>This year is shaping up well; I have some interesting projects coming up, including one will-be-public thing that I&#8217;ve been working on and which I&#8217;ll be revealing more about in due course, a much-delayed family thing is very near its end (finally!), and in general it&#8217;s just gotta be better than the ongoing car crash that the last few years have been. Fingers crossed; ask me again in twelve months, anyway. I&#8217;ve been writing these little posts for 21 years now (<a href="https://www.kryogenix.org/days/2022/01/30/the-forty-sixers-club/">last year</a> has more links) and there have been ups and downs, but this year I feel quite hopeful about the future for the first time in a while. This is good news. Happy birthday,&nbsp;me.</p>
+<p>This year is shaping up well; I have some interesting projects coming up, including one will-be-public thing that I've been working on and which I'll be revealing more about in due course, a much-delayed family thing is very near its end (finally!), and in general it's just gotta be better than the ongoing car crash that the last few years have been. Fingers crossed; ask me again in twelve months, anyway. I've been writing these little posts for 21 years now (<a href="https://www.kryogenix.org/days/2022/01/30/the-forty-sixers-club/">last year</a> has more links) and there have been ups and downs, but this year I feel quite hopeful about the future for the first time in a while. This is good news. Happy birthday, me.</p>
 <p><img src="https://kryogenix.org/images/bday-2.jpg" alt="Me wearing a peach-coloured card gift bag on my head in the pub"></p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
@@ -155,24 +140,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

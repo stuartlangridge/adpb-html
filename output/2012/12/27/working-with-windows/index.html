@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Working with Windows</title>
+		<title>as days pass by &mdash; Working with Windows</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Working with Windows">
+        <meta property="og:title" content="as days pass by &mdash; Working with Windows">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/12/27/working-with-windows/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,75 +47,74 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2012/12/27/working-with-windows/"><time 
 			class="dt-published" datetime="2012-12-27T12:54:00+00:00">Dec 27 2012</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/12/27/working-with-windows/" title="Permalink to Working with Windows" rel="bookmark">Working with&nbsp;Windows</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/12/27/working-with-windows/">Working with Windows</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>A friend of mine asked me for a favour &#8212; one of those favours which is
-actually to do some technical support for them. But he&#8217;s a good bloke
-and is good at the guitar, so I said &#8220;no problem&#8221;. He&#8217;s got a Roberts
-<span class="caps">WM</span>-201 internet radio; it can play mp3 streams from online radio
-stations. And&#8230;it can also play your local music, streamed from a <span class="caps">PC</span> on
-your network. That&#8217;s what he wanted: the computer in the dining room
+			<p>A friend of mine asked me for a favour -- one of those favours which is
+actually to do some technical support for them. But he's a good bloke
+and is good at the guitar, so I said "no problem". He's got a Roberts
+WM-201 internet radio; it can play mp3 streams from online radio
+stations. And...it can also play your local music, streamed from a PC on
+your network. That's what he wanted: the computer in the dining room
 with all his music on, and to play that music on the Roberts radio in
-the lounge. They&#8217;re both on the wifi network in his&nbsp;house.</p>
-<p>The computer is running Windows <span class="caps">XP</span>. I haven&#8217;t touched Windows in Quite
-Some Time, but I said I&#8217;d have a&nbsp;look.</p>
-<p>Long story short: I failed. And am annoyed about it. I&#8217;m not really
-looking for suggestions here: he&#8217;s not a particularly technical bloke,
-so I can&#8217;t really pass on the suggestions to him, and he&#8217;s a few hundred
-miles from me so I can&#8217;t try things out. This is more an ill-tempered
-rant than anything else, but if anyone&#8217;s got any ideas <strong>that do not
+the lounge. They're both on the wifi network in his house.</p>
+<p>The computer is running Windows XP. I haven't touched Windows in Quite
+Some Time, but I said I'd have a look.</p>
+<p>Long story short: I failed. And am annoyed about it. I'm not really
+looking for suggestions here: he's not a particularly technical bloke,
+so I can't really pass on the suggestions to him, and he's a few hundred
+miles from me so I can't try things out. This is more an ill-tempered
+rant than anything else, but if anyone's got any ideas <strong>that do not
 involve him buying new stuff or installing different operating
-systems</strong>, I&#8217;ll&nbsp;listen.</p>
+systems</strong>, I'll listen.</p>
 <p>The Roberts radio thing has two ways of playing music from a source on
 the network: it can connect to Windows shares, and it can connect to
-UPnP music sources. So I tried UPnP&nbsp;first.</p>
+UPnP music sources. So I tried UPnP first.</p>
 <p>Windows Media Player has the ability to share music by UPnP, and he
 already has that installed, with his music in it. That seemed an obvious
 place to start. So, I enabled music sharing, following the instructions.
 The radio could not see the shared UPnP source. I also had an Android
-tablet available, so I installed a UPnP browser on it and that couldn&#8217;t
+tablet available, so I installed a UPnP browser on it and that couldn't
 see it either. I installed a UPnP browser on the Windows machine and
 that <em>could</em> see the UPnP source, which suggests that the problem is not
-in Windows Media Player: it&#8217;s some sort of network or firewall issue.
+in Windows Media Player: it's some sort of network or firewall issue.
 The Windows machine had at least two firewalls on it: Windows Firewall,
 and McAfee. I disabled both: still nothing could see the UPnP source.
 There is, as far as I can tell, no way to find out <em>why</em> a thing is
 invisible. A noddy network diagnostic tool on the Android tablet
-confirmed that <span class="caps">TCP</span> port 2869 was &#8220;open&#8221; (and other ports were &#8220;closed&#8221;);
-I didn&#8217;t have easy access to any other diagnostic tools (I&#8217;d have
-nmapped it from my Ubuntu machine if I had it, but I&nbsp;didn&#8217;t).</p>
-<p>No idea what to try after that. I don&#8217;t know what might be causing it to
+confirmed that TCP port 2869 was "open" (and other ports were "closed");
+I didn't have easy access to any other diagnostic tools (I'd have
+nmapped it from my Ubuntu machine if I had it, but I didn't).</p>
+<p>No idea what to try after that. I don't know what might be causing it to
 be invisible from outside. A photo frame which can browse UPnP sources
 also failed to connect. I did think about installing a different UPnP
 server, but all the Windows ones I looked at (Twonky, another one I
-forget the name of) cost money, and there&#8217;s no&nbsp;MediaTomb.</p>
+forget the name of) cost money, and there's no MediaTomb.</p>
 <p>So, I tried Windows Shares. I shared the music folder and allowed
-network users to alter the files therein. An <span class="caps">SMB</span> browser on the Android
+network users to alter the files therein. An SMB browser on the Android
 tablet <em>could</em> see and browse the share <em>if it connected as Anonymous</em>.
-It could not when using a username and password because I didn&#8217;t know
-which username and password to use! He doesn&#8217;t have a password set, and
-his username has a space in. I tried connecting with the Android <span class="caps">SMB</span>
+It could not when using a username and password because I didn't know
+which username and password to use! He doesn't have a password set, and
+his username has a space in. I tried connecting with the Android SMB
 browser (AndSMB, if it makes a difference) using the username
 (containing a space) and an empty password: it would not connect. I
-don&#8217;t know how to find out what your username is on Windows; I poked
-around at &#8220;net user&#8221; and &#8220;net share&#8221; without enlightenment. I tried
+don't know how to find out what your username is on Windows; I poked
+around at "net user" and "net share" without enlightenment. I tried
 changing his username to not have a space in, and setting a password,
-and then connecting from AndSMB with that username and password: didn&#8217;t
+and then connecting from AndSMB with that username and password: didn't
 work. The radio did not find any shares at all. I do not know whether
-the radio tries connecting as Anonymous, and the documentation doesn&#8217;t
+the radio tries connecting as Anonymous, and the documentation doesn't
 say. I tried using the username and password from the radio and that
-didn&#8217;t work either. By the look of it, when you tell AndSMB to connect
-as Anonymous, it actually connects with username &#8220;guest&#8221; and password
-&#8220;&#8221;, so I tried that from the radio and it didn&#8217;t&nbsp;work.</p>
-<p>So now I&#8217;m lost. And this is way too hard. And every time something like
-this happens, I think he gets a little closer to buying a Mac.&nbsp;Sigh.</p>
-<p>I may take an Ubuntu <span class="caps">CD</span> round at some&nbsp;point.</p>
+didn't work either. By the look of it, when you tell AndSMB to connect
+as Anonymous, it actually connects with username "guest" and password
+"", so I tried that from the radio and it didn't work.</p>
+<p>So now I'm lost. And this is way too hard. And every time something like
+this happens, I think he gets a little closer to buying a Mac. Sigh.</p>
+<p>I may take an Ubuntu CD round at some point.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2012/12/18/biscuit/">Previous post</a></li>
@@ -206,24 +191,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; More on web testing</title>
+		<title>as days pass by &mdash; More on web testing</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; More on web testing">
+        <meta property="og:title" content="as days pass by &mdash; More on web testing">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/01/31/testingmore/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,12 +47,11 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2004/01/31/testingmore/"><time 
 			class="dt-published" datetime="2004-01-31T11:00:00+00:00">Jan 31 2004</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/01/31/testingmore/" title="Permalink to More on web testing" rel="bookmark">More on web&nbsp;testing</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/01/31/testingmore/">More on web testing</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>I’m fairly convinced that it should be possible to set up something that
@@ -77,12 +62,12 @@ and stores a script.<br>
 In a bit more detail:<br>
 The bookmarklet would be called something like “Record a macro on this
 page“. When you click it, it creates a link in the body of the page,
-which looks something like&nbsp;this:  </p>
+which looks something like this:  </p>
 <p><code>&lt;a href="http://webtest.kryogenix.org/" onclick="if (window.sidebar.addPanel) { window.sidebar.addPanel(this.href);" rel="sidebar" target="_search"&gt;test&lt;/a&gt;</code><br>
-(The very useful <a href="http://zombie.codewalkers.com/2003/11/10/sidebars_in_firebird_mozilla_opera_and_ie">sidebars in firebird, mozilla, opera and <span class="caps">IE</span></a>
+(The very useful <a href="http://zombie.codewalkers.com/2003/11/10/sidebars_in_firebird_mozilla_opera_and_ie">sidebars in firebird, mozilla, opera and IE</a>
 details at <a href="http://zombie.codewalkers.com/">unescaped beta</a> helped immeasurably here.) The
 <code>rel="sidebar"</code> creates a sidebar in Opera. The <code>target="_search"</code>
-creates a sidebar in <span class="caps">IE</span>. The JavaScript <code>addPanel</code> stuff creates a
+creates a sidebar in IE. The JavaScript <code>addPanel</code> stuff creates a
 sidebar in Mozilla and Mozilla Firebird. Then the code clicks on the
 link. Pow, sidebar.<br>
 The sidebar then, when it loads, attaches a shedload of handlers to the
@@ -90,8 +75,9 @@ code in the main page—an onclick to everything, onchange to form
 elements, all that sort of thing. So when you <em>do</em> anything on the page,
 it gets told about it. When it gets told about something, it stores that
 away in a script. You should then be able to save that script and replay
-it, and the automated system will mimic all your clicks and form&nbsp;typing.  </p>
-<h4>Why this won’t&nbsp;work</h4>
+it, and the automated system will mimic all your clicks and form
+typing.  </p>
+<h4>Why this won’t work</h4>
 <p>Well, there are three reasons. The first is that the sidebar won’t be
 able to read the contents of your page, because it comes from a
 different domain, and the security model (which exists for good reasons)
@@ -99,7 +85,7 @@ won’t let it. I <em>think</em> you could get around this by having the
 bookmarklet construct your whole sidebar page with <code>document.write</code>
 statements, but firstly this would make it a very, very complex
 bookmarklet indeed, and secondly there are limitations on the size of a
-bookmarklet, especially in <span class="caps">IE</span>.<br>
+bookmarklet, especially in IE.<br>
 The second reason is that the sidebar won’t be able to access the local
 filesystem to save the script, again because of the security model. You
 might be able to fix this with signed scripts, but then I suspect what
@@ -108,7 +94,7 @@ pages loaded from the local filesystem can save back to it, but that
 doesn’t appear to always be the case—Mozilla will, I think, need chrome
 URLs, and that then means that the test environment has to be
 <em>installed</em> and then it’s not an easy-to-use cross-browser thing, it’s a
-Moz <span class="caps"><span class="caps">XUL</span></span> application.<br>
+Moz <span class="caps">XUL</span> application.<br>
 The third reason is that when you submit a form, or follow a link, you
 stop tracking what’s happening in the page. That’s silly in a test
 environment; you need some way of saying “this thing here on page 2,
@@ -125,8 +111,8 @@ track what a user does the whole time they’re testing, including whether
 any interactive stuff on the page works.<br>
 Perhaps someone has already solved this. Is there anything that is
 cross-browser (it’s allowed to demand a <em>modern</em> browser, but at a flat
-minimum it must work in <span class="caps">IE</span> and Mozilla on Windows and Linux) and lets me
-do this sort of&nbsp;testing?</p>
+minimum it must work in IE and Mozilla on Windows and Linux) and lets me
+do this sort of testing?</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2004/01/29/snowed/">Previous post</a></li>
@@ -203,24 +189,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

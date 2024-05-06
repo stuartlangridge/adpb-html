@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Step away from the localStorage</title>
+		<title>as days pass by &mdash; Step away from the localStorage</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Step away from the localStorage">
+        <meta property="og:title" content="as days pass by &mdash; Step away from the localStorage">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/03/20/step-away-from-the-localstorage/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,44 +47,43 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2012/03/20/step-away-from-the-localstorage/"><time 
 			class="dt-published" datetime="2012-03-20T14:37:00+00:00">Mar 20 2012</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/03/20/step-away-from-the-localstorage/" title="Permalink to Step away from the localStorage" rel="bookmark">Step away from the&nbsp;localStorage</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/03/20/step-away-from-the-localstorage/">Step away from the localStorage</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>There has been much discussion (<a href="http://hacks.mozilla.org/2012/03/there-is-no-simple-solution-for-local-storage/">example</a>, <a href="https://blog.mozilla.com/tglek/2012/02/22/psa-dom-local-storage-considered-harmful/">example</a>, <a href="http://webreflection.blogspot.co.uk/2012/03/whats-localstorage-about.html">example</a>,
-<a href="http://paul.kinlan.me/we-need-to-kill-off-the-localstorage-api/">example</a>) recently about how the <a href="https://developer.mozilla.org/en/DOM/Storage">in-browser localStorage <span class="caps">API</span></a> is
-terrible and must be killed with&nbsp;fire.</p>
+<a href="http://paul.kinlan.me/we-need-to-kill-off-the-localstorage-api/">example</a>) recently about how the <a href="https://developer.mozilla.org/en/DOM/Storage">in-browser localStorage API</a> is
+terrible and must be killed with fire.</p>
 <p>My first reaction here is <a href="http://www.thedailymash.co.uk/news/health/leave-bacon-out-of-it,-health-experts-warned-20071031506/">step away from the bacon, son, leave the
-bacon out of this</a>. The localStorage <span class="caps">API</span> seems to have a few quoted
-problems, the main ones being that it&#8217;s synchronous, it does file <span class="caps">IO</span>,
-and it&#8217;s got bad event support. Put against that, rather snidely it
-seems, is the benefit that &#8220;it&#8217;s easy to&nbsp;use&#8221;.</p>
-<p>Did I miss a meeting? Is being easy to use suddenly a bad thing? Isn&#8217;t
+bacon out of this</a>. The localStorage API seems to have a few quoted
+problems, the main ones being that it's synchronous, it does file IO,
+and it's got bad event support. Put against that, rather snidely it
+seems, is the benefit that "it's easy to use".</p>
+<p>Did I miss a meeting? Is being easy to use suddenly a bad thing? Isn't
 that one of the major benefits of using Apple stuff, that it makes sense
 and people can get it without a PhD in computer science? Or does that
 only apply to <em>users</em>, who are presumably too busy on the sofa with a
 bag of Cheetos, and not to <em>developers</em>, who are meant to do things the
-hard way whenever&nbsp;possible?</p>
-<p>Doing file <span class="caps">IO</span> and having bad event support are, certainly, issues with
-localStorage if you&#8217;re trying to use it for any kind of really serious
-data storage. If you&#8217;re Gmail, maybe you want something better. But you
-know what? Most of the things I build aren&#8217;t Gmail, and most of the
-things you build aren&#8217;t either. I don&#8217;t need event support for
+hard way whenever possible?</p>
+<p>Doing file IO and having bad event support are, certainly, issues with
+localStorage if you're trying to use it for any kind of really serious
+data storage. If you're Gmail, maybe you want something better. But you
+know what? Most of the things I build aren't Gmail, and most of the
+things you build aren't either. I don't need event support for
 localStorage; I just want to stash a value in it and then move on.
-That&#8217;s all. Doing file <span class="caps">IO</span>… well, any storage mechanism had better be
-doing file <span class="caps">IO</span> at <em>some</em> point so that my data gets saved to&nbsp;disc!</p>
-<p>Ah, no, say the detractors, but it&#8217;s <em>synchronous</em>. That&#8217;s bad: it
+That's all. Doing file IO… well, any storage mechanism had better be
+doing file IO at <em>some</em> point so that my data gets saved to disc!</p>
+<p>Ah, no, say the detractors, but it's <em>synchronous</em>. That's bad: it
 blocks. This seems to boil down to two problems: it might block my tab,
-and it might block other people&#8217;s tabs. Now, that&#8217;s an issue, right
+and it might block other people's tabs. Now, that's an issue, right
 enough. However, blocking my tab is something that I can think about and
-decide whether I&#8217;m prepared to run the risk or not. Because what you&#8217;re
-asking for is that I replace&nbsp;this:</p>
+decide whether I'm prepared to run the risk or not. Because what you're
+asking for is that I replace this:</p>
 <p><code>localStorage.setItem("key", "value");</code></p>
-<p>with&nbsp;this</p>
+<p>with this</p>
 <div class="highlight"><pre><span></span><code><span class="nx">storeSomething</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">indexedDB</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&quot;mydbname&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;This is a description of the database.&quot;</span><span class="p">);</span>
@@ -124,34 +109,34 @@ asking for is that I replace&nbsp;this:</p>
 
 <p>and you know what? Given that choice… I believe I might at least
 sometimes choose that blocking my tab for a microsecond and very
-occasionally blocking my tab for two whole seconds is actually <span class="caps">OK</span>. I&#8217;m
-allowed! It&#8217;s my&nbsp;tab!</p>
-<p>Fine, I&#8217;m being a bit facetious. There are problems with localStorage,
+occasionally blocking my tab for two whole seconds is actually OK. I'm
+allowed! It's my tab!</p>
+<p>Fine, I'm being a bit facetious. There are problems with localStorage,
 and it would be good to see them resolved. But there are alternatives
-other than &#8220;you must ditch it and use IndexedDB, Mr Developer&#8221;, I think.
+other than "you must ditch it and use IndexedDB, Mr Developer", I think.
 What would be wrong with providing an asynchronous variant of
 localStorage, so I do
 <code>localStorage.setItemAsync("key", "value", function() { carryon... })</code>?
-Mozilla say &#8220;Implement localStorage in an asynchronous fashion in
+Mozilla say "Implement localStorage in an asynchronous fashion in
 browsers – actively disregarding the spec? (this could set a dangerous
-precedent though)&#8221;, as if the idea of the browser manufacturers working
+precedent though)", as if the idea of the browser manufacturers working
 together to adjust the spec is just impossible; did I miss something
 there? The spec process is open to stuff being adjusted or added to;
-that&#8217;s the point of it, right? And localStorage use in my tab blocking
-other people&#8217;s tabs… I can&#8217;t think of a nice way of saying &#8220;that&#8217;s a
-browser issue&#8221;, but it is. I feel sad having to say that, because I know
+that's the point of it, right? And localStorage use in my tab blocking
+other people's tabs… I can't think of a nice way of saying "that's a
+browser issue", but it is. I feel sad having to say that, because I know
 that the engineers at Mozilla and other places have done superhuman work
 in this area and will continue to do so, but really one tab blocking
 causing others to block is surely something which is a problem for more
-than just&nbsp;localStorage?</p>
+than just localStorage?</p>
 <p>There are problems with localStorage. Real ones. But I think that those
 calling for its complete removal are vastly underestimating the
-attractiveness of an <span class="caps">API</span> that&#8217;s easy to use, and also vastly
+attractiveness of an API that's easy to use, and also vastly
 underestimating how annoying it is to be forced to use something way
-more complicated because it copes better with pathological cases. I&#8217;d
-love to hear more argument on this subject, but I don&#8217;t want it to look
-like there&#8217;s a consensus around &#8220;it must go&#8221;. Someone needs to speak up
-for developers who just wanna get stuff done, like&nbsp;me&#8230;</p>
+more complicated because it copes better with pathological cases. I'd
+love to hear more argument on this subject, but I don't want it to look
+like there's a consensus around "it must go". Someone needs to speak up
+for developers who just wanna get stuff done, like me...</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2012/03/16/ubuntu-accomplishments-and-ubuntu-one/">Previous post</a></li>
@@ -228,24 +213,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Firefox bookmarks in CouchDB</title>
+		<title>as days pass by &mdash; Firefox bookmarks in CouchDB</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Firefox bookmarks in CouchDB">
+        <meta property="og:title" content="as days pass by &mdash; Firefox bookmarks in CouchDB">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/07/06/firefox-bookmarks-in-couchdb/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,21 +47,20 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2009/07/06/firefox-bookmarks-in-couchdb/"><time 
 			class="dt-published" datetime="2009-07-06T19:35:00+01:00">Jul 06 2009</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/07/06/firefox-bookmarks-in-couchdb/" title="Permalink to Firefox bookmarks in CouchDB" rel="bookmark">Firefox bookmarks in&nbsp;CouchDB</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/07/06/firefox-bookmarks-in-couchdb/">Firefox bookmarks in CouchDB</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>Me and <a href="http://www.urbanape.com/">Zachery Bir</a>, as part of the <a href="http://www.kryogenix.org/days/category/software/couchdb">Desktop CouchDB idea</a> that
 myself and Rodrigo have been talking about, have been working on a
-Firefox extension to store your bookmarks in CouchDB. So they&#8217;re there
+Firefox extension to store your bookmarks in CouchDB. So they're there
 in the database, you can see them in the database, you can replicate the
 database around. All happens automatically. I rather like this kind of
-thing, and I&#8217;m told that people at <a href="http://www.grancanariadesktopsummit.org/"><span class="caps">GCDS</span></a> have been getting excited
-about CouchDB too. I can&#8217;t blame them; I&#8217;m really enjoying working with
+thing, and I'm told that people at <a href="http://www.grancanariadesktopsummit.org/">GCDS</a> have been getting excited
+about CouchDB too. I can't blame them; I'm really enjoying working with
 it, and this sort of thing is why! A quick screencast: edit one of your
 bookmarks in CouchDB and lo, it changes in the browser. <a href="http://www.kryogenix.org/random/couch-firefox-bookmarks-initial.ogv">Editing a
 Firefox bookmark in CouchDB (Ogg Theora video, 517K)</a> (<a href="http://www.youtube.com/watch?v=6y88KjXQR8k">or on YouTube</a>, thanks @<a href="http://jan.prima.de/">janl</a>)</p>
@@ -84,17 +69,18 @@ Firefox bookmark in CouchDB (Ogg Theora video, 517K)</a> (<a href="http://www.yo
 <embed src="http://www.youtube.com/v/6y88KjXQR8k&amp;hl=en&amp;fs=1&amp;rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344">
 </embed>
 </object>
-<p>Of course, you don&#8217;t have to edit things in the <span class="caps">HTML</span> interface to the
-database itself if you don&#8217;t want to; if your bookmark records are being
+<p>Of course, you don't have to edit things in the HTML interface to the
+database itself if you don't want to; if your bookmark records are being
 replicated to your other machines on your network, then a change to one
 is a change to all, and you can change data in Couch from pretty much
-any language you want &#8212; I keep thinking about &#8220;dynamic bookmarks&#8221; that
-update over the course of the day or depending on what you&#8217;ve got
-running on your machine. But I&#8217;m getting ahead of myself
-here&#8230;yesterday, my contacts in Couch, today, bookmarks in Couch,
-tomorrow&#8230;the world? (update: oops, forgot a link to code! <a href="http://launchpad.net/bindwood">Bindwood</a>
-on Launchpad. At the moment the code&#8217;s distributed over various
-branches, but we&#8217;ll be pulling stuff into trunk over the next couple of&nbsp;days.)</p>
+any language you want -- I keep thinking about "dynamic bookmarks" that
+update over the course of the day or depending on what you've got
+running on your machine. But I'm getting ahead of myself
+here...yesterday, my contacts in Couch, today, bookmarks in Couch,
+tomorrow...the world? (update: oops, forgot a link to code! <a href="http://launchpad.net/bindwood">Bindwood</a>
+on Launchpad. At the moment the code's distributed over various
+branches, but we'll be pulling stuff into trunk over the next couple of
+days.)</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2009/07/03/not-blocking-the-ui-in-tight-javascript-loops/">Previous post</a></li>
@@ -171,24 +157,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<title>as days pass by &mdash; Reverse SSH tunnels</title>
+		<title>as days pass by &mdash; Reverse SSH tunnels</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link href="https://fonts.googleapis.com/css?display=swap&family=Averia+Serif+Libre|Enriqueta:400,700" rel="stylesheet">
-		<meta name="monetization" content="$pay.stronghold.co/1a198b49b9914f84e218d360b725bca1fd1">
 		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
-        <meta property="og:title" content="as days pass by &mdash; Reverse SSH tunnels">
+        <meta property="og:title" content="as days pass by &mdash; Reverse SSH tunnels">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
@@ -16,41 +14,29 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
         <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/index.html.og_image.png">
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="https://www.kryogenix.org/days/theme/css/simple-footnotes.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<style type="text/css">
-			body.custom-background {
-				background: url(https://www.kryogenix.org/days/theme/handmadepaper.png); /* thank you subtlepatterns! */
-			}
-		</style>
 		<link rel="alternate" type="application/rss+xml"
 			title="as days pass by"
 			href="https://www.kryogenix.org/days/feed" /> 
-		<!--[if lte IE 8]><script src="https://www.kryogenix.org/days/theme/js/html5shiv.js"></script><![endif]-->
 		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
 		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
-		<script src="https://cdn.ravenjs.com/3.4.1/raven.min.js"></script>
-		<script>Raven.config('https://fc8cd4c9637043f3b385d9daa8dbe367@app.getsentry.com/91852').install()</script>
 </head>
 
 <body class="home blog custom-background single-author" >
-	<div id="container">
-		<div id="header">
+		<header>
 				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
 				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
-<h2 id="site-description">scratched tallies on the prison wall</h2>		</div><!-- /#banner -->
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
 		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Kryogenix Consulting</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/days/archives">All posts, ever</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/code">Code</a></li>
-
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
 		
 		<div class="page-title">
 		</div>
@@ -61,19 +47,18 @@
 	<div class="entry-meta">
 		<div class="date"><a href="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/"><time 
 			class="dt-published" datetime="2014-08-10T23:49:00+01:00">Aug 10 2014</time></a>
-			<span class="byline h-card">By <a class="p-author" href="https://www.kryogenix.org/days/"><img src="https://kryogenix.org/images/hackergotchi-simpler.png" class="u-photo" alt=""> <span class="p-name">sil</span></a></span>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/" title="Permalink to Reverse SSH tunnels" rel="bookmark">Reverse <span class="caps">SSH</span>&nbsp;tunnels</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/">Reverse SSH tunnels</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>My dad’s got a computer. Infrequently, it goes wrong and I need to fix it. Slightly more frequently, it doesn’t go wrong but it does something which is confusing, and I need to try to fix it until I realise what the confusing thing was and then either fix <em>that</em> or explain it. So, being able to connect to his machine is useful.</p>
-<p>His <span class="caps">ADSL</span> router, from TalkTalk<sup id="sf-reverse-ssh-tunnels-1-back"><a href="#sf-reverse-ssh-tunnels-1" class="simple-footnote" title="a Huawei HG533 with the most annoying web config UI I’ve ever seen ever, which gets even more annoying if you try and control it from curl because it’s all JavaScript-dependent. Why? You are a router, not gmail! Grrrr!">1</a></sup>, allows one to set up a port forward<sup id="sf-reverse-ssh-tunnels-2-back"><a href="#sf-reverse-ssh-tunnels-2" class="simple-footnote" title="hooray">2</a></sup> so that I can connect to his external <span class="caps">IP</span> and have that routed to port 22 on his machine, thus allowing me <span class="caps">SSH</span> access, and with <span class="caps">SSH</span> I can do everything else<sup id="sf-reverse-ssh-tunnels-3-back"><a href="#sf-reverse-ssh-tunnels-3" class="simple-footnote" title="hooray">3</a></sup>. However, that router also controls the <span class="caps">DHCP</span> addresses for things on the network, and it does not always give the same address out to the same machine. So, every now and again, it’ll give his machine a different <span class="caps">IP</span>, and then the port forward stops working.<sup id="sf-reverse-ssh-tunnels-4-back"><a href="#sf-reverse-ssh-tunnels-4" class="simple-footnote" title="Also, I really really don’t like static IPs, so I don’t want to configure it with one.">4</a></sup></p>
-<p>So, after mithering about this a bit, Daviey Walker suggested<sup id="sf-reverse-ssh-tunnels-5-back"><a href="#sf-reverse-ssh-tunnels-5" class="simple-footnote" title="that is, I was mithering about it. Not Daviey.">5</a></sup> that I use a reverse <span class="caps">SSH</span> tunnel. That is to say: I have his machine ssh into one of mine, and then port forward a port on my machine back along the <span class="caps">SSH</span> tunnel to port 22 on his machine, meaning that I can ssh into it and don’t have to care about IPs or anything.</p>
-<p>This was a dead clever idea. It relies on me having a machine which is sshable from the outside world, but I <em>do</em>, so that’s <span class="caps">OK</span>.</p>
-<p>Obviously, something needs to set the tunnel up. So, first I set things up so that his machine could ssh into mine with key authentication and without a password needed (see <code>ssh-copy-id</code> or <a href="http://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">a guide</a> for that), and then I wrote this little script:</p>
+			<p>My dad's got a computer. Infrequently, it goes wrong and I need to fix it. Slightly more frequently, it doesn't go wrong but it does something which is confusing, and I need to try to fix it until I realise what the confusing thing was and then either fix <em>that</em> or explain it. So, being able to connect to his machine is useful.</p>
+<p>His ADSL router, from TalkTalk<sup id="sf-reverse-ssh-tunnels-1-back"><a href="#sf-reverse-ssh-tunnels-1" class="simple-footnote" title="a Huawei HG533 with the most annoying web config UI I've ever seen ever, which gets even more annoying if you try and control it from curl because it's all JavaScript-dependent. Why? You are a router, not gmail! Grrrr!">1</a></sup>, allows one to set up a port forward<sup id="sf-reverse-ssh-tunnels-2-back"><a href="#sf-reverse-ssh-tunnels-2" class="simple-footnote" title="hooray">2</a></sup> so that I can connect to his external IP and have that routed to port 22 on his machine, thus allowing me SSH access, and with SSH I can do everything else<sup id="sf-reverse-ssh-tunnels-3-back"><a href="#sf-reverse-ssh-tunnels-3" class="simple-footnote" title="hooray">3</a></sup>. However, that router also controls the DHCP addresses for things on the network, and it does not always give the same address out to the same machine. So, every now and again, it'll give his machine a different IP, and then the port forward stops working.<sup id="sf-reverse-ssh-tunnels-4-back"><a href="#sf-reverse-ssh-tunnels-4" class="simple-footnote" title="Also, I really really don't like static IPs, so I don't want to configure it with one.">4</a></sup></p>
+<p>So, after mithering about this a bit, Daviey Walker suggested<sup id="sf-reverse-ssh-tunnels-5-back"><a href="#sf-reverse-ssh-tunnels-5" class="simple-footnote" title="that is, I was mithering about it. Not Daviey.">5</a></sup> that I use a reverse SSH tunnel. That is to say: I have his machine ssh into one of mine, and then port forward a port on my machine back along the SSH tunnel to port 22 on his machine, meaning that I can ssh into it and don't have to care about IPs or anything.</p>
+<p>This was a dead clever idea. It relies on me having a machine which is sshable from the outside world, but I <em>do</em>, so that's OK.</p>
+<p>Obviously, something needs to set the tunnel up. So, first I set things up so that his machine could ssh into mine with key authentication and without a password needed (see <code>ssh-copy-id</code> or <a href="http://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">a guide</a> for that), and then I wrote this little script:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 createTunnel<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">  </span>date
@@ -91,10 +76,10 @@ createTunnel<span class="o">()</span><span class="w"> </span><span class="o">{</
 <span class="k">fi</span>
 </code></pre></div>
 
-<p>which creates this ssh tunnel connection. There’s a hack there: it assumes that if there’s an ssh process, it’s our ssh process. If you regularly ssh from the box you’re doing this on, you’ll want to do something cleverer. In this case I don’t, so I keep it easy. Couple of little tricks in the script: there’s a <code>date</code> command, so the output mentions when this happened, which is useful for the log file in the next bit (and this is also why the script generates no output if the tunnel is already up). Secondly, <code>-o BatchMode=yes</code> in the ssh options means that it’ll instantly fail if you haven’t got key auth set up right, rather than hanging forever waiting for a password, and it’ll send server keepalives every 300 seconds and kill the connection if they break, which means that if the connection hangs but doesn’t terminate, it’ll get terminated. This is what we want, because we want some monitoring process to restart the tunnel if it dies. There are all sorts of clever ways to do this: upstart, systemd, whatever<sup id="sf-reverse-ssh-tunnels-6-back"><a href="#sf-reverse-ssh-tunnels-6" class="simple-footnote" title="not /etc/init.d though. This is a user-level process. It should not be being run by system-level stuff. System level belongs to apt.">6</a></sup>, but I just put this line in the crontab<sup id="sf-reverse-ssh-tunnels-7-back"><a href="#sf-reverse-ssh-tunnels-7" class="simple-footnote" title="a file which defines jobs to be run at specific times; it’s like a super-techie Scheduled Tasks wizard, and it usefully will run things even when you’re not logged in. You can edit yours from the command line with crontab -e.">7</a></sup>:</p>
+<p>which creates this ssh tunnel connection. There's a hack there: it assumes that if there's an ssh process, it's our ssh process. If you regularly ssh from the box you're doing this on, you'll want to do something cleverer. In this case I don't, so I keep it easy. Couple of little tricks in the script: there's a <code>date</code> command, so the output mentions when this happened, which is useful for the log file in the next bit (and this is also why the script generates no output if the tunnel is already up). Secondly, <code>-o BatchMode=yes</code> in the ssh options means that it'll instantly fail if you haven't got key auth set up right, rather than hanging forever waiting for a password, and it'll send server keepalives every 300 seconds and kill the connection if they break, which means that if the connection hangs but doesn't terminate, it'll get terminated. This is what we want, because we want some monitoring process to restart the tunnel if it dies. There are all sorts of clever ways to do this: upstart, systemd, whatever<sup id="sf-reverse-ssh-tunnels-6-back"><a href="#sf-reverse-ssh-tunnels-6" class="simple-footnote" title="not /etc/init.d though. This is a user-level process. It should not be being run by system-level stuff. System level belongs to apt.">6</a></sup>, but I just put this line in the crontab<sup id="sf-reverse-ssh-tunnels-7-back"><a href="#sf-reverse-ssh-tunnels-7" class="simple-footnote" title="a file which defines jobs to be run at specific times; it's like a super-techie Scheduled Tasks wizard, and it usefully will run things even when you're not logged in. You can edit yours from the command line with crontab -e.">7</a></sup>:</p>
 <pre><code>*/1 * * * * /path/to/above/script.sh &gt;&gt; /path/to/tunnel.log 2&gt;&amp;1</code></pre>
 
-<p>which just reruns the above script every minute and sticks any output into a logfile so if it’s not working I can, at a push, ask dad to read the logfile. Inefficient and low-budget, but it works. So once all this is set up, I can, from my sshable machine, do <code>ssh -p 9012 dadlogin@localhost</code> and I then get to log in to his machine. Then I can fix it. And never deal with his horrid router’s horrid web <span class="caps">UI</span> ever again.</p><ol class="simple-footnotes"><li id="sf-reverse-ssh-tunnels-1">a Huawei <span class="caps">HG533</span> with the most annoying web config <span class="caps">UI</span> I’ve ever seen ever, which gets even more annoying if you try and control it from curl because it’s all JavaScript-dependent. Why? You are a router, not gmail! Grrrr! <a href="#sf-reverse-ssh-tunnels-1-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-2">hooray <a href="#sf-reverse-ssh-tunnels-2-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-3">hooray <a href="#sf-reverse-ssh-tunnels-3-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-4">Also, I really really don’t like static IPs, so I don’t want to configure it with one. <a href="#sf-reverse-ssh-tunnels-4-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-5">that is, I was mithering about it. Not Daviey. <a href="#sf-reverse-ssh-tunnels-5-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-6">not <code>/etc/init.d</code> though. This is a user-level process. It should not be being run by system-level stuff. System level belongs to apt. <a href="#sf-reverse-ssh-tunnels-6-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-7">a file which defines jobs to be run at specific times; it’s like a super-techie Scheduled Tasks wizard, and it usefully will run things even when you’re not logged in. You can edit yours from the command line with <code>crontab -e</code>. <a href="#sf-reverse-ssh-tunnels-7-back" class="simple-footnote-back">↩</a></li></ol>
+<p>which just reruns the above script every minute and sticks any output into a logfile so if it's not working I can, at a push, ask dad to read the logfile. Inefficient and low-budget, but it works. So once all this is set up, I can, from my sshable machine, do <code>ssh -p 9012 dadlogin@localhost</code> and I then get to log in to his machine. Then I can fix it. And never deal with his horrid router's horrid web UI ever again.</p><ol class="simple-footnotes"><li id="sf-reverse-ssh-tunnels-1">a Huawei HG533 with the most annoying web config UI I've ever seen ever, which gets even more annoying if you try and control it from curl because it's all JavaScript-dependent. Why? You are a router, not gmail! Grrrr! <a href="#sf-reverse-ssh-tunnels-1-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-2">hooray <a href="#sf-reverse-ssh-tunnels-2-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-3">hooray <a href="#sf-reverse-ssh-tunnels-3-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-4">Also, I really really don't like static IPs, so I don't want to configure it with one. <a href="#sf-reverse-ssh-tunnels-4-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-5">that is, I was mithering about it. Not Daviey. <a href="#sf-reverse-ssh-tunnels-5-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-6">not <code>/etc/init.d</code> though. This is a user-level process. It should not be being run by system-level stuff. System level belongs to apt. <a href="#sf-reverse-ssh-tunnels-6-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-7">a file which defines jobs to be run at specific times; it's like a super-techie Scheduled Tasks wizard, and it usefully will run things even when you're not logged in. You can edit yours from the command line with <code>crontab -e</code>. <a href="#sf-reverse-ssh-tunnels-7-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2014/06/30/facebook-and-the-button-of-happiness/">Previous post</a></li>
@@ -171,24 +156,11 @@ try {
 }
 </script>
 <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
-
 		</div>
 		
-		<div id="footer">
-			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-			<script src="https://the-claw-webring-widget.netlify.app/the-claw-webring-widget.mjs" type="module"></script>
-			<the-claw-webring-widget />
-			<!-- Global site tag (gtag.js) - Google Analytics. Cookie set to be a session cookie, not permanent, for privacy
-			https://developers.google.com/analytics/devguides/collection/gtagjs/cookies-user-id#cookie_expiration -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-331575-1"></script>
-			<script>
-  				window.dataLayer = window.dataLayer || [];
-  				function gtag(){dataLayer.push(arguments);}
-  				gtag('js', new Date());
-  				gtag('config', 'UA-331575-1', {cookie_expires: 0});
-			</script>
-		</div><!-- /#footer -->
-	</div><!-- /#container -->
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
 
 
 
