@@ -33,9 +33,6 @@ a:not([class]) { /* A elements that don't have a class get default styles */
   text-decoration-skip-ink: auto;
   color: currentColor; }
 
-img, picture { /* Make images easier to work with */
-  max-width: 100%; display: block; }
-
 input, button, textarea, select {
   font-family: inherit;
   font-size: inherit; }
@@ -206,7 +203,8 @@ footer::after {
   color: white;
 }
 
-#contents .entry-content img {
+#contents .entry-content img, #contents .entry-content picture {
+  display: block;
   max-width: 90%;
   margin: 0 auto;
   box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
