@@ -98,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 150ms ease-in-out;
 }
 .entry-title:hover {
-  background: linear-gradient(to right, #abbd73 0%, #abbd73 100%)
+  background: linear-gradient(to right, hsl(15.5, 83.9%, 79.6%))
 }
 .entry-title:hover::before {
   transform: rotate(0deg);
@@ -189,7 +189,7 @@ footer::after {
 
 #contents h1, #contents h2 {
   --fluid-type-min: 1.5rem;
-  --fluid-type-max: 5rem;
+  --fluid-type-max: 3rem;
   --fluid-type-target: 3vw;
   font-size: clamp(
     var(--fluid-type-min, 1rem),
