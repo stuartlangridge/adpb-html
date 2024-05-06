@@ -206,7 +206,7 @@ footer::after {
   color: white;
 }
 
-#contents img {
+#contents .entry-content img {
   max-width: 90%;
   margin: 0 auto;
   box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
