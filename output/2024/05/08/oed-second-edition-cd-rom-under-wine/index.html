@@ -10,8 +10,10 @@
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="as days pass by">
         <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2024/05/08/oed-second-edition-cd-rom-under-wine/index.html.og_image.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2024/05/08/oed-second-edition-cd-rom-under-wine/index.html.og_image.png">
 		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
 		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -43,13 +45,13 @@
 
 <div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
 	<div class="entry-meta">
-		<div class="date"><a href="https://www.kryogenix.org/days/drafts/oed-second-edition-cd-rom-under-wine.html"><time 
+		<div class="date"><a href="https://www.kryogenix.org/days/2024/05/08/oed-second-edition-cd-rom-under-wine/"><time 
 			class="dt-published" datetime="2024-05-08T23:18:00+01:00">May 08 2024</time></a>
 		</div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
-			<a class="u-url p-name" href="https://www.kryogenix.org/days/drafts/oed-second-edition-cd-rom-under-wine.html">OED second edition CD-ROM under Wine</a>
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2024/05/08/oed-second-edition-cd-rom-under-wine/">OED second edition CD-ROM under Wine</a>
 		</h2>
 		<div class="entry-content e-content">
 			<p>I recently discovered that there's an old software edition of the Oxford English Dictionary (the second edition) <a href="https://archive.org/details/oxford-english-dictionary-second-edition">on archive.org</a> for download. Not sure how legal this is, mind, but I thought it would be useful to get it running on my Ubuntu machine. So here's how I did that.</p>
@@ -66,13 +68,14 @@
 <ul>
 <li>first make a new folder to put them in: <code>mkdir ~/.local/share/fonts/oed</code>.</li>
 <li>Then find out where the installer put the font files, as a real path on our Linux filesystem: <code>winepath -u "C:/WINDOWS/SYSTEM"</code>. Let's say that that ends up being <code>/home/you/.wine/dosdevices/c:/windows/system</code></li>
-<li>Copy the TTF files from that folder (remembering to change the first path to the one that <code>winepath</code> output just now: <code>cp /home/you/.wine/dosdevices/c:/windows/system/*.TTF ~/.local/share/fonts/oed</code></li>
+<li>Copy the TTF files from that folder (remembering to change the first path to the one that <code>winepath</code> output just now): <code>cp /home/you/.wine/dosdevices/c:/windows/system/*.TTF ~/.local/share/fonts/oed</code></li>
 <li>And tell the font system that we've added a bunch of new fonts: <code>fc-cache</code></li>
 </ul>
 <p>And now it all ought to work! Run <code>wine OED/OED.EXE</code> one last time…</p>
 <p><img src="https://kryogenix.org/images/oed/06-working.png" alt="the OED Windows app in all its glory"></p><ol class="simple-footnotes"><li id="sf-oed-second-edition-cd-rom-under-wine-1">and using 7zip is much easier than mounting the ISO file as a loopback thing <a href="#sf-oed-second-edition-cd-rom-under-wine-1-back" class="simple-footnote-back">↩</a></li><li id="sf-oed-second-edition-cd-rom-under-wine-2">There's a Microsoft Word macro that it offers to install; I didn't want that, and I have no idea whether it works <a href="#sf-oed-second-edition-cd-rom-under-wine-2-back" class="simple-footnote-back">↩</a></li><li id="sf-oed-second-edition-cd-rom-under-wine-3">which we can find out from <code>OED/INSTALL.LOG</code> <a href="#sf-oed-second-edition-cd-rom-under-wine-3-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2024/05/03/the-pastry-box-project-archaeology/">Previous post</a></li>
 		</ul>
 
 		<div class="hireme">
@@ -89,7 +92,7 @@
 <form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
 	<label>Did you link to this post? Enter your page's URL:
 	<input type="url" name="source"></label>
-	<input type="hidden" name="target" value="https://www.kryogenix.org/days/drafts/oed-second-edition-cd-rom-under-wine.html">
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2024/05/08/oed-second-edition-cd-rom-under-wine/">
 	<input type="submit" value="Add link">
 </form>
 <script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
@@ -97,7 +100,7 @@
 
 <p id="oldcomments"></p>
 <script>
-var aurl = 'drafts/oed-second-edition-cd-rom-under-wine.html';
+var aurl = '2024/05/08/oed-second-edition-cd-rom-under-wine/';
 var parts = aurl.split('/');
 if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
 var tooNewForOldComments = false;
