@@ -203,6 +203,9 @@ footer::after {
   color: white;
 }
 
+#contents .entry-content {
+  overflow-wrap: break-word;
+}
 #contents .entry-content img, #contents .entry-content picture {
   display: block;
   max-width: 90%;
