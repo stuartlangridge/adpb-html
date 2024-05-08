@@ -205,6 +205,7 @@ footer::after {
 
 #contents .entry-content {
   overflow-wrap: break-word;
+  hyphens: auto;
 }
 #contents .entry-content img, #contents .entry-content picture {
   display: block;
