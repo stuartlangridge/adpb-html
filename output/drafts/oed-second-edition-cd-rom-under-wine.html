@@ -62,11 +62,14 @@
 <p><img src="https://kryogenix.org/images/oed/03-bad-fonts.png" alt="the OED Windows app, except that all the text is little squares rather than actual text, which looks like a font rendering error"></p>
 <p>…that's not good. The app runs, but it looks like it's having font issues. (In particular, you can select and copy the text, even though it looks like a bunch of little squares, and if you paste that text into somewhere else it's real text! So this is some sort of font display problem.)</p>
 <p>Fortunately, the OED app does actually come with the fonts it needs. Unfortunately, it seems to unpack them to somewhere (<code>C:\WINDOWS\SYSTEM</code>)<sup id="sf-oed-second-edition-cd-rom-under-wine-3-back"><a href="#sf-oed-second-edition-cd-rom-under-wine-3" class="simple-footnote" title="which we can find out from OED/INSTALL.LOG">3</a></sup> that Wine doesn't appear to actually look at. What we need to do is to install those font files so Linux knows about them. You could click them all to install them, but there's a quicker way; copy them, from where the installer puts them, into our own font folder.</p>
-<p>To do this, first make a new folder to put them in: <code>mkdir ~/.local/share/fonts/oed</code>.
-Then find out where the installer put the font files, as a real path on our Linux filesystem: <code>winepath -u "C:/WINDOWS/SYSTEM"</code>. Let's say that that ends up being <code>/home/you/.wine/dosdevices/c:/windows/system</code>
-Copy the TTF files from that folder (remembering to change the first path to the one that <code>winepath</code> output just now: <code>cp /home/you/.wine/dosdevices/c:/windows/system/*.TTF ~/.local/share/fonts/oed</code>
-And tell the font system that we've added a bunch of new fonts: <code>fc-cache</code>
-And now it all ought to work! Run <code>wine OED/OED.EXE</code> one last time…</p>
+<p>To do this...</p>
+<ul>
+<li>first make a new folder to put them in: <code>mkdir ~/.local/share/fonts/oed</code>.</li>
+<li>Then find out where the installer put the font files, as a real path on our Linux filesystem: <code>winepath -u "C:/WINDOWS/SYSTEM"</code>. Let's say that that ends up being <code>/home/you/.wine/dosdevices/c:/windows/system</code></li>
+<li>Copy the TTF files from that folder (remembering to change the first path to the one that <code>winepath</code> output just now: <code>cp /home/you/.wine/dosdevices/c:/windows/system/*.TTF ~/.local/share/fonts/oed</code></li>
+<li>And tell the font system that we've added a bunch of new fonts: <code>fc-cache</code></li>
+</ul>
+<p>And now it all ought to work! Run <code>wine OED/OED.EXE</code> one last time…</p>
 <p><img src="https://kryogenix.org/images/oed/06-working.png" alt="the OED Windows app in all its glory"></p><ol class="simple-footnotes"><li id="sf-oed-second-edition-cd-rom-under-wine-1">and using 7zip is much easier than mounting the ISO file as a loopback thing <a href="#sf-oed-second-edition-cd-rom-under-wine-1-back" class="simple-footnote-back">↩</a></li><li id="sf-oed-second-edition-cd-rom-under-wine-2">There's a Microsoft Word macro that it offers to install; I didn't want that, and I have no idea whether it works <a href="#sf-oed-second-edition-cd-rom-under-wine-2-back" class="simple-footnote-back">↩</a></li><li id="sf-oed-second-edition-cd-rom-under-wine-3">which we can find out from <code>OED/INSTALL.LOG</code> <a href="#sf-oed-second-edition-cd-rom-under-wine-3-back" class="simple-footnote-back">↩</a></li></ol>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
