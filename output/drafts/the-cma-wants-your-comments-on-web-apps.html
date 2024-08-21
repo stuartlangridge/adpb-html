@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; The CMA wants your comments on web apps</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; The CMA wants your comments on web apps">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/drafts/the-cma-wants-your-comments-on-web-apps.html"><time 
+			class="dt-published" datetime="2024-08-21T09:07:00+01:00">Aug 21 2024</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/drafts/the-cma-wants-your-comments-on-web-apps.html">The CMA wants your comments on web apps</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Here's the tl;dr: if you make web apps in or for the UK, the <a href="https://www.gov.uk/cma-cases/mobile-browsers-and-cloud-gaming"><abbr title="Competition and Markets Authority">CMA</abbr></a>, the UK tech regulator, want to hear from you about their proposals <strong>before August 29th 2024</strong>, which is only a week away. Read <a href="https://assets.publishing.service.gov.uk/media/66b484020808eaf43b50dea8/Working_paper_7_Potential_Remedies_8.8.24.pdf">their list of remedies</a> to anticompetitive behaviour between web browsers and platforms, and email your thoughts to <a href="mailto:browsersandcloud@cma.gov.uk">browsersandcloud@cma.gov.uk</a> before the deadline. They really do want to hear from you, and your voice is useful here; you don't need to have some formally written legal opinion here. They want to hear from actual web devs and companies. Email them.</p>
+<p>Now let's look at what the CMA have written in a little more detail. (This is the "tl" bit, although hopefully you will choose to "r".) They have been conducting a "Market Investigation Reference", which is regulator code for "talk to loads of people to see if there's a problem and then decide what to do about that", and the one we care about is about web browsers. I have, as part of <a href="https://open-web-advocacy.org">Open Web Advocacy</a>, been part of those consultations a number of times, and they've always been very willing to listen, and they do seem to identify a bunch of problems with browser diversity that I personally also think are problems. You know what we're talking about here: all browsers on iOS are required to be Safari's WebKit and not their own engine; Google have a tight grip on a whole bunch of stuff; browser diversity is a good thing and there's not enough of it in the world and this looks to be from deliberate attempts to act like monopolies by some players. These are the sorts of issues that CMA are concerned about (and they have published <a href="https://www.gov.uk/cma-cases/mobile-browsers-and-cloud-gaming#working-papers">quite a few working papers explaining their issues in detail</a> which you can read). What we're looking at today is their proposed list of <em>fixes</em> for these problems, which they call "remedies". At OWA we have also done this, of course, and you should <a href="https://open-web-advocacy.org/blog/uk-browser-and-cloud-investigation-may-fail-to-allow-web-app-competition/">read the OWA blog post about the CMA's remedies paper</a>. But the first important point is, to be clear, that a whole bunch of these remedies being proposed by the CMA are <strong>good</strong>. This is not a complaint that it's all bad or that it's toothless, not at all. They're going to stop the #AppleBrowserBan and require that other browsers are allowed to use their own engines on iOS as browser apps and in in-app browsing, they're going to require both Apple and Google to grant other browsers' access to the same APIs that their own browsers can get at, they've got suggestions in place for how users can choose which browser they use to get past the problem of the "default hotseat" where you get one browser when you buy a phone and never think to change it. This is all good.</p>
+<p>But there are some places where their remedies don't really go far enough, and this is the stuff where it would be good for you, my web-engaged reader, to send them an email with your thoughts one way or the other. Part of making the web as capable as a platform-specific app is that web sites can be presented like a platform-specific app. This is (part of) what a PWA is, which most of you reading this will already know about. But releasing your app as a PWA, while it has a bunch of good characteristics for you (no reviews needed, instant updates, full control, cross-platform development, no tithing of money required to the people who sold the phone it's on) also has some downsides. In particular, it's difficult to get people to "install" a PWA, especially on iOS where you have to tell your users to go digging around in the share menu. And this is a fairly big area where the CMA could have proposed remedies, and have so far not chosen to. The first problem here is that iOS Safari doesn't support any sort of install prompt: as mentioned, there's the "add to home screen" entry hidden in the share menu. There's an API for this, everyone else implements it, iOS Safari doesn't. Maybe the API's got problems and needs fixing? That seems fine; engage with the web standards process to get it fixed! But there's been no sign of doing that in any useful way.</p>
+<p>The second and related issue is that although the CMA's remedies state that browsers can use their own engine rather than having to be mere wrappers around the platform's web view, they do <em>not</em> say that when a browser installs a web app, that that web app will <em>also</em> use that browser's engine. That is: if there were a port of, say, Microsoft Edge to iOS, then Edge would be able to use its own engine, which is Microsoft's port of Blink. That Edge browser can implement install prompts how it likes, because it's using its own engine. <em>But</em> there's no guarantee in the CMA remedies that the PWA that gets <em>installed</em> will then be opened up in Edge. Calling the "install this PWA as an app" API provided by the platform might add it as a PWA <em>in the platform maker's browser</em> -- iOS Safari in this example. This would be rubbish. It means that the installed app might not even work; how will it know your passwords or cookies, etc; this can't be what's intended. But the remedies do not explicitly state this requirement, and so it's quite possible that platform owners will therefore use this as another way to push back against PWAs to make them less of a competitor to their own app stores. I would like to be able to say that platform owners wouldn't do that, that they wouldn't deliberately make things worse in an effort at malicious compliance, but after the debacle earlier this year of <a href="https://open-web-advocacy.org/blog/its-official-apple-kills-web-apps-in-the-eu/">Apple dropping PWA support entirely</a> and then only <a href="https://open-web-advocacy.org/blog/apple-backs-off-killing-web-apps/">backing off on that after public outcry</a>, we can't assume that there will be a good-faith attempt to improve PWA support (either by implementation, or by engaging wholeheartedly with the public web standards process), and so the remedies need to spell this out in more detail. This should be easy enough if I'm right and the CMA's <em>intent</em> is that this should be done, and your voice adding to that is likely to encourage them.</p>
+<p>The worry about malicious compliance hampering web apps being a proper competitor to platform-specific apps also extends to another thing missing in the remedies: that access to hardware and software platform APIs for other browsers isn't required to be "which APIs there are", but "which APIs the existing browser elects to use". That is: if you write a native platform-specific app, it can talk to various hardware-ish things; bluetooth, USB, NFC, whichever. Therefore, you ought to be able, if you're a browser, to also have those APIs, in enough detail that you can then offer (mediated, secure) access to those services to <em>your</em> users, the PWAs and websites that people run with you. But the remedies do not ensure that this is the case; they ensure that there is a "requirement for Apple to grant equivalent access to APIs used by WebKit and Safari to browsers using alternative browser engines." What this means is that if Safari doesn't use a thing, no other browser can use it either. So it's not possible to make the browser you build <em>better</em> than Safari at this; Apple get to set the ceiling of what the web can do on the platform, and the ceiling is defined as "whatever <em>their</em> browser can do". That's... not very competitive, is it? No. If you agree with that, then you should also write to the CMA about it. They would like to hear about actual examples where this sort of thing harms UK businesses, of course, and if that's you definitely write in, but it's also worth giving your opinion if you are a UK developer who works in this area, delivering things via the web to your users (or if you want to do that but are currently prevented).</p>
+<p>OK. Discussion over: go and write to the CMA with your thoughts on their remedies. Even if you think what they've proposed is perfect, you should still send them a message saying that; one thing that they and all government agencies tend to bemoan is that they only hear from people with lots of skin in the game, and generally only from people who are opposed, not people who are supportive. That means that they get a skewed view of what the web developer community actually <em>think</em>, and this is a chance for us to unskew that a bit, together. The address to email is <a href="mailto:browsersandcloud@cma.gov.uk">browsersandcloud@cma.gov.uk</a>, the list of remedies is <a href="https://assets.publishing.service.gov.uk/media/66b484020808eaf43b50dea8/Working_paper_7_Potential_Remedies_8.8.24.pdf">Working Paper 7</a>, and the deadline is <strong>Thursday 29th August</strong>.</p>
+<p>If you want to hear more about this, then I am <a href="https://2024.stateofthebrowser.com/speaker/stuart-langridge/">speaking</a> about OWA, how it happened, what we've done, and how you can be involved at <a href="https://2024.stateofthebrowser.com/">State of the Browser 2024</a> on Saturday 14th September (just under a month from now!) in the Barbican in London. I'm <a href="https://bsky.app/profile/londonwebstandards.org/post/3l2a2uqy5432s">told</a> that there are less than 30 in-person tickets left, although there are online streaming tickets available too, so get in quick if you want to hear me and a whole bunch of other speakers!</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/drafts/the-cma-wants-your-comments-on-web-apps.html">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = 'drafts/the-cma-wants-your-comments-on-web-apps.html';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
