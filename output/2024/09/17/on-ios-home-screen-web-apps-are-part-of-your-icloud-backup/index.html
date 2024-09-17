@@ -79,10 +79,12 @@
 <span class="n">b</span> <span class="o">=</span> <span class="n">iOSbackup</span><span class="p">(</span><span class="n">udid</span><span class="o">=</span><span class="n">UDID</span><span class="p">,</span> <span class="n">cleartextpassword</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">,</span> 
     <span class="n">backuproot</span><span class="o">=</span><span class="n">FOLDER</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">formatSize</span><span class="p">(</span><span class="n">sizeInBytes</span><span class="p">,</span> <span class="n">decimalNum</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">isUnitWithI</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sizeUnitSeperator</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="c1"># https://stackoverflow.com/a/53567149/1418014 thanks!</span>
+<span class="k">def</span> <span class="nf">formatSize</span><span class="p">(</span><span class="n">sizeInBytes</span><span class="p">,</span> <span class="n">decimalNum</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">isUnitWithI</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sizeUnitSeperator</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;format size to human readable string&quot;&quot;&quot;</span>
-  <span class="c1"># https://en.wikipedia.org/wiki/Binary_prefix#Specific_units_of_IEC_60027-2_A.2_and_ISO.2FIEC_80000</span>
-  <span class="c1"># K=kilo, M=mega, G=giga, T=tera, P=peta, E=exa, Z=zetta, Y=yotta</span>
+  <span class="c1"># K=kilo, M=mega, G=giga, T=tera, P=peta, </span>
+  <span class="c1"># E=exa, Z=zetta, Y=yotta</span>
   <span class="n">sizeUnitList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;K&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span>
   <span class="n">largestUnit</span> <span class="o">=</span> <span class="s1">&#39;Y&#39;</span>
 
@@ -94,14 +96,14 @@
         <span class="n">unitWithI</span> <span class="o">+=</span> <span class="s1">&#39;i&#39;</span>
       <span class="n">sizeUnitListWithI</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">unitWithI</span><span class="p">)</span>
 
-    <span class="c1"># sizeUnitListWithI = [&#39;&#39;,&#39;Ki&#39;,&#39;Mi&#39;,&#39;Gi&#39;,&#39;Ti&#39;,&#39;Pi&#39;,&#39;Ei&#39;,&#39;Zi&#39;]</span>
     <span class="n">sizeUnitList</span> <span class="o">=</span> <span class="n">sizeUnitListWithI</span>
 
     <span class="n">largestUnit</span> <span class="o">+=</span> <span class="s1">&#39;i&#39;</span>
 
   <span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span>
   <span class="n">decimalFormat</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">decimalNum</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;f&quot;</span> <span class="c1"># &quot;.1f&quot;</span>
-  <span class="n">finalFormat</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span> <span class="o">+</span> <span class="n">decimalFormat</span> <span class="o">+</span> <span class="n">sizeUnitSeperator</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%s%s</span><span class="s2">&quot;</span> <span class="c1"># &quot;%.1f%s%s&quot;</span>
+  <span class="n">finalFormat</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;%&quot;</span> <span class="o">+</span> <span class="n">decimalFormat</span> <span class="o">+</span> 
+    <span class="n">sizeUnitSeperator</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%s%s</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># &quot;%.1f%s%s&quot;</span>
   <span class="n">sizeNum</span> <span class="o">=</span> <span class="n">sizeInBytes</span>
   <span class="k">for</span> <span class="n">sizeUnit</span> <span class="ow">in</span> <span class="n">sizeUnitList</span><span class="p">:</span>
       <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sizeNum</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1024.0</span><span class="p">:</span>
