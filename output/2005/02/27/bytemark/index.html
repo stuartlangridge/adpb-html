@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Backups on a Bytemark VM</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Backups on a Bytemark VM">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2005/02/27/bytemark/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/02/27/bytemark/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2005/02/27/bytemark/"><time 
+			class="dt-published" datetime="2005-02-27T11:00:00+00:00">Feb 27 2005</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/02/27/bytemark/">Backups on a Bytemark VM</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>The server that this site runs on is a <a href="http://www.bytemark.co.uk/">Bytemark Hosting virtual machine</a>. Those of you who have been reading for a while will remember
+that we had a serious fuckup a couple of months ago and the site went
+away. And we didn’t have any backups. Fortunately, we were able to
+retrieve an old version of the sites hosted here, and reconstructed the
+data. But that’s not happening again, so I’ve set up some backups.
+Bytemark give you some <a href="http://www.bytemark.co.uk/support/tech/backupspace.html">free backup space</a> to back up your VM. The
+following steps should give you full nightly backups of everything you
+want to back up.</p>
+<p>First, mount your <a href="http://www.bytemark.co.uk/support/tech/backupnfs.html">backup space over NFS</a>.
+You need to get access to the backup space as a filesystem, although
+we’re not using <span class="caps">NFS</span> for the backups; we’ll be
+using rsync. Mount the backup space at /backup. All this stuff needs to
+be done as root.</p>
+<div class="highlight"><pre><span></span><code>mkdir /backup/.config
+mkdir /backup/rsync
+mkdir /backup/rsync/files
+mkdir /backup/rsync/db
+nano /backup/.config/rsync
+</code></pre></div>
+
+<p>Put the following line in that file:</p>
+<div class="highlight"><pre><span></span><code>VMNAME-backup:PASSWORD:::1:rsync
+</code></pre></div>
+
+<p>This <a href="http://www.bytemark.co.uk/support/tech/backuprsync.html">sets up rsync</a>. <em><span class="caps">VMNAME</span></em> must be the
+name of your Bytemark <span class="caps">VM </span>(NB: not the domain
+name you’ve got pointed to it; it’ll also be called something like
+foobar.vm.bytemark.co.uk, and <em>foobar</em> is your VM’s name.)
+<em><span class="caps">PASSWORD</span></em> is your choice of rsync password.
+Pick something random. Wait for ages. Rsync stuff only gets activated a
+few times a day, so go away and come back the following day or eight
+hours later or something.</p>
+<div class="highlight"><pre><span></span><code>mkdir /usr/local/backups
+echo &quot;RSYNC_PASSWORD_FROM_ABOVE&quot; &gt; /usr/local/backups/backup-password
+chmod og-rwx /usr/local/backups/backup-password
+</code></pre></div>
+
+<p>Now we’ll test that rsync is working.</p>
+<div class="highlight"><pre><span></span><code><span class="n">rsync</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"> </span>
+<span class="o">--</span><span class="n">password</span><span class="o">-</span><span class="k">file</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">backups</span><span class="o">/</span><span class="k">backup</span><span class="o">-</span><span class="n">password</span><span class="w"> </span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">motd</span><span class="w"> </span>
+<span class="n">VMNAME</span><span class="o">-</span><span class="k">backup</span><span class="nv">@VMNAME</span><span class="p">.</span><span class="k">backup</span><span class="p">.</span><span class="n">vm</span><span class="p">.</span><span class="n">bytemark</span><span class="p">.</span><span class="n">co</span><span class="p">.</span><span class="nl">uk</span><span class="p">:</span><span class="err">:</span><span class="n">VMNAME</span><span class="o">-</span><span class="k">backup</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">test</span><span class="o">/</span>
+</code></pre></div>
+
+<p>If that worked, there should now be a /backup/rsync/files/test directory
+with an “motd” file inside. That means that rsync is working! If it
+didn’t work then, er, rtfm, etc, etc.</p>
+<p>Now to create two backup scripts, one to do your MySQL databases and one
+to do your files. If you don’t use MySQL, skip the DB one (or replace it
+with one that does your own choice of DB.)</p>
+<p>/usr/local/backups/backup-databases.sh:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Dump all databases to a file, and rsync that file into the backup space,</span>
+<span class="c1"># inside a directory named for data and time.</span>
+
+<span class="nv">OUTPUT_FILE</span><span class="o">=</span>/usr/local/backups/dbdump
+<span class="nv">NEW_BACKUP_DIR</span><span class="o">=</span><span class="sb">`</span>date<span class="w"> </span>+%Y%m%d@%H%M%S<span class="sb">`</span>
+
+mysqldump<span class="w"> </span>--all-databases<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>_yourMySQLRootPassword<span class="w"> </span>
+<span class="w">   </span>--opt<span class="w"> </span><span class="p">|</span><span class="w"> </span>bzip2<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$OUTPUT_FILE</span>
+
+rsync<span class="w"> </span>-a<span class="w"> </span>
+--password-file<span class="o">=</span>/usr/local/backups/backup-password<span class="w"> </span>
+<span class="w"> </span><span class="nv">$OUTPUT_FILE</span><span class="w"> </span>
+<span class="w"> </span>&lt;em&gt;vmname&lt;/em&gt;-backup@_vmname_.backup.vm.bytemark.co.uk::_vmname_-backup/db/<span class="nv">$NEW_BACKUP_DIR</span>/
+
+logger<span class="w"> </span>-t<span class="w"> </span>Backups<span class="w"> </span>Backup<span class="w"> </span>of<span class="w"> </span>all<span class="w"> </span>databases<span class="w"> </span><span class="k">done</span><span class="w"> </span>to<span class="w"> </span><span class="nv">$NEW_BACKUP_DIR</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Run that file to test it. It should create a directory in
+/backup/rsync/db named after the date and time, and put a DB backup in
+it of all your databases. /usr/local/backup/backup-files.sh:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Backs up files with rsync</span>
+
+<span class="nv">NEW_BACKUP_DIR</span><span class="o">=</span><span class="sb">`</span>date<span class="w"> </span>+%Y%m%d@%H%M%S<span class="sb">`</span>
+<span class="nv">FILES_TO_BACKUP</span><span class="o">=</span>/usr/local/backups/files-to-include
+<span class="nv">EXCLUDE_FILES</span><span class="o">=</span>/usr/local/backups/files-to-exclude
+<span class="nv">LAST_BACKUP_FILE</span><span class="o">=</span>/usr/local/backups/last-file-backup
+
+<span class="c1"># Work out what the &lt;strong&gt;last&lt;/strong&gt; backup was, to use as a base for this one</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="nv">$LAST_BACKUP_FILE</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">read</span><span class="w"> </span>LAST_BACKUP<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$LAST_BACKUP_FILE</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nv">LAST_BACKUP</span><span class="o">=</span>nonexistent
+<span class="k">fi</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$NEW_BACKUP_DIR</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$LAST_BACKUP_FILE</span>
+
+rsync<span class="w"> </span>-a<span class="w"> </span>--delete<span class="w"> </span>
+<span class="w">  </span>--password-file<span class="o">=</span>/usr/local/backups/backup-password<span class="w"> </span>
+<span class="w">  </span>--include-from<span class="o">=</span><span class="nv">$FILES_TO_BACKUP</span><span class="w"> </span>
+<span class="w">  </span>--link-dest<span class="o">=</span>../<span class="nv">$LAST_BACKUP</span><span class="w"> </span>
+<span class="w">  </span>/<span class="w"> </span>
+<span class="w"> </span>VMNAME-backup@VMNAME.backup.vm.bytemark.co.uk::VMNAME-backup/files/<span class="nv">$NEW_BACKUP_DIR</span>/
+
+logger<span class="w"> </span>-t<span class="w"> </span>Backups<span class="w"> </span>Backup<span class="w"> </span>of<span class="w"> </span>files<span class="w"> </span><span class="k">done</span><span class="w"> </span>to<span class="w"> </span><span class="nv">$NEW_BACKUP_DIR</span>
+</code></pre></div></td></tr></table></div>
+
+<p>You’ll also need to create /usr/local/backups/files-to-include. The
+syntax of this file is a great big pain in the arse. Mine is below:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># List of directories to back up</span>
+<span class="c1"># If you want to back up directory /a/b, then you need the following lines:</span>
+<span class="c1"># /a         (since otherwise we never get as far as b, because a is excluded)</span>
+<span class="c1"># /a/b       (the directory we want to back up)</span>
+<span class="c1"># - /a/*/    (don&#39;t back up any other directories in /a)</span>
+<span class="c1"># - /a/*     (don&#39;t back up any files in /a either)</span>
+<span class="c1"># Yes, this is completely shit. Rsync&#39;s fault.</span>
+
+<span class="o">/</span><span class="k">var</span><span class="o">/</span>
+<span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/*/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/*</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/*/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/*</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">backups</span><span class="o">/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/*/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/*</span>
+
+<span class="c1"># Directories to explicitly exclude. Note that you don&#39;t need all</span>
+<span class="c1"># that parent directory shit here; just put in dirs that you don&#39;t</span>
+<span class="c1"># want to back up for whatever reason.</span>
+
+<span class="o">-</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">jonobacon</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">mysqlbackups</span><span class="o">/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">jonobacon</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">mysqlbackups</span><span class="o">.</span><span class="n">old</span><span class="o">/</span>
+
+<span class="c1"># Don&#39;t fuck about with the stuff here; it ensures that logs directories</span>
+<span class="c1"># aren&#39;t backed up, and neither is anything else in / (otherwise we&#39;ll</span>
+<span class="c1"># back up the whole machine or something equally dreadful).</span>
+
+<span class="o">-</span><span class="w"> </span><span class="o">**/*.</span><span class="n">mp3</span>
+<span class="o">-</span><span class="w"> </span><span class="o">**/</span><span class="n">logs</span><span class="o">/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/*/</span>
+<span class="o">-</span><span class="w"> </span><span class="o">/*</span>
+</code></pre></div>
+
+<p>Pay attention to the comments. I mean it.</p>
+<p>This is actually a super clever backup method. All the magic is done by
+rsync’s—link-dest option. What that does is, every time you tell it to
+back up, it creates a tree of hardlinks in the backup space from the
+<strong>last</strong> backup. Then it rsyncs any changed files over the top. This
+means that every single backup is a <strong>full</strong> backup, but it only takes
+up the space of an incremental backup. This only works because hardlinks
+exist. I love Linux, I really do.</p>
+<p>Anyway, those two files should do the job of backing up everything.
+Stick two lines in your crontab to kick them off.</p>
+<p>/etc/crontab:</p>
+<div class="highlight"><pre><span></span><code><span class="gh">#</span> ########### Backups ###############
+<span class="gh">#</span> mysql
+30 5 <span class="gs">* *</span> * root /usr/local/backups/backup-databases.sh
+
+<span class="gh">#</span> files (4.40am)
+45 5 <span class="gs">* *</span> * root /usr/local/backups/backup-files.sh
+</code></pre></div>
+
+<p>and it should all work.</p>
+<p>Note that these instructions probably won’t work for you right off, but
+they will at least give you a starting point.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2005/02/27/sitepoint238333/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2005/03/01/overcomplexity/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2005/02/27/bytemark/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/02/27/bytemark/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

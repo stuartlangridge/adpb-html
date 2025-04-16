@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Adding tasks to Evolution from Python</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Adding tasks to Evolution from Python">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2011/03/11/adding-tasks-to-evolution-from-python/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2011/03/11/adding-tasks-to-evolution-from-python/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2011/03/11/adding-tasks-to-evolution-from-python/"><time 
+			class="dt-published" datetime="2011-03-11T10:30:00+00:00">Mar 11 2011</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2011/03/11/adding-tasks-to-evolution-from-python/">Adding tasks to Evolution from Python</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>It occurred to me that it'd be useful to have some of my scripts throw
+tasks into my task list in Evolution. Now, this is entirely possible:
+there's <a href="http://doc.conduit-project.org/evolution-python/">an API to interact with Evolution from Python code</a> (in
+Ubuntu as <a href="http://apt.ubuntu.com/python-evolution">python-evolution</a>. And it works.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">evolution.ecal</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">list_task_sources</span><span class="p">()</span>
+<span class="p">[(</span><span class="s1">&#39;Personal&#39;</span><span class="p">,</span> <span class="s1">&#39;local:system&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Shopping&#39;</span><span class="p">,</span> <span class="s1">&#39;local:1299834516.3294.1@giles&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">personal_list_uri</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">list_task_sources</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">personal_list_source</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">open_calendar_source</span><span class="p">(</span><span class="n">personal_list_uri</span><span class="p">,</span> 
+    <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_SOURCE_TYPE_TODO</span><span class="p">)</span>
+<span class="o">**</span> <span class="p">(</span><span class="n">process</span><span class="p">:</span><span class="mi">14939</span><span class="p">):</span> <span class="n">DEBUG</span><span class="p">:</span> <span class="n">Opening</span> <span class="n">calendar</span> <span class="n">source</span> <span class="n">uri</span><span class="p">:</span> <span class="n">local</span><span class="p">:</span><span class="n">system</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">personal_list_source</span><span class="o">.</span><span class="n">get_all_objects</span><span class="p">()]</span>
+<span class="p">[</span><span class="s1">&#39;My first task&#39;</span><span class="p">,</span> <span class="s1">&#39;My second task&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>And we can also add new tasks to an existing list:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">new_task</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">ECalComponent</span><span class="p">(</span><span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_COMPONENT_TODO</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_task</span><span class="o">.</span><span class="n">set_summary</span><span class="p">(</span><span class="s1">&#39;Write task scripts&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">personal_list_source</span><span class="o">.</span><span class="n">add_object</span><span class="p">(</span><span class="n">new_task</span><span class="p">)</span>
+</code></pre></div>
+
+<p>What I can't seem to do, though, is create a new task list. I ought to
+be able to. Lists created in Evolution itself seem to have a list uri
+that looks like <code>local:(time).(number)@(machinename)</code>. So I think this
+should work:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">new_list_source</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">open_calendar_source_new_with_absolute_uri</span><span class="p">(</span><span class="s1">&#39;Created from Python&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;local:</span><span class="si">%s</span><span class="s1">00.2.giles&#39;</span> <span class="o">%</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+  <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_SOURCE_TYPE_TODO</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_task_2</span> <span class="o">=</span> <span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">ECalComponent</span><span class="p">(</span><span class="n">evolution</span><span class="o">.</span><span class="n">ecal</span><span class="o">.</span><span class="n">CAL_COMPONENT_TODO</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_task_2</span><span class="o">.</span><span class="n">set_summary</span><span class="p">(</span><span class="s1">&#39;New task in a new list&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_list_source</span><span class="o">.</span><span class="n">add_object</span><span class="p">(</span><span class="n">new_task_2</span><span class="p">)</span>
+</code></pre></div>
+
+<p>...but it does not. No errors are thrown, and the newly created source
+doesn't seem to be invalid (that is: I can add a newly created task to
+it, and that doesn't throw an error either), but... the newly created
+list (or task) doesn't show up in Evolution. No idea what I'm doing
+wrong here; I would guess that I need to somehow "save" the new task
+list, but I can't see how? Any suggestions?</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2011/03/06/game-of-no-thrones/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2011/04/05/ubuntu-and-android-sitting-in-a-tree-nearly/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2011/03/11/adding-tasks-to-evolution-from-python/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/03/11/adding-tasks-to-evolution-from-python/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

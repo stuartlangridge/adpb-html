@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; The tiniest of Python templating engines</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; The tiniest of Python templating engines">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2020/01/19/the-tiniest-of-python-templating-engines/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2020/01/19/the-tiniest-of-python-templating-engines/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2020/01/19/the-tiniest-of-python-templating-engines/"><time 
+			class="dt-published" datetime="2020-01-19T10:30:00+00:00">Jan 19 2020</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2020/01/19/the-tiniest-of-python-templating-engines/">The tiniest of Python templating engines</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>In someone else's project (which they'll doubtless tell you about themselves when it's done) I needed a tiny Python templating engine. That is: I wanted to be able to say, here is a template string, please substitute a bunch of variables into it. Now, Python already does this, in about <a href="https://wiki.python.org/moin/Templating">thirty different ways</a>, and <a href="https://docs.python.org/3/library/string.html#custom-string-formatting"><code>str.format</code></a> or <a href="https://docs.python.org/3/library/string.html#template-strings"><code>string.Template</code></a> do most of it as built-in.</p>
+<p><code>str.format</code> works like this:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;My name is </span><span class="si">{name}</span><span class="s2"> and I am </span><span class="si">{age}</span><span class="s2"> years old&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Stuart&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">43</span><span class="p">)</span>
+</code></pre></div>
+
+<p>and <code>string.Template</code> like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">t</span><span class="o">=</span><span class="n">string</span><span class="o">.</span><span class="n">Template</span><span class="p">(</span>
+    <span class="s2">&quot;My name is $name and I am $age years old&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">safe_substitute</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Stuart&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">43</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Both of which are pretty OK.</p>
+<p>However, what they're missing is loops; having more than one of a thing in your template, and looping over a list, substituting it each time. Every even fractionally-more-featureful templating system has this, whether <a href="http://mustache.github.io/">Mustache</a> or <a href="https://jinja.palletsprojects.com/en/2.10.x/">Jinja</a> or whatever, of course, but I didn't want another dependency. All I needed was <code>str.format</code> but with loops. So, I thought, I'll write one, in about four lines of code, so I can just drop the function in to my Python file and then I'm good.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">LoopTemplate</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">loophandler</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">LoopTemplate</span><span class="p">(</span><span class="n">md</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">],</span> <span class="n">val</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">ctx</span><span class="p">[</span><span class="n">md</span><span class="p">[</span><span class="s2">&quot;var&quot;</span><span class="p">]]])</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\{loop (?P&lt;var&gt;[^}]+)\}(?P&lt;content&gt;.*?)\{endloop\}&quot;</span><span class="p">,</span>
+                  <span class="n">loophandler</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">ctx</span><span class="p">)</span>
+</code></pre></div>
+
+<p>And lo, twas so. So I can now do </p>
+<div class="highlight"><pre><span></span><code><span class="n">LoopTemplate</span><span class="p">(</span>
+    <span class="s2">&quot;I am </span><span class="si">{name}</span><span class="s2"> and my imps&#39; names are: {loop imps}</span><span class="si">{name}{endloop}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Stuart&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;imps&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Pyweazle&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Grimthacket&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Hardebon&quot;</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>and it all works. Not revolutionary, of course, but I was mildly pleased with myself.</p>
+<p>Much internal debate about whether <code>loophandler()</code> should have been a <code>lambda</code>, but I eventually decided it was more confusing that way, on the grounds that it was confusing <em>me</em> and I knew what it was meant to be doing.</p>
+<p>A brief explanation: <code>re.sub</code> lets you pass a function as the thing to replace with, rather than just a string. So we find all examples of <code>{loop something}...{endloop}</code> in the passed string, look up <code>something</code> in the "context", or the dict of substitution variables you passed to <code>LoopTemplate</code>, and then we call <code>LoopTemplate</code> <em>again</em>, once per item in <code>something</code> (which is expected to be a list), and pass it the <code>...</code> as its string and the next item in <code>something</code> as its context. So it all works. Of course, there's no error handling or anything -- if <code>something</code> isn't present in the context, or if it's not a list, or if you stray in any other way from the path of righteousness, it'll incomprehensibly blow up. So don't do that.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2019/12/19/brum-tech-pub-crawl-2019/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2020/01/19/number-word-sequences/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000129795754/3792214235bcfc91c006db5f8bc2b4ff.jpeg">
+			Peter Langridge responded at
+		<a href="https://twitter.com/peterpotton/status/1218854589929345024">twitter.com</a>
+		<span class="wm-summary">			The tiniest of Python templating engines. kryogenix.org/days/2020/01/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000129795754/3792214235bcfc91c006db5f8bc2b4ff.jpeg">
+			Peter Langridge responded at
+		<a href="https://twitter.com/sil/status/1218852150694088704#favorited-by-1078663070">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1197957006486908928/iaSWAJBN.jpg">
+			Alan Pope 🍺 🐧 🐱 🇬🇧 🇪🇺 responded at
+		<a href="https://twitter.com/sil/status/1218852150694088704#favorited-by-12325402">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1134435569516367873/gzbFzqPQ.jpg">
+			Abhinay Khoparzi responded at
+		<a href="https://twitter.com/sil/status/1218852150694088704#favorited-by-25660826">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1143798612482301952/jzNV_D3e.jpg">
+			lamby responded at
+		<a href="https://twitter.com/lolamby/status/1218865704818049024">twitter.com</a>
+		<span class="wm-summary">			Is that Victor Mono...? 🎩👌
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1218867718683877383">twitter.com</a>
+		<span class="wm-summary">			the font? Not sure; I used @carbon_app to make a nice screenshot of the code, 'cos it's pretty (although I had to turn off the window decorations beca&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1149756986482991104/pU6E0fQg.png">
+			Bruno Bord responded at
+		<a href="https://twitter.com/brunobord/status/1218936471505317890">twitter.com</a>
+		<span class="wm-summary">			The tiniest of Python templating engines. kryogenix.org/days/2020/01/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/561107622347042816/fl4e1zOW.jpeg">
+			Prashant Gupta responded at
+		<a href="https://twitter.com/sil/status/1218852150694088704#favorited-by-2341804519">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/812613272293830656/rL0Y1h9s.jpg">
+			Matt Walker 🚵 responded at
+		<a href="https://twitter.com/sil/status/1218852150694088704#favorited-by-91858983">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/966825100728242176/Zo7wE2tQ.jpg">
+			MgcLabs responded at
+		<a href="https://twitter.com/sil/status/1218852150694088704#favorited-by-948025266567225344">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1084284149/me2.jpg">
+			Simon Davy responded at
+		<a href="https://twitter.com/sil/status/1218852150694088704#favorited-by-28784772">twitter.com</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2020/01/19/the-tiniest-of-python-templating-engines/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2020/01/19/the-tiniest-of-python-templating-engines/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

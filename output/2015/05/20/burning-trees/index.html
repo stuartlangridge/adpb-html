@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Burning trees</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Burning trees">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2015/05/20/burning-trees/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2015/05/20/burning-trees/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2015/05/20/burning-trees/"><time 
+			class="dt-published" datetime="2015-05-20T00:58:00+01:00">May 20 2015</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2015/05/20/burning-trees/">Burning trees</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Today I made a little thing, which I find rather more fascinating than I probably should. You see, <a href="http://omgubuntu.com">Joey</a> <a href="https://plus.google.com/u/0/+joeysneddon/posts/4g1pwF51Vfd">said</a>, "I wonder if <a href="http://www.omgubuntu.co.uk/2012/02/the-sands-of-time-linux-desktop">this</a> still works?"</p>
+<p><img src="http://www.kryogenix.org/images/sandswall.jpg" alt="'The Sands of Time' Linux Desktop" style="width:100%"></p>
+<p>That's quite cool -- sand dunes in front of a clock -- and it made me remember that years and years ago you used to get these programs where you could click and it would create sand which accumulated at the bottom of the window. The very first one I saw was on the Archimedes. But what came along a little later was one where you could click to produce various different substances -- sand, oil, water, fire -- and oil floated on water, fire set the oil alight, and so on. It was all rather amazing back when the phrase "particle system" hadn't been invented. Anyway, I thought: hey, what'd be cool is if the clock in that picture was obscured by actual moving sand, rather than just a static picture of sand dunes. A tiny bit of poking around brought me to <a href="http://dust.awevation.com/">Dust</a>, an implementation of precisely the sand/oil/water thing with WebGL in the browser. So I completely forgot about the clock thing and just played with Dust. Which is rather fun.</p>
+<p>After some faffing around I discovered that it had two things I liked: "lava", which is like a static piece of fire in that it ignites things that touch it but is not itself consumed, and "Life Itself" which is stuff that grows, like bacteria in a petri dish. But the life stuff is ignited by lava. so if you drop a couple of tiny bits of lava into the world, and then some green fungus life stuff, the fungus grows and takes over the whole window until it touches the lava, and then it gets burned up and vanishes... but, critically for this, it isn't entirely consumed. A few specks remain, and those specks start growing again. Very cool. I spent ages just watching it!</p>
+<p>Then I thought, well, this is nice and all, but this Dust thing uses WebGL, which is hassle, and it can't actually cope with filling its whole window up with particles because it runs out of memory or space or shaders or something. So I figured I'd lash together a quick version myself.</p>
+<p><a class="jsbin-embed" href="http://sil.jsbin.com/zovumo/embed?output">Burning Trees on jsbin.com</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p>And lo, it is so: a noddy version in JavaScript. This is superbly inefficient; it regenerates the whole grid and then <code>innerHTML</code>s it into the page at every clock tick, and it's completely character-based, like some sort of BBC Micro program. (At least it's using <code>requestAnimationFrame</code> so it doesn't hammer the CPU in a background tab!) But I could still sit there and watch it for ages. I really like it; the sense of watching the green take over and then get burned back.</p>
+<p>I think what I'd like to do with it is make it considerably more efficient and then try to make it a sort of "live wallpaper" for my Ubuntu desktop. For that, I need to read about Life rendering algorithms; <a href="http://pmav.eu/stuff/javascript-game-of-life-v3.1.1/">this Life implementation at pmav.eu</a> uses a JS port of <a href="http://dotat.at/prog/life/life.html">Tony Finch's List Life algorithm</a> to do the calculations. There's also <a href="http://golly.sourceforge.net/">Golly</a>, the Life simulator, which can do things ridiculously fast, and it's possible to program your own ruleset (rather than just follow John Conway's original rules), and if I understood how to do this (I do not) then I could probably turn my little Burning Trees thing into something that's renderable by Golly at a much bigger size than my inefficient JavaScript can manage. There seems to be a quite large community of people working on Life, still, to my amazement. Where do these people hang out, I wonder? So I can ask them how to write a Golly ruleset. And then see if I can make Golly run fullscreen and render to the root window and have the coolest desktop background imaginable, especially once it's graphics rather than block characters, and maybe the green is different colours depending on how old it is, and the fire has a slightly cooler effect, and... well, you can see, I like this idea, so making it look pretty would be wonderful. Maybe I'll even put a clock behind it. But if I did it'd either be <a href="http://sil.jsbin.com/mexuka">this one which I pinched from an imgur idea</a> or my favourite clock that I wrote, which is this:</p>
+<p><a class="jsbin-embed" href="http://sil.jsbin.com/qafag/embed?output">Stuart's cool clock on jsbin.com</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p>Anyway, none of this is what Joey wanted. Sorry, Joey. I hope the thing you wanted still works, even if it is <em>waaaay</em> complex to set up. Someone should step up and make that easier for you, because I like it when we have pretty things, and there aren't enough of them on our desktop.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2015/05/14/your-periodic-reminder-that/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2015/05/24/unhappy-about-spa-frameworks/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://lh3.googleusercontent.com/-8ZECvjtVSfs/AAAAAAAAAAI/AAAAAAAAAAA/Ky3FRAyE8KU/photo.jpg?sz=50">
+			Jan Moren responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/3bD8X5TMmSB">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/BrendanEich/profile_image?size=original">
+			BrendanEich responded at
+		<a href="https://twitter.com/BrendanEich/status/600942073718579200">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: A bit more detail on yesterday's little cellular automaton thingy: kryogenix.org/days/2015/05/2…
+</span></li>
+		<li><img src="https://twitter.com/krvax/profile_image?size=original">
+			Miguel Krvajal responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Yf345CZHm8c/AAAAAAAAAAI/AAAAAAAAAAA/qtz2sAXzjl8/photo.jpg?sz=50">
+			Michał Prędotka responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/3bD8X5TMmSB">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/manuelhe/profile_image?size=original">
+			Manuel Hernandez responded at
+		<a href="https://twitter.com/manuelhe/status/600950581713186816">twitter.com</a>
+		<span class="wm-summary">			@sil @BrendanEich the more things change the more they stay the same. I'm remembering seeing Conways game of life on Unix systems as a kid
+</span></li>
+		<li><img src="https://twitter.com/manuelhe/profile_image?size=original">
+			Manuel Hernandez responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-SXZozEk0Vfg/AAAAAAAAAAI/AAAAAAAAAAA/q5JitaLnyuU/photo.jpg?sz=50">
+			Christian Kopp responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/3bD8X5TMmSB">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-P-mxbWBJymA/AAAAAAAAAAI/AAAAAAAAAAA/_cgBSu5BxrI/photo.jpg?sz=50">
+			Jonathan Jesse responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/3bD8X5TMmSB">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/mukilan_t/profile_image?size=original">
+			Mukilan Thiagarajan responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-06x6fSzOEBg/AAAAAAAAAAI/AAAAAAAAAAA/mm0t2mbWcHU/photo.jpg?sz=50">
+			Joey-Elijah Sneddon responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/3bD8X5TMmSB">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/eraad/profile_image?size=original">
+			Eduardo Raad responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/joegaffey/profile_image?size=original">
+			Joe Gaffey responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/waddlesplash/profile_image?size=original">
+			gus knight responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/TheAllBox/profile_image?size=original">
+			Rahul Horé responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/phoenixstormcro/profile_image?size=original">
+			K. P. MacGregor responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/lalalal88262247/profile_image?size=original">
+			♥ responded at
+		<a href="https://twitter.com/sil/status/600940817885360128">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/teropa/profile_image?size=original">
+			Tero Parviainen responded at
+		<a href="https://twitter.com/teropa/status/609956795986104320">twitter.com</a>
+		<span class="wm-summary">			@js_bin @sil I’m seeing the same thing on teropa.info/blog/2015/06/0… - all bins on the page show the content of the first one now.
+</span></li>
+		<li><img src="https://twitter.com/rem/profile_image?size=original">
+			Remy Sharp responded at
+		<a href="https://twitter.com/rem/status/609965025541926912">twitter.com</a>
+		<span class="wm-summary">			@sil ping me some URLs, the release was around this so I need to fix pronto
+</span></li>
+		<li><img src="https://twitter.com/js_bin/profile_image?size=original">
+			Dave, the Bin Bot responded at
+		<a href="https://twitter.com/js_bin/status/609965505194139648">twitter.com</a>
+		<span class="wm-summary">			@teropa @sil I'll get this fixed today, the release was related to this
+</span></li>
+		<li><img src="https://twitter.com/teropa/profile_image?size=original">
+			Tero Parviainen responded at
+		<a href="https://twitter.com/teropa/status/609965722534563840">twitter.com</a>
+		<span class="wm-summary">			@js_bin @sil Great, thanks!
+</span></li>
+		<li><img src="https://twitter.com/js_bin/profile_image?size=original">
+			Dave, the Bin Bot responded at
+		<a href="https://twitter.com/js_bin/status/609980436614410240">twitter.com</a>
+		<span class="wm-summary">			@teropa @sil darnit - aggressive caching in the browser is causing the issue. I'll fix it up.
+</span></li>
+		<li><img src="https://twitter.com/js_bin/profile_image?size=original">
+			Dave, the Bin Bot responded at
+		<a href="https://twitter.com/js_bin/status/609991993146654720">twitter.com</a>
+		<span class="wm-summary">			@teropa @sil fixed and live. Feel free to double check and confirm - but I'm pretty confident it's correct now.
+</span></li>
+		<li><img src="https://twitter.com/teropa/profile_image?size=original">
+			Tero Parviainen responded at
+		<a href="https://twitter.com/teropa/status/609993555579432960">twitter.com</a>
+		<span class="wm-summary">			@js_bin Yup, works great now. Thanks again @sil
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/610023269098475520">twitter.com</a>
+		<span class="wm-summary">			@js_bin @teropa yep, seems fixed now; nice one!
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2015/05/20/burning-trees/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2015/05/20/burning-trees/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

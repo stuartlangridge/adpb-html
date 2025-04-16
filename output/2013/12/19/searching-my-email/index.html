@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Searching my email</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Searching my email">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2013/12/19/searching-my-email/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2013/12/19/searching-my-email/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2013/12/19/searching-my-email/"><time 
+			class="dt-published" datetime="2013-12-19T20:21:00+00:00">Dec 19 2013</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/12/19/searching-my-email/">Searching my email</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A few days ago I got an email from Google saying "hey, did you know
+we've just added Gmail and Google Calendar to Google Takeout?"</p>
+<p>I did not.</p>
+<p><a href="https://www.google.com/settings/takeout">Google Takeout</a> is the entirely laudable effort by Google to make it
+possible to get all the data you have stored in a particular Google
+service <em>out</em> of that Google service, whether because you want to leave
+or just because backups are a good idea. I've been a Gmail user for
+quite a long time, and have quite a lot of mail in there, and it'd be
+nice to have a backup of it. So, I click "create an archive", and then
+some hours later<sup id="sf-searching-my-email-1-back"><a href="#sf-searching-my-email-1" class="simple-footnote" title="modulo that it weirdly didn't work the first time, as per me mithering on Google+ about it ">1</a></sup> I get a nudge from
+Google saying "we've created an archive of all your mail, and now you
+can download it". So that's exactly what I did.</p>
+<h3>what shall we do with the drunken mailbox, err-lie in the mornin'</h3>
+<p>OK, so I've got a 4GB <code>.mbox</code> file of all my mail since 2004.<sup id="sf-searching-my-email-2-back"><a href="#sf-searching-my-email-2" class="simple-footnote" title="yes, I know I could have been doing this with offlineimap. I never got around to setting it up, and gmail's imap implementation is odd because it treats folders as labels, meaning that a message with two labels appears in two imap folders. I might set it up now, though, since I don't care about the offline imap Maildir other than so that notmuch can index it, and notmuch is clever about finding two mails with the same message ID">2</a></sup> It's good to have a backup. What else can I do with it?</p>
+<p>One obvious thing is to point a search engine at it. Gmail is pretty
+good at searching mail, don't get me wrong, but it's nice to be able to
+search locally without needing internet access, especially since
+sometimes Gmail goes down<sup id="sf-searching-my-email-3-back"><a href="#sf-searching-my-email-3" class="simple-footnote" title="vanishingly rare">3</a></sup> or my cable
+connection decides that connections to gmail and twitter should be slow
+today.<sup id="sf-searching-my-email-4-back"><a href="#sf-searching-my-email-4" class="simple-footnote" title="nowhere near as rare">4</a></sup> The clear leader for this seems to
+be <a href="http://notmuchmail.org/">notmuch</a>, which bills itself as "the mail indexer". Notmuch
+doesn't fetch mail, it doesn't send mail; it just indexes and searches
+it.</p>
+<h3>a brief digression into mail storage formats</h3>
+<p>First step, though, is to put the mail in Maildir format. Google has you
+download the mail in the standard <code>mbox</code> format: one file, with all your
+mail in it. Mbox format has been around pretty much exactly as long as
+there has been electronic email <em>at all</em>: <a href="http://wwwlehre.dhbw-stuttgart.de/~helbig/os/v6/doc/I/mail.html">here it is in a man page from
+1975</a>. Maildir was invented as a better format in 1995; instead of
+having one epic file with all your mail in it, you have one folder and
+each email is a separate file in that folder. This is approximately
+thirteen billion times easier to deal with for applications, especially
+those trying to deal with a lot of mail, which notmuch is. So we need to
+convert the Gmail export mbox into a Maildir. I dropped the Gmail mbox
+into a folder <code>~/gmail-backup</code>, and then did <code>mb2md -s gmail-backup</code>.
+That creates <code>~/Maildir</code> and puts your stuff in it.</p>
+<p>Next, <a href="https://apps.ubuntu.com/cat/applications/notmuch/">install notmuch</a>, and <code>notmuch setup</code> which walks you through a
+few basic questions about your mail. Then <code>notmuch new</code> reads and
+indexes it all. This takes a little while.</p>
+<h3>a sidebar: "Ignoring non-mail file"</h3>
+<p>Either gmail or <code>mb2md</code> did something weird: notmuch rejected a whole
+bunch of my mails because they had a blank second line. If you get the
+same thing, notmuch will print a bunch of lines like
+<code>Note: Ignoring non-mail file: /home/myself/Maildir/.All mail Including Spam and Trash_mbox/cur/1234567890.123456.mbox:2,</code>.
+If that happens, take a look at the file it says it's ignoring. If it
+looks like a legitimate email but it's got a blank second line, then
+you've hit the same problem. I needed something to walk through my mail
+folder and patch these up, so as usual in these situations I wrote an
+ultranoddy Python script.</p>
+<h3>an ultranoddy Python script</h3>
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
+<span class="sd">"""mb2md seems to export a bunch of mails from the gmail takeout</span>
+<span class="sd">   mbox dump with a blank second line. Fix those."""</span>
+<span class="kn">import</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">os</span><span class="p">;</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~"</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"/Maildir/.All*/cur/*"</span><span class="p">):</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">);</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+      <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">);</span><span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">();</span> <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> 
+      <span class="n">lines</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span> <span class="k">del</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">data</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+      <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="n">counter</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="nb">print</span> <span class="s2">"fixed another fifty files: total fixed"</span><span class="p">,</span> <span class="n">counter</span>
+</code></pre></div></td></tr></tbody></table></div>
+
+<p>Once you've done that, <code>touch ~/Maildir; touch ~/Maildir/.All*</code> to let
+things know that you changed something, and then <code>notmuch new</code> again
+should read in all the fixed mail (and keep the previously-read lot
+around too).</p>
+<p>There'll still be a bunch that notmail ignores: gmail (handily) stores
+chat logs as emails, but (unhandily) these are not <em>actually</em> emails,
+and notmuch will dislike them. That's fine.</p>
+<h3>seek and ye shall find</h3>
+<p>Now all your mail is searchable. Try <code>notmuch search whatever</code> and, lo,
+you get all the matching mails. Very cool. Notmuch can handle some
+pretty complicated searches: check their website for details.</p>
+<h3>ultranoddy II: this time it's personal</h3>
+<p>Of course, I don't want to ssh into my home server (which is where this
+stuff is) and type commands to search my mail. So instead I wrote the
+world's simplest notmuch web search UI in Python. It is ugly, it doesn't
+do formatting properly, it hates foreigners and so smashes Unicode down
+to question marks, and I don't care because all I need is to get search
+results over the web, and it does that fine. There's <a href="https://bitbucket.org/wuzzeb/notmuch-web">notmuch-web</a>,
+which seems very nice<sup id="sf-searching-my-email-5-back"><a href="#sf-searching-my-email-5" class="simple-footnote" title="except for being written in Haskell, but I'm not bigoted">5</a></sup> but requires notmuch v0.15 or better, and Ubuntu 12.04
+only has 0.12. So, once more forth into noddy Python scripts.</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
+
+<span class="kn">import</span> <span class="nn">notmuch</span><span class="o">,</span> <span class="nn">BaseHTTPServer</span><span class="o">,</span> <span class="nn">cgi</span><span class="o">,</span> <span class="nn">urlparse</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">json</span>
+
+<span class="n">BASE</span><span class="o">=</span><span class="s2">"""&lt;!doctype html&gt;&lt;html&gt;&lt;style&gt;</span>
+<span class="s2">div.thread { margin-left: 2em; }</span>
+<span class="s2">div[data-match] pre { display: none; }</span>
+<span class="s2">div[data-match=match] pre { display: block; }</span>
+<span class="s2">details summary { color: #999; }</span>
+<span class="s2">details[open] &gt; summary { color: black; }</span>
+<span class="si">%s</span><span class="s2">"""</span>
+<span class="n">IDX</span><span class="o">=</span> <span class="n">BASE</span> <span class="o">%</span> <span class="s2">"""Search: &lt;form&gt;&lt;input name="q"&gt;"""</span>
+<span class="n">MSG</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'&lt;div data-match="</span><span class="si">%(match)s</span><span class="s1">"&gt;&lt;details </span><span class="si">%(matchopen)s</span><span class="s1">&gt;'</span>
+  <span class="s1">'&lt;summary&gt;</span><span class="si">%(from)s</span><span class="s1"> </span><span class="si">%(date)s</span><span class="s1">&lt;/summary&gt;&lt;pre&gt;</span><span class="si">%(body)s</span><span class="s1">&lt;/pre&gt;'</span>
+  <span class="s1">'&lt;/details&gt;&lt;/div&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">format_message</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">format_message_as_json</span><span class="p">())</span>
+    <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"body"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+           <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">j</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+             <span class="s2">"body"</span><span class="p">,</span> <span class="p">[{</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"no body"</span><span class="p">}])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"content"</span><span class="p">,</span> 
+              <span class="s2">"no content"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"&gt;"</span><span class="p">)])),</span>
+        <span class="s2">"subject"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">][</span><span class="s2">"Subject"</span><span class="p">]),</span>
+        <span class="s2">"from"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">][</span><span class="s2">"From"</span><span class="p">]),</span>
+        <span class="s2">"match"</span><span class="p">:</span> <span class="s2">"match"</span> <span class="k">if</span> <span class="n">j</span><span class="p">[</span><span class="s2">"match"</span><span class="p">]</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+        <span class="s2">"matchopen"</span><span class="p">:</span> <span class="s2">"open"</span> <span class="k">if</span> <span class="n">j</span><span class="p">[</span><span class="s2">"match"</span><span class="p">]</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+        <span class="s2">"date"</span><span class="p">:</span> <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">][</span><span class="s2">"Date"</span><span class="p">])</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">MSG</span> <span class="o">%</span> <span class="n">dic</span>
+
+<span class="k">def</span> <span class="nf">get_message_and_children</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="n">format_message</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">m</span><span class="o">.</span><span class="n">get_replies</span><span class="p">():</span>
+        <span class="n">ret</span> <span class="o">+=</span> <span class="n">get_message_and_children</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span>
+
+<span class="k">class</span> <span class="nc">NMHandler</span><span class="p">(</span><span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">BaseHTTPRequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="s2">"/"</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">IDX</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">qs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cgi</span><span class="o">.</span><span class="n">parse_qsl</span><span class="p">(</span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">))</span>
+            <span class="k">if</span> <span class="s2">"q"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">qs</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">IDX</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="n">db</span><span class="o">=</span><span class="n">notmuch</span><span class="o">.</span><span class="n">Database</span><span class="p">()</span>
+            <span class="n">q</span><span class="o">=</span><span class="n">notmuch</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">qs</span><span class="p">[</span><span class="s2">"q"</span><span class="p">])</span>
+            <span class="n">thrs</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">q</span><span class="o">.</span><span class="n">search_threads</span><span class="p">()]</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">thr</span> <span class="ow">in</span> <span class="n">thrs</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">"authors"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_authors</span><span class="p">(),</span>
+                    <span class="s2">"subject"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_subject</span><span class="p">(),</span>
+                    <span class="s2">"tid"</span><span class="p">:</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_thread_id</span><span class="p">(),</span>
+                    <span class="s2">"date"</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">thr</span><span class="o">.</span><span class="n">get_oldest_date</span><span class="p">())),</span>
+                    <span class="s2">"msgs"</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">thr</span><span class="o">.</span><span class="n">get_toplevel_messages</span><span class="p">():</span>
+                    <span class="n">msgs</span> <span class="o">=</span> <span class="n">get_message_and_children</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s2">"msgs"</span><span class="p">]</span> <span class="o">+=</span> <span class="n">msgs</span>
+                <span class="n">data</span><span class="p">[</span><span class="s2">"msgs"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"msgs"</span><span class="p">])</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">LST</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s1">'&lt;li&gt;&lt;details&gt;&lt;summary&gt;</span><span class="si">%(subject)s</span><span class="s1"> (</span><span class="si">%(authors)s</span><span class="s1">, '</span>
+             <span class="s1">'</span><span class="si">%(date)s</span><span class="s1">)&lt;/summary&gt;&lt;div class="thread"&gt;'</span>
+             <span class="s1">'</span><span class="si">%(msgs)s</span><span class="s1">&lt;/div&gt;&lt;/details&gt;&lt;/li&gt;'</span><span class="p">)</span> <span class="o">%</span> <span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">res</span><span class="p">])</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">%</span> <span class="p">(</span><span class="s2">"&lt;ul&gt;</span><span class="si">%s</span><span class="s2">&lt;/ul&gt;"</span> <span class="o">%</span> <span class="n">LST</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"ascii"</span><span class="p">,</span> <span class="s2">"replace"</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">server_class</span><span class="o">=</span><span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">,</span>
+        <span class="n">handler_class</span><span class="o">=</span><span class="n">NMHandler</span><span class="p">):</span>
+    <span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="mi">8411</span><span class="p">)</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">server_class</span><span class="p">(</span><span class="n">server_address</span><span class="p">,</span> <span class="n">handler_class</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></tbody></table></div>
+
+<p>To be clear, this is pretty horrid. All the HTML is baked into it; it
+does the absolute bare minimum required. It does what I need it to,
+though. I just did <code>crontab -e</code> to edit my list of scheduled apps and
+added <code>@reboot python /home/me/noddy-search-server.py</code> and now I can
+just connect to <code>http://homeserver:8411</code> and search my mail. Nice.</p><ol class="simple-footnotes"><li id="sf-searching-my-email-1">modulo that it weirdly didn't work the first time,
+as per <a href="https://plus.google.com/u/0/+StuartLangridge/posts/MaGeUn3A2fz">me mithering on Google+ about it</a>  <a href="#sf-searching-my-email-1-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-2">yes, I
+know I could have been doing this with <code>offlineimap</code>. I never got around
+to setting it up, and gmail's imap implementation is odd because it
+treats folders as labels, meaning that a message with two labels appears
+in two imap folders. I might set it up now, though, since I don't care
+about the offline imap Maildir other than so that <code>notmuch</code> can index
+it, and <code>notmuch</code> is clever about finding two mails with the same
+message ID <a href="#sf-searching-my-email-2-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-3">vanishingly rare <a href="#sf-searching-my-email-3-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-4">nowhere near as rare <a href="#sf-searching-my-email-4-back" class="simple-footnote-back">↩</a></li><li id="sf-searching-my-email-5">except for being written in Haskell, but I'm
+not bigoted <a href="#sf-searching-my-email-5-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2013/12/18/the-royal-institution-christmas-lectures/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2013/12/19/searching-my-email/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/12/19/searching-my-email/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

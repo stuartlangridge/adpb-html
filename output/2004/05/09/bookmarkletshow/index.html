@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Show DOM tree bookmarklet</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Show DOM tree bookmarklet">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2004/05/09/bookmarkletshow/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/05/09/bookmarkletshow/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2004/05/09/bookmarkletshow/"><time 
+			class="dt-published" datetime="2004-05-09T11:00:00+01:00">May 09 2004</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/05/09/bookmarkletshow/">Show DOM tree bookmarklet</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Over at SlayerOffice, there's a new <a href="http://slayeroffice.com/index.php?c=/scripts/comment_scripts/comments2.php&amp;id=109">Document Tree Chart Favelet</a>,
+based around a request from Eric Meyer to have something that can show a
+nicely laid out DOM tree for a given page. Sadly, though, I don't like
+it very much, so I've written a different one. It's fairly nice;
+displays a tree (or a reasonable approximation) as Eric requested, and
+you can hover over the red text node boxes to see what's in that text
+node (you can see the first four characters in the chart itself, to give
+you a clue). Tested in Mozilla, and doesn't seem to work in IE for
+reasons that are beyond me. It doesn't work in Safari either, I'm told
+(which is Safari's fault for getting the CSS wrong). Let me know what
+you think:</p>
+<p><a href="javascript:(function(){var%20root=document.getElementsByTagName('html')[0];var%20mydomtree=processdomnode(root);var%20newwin=window.open();newwin.document.write('&lt;html&gt;&lt;head&gt;&lt;br%20/&gt;%0A&lt;style%20type=&quot;text/css&quot;&gt;%20body%20{%20width:%202000%;%20}');newwin.document.write('div%20{%20float:%20left;%20%20%20text-align:%20center;%20%20margin:%200.5em%200.3em%200%200.3em;%20max-height:%203em;%20%20%20border:%201px%20solid%20black;%20%20border-width:%201px%201px%200%201px;%20%20position:%20relative;%20%20padding:%200;}%20');newwin.document.write('span%20{%20border:%201px%20solid%20black;%20%20%20padding:%200.1em%200.3em;%20%20position:%20relative;%20top:%20-0.55em;%20%20background-color:%20white;%20%20margin:%200;}');newwin.document.write('span.content%20{%20color:%20red;%20font-size:%200.8em;%20}');newwin.document.write('&lt;/style&gt;%0A&lt;p&gt;&lt;/head&gt;&lt;body&gt;&lt;br%20/&gt;%0A&lt;h1&gt;DOM%20tree&lt;/h1&gt;%0A&lt;p&gt;&lt;/body&gt;&lt;/html&gt;');newwin.document.body.appendChild(mydomtree);function%20processdomnode(n){if((n.nodeType==3)&amp;&amp;(n.nodeValue.replace(/[%20nrt]/g,'').length==0))return;var%20mynode=document.createElement('div');var%20mytitle=document.createElement('span');if(n.nodeType==3){mytitle.setAttribute('title',n.nodeValue);mytitle.appendChild(document.createTextNode(n.nodeValue.replace(/^[%20ntr]*/g,'').substring(0,4)+'u2026'));mytitle.className='content';}else{mytitle.appendChild(document.createTextNode(n.nodeName));}mynode.appendChild(mytitle);for(var%20i=0;i&lt;n.childNodes.length;i++){var%20apch=processdomnode(n.childNodes[i]);if(apch){mynode.appendChild(apch);}}return%20mynode;}})()">Show DOM tree</a></p>
+<p>There were some useful resources I tapped for this:</p>
+<ul>
+<li><a href="http://subsimple.com/bookmarklets/jsbuilder.htm">The bookmarklet builder</a></li>
+<li><a href="http://subsimple.com/bookmarklets/tips.asp">Tips for writing bookmarklets</a></li>
+<li><a href="http://www.webreference.com/js/column5/rules.html">Javascript regular expressions</a></li>
+</ul>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2004/04/30/accomplishment/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2004/05/11/usernamepasswords/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2004/05/09/bookmarkletshow/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/05/09/bookmarkletshow/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

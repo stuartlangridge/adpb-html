@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Using Flixel and Adobe Flex on Ubuntu 10.10</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Using Flixel and Adobe Flex on Ubuntu 10.10">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10/"><time 
+			class="dt-published" datetime="2011-01-01T13:50:00+00:00">Jan 01 2011</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10/">Using Flixel and Adobe Flex on Ubuntu 10.10</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Today's experiment: using Adobe Flex on Ubuntu.</p>
+<p><a href="http://www.adamatomic.com/">Adam Atomic</a>, developer of the wildly popular <a href="http://www.adamatomic.com/canabalt/">Canabalt</a>, released
+a game creation library that he built to make the game. It's called
+<a href="http://flixel.org/">Flixel</a>. Now, Flixel is open source, and it's in ActionScript, which
+is Adobe's version of JavaScript.</p>
+<p>Now, you can get some Adobe tools on Ubuntu. As I understand it, there
+are three sets of tools:</p>
+<dl>
+<dt>The Flash IDE</dt>
+<dd>This is what people think of when they think of how to create Flash
+stuff. It's not available for Ubuntu.</dd>
+<dt>Flash Builder</dt>
+<dd>This used to be called "Flex Builder". It's a graphical IDE based on
+Adobe's <a href="http://www.adobe.com/products/flex/">Flex</a>, a "highly productive, free, open source framework
+for building expressive web applications that deploy consistently on
+all major browsers, desktops, and operating systems by leveraging
+the Adobe® Flash® Player and Adobe AIR® runtimes". (Basically, it's
+a thing that compiles XML and JavaScript to SWF Flash applets.) But
+I, personally, don't like IDEs: I like writing code in gEdit and
+compiling it with a command line compiler. So...</dd>
+<dt><a href="http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK">The Flex SDK</a></dt>
+<dd>The Flex SDK is the command line compiler for Flex. It's available
+for Ubuntu. The latest version is v4, but <a href="http://stackoverflow.com/questions/3089888/i-cant-get-mxmlc-to-work-on-ubuntu">Flex 4 doesn't seem to
+work on Ubuntu</a>. <a href="http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+3">Flex 3</a> works perfectly, though, hooray, and
+Flex is open source (well, there are two flavours: the "Adobe SDK"
+and the "open source" SDK. I prefer using open source when possible,
+and it works fine; I don't know what's extra in the non-open-source
+one, but we don't need it anyway.)</dd>
+</dl>
+<h3>Installing Adobe Flex</h3>
+<p>So, first step: make a folder, download the Flex 3 SDK, and unpack it:</p>
+<div class="highlight"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">~</span>
+<span class="o">$</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="n">flex</span>
+<span class="o">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">flex</span>
+<span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">fpdownload</span><span class="o">.</span><span class="n">adobe</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">flex</span><span class="o">/</span><span class="n">sdk</span><span class="o">/</span><span class="n">builds</span><span class="o">/</span><span class="n">flex3</span><span class="o">/</span><span class="n">flex_sdk_3</span><span class="o">.</span><span class="mf">4.1</span><span class="o">.</span><span class="mi">10084</span><span class="n">_mpl</span><span class="o">.</span><span class="n">zip</span>
+<span class="o">$</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="n">flex_3_opensource</span>
+<span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">flex_3_opensource</span><span class="w"> </span><span class="n">flex_sdk_3</span><span class="o">.</span><span class="mf">4.1</span><span class="o">.</span><span class="mi">10084</span><span class="n">_mpl</span><span class="o">.</span><span class="n">zip</span>
+</code></pre></div>
+
+<p>There's a small, weird problem with Flex 3: the executable scripts are
+in DOS format, which Ubuntu doesn't like, and they're not executable.
+(This is fixed in Flex 4, but as noted Flex 4 doesn't work.) So, let's
+convert them:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>dos2unix
+$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>flex_3_opensource/bin/mxmlc
+$<span class="w"> </span>dos2unix<span class="w"> </span>flex_3_opensource/bin/mxmlc
+</code></pre></div>
+
+<p>We also need Sun's Java - the Flex SDK is written in Java - and it needs
+to be set as the default
+Java.<span title="strictly it doesn't (you can just set JAVA_HOME) but if you know that then you know enough to do it" style="color: red">*</span></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>sun-java6-jdk
+$<span class="w"> </span>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--config<span class="w"> </span>java
+</code></pre></div>
+
+<p>...and in the list of possible Javas, choose
+<code>/usr/lib/jvm/java-6-sun/jre/bin/java</code>.</p>
+<p>(We can now test that it works: run <code>./flex_3_opensource/bin/mxmlc</code> and
+it should say something about "a target file must be specified", which
+means that it's working.)</p>
+<h3>Getting Flixel and a game</h3>
+<p>Next step is to get the Flixel source.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>--no-check-certificate<span class="w"> </span>-O<span class="w"> </span>flixel2.zip<span class="w"> </span>http://github.com/AdamAtomic/flixel/zipball/master
+$<span class="w"> </span>unzip<span class="w"> </span>flixel2.zip
+$<span class="w"> </span>mv<span class="w"> </span>AdamAtomic-flixel*<span class="w"> </span>flixel
+</code></pre></div>
+
+<p>And let's get a Flixel game: <a href="http://flixel.org/flxinvaders/">FlxInvaders</a> is one of the Flixel
+examples, and the source is available.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>--no-check-certificate<span class="w"> </span>-O<span class="w"> </span>flxinvaders.zip<span class="w"> </span>https://github.com/AdamAtomic/Flx-Invaders/zipball/master
+$<span class="w"> </span>unzip<span class="w"> </span>flxinvaders.zip
+$<span class="w"> </span>mv<span class="w"> </span>AdamAtomic-Flx-Invaders*<span class="w"> </span>flxinvaders
+</code></pre></div>
+
+<p>One final thing: Flixel is, by default, set up for Flex 4, and we're
+using Flex 3. So, you need to edit <code>flixel/org/flixel/FlxGame.as</code>:
+there's a section which looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="w">     </span><span class="o">//</span><span class="w"> </span><span class="n">NOTE</span><span class="p">:</span><span class="w"> </span><span class="n">Flex</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">introduces</span><span class="w"> </span><span class="n">DefineFont4</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">native</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="n">fields</span><span class="o">.</span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">Use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">embedAsCFF</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="w"> </span><span class="n">param</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">switch</span><span class="w"> </span><span class="n">back</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">DefineFont4</span><span class="o">.</span><span class="w"> </span><span class="n">In</span><span class="w"> </span><span class="n">earlier</span><span class="w"> </span><span class="n">Flex</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">SDKs</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">cff</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="o">.</span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">So</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Flex</span><span class="w"> </span><span class="mf">3.</span><span class="n">x</span><span class="w"> </span><span class="n">SDK</span><span class="w"> </span><span class="n">compiler</span><span class="p">,</span><span class="w"> </span><span class="n">switch</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">embed</span><span class="w"> </span><span class="n">statment</span><span class="w"> </span><span class="n">below</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">expose</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">correct</span><span class="w"> </span><span class="n">version</span><span class="o">.</span>
+
+<span class="w">        </span><span class="o">//</span><span class="n">Flex</span><span class="w"> </span><span class="n">v4</span><span class="o">.</span><span class="n">x</span><span class="w"> </span><span class="n">SDK</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="p">(</span><span class="n">see</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">above</span><span class="p">):</span>
+<span class="w">        </span><span class="p">[</span><span class="n">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="p">,</span><span class="n">embedAsCFF</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="p">)]</span><span class="w"> </span><span class="n">protected</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">junk</span><span class="p">:</span><span class="nb nb-Type">String</span><span class="p">;</span>
+
+<span class="w">        </span><span class="o">//</span><span class="n">Flex</span><span class="w"> </span><span class="n">v3</span><span class="o">.</span><span class="n">x</span><span class="w"> </span><span class="n">SDK</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="p">(</span><span class="n">see</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">above</span><span class="p">):</span>
+<span class="w">        </span><span class="o">//</span><span class="p">[</span><span class="n">Embed</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;data/nokiafc22.ttf&quot;</span><span class="p">,</span><span class="n">fontFamily</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="p">)]</span><span class="w"> </span><span class="n">protected</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">junk</span><span class="p">:</span><span class="nb nb-Type">String</span><span class="p">;</span>
+</code></pre></div>
+
+<p>and as per its instructions, comment out the Flex 4 line, and uncomment
+the Flex 3 line.</p>
+<p>Now you've got everything you need to build FlxInvaders, the game!</p>
+<h3>Building a game with Flex</h3>
+<p>This bit's easy; everything's set up, so now you can just build the game
+with one command. We need to call <code>mxmlc</code>, the compiler, and since the
+flxinvaders source requires flixel, we need to tell it where flixel is.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>flxinvaders/src
+$<span class="w"> </span>../../flex_3_opensource/bin/mxmlc<span class="w"> </span>-compiler.source-path<span class="o">=</span>../../flixel<span class="w"> </span>FlxInvaders.as
+</code></pre></div>
+
+<p>Lo and behold, you should now have <code>FlxInvaders.swf</code>, which is your own
+copy of the FlxInvaders game, built on Ubuntu with open source tools.
+Simply load that swf file in your web browser to play. Hooray!</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2010/12/30/first-steps-with-a-nexus-s/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2011/01/03/packaging-flex-games-for-ubuntu/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

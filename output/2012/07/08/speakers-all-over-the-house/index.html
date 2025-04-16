@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Speakers all over the house</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Speakers all over the house">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2012/07/08/speakers-all-over-the-house/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/07/08/speakers-all-over-the-house/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2012/07/08/speakers-all-over-the-house/"><time 
+			class="dt-published" datetime="2012-07-08T17:27:00+01:00">Jul 08 2012</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/07/08/speakers-all-over-the-house/">Speakers all over the house</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>So, Lazyweb, I come to you for assistance. This is one of those posts
+where I describe what I want, I describe all the ways I've thought of of
+doing it and what's wrong with them, you my glorious readers come up
+with a bunch of new ways, and then I reveal all the other conditions
+that I forgot to mention initially which invalidate your ideas too.</p>
+<p>I have my fingers crossed that it'll work better than that, though. You
+lot are pretty clever.</p>
+<p>So, I have in my house a laptop running Ubuntu, a mobile phone running
+Meego, and a TV computer running Ubuntu and XBMC. There's also my
+daughter's mobile, running Android. We listen to music and watch TV from
+those devices. I would like to solve the following problems:</p>
+<ol>
+<li>My laptop speakers are a bit crap for listening to good music; I
+    would like to play music from my laptop through some external
+    speakers</li>
+<li>When I'm in the kitchen making tea, I can't hear music being played
+    by my phone over the noise of the kettle boiling</li>
+<li>I can't hear music being played from my phone or sound from the TV
+    computer when I'm in the shower either</li>
+<li>My daughter likes playing her music in the living room</li>
+<li>If I start playing music or an audiobook on my laptop and then go
+    upstairs for ten minutes I'd like the music to keep playing but from
+    speakers upstairs rather than the ones in my office</li>
+<li>I <em>hate</em> plugging cables in and out of things</li>
+<li>I don't want sound to come from all speakers at once always</li>
+</ol>
+<p>That's the problem. Here are solutions I have thought of, along with why
+I don't think they're quite right.</p>
+<h3>Buy Sonos or Squeezebox gear or something similar</h3>
+<p>OK. This'd work, but I don't want to do it. Partially my reasoning for
+this is that I end up locked in to whoever I go for -- it means that I
+have to continue buying their gear forever if I want new speakers and so
+on -- and partially because my distinct inclination here is to have <em>the
+speakers be stupid</em>. I don't want clever speakers; the Sonos or whatever
+stuff tend to make the speakers be clever devices which know how to
+connect to Spotify themselves, and then you use the magic protocol to
+tell a speaker what to do. That's a bad model; I think that the
+cleverness should be in the thing that <em>streams</em> the music (my laptop,
+my phone, Niamh's phone, whatever) and the speaker is just a dumb
+speaker which receives audio somehow and plays it and that's it. I don't
+want to configure each speaker to talk to my music repository -- a
+clever speaker has to itself know how to play all the music I want. It
+won't very easily do, for example, error sounds from my laptop. I don't
+have a Sonos client for my Nokia N9. Etc. Stupid speakers: clever
+devices. That's my plan. I don't want to have to use, for example, a
+special music player on my phone because that's the music player which
+knows how to control a Squeezebox.</p>
+<h3>Raspberry Pi, pulseaudio, DLNA, and USB wireless audio</h3>
+<p>The idea here is that you have one computer -- in my case it'd be a
+Raspberry Pi, because I've <em>got</em> one already -- connected to the
+network. All the other devices -- phones, laptops, whatever -- stream
+their sound output to the RasPi, either using pulseaudio's network stuff
+or by DLNA. The RasPi then has something like an <a href="http://audioengineusa.com/Store/Audioengine-W3">Audioengine W3</a> USB
+wireless audio device plugged into it -- the W3 is a USB transmitter and
+separate receiver, where the transmitter is a little USB dongle and the
+receiver is a powered box with a 3.5mm audio jack output on it. In
+essence, this is a USB-audio-to-headphone-jack adapter, it's just
+wireless. So phones and laptops stream audio to the RasPi; the RasPi
+then plays audio over USB, and the W3 takes care of wirelessly sending
+that audio to speakers. This is a nice idea; it means that I can buy any
+speakers I like and as long as I plug a W3 receiver into them, they'll
+work fine for this plan, and it means that any device in the house can
+play through the speakers as long as it can do either pulseaudio or
+DLNA, and I think anything I care about can. The <em>flaw</em> with this plan
+is that although a W3 can transmit to up to three speakers at once, I
+don't believe that it can be paired with three speakers but only
+transmit to two of them. So this would play sound through all the
+speakers at once. I could avoid that by buying one W3
+transmitter/receiver pair for each speaker (and then running a little
+web app on the RasPi which allows you to select <em>which</em> USB audio thing
+to output through, but that's bloody expensive, and W3 transmitters are
+meant to be six inches apart which they wouldn't be if plugged into a
+RasPi, even with a USB hub.</p>
+<h3>Many RasPis</h3>
+<p>You have one RasPi, as above, which everyone streams music to. Then you
+have one more RasPi per speaker; the central-RasPi then
+pulseaudio-streams music to a chosen speaker-RasPi over wifi. This would
+work fine, except that the RasPi isn't great in this sort of environment
+for wifi. I'm fine with the one central RasPi being wired ethernet -- I
+can just stick it next to the router -- but the speaker RasPis would
+need to be wireless, and that means a wireless USB dongle. Wireless
+dongles draw more power than the RasPis USB port can provide, which
+means that each speaker would need a powered hub as well, meaning that
+each speaker now needs its own power cable, the RasPi's power cable, and
+the powered hub's power cable. That's a lot of messy cables. I'm sure
+it'd be possible to do something clever to avoid this by taking power
+from multiple places or doing soldering or a bunch of USB Y-cables or
+something, but that sounds pretty hard.</p>
+<h3>AirPlay</h3>
+<p>I could buy Apple AirPlay-compatible speakers. Pulseaudio can stream to
+them, and that'd work. I'm not very keen on this idea; open source
+support for Apple stuff has a habit of stopping working when Apple
+invent a new protocol version deliberately to break third-party support
+for it, it's not at all clear how I'd stream from, say, my phone's
+audiobook player to them (see above about "I don't want to have to use a
+special music client"), and it means that I'm locked in to buying
+AirPlay stuff for ever.</p>
+<h3>...other ideas</h3>
+<p>So, as you can see, I'm not totally happy with any of these. If there
+were a wifi-capable RasPi then I'd probably go the "many RasPis" route.
+Failing that, I'm not really sure, so I'm coming to the Lazyweb for
+ideas. Tell me how <em>you</em> think I should do it, and I'll happily listen!</p>
+<p>PS. Wouldn't it be cool if you could just buy a little box that you plug
+into the speaker with a 3.5mm jack cable, and if you have five of these
+little boxes they coordinate amongst themselves and offer one web UI to
+select which speakers are powered on, and one of them becomes the
+"leader" and appears on the network as a DLNA and pulseaudio destination
+and takes care of streaming to the others? That would even be doable,
+and they'd be sweet -- it's basically "many RasPis", above, as a
+commercial product. Sounds like a thing that might go down well on
+Kickstarter...</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2012/07/05/together-in-electric-fags/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2012/07/16/calibre-for-e-books/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2012/07/08/speakers-all-over-the-house/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/07/08/speakers-all-over-the-house/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

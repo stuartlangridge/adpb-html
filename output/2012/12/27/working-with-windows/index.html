@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Working with Windows</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Working with Windows">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2012/12/27/working-with-windows/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/12/27/working-with-windows/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2012/12/27/working-with-windows/"><time 
+			class="dt-published" datetime="2012-12-27T12:54:00+00:00">Dec 27 2012</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/12/27/working-with-windows/">Working with Windows</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A friend of mine asked me for a favour -- one of those favours which is
+actually to do some technical support for them. But he's a good bloke
+and is good at the guitar, so I said "no problem". He's got a Roberts
+WM-201 internet radio; it can play mp3 streams from online radio
+stations. And...it can also play your local music, streamed from a PC on
+your network. That's what he wanted: the computer in the dining room
+with all his music on, and to play that music on the Roberts radio in
+the lounge. They're both on the wifi network in his house.</p>
+<p>The computer is running Windows XP. I haven't touched Windows in Quite
+Some Time, but I said I'd have a look.</p>
+<p>Long story short: I failed. And am annoyed about it. I'm not really
+looking for suggestions here: he's not a particularly technical bloke,
+so I can't really pass on the suggestions to him, and he's a few hundred
+miles from me so I can't try things out. This is more an ill-tempered
+rant than anything else, but if anyone's got any ideas <strong>that do not
+involve him buying new stuff or installing different operating
+systems</strong>, I'll listen.</p>
+<p>The Roberts radio thing has two ways of playing music from a source on
+the network: it can connect to Windows shares, and it can connect to
+UPnP music sources. So I tried UPnP first.</p>
+<p>Windows Media Player has the ability to share music by UPnP, and he
+already has that installed, with his music in it. That seemed an obvious
+place to start. So, I enabled music sharing, following the instructions.
+The radio could not see the shared UPnP source. I also had an Android
+tablet available, so I installed a UPnP browser on it and that couldn't
+see it either. I installed a UPnP browser on the Windows machine and
+that <em>could</em> see the UPnP source, which suggests that the problem is not
+in Windows Media Player: it's some sort of network or firewall issue.
+The Windows machine had at least two firewalls on it: Windows Firewall,
+and McAfee. I disabled both: still nothing could see the UPnP source.
+There is, as far as I can tell, no way to find out <em>why</em> a thing is
+invisible. A noddy network diagnostic tool on the Android tablet
+confirmed that TCP port 2869 was "open" (and other ports were "closed");
+I didn't have easy access to any other diagnostic tools (I'd have
+nmapped it from my Ubuntu machine if I had it, but I didn't).</p>
+<p>No idea what to try after that. I don't know what might be causing it to
+be invisible from outside. A photo frame which can browse UPnP sources
+also failed to connect. I did think about installing a different UPnP
+server, but all the Windows ones I looked at (Twonky, another one I
+forget the name of) cost money, and there's no MediaTomb.</p>
+<p>So, I tried Windows Shares. I shared the music folder and allowed
+network users to alter the files therein. An SMB browser on the Android
+tablet <em>could</em> see and browse the share <em>if it connected as Anonymous</em>.
+It could not when using a username and password because I didn't know
+which username and password to use! He doesn't have a password set, and
+his username has a space in. I tried connecting with the Android SMB
+browser (AndSMB, if it makes a difference) using the username
+(containing a space) and an empty password: it would not connect. I
+don't know how to find out what your username is on Windows; I poked
+around at "net user" and "net share" without enlightenment. I tried
+changing his username to not have a space in, and setting a password,
+and then connecting from AndSMB with that username and password: didn't
+work. The radio did not find any shares at all. I do not know whether
+the radio tries connecting as Anonymous, and the documentation doesn't
+say. I tried using the username and password from the radio and that
+didn't work either. By the look of it, when you tell AndSMB to connect
+as Anonymous, it actually connects with username "guest" and password
+"", so I tried that from the radio and it didn't work.</p>
+<p>So now I'm lost. And this is way too hard. And every time something like
+this happens, I think he gets a little closer to buying a Mac. Sigh.</p>
+<p>I may take an Ubuntu CD round at some point.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2012/12/18/biscuit/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2012/12/30/simple-svg-sparklines/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2012/12/27/working-with-windows/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/12/27/working-with-windows/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

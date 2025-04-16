@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Desktopcouch on Windows/Mac</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Desktopcouch on Windows/Mac">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2009/12/15/desktopcouch-on-windowsmac/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/12/15/desktopcouch-on-windowsmac/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2009/12/15/desktopcouch-on-windowsmac/"><time 
+			class="dt-published" datetime="2009-12-15T13:39:00+00:00">Dec 15 2009</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/12/15/desktopcouch-on-windowsmac/">Desktopcouch on Windows/Mac</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>One of the things that I'd really like to see is <a href="http://www.freedesktop.org/wiki/Specifications/desktopcouch">desktopcouch</a> on
+Windows and the Mac, so that your data can be everywhere, on all your
+machines. Now, I don't know enough about those platforms to actually do
+it, but I'd be happy to help anyone who was interested in making it
+happen; here are some thoughts on what'd be required, and do please chip
+in here with questions, or ask me or others on the <code>#ubuntuone</code> IRC
+channel on <code>irc.freenode.net</code>. Desktop Couch, for those of you who
+aren't sure, is a personal CouchDB that your apps can store their data
+in. It's secured for you alone, and it comes with a built-in replication
+setup, so two desktopcouches on the same network can exchange data. This
+means that if your applications store their data in desktopcouch — for
+example, Bindwood, our Firefox extension to store your bookmarks there —
+then all the machines on your network can exchange that data, meaning
+that adding a bookmark on one of your machines will automatically add it
+on the others, without you having to do anything, and without you having
+to sign up to some third-party service to make that happen. It'll all
+work on your local network. (It can also work via a third-party service
+— Ubuntu One is such a service, and there could be others, as long as
+they deploy CouchDB in the cloud — so that machines on different
+networks can also exchange data.)  </p>
+<h3>CouchDB</h3>
+<p>The first thing you need to have, to get a personal CouchDB, is CouchDB.
+I know the <a href="https://mozillalabs.com/raindrop">Mozilla Raindrop</a> team have done some work getting CouchDB
+nice and robust and working on Windows, and I believe they have an
+installer. Working with that would be very cool indeed. (Indeed, it's
+possible for <a href="http://www.kryogenix.org/days/2009/10/23/running-raindrop-on-ubuntu-9-10-using-desktop-couch">Raindrop to use desktopcouch</a> if you have it, so that
+might be an interesting test!)  </p>
+<h3>On-demand startup and port numbers (or, what's your D-Bus?)</h3>
+<p>Desktopcouch is started on demand, when the first application requires
+it, rather than running all the time even when you don't need it.
+Because it is a <em>personal</em> CouchDB, and because there might be more than
+one user on the machine that you're on, it can't run on a specific port
+number; instead, you ask desktopcouch for its port number when you want
+it, and asking that question starts it up on a randomly-chosen port if
+it's not already running. The way this is done on Ubuntu (and other
+Linuxes) is with D-Bus, which is a Linux-specific IPC mechanism. It's
+possible to use D-Bus on other platforms, but a much better way would be
+to use your platform's specific way of passing messages to a service and
+starting a service if it's not already running. (This is one of the
+things I don't know how to do on other platforms. Would Macs use launchd
+or something? Should a Windows service be running on startup? I don't
+know.) Desktopcouch only uses D-Bus for these two things ("what's your
+port number" and "start this service if it's not already running"), so
+replacing those sections with a native way of doing that on Windows/Mac
+would be reasonably easy and make it fit in much better with the Right
+Way of doing things on that platform; these changes would need to be
+made both in desktopcouch itself, and in APIs (desktopcouch.records)
+that connect to desktopcouch.  </p>
+<h3>Where are the keys? (or, no gnome-keyring on Windows)</h3>
+<p>Because desktopcouch is a personal CouchDB, access to it is secured by
+OAuth. When desktopcouch is first set up, it randomly generates a set of
+OAuth tokens, and these are stored in the Gnome keyring on Ubuntu.
+Obviously, it would be better to use the platform's own way of storing
+authentication data; I believe the Mac has a "keychain", and Windows
+surely has something similar. Again, this would need changing in
+desktopcouch itself (to store the keys in the right place), and in
+desktopcouch.records (to retrieve the keys from that place to use
+them).  </p>
+<h3>And that's it</h3>
+<p>With those changes in place, desktopcouch should run on another
+platform, meaning that you can exchange data between all your apps on
+all your machines. We're already getting some sterling work done to see
+desktopcouch on other Linux distributions and on phones like the Nokia
+N900 (hooray for <a href="http://thomas.apestaart.org/log/?p=1086">Thomas</a>, among others!). I'd really like to see this
+happen on Windows and Mac too; are you interested in helping make it
+happen? Let me know, and I'll give you all the help you need!</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2009/12/09/multiple-format-wordpress-podcast-feeds/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2009/12/23/migrating-this-weblog-to-couchdb/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2009/12/15/desktopcouch-on-windowsmac/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2009/12/15/desktopcouch-on-windowsmac/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

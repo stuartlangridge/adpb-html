@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Fooling the natives</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Fooling the natives">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2015/08/14/fooling-the-natives/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2015/08/14/fooling-the-natives/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2015/08/14/fooling-the-natives/"><time 
+			class="dt-published" datetime="2015-08-14T23:33:00+01:00">Aug 14 2015</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2015/08/14/fooling-the-natives/">Fooling the natives</a>
+		</h2>
+		<div class="entry-content e-content">
+			<blockquote>"It's not death if you refuse it." -- <em>The 
+Crow</em></blockquote>
+
+<p>Over the last two weeks I have, inadvertently, 
+conducted a very enlightening experiment on myself. I don't think 
+it's repeatable or replicable -- like gods interfering with free 
+will or The Truman Show, the experiment doesn't work if you know 
+you're inside it -- but it's rather illustrative. </p>
+<p>I'm a Google+ user<sup id="sf-fooling-the-natives-1-back"><a href="#sf-fooling-the-natives-1" class="simple-footnote" title="until they shut it down, which I hope they don't do">1</a></sup>. 
+And the Android G+ app has been doing this annoying thing 
+recently<sup id="sf-fooling-the-natives-2-back"><a href="#sf-fooling-the-natives-2" class="simple-footnote" title="since I switched phones from my old Nexus 4 with dodgy  wifi to the newer Nexus 4 which used to be my daughter's">2</a></sup> where 
+if I pull down to get new posts, sometimes it doesn't work. Opening 
+the side menu and closing it again always fixed it, so I put it down 
+to some sort of bug in the G+ app and waited for it to be fixed. 
+<a href="https://plus.google.com/+StuartLangridge/posts/eZZxGkUj94L">Not very 
+patiently.</a> </p>
+<p>Other people reportedly didn't have the problem, so I just put it 
+down to weirdness and carried on. Well. I've just, this moment, 
+realised why. When I first factory reset this phone and then started 
+it up for the first time, I didn't use the G+ app. I used the G+ 
+website and bookmarked it to my home screen. And then, it seems, I 
+forgot that I'd done it. </p>
+<p>The actual app doesn't have the problem. </p>
+<p>This is interesting in two ways. </p>
+<p>The first and most obvious conclusion is that the web app isn't quite as good as the native 
+app. Obvious conclusion to draw, and also obviously correct; it had 
+a bug that the native app didn't, and one could reasonably make the 
+case that it had that bug <em>because</em> it's a web app and not native. </p>
+<p>But. I used the thing constantly for a couple of weeks without 
+realising it <em>was</em> a web app. At no point other than this bug did it 
+betray that it was anything other than the G+ app. Now I compare the 
+two side by side, there are differences, but I didn't notice them as 
+being worse, or even different; I just used the app and it never 
+occurred to me to question it. More importantly, at no point did the 
+bug make me think that it was because I was using a web app, or 
+question the nature of the app. Plenty of people will say that 
+they've used web apps and found bugs and therefore web apps are bad. 
+But I wonder how much that would get said if those people hadn't 
+<em>known</em> they were using a web app? I just put it down to an app bug; 
+it never occurred to me that it might be because it's in JavaScript 
+rather than Java, and at no other point and in no other way did the 
+G+ web app give me cause to suspect or even question that it was 
+anything other than the native app. </p>
+<p>Now, this is not always the 
+case, by any stretch of the imagination. The Google team put a 
+<em>lot</em> of effort into their web stuff. Most "web apps" betray their 
+true nature constantly. But this shows it's basically <em>possible</em>. If 
+you don't have the easy, lazy fallback of blaming any issues on a 
+thing being of the web, then you don't necessarily think of that as 
+being a problem itself. </p>
+<p>This is encouraging.</p><ol class="simple-footnotes"><li id="sf-fooling-the-natives-1">until they shut it down, which I hope they don't do <a href="#sf-fooling-the-natives-1-back" class="simple-footnote-back">↩</a></li><li id="sf-fooling-the-natives-2">since I switched phones from my old Nexus 4 with dodgy 
+wifi to the newer Nexus 4 which used to be my daughter's <a href="#sf-fooling-the-natives-2-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2015/06/28/availability/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2015/08/20/using-the-content-hub-on-ubuntu/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://twitter.com/robn/profile_image?size=original">
+			Rob N responded at
+		<a href="https://twitter.com/robn/status/632325527743782912">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: A salvo in the web vs native debate, although I'm not completely sure which side it's actually on. kryogenix.org/days/2015/08/1…
+</span></li>
+		<li><img src="https://twitter.com/robn/profile_image?size=original">
+			Rob N responded at
+		<a href="https://twitter.com/robn/status/632326381959970816">twitter.com</a>
+		<span class="wm-summary">			@sil the @FastMailFM is the mobile webapp wrapped in a webview. I get people who refuse to use a "hybrid" app, people who never (1/2)
+</span></li>
+		<li><img src="https://twitter.com/robn/profile_image?size=original">
+			Rob N responded at
+		<a href="https://twitter.com/robn/status/632326528345309185">twitter.com</a>
+		<span class="wm-summary">			@sil realise, and nothing in between. I don't claim its perfect, but I think it can be done if you put enough effort in (2/2)
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/632326808298483712">twitter.com</a>
+		<span class="wm-summary">			@sil @jaffathecake @aerotwist I don't actually know anybody on the g+ web team, but if you do, tell them as above they're doing a great job
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-4WLQXKD_fnw/AAAAAAAAAAI/AAAAAAAAhi8/yD5fJTR9_wI/photo.jpg?sz=50">
+			Eduardo Carrillo responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">plus.google.com</a>
+		<span class="wm-summary">			Some web apps can be really pleasant to use but there are a couple that just drive me crazy. Twitter is the worst offender. It hasn't been updated in&hellip;
+</span></li>
+		<li><img src="https://lh5.googleusercontent.com/-bch81iTE4-8/AAAAAAAAAAI/AAAAAAAAGD0/Azt-nBuVgcc/photo.jpg?sz=50">
+			Daniel Foré responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">plus.google.com</a>
+		<span class="wm-summary">			I don't think web apps are inherently bad. As in I don't think JavaScript, CSS, and HTML are inherently worse than Vala and Gtk (for example). I think&hellip;
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/6z99Wy1MJnU/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">plus.google.com</a>
+		<span class="wm-summary">			+Daniel Foré​ absolutely. It's about the experience, which needs to be crafted carefully. Which widget set you use barely enters into it.
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/6z99Wy1MJnU/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">plus.google.com</a>
+		<span class="wm-summary">			+Daniel Foré​​ more specifically, the debate on "native vs web" is distracting attention from what's actually important. The thing I found most remark&hellip;
+</span></li>
+		<li><img src="https://lh6.googleusercontent.com/-_kImVXH4rhA/AAAAAAAAAAI/AAAAAAAADy4/_fJhq79R9pw/photo.jpg?sz=50">
+			Alan Bell responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">plus.google.com</a>
+		<span class="wm-summary">			this is why I am a bit disappointed that Ubuntu Touch uses a half assed mix of QML and webkit rather than just webkit. Making the web native just seem&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-c99pqq-jt5g/AAAAAAAAAAI/AAAAAAAAAAA/cSwOGD_-P0E/photo.jpg?sz=50">
+			Nils Gerstner responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Y5UdzvC-o1U/AAAAAAAAAAI/AAAAAAAAAAA/R7r7n-pPUpw/photo.jpg?sz=50">
+			Joern Konopka responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Ww0Zp1wEYSo/AAAAAAAAAAI/AAAAAAAAAAA/YHi0_NtVr9o/photo.jpg?sz=50">
+			Folmer Fredslund responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-FGjG8wUXs4g/AAAAAAAAAAI/AAAAAAAAAAA/1bCjuWJMoZc/photo.jpg?sz=50">
+			Swapnil Bhartiya responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-8ZECvjtVSfs/AAAAAAAAAAI/AAAAAAAAAAA/Ky3FRAyE8KU/photo.jpg?sz=50">
+			Jan Moren responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-4WLQXKD_fnw/AAAAAAAAAAI/AAAAAAAAAAA/j_fwwVHM2Jc/photo.jpg?sz=50">
+			Eduardo Carrillo responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-rmSpnvC_vcw/AAAAAAAAAAI/AAAAAAAAAAA/A9c9BbdZsww/photo.jpg?sz=50">
+			Martin Wimpress responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-UneM8DFI9lk/AAAAAAAAAAI/AAAAAAAAAAA/_KDrZVBAo8o/photo.jpg?sz=50">
+			Igor Janowiak (‫יגאָר דזשאַנאָוויאַק‬‎) responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-18qwKH9pnFw/AAAAAAAAAAI/AAAAAAAAAAA/fwm2guQVupU/photo.jpg?sz=50">
+			Patrick Archibald (PLA) responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-q__Dh_47Efc/AAAAAAAAAAI/AAAAAAAAAAA/Bjf4ZdOyoSA/photo.jpg?sz=50">
+			Oliver Grawert (ogra) responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-YdlPtkGOguU/AAAAAAAAAAI/AAAAAAAAAAA/a1QhNqtd_Rc/photo.jpg?sz=50">
+			David Sharpe (Chemlynx) responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-qZPdzW-7l-g/AAAAAAAAAAI/AAAAAAAAAAA/3r0G82Q430A/photo.jpg?sz=50">
+			Rosa Guillén responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-_kImVXH4rhA/AAAAAAAAAAI/AAAAAAAAAAA/WJ9tZ30bIFM/photo.jpg?sz=50">
+			Alan Bell responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh6.googleusercontent.com/-AZou7a-fm-4/AAAAAAAAAAI/AAAAAAAELmw/zmS0IVJaM1A/photo.jpg?sz=50">
+			Sidnei da Silva responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">plus.google.com</a>
+		<span class="wm-summary">			+Malte Ubl​
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-KdrA7S-kkX8/AAAAAAAAAAI/AAAAAAAAAzo/r8XpbtFN2ys/photo.jpg?sz=50">
+			Ben Thorp responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">plus.google.com</a>
+		<span class="wm-summary">			I tend to use webapps for services where having the actual app means wading through endlessly annoying push notifications, most notably Twitter and Fa&hellip;
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/6z99Wy1MJnU/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/W4JLyVbTv93">plus.google.com</a>
+		<span class="wm-summary">			+Ben Thorp note that both offline and push notifications are now available to web apps, in Chrome (only) so far...
+</span></li>
+		<li><img src="https://twitter.com/ubuntupodcast/profile_image?size=original">
+			Ubuntu Podcast responded at
+		<a href="https://twitter.com/ubuntupodcast/status/634820417715351553">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: @ubuntupodcast recent post kryogenix.org/days/2015/08/1… is relevant to (and was partially inspired by) @lauracowen's questions about web app&hellip;
+</span></li>
+		<li><img src="https://twitter.com/sturmflut2/profile_image?size=original">
+			Sturm Flut responded at
+		<a href="https://twitter.com/sil/status/634812810074161152">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/addyosmani/profile_image?size=original">
+			Addy Osmani responded at
+		<a href="https://twitter.com/sil/status/703734718534131713#favorited-by-35432643">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2015/08/14/fooling-the-natives/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2015/08/14/fooling-the-natives/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

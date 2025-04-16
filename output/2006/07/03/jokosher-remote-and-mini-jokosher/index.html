@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Jokosher Remote and Mini Jokosher</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Jokosher Remote and Mini Jokosher">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2006/07/03/jokosher-remote-and-mini-jokosher/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2006/07/03/jokosher-remote-and-mini-jokosher/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2006/07/03/jokosher-remote-and-mini-jokosher/"><time 
+			class="dt-published" datetime="2006-07-03T14:05:00+01:00">Jul 03 2006</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/07/03/jokosher-remote-and-mini-jokosher/">Jokosher Remote and Mini Jokosher</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Nokia have, immensely kindly, donated a Nokia 770 to the Jokosher
+project. We plan to implement two different Jokosher things on the 770:
+Jokosher Remote and Mini Jokosher. Jono and I spent some time hashing
+over details of both of these, and he's written up <a href="http://jonobacon.org/viewcomments.php?id=713">an initial spec for
+Jokosher Remote</a>. In essence, it's a remote control for Jokosher; it
+doesn't do any music stuff itself, but instead lets you see what your
+main Jokosher screen is up to and lets you control what it's doing from
+your 770. One of the major use cases here is for when you're recording
+with the band: imagine, for example, that you're the drummer. In the
+corner of the studio is your recording computer, running Jokosher.
+You've got all the instruments plugged into the mixing desk and the desk
+plugged into the computer; you've got all the instruments set up in
+Jokosher itself. Now you're sitting on the other side of the room,
+behind your drums, and you want to start recording. Do you want to
+stumble across the room, through the mess of leads and discarded guitar
+cases, to get to the computer to hit play? Hell, no. So you take your
+trusty Nokia 770 out of your pocket and start Jokosher Remote. It
+automatically notices that there's a real Jokosher running (which it
+will do because it's on the wireless network, and Jokosher will
+advertise its presence with the Avahi ZeroConf library) and displays the
+details of the project that's currently open. You, in turn, simply hit
+the big record button on the 770's screen. The buttons are all really
+big, so they can be pressed with fingers rather than fiddling about with
+a stylus, and when you're playing you can see the tracks recording so
+you know it's working. You stop playing and want to listen to that
+recording back, so you hit Play on your 770 and it makes the real
+Jokosher installation play. You can skip through the playback, forwards
+and backwards. If you want to re-record one instrument, you can arm that
+one instrument for recording and record it again. You can set up an
+overdub and then record it, all without leaving your drum stool. No more
+walking backwards and forwards! No more tripping on the mic lead!
+Jokosher Remote is all you ever wanted! There are a few little tricky
+technical issues. The first is that, at the moment, there is no way for
+something outside core Jokosher to control what the program is doing.
+Since we also need this to make plugins work, and plugins are critical,
+the development of <a href="http://jokosher.python-hosting.com/wiki/PluginSystem">a plugin system</a> is on the roadmap for Jokosher
+0.2 (at the moment, we're in bugfix mode for 0.1, due for release in
+three weeks at <a href="http://www.lugradio.org/live/2006">LugRadio Live 2006</a>). Once that plugin API exists, it
+will be a lot easier to build a Jokosher Remote plugin. Secondly, I need
+to think about the best way of shipping data back and forth between
+<abbr title="Jokosher Remote">JR</abbr> and
+<abbr title="Jokosher">J</abbr> itself. I suspect I'll use something
+simple to implement like XML-RPC, but if anyone's got any suggestions
+for an on-the-wire protocol which (a) already has a pure-Python
+implementation, (b) can ship Python dictionaries, and (c) will be highly
+easy to implement, let me know. The other thing that I want to do is
+Mini Jokosher. This is a port of most of Jokosher to the 770 itself. The
+use case here is for taking it with you in your pocket to do interviews
+for your popular podcast; you can drop the 770 in your pocket along with
+a USB mic, and then you have a studio on the move. The goal here is not
+that you can do absolutely everything in
+<abbr title="Mini Jokosher">MJ</abbr> that you can do in real J, but tha
+you can record to storage on the device (buy an MMC card!), you can
+create instruments, record a clip, delete that clip, re-record it, and
+move clips around to do basic editing. Then, when you bring the 770 back
+to your house, it will automatically hook up with your real Jokosher
+(via ZeroConf again) and offer to upload the project; the project then
+uploads seamlessly to real Jokosher where you can do your proper
+editing. It's a heavily cut-down version of real J, but it's a proper
+audio recording application; this means that we will need most of the
+GStreamer stuff that real J needs. It'll be interesting seeing how
+complete the GStreamer port to 770 is. Jokosher Remote comes first,
+though, because it's simpler to implement and because the use case is a
+little more compelling. Exciting times ahead for our audio editor! The
+big thing I need to do first is to set up a Nokia-770-in-a-window
+environment on my developer machine. Is there an easy guide somewhere
+around to how to do this? It strikes me that it should be easy, and I
+keep seeing things that make reference to "Xephyr", but there doesn't
+seem to be an easy way to just have a 770-in-a-window on my machine (so
+I don't have to keep copying things to the real device). There must be
+something, though, so I must have missed it; can anyone point me at it?</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2006/07/03/ban-that-bandwidth-slurper/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2006/07/06/gnome-2/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2006/07/03/jokosher-remote-and-mini-jokosher/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2006/07/03/jokosher-remote-and-mini-jokosher/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

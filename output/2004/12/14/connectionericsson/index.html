@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Getting a net connection with a Sharp Zaurus and a Sony Ericsson K700i on Orange in the UK</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Getting a net connection with a Sharp Zaurus and a Sony Ericsson K700i on Orange in the UK">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2004/12/14/connectionericsson/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/12/14/connectionericsson/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2004/12/14/connectionericsson/"><time 
+			class="dt-published" datetime="2004-12-14T11:00:00+00:00">Dec 14 2004</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/12/14/connectionericsson/">Getting a net connection with a Sharp Zaurus and a Sony Ericsson K700i on Orange in the UK</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>One of the reasons that I wanted my <a href="http://www.kryogenix.org/days/2004/11/17/ki">K700i</a> and that I paid for the
+OrangeWorld data subscription was that I’d get
+<span class="caps">GPRS</span> access to the net, which means that I can
+see the net from wherever I am using my Zaurus, which can browse the web
+and do <span class="caps">SSH</span> and everything (unlike the lame
+<span class="caps">WAP</span> browser built in to the phone). So, I rang
+Orange and said “How do I make a <span class="caps">PDA</span> dial the
+net via <span class="caps">GPRS</span>, if te
+<span class="caps">PDA</span> can talk infrared to the K700i?” They
+said: just dial the number *99#. So I set up a connection in the Z’s
+“Network and Sync” applet to do “IrDA – <span class="caps">PPP</span>”
+and told it that the phone number was *99#. Didn’t work; it talks to
+the phone and tells it to connect, but then the phone disconnects
+immediately. Bah. I rang Orange, and—guess what?—they said “we only
+support Windows-based PocketPCs, because we’re a bunch of droid muppets
+who don’t actually understand the technology.” Or words to that effect.
+So, after a bit of investigating, I have worked out how to do it for
+myself:</p>
+<ul>
+<li>On your <span class="caps">UK </span>Orange K700i, go Menu |
+    Connectivity | Data comm. | Data accounts</li>
+<li>It should have a number of accounts in there: you need to count down
+    until you find “Orange <span class="caps">GPRS </span>Internet“,
+    ignoring the “New account” at the top. Mine has “Orange
+    <span class="caps">GPRS WAP</span>” first (after “New account“),
+    then “Orange <span class="caps">MMS</span>“, then “Orange
+    <span class="caps">GPRS </span>Internet“, so it’s number 3. Remember
+    this number: it’s called the <span class="caps">CID</span>.</li>
+<li>Edit that “Orange <span class="caps">GPRS </span>Internet” account</li>
+<li>In “Authentication“, there should be “Normal” (ticked), “Secure”
+    (unticked), and “None” (unticked). Tick “None“, and hit OK to save.</li>
+<li>On the Zaurus, go into the Network and Sync applet in Settings</li>
+<li>In the Services tab, say “Add”</li>
+<li>Choose “IrDA – <span class="caps">PPP</span>” and say “Add”</li>
+<li>In the “Phone” section on the Account tab, enter * 99 * * *
+    <span class="caps">CID </span>#, where
+    <span class="caps">CID</span> is the <span class="caps">CID</span>
+    you remembered from earlier (so in my case I entered * 99 * * *
+    3 #) (don’t put spaces in between the things: it’s a seven
+    character string star-nine-nine-star-star-star-CID-hash)</li>
+<li>Save the connection with OK</li>
+</ul>
+<p>Now, you should be able to turn on IR on your K700i, position it and the
+Z appropriately, and connect using the connect button on the taskbar on
+the Z. When it connects you;ll have a full on (and pretty darn fast) net
+connection on the Z. Go nuts.</p>
+<hr>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2004/12/14/countries/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2004/12/18/windowmovie/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2004/12/14/connectionericsson/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/12/14/connectionericsson/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

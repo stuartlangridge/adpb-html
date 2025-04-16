@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; My home backup system</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; My home backup system">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2006/10/24/my-home-backup-system/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2006/10/24/my-home-backup-system/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2006/10/24/my-home-backup-system/"><time 
+			class="dt-published" datetime="2006-10-24T23:08:00+01:00">Oct 24 2006</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/10/24/my-home-backup-system/">My home backup system</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>After having spent the last five years feeling guilty, I now, finally,
+have my laptop backing up the data I care about to another machine on my
+network. Here's how I did it. This is a relatively long and complicated
+process, but it means that it all happens automatically and by magic,
+and I don't ever have to interact with it, which is what I want. The
+first component I needed was some backup space: a machine on my network
+that I could send the backups to. I did look at online backup space
+(Amazon's S3 and similar) like all the cool kids, but I just can't get
+on with it, and I resent paying because I'm a cheapskate. So, it was to
+be a box on my network. Now, there are useful NAS machines around, which
+just get plugged in and automatically export their disc space (normally
+as a Windows share, with Samba), and I looked at those too (there's the
+Terastation, etc, etc). However, I needed an always-on server for
+another purpose anyway, so I decided to go with a real machine. A
+machine cobbled together out of the Big Box Of Machine Bits, of course.</p>
+<h2>Setting up the server</h2>
+<p>It's got two disc drives in it, and I divided the first disc into two
+partitions, one with 1GB and the other with all the rest. Install Ubuntu
+Linux 6.10 Edgy, server edition, on the 1GB partition. (I actually
+installed dapper and then upgraded it to edgy, for that bleeding edge
+greatness; at this writing, edgy is only at RC stage.) After that, we
+want to take all the remaining space on the machine (one big partition
+on disc 1, and all of disc 2) and make them one big block of disc space;
+this is what LVM, the Linux Volume Manager, is for. Note that all this
+stuff can be done with proper GUI tools, but I don't have a GUI on this
+machine because it's a server and I'm trying to converse disc space.
+This bit's also from memory, so be very careful and don't just slavishly
+follow it.</p>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">First</span>,<span class="w"> </span><span class="nv">make</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">partition</span><span class="w"> </span><span class="nv">available</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">LVM</span>,<span class="w"> </span><span class="nv">by</span><span class="w"> </span>
+#<span class="w"> </span><span class="nv">making</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="s2">&quot;physical volume&quot;</span>.<span class="w"> </span><span class="nv">This</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">LVM</span><span class="o">-</span><span class="nv">speak</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>
+#<span class="w"> </span><span class="s2">&quot;a bit of a disk that I can use&quot;</span>
+<span class="nv">pvcreate</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">hda3</span><span class="w"> </span>#<span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">big</span><span class="w"> </span><span class="nv">partition</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">first</span><span class="w"> </span><span class="nv">disc</span>
+<span class="nv">pvcreate</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">hdb</span><span class="w"> </span>#<span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">second</span><span class="w"> </span><span class="nv">disc</span>
+
+#<span class="w"> </span><span class="nv">Now</span>,<span class="w"> </span><span class="nv">create</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="s2">&quot;volume group&quot;</span>.<span class="w"> </span><span class="nv">This</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">LVM</span><span class="o">-</span><span class="nv">speak</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>
+#<span class="w"> </span><span class="s2">&quot;a big block of disc space all managed together&quot;</span>
+<span class="nv">vgcreate</span><span class="w"> </span><span class="nv">volumegroup</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">hda3</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">hdb</span>
+
+#<span class="w"> </span><span class="k">Next</span>,<span class="w"> </span><span class="nv">create</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="s2">&quot;logical volume&quot;</span>.<span class="w"> </span><span class="nv">LVM</span><span class="o">-</span><span class="nv">speak</span>:<span class="w"> </span><span class="err">&quot;something</span>
+#<span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">looks</span><span class="w"> </span><span class="nv">like</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">disc</span><span class="w"> </span><span class="nv">drive</span>,<span class="w"> </span><span class="nv">so</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">mount</span><span class="w"> </span><span class="nv">it</span><span class="err">&quot;</span>
+<span class="err"># First, find out how big it can be</span>
+<span class="nv">vgdisplay</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">grep</span><span class="w"> </span><span class="s2">&quot;Total PE&quot;</span>
+<span class="w">  </span><span class="nv">Total</span><span class="w"> </span><span class="nv">PE</span><span class="w">              </span><span class="mi">11833</span>
+#<span class="w"> </span><span class="nv">now</span><span class="w"> </span><span class="nv">create</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">logical</span><span class="w"> </span><span class="nv">volume</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">size</span>
+<span class="nv">lvcreate</span><span class="w"> </span><span class="o">-</span><span class="nv">l</span><span class="w"> </span><span class="mi">11833</span><span class="w"> </span><span class="nv">volumegroup</span><span class="w"> </span><span class="o">-</span><span class="nv">n</span><span class="w"> </span><span class="nv">logical1</span>
+
+#<span class="w"> </span><span class="nv">You</span><span class="w"> </span><span class="nv">now</span><span class="w"> </span><span class="nv">have</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">device</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">volumegroup</span><span class="o">/</span><span class="nv">logical1</span>
+#<span class="w"> </span><span class="nv">which</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">treat</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">were</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">disc</span>
+#<span class="w"> </span><span class="nv">Create</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">dir</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">put</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">in</span>
+<span class="nv">mkdir</span><span class="w"> </span><span class="o">/</span><span class="nv">space</span>
+#<span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">add</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">fstab</span><span class="w"> </span><span class="nv">so</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">gets</span><span class="w"> </span><span class="nv">mounted</span>.<span class="w"> </span><span class="nv">Add</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">line</span>:
+<span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">volumegroup</span><span class="o">/</span><span class="nv">logical1</span><span class="w"> </span><span class="o">/</span><span class="nv">space</span><span class="w"> </span><span class="nv">auto</span><span class="w">   </span><span class="nv">defaults</span><span class="w">        </span><span class="mi">0</span><span class="w">       </span><span class="mi">0</span>
+</code></pre></div>
+
+<p>After that complex little bit (again, if you aren't tight like me, do it
+with the GUI, it's easier), you will have a directory <code>/space</code> on the
+machine with loads of space in it. Install <code>openssh-server</code> and <code>rsync</code>,
+because we'll need them later.  </p>
+<h2>Rotating backups</h2>
+<p>The way I want my backups to work is as follows. Every night, each
+machine on my network should connect, and send everything that's changed
+since yesterday. When I look on the backup server, there should be a
+folder for each machine, and there should be in there a folder per day.
+Each folder should look like a complete backup, but if a file hasn't
+changed since yesterday it shouldn't take up any more disc space. So,
+the folder structure should look, say, like this:</p>
+<div class="highlight"><pre><span></span><code>/space
+  /stuart
+    /2006-10-24
+      /folder1
+        /file1
+        /file2
+        /newfile1
+      /folder2
+        /file3
+    /2006-10-23
+      /folder1
+        /file1
+        /file2
+      /folder2
+        /file3
+</code></pre></div>
+
+<p>and the <code>2006-10-24</code> folder should have all the files in it but only
+take up as much space as <code>newfile1</code>. Complicated, but part of the reason
+I specified this is because I know it's possible. (The main reason, of
+course, is that I'm tight and want to save disc space.) Making this
+happens involves two stages: making a <em>hardlink tree</em>, and using
+<code>rsync</code>.  </p>
+<h3>The hardlink tree</h3>
+<p>If you can get over how much this sounds like something out of an Enid
+Blyton book, it's a cool technique. I'm not going to explain hardlinks
+and inodes and things like that here, because there are <a href="http://www.google.co.uk/search?q=hard+links">many other descriptions elsewhere</a>. Suffice to say that, if you have a folder,
+you can make a duplicate of that folder with <code>cp -al folder newfolder</code>,
+and that duplicate will look the same and be full of real files but not
+take up any disc space. My nightly backup therefore needs to do the
+following:</p>
+<ol>
+<li>Copy last night's backup to a new folder, named for the current date</li>
+<li>Change the data in the new folder to look like my laptop, so it's
+    got all yesterday's data but with any changes I've made today</li>
+</ol>
+<p>The issue here is: how do you know what last night's backup is called?
+I've solved this by making sure there's a symbolic link called <code>current</code>
+which always points to the most recent backup. So, the above process
+actually becomes:</p>
+<ol>
+<li>Copy the <code>current</code> folder to a new folder, named for the current
+    date</li>
+<li>Change the data in the new folder to look like my laptop, so it's
+    got all yesterday's data but with any changes I've made today</li>
+<li>Change the <code>current</code> link so it points to the newly created most
+    recent backup</li>
+</ol>
+<p>The script that does this is stored in <code>/space/begin-backup</code>, made
+executable with <code>chmod +x /space/begin-backup</code>, and looks like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nv">PERSON</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">BROOT</span><span class="o">=</span>/space
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PERSON</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span>You<span class="w"> </span>must<span class="w"> </span>pass<span class="w"> </span>the<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>backup<span class="w"> </span>dir
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="nv">PDIR</span><span class="o">=</span><span class="nv">$BROOT</span>/<span class="nv">$PERSON</span>/
+
+<span class="c1"># If person dir doesn&#39;t exist, create it</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="nv">$PDIR</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>mkdir<span class="w"> </span><span class="nv">$PDIR</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+
+<span class="c1"># If there&#39;s no current dir, create an empty one and link it</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="nv">$PDIR</span>/current<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>mkdir<span class="w"> </span><span class="nv">$PDIR</span>/first
+<span class="w">  </span>ln<span class="w"> </span>-s<span class="w"> </span>first<span class="w"> </span><span class="nv">$PDIR</span>/current
+<span class="k">fi</span>
+
+<span class="nv">DT</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>-Iseconds<span class="k">)</span>
+
+<span class="c1"># Hardlink-tree the existing recent dir</span>
+cp<span class="w"> </span>-al<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>readlink<span class="w"> </span>-f<span class="w"> </span><span class="nv">$PDIR</span>/current<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">$PDIR</span>/<span class="nv">$DT</span>
+<span class="c1"># and link current to the new hardlink tree</span>
+rm<span class="w"> </span><span class="nv">$PDIR</span>/current
+ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$DT</span><span class="w"> </span><span class="nv">$PDIR</span>/current
+</code></pre></div></td></tr></table></div>
+
+<p>We'll come back to how you run this in a minute.  </p>
+<h3>Rsync</h3>
+<p>The <em>change the data in the new folder to look like my laptop</em> bit is
+done with <code>rsync</code>, which is complex but brilliantly clever. In essence,
+rsync is like <code>copy</code> (or <code>cp</code>), except that it compares the source and
+the destination and only sends the changes over. On my laptop, I can do</p>
+<div class="highlight"><pre><span></span><code>rsync -avz --delete -e ssh 
+    /some/folder/to/back/up 
+    myserver:/space/stuart/current/
+</code></pre></div>
+
+<p>and that will copy <code>/some/folder/to/back/up</code> over to the server.
+Importantly, if that folder is <em>already</em> in the backup space, in the
+<code>current</code> folder (because we backed it up yesterday) then it'll only
+copy the changes over. This is why we make sure that there's a folder
+called <code>current</code> with the contents of last night's backup! Exactly how
+we run this rsync command we'll come on to in a minute. Patience, Iago.  </p>
+<h2>Choosing what gets backed up</h2>
+<p>I don't want to back up everything. I don't have the space, and to be
+frank I have a lot of crap lying around on my machine. So I need a very
+easy way of tagging something for backups. This is a perfect use of
+emblems; I can "tag" a file or a folder in the file manager with a
+special "backup" emblem, and that should indicate to my backup process
+that that file or folder wants to be included in the backup. Ubuntu
+doesn't have a backup emblem included by default, but adding one is
+easy, and <a href="http://www.gnome.org/learn/users-guide/latest/gosnautilus-203.html">explained in the docs</a>. Pick yourself an image (I use <a href="http://www.kryogenix.org/days/wp-content/uploads/2006/10/emblem-backup.png">this little tape</a>) and add it as an emblem, and then go through your
+machine and add it to every file or folder that needs backing up. (This
+will, if applied to a folder, back up everything inside it. If you need
+it to back up only some of the stuff inside it then you'll have to not
+apply it to the folder. Yes, this is awkward, but I don't need to do
+that.) Applying emblems is also <a href="http://www.gnome.org/learn/users-guide/latest/gosnautilus-203.html">in the documentation</a>; a quick way if you're doing this a lot is to pop up the <strong>Edit &gt;
+Backgrounds and Emblems</strong> window and just repeatedly drag your new
+backup emblem to everything.  </p>
+<h2>SSH with no password</h2>
+<p>One final preparation step: in order that the backup can run without me
+being around, I need to be able to make an ssh connection from my laptop
+to the server without entering a password. I'm not going to describe how
+to do this because there are plenty of <a href="http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html">guides out there on the web</a>.  </p>
+<h2>Make it so</h2>
+<p>Now, finally, after lots of setup, it's time to actually make it all
+happen. To summarise, then, to do a backup, we need to:</p>
+<ol>
+<li>Run, on the server, the copy-last-night's-backup script</li>
+<li>
+<ol>
+<li>Get the list of all the files with the backup emblem</li>
+</ol>
+</li>
+<li>Use rsync to copy all those files into the new backup folder on the
+    server</li>
+</ol>
+<p>To get the list, we can use my <a href="http://www.kryogenix.org/days/2006/10/23/find-files-with-an-emblem">findemblem.py</a> script (and you thought
+I just wrote it for fun!). The final script, <code>dobackup.sh</code>, which
+actually does the work, just does the above steps, and looks like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Do backups to the rsync server</span>
+<span class="c1"># You must have already set up a passphraseless ssh key to the ssh server</span>
+<span class="c1"># so that &quot;ssh servername&quot; just logs you in.</span>
+
+<span class="nv">BK</span><span class="o">=</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$0</span><span class="k">)</span>
+<span class="nv">BKNAME</span><span class="o">=</span>stuart
+
+<span class="c1"># First, tell it to clock over the backup</span>
+ssh<span class="w"> </span>servername<span class="w"> </span>/space/begin-backup<span class="w"> </span><span class="nv">$BKNAME</span>
+
+<span class="c1"># Now, do the backup</span>
+python<span class="w"> </span><span class="nv">$BK</span>/findemblem.py<span class="w"> </span>backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>fn<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span>rsync<span class="w"> </span>-avzq<span class="w"> </span>--delete<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$fn</span><span class="s2">&quot;</span><span class="w"> </span>
+<span class="w">    </span>servername:/space/<span class="nv">$BKNAME</span>/current
+<span class="k">done</span>
+</code></pre></div></td></tr></table></div>
+
+<p>All that remains now is to schedule this script to run every night, by
+editing your tasklist with <code>crontab -e</code> and adding the line</p>
+<div class="highlight"><pre><span></span><code><span class="mf">40</span><span class="w">  </span><span class="mf">4</span><span class="w">  </span><span class="o">*</span><span class="w">   </span><span class="o">*</span><span class="w">   </span><span class="o">*</span><span class="w">     </span><span class="o">/</span><span class="n">full</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="kr">to</span><span class="o">/</span><span class="n">dobackup</span><span class="mf">.</span><span class="n">sh</span>
+</code></pre></div>
+
+<p>And, lo and behold, you have overnight backups. All done and dusted.
+Phew.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2006/10/23/aol-aim-in-javascript/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2006/10/26/linuxworld-uk/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2006/10/24/my-home-backup-system/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2006/10/24/my-home-backup-system/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Site-specific Firefox extensions and the Year of the DOM</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Site-specific Firefox extensions and the Year of the DOM">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2005/01/08/sitespecific/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/01/08/sitespecific/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2005/01/08/sitespecific/"><time 
+			class="dt-published" datetime="2005-01-08T11:00:00+00:00">Jan 08 2005</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/01/08/sitespecific/">Site-specific Firefox extensions and the Year of the DOM</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A while back, <a href="http://holovaty.com/blog/archive/2004/07/19/2210">Adrian Holovaty wrote a Firefox extension to apply JavaScript to one specific site to make it better</a>. <a href="http://simon.incutio.com/archive/2004/07/20/innovate">SImon Willison compared the technique to per-site user stylesheets</a> and we had an
+interesting discussion in the comments there about the idea of
+site-specific extensions and how to make it easier to do them. Now
+<a href="http://greasemonkey.mozdev.org/">GreaseMonkey allows you to add custom site-specific JavaScript to any site</a> (via <a href="http://javascript.weblogsinc.com/entry/1234000273026520/">Michael Moncur</a>) and have it remember and apply that
+script always. Magnificent. (*Update:* and it’s written by <a href="http://youngpup.net/recently">Aaron Boodman</a>. I wondered what he was up to.)  </p>
+<p>It still suffers with the problem that people experiencing a broken
+site won’t know that it’s fixable with JS: this isn’t really designed to
+be a tool that fixes the web so all broken sites work in Firefox. It’s
+more oriented at individual developers scratching their personal itches.
+I’d like to see some sort of central repository of
+<acronym title="the GreaseMonkey abbreviation for Site Specific Extensions"><span class="caps">SSE</span></acronym>s
+that people could get at. Actually, I’d like to see a central repository
+that <em>GreaseMonkey</em> could get at and install new SSEs automatically, but
+I said that in the comments on Simon’s article above and was reminded of
+the security problems inherent with that approach. Nonetheless, this is
+a cool tool, and I’m now running it.  </p>
+<p>This is also the ideal way for people to get into writing
+<span class="caps">DOM</span> scripts; instead of applying things to
+your site, try applying things to other people’s. It’s the
+<span class="caps">DOM</span> equivalent of the Edit
+<span class="caps">CSS</span> thing in the Web Developer toolbar. Lots
+of people are pushing 2005 as being the Year Of
+<span class="caps">DOM</span>: <a href="http://www.sitepoint.com/blog-post-view.php?id=222195">SImon</a> and <a href="http://adactio.com/journal/display.php/20050107224957.xml">Jeremy</a> and <a href="http://www.mezzoblue.com/archives/2005/01/06/dhtml_05/index.php">Dave Shea</a> have all expressed this opinion, and, unsurprisingly, I agree
+with them. (Jeremy even says, “Simon and Stuart, it looks like this is
+going to be your year“, and calls us pioneers. Blimey. Like, thanks,
+dude.) To that end, an update:  </p>
+<p><a href="http://www.kryogenix.org/days/2004/07/25/scripting">The book</a> is bloody nearly finished!<br>
+Actually, I thought it was finished, but then my tech editor (Simon
+Willison :-)) flagged something else we needed to update on keypress
+handling in chapter 3. But it’s really nearly done! Not that this will
+stop people mailing me to say “is the book done yet?“, and frankly I
+don’t want it to (I rather like the attention, a confession which will
+surely amaze you). But the book itself will explain how to get to grips
+with the <span class="caps">DOM</span>, and then we can <em>all</em> be
+pioneers. I can’t wait.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2005/01/06/connectionopenzaurus/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2005/01/09/servers/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2005/01/08/sitespecific/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/01/08/sitespecific/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

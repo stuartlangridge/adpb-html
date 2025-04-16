@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; So much for the Semantic Web</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; So much for the Semantic Web">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2005/01/30/semanticmuch/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/01/30/semanticmuch/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2005/01/30/semanticmuch/"><time 
+			class="dt-published" datetime="2005-01-30T11:00:00+00:00">Jan 30 2005</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/01/30/semanticmuch/">So much for the Semantic Web</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>As I have <a href="http://www.kryogenix.org/days/2005/01/22/applicationsTop">mentioned before, I’d like to use gravatars here</a> but can’t
+because I don’t capture commenter’s email addresses. This is because
+there is <strong>no</strong> reason for you to give me an email address, and frankly
+I wish more sites didn’t demand one; an awful lot of weblog sites seem
+to make completing the email address compulsory, which I do not
+understand at all. I mean, why? Anyway, I had this additional idea,
+which was: let’s use the Semantic Web! People <em>do</em> leave their
+<span class="caps">URL</span>. I can connect to that
+<span class="caps">URL</span>, find the <span class="caps">FOAF</span>
+autodiscovery tag, and thus find their <span class="caps">FOAF</span>
+file! So I tried that, over all the URLs on all the comments on
+kryogenix.org. Total number of <span class="caps">FOA</span>Fs found:
+18. Ha! One of which, interestingly, was a very complete indeed
+LiveJournal <span class="caps">FOAF</span> file; the LJ people seem to
+actually be getting into all these standards and stuff, probably without
+making a big deal of it in the LJ community itself, because they have
+such a massive collection of metadata. If the Semantic Web works then
+it’ll work on LJ first, I tell you. Anyway, my original plan was to grab
+images out of the <span class="caps">FOAF</span> feed: there is a
+foaf:image tag and a foaf:depiction tag. Total number of
+<span class="caps">FOA</span>Fs in my 18 that had these: 1 (one). Bah. I
+did also think that I could grab the sha1sum of the email address, which
+is in everyone’s <span class="caps">FOAF</span>, and then convince the
+gravatars guy to not only serve up a gravatar when you have the md5 hash
+of an email address but also when you have the sha hash of an email
+address. Response to my email: 0 (zero). I was quite disappointed by
+that. So, basically: so much for the Semantic Web in practice, at least
+so far. I shall wait a while before trying this sort of thing again. For
+those of you thinking, “I have a linked <span class="caps">URL</span>,
+and a autodiscoverable <span class="caps">FOAF</span> file, and an image
+in that <span class="caps">FOAF</span> file; am I the one?” then the
+answer is no, unless you are <a href="http://solitude.vkps.co.uk/">Gary Fleming</a>. You may be thinking: huh?
+Why was mine not included? The answer is: because tidy wouldn’t tidy
+your website into compliant <span class="caps">XHTML</span> properly, or
+the Python minidom parser wouldn’t parse that
+<span class="caps">XHTML</span> properly. Because I couldn’t be arsed to
+write a Python <span class="caps">HTML</span> parser, because I was
+doing this with an (increasingly complex) one-liner command, I grabbed
+the <span class="caps">HTML</span> at the <span class="caps">URL</span>
+you specified with a comment, threw it through <strong>tidy</strong>, threw that
+through</p>
+<div class="highlight"><pre><span></span><code><span class="n">python</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="s2">&quot;from xml.dom import minidom;import sys;d=minidom.parseString(sys.stdin.read());print [n.getAttribute(&#39;href&#39;) for n in d.getElementsByTagName(&#39;link&#39;) if n.getAttribute(&#39;title&#39;) == &#39;FOAF&#39;][0]&quot;</span>
+</code></pre></div>
+
+<p>and so on. Not sure what the problem was, but by eyeballing it there
+weren’t that many it failed for. (Failed for my own site, ironically
+enough. Aquarion’s, too.) This is my fault for being lazy, rather than
+your fault for site coding or tidy’s fault or minidom’s fault, but it
+did give me an indication that this images-from-FOAF trick is <em>not</em>
+worth coding if it’s going to provide one image every three years.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2005/01/30/staring/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2005/01/31/lugradioeight/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2005/01/30/semanticmuch/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/01/30/semanticmuch/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

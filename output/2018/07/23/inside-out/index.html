@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Inside out</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Inside out">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2018/07/23/inside-out/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2018/07/23/inside-out/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2018/07/23/inside-out/"><time 
+			class="dt-published" datetime="2018-07-23T18:26:00+01:00">Jul 23 2018</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2018/07/23/inside-out/">Inside out</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Recently the question of whether browsers should have a View Source function has reared its head again. <a href="https://css-tricks.com/view-source/">Chris Coyier</a> says no, as do <a href="https://twitter.com/tomdale/status/965681976199077889">Tom Dale</a> and <a href="https://christianheilmann.com/2018/07/09/different-views-on-view-source/">Christian Heilmann</a>. <a href="https://snook.ca/archives/opinion/view-source">Jonathan Snook</a> says yes they should.</p>
+<p>The argument against essentially boils down to this: the browser devtools are better. This is undeniably, absolutely the truth. You can not just see the original HTML source of a page but manipulate it, drill down into it, see it beside the page itself and see which parts correspond. Everyone who develops for the web spends most of their day in the devtools, and rightly so. They are enormously powerful. View Source... isn't. It's a throwback, a historical legacy back from the days when you couldn't introspect a page, couldn't fiddle with things at runtime. If something was wrong with the page you were building, you went back to your editor and tentatively changed a thing, and then went back again to the browser and hit Refresh to see if you'd fixed it. Debugging blind, like finding your way through a cave with no lights on. You were quite likely to be eaten by a grue. Things are better now.</p>
+<p>There are minor reasons why View Source is a good idea. One of them is that it's an easy way to see the source you were actually given, <em>before</em> the in-page JavaScript started screwing around with it. I don't use this a lot, but I do use it. It's one of those small but handy features; a <a href="http://littlebigdetails.com/">little big detail</a>.</p>
+<p>Another is: there are twenty years of simple documentation saying "you can see what this web page does just by hitting View Source".</p>
+<p>Yet another is that the devtools are pretty confusing if all you want to do is look at the source of a page. This is (I think) similar to Jon Snook's arguments, linked above: "The sites some build may be simple static sites, befitting of a simple View Source ... Just because you don’t need those tools doesn’t mean that somebody doesn’t need those tools."</p>
+<p>The major reason to keep View Source around is... well, time for a little story.</p>
+<p>Google have a search app, on Android phones. The Google search bar at the top of the Android home screen (the one you can't get rid of evn if you want to, without extreme measures) shows query results in a thing which is almost but not quite a web browser. The results <em>look</em> like the normal Google search results you're used to from searching in the browser, but it's <em>actually</em> a separate app. And that's fine; you can see the results, and tap them, and a result opens in a browser, and everything's good. I found this pretty useful, until the first time I did an image search and then long-pressed one of the images to open it on its own. And... I didn't get the popup menu. Because this thing isn't <em>really</em> a browser. It's a browser but with all the bits that let you look under the surface turned off, because you don't need them.</p>
+<p>I do not like that attitude. I like that the web is made up of separate bits that you can see if you want to. You can understand how it works by piecing together the parts. It's not meant to be a sealed unit, an appliance which does what the owner wants it to and restricts everything else. That's what apps do. The web's better than that. Like stories our parents told about how they could fix their cars when they were younger but now you can't without training and magic screwdrivers and the secret config software. It's a switch between being able to see the bits of the jigsaw if you want to, and being able to see the bits of the jigsaw only if you're <a href="https://kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/">allowed</a> to.</p>
+<p>In Neal Stephenson's <a href="https://en.wikipedia.org/wiki/Anathem">Anathem</a>, there's a discussion between Raz, an <em>avout</em> (basically a monk cloistered away in a monastery, but a monk of science rather than religion), Cord (his sister, an experienced engineer but a normal person, not an avout), and Yul (her boyfriend, and something of a handyman but without formal training). Raz tries to explain that a stove which is a sealed unit appliance and which works perfectly would be better than an unreliable stove deliberately kept simple so people can understand it; Cord and Yul try to explain that a stove which they can understand is better, even if unreliable, because a mysterious black box which does what you want today might mysteriously <em>stop</em> doing what you want tomorrow and you'll have no idea why.</p>
+<blockquote>
+<p>'I guess because I live in a place with almost zero praxis [technology], it never occurs to me to think about such things,' I [Raz] said. 'But at times like this, the absurdity hits me between the eyes. There's no reason to put up with junk like this. A stove with dangerous, unreliable chemical fuel. With orifices that clog. In four thousand years we could have made a better stove.'</p>
+<p>'Would I be able to take that stove apart and fix it?'</p>
+<p>'You wouldn't have to, because it would never break.'</p>
+<p>'But I want to know if I could understand such a stove.'</p>
+<p>'All right, I take your point. You're really asking if the average person could understand the workings of such a thing--...'</p>
+<p>'I don't know what an average person is. But look at Yul here. He built his stove himself. Didn't you, Yul? And it worked,' Cord said.</p>
+<p>'Took me two years to make it run right,' Yul admitted.</p>
+<p>'And none of that would have been possible with some kind of technology that only an avout can understand,' Cord concluded.</p>
+<p>'Okay, okay,' I said, and let it drop there. Letting the argument play out would have been a waste of breath. We, the [avout], had the power to change the physical world through praxis. Up to a point, ordinary people liked the changes we made. But the more clever the praxis became, the less people understood it and the more dependent they became on us---and they didn't like that at all.</p>
+</blockquote>
+<p><small><em>Extract edited a little for length, but without removing the sense of it</em></small></p>
+
+<p>Nobody actually wins this argument. These are two genuinely differing points of view, I think; there's no obvious knockdown answer, no obviously correct approach to take. To be an avout or to be a Muggle is kinda a choice.</p>
+<p>There will be some people reading this saying: this is a very handwavy rarefied argument. <em>Removing 'View Source' is another small move in the direction of taking away the web's democratic nature? It's one more example of the boot of the Them in crushing out our ability to know what's going on?</em> Get over yourself, Langridge. Stop making philosophical arguments and let's be practical and realistic.</p>
+<p>This is a fair comment. My response to it would, then, be: what harm is keeping the menu item around actually doing? It's one menu item. It's taking up very little space in the UI, it's not anywhere particularly obvious, and even if you don't think my arguments above or Jon Snook's arguments are winning ones, we might be a little bit right, and so why not just keep the menu item? It's no extra work to code it; the code already exists.</p>
+<p>Ah, you may say, but we shouldn't have menu items that we don't need. If it can be cut out, cut it out. Don't have more options, more preferences than you need. And this is also correct; it's a good principle of UX design. I've been quoting <a href="https://ometer.com/preferences.html">Havoc Pennington's essay on preferences</a> for 16 years now and I'm not likely to stop. It is completely true that extra options and extra preferences have a cost.</p>
+<p>It's not that that's a bad argument, because it isn't. It's that that argument is <em>just as theoretical and rarefied and philosophical</em> as is my argument that taking away another tool of understanding is a bad precedent.</p>
+<p>So, is it best to be an avout or a Muggle? Either are, I think, fine. But I don't like it when the avout try to take away Muggle tools, and I don't like it when the Muggles try to limit how creative the avout can be. If someone, not a web developer, complained that the devtools were incredibly complicated, I'd mostly be OK with the argument that those tools aren't for that person to look at, and the complexity is aimed at the actual users of the devtools. It seems right to do them the same courtesy. So perhaps View Source is a Muggle tool and we avout shouldn't use it, but that doesn't mean we should take it away.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2018/07/03/article-13-mep/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/850437555942240256/eqpVysRi.jpg">
+			Rodney responded at
+		<a href="https://twitter.com/dohbee/status/1021467589233598466">twitter.com</a>
+		<span class="wm-summary">			Well, it is possible to take away some of the UI, or change it a bit, without taking away the feature. But you also make a bit of an extraneous point&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1666904408/codepo8.png">
+			Chris Heilmann responded at
+		<a href="https://twitter.com/codepo8/status/1021469253449342976">twitter.com</a>
+		<span class="wm-summary">			Another view on View Source, after @snookca and @chriscoyier and @codepo8 have already weighed in. I'm for it. kryogenix.org/days/2018/07/2…
+</span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			CobasTest responded at
+		<a href="https://twitter.com/CobasTest/status/1021469255236243457">twitter.com</a>
+		<span class="wm-summary">			Another view on View Source, after @snookca and @chriscoyier and @codepo8 have already weighed in. I'm for it. kryogenix.org/days/2018/07/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/883049860332609537/IsUISvAq.jpg">
+			Chris Coyier responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-793830">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			CobasTest responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-961874393591959552">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/717669500917682176/_huneE84.jpg">
+			Snook responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-12591">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/1021478836733652997">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Inside out kryogenix.org/days/2018/07/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000016656955/94234ebc9dbff797ff48373cafb9abf8.jpeg">
+			Peter Oliver responded at
+		<a href="https://twitter.com/mavit/status/1021496532464545792">twitter.com</a>
+		<span class="wm-summary">			Additionally, one can view source on mobile (by manipulating the URL), where dev tools would be impractical.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1021496739390517249">twitter.com</a>
+		<span class="wm-summary">			Yes. I had that in my notes but forgot to add it to the piece. It's again only a small thing, but occasionally useful.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/945635164117446656/8ZPrUHz4.jpg">
+			Christof responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-13468802">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/1021533420906864641">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Inside out by @sil buff.ly/2OdpsAn #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/824340818894999555/qYkd7S7i.jpg">
+			((( Brian Teeman ))) responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-18970977">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/885237782117052417/1ic5y8M0.jpg">
+			Jude Gibbons responded at
+		<a href="https://twitter.com/judeGibbons/status/1021643520048812032">twitter.com</a>
+		<span class="wm-summary">			Funnily enough, I used 'view source' yesterday - I wanted to do a quick check for instances of a string in a window bigger than the elements tab, and&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/807277326539046912/EZR6qL-S.jpg">
+			Bruce Lawson responded at
+		<a href="https://twitter.com/brucel/status/1021649100167684097">twitter.com</a>
+		<span class="wm-summary">			Another view on View Source, after @snookca and @chriscoyier and @codepo8 have already weighed in. I'm for it. kryogenix.org/days/2018/07/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/656715918265880576/77mUdCgl.jpg">
+			Paulo Elias responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-11488202">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2495299378/1go6rd3t5xspai74hayo.jpeg">
+			Andreas Marschke responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-751692439">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/479652329117859840/RuohgfqF.png">
+			Brian LePore responded at
+		<a href="https://twitter.com/POWRSURG/status/1021714899368648704">twitter.com</a>
+		<span class="wm-summary">			I have a much simpler desire for having it: I'm a php Dev that uses var_dump and exit to test. Without it I need to double click to edit the HTML in d&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/986094141435097088/34uzjfY-.jpg">
+			Erik Vorhes responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-14059222">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1517473257/rollrights5.jpg">
+			Rob Allen responded at
+		<a href="https://twitter.com/RobBluedreamer/status/1021779611590508544">twitter.com</a>
+		<span class="wm-summary">			I use view source a lot, it's often quicker than launching dev tools. Personally I think view source should even be improved, e.g. by displaying HTML&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/633236200845930496/Re5TPRcQ.jpg">
+			Ruud Steltenpool responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-76693160">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2856184190/60c0bf5132003f624eea7d3c6a703cf2.png">
+			Asbjørn 🐻 Ulsberg responded at
+		<a href="https://twitter.com/asbjornu/status/1021830345560399873">twitter.com</a>
+		<span class="wm-summary">			Another view on View Source, after @snookca and @chriscoyier and @codepo8 have already weighed in. I'm for it. kryogenix.org/days/2018/07/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2856184190/60c0bf5132003f624eea7d3c6a703cf2.png">
+			Asbjørn 🐻 Ulsberg responded at
+		<a href="https://twitter.com/sil/status/1021465098118942720#favorited-by-13665432">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://identi.ca/uploads/alpacaherder/2018/6/4/fswPbg_thumb.jpg">
+			Stephen Michael Kellat responded at
+		<a href="https://identi.ca/alpacaherder/note/2BUlOH2-Si6RFnt6oypPmQ">Looking At...</a>
+(identi.ca)		<span class="wm-summary">			Stuart Langridge has a nice post up discussing the design of web browsers. Should you have the option to "View Source" or not? In my job at work, I'm&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/805908354446917632/9rAIDTCZ.jpg">
+			Dunstan Orchard responded at
+		<a href="https://twitter.com/dunstan/status/1176258487602442240">twitter.com</a>
+		<span class="wm-summary">			I like it when a blog post not only talks about something relevant to you, but introduces you to another essay that you will bookmark and share foreve&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1316781583790153729/GcIPnfXe.jpg">
+			James Vickery responded at
+		<a href="https://twitter.com/jmsve/status/1581040265573199872">twitter.com</a>
+		<span class="wm-summary">			ok ty
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/309/731/761/003/534/original/f0ced9354960bc1f.jpg">
+			Brian LeRoux 💚 responded at
+		<a href="https://indieweb.social/@brianleroux/109871424434930006">indieweb.social</a>
+		<span class="wm-summary">			@sil @jaredwhite @davatron5000 there was a push for that? I guess they will get their wish w wasm but geez some of us like to read the code we wrote&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/309/731/761/003/534/original/f0ced9354960bc1f.jpg">
+			Brian LeRoux 💚 responded at
+		<a href="https://mastodon.social/@sil/109871382272238481#favorited-by-109309731761003534">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/262/348/original/8ea2a29ee511d86d.jpeg">
+			Adrian Roselli responded at
+		<a href="https://toot.cafe/@aardrian/109950421109224965">toot.cafe</a>
+		<span class="wm-summary">			@sil Ooh, I remember this post!Totally on board with it.Also handy when you need to see the raw HTML before the browser cleaned it up in the DOM (whic&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/109950424358925193">mastodon.social</a>
+		<span class="wm-summary">			@aardrian yeah, I use the raw HTML quite a lot!
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/262/348/original/8ea2a29ee511d86d.jpeg">
+			Adrian Roselli responded at
+		<a href="https://toot.cafe/@aardrian/109950427483123068">toot.cafe</a>
+		<span class="wm-summary">			@sil Indeed, the best flavor. Still bloody.
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/262/348/original/8ea2a29ee511d86d.jpeg">
+			Adrian Roselli responded at
+		<a href="https://mastodon.social/@sil/109950382735760863#reblogged-by-262348">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/259/272/991/745/424/original/346d68b48b989241.jpg">
+			katherine responded at
+		<a href="https://mastodon.social/@sil/110911032320261091#favorited-by-109259272991745424">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/001/196/683/original/d852430d75d40917.png">
+			Spacewizard! (Ed H) responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#favorited-by-1196683">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/531/042/648/781/713/original/3fd830e45bfe798f.jpg">
+			nshiell responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#favorited-by-109531042648781713">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/298/900/818/512/945/original/05235b60ab89d6be.png">
+			Nickoli responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#favorited-by-109298900818512945">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/194/998/original/d29181b871b001b0.png">
+			John Colagioia responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#favorited-by-194998">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/264/706/888/759/212/original/279afb0a22c19e6a.jpg">
+			éric 🚲 🇪🇺 :emacs: responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#favorited-by-109264706888759212">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/355/190/751/690/360/original/9ceca25db7e28d26.png">
+			Adrianna Tan responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#favorited-by-109355190751690360">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/110/034/911/230/574/568/original/60622e892c70b898.jpg">
+			Paul McLanahan :firefox: responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#reblogged-by-110034911230574568">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/296/229/028/405/492/original/53aa4833b8999a80.png">
+			⊥ᵒᵚ Cᵸᵎᶺᵋᶫ∸ᵒᵘ ☑️ responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#reblogged-by-109296229028405492">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/310/002/227/050/842/original/fb39309e6f9113d2.jpg">
+			Dan Jacob responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#reblogged-by-109310002227050842">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/302/950/565/146/428/original/325dd160601d1067.png">
+			Space Hobo Actual responded at
+		<a href="https://mastodon.social/@sil/111113582320236168#reblogged-by-109302950565146428">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2018/07/23/inside-out/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2018/07/23/inside-out/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; JavaScript meetup</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; JavaScript meetup">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/"><time 
+			class="dt-published" datetime="2005-06-12T11:00:00+01:00">Jun 12 2005</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/">JavaScript meetup</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Yesterday, as previously mentioned, <a href="http://www.kryogenix.org/days/2005/06/05/javascriptLove">lots of people met up to talk about
+JavaScript</a>. I got to meet <a href="http://www.quirksmode.org/">ppk</a> and <a href="http://dean.edwards.name/">Dean Edwards</a> for the first
+time, which was great. And we talked about things. The original idea was
+to talk about some <a href="http://www.quirksmode.org/blog/archives/2005/06/11_june_london.html#link2">fairly heavy technical stuff</a> like what to do
+about the onload handler, but after <a href="http://atmedia2005.co.uk/programme.php#behaviour">Jeremy’s presentation at @media
+2005</a> it became clear that we need less effort going into solving
+minor technical minutiae and lots more effort going into PR for
+JavaScript.</p>
+<p>You see, developers out there seem to fall into the following
+categories:</p>
+<ol>
+<li>People who already know about the power of the
+    <span class="caps">DOM</span> and unobtrusive scripting. A good
+    proportion of whom were in the pub yesterday talking about this.</li>
+<li>People who have bought into web standards, are using tableless
+    design with <span class="caps">CSS</span>, don’t really know about
+    JavaScript, but <em>want</em> to know more. This is a large proportion, we
+    think, of current <span class="caps">CSS</span> hackers.</li>
+<li>People who used JavaScript a while ago and have since dismissed it
+    because it was a pointless language that let you do image rollovers
+    and make websites that <em>depended</em> on it.</li>
+<li>People who haven’t bought into the web standards deal at all.</li>
+</ol>
+<p>Clearly we can’t target everyone at once, and the consensus was that the
+people to target are category 2, experienced
+<span class="caps">CSS</span> hackers. The advantage here is that they
+are <em>already</em> using clean markup and modern techniques; since
+<span class="caps">DOM</span> scripting pretty much requires this
+approach, we don’t have to sell these people on the benefits of web
+standards, because they’re already doing it.</p>
+<p>The major flaw, it seems, is that if you’re not a programmer then
+JavaScript is a bit difficult to get to grips with, and
+<span class="caps">CSS</span> designers are, in the main, not
+programmers. For people like me, it’s easy to gloss over the basics:
+what a variable is, what an array is, what an object is, what a function
+is. You see, all the power and elegance in JavaScript, the thing that
+makes it really great for putting together <span class="caps">DOM</span>
+applications, is that objects and functions and arrays are <em>all the same
+thing</em>. When you realise this then a whole vista of power opens before
+you; if you get this and how the <span class="caps">DOM</span> works
+then everything else that’s doable, all the cool scripts and techniques,
+becomes obvious. Pretty much, anyway.</p>
+<p>So, what we need is things that explain how the basics work. The issue
+with that, though, which Dean Edwards pointed out, is that you’re not
+trying to teach people JavaScript, you’re trying to teach them
+programming. And that’s not all that easy. If you write a guide to what
+variables and functions and objects and arrays are then <em>no-one will
+read it</em> because that stuff is very, very, very boring. The approach we
+kicked around was to carry on writing demonstrations of cool techniques,
+but, when doing that, throw in a bit of a “basics” explanation on one
+point. So, next time you write a reusable library to make tooltips
+appear or something, in the explanation don’t just say “and we build a
+list of all the tooltips”: explain what a list is and how it works.
+Don’t try and explain <em>everything</em> from first principles, just one
+thing. And over time, people can pick up cool reusable techniques, which
+everyone likes, and learn about one important building block <em>at the
+same time</em>. Look for articles along these lines from various people.</p>
+<p>The <a href="http://webstandards.org/">WaSP</a> are also going to hopefully get on board; there were four
+WaSPs at the meeting, which helps (<a href="http://www.setmajer.com/">Chris Kaminski</a> being one I hadn’t
+met before), and they have a lot of mindshare in the community, which
+should help.</p>
+<p>The brave new future we’ve talked about is coming. It’s time to show
+everyone else how they can be part of it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2005/06/10/utopiareview/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2005/06/14/installing372457021727/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2005/06/12/javascriptmeetup/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/06/12/javascriptmeetup/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

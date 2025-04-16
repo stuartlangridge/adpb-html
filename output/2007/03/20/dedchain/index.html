@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; DED|Chain</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; DED|Chain">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2007/03/20/dedchain/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/03/20/dedchain/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2007/03/20/dedchain/"><time 
+			class="dt-published" datetime="2007-03-20T13:58:00+00:00">Mar 20 2007</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/03/20/dedchain/">DED|Chain</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Dustin Diaz <a href="http://www.dustindiaz.com/introducing-ded-chain/">releases</a> <a href="http://dedchain.dustindiaz.com/">DED|Chain</a>, a JQuery-a-like library based on
+the Yahoo UI library. Apart from winning this week's "Most Ridiculous
+Name For A Software Project" award (previous winners include Ning), it
+looks pretty cool. Nice work, Dustin. There is one concern, though. When
+I say it's JQuery-a-like, I'm not kidding; it looks a lot, lot like
+JQuery. This isn't necessarily a bad thing; I use JQuery all the time
+because I think it's brilliant. However, it's pretty clear to me when
+I'm looking at arbitrary JS code whether it's JQuery code or not. Now,
+with D|C in the world, I'll have to be pretty careful to know which bits
+are DED|Chain bits and which are JQuery. In fact, I'm inclined to not
+use D|C too much purely because I don't want to pollute the bit of my
+brain which remembers JQuery things with parts of D|C. Of course, it's
+difficult to know precisely what D|C supports because the link to the
+docs (http://dedchain.dustindiaz.com/api/docs/, as mentioned in
+readme.txt) is 404, but I'm assuming that that's just because we're so
+early into release. There are now sufficient libraries out there that
+one useful part of a new library's documentation would be to show
+"translations" between one of the "headline" libraries (YUI, Prototype,
+JQuery, Dojo...what else should be in this list?) and your new library;
+it'll help people who are already using libraries to understand why they
+might want to switch to yours, and it won't hurt people who are
+approaching your library as their first. So, a few examples which say
+"to do this effect, you'd do <em>this</em> in YUI, and you'd do it <em>this</em> way
+in MyNewLib" would not go amiss for new JS library developers; what
+you're trying to do with that is convince someone like, oh, say, me to
+move from their current library of choice to your new one. The advantage
+there is that people will go out and evangelise for you. Of course,
+getting someone who doesn't use a library at all to be convinced by
+yours is equally a coup; you can't dodge the need for proper
+documentation by just saying "read Prototype's docs and then convert
+your code from Prototype to MyNewLib" :) I was faintly surprised that
+D|C is an actual new library rather than just a "port" of the JQuery API
+to YUI (meaning that I could switch my JQuery apps to D|C without
+changing any code, and get the (debatable) benefit of the "reliability
+of Yahoo! UI"), but I guess that YUI's asserted reliability isn't enough
+on its own to motivate a port, and that'd stop Dustin doing anything
+innovative. Library proliferation is, in theory at least, a bad thing,
+but I don't think so. We're so early in doing structured JS development
+in a web-wide, collaborative way (not just inside one company, say) that
+it's worth exploring lots of different approaches to library development
+and JS development as a whole, and see in a year or so what's emerged as
+the leading techniques. Right, now I must go away and have a play with
+DED|Chain. Stupid name. I can't get out of my head the image of a
+chained and dead pirate, swinging from the gibbet in eternal torment. An
+idea for a logo there perhaps, Dustin.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2007/03/20/itheora-and-java-support-detection/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2007/03/20/vodafone-are-liars-film-at-11/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2007/03/20/dedchain/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2007/03/20/dedchain/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

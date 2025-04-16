@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Telegram notifications for Jenkins builds</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Telegram notifications for Jenkins builds">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/"><time 
+			class="dt-published" datetime="2017-10-27T10:53:00+01:00">Oct 27 2017</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/">Telegram notifications for Jenkins builds</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>It's nice to get updates from your CI system when things build. It's even nicer to do it without having to run any servers to do it. Here's how I send build notifications to a Telegram bot from Jenkins.</p>
+<p>Basically, Jenkins knows how to hit a webhook for every stage of the build, and <a href="https://integram.org">Integram</a> run a Telegram bot which knows how to respond to webhooks. All you need is a little bit of glue code to convert stuff Jenkins sends into stuff Integram receives, and you can put that glue code on any one of fifteen serverless systems. I used <a href="https://webtask.io">webtask.io</a>. </p>
+<p><img src="/images/jenkins-webtask.png" alt="The Webtask.io editor"></p>
+<p>Deploy the following code there, being sure to update the Integram URL in it to be yours:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">bodyParser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;body-parser&#39;</span><span class="p">)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;request&#39;</span><span class="p">)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">Webtask</span><span class="p">;</span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">Webtask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webtask-tools&#39;</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">build</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">build</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">build</span><span class="p">.</span><span class="nx">status</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">build</span><span class="p">.</span><span class="nx">phase</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;STARTED&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;STARTED&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">build</span><span class="p">.</span><span class="nx">phase</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;FINALIZED&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// don&#39;t care about FINALIZED because we get COMPLETED and that&#39;s enough</span>
+<span class="w">            </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Received correct-looking JSON to webhook&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jenkins\nBuild of _&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span>
+<span class="w">            </span><span class="s2">&quot;_ status *&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;* &quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">            </span><span class="s2">&quot;at http://YOUR-JENKINS-URL/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">build</span><span class="p">.</span><span class="nx">url</span><span class="p">};</span>
+<span class="w">        </span><span class="nx">request</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">uri</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://integram.org/YOUR-INTEGRAM-URL&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">json</span><span class="o">:</span><span class="w"> </span><span class="nx">output</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Messaging Telegram bot failed&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;failed&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Messaging Telegram bot succeeded&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Input to webhook was invalid&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;Input was invalid: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">Webtask</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Webtask</span><span class="p">.</span><span class="nx">fromExpress</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">4569</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Listening on port 4569&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Then, put the webtask URL into Jenkins as a webhook:</p>
+<p><img src="/images/jenkins-notifications.png" alt="Add a notifications endpoint in the configure section of your build job"></p>
+<p>And invite the Integram bot to your Telegram channel (instructions at <a href="https://integram.org/">integram.org</a>).</p>
+<p>And you're done. Every time Jenkins does anything, it sends a web request to your webtask, the webtask sends a message to the Integram bot, the Integram bot repeats it to you, and you get a notification. No extra servers required. I love the internet.</p>
+<p><img src="/images/jenkins-telegram-notifications.png" alt="The Telegram bot speaks the message it's given, and so Telegram notifies you"></p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2017/10/15/charles-paget-wade-and-the-underthing/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/3739610856/fe9ea4269e0b0e057605a0ea14cccab7.png">
+			Stephen Parkes responded at
+		<a href="https://twitter.com/steve_parkes/status/923856034258616320">twitter.com</a>
+		<span class="wm-summary">			It's easy (and serverless) to have your CI system send notifications to Telegram (or Slack etc). Here's how I did it kryogenix.org/days/2017/10/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/473504574821515266/1ndeEcAq.jpeg">
+			Michael Scharnagl responded at
+		<a href="https://twitter.com/sil/status/923855342886424576#favorited-by-20070025">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/923867547279040512">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Telegram notifications for Jenkins builds kryogenix.org/days/2017/10/2…
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-weQLu1Im8es/AAAAAAAAAAI/AAAAAAAAEiA/AS_CA3pxkcE/photo.jpg?sz=50">
+			Chris Guiver responded at
+		<a href="https://plus.google.com/+ChrisGuiver/posts/Mr1X6New7TU">plus.google.com</a>
+		<span class="wm-summary">			Telegram notifications for Jenkins buildssource: planet ubuntuhttp://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/923905191694479361">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Telegram notifications for Jenkins builds by @sil buff.ly/2lkN4c8 #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/835358732452126721/2T3zgaNH.jpg">
+			007 responded at
+		<a href="https://twitter.com/gblock/status/924065273023483904">twitter.com</a>
+		<span class="wm-summary">			It's easy (and serverless) to have your CI system send notifications to Telegram (or Slack etc). Here's how I did it kryogenix.org/days/2017/10/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/781540089092534272/N6lNzyxC.jpg">
+			Geoff Goodman responded at
+		<a href="https://twitter.com/filearts/status/924069123742683136">twitter.com</a>
+		<span class="wm-summary">			It's easy (and serverless) to have your CI system send notifications to Telegram (or Slack etc). Here's how I did it kryogenix.org/days/2017/10/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/832031365071773696/kDchWPLv.jpg">
+			Gleb Bahmutov responded at
+		<a href="https://twitter.com/sil/status/923855342886424576#favorited-by-30477646">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/572477998772948994/rgokhdMD.jpeg">
+			AnonOntario responded at
+		<a href="https://twitter.com/RJennromao/status/924133891719548928">twitter.com</a>
+		<span class="wm-summary">			It's easy (and serverless) to have your CI system send notifications to Telegram (or Slack etc). Here's how I did it kryogenix.org/days/2017/10/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/572477998772948994/rgokhdMD.jpeg">
+			AnonOntario responded at
+		<a href="https://twitter.com/sil/status/923855342886424576#favorited-by-2401156465">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/316126715/ahmedmozaly.jpeg">
+			Ahmed Mozaly responded at
+		<a href="https://twitter.com/AhmedMozaly/status/924178199671697408">twitter.com</a>
+		<span class="wm-summary">			It's easy (and serverless) to have your CI system send notifications to Telegram (or Slack etc). Here's how I did it kryogenix.org/days/2017/10/2…
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/337/798/517/661/700/original/fc28df0b4fd36bc2.jpg">
+			rem responded at
+		<a href="https://front-end.social/@rem/110910730061245511">front-end.social</a>
+		<span class="wm-summary">			@sil oh, the node apis are exceptionally simple - I go the bot running in 20 minutes or so. Took me longer to work out the channel_id so that I could&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/110910732303264715">mastodon.social</a>
+		<span class="wm-summary">			@rem aha, neat! next time I need one maybe I'll do the work myself :)
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/337/798/517/661/700/original/fc28df0b4fd36bc2.jpg">
+			rem responded at
+		<a href="https://mastodon.social/@sil/110910725923349829#favorited-by-109337798517661700">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2017/10/27/telegram-notifications-for-jenkins-builds/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

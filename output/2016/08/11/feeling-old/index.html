@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Feeling old, depending on how old you are</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Feeling old, depending on how old you are">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2016/08/11/feeling-old/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2016/08/11/feeling-old/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2016/08/11/feeling-old/"><time 
+			class="dt-published" datetime="2016-08-11T14:14:00+01:00">Aug 11 2016</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2016/08/11/feeling-old/">Feeling old, depending on how old you are</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I recently discovered <a href="http://mewo2.com/">Martin O'Leary</a>'s <a href="https://twitter.com/feelingoldbot">Feeling Old twitter bot</a>,<sup id="sf-feeling-old-1-back"><a href="#sf-feeling-old-1" class="simple-footnote" title="because I was reading his excellent work on how to create accurate looking fantasy maps">1</a></sup> which has a big list of "things that have happened" and then constructs comparisons such as "Y2K was as close to the release of Return of the Jedi as to now", to make you do that weird "wow, I am old!" double-take. As Martin says, it occasionally throws out a gem. But, looking through the list, I think that they're probably all gems, but whether they hit home for you depends on how old you are.</p>
+<p>Basically, the form of the sentence is: <code>thing</code> is closer to <code>old thing</code> than to today. Ideally, you want <code>thing</code> to be something that <em>you</em> think is recent, and <code>old thing</code> to be something that you think is ancient, and therefore you'll be surprised that <code>thing</code> really isn't actually recent and that's because you're a decrepit old codger.</p>
+<p>My theory is this: <code>old thing</code> ought to be before you were born. By definition, anything that happens before you were born feels like a long time ago to you. And the gap between <code>thing</code> and <code>old thing</code> is the same as the gap between <code>thing</code> and <code>now</code> (because that's what constructs the sentences). So <code>thing</code> has to happen in the first half of your life. Stuff that happens while you're a <em>young</em> child also feels like a long time ago -- you were a kid when it happened! -- so we want something that happened once you started to feel like <em>you</em> in your head. Say, around 12 or so years of age. Thus, we take a big list of pop culture things, find an event which happened between the ages of 12 and half your current age, find a corresponding old event, display them to you, and have you be surprised and displeased. It's a living.</p>
+<p>Give it a try.</p>
+<div style="border: 4px solid rgba(50,50,50,0.3); padding: 1em">
+<h2>I was born</h2>
+<div id="oldness-buttons">
+<button data-year="1962">before 1965</button>
+<button data-year="1967">in the late 60s</button>
+<button data-year="1972">in the early 70s</button>
+<button data-year="1977">in the late 70s</button>
+<button data-year="1982">in the early 80s</button>
+<button data-year="1987">in the late 80s</button>
+<button data-year="1992">in the early 90s</button>
+<button data-year="1997">in the late 90s</button>
+<button data-year="2003">in the 21st century</button>
+</div>
+<div><small><label><input type="checkbox" id="oldness_years"> Blunt the surprise by showing when things happened</label></small></div>
+<p id="oldness" style="display: none; font-size: 130%"><span id="oldness-thing"></span> happened closer to <span id="oldness-old-thing"></span> than to today.</p>
+</div>
+<script src="https://kryogenix.org/random/oldness.js"></script><ol class="simple-footnotes"><li id="sf-feeling-old-1">because I was reading his <em>excellent</em> work on <a href="http://mewo2.com/notes/terrain/">how to create accurate looking fantasy maps</a> <a href="#sf-feeling-old-1-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2016/07/05/making-a-better-ubuntu-app-scope-not-very-successfully/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2016/10/16/my-nominations-for-the-silicon-canal-tech-awards-2016/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/500670710658785280/eK4AbNpr.jpeg">
+			John Chandler responded at
+		<a href="https://twitter.com/john_chandler/status/763731655261560832">twitter.com</a>
+		<span class="wm-summary">			RT @sil: Generating comparisons to make you feel old: kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/500311942498484224/FIGNAdgi.png">
+			Roberto Alsina responded at
+		<a href="https://twitter.com/ralsina/status/763731689583640576">twitter.com</a>
+		<span class="wm-summary">			@sil "The first Simpsons episode happened closer to Fidel Castro coming to power than to today." FUUUUUUUUCK
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/763731773893271552">twitter.com</a>
+		<span class="wm-summary">			@ralsina see? :-)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/500311942498484224/FIGNAdgi.png">
+			Roberto Alsina responded at
+		<a href="https://twitter.com/ralsina/status/763731939027197952">twitter.com</a>
+		<span class="wm-summary">			@sil is that bot more/less evil than one that kills puppies? I don't know.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/500311942498484224/FIGNAdgi.png">
+			Roberto Alsina responded at
+		<a href="https://twitter.com/ralsina/status/763732155532972032">twitter.com</a>
+		<span class="wm-summary">			The most depressing program in the universe, courtesy of @sil: kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://lh5.googleusercontent.com/-sJXS8vOQGqc/AAAAAAAAAAI/AAAAAAAAFKE/S6Z6a5akBFA/photo.jpg?sz=50">
+			Don Rideaux-Crenshaw responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#z12avnbrozuxvnj3h22qudshituzyxg5e04%231470923427717994">plus.google.com</a>
+		<span class="wm-summary">			"The Rocky Horror Picture Show happened closer to Babe Ruth's retirement than to today."Hey, you transvestites! Stop playing baseball on my lawn!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1879098296/ad2757286db56a5c368cf9ab18dfc6eb.jpeg">
+			Mark Johnson responded at
+		<a href="https://twitter.com/marxjohnson/status/763735615351492608">twitter.com</a>
+		<span class="wm-summary">			@sil Having the old things being before I was born makes it hard to get a scale for when they happened
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1879098296/ad2757286db56a5c368cf9ab18dfc6eb.jpeg">
+			Mark Johnson responded at
+		<a href="https://twitter.com/marxjohnson/status/763735718338387968">twitter.com</a>
+		<span class="wm-summary">			@sil Rather than going "that was aaages ago" my brain goes "when was that, then?"
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/709132650297085953/Ud095gOa.jpg">
+			Thom Shutt responded at
+		<a href="https://twitter.com/ThomShutt/status/763736540392615936">twitter.com</a>
+		<span class="wm-summary">			RT @sil: Generating comparisons to make you feel old: kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/763737504658911232">twitter.com</a>
+		<span class="wm-summary">			@marxjohnson yeah. I have tried to pick things that people will know about and know happened "a long time ago", but it's difficult
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/331450097/beer_avatar.jpg">
+			x1101 responded at
+		<a href="https://twitter.com/x1101/status/763749942334750720">twitter.com</a>
+		<span class="wm-summary">			@sil amusing. Also, I’ve heard you podcast enough that I read the whole thing hearing your voice. Its an odd thing my brain does.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/763750156516859904">twitter.com</a>
+		<span class="wm-summary">			@x1101 blog posts tend to be a bit stream of consciousness, so they're written in my speaking voice :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/331450097/beer_avatar.jpg">
+			x1101 responded at
+		<a href="https://twitter.com/x1101/status/763750503297773568">twitter.com</a>
+		<span class="wm-summary">			@sil This line really did me in: “and that’s because you’re a decrepit old codger.”
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/580699235139620864/A-vuYA2W.jpg">
+			Andrew Spencer responded at
+		<a href="https://twitter.com/Rose0Window/status/763756923556593664">twitter.com</a>
+		<span class="wm-summary">			RT @sil: Generating comparisons to make you feel old: kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/763765011227537408">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Feeling old, depending on how old you are by @sil buff.ly/2aO8YA3 #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/434801946214801408/Ni8aJvw8.jpeg">
+			Martin O'Leary responded at
+		<a href="https://twitter.com/mewo2/status/764063665750323200">twitter.com</a>
+		<span class="wm-summary">			A nice piece by @sil on how my bot @feelingoldbot works (on an emotional, rather than technical level): kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/434801946214801408/Ni8aJvw8.jpeg">
+			Martin O'Leary responded at
+		<a href="https://twitter.com/mewo2/status/764063665750323200">twitter.com</a>
+		<span class="wm-summary">			A nice piece by @sil on how my bot @feelingoldbot works (on an emotional, rather than technical level): kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-M59IYdy_LVA/AAAAAAAAAAI/AAAAAAAAAAA/S1a1bMR0pys/photo.jpg?sz=50">
+			Lars Westman responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-102651681823460235328">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Mu_LBVlg6g8/AAAAAAAAAAI/AAAAAAAAAAA/hnphM6JmQC0/photo.jpg?sz=50">
+			Andreas Lagerkvist responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-110924672377553496476">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-aMEcCK38aqc/AAAAAAAAAAI/AAAAAAAAAAA/17o6BOQq75Y/photo.jpg?sz=50">
+			murph nj responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-116893325733822534829">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-W0o50l2oK20/AAAAAAAAAAI/AAAAAAAAAAA/1ziirkRicVA/photo.jpg?sz=50">
+			Tim Süberkrüb responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KK23ejwobHN#liked-by-106125894943795709448">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://checkmention.appspot.com/static/img/ive.png">
+			Jonathan Ive responded at
+		<a href="https://www.apple.com/pr/bios/jonathan-ive.html">www.apple.com</a>
+		<span class="wm-summary">			I love the way your site looks, though I'm not really the Jony Ive. How easy is it for someone to discover the real author of this note? Please also c&hellip;
+</span></li>
+		<li><img src="https://checkmention.appspot.com/static/img/check.png">
+			Checkmention responded at
+		<a href="https://checkmention.appspot.com/content/1577073a479/b82701404a98c3c9e355d81e304812d1bd38113e/success">checkmention.appspot.com</a>
+		<span class="wm-summary">			Congratulations! You've successfully handled a webmentioned note.
+</span></li>
+		<li><img src="https://checkmention.appspot.com/static/img/q.jpg">
+			Does clicking me alert? responded at
+		<a href="https://checkmention.appspot.com/content/1577073a479/b82701404a98c3c9e355d81e304812d1bd38113e/hcardxss">checkmention.appspot.com</a>
+		<span class="wm-summary">			This test embeds XSS within the hcard name and time field. Clicking on the name or title should not raise an alert.
+</span></li>
+		<li><img src="https://checkmention.appspot.com/static/img/q.jpg">
+			Checkmention XSS test responded at
+		<a href="https://checkmention.appspot.com/content/1577073a479/b82701404a98c3c9e355d81e304812d1bd38113e/xss">checkmention.appspot.com</a>
+		<span class="wm-summary">			Clicking this should not cause an alert. This div should not alert. Try clicking this link alert("encoded-xss") and this too. Mouse o&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/774345064025849857/tm0NwmUu.jpg">
+			Roberto Alsina responded at
+		<a href="https://twitter.com/ralsina/status/805171351090761728">twitter.com</a>
+		<span class="wm-summary">			a friend of mine has created the world's most depressing site based on that kind of thing: kryogenix.org/days/2016/08/1… // CC @sil
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/802714667596398592/T_cCZma3.jpg">
+			Jay Lee responded at
+		<a href="https://twitter.com/jaylee/status/805179243005169664">twitter.com</a>
+		<span class="wm-summary">			As Days Pass By cc @CraigHlavaty kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/932910946/Picture_318.jpg">
+			Steve Downey responded at
+		<a href="https://twitter.com/sdowney/status/805188231759327232">twitter.com</a>
+		<span class="wm-summary">			Microsoft releasing Word happened closer to I Love Lucy premiering than to today. kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1157803143/fmlpath.jpg">
+			Jesse Walker responded at
+		<a href="https://twitter.com/notjessewalker/status/808311787162570752">twitter.com</a>
+		<span class="wm-summary">			The feeling that time is slipping away from you—automated! kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/852945138343174145/o-A71mrA.jpg">
+			⚒ Garry Harvey ⚒ responded at
+		<a href="https://twitter.com/harvey_garry/status/882157696476225536">twitter.com</a>
+		<span class="wm-summary">			That's brilliant and upsetting in equal measure
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/852945138343174145/o-A71mrA.jpg">
+			⚒ Garry Harvey ⚒ responded at
+		<a href="https://twitter.com/sil/status/882152664158679040#favorited-by-862865221">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/780789099020029952/db8xcMPM.jpg">
+			Gary Anderson responded at
+		<a href="https://twitter.com/_Gary_Anderson/status/882179030530830336">twitter.com</a>
+		<span class="wm-summary">			@richardosman @rorysutherland You may like kryogenix.org/days/2016/08/1… for this, which generates lots of these comparisons, and makes everyone
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/780789099020029952/db8xcMPM.jpg">
+			Gary Anderson responded at
+		<a href="https://twitter.com/_Gary_Anderson/status/882179119471054848">twitter.com</a>
+		<span class="wm-summary">			This is ace! @mattgirling
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/838486711386550273/KU4kNNKs.jpg">
+			Christopher Smith responded at
+		<a href="https://twitter.com/sil/status/882152664158679040#favorited-by-18576450">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh5.googleusercontent.com/-KiXCL0AXc4c/AAAAAAAAAAI/AAAAAAAAAIQ/hZbCxg_Ybqo/photo.jpg?sz=50">
+			Doug Bailey responded at
+		<a href="https://plus.google.com/+DougBailey_trystero11/posts/1B5BNyMNZ4i">plus.google.com</a>
+		<span class="wm-summary">			"‘Never Gonna Give You Up’ by Rick Astley happened closer to the Berlin Wall being built than to today." Ahhhhhgahhhhd.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1194783639789174784/E-Ia0mB5.jpg">
+			Chris Wilson responded at
+		<a href="https://twitter.com/sil/status/1369753666706608130#favorited-by-817141">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1154073806052515840/JGf3kUXk.png">
+			Cris (they/them) responded at
+		<a href="https://twitter.com/sil/status/1369753666706608130#favorited-by-879664376206249988">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/807277326539046912/EZR6qL-S.jpg">
+			Bruce Lawson responded at
+		<a href="https://twitter.com/brucel/status/1379022549888155648">twitter.com</a>
+		<span class="wm-summary">			"Faith by George Michael happened closer to the Suez crisis than to today." < @sil made a thing that makes you feel old, depending on how old you ar&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/807277326539046912/EZR6qL-S.jpg">
+			Bruce Lawson responded at
+		<a href="https://twitter.com/brucel/status/1501878574034427906">twitter.com</a>
+		<span class="wm-summary">			"‘Never Gonna Give You Up’ by Rick Astley happened closer to the Berlin Wall being built than to today." @sil made a thing that makes you feel old, d&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1710266484/gravatar.jpg">
+			Maggie McNeill responded at
+		<a href="https://twitter.com/Maggie_McNeill/status/1624484560355627008">twitter.com</a>
+		<span class="wm-summary">			The "Feeling Old" comparison generator: kryogenix.org/days/2016/08/1…
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/370/629/861/681/400/original/cb7ed1d35b8a63ce.jpg">
+			Adam Cafolla responded at
+		<a href="https://ohai.social/@adaliabooks/110028552253291932">ohai.social</a>
+		<span class="wm-summary">			@sil @garius This is brilliant, I got:The Wii being released happened closer to Nelson Mandela being released from prison than to today.Which absolute&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/370/629/861/681/400/original/cb7ed1d35b8a63ce.jpg">
+			Adam Cafolla responded at
+		<a href="https://mastodon.social/@sil/110028215487071835#favorited-by-109370629861681400">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/286/796/516/633/367/original/7bd23cf324c5fff5.png">
+			Zach Leatherman :verify: responded at
+		<a href="https://fediverse.zachleat.com/@zachleat/111818918975515280">fediverse.zachleat.com</a>
+		<span class="wm-summary">			@sil haha yes
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/111818955290785718">mastodon.social</a>
+		<span class="wm-summary">			The Lion King happened closer to The Sound of Music than to today.goddammit@zachleat
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/107/511/977/692/248/065/original/c0cfaf689801e7f1.png">
+			yaygya responded at
+		<a href="https://c.im/@yaygya/111819145624890912">c.im</a>
+		<span class="wm-summary">			@sil @zachleat this is discrimination
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/537/113/483/757/483/original/8623d1038ac2ddbb.jpg">
+			Ben Cotton (he/him) responded at
+		<a href="https://hachyderm.io/@funnelfiasco/111819205715606494">hachyderm.io</a>
+		<span class="wm-summary">			@sil you are a bad person, Stuart.
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/111819326329694929">mastodon.social</a>
+		<span class="wm-summary">			@yaygya @zachleat I will stand by that :)
+</span></li>
+		<li><img src="https://mastodon.social/avatars/original/missing.png">
+			muzzar responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-111559199178631460">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/293/379/334/201/226/original/a9fcbc75c552e493.png">
+			Seb responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-109293379334201226">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/380/190/974/506/252/original/a632742af2359940.jpg">
+			DevoKun responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-109380190974506252">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/286/796/516/633/367/original/7bd23cf324c5fff5.png">
+			Zach Leatherman :verify: responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-109286796516633367">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/316/050/187/507/699/original/a7f51076cb6733da.png">
+			Negative12DollarBill responded at
+		<a href="https://techhub.social/@negative12dollarbill/111819524353753296">techhub.social</a>
+		<span class="wm-summary">			@sil @zachleat Please make a bot which posts these to Mastodon once a day.
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/877/144/552/999/909/original/2b54a759caa4c38b.png">
+			Jason Bunston responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-109877144552999909">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/293/878/327/334/262/original/988fbeee18b98200.png">
+			James 🦉 #FBPE :europe: responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-109293878327334262">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/367/168/127/420/199/original/c3a7bfcac6c87a4a.jpg">
+			Michaela Sue responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-109367168127420199">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/371/946/314/278/785/original/d25e68c48b3390d6.jpg">
+			Adil Arif responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-109371946314278785">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/385/373/420/848/593/original/04acfb28eff0279d.jpg">
+			Patrick Johanneson 🚀 responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#favorited-by-109385373420848593">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/385/373/420/848/593/original/04acfb28eff0279d.jpg">
+			Patrick Johanneson 🚀 responded at
+		<a href="https://mastodon.social/@sil/111818909128344084#reblogged-by-109385373420848593">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2016/08/11/feeling-old/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2016/08/11/feeling-old/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

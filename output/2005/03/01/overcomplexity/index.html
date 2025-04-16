@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; The wooden spoon of overcomplexity</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; The wooden spoon of overcomplexity">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2005/03/01/overcomplexity/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/03/01/overcomplexity/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2005/03/01/overcomplexity/"><time 
+			class="dt-published" datetime="2005-03-01T11:00:00+00:00">Mar 01 2005</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/03/01/overcomplexity/">The wooden spoon of overcomplexity</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>So, we released <a href="http://www.lugradio.org/">the new LugRadio site</a> and it ran really slowly. Now,
+it’s built on PyBlosxom, and it’s pretty complicated in parts; some
+pages include other pages by reading them off the filesystem, some
+include server-parsed versions of those pages; a
+<span class="caps">CGI</span> can’t output SSIs, so I had to do it
+myself with urllib; etc etc etc. It was dead slow. So I was trying to
+think of the best way to solve this; I thought about using <a href="http://pyblosxom.sourceforge.net/blog/static/man_5_static.html">PyBlosxom’s static rendering</a> or running PyBlosxom under mod_python (no link
+provided as the <span class="caps">HOWTO</span> that’s out there is out
+of date and wrong; apparently there’s stuff in
+<span class="caps">CVS</span> which does it too, but I don’t want to run
+<span class="caps">CVS</span> and it relies on
+<span class="caps">WSGI</span> which I don’t understand either). And
+then <a href="http://www.understated.co.uk/">Matt</a> mailed me and said “can we use caching to speed the site
+up?” And I thought: why am I trying to do this a really complex way?
+Since the site doesn’t do anything <em>interactive</em> (it does build pages
+dynamically, but the resultant <span class="caps">HTML</span> for that
+page is the same every time), why don’t I just spider the lot and serve
+the resultant saved static <span class="caps">HTML</span>? So that’s
+what I did, with the command</p>
+<div class="highlight"><pre><span></span><code><span class="n">wget</span><span class="w"> </span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">host</span><span class="o">-</span><span class="n">directories</span><span class="w"> </span>
+<span class="o">--</span><span class="n">directory</span><span class="o">-</span><span class="n">prefix</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">lugradio</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="k">static</span><span class="w"> </span>
+<span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="n">E</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">secretlocation</span><span class="o">.</span><span class="n">lugradio</span><span class="o">.</span><span class="n">org</span><span class="o">/</span>
+</code></pre></div>
+
+<p>so the previously existing pyblosxom version now exists at
+http://secretlocation.lugradio.org/ and www.lugradio.org points at the
+statically saved <span class="caps">HTML</span> in
+/var/www/lugradio.org/static. And, because it’s all plain
+<span class="caps">HTML</span> files, it works like blazes. The wget
+command is cronned to run hourly. That’s it.</p>
+<p>I’m a bit worried that I’m overlooking simple and good solutions in
+order to be more complex. That’s not only not a good thing, it’s exactly
+what I complain at <em>other</em> people about; overcomplicating a solution is
+not a good thing, and the <a href="http://catb.org/~esr/jargon/html/K/KISS-Principle.html">KISS principle</a>
+dictates not doing it. I need a slapping for not doing it the simple
+way. I’ll be installing complicated “frameworks” and so on next. If that
+happens, shoot me.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2005/02/27/bytemark/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2005/03/01/lugradiolive/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2005/03/01/overcomplexity/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/03/01/overcomplexity/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

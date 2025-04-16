@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Tethering an Android phone to Ubuntu without jailbreaking or installing applications</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Tethering an Android phone to Ubuntu without jailbreaking or installing applications">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2009/08/28/tethering-an-android-phone-to-ubuntu-without-jailbreaking-or-installing-applications/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/08/28/tethering-an-android-phone-to-ubuntu-without-jailbreaking-or-installing-applications/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2009/08/28/tethering-an-android-phone-to-ubuntu-without-jailbreaking-or-installing-applications/"><time 
+			class="dt-published" datetime="2009-08-28T20:25:00+01:00">Aug 28 2009</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/08/28/tethering-an-android-phone-to-ubuntu-without-jailbreaking-or-installing-applications/">Tethering an Android phone to Ubuntu without jailbreaking or installing applications</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>There are many guides out there on the web for <em>tethering</em> an Android
+phone to your Ubuntu laptop, so that you can use the phone's mobile data
+network connection when you're out of range of wi-fi. They're all
+complicated, and they all involve installing some random bit of
+software: they ask you to <a href="http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce-Dmitri-s-open-source-blend-of-productive-computing/Tether-an-Android-Phone-Using-Proxoid">download the Android SDK and install
+Proxoid</a> or <a href="http://www.asgrim.com/2009/07/24/tethering-your-htc-magic-android-phone-in-ubuntu-9-04-jaunty-jackalope/">install OpenVPN and AziLink</a> or <a href="http://androidcommunity.com/android-proxy-app-almost-allows-for-tethering-20081104/">use adb forward to forward a port for a proxy server</a> or <a href="http://joshuaredstone.blogspot.com/2009/01/bluetooth-tethering-from-ubuntu-to.html">put shell scripts on your phone</a> (!) or some similar horrible thing. Here is how to do it. This
+approach works without jailbreaking your Android phone. It works without
+installing <em>any</em> software from the Android Market. It Just Works.</p>
+<ol>
+<li>Plug your phone (mine is a HTC Hero, aka the T-Mobile G2 Touch) into
+    your laptop with USB.</li>
+<li>On the phone, drag down the notifications bar at the top of the
+    screen. Choose "<strong>USB connected</strong> Select to copy files to/from your
+    computer". In the "USB connected" dialog, say "Don't mount".</li>
+<li>On the phone, from the home screen, tick <strong>Menu</strong> &gt; <strong>Settings</strong> &gt;
+    <strong>Wireless controls</strong> &gt; <strong>Mobile network sharing</strong>. (If you don't
+    have a "Mobile network sharing" option, then your phone doesn't
+    support this easy way of doing it. Sorry. Try one of the above
+    linked approaches; I liked the Proxoid approach, myself.)</li>
+<li>Network Manager will now connect.</li>
+</ol>
+<p>That's it. That's all you need. Never have an offline laptop again. Who
+needs "mobile broadband", eh? <small>I'm using Ubuntu 9.10 (Karmic), and
+a T-Mobile G2 Touch with the HTC Sense UI (which comes with it in the
+UK). If you're not, your mileage may vary. Thanks very much to
+<a href="http://twitter.com/phowardcom">phowardcom</a> for this startling revelation!</small> <strong>update: it
+looks suspiciously like this connection sharing feature is specific to
+the HTC Hero. Updated to correct "mobile network sharing", thanks
+Stoffe</strong></p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2009/08/02/a-new-refreshed-top-gear/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2009/08/31/delivering-talks-by-irc-an-xchat-plugin/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2009/08/28/tethering-an-android-phone-to-ubuntu-without-jailbreaking-or-installing-applications/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2009/08/28/tethering-an-android-phone-to-ubuntu-without-jailbreaking-or-installing-applications/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

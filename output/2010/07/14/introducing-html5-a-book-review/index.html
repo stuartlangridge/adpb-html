@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Introducing HTML5: a book review</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Introducing HTML5: a book review">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2010/07/14/introducing-html5-a-book-review/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2010/07/14/introducing-html5-a-book-review/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2010/07/14/introducing-html5-a-book-review/"><time 
+			class="dt-published" datetime="2010-07-14T13:45:00+01:00">Jul 14 2010</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2010/07/14/introducing-html5-a-book-review/">Introducing HTML5: a book review</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>There are two types of technical books. Reference manuals are useful;
+you always have them to hand, and you can jump in and find a particular
+page which gives you the stuff you need to know. They're an
+indispensable reference tool, unless, say, you have access to the
+internet. Then, well, maybe they're not as handy. On the other hand,
+there's the other sort of technical book; the sort that's a pleasure to
+read in itself, and you only realised you've learned things afterwards.
+Such a book is Introducing HTML 5, by Bruce Lawson and Remy Sharp. As
+they say at the beginning of the introduction: welcome to the Remy and
+Bruce show. The book manages to be both a thorough introduction to the
+swathe of modern and new web technologies masquerading under the name of
+"HTML5", and a personal voice which comments on the state of web
+development today and in the near future. The tl;dr summary for people
+who don't want to read the rest: good web book is good. Get it.</p>
+<p>The book successfully and intelligently covers the new markup in HTML5
+(nav/header/section/article, new input types in forms, and WAI-ARIA
+accessibility) as well as the vast proliferation of new APIs available
+to modern web applications (canvas, multimedia, offline storage,
+workers, and geolocation, among others), drawing on the authors'
+experience of user questions and articles at their html5doctor site.
+Fortunately, it's not a hagiography, and they don't hesitate to stick
+the boot in where it's warranted; the current mess that is native
+drag-and-drop support in browsers and the ridiculous codec war inherent
+in online video both come in line for a justified kicking. Each chapter
+covers its material in decent detail, without devolving into a mere list
+of APIs; the book is full of both worked examples and links to relevant
+extra resources. Unusually for a book of this type, the examples are
+fairly real-world; instead of a contrived writeup to show off a feature,
+they show how to mark up the home page of the Guardian newspaper with
+HTML5 elements.</p>
+<p>Conspicuously missing from the book are the major changes to CSS
+currently being implemented in browsers. A chapter covering the
+transform and similar CSS3 declarations (<code>-webkit-transform</code>,
+<code>-moz-transform</code>, and the like) would have fit nicely, and it's a shame
+that this wasn't covered -- yes, it's a book about HTML5, not CSS3, but
+the authors themselves admit that by "HTML5" they actually mean "HTML5
+and related specifications that came from the WHATWG", and they throw in
+geolocation just because "it's really cool". Advances in CSS which give
+dynamic effects not only would fit well with the other subject matter
+but would also make a few of the examples perhaps easier.</p>
+<p>The canvas chapter doesn't bring much more than innumerable web pages
+covering the basics of the canvas API for drawing, but it covers those
+basics well and in a readable way. Importantly, there's also a
+discussion of the difference between using the canvas element for
+drawing and using SVG, and when you'd choose one rather than the other.
+It's been difficult to find that sort of summary; it's equally difficult
+to decide yourself which to use for some new project, and the chapter's
+sidebar (or \&lt;aside&gt;?) discussion of "when to use which" clarified the
+distinction well, especially when going beyond reimplementations of
+Super Mario Bros inside the browser.</p>
+<p>All is not sweetness and light, mind. The data storage chapter,
+explaining how to use HTML5's new in-the-browser storage objects,
+breathlessly explains that this means an end to cookies (which are
+"rubbish" according to the authors). However, this is where their
+client-side bias seems to be coming through. Cookies are shared with the
+server, too; snazzy HTML5 storage is not. Any even reasonably detailed
+web application will have a substantial server component, and abandoning
+cookies will make it jolly hard to have the server and the front-end
+share data. This does seem rather like excitement over the new tech
+without thinking about how it can actually be used in real-world
+situations, and is disappointing from a book which goes out of its way
+to give suggestions that are actually useful to people.</p>
+<p>Another area the book falls down is in its editing: there are typos
+scattered throughout the text (including in a heading in the
+introduction, for goodness' sake!) and these should have been caught by
+an editor; noticing them distracts the reader from the material, and
+it's a schoolboy error which damages the impact of the book.</p>
+<p>I know both the authors, and they're both well-known and respected in
+the web development community; Introducing HTML5 does them credit, and
+it's worth your time. Go forth, get <a href="http://introducinghtml5.com/">Introducing HTML5</a>, and make
+great web stuff.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2010/06/23/on-annoyance-and-free-software/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2010/09/19/most-played-songs/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="http://www.kryogenix.org/days/2014/09/17/responsive-dummies/">Responsive Dummies</a>
+(www.kryogenix.org)		<span class="wm-summary">			After Remy “Remington” Sharp and Bruce “Bruce” Lawson published Introducing HTML5 in 2010, the web development community have been eager to see what t&hellip;
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2010/07/14/introducing-html5-a-book-review/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2010/07/14/introducing-html5-a-book-review/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

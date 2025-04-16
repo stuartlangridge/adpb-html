@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Double Oh Seven</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Double Oh Seven">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2017/08/24/double-oh-seven/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2017/08/24/double-oh-seven/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2017/08/24/double-oh-seven/"><time 
+			class="dt-published" datetime="2017-08-24T23:22:00+01:00">Aug 24 2017</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/08/24/double-oh-seven/">Double Oh Seven</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A long time ago, when I was young and you were even younger, gentle reader, we had <a href="https://en.wikipedia.org/wiki/Acorn_Archimedes">Acorn Archimedes</a> computers at school. Back when there was more than one kind of computer. The Arc was great. There will be those who liked the Amiga, or the Atari ST, but those were basically small toy computers for children. Yes. Long live the Archimedes.</p>
+<p>Anyway, for no reason I can discern, this evening I remembered a thing on the Arc; a "sound demo". It was just a looping sample, presented as an app; you ran the app and it played the sample, over and over. It was a short little composition -- a few seconds, only -- made up of different snippets taken from Bond films over a bit of music. This may not seem exciting to you, with your instantly streamable 4K video and stuff, but it was pretty goshdarn exciting back then. Get off my lawn.</p>
+<p>I thought to myself: I wonder if that's still around? A bit of googling led me to <a href="http://ftp.uni-stuttgart.de/pub/systems/acorn/riscos/CONTENTS">an old archive of RISC OS software</a> and there it was: <code>"<a href="http://ftp.uni-stuttgart.de/pub/systems/acorn/riscos/demos/007.spk">007.spk</a>: Sound-demo"</code>. A download later, and then... what format is it in? <code>file 007.spk</code> says it's "data", which is not helpful, because that's <code>libmagic</code>'s codename for "no idea what this is, dude". What's an spk file? More googling -- no, it's not an installation package for Synology NASes, no it's not a design for an electronics board, and then someone mentioned SparkPlug. In those days there were many, many, many compression formats. It's not like now where there are basically ZIP files and occasionally RAR and tar.gz and that's it. There was ZOO, LHA, ARC, loads of them. Zip files were the thing that PKZIP produced, and that was shareware. Loads of them. And on the Archimedes, everyone used SparkPlug. Actually, it was <a href="https://www.davidpilling.com/spark.html">SparkFS</a>, by David Pilling; you needed that (which cost money) to make Spark archives. But SparkPlug was free, and just did decompression. Unsurprisingly, that never got ported to other platforms, and I was mildly disappointed to discover that my desktop didn't know how to open it without being told. But some more googling around led to <a href="https://github.com/mjwoodcock/nspark">nspark</a>, a "dearchiver for RISC OS archives". You have to compile it, but by this time I had the bit between my teeth -- digital preservation is <em>everybody's</em> responsibility! -- and the <code>COMPILING</code> file says that that's literally one command, <code>make -f makefile.gcc</code>. Run that and you get an <code>nspark</code> binary, and <code>nspark 007.spk</code> unpacks it! I have a folder named <code>!James</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>!James
+<span class="go">MemAlloc  !Run  !RUNIMAGE  !RunImage2  !Sprites</span>
+</code></pre></div>
+
+<p>Arc software came in a folder; if that folder was called <code>!something</code>, then it got treated like a single file you could drag around and run. This is the idea that the Mac used, later, for its application bundles (and I wish Linux software worked that way, but that ship's sailed). Anyway, you could click the app and it would actually execute a file named <code>!Run</code>, inside the bundle. That file was a sort of tiny script which would set things up and then normally execute <code>!RunImage</code>, which was your actual compiled program, and indeed that's what this one does too. So, <code>!RunImage</code> was the binary... and <code>!RunImage2</code> was 200K, by far the largest file in the bundle, so the sound sample had to be in there. But... what format is it? <code>file</code> again claimed that it was "data", but I thought: it's a sound sample, right? I bet it's just raw sound data. Can it be played?</p>
+<p><code>aplay !James/!RunImage2</code> gives a burst of meaningless noise. Hrm. Are there formats for these things? Read the help... ah, yes, there are. And <code>aplay -f S16_LE</code> plays it understandably, hooray! But that just plays... how do I make this into an actual modern file?</p>
+<p>Aha, again. <a href="http://www.audacityteam.org/">Audacity</a> allows importing raw audio. So, we import it, as a 16-bit set of samples, at sample rate 7600 (8000 sounded a tiny bit fast) and... success! Save as an mp3, and that works fine.</p>
+<p>Not a hugely critical piece of software archaeology, but nice nonetheless. And I know of no better way of backing stuff like this up than to write a blog post about it so that a decade from now when I think of it again, it's still here. (We made this mistake with the sound samples from Armadeus; after some serious digging around, <a href="https://whizzy.org">Bill</a> found the one that said "The mask; the ray-traced picture; and finally, the wireframe city", and then we bloody lost it and now I don't have it again.) So we'll call this one a birthday present for Bill and I'll try not to lose it this time.</p>
+<p>The <code>!Run</code> file for <code>!007</code> credits a Toby Cole on 25/2/90 and says: <code>well here it is!!</code>. Nice one Toby. From 27 years into your future, here it is again.</p>
+<p><audio controls loop>
+    <source src="https://kryogenix.org/random/007-sound-demo-archimedes.mp3" type="audio/mpeg" />
+    <source src="https://kryogenix.org/random/007-sound-demo-archimedes.ogg" type="audio/ogg" />
+</audio></p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2017/07/05/birmingham-tech-events-in-the-alexa-flash-briefing/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2017/09/10/the-niamh-prime/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/786793367506001922/Kag0-gfh.jpg">
+			Ryan Murphy responded at
+		<a href="https://twitter.com/sil/status/900859851571691520#favorited-by-786791303828824064">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3115818707/ef997054de583c881d2f31ae32c1b3d2.jpeg">
+			Will Cooke responded at
+		<a href="https://twitter.com/8none1/status/900870376154161153">twitter.com</a>
+		<span class="wm-summary">			A bit of late-night software archaeology to recover an Archimedes sound sample for when I next think of it. kryogenix.org/days/2017/08/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3115818707/ef997054de583c881d2f31ae32c1b3d2.jpeg">
+			Will Cooke responded at
+		<a href="https://twitter.com/sil/status/900859851571691520#favorited-by-38729048">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/900948855579058179">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Double Oh Seven by @sil buff.ly/2w8TY5Y #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/809163303352205313/urAVJ1MP.jpg">
+			Ed McDonagh responded at
+		<a href="https://twitter.com/sil/status/900859851571691520#favorited-by-363257160">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/851407816074178560/rbnppIue.jpg">
+			yer boyo, slippers responded at
+		<a href="https://twitter.com/MegaSlippers/status/900968949512261632">twitter.com</a>
+		<span class="wm-summary">			A bit of late-night software archaeology to recover an Archimedes sound sample for when I next think of it. kryogenix.org/days/2017/08/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/851407816074178560/rbnppIue.jpg">
+			yer boyo, slippers responded at
+		<a href="https://twitter.com/sil/status/900859851571691520#favorited-by-508838556">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1149361984/00162.jpg">
+			gurnaik responded at
+		<a href="https://twitter.com/gurnaik/status/900974265033535488">twitter.com</a>
+		<span class="wm-summary">			Digital perseverance, Mr. Bond: kryogenix.org/days/2017/08/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/891094279564607488/56dDc7Vq.jpg">
+			Mike Elsmore 🇪🇺 responded at
+		<a href="https://twitter.com/ukmadlz/status/900986230342647808">twitter.com</a>
+		<span class="wm-summary">			I love that @sil went nuts to save less than 30 seconds of samples kryogenix.org/days/2017/08/2…
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-VjIISNuCiLU/AAAAAAAAAAI/AAAAAAAAAAA/_7LXOwB5_BI/photo.jpg?sz=50">
+			Nathan Haines responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#liked-by-103726097950194848776">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-8ZECvjtVSfs/AAAAAAAAAAI/AAAAAAAAAAA/Ky3FRAyE8KU/photo.jpg?sz=50">
+			Jan Moren responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#liked-by-105059362788808645801">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-CuFtCMG7Dxw/AAAAAAAAAAI/AAAAAAAAAAA/XUDgD9l2e_k/photo.jpg?sz=50">
+			Richard Gaskin responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#liked-by-101713075260440430143">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-zQ207NLNsus/AAAAAAAAAAI/AAAAAAAAAPE/9-JTYZXsR5k/photo.jpg?sz=50">
+			Linux Lady05 Winter responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#z12fddbbhk34dr3iq04cevdb1pvbfzvpkpc0k%231503648706575934">plus.google.com</a>
+		<span class="wm-summary">			Did you ever see sorcerer os ?
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/6z99Wy1MJnU/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#z12fddbbhk34dr3iq04cevdb1pvbfzvpkpc0k%231503648743949255">plus.google.com</a>
+		<span class="wm-summary">			The one with the hot corners? Screen was rendered by an HTML widget?
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-zQ207NLNsus/AAAAAAAAAAI/AAAAAAAAAPE/9-JTYZXsR5k/photo.jpg?sz=50">
+			Linux Lady05 Winter responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#z12fddbbhk34dr3iq04cevdb1pvbfzvpkpc0k%231503649043800585">plus.google.com</a>
+		<span class="wm-summary">			+Stuart Langridge https://en.m.wikipedia.org/wiki/Sorcerer_(Linux_distribution)it is a interesting part of linux history. It's unfortunate how it ende&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/895726576016302080/A-cx2Sgh.jpg">
+			Molly Stanley responded at
+		<a href="https://twitter.com/sil/status/900859851571691520#favorited-by-4285913745">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-rUXjvxsikbI/AAAAAAAAAAI/AAAAAAAAXoM/Rw0yHvyarWs/photo.jpg?sz=50">
+			Keith Milner responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#z12fddbbhk34dr3iq04cevdb1pvbfzvpkpc0k%231503664821680196">plus.google.com</a>
+		<span class="wm-summary">			I loved RiscOS and the !something directory structure was pretty elegant.You could also have used SoX to convert the file, FYI.
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-rUXjvxsikbI/AAAAAAAAAAI/AAAAAAAAAAA/rAc3Sn8aLIQ/photo.jpg?sz=50">
+			Keith Milner responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#liked-by-117743438653292931435">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh4.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/6z99Wy1MJnU/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#z12fddbbhk34dr3iq04cevdb1pvbfzvpkpc0k%231503665569947303">plus.google.com</a>
+		<span class="wm-summary">			+Keith Milner I reached for sox first. But all I knew was that `aplay -f S16_LE` worked, and knowing how to express that in sox terminology is hard. A&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-lGao4kh5DMc/AAAAAAAAAAI/AAAAAAAAAAA/J5ZuO4ogWks/photo.jpg?sz=50">
+			Chris Moore responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#liked-by-106323687317106003667">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh5.googleusercontent.com/-pgYA9sKZtXs/AAAAAAAAAAI/AAAAAAAANHY/AuiOActiCOg/photo.jpg?sz=50">
+			Robert Ancell responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#z12fddbbhk34dr3iq04cevdb1pvbfzvpkpc0k%231503693364637156">plus.google.com</a>
+		<span class="wm-summary">			!directories were great for hiding data from school sysadmins.
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-pgYA9sKZtXs/AAAAAAAAAAI/AAAAAAAAAAA/hT6ukBqKg-s/photo.jpg?sz=50">
+			Robert Ancell responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/cp53Nexp8JR#liked-by-106527694663794732344">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/764800395256422402/yU11uEoX.jpg">
+			Iain Cuthbertson responded at
+		<a href="https://twitter.com/sil/status/900859851571691520#favorited-by-14340757">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/675530438753034240/gXzDNO38.jpg">
+			Christine Hall responded at
+		<a href="https://twitter.com/BrideOfLinux/status/901553602816344066">twitter.com</a>
+		<span class="wm-summary">			Reconstructing the past. Really fun article: as days pass by — Double Oh Seven @sil ow.ly/ANIQ30eGrE8
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2017/08/24/double-oh-seven/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2017/08/24/double-oh-seven/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

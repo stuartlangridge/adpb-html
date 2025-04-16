@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; CSS colour words in hex</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; CSS colour words in hex">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/"><time 
+			class="dt-published" datetime="2016-05-06T21:15:00+01:00">May 06 2016</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/">CSS colour words in hex</a>
+		</h2>
+		<div class="entry-content e-content">
+			<style>
+ul.colour-word-box {
+    margin: 1.5em 0;
+    padding: 0;
+    overflow: auto;
+}
+ul.colour-word-box li {
+    width: 18%;
+    margin: 1%;
+    padding: 1em;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    list-style: none;
+    border: 1px solid black;
+}
+ul.colour-word-box li:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+ul.colour-word-box li span {
+    text-transform: uppercase;
+    bottom: 0.5em;
+    right: 0.5em;
+    position: absolute;
+    color: black;
+}
+ul.colour-word-box li.dark span {
+    color: white;
+}
+@media all and (max-width: 799px) {
+    ul.colour-word-box li span {
+        font-size: 11px;
+        bottom: 5px;
+        right: 0px;
+        left: 0;
+        text-align: center;
+    }
+}
+</style>
+
+<p>One of the nice little fillips about writing CSS is that occasionally you use a colour code which turns out to be a word; the most famous here is probably <code>#DECADE</code>. I ran across <a href="http://bada55.io/">bada55.io</a> which has made a whole site from this and was quite pleased, but the terrible old grammarian in me just can't deal with the l33tsp34k nature of most of the suggestions. You're obviously allowed <code>A</code> to <code>F</code>, and I'm prepared to allow <code>0</code> as O and <code>1</code> as I, but using <code>5</code> as an S or <code>3</code> as E is dubious, using <code>1</code> as an L is <em>exceptionally</em> dubious (especially when it's already being an I in the same word!), and <code>7</code> for T or <code>4</code> for A or <code>6</code>/G or (incomprehensibly) <code>9</code>/P are right out. The fun nature of the game goes away when you have to puzzle out the meaning of the word like it's a crossword clue or one of those horrid personalised number plates.</p>
+<p>So, if we excise these crimes against spelling, all the colours that make what I consider to be proper words are below. There are obviously rather a lot of pastel shades, since each of the red, green, and blue channels will almost certainly be <code>A0</code> or larger, but that's not necessarily a problem (and there are a couple of decent highly-saturated colours in there too; I'm particularly fond of <code>#AC1D1C</code> and plan to use it more often). If we admit white and black into the palette, it'd almost certainly be possible to build a site while drawing solely from this list for your colour choices. Something to bear in mind for a future project, maybe.</p>
+<ul class="colour-word-box">
+    <li class="dark" style="background: #ab1ded"><span>abided</span></li>
+    <li style="background: #acac1a"><span>acacia</span></li>
+    <li style="background: #accede"><span>accede</span></li>
+    <li class="dark" style="background: #ac1d1c"><span>acidic</span></li>
+    <li style="background: #bab1ed"><span>babied</span></li>
+    <li class="dark" style="background: #ba0bab"><span>baobab</span></li>
+    <li style="background: #beaded"><span>beaded</span></li>
+    <li style="background: #bedded"><span>bedded</span></li>
+    <li style="background: #beefed"><span>beefed</span></li>
+    <li style="background: #b0bbed"><span>bobbed</span></li>
+    <li style="background: #b0d1ce"><span>bodice</span></li>
+    <li class="dark" style="background: #b00bed"><span>boobed</span></li>
+    <li style="background: #cabbed"><span>cabbed</span></li>
+    <li style="background: #cabb1e"><span>cabbie</span></li>
+    <li style="background: #cadd1e"><span>caddie</span></li>
+    <li style="background: #c1cada"><span>cicada</span></li>
+    <li style="background: #c0dded"><span>codded</span></li>
+    <li style="background: #c0ffee"><span>coffee</span></li>
+    <li class="dark" style="background: #c01fed"><span>coifed</span></li>
+    <li style="background: #dabbed"><span>dabbed</span></li>
+    <li style="background: #decade"><span>decade</span></li>
+    <li style="background: #dec1de"><span>decide</span></li>
+    <li style="background: #dec0de"><span>decode</span></li>
+    <li style="background: #deeded"><span>deeded</span></li>
+    <li style="background: #deface"><span>deface</span></li>
+    <li style="background: #def1ed"><span>defied</span></li>
+    <li class="dark" style="background: #de1ced"><span>deiced</span></li>
+    <li style="background: #d0ffed"><span>doffed</span></li>
+    <li class="dark" style="background: #d00dad"><span>doodad</span></li>
+    <li style="background: #edd1ed"><span>eddied</span></li>
+    <li style="background: #efface"><span>efface</span></li>
+    <li style="background: #facade"><span>facade</span></li>
+    <li style="background: #f1bbed"><span>fibbed</span></li>
+    <li style="background: #f0bbed"><span>fobbed</span></li>
+    <li style="background: #0ff1ce"><span>office</span></li>
+</ul>
+
+<p>Addendum: I forgot about three-character hex colour codes! Of which there are also quite a few, and we do a lot better at the saturated ones this time because a whole channel is quite often <code>0</code> or <code>1</code>. Although it's less lexicographically elegant to use a three-character word.</p>
+<ul class="colour-word-box">
+    <li style="background: #ace"><span>ace</span></li>
+    <li style="background: #add"><span>add</span></li>
+    <li style="background: #ad0"><span>ado</span></li>
+    <li class="dark" style="background: #a1d"><span>aid</span></li>
+    <li style="background: #baa"><span>baa</span></li>
+    <li style="background: #bad"><span>bad</span></li>
+    <li style="background: #bed"><span>bed</span></li>
+    <li style="background: #bee"><span>bee</span></li>
+    <li class="dark" style="background: #b1b"><span>bib</span></li>
+    <li class="dark" style="background: #b1d"><span>bid</span></li>
+    <li class="dark" style="background: #b0a"><span>boa</span></li>
+    <li class="dark" style="background: #b0b"><span>bob</span></li>
+    <li class="dark" style="background: #b00"><span>boo</span></li>
+    <li style="background: #cab"><span>cab</span></li>
+    <li style="background: #cad"><span>cad</span></li>
+    <li class="dark" style="background: #c0b"><span>cob</span></li>
+    <li class="dark" style="background: #c0d"><span>cod</span></li>
+    <li class="dark" style="background: #c00"><span>coo</span></li>
+    <li style="background: #dab"><span>dab</span></li>
+    <li style="background: #dad"><span>dad</span></li>
+    <li style="background: #deb"><span>deb</span></li>
+    <li class="dark" style="background: #d1d"><span>did</span></li>
+    <li class="dark" style="background: #d1e"><span>die</span></li>
+    <li class="dark" style="background: #d0c"><span>doc</span></li>
+    <li class="dark" style="background: #d0e"><span>doe</span></li>
+    <li style="background: #ebb"><span>ebb</span></li>
+    <li style="background: #fad"><span>fad</span></li>
+    <li style="background: #fed"><span>fed</span></li>
+    <li style="background: #fee"><span>fee</span></li>
+    <li class="dark" style="background: #f1b"><span>fib</span></li>
+    <li class="dark" style="background: #f1e"><span>fie</span></li>
+    <li class="dark" style="background: #f0b"><span>fob</span></li>
+    <li class="dark" style="background: #f0e"><span>foe</span></li>
+    <li style="background: #1ce"><span>ice</span></li>
+    <li style="background: #0af"><span>oaf</span></li>
+    <li style="background: #0dd"><span>odd</span></li>
+    <li style="background: #0de"><span>ode</span></li>
+    <li class="dark" style="background: #00f"><span>oof</span></li>
+    <li style="background: #0ff"><span>off</span></li>
+</ul>
+
+<p>Addendum addendum: <a href="https://twitter.com/dracos">Matthew Somerville</a> points out a few more words, of varying acceptability in formal conversation :) I can only plead that <code>/usr/share/dict/words</code> didn't contain the better ones in here (IODIDE and BODIED), and reiterate that I'm not including BAE anywhere and I don't care if you think it's a word. Also, the <a href="https://drafts.csswg.org/css-color-4/">CSS Colour Module Level 4 spec</a> dangles the tantalising possibility of eight-hex-digit codes which can include an alpha channel (<code>#rrggbbaa</code>) which would bring the excellent CODIFIED and ACIDIFIC into the list, as well as the increasingly Latinate FABACEAE, IBIDIDAE, and COCCIDAE.</p>
+<ul class="colour-word-box">
+    <li style="background: #BABB1E"><span>BABBIE</span></li>
+    <li style="background: #B0D1ED"><span>BODIED</span></li>
+    <li style="background: #D0BBED"><span>DOBBED</span></li>
+    <li style="background: #1DEAED"><span>IDEAED</span></li>
+    <li style="background: #10D1DE"><span>IODIDE</span></li>
+    <li style="background: #FAB"><span>FAB</span></li>
+    <li class="dark" style="background: #D1B"><span>DIB</span></li>
+    <li class="dark" style="background: #B0D"><span>BOD</span></li>
+</ul>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2016/04/26/lowrezjam-reviews/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2016/05/24/the-importance-of-urls/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/500311942498484224/FIGNAdgi.png">
+			Roberto Alsina responded at
+		<a href="https://twitter.com/ralsina/status/728695340271058945">twitter.com</a>
+		<span class="wm-summary">			@sil neat! DId you use some sort of script?
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/728358620400910336/9HMRx-15.jpg">
+			Matthew Somerville responded at
+		<a href="https://twitter.com/dracos/status/728696989672718336">twitter.com</a>
+		<span class="wm-summary">			@sil drafts.csswg.org/css-color-4/ would let you have #rrggbbaa ;-)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/728697177510383616">twitter.com</a>
+		<span class="wm-summary">			@dracos that only actually adds "codified" to the list, so I declare it to be a useless specification ;)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/52627095/smallgreekcow.jpg">
+			Thomas Meehan responded at
+		<a href="https://twitter.com/sil/status/728694571610312704#favorited-by-14198350">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/698168430965452800/WEf6beyk.jpg">
+			Frederic Marx responded at
+		<a href="https://twitter.com/sil/status/728694571610312704#favorited-by-484596867">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/712420029417938945/7VUE05JA.jpg">
+			Fabian A. Scherschel responded at
+		<a href="https://twitter.com/fabsh/status/728719770732900352">twitter.com</a>
+		<span class="wm-summary">			@sil #FAB is rather fab. :D
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/728724064571949056">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: CSS colour words in hex by @sil buff.ly/1q4lKeZ #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/659728867196825600/EsKqBhxp.jpg">
+			Richard Brown responded at
+		<a href="https://twitter.com/GUCUrich/status/728765990662746116">twitter.com</a>
+		<span class="wm-summary">			"Stuart Langridge: CSS colour words in hex" kryogenix.org/days/2016/05/0… #CSS
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584135633888739328/JOMM_kku.jpg">
+			James Edwards responded at
+		<a href="https://twitter.com/sil/status/728694571610312704#favorited-by-333634644">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/52627095/smallgreekcow.jpg">
+			Thomas Meehan responded at
+		<a href="https://twitter.com/orangeaurochs/status/728866365847834630">twitter.com</a>
+		<span class="wm-summary">			RT @sil: Playing with CSS colours that are words. I must use #DEICED more. kryogenix.org/days/2016/05/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/437928272580452352/hH7hGHOi.png">
+			Larry responded at
+		<a href="https://twitter.com/iWyvern/status/728874709702475776">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: CSS colour words in hex kryogenix.org/days/2016/05/0… via @Inoreader
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/437928272580452352/hH7hGHOi.png">
+			Larry responded at
+		<a href="https://twitter.com/iWyvern/status/728874746033537024">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: CSS colour words in hex kryogenix.org/days/2016/05/0… via @Inoreader fb.me/4kAzgM7av
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-o10JYkZsCrM/AAAAAAAAAAI/AAAAAAAAFdk/Te3J_kEOueA/photo.jpg?sz=50">
+			Ronald McCollam responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#z13ngdwxerm5flxxb04cevdb1pvbfzvpkpc0k%231462647889298415">plus.google.com</a>
+		<span class="wm-summary">			Hah! Nice! :D
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-lBOBHNCjw4o/AAAAAAAAAAI/AAAAAAAAAAA/Me8A12FSsIw/photo.jpg?sz=50">
+			Dick “Cryptobro” Thomas responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-118415173488588252226">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-A8yUyvfWpnA/AAAAAAAAAAI/AAAAAAAAAAA/m0XmCeB9sLU/photo.jpg?sz=50">
+			Michael Mahemoff responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-106413090159067280619">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-eHXeoU2Aw6A/AAAAAAAAAAI/AAAAAAAAAAA/8Q9WRzeII_E/photo.jpg?sz=50">
+			Lars Fosdal responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-103128232230617819686">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-VC6_aQWog_Y/AAAAAAAAAAI/AAAAAAAAAAA/DRwHEwBT45s/photo.jpg?sz=50">
+			Dor Kleiman (configurator) responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-112139137835193833820">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-mq1pWX15IWY/AAAAAAAAAAI/AAAAAAAAAAA/5ZGjfmWKq_E/photo.jpg?sz=50">
+			Carlos Sanchez responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-100263450914757358041">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-byKQnXJ3LcU/AAAAAAAAAAI/AAAAAAAAAAA/bUfzoJlBL-M/photo.jpg?sz=50">
+			Tore Julø responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-108086071559221884110">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-dISG2hBJpHI/AAAAAAAAAAI/AAAAAAAAAAA/flUTPusnqRk/photo.jpg?sz=50">
+			Michael Hall responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-109919666334513536939">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Yf345CZHm8c/AAAAAAAAAAI/AAAAAAAAAAA/qtz2sAXzjl8/photo.jpg?sz=50">
+			Michał Prędotka responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-101489925843882654647">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-wOzWt22Ab28/AAAAAAAAAAI/AAAAAAAAAAA/rQpT2Pxv8YY/photo.jpg?sz=50">
+			Joseph Mills responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-106122674051576198224">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-W0o50l2oK20/AAAAAAAAAAI/AAAAAAAAAAA/1ziirkRicVA/photo.jpg?sz=50">
+			Tim Süberkrüb responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-106125894943795709448">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-o10JYkZsCrM/AAAAAAAAAAI/AAAAAAAAAAA/JB5HQFaemsA/photo.jpg?sz=50">
+			Ronald McCollam responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/V6ANQ324VLZ#liked-by-100018202590875587825">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/617760834475978752/5MZihKT8.jpg">
+			Will Thompson responded at
+		<a href="https://twitter.com/resiak/status/759526544389857280">twitter.com</a>
+		<span class="wm-summary">			@sil re kryogenix.org/days/2016/05/0… you might enjoy @hashfacade
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1929566367/216209_10150219695830519_533425518_8962117_1824425_n-square.jpg">
+			Garrett LeSage responded at
+		<a href="https://twitter.com/sil/status/871827569494159360#favorited-by-335523">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1696329566/iomadh.jpg">
+			e.e. marr responded at
+		<a href="https://twitter.com/iomadh/status/1112731205152227328">twitter.com</a>
+		<span class="wm-summary">			#ac1d1c is a rocking colour
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2016/05/06/css-colour-words-in-hex/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2016/05/06/css-colour-words-in-hex/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

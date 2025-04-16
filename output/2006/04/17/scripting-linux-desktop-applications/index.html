@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Scripting Linux desktop applications</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Scripting Linux desktop applications">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2006/04/17/scripting-linux-desktop-applications/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2006/04/17/scripting-linux-desktop-applications/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2006/04/17/scripting-linux-desktop-applications/"><time 
+			class="dt-published" datetime="2006-04-17T02:34:00+01:00">Apr 17 2006</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/04/17/scripting-linux-desktop-applications/">Scripting Linux desktop applications</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Hubert Figuere <a href="http://www.figuiere.net/hub/blog/?2006/04/16/397-desktop-scripting">writes about scripting Linux desktop applications</a>:  </p>
+<blockquote>
+<p>All the dirty work would be done within the scripting engine. It is
+the interface between the language and the IPC mechanism, and it
+implements the scripting protocol. The scripting interface will
+arbitrate, allowing to control several applications from one single
+script.
+</p></p>
+</blockquote>
+<p>What he's describing there, broadly, is what the Windows Scripting Host
+does, I'd say. I don't think it should be JavaScript. Now, I'm a
+JavaScript guy, and I've <a href="http://www.sitepoint.com/books/dhtml1/">written a book on it</a>, so I like the
+language a lot. But it doesn't have any primitives for doing things like
+writing a file, which means you have to provide all that. It makes it
+awkward to write scripts in it on Windows, and it makes it awkward to
+write scripts in it in Mozilla, because essentially the fact that you're
+using JS is irrelevant; what you have to program to is the API you
+provide. The JavaScript gets lots of extra objects made available to it,
+and everyone has to learn about those objects, which is way harder than
+just learning JS itself. Writing a file using JavaScript and the Windows
+Scripting Host looks something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">var</span><span class="w"> </span><span class="n">fso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Scripting.FileSystemObject&quot;</span><span class="p">);</span>
+<span class="k">var</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fso</span><span class="o">.</span><span class="n">CreateTextFile</span><span class="p">(</span><span class="n">savefile</span><span class="p">);</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Blah blah blah&quot;</span><span class="p">);</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">Close</span><span class="p">();</span>
+</code></pre></div>
+
+<p>Writing a file using JavaScript inside Mozilla (which uses XPCOM) looks
+something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">var</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Components</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="s2">&quot;@mozilla.org/file/local;1&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="o">.</span><span class="n">createInstance</span><span class="p">(</span><span class="n">Components</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">nsILocalFile</span><span class="p">);</span>
+<span class="w">    </span><span class="n">file</span><span class="o">.</span><span class="n">initWithPath</span><span class="p">(</span><span class="w"> </span><span class="n">savefile</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">file</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="bp">false</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">alert</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;Creating file... &quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">        </span><span class="n">file</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="w"> </span><span class="n">Components</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">nsIFile</span><span class="o">.</span><span class="n">NORMAL_FILE_TYPE</span><span class="p">,</span><span class="w"> </span><span class="mi">420</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">outputStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Components</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="s2">&quot;@mozilla.org/network/file-output-stream;1&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="o">.</span><span class="n">createInstance</span><span class="p">(</span><span class="w"> </span><span class="n">Components</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">nsIFileOutputStream</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="n">outputStream</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="mh">0x04</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x08</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x20</span><span class="p">,</span><span class="w"> </span><span class="mi">420</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputStream</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">.</span><span class="n">length</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="n">outputStream</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+</code></pre></div>
+
+<p>To be honest with you, I think that the AppleScript approach is a better
+one than the MS COM/Mozilla XPCOM approach. In COM, each app exports an
+API, and you talk to that API. In AppleScript you talk to the app as if
+you're a user of it. Personally, I'd like to see someone bash on Dogtail
+(http://people.redhat.com/zcerza/dogtail/) until it's a generic
+scripting thing. The advantage you get with using Dogtail, which goes
+through the X accessibility APIs, is that apps do not have to provide a
+programming API explicitly. Every application on Mac OS, as I understand
+it, is automateable through AppleScript. Most applications on Windows
+are not programmatically controllable. Microsoft apps normally are, but
+third-party apps aren't. If you have to provide a separate programming
+API for your app then (a) that's extra work for the hackers, and (b)
+that's extra documentation required. Even more so than just using an
+app, an app's programming interface is <em>useless</em> without documentation,
+and documentation is one thing that the open source community does not
+do well. Let's take Dogtail, or something like it, and make it do the
+work for us. If Dogtail can do most of the stuff we need, then adding
+JavaScript bindings for it would be pretty easy by comparison.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2006/04/12/distributed-backups-to-friends/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2006/04/27/redaction-of-comments/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2006/04/17/scripting-linux-desktop-applications/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2006/04/17/scripting-linux-desktop-applications/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

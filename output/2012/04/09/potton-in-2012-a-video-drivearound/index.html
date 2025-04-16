@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Potton in 2012, a video drivearound</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Potton in 2012, a video drivearound">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2012/04/09/potton-in-2012-a-video-drivearound/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/04/09/potton-in-2012-a-video-drivearound/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2012/04/09/potton-in-2012-a-video-drivearound/"><time 
+			class="dt-published" datetime="2012-04-09T11:49:00+01:00">Apr 09 2012</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/04/09/potton-in-2012-a-video-drivearound/">Potton in 2012, a video drivearound</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>About six months ago I saw a YouTube video of Bedford, the nearest big
+town to where I grew up, in the mid-eighties. (It probably wasn't <a href="http://www.youtube.com/watch?v=oyugYKsPSCU">this
+one</a> but that's fairly close.) It was fascinating; we used to go
+shopping in Bedford back then when I was a kid, and seeing all the shops
+that are no longer there was most interesting. Anyway, I mentioned this
+to my dad, and he said: we should do something like that for Potton, the
+town in which I grew up (and in which my parents still live). Today we
+did exactly that; since Potton is a small town, we drove down every
+street in town and recorded it on video.</p>
+<p>You learn a new respect for the Google Street Car people doing this, I
+can tell you.</p>
+<p>I wanted to add maps and details of which street was which in the video,
+and after some playing around with the OpenShot video
+editor<span style="color: red" title="which crashes a lot more than it should">*</span>
+I worked out how to do just that. Each street gets a couple of seconds
+of "title" showing its name and also where it is on a map of Potton. The
+maps were made possible by <a href="http://www.openstreetmap.org">OpenStreetMap</a>, which is like Google Maps
+crossed with Wikipedia; it's a map of the whole world, but it's created
+by people and not by corporations who want money to licence it, and
+therefore you're allowed to use the maps to do interesting things.</p>
+<p>Warning: technical stuff about vector graphics formats coming up. Skip
+this paragraph if you don't care.</p>
+<p>What I did was get a map of Potton from OSM, export it as SVG, and then
+go through that map in Inkscape and mark each road with the name of that
+road. I was enormously pleased to see that each road on an OSM SVG is an
+individual path (making this possible). OSM people: if you wanted to do
+something really cool, then in an SVG export make each path have the
+name of the road that it is as its ID (rather than "path2319" or
+whatever). This is probably quite hard (each road has at least the path
+defining the street itself, a path defining the border of that street,
+and the text), but naming these as "roadHighStreet_main",
+"roadHighStreet_background", and "roadHighStreet_text" or something
+might be possible. Anyway, once I had an SVG with all the IDs set to be
+the street names, <a href="http://www.kryogenix.org/code/make_potton_svgs.py">a quick Python script</a> was enough to turn that into
+one SVG per road with that road highlighted in red. (You can get <a href="http://www.kryogenix.org/code/Potton.svg">the
+SVG of Potton with all roads marked with IDs</a> as well, if it's useful
+to you.) The script also creates an "overlay SVG" for each road name as
+well, so that I could overlay the road name onto the video so you can
+see at any point where you are in town.</p>
+<p>End of technical stuff.</p>
+<p>This was a fun little project. I mean, what you've got is a video which
+is nearly two hours long and is nothing but driving round a small
+Bedfordshire town, so it ain't gonna win any Oscars, but I'm pleased we
+did it. Maybe in twenty years someone will find this on YouTube and be
+amazed at what Potton looked like in 2012.</p>
+<p><a href="http://youtu.be/eqzB7hf88GA">Potton in 2012, a video drivearound</a> (and <a href="http://archive.org/details/PottonIn2012AVideoDrivearound">downloadable in webm and
+h.264 format</a>)</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2012/03/27/this-time-more-than-any-other-time/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2012/04/18/publishing-a-folder-with-ubuntu-one/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2012/04/09/potton-in-2012-a-video-drivearound/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/04/09/potton-in-2012-a-video-drivearound/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

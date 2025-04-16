@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Thoughts on xmule</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Thoughts on xmule">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2004/07/27/thoughts/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/07/27/thoughts/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2004/07/27/thoughts/"><time 
+			class="dt-published" datetime="2004-07-27T11:00:00+01:00">Jul 27 2004</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/07/27/thoughts/">Thoughts on xmule</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>So, I’ve had <a href="http://www.xmule.ws/">xmule</a> recommended. Herewith, some notes as I start it
+up for the first time. I’m apparently running v1.8.4, from the Debian
+unstable archive.</p>
+<p>Ooh, “for system tray integration to work, you must specify which
+desktop you are using“. On the one hand, it’s nice to see that they care
+about integration. Also, Gnome 2.x is already selected. On the other
+hand, it might be selected because it’s first on the list rather than
+because it’s what I’m running, and secondly the whole damned point of
+the freedesktop.org stuff is to make system trays work fine with either
+desktop, no? Nothing else—Gaim, Skype, Rhythmbox—has ever had to ask.
+Not good.</p>
+<p>Ah. This happened to me last time I tried a
+<span class="caps">P2P</span> client; there are no servers in the server
+list, so I can’t connect. How do I get a list of servers? Ah, “update
+server.met from <span class="caps">URL</span>“, and an “Update” button.
+Good stuff. On the other hand, why doesn’t it do this by default the
+first time you load it? Not good.</p>
+<p>“You have a lowid. Please review your network config and/or your
+settings“. Wonder what that is? I suspect that this is a “forward a port
+on your firewall” issue. (fx: reads @/usr/share/doc/xmule/README.gz@)
+Ah-ha! “If you are behind a firewall or router, be sure that ports 4662
+(TCP) and 4672 (UDP) are unblocked, or you will <strong>always</strong> receive a low
+ID.” Don’t know what a “low ID” is, but I suspect it means “people can’t
+connect to you“. I’ll forward the ports.</p>
+<p>And searching seems to work! Good stuff!</p>
+<p>Stone me, there are a lot of buttons here. Does anyone really want more
+from a <span class="caps">P2P</span> application than a textbox to enter
+searches and a listbox for clickable results, I wonder? And probably one
+“preferences” window, which doesn’t need very much in it at all. I am
+spoiled by Gnome, I think. Not good.</p>
+<p>There’s a “method” dropdown for searches, with things like “FileDonkey
+(Web)” in it. No idea what that means.</p>
+<p>OK, I lied, you need a separate bit showing you what you’re downloading,
+perhaps. Starting a download seems to work. Good stuff. No progress
+being made on said download, though. The thing I’m downloading has
+“Availability” of 2, which I assume means “two people have it“?</p>
+<p>So, how do I hide the window, just leaving the notification area icon?
+(NB, developers: it’s not a system tray! It <a href="http://blogs.msdn.com/oldnewthing/archive/2003/09/10/54831.aspx">wasn’t even called that
+under Windows</a>! It’s the notification area.) If I click the cross,
+will it shut down the application? Blimey, the notification-area-icon
+menu is a bit odd, isn’t it? Not at all a standard looking menu. And
+“Hide” in it doesn’t work, either, which isn’t all that promising. Not
+good.</p>
+<p>Bugger. Clicking the cross closes the whole application. Not good.
+Restarting, it seems to have remembered downloads in progress, though,
+although that doesn’t deserve a point because it’s supposed to do that.</p>
+<p>So, so far, more “not good“s than “good stuff“s. Investigation will
+continue.</p>
+<h2></p></h2>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2004/07/25/scripting/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2004/07/28/intranet/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2004/07/27/thoughts/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/07/27/thoughts/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

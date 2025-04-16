@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Variables in CSS</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Variables in CSS">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2003/07/23/variables/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2003/07/23/variables/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2003/07/23/variables/"><time 
+			class="dt-published" datetime="2003-07-23T11:00:00+01:00">Jul 23 2003</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2003/07/23/variables/">Variables in CSS</a>
+		</h2>
+		<div class="entry-content e-content">
+			<!--timestamp:1058938591.0:-->
+<p>Simon has <a href="http://simon.incutio.com/archive/2003/07/22/featureRequest">a feature request for CSS3</a>, which is the oft-heard "please
+let me define variables in my stylesheets" complaint. I've thought this
+more than once (and I'm sure I brought it up somewhere on a mailing list
+for discussion, too; I thought it was css-discuss, but I can't find it
+in the archive). So, I thought, that'd be an interesting little
+Javascript hack, wouldn't it; have JS look at the stylesheet rules and
+fix ones where you've used a "user defined variable". Ah, but no. After
+some testing, both Mozilla and IE just don't make invalid rules (or
+rulesets) available to the DOM <em>at all</em>. Given this stylesheet as the
+first and only in the document:</p>
+<div class="highlight"><pre><span></span><code><span class="n">h1</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">font</span><span class="o">-</span><span class="k">size</span><span class="err">:</span><span class="w"> </span><span class="mf">1.2</span><span class="n">em</span><span class="p">;</span><span class="w"> </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">red</span><span class="p">;</span><span class="w"> </span><span class="err">}</span>
+<span class="nv">@media</span><span class="w"> </span><span class="n">screen</span><span class="w"> </span><span class="err">{</span>
+<span class="w">  </span><span class="n">pre</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">blue</span><span class="p">;</span><span class="w"> </span><span class="err">}</span>
+<span class="err">}</span>
+<span class="nv">@define</span><span class="w"> </span><span class="err">{</span>
+<span class="w">  </span><span class="nl">reddish</span><span class="p">:</span><span class="w"> </span><span class="n">#f00</span><span class="p">;</span>
+<span class="err">}</span>
+<span class="n">h2</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">font</span><span class="o">-</span><span class="k">size</span><span class="err">:</span><span class="w"> </span><span class="mf">1.1</span><span class="n">em</span><span class="p">;</span><span class="w"> </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">reddish</span><span class="p">;</span><span class="w"> </span><span class="err">}</span>
+<span class="n">h3</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">font</span><span class="o">-</span><span class="k">size</span><span class="err">:</span><span class="w"> </span><span class="mf">1.0</span><span class="n">em</span><span class="p">;</span><span class="w"> </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">red</span><span class="p">;</span><span class="w"> </span><span class="err">}</span>
+</code></pre></div>
+
+<p>p&gt;You'd expect <code>document.styleSheets[0].cssRules</code> (or <code>...rules</code> for
+IE) to contain 5 entries, right, one for each of the rules? Nuh-uh.
+Walking through the rules and displaying <code>.cssText</code> for each (in Moz;
+displaying <code>stylesheet.cssText</code> in IE), the stylesheet looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">h1</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">font</span><span class="o">-</span><span class="k">size</span><span class="err">:</span><span class="w"> </span><span class="mf">1.2</span><span class="n">em</span><span class="p">;</span><span class="w"> </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">red</span><span class="p">;</span><span class="w"> </span><span class="err">}</span>
+<span class="nv">@media</span><span class="w"> </span><span class="n">screen</span><span class="w"> </span><span class="err">{</span><span class="w"> </span>
+<span class="w">   </span><span class="n">pre</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">blue</span><span class="p">;</span><span class="w"> </span><span class="err">}</span><span class="w"> </span>
+<span class="err">}</span>
+<span class="n">h2</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">font</span><span class="o">-</span><span class="k">size</span><span class="err">:</span><span class="w"> </span><span class="mf">1.1</span><span class="n">em</span><span class="p">;</span><span class="w"> </span><span class="err">}</span>
+<span class="n">h3</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">font</span><span class="o">-</span><span class="k">size</span><span class="err">:</span><span class="w"> </span><span class="mi">1</span><span class="n">em</span><span class="p">;</span><span class="w"> </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">red</span><span class="p">;</span><span class="w"> </span><span class="err">}</span>
+</code></pre></div>
+
+<p>Note how both the entire invalid <code>@define</code> ruleset and the invalid
+<code>color: &amp;reddish</code> rule have both been removed. No trace of them at all.
+So the only way I can think of making this work is to use
+XMLHttpRequest() (or MSXML) to grab external stylesheets,
+document.getElementsByTagName('style') to grab inline stylesheets, and
+parse them yourself. For something which will only work in very modern
+browsers (and not anything without XMLHttpRequest or an equivalent) with
+Javascript turned on, that's way, way too hard, especially since half
+the <em>point</em> of CSS is to be cross-browser and not require scripting.
+Since this isn't get implemented in CSS, looks like server-side parsing
+is the way to go. Bah. As Simon points out from the w3c-style
+discussion, it breaks compatibility in older browsers, although I can't
+see why you can't do:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">red</span><span class="p">;</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">myred</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>since the latter declaration is ignored by non-supporting browsers, just
+like all other CSS stuff.</p>
+<p>None</p>
+<!--category::--><!--author:sil:-->
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2003/07/22/charlies/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2003/07/23/principles/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2003/07/23/variables/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2003/07/23/variables/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

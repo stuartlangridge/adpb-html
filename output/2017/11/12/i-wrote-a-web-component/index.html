@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; I wrote a Web Component</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; I wrote a Web Component">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/"><time 
+			class="dt-published" datetime="2017-11-12T11:31:00+00:00">Nov 12 2017</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/">I wrote a Web Component</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I've been meaning to play with Web Components for a little while now. After I saw <a href="https://twitter.com/BenNadel/status/929383549584789504">Ben Nadel create a Twitter tweet progress indicator with Angular</a> and <a href="https://github.com/LucasLeandro1204/vue-twitter-counter">Lucas Leandro did the same with Vue.js</a> I thought, here's a chance to experiment.</p>
+<p>Web Components involve a whole bunch of different dovetailing specs; HTML imports, custom elements, shadow DOM, HTML templates. I didn't want to have to use the HTML template and import stuff if I could avoid it, and pleasantly you actually don't need it. Essentially, you can create a custom element named <code>whatever-you-want</code> and then just add <code>&lt;whatever-you-want someattr="somevalue"&gt;content here&lt;/whatever-you-want&gt;</code> elements to your page, and it all works. This is good.</p>
+<p>To define a new type of element, you use <code>window.customElements.define('your-element-name', YourClass)</code>.<sup id="sf-i-wrote-a-web-component-1-back"><a href="#sf-i-wrote-a-web-component-1" class="simple-footnote" title="I relied for a lot of this understanding on Google's web components documentation by Eric Bidelman.">1</a></sup> <code>YourClass</code> is an ES2016 JavaScript class. <sup id="sf-i-wrote-a-web-component-2-back"><a href="#sf-i-wrote-a-web-component-2" class="simple-footnote" title="All this stuff is present already in Chrome; for other browsers you may need polyfills, and I'll get to that later.">2</a></sup> So, we start like this:</p>
+<pre><code>
+window.customElements.define('twitter-circle-count', class extends HTMLElement {
+});
+</code></pre>
+
+<p>The class has a <code>constructor</code> method which sets everything up. In our case, we're going to create an SVG with two circles: the "indicator" (which is the one that changes colour and fills in as you add characters), and the "track" (which is the one that's always present and shows where the line of the circle goes). Then we shrink and grow the "indicator" circle by using <a href="https://jakearchibald.com/2013/animated-line-drawing-svg/">Jake Archibald's dash-offset technique</a>. This is all perfectly expressed by Ben Nadel's diagram, which I hope he doesn't mind me borrowing because it's great.</p>
+<p><img src="https://kryogenix.org/images/twitter-progress-indicator-concept-angular5.png" alt="Ben's diagram"></p>
+<p>So, we need to dynamically create an SVG. The SVG we want will look basically like this:</p>
+<pre><code>
+&lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;circle cx="50" cy="50" r="45" 
+  style="stroke: #9E9E9E"&gt;&lt;/circle&gt;
+  &lt;circle cx="50" cy="50" r="45" 
+  style="stroke: #333333)"&gt;&lt;/circle&gt;
+&lt;/svg&gt;
+</code></pre>
+
+<p>Let's set that SVG up in our element's constructor:</p>
+<pre><code>
+<span>window.customElements.define('twitter-circle-count', class extends HTMLElement {</span>
+  constructor() {
+    /* You must call super() first in the constructor. */
+    super();
+
+    /* Create the SVG. Note that we need createElementNS, not createElement */
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+    /* Create the track. Note createElementNS. Note also that "this" refers to
+       this element, so we've got a reference to it for later. */
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    /* And create the indicator, by duplicating the track */
+    this.indicator = this.track.cloneNode(true);
+
+    svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+  }
+<span>});</span>
+</code></pre>
+
+<p>Now we need to actually add that created SVG to the document. For that, we create a <em>shadow root</em>. This is basically a little separate HTML document, inside your element, which is isolated from the rest of the page. Styles set in the main page won't apply to stuff in your component; styles set in your component won't leak out to the rest of the page.<sup id="sf-i-wrote-a-web-component-3-back"><a href="#sf-i-wrote-a-web-component-3" class="simple-footnote" title="Pedant posse: yes, it's a bit more complicated than this. One step at a time.">3</a></sup> This is easy with <code>attachShadow</code>, which returns you this shadow root, which you can then treat like a normal node:</p>
+<pre><code>
+<span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
+  constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);
+
+    svg.appendChild(this.track);
+    svg.appendChild(this.indicator);</span>
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);
+  <span>}
+});</span>
+</code></pre>
+
+<p>Now, we want to allow people to set the colours of our circles. The way to do this is with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">CSS custom properties</a>. Basically, you can invent any new property name you like, as long as it's prefixed with <code>--</code>. So we invent two: <code>--track-color</code> and <code>--circle-color</code>. We then set the two circles to be those colours by using CSS's <code>var()</code> syntax; this lets us say "use this variable if it's set, or use this default value if it isn't". So our user can style our element with <code>twitter-circle-count { --track-color: #eee; }</code> and it'll work.</p>
+<p>Annoyingly, it doesn't seem to be easily possible to use <em>existing</em> CSS properties for this; there doesn't seem to be a good way to have the standard property <code>color</code> set the circle colour.<sup id="sf-i-wrote-a-web-component-4-back"><a href="#sf-i-wrote-a-web-component-4" class="simple-footnote" title="It would be possible to have color apply to our circle colour by monitoring changes to the element's style, but that's a nightmare.">4</a></sup> One has to use a custom variable even if there's a "real" CSS property that would be appropriate. I'm hoping I'm wrong about this and there is a sensible way to do it that I just haven't discovered.<sup id="sf-i-wrote-a-web-component-5-back"><a href="#sf-i-wrote-a-web-component-5" class="simple-footnote" title='QML does this by setting "aliases"; in a component, you can say property alias foo: subelement.bar and setting foo on an instance of my component propagates through and sets bar on the subelement. This is a really good idea, and I wish Web Components did it somehow.'>5</a></sup>
+(Update: Matt Machell <a href="https://twitter.com/shuckle/status/929710831620820993">mentions <code>currentColor</code></a> which would work perfectly for this example, but it <em>only</em> works for <code>color</code>; there's no way of setting other properties like, say, <code>font-size</code> on the component and having that explicitly propagate down to a particular element <em>in</em> the component; there's no <code>currentFontSize</code>. I don't know why <code>color</code> gets special treatment, even though the special treatment would solve my particular problem.)</p>
+<pre><code>
+<span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
+  constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);</span>
+    this.track.style.stroke = "var(--track-color, #9E9E9E)";
+    this.indicator.style.stroke = "var(--circle-color, #333333)";
+    <span>svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);
+  }
+});</span>
+</code></pre>
+
+<p>We want our little element to be <code>inline-block</code>. To set properties on the element itself, from inside the element, there is a special CSS selector, <code>:host</code>.<sup id="sf-i-wrote-a-web-component-6-back"><a href="#sf-i-wrote-a-web-component-6" class="simple-footnote" title="Firefox doesn't seem to support this yet, either :host or scoping styles so they don't leak out of the component, so I've also set display:inline-block and position:relative on the twitter-circle-count selector in my normal CSS. This should be fixed soon.">6</a></sup> Add a <code>&lt;style&gt;</code> element inside the component and it only applies to the component (this is special "scoped style" magic), and setting <code>:host</code> styles the root of your element:</p>
+<pre><code>
+<span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
+  constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);
+    this.track.style.stroke = "var(--track-color, #9E9E9E)";
+    this.indicator.style.stroke = "var(--circle-color, #333333)";
+    svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);</span>
+    var style = document.createElement("style");
+    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
+    shadowRoot.appendChild(style);
+  <span>}
+});</span>
+</code></pre>
+
+<p>Next, we need to be able to set the properties which define the value of the counter -- how much progress it should show. Having <code>value</code> and <code>max</code> properties similar to an <code>&lt;input type="range"&gt;</code> seems logical here. For this, we define a little function <code>setDashOffset</code> which sets the <code>stroke-dashoffset</code> style on our indicator. We then call that function in two places. One is in <code>connectedCallback</code>, a method which is called when our custom element is first inserted into the document. The second is whenever our <code>value</code> or <code>max</code> attributes change. That gets set up by defining <code>observedAttributes</code>, which returns a list of attributes that we want to watch; whenever one of those attributes changes, <code>attributeChangedCallback</code> is called.</p>
+<pre><code>
+<span>window.customElements.define('twitter-circle-count', class extends HTMLElement {</span>
+  static get observedAttributes() {
+    return ['value', 'max'];
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.setDashOffset();
+  }
+  setDashOffset() {
+    var mx = parseInt(this.getAttribute("max"), 10);
+    if (isNaN(mx)) mx = 100;
+    var value = parseInt(this.getAttribute("value"), 10);
+    if (isNaN(value)) value = 0;
+    this.indicator.style.strokeDashoffset = this.circumference - 
+        (value * this.circumference / mx);
+  }
+  <span>constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);
+
+    this.track.style.stroke = "var(--track-color, #9E9E9E)";
+    this.indicator.style.stroke = "var(--circle-color, #333333)";</span>
+    /* We know what the circumference of our circle is. It doesn't matter
+       how big the element is, because the SVG is always 100x100 in its own
+       "internal coordinates": that's what the viewBox means. So the circle
+       always has a 45px radius, and so its circumference is always the same,
+       2πr. Store this for later. */
+    this.circumference = 3.14 * (45 * 2);
+
+    <span>svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);
+    var style = document.createElement("style");
+    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
+    shadowRoot.appendChild(style);
+  }</span>
+  connectedCallback() {
+    this.setDashOffset();
+  }
+<span>});</span>
+</code></pre>
+
+<p>This works if the user of the component does <code>counter.setAttribute("value", "50")</code>, but it doesn't make <code>counter.value = 50</code> work, and it's nice to provide these direct JavaScript APIs as well. For that we need to define a getter and a setter for each.</p>
+<pre><code>
+<span>window.customElements.define('twitter-circle-count', class extends HTMLElement {
+  static get observedAttributes() {
+    return ['value', 'max'];
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.setDashOffset();
+  }
+  setDashOffset() {
+    var mx = parseInt(this.getAttribute("max"), 10);
+    if (isNaN(mx)) mx = this.defaultMax;
+    var value = parseInt(this.getAttribute("value"), 10);
+    if (isNaN(value)) value = this.defaultValue;
+    this.indicator.style.strokeDashoffset = this.circumference - (
+        value * this.circumference / mx);
+  }</span>
+  get value() {
+    var value = this.getAttribute('value');
+    if (isNaN(value)) return this.defaultValue;
+    return value;
+  }
+  set value(value) { this.setAttribute("value", value); }
+  get max() {
+    var mx = this.getAttribute('max');
+    if (isNaN(mx)) return this.defaultMax;
+    return max;
+  }
+  set value(value) { this.setAttribute("value", value); }
+  <span>constructor() {
+    super();
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    this.track.setAttribute("cx", "50");
+    this.track.setAttribute("cy", "50");
+    this.track.setAttribute("r", "45");
+    this.indicator = this.track.cloneNode(true);
+    this.track.style.stroke = "var(--track-color, #9E9E9E)";
+    this.indicator.style.stroke = "var(--circle-color, #333333)";
+    this.circumference = 3.14 * (45 * 2);
+    svg.appendChild(this.track);
+    svg.appendChild(this.indicator);
+    let shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(svg);
+    var style = document.createElement("style");
+    style.innerHTML = ":host { display: inline-block; position: relative; contain: content; }";
+    shadowRoot.appendChild(style);</span>
+    this.defaultValue = 50;
+    this.defaultMax = 100;
+  <span>}
+  connectedCallback() {
+    this.setDashOffset();
+  }
+});</span>
+</code></pre>
+
+<p>And that's all we need. We can now create our <code>twitter-circle-count</code> element and hook it up to a <code>textarea</code> like this:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">twitter-circle-count</span> <span class="na">value</span><span class="o">=</span><span class="s">"0"</span> <span class="na">max</span><span class="o">=</span><span class="s">"280"</span><span class="p">&gt;&lt;/</span><span class="nt">twitter-circle-count</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Type in here<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">rows</span><span class="o">=</span><span class="s">3</span> <span class="na">cols</span><span class="o">=</span><span class="s">40</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nt">twitter-circle-count</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--track-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ddd</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--circle-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#333</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#888</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1">// we use input, not keyup, because that fires when text is cut or pasted</span>
+<span class="c1">// thank you Dave MN for that insight</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"input"</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"twitter-circle-count"</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"value"</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+
+<p>and it works! I also added a text counter and a couple of other nicenesses, such as making the indicator animate to its position, and included a <a href="https://www.webcomponents.org/polyfills">polyfill</a> to add support in browsers that don't have it.<sup id="sf-i-wrote-a-web-component-7-back"><a href="#sf-i-wrote-a-web-component-7" class="simple-footnote" title="Mikeal Rogers has a really nice technique here for bundling your web component with a polyfill which is also worth considering.">7</a></sup></p>
+<script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script>
+<p>Here's the counter: <twitter-circle-count value="0" max="280"></twitter-circle-count></p>
+<p>Type some text in here:</p>
+<textarea rows="3" cols="20"></textarea>
+<style>
+twitter-circle-count {
+  width: 30px;
+  height: 30px;
+  --track-color: #ddd;
+  --circle-color: #333;
+  --text-color: #888;
+  text-indent: 0;
+  display: inline-block;
+  position: relative;
+}
+</style>
+<script src="https://kryogenix.org/code/browser/twitter-circle-count.js">
+</script>
+<style>
+pre code { font-size: 12px; }
+pre code span { opacity: 0.25; }
+</style><ol class="simple-footnotes"><li id="sf-i-wrote-a-web-component-1">I relied for a lot of this understanding on <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Google's web components documentation</a> by <a href="https://twitter.com/ebidel">Eric Bidelman</a>. <a href="#sf-i-wrote-a-web-component-1-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-2">All this stuff is present already in Chrome; for other browsers you may need polyfills, and I'll get to that later. <a href="#sf-i-wrote-a-web-component-2-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-3">Pedant posse: yes, it's a bit more complicated than this. One step at a time. <a href="#sf-i-wrote-a-web-component-3-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-4">It would be possible to have <code>color</code> apply to our circle colour by monitoring changes to the element's style, but that's a nightmare. <a href="#sf-i-wrote-a-web-component-4-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-5">QML does this by setting "aliases"; in a component, you can say <code>property alias foo: subelement.bar</code> and setting <code>foo</code> on an instance of my component propagates through and sets <code>bar</code> on the <code>subelement</code>. This is a really good idea, and I wish Web Components did it somehow. <a href="#sf-i-wrote-a-web-component-5-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-6">Firefox doesn't seem to support this yet, either <code>:host</code> or scoping styles so they don't leak out of the component, so I've also set <code>display:inline-block</code> and <code>position:relative</code> on the <code>twitter-circle-count</code> selector in my normal CSS. This should be fixed soon. <a href="#sf-i-wrote-a-web-component-6-back" class="simple-footnote-back">↩</a></li><li id="sf-i-wrote-a-web-component-7">Mikeal Rogers has a really nice technique here for <a href="https://medium.com/@mikeal/ive-seen-the-future-it-s-full-of-html-2577246f2210">bundling your web component with a polyfill</a> which is also worth considering. <a href="#sf-i-wrote-a-web-component-7-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2017/10/27/telegram-notifications-for-jenkins-builds/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2017/12/28/owntracks-and-a-map/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000641235880/29f32f34a4f1247e0791ad55cb982f8f.jpeg">
+			Ben Nadel responded at
+		<a href="https://twitter.com/BenNadel/status/929699570199748608">twitter.com</a>
+		<span class="wm-summary">			Noice!!! Will check it out :D
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000641235880/29f32f34a4f1247e0791ad55cb982f8f.jpeg">
+			Ben Nadel responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-15148392">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/437657039322361856/kI1jXts7.png">
+			Brian Douglass responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-769568342">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/634707167770243072/9RvxX6u2.jpg">
+			Matt Machell responded at
+		<a href="https://twitter.com/shuckle/status/929710831620820993">twitter.com</a>
+		<span class="wm-summary">			for your colour woes, would currentColor keyword help? css-tricks.com/currentcolor/ we use that in our (non web component) SVG dials.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/929711474498527233">twitter.com</a>
+		<span class="wm-summary">			Ooh! It would. I don't understand why colour gets a special one-use-only solution rather than something that applies to all CSS properties, but they d&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/634707167770243072/9RvxX6u2.jpg">
+			Matt Machell responded at
+		<a href="https://twitter.com/shuckle/status/929712008840335360">twitter.com</a>
+		<span class="wm-summary">			works as far back as IE9, so shouldn't need it for SVG? caniuse.com/#search=curren…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/929712151933214720">twitter.com</a>
+		<span class="wm-summary">			This thing has existed for ever?? Blimey. I must be blind
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/634707167770243072/9RvxX6u2.jpg">
+			Matt Machell responded at
+		<a href="https://twitter.com/shuckle/status/929712583753502720">twitter.com</a>
+		<span class="wm-summary">			It has. It's really useful for any inline SVG you want to inherit its fill from the text color.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/870214669570650112/2QNI84vG.jpg">
+			Prem Rose responded at
+		<a href="https://twitter.com/premasagar/status/929716118843019264">twitter.com</a>
+		<span class="wm-summary">			Thanks for the post. It's helpful to have simple, useful examples to get going with web components. A heads-up, the code snippets have a line-height&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/870214669570650112/2QNI84vG.jpg">
+			Prem Rose responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-627103">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/928337771617452032/aLWjDJgg.jpg">
+			Christmas Ex Machina responded at
+		<a href="https://twitter.com/MegaSlippers/status/929718153575370752">twitter.com</a>
+		<span class="wm-summary">			That little jitter due to font width is distracting but this is very cool! Is it possible to refresh the counter when you cut some text out of the box&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/929718440897777664">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: I wrote a Web Component by @sil buff.ly/2zQ3QX1 #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/929718869597540352">twitter.com</a>
+		<span class="wm-summary">			It would be, yeah; at the moment I only react on a keyup event in order to be as simple as possible, but I should really be using input events instead&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/929719012178657280">twitter.com</a>
+		<span class="wm-summary">			they do, and I've just noticed myself and need to fix it :-)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/862047026867032065/K1dYNj08.jpg">
+			decke boy responded at
+		<a href="https://twitter.com/NickColley/status/929726438521131008">twitter.com</a>
+		<span class="wm-summary">			This is great, but when compared with a declarative approach this seems very cumbersome.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000808710206/2dbdaa1cb7b0db02f997aea5b40f29b8.jpeg">
+			Justin Fagnani responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-102513397">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/929732107722788867">twitter.com</a>
+		<span class="wm-summary">			the thing I think is nice about it is that a nicely-implemented component would ideally be self-contained and uploaded somewhere, where anyone can jus&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/847549031790387200/ictk1fgS.jpg">
+			Saleem Ahmed responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-1321994161">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/773680193315610624/UvQsX9TB.jpg">
+			Eric Bidelman responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-14399709">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/700824335624249348/SkxQsdhq.png">
+			Mikeal Rogers responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-668423">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/929733529621053440">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: I wrote a Web Component kryogenix.org/days/2017/11/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/885237782117052417/1ic5y8M0.jpg">
+			Jude Gibbons responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-59450500">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/790346765836877825/nWgyLOvw.jpg">
+			Blake Winton responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-13831932">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/749630190809034753/QYrRDBL4.jpg">
+			AJ Klein responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-345874469">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/854897164094509059/ZI8v5rjO.jpg">
+			Lucas Leandro responded at
+		<a href="https://twitter.com/lucasleandro412/status/929763984080764929">twitter.com</a>
+		<span class="wm-summary">			HUHUahuhua I liked it, thanks for the mention =)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/753542724800901120/iEIIRnwR.jpg">
+			JimDabell responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-14505515">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/464747515653259264/M6VDjCds.jpeg">
+			Alex Balhatchet responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-8631222">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/805908354446917632/9rAIDTCZ.jpg">
+			Dunstan Orchard responded at
+		<a href="https://twitter.com/dunstan/status/929840208559816704">twitter.com</a>
+		<span class="wm-summary">			Today's experiment: playing with web components to make a small version of the Twitter text counter without needing a library. https://t.co/
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/750836288635359237/1GqenPM5.jpg">
+			Justin willis responded at
+		<a href="https://twitter.com/sil/status/929698663726804992#favorited-by-3342117765">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/850031946637996032/yFZuhw1y.jpg">
+			The Chipaca responded at
+		<a href="https://twitter.com/chipaca/status/930481358111158272">twitter.com</a>
+		<span class="wm-summary">			grumble about it counting being wrong and terrible (in exactly the same way as twitter's, so at least there's that)
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-mrFxx00fIQE/AAAAAAAAAAI/AAAAAAAAAAA/OJXgncfU_lA/photo.jpg?sz=50">
+			Pete Woods responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KP2DuU7tvza#liked-by-102737484924270175908">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/850422136065970176/qw9Vj_1Q.jpg">
+			molily responded at
+		<a href="https://twitter.com/molily/status/933418862707707904">twitter.com</a>
+		<span class="wm-summary">			“I wrote a Web Component” by @sil kryogenix.org/days/2017/11/1…
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-WvaHUvxIOHc/AAAAAAAAAAI/AAAAAAAAAAA/ARcXvw4uRL8/photo.jpg?sz=50">
+			Joseph Parker responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/KP2DuU7tvza#liked-by-117696565362224401480">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2017/11/12/i-wrote-a-web-component/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

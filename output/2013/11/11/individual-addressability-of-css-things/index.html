@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Individual addressability of CSS things</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Individual addressability of CSS things">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/"><time 
+			class="dt-published" datetime="2013-11-11T09:50:00+00:00">Nov 11 2013</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/">Individual addressability of CSS things</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>One of the things that I find valuable about CSS, but is being
+considered a little less often these days, is individual addressability
+of parts of a CSS declaration.</p>
+<p>An example. You have an element, with a background:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">p</span><span class="err">#</span><span class="nx">myelement1</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="nx">background</span><span class="p">:</span><span class="w"> </span><span class="nx">url</span><span class="p">(</span><span class="nx">http</span><span class="p">:</span><span class="c1">//kryogenix.org/images/hackergotchi-simpler.png) top left repeat-x;</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">-</span><span class="nx">height</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="nx">px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>and then at run time you want to change the background image to
+something else. Having to set the whole <code>background</code> property would be
+really irritating here: how would you do it? You'd have to do something
+horrible like read the whole background property and then perform a
+textual <code>.replace()</code> on it in JavaScript. Fortunately, the CSS people
+thought of that: a property like <code>background</code> is actually also broken up
+into a zillion smaller properties: <code>background-image</code>,
+<code>background-size</code>, <code>background-position</code>, <code>background-repeat</code> and so on.
+Changing the image (but <em>not</em> changing the remainder of the property) is
+now easy: just set <code>myElement.style.backgroundImage</code> from JavaScript,
+and Robert's your mother's brother. Done.</p>
+<p>This neat feature of CSS, of being able to set not only the totality of
+a property but also all its parts individually, seems to be being
+weakened by more advanced properties (ones where the value is not just
+something primitive but is instead its own tiny domain-specific
+language). Take, for example, gradients.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="p">#</span><span class="nn">myelement2</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span><span class="w"> </span><span class="kc">bottom</span><span class="p">,</span><span class="w"> </span><span class="mh">#1e5799</span><span class="w"> </span><span class="mi">0</span><span class="kt">%</span><span class="p">,</span><span class="mh">#7db9e8</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
+<span class="w">  </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>[raw]</p>
+<p>[/raw]</p>
+<p>Here we have a gradient, from darkish blue to lightish blue. I would
+like this gradient to change to be darkish <em>red</em> to the same lightish
+blue. In order to make that change at runtime, I have to change the
+whole <code>background-image</code> property. I can't just change the first colour
+stop and not the rest. In essence, this means one of two approaches if I
+want to change this property at run time.</p>
+<p><strong>1.</strong> The first is that I have to hardcode my CSS into my JavaScript as
+well. So my JS has, written into it, that the second colour stop is
+<code>#7db9e8 100%</code>, and I say</p>
+<p><code>myElement.style.backgroundImage = "linear-gradient(to bottom, " + myDarkishRedColour + " 0%,#7db9e8 100%)";</code></p>
+<p>This is hopelessly irritating. It almost wholly defeats the point of
+<em>having</em> a CSS stylesheet; I can't change anything in the CSS without
+also checking whether the thing I've changed is in my JS somewhere too
+as well.</p>
+<p><strong>2.</strong> So then there's the second approach, which is that I read the
+existing value of the property and parse it myself, and just change the
+bit I want. In other words, that I write a CSS parser in JavaScript.
+This is an unbrilliant suggestion. It is so unbrilliant that other
+stupid ideas come and pray at the foot of it. We did this once -- this
+is what <a href="http://sizzlejs.com/">Sizzle</a> was for CSS selectors -- and then
+<code>document.querySelector</code> came along and obsoleted it, because the
+browser already has to know how to parse this stuff and can do it more
+reliably and faster, so it should expose that to JS.</p>
+<p>Obviously, if I only ever want to change from dark-blue-gradient to
+dark-red-gradient, I just define a <code>class</code> and set the <code>class</code> from
+JavaScript. However, if I'm doing anything dynamic at all, this doesn't
+work. Well, perhaps it does, because there is...</p>
+<p><strong>3.</strong> dynamically add stuff to my stylesheet and then use it. So I add
+a new selector for <code>p#myelement2.something</code> to the stylesheet at runtime
+and then set the <code>something</code> class on the element. But this does not
+help: I still need to parse or hardcode the values in the gradient!</p>
+<p>Class names used to be like this in JavaScript. If you wanted to add
+<code>class="happy"</code> to an element, you couldn't just say
+<code>element.className = "happy"</code> because that element might already <em>have</em>
+a class and you'd wipe it out. So you had to do
+<code>element.className += " happy"</code>, and then removing classes became a
+complex little regexp exercise with <code>\b</code> escapes for end of word... and
+then <code>element.classList</code> came to save us, and now each class is
+individually addressable.</p>
+<p>Making things individually addressable does lead to a large
+proliferation of properties: <code>border-radius</code> is actually
+<code>border-bottom-left-radius</code> and <code>border-top-right-radius</code> and
+<code>border-top-left-radius</code> and <code>border-bottom-right-radius</code>. But it
+<em>works</em>; when you need it, the individual properties are there, and when
+you don't, you can just set the aggregate property and not think about
+the hordes on which its built.</p>
+<p>I wish this happened for new things in CSS. Changing the second
+background-size in a multi-valued background-size, or just the
+higher-DPI image in a responsive image, or one of the colour stops in a
+gradient. Individual addressability of things is a lovely property of
+CSS, and we shouldn't just abandon it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2013/11/09/slide-in-side-panels-with-pure-css-and-scaling/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2013/11/25/my-daughters-in-the-paper/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/693100912567521280">twitter.com</a>
+		<span class="wm-summary">			@sil @rachelandrew @meyerweb so, how do I change that 7em to 8em from JS? Do I have to set the whole CSS value, or can I just set the 7em?
+</span></li>
+		<li><img src="https://twitter.com/davidcmoulton/profile_image?size=original">
+			David Moulton responded at
+		<a href="https://twitter.com/sil/status/693100449608646660#favorited-by-153571843">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/683728666501595136/am5C2cNx.jpg">
+			Surma responded at
+		<a href="https://twitter.com/DasSurma/status/743427885915115520">twitter.com</a>
+		<span class="wm-summary">			@sil Lots of types still missing (e.g. timing functions). Will come eventually.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/743428440263634944">twitter.com</a>
+		<span class="wm-summary">			@DasSurma just checking I hadn't missed it! Looking forward to that :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/737417886440919041/1glnq0da.jpg">
+			(((вкαя∂εℓℓ))) responded at
+		<a href="https://twitter.com/sil/status/743427625650110464#favorited-by-288892765">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/766078597392138240/COm6TWQQ.jpg">
+			Aimee Knight responded at
+		<a href="https://twitter.com/sil/status/814499802058784770#favorited-by-346712890">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1092373836287410177/yTTYAYzG.jpg">
+			Jakob 💈 responded at
+		<a href="https://twitter.com/sil/status/1176410590576820224#favorited-by-35193525">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/943190142210191360/dP2tm8WE.jpg">
+			Ana Tudor 🐯 responded at
+		<a href="https://twitter.com/anatudor/status/1176417359353044993">twitter.com</a>
+		<span class="wm-summary">			@Rumyra Explanation of Typed OM from @rumyra, which is about individual addressability of CSS properties (and other things): set CSS bits di
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/754738201231814656/DbyUOeMS.jpg">
+			вкαя∂εℓℓ responded at
+		<a href="https://twitter.com/sil/status/1176410590576820224#favorited-by-288892765">twitter.com</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2013/11/11/individual-addressability-of-css-things/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/11/11/individual-addressability-of-css-things/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

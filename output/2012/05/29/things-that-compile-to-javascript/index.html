@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Things that compile to JavaScript</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Things that compile to JavaScript">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/"><time 
+			class="dt-published" datetime="2012-05-29T00:02:00+01:00">May 29 2012</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/">Things that compile to JavaScript</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Lots of discussion recently about things-that-compile-to-JavaScript. And
+the discussion is forcefully making the point that they're a good idea:</p>
+<blockquote>
+<p>JS is a compile target, and that is not only a strength but a feature.
+Not a bug. JS community needs to embrace diversity. — <a href="https://twitter.com/brianleroux/status/207185628880830464">@brianleroux</a></p>
+</blockquote>
+<p>Brian's right, too, and those that battle against this have a little
+flavour of the assembly language hackers who railed against C because
+compilers couldn't produce things as tightly rolled as hand-hacking
+opcodes.</p>
+<p>However, I'm not sure I like the idea all that much, and I don't <em>think</em>
+that my reasoning boils down to "I don't like it so you can't have it".
+Herewith, my reasoning.</p>
+<p>There are some people who believe that a compiler will produce bad
+JavaScript. The JS produced by a program will be less elegant, less
+efficient, make less use of the language, than anything hand-written and
+loved and agonised over could be. This is a crock of shit. Sure, when a
+compiler is first built then a super-dedicated super-expert person might
+be able to beat it, but the gap narrows and narrows over time. I do not
+care, in this discussion, about forcing the last clock-cycle of
+efficiency out of your JavaScript by writing it by hand. However, I do
+care, a lot, about the JavaScript I can see being <strong>readable</strong>.</p>
+<blockquote>
+<p>Why don't mobile browsers have "View Source"? — <a href="https://twitter.com/mrdoob/status/207231612813979649">@mrdoob</a></p>
+</blockquote>
+<p>The Web, unusually, came with a View Source button. Hardly anyone had
+done that before, and hardly anyone's done it since. Hands up if you've
+learned at least something by viewing the source of other people's
+pages. OK, everyone, now put your hands down. Hands up if you learned
+everything from books and nothing at all from web pages? OK, no-one,
+don't put your hands down because there is no-one with their hands up,
+because there is <em>no-one like that</em>. What concerns me about JavaScript
+being a <em>target language</em>, a thing which is written by compilers and
+minifiers and compressors, is that we break people's ability to learn.
+When you're debugging your code, when you're debugging someone else's
+site, when you've seen a cool trick and want to learn how it's done, you
+have to do that by reading code that no human has ever seen; by reading
+code output by a computer program. Computers are excellent tools, but
+they are very bad at <em>teaching</em>. If you're trying to learn from code
+that isn't the code that the author actually wrote, you're always going
+to be at a gargantuan disadvantage. Obviously, when the author's
+debugging her own code she's got the Real Source to hand, and a bunch of
+sweet tools to work with it and debug it and step through it and
+understand it. Those of us learning from what's actually given to the
+browser have no such luxury.</p>
+<p>Obviously, there is a balance here. People don't minify their code
+because they want to hide it from prying eyes, they minify it because
+they want to make their site load faster and because Steve Souders has
+proved that it will if they do. (Well. Some people do minify their code
+just because they want to hide it, but I think we can all agree that
+those people can sod off, right?) No-one writes in CoffeeScript because
+they want to hide the secret .coffee magic from browsers; they do it
+because it's better for them, and optimising your process to make stuff
+easier for random people to learn from your code is the tail wagging the
+dog a bit, amirite?</p>
+<p>Well, sorta, and sort of not. Remember that View Source thing. This is a
+tragedy of the commons; if we make things better for ourselves right now
+by obfuscating code (for speed, not hiding), by removing View Source
+from browsers (for elegance and simplicity of UI, not restrictiveness),
+by reviewing applications before they're allowed to be run (for
+consistency of experience, not gatekeeping)… where are the next
+brianleroux and mrdoob and dmr and dhh and linus and woz coming from? I
+don't say this to suggest that building a language which compiles to
+JavaScript makes you someone who hates openness and the web, not at all.
+But I do ask that we bear in mind that View Source is increasingly
+useless if you're not Viewing the Source that was written. There's a
+shift to "I'll provide the source if I want to, as an altruistic act"
+(which most people I know, and certainly everyone on that list, does),
+and away from the Web's default position which is "of course the source
+is there for you to look at and learn from and experiment with and
+improve; why would it not be?" We aren't going to throw that away
+unnecessarily, but I want the next generation to know that it's
+important too, and that means we've gotta tell them why... and telling
+them why is hard if they think of JavaScript as a thing that only
+computers read.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2012/05/12/how-to-make-apis-that-people-like/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2012/06/06/how-i-checked-whether-my-linkedin-password-was-leaked/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://twitter.com/javascriptd/profile_image?size=original">
+			Javascript Digest responded at
+		<a href="https://twitter.com/javascriptd/status/578326798536040448">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: @dylans also, kryogenix.org/days/2012/05/2… My opinion has not changed very much in the intervening years :) @rem
+</span></li>
+		<li><img src="https://twitter.com/dylans/profile_image?size=original">
+			Dylan Schiemann responded at
+		<a href="https://twitter.com/dylans/status/578340676053528576">twitter.com</a>
+		<span class="wm-summary">			@sil @rem I don't disagree, I just have different requirements in that I want Dojo to stay competitive in the coming years
+</span></li>
+		<li><img src="https://twitter.com/dylans/profile_image?size=original">
+			Dylan Schiemann responded at
+		<a href="https://twitter.com/sil/status/578320669517213696">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/aerotwist/profile_image?size=original">
+			Paul Lewis responded at
+		<a href="https://twitter.com/aerotwist/status/627395646799151104">twitter.com</a>
+		<span class="wm-summary">			@sil well my own case is that I often want to help devs to learn. That said many things are unminified in a GitHub repo.
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/627395947534925824">twitter.com</a>
+		<span class="wm-summary">			@aerotwist ya, plus source maps, etc. You're good at doing it because of sense of duty and decency; I like that the web pushes it on people
+</span></li>
+		<li><img src="https://twitter.com/claudiopro/profile_image?size=original">
+			Claudio Procida responded at
+		<a href="https://twitter.com/claudiopro/status/627505812492173312">twitter.com</a>
+		<span class="wm-summary">			@sil @BrendanEich +1 for the View Source button (or Inspector alike) on mobile browsers.
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/627510354986332160">twitter.com</a>
+		<span class="wm-summary">			@claudiopro @BrendanEich wholly, completely agree.
+</span></li>
+		<li><img src="https://twitter.com/MattWilcox/profile_image?size=original">
+			Matt Wilcox responded at
+		<a href="https://twitter.com/MattWilcox/status/703366215364956161">twitter.com</a>
+		<span class="wm-summary">			@sil I agree everyone should grok CSS first. But I haven’t written pure CSS in work life in many years. It’s impractical.
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/703366445590257664">twitter.com</a>
+		<span class="wm-summary">			@MattWilcox really? I use a preprocessor of I actually need it, which is the case on about half my projects.
+</span></li>
+		<li><img src="https://twitter.com/MattWilcox/profile_image?size=original">
+			Matt Wilcox responded at
+		<a href="https://twitter.com/MattWilcox/status/703367127839932416">twitter.com</a>
+		<span class="wm-summary">			@sil use it all the time, it’s simply more convinient to author, and you get minification as a built in bonus.
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/703367303660965888">twitter.com</a>
+		<span class="wm-summary">			@MattWilcox I don't like minifying either. See the blog post :-)
+</span></li>
+		<li><img src="https://twitter.com/MattWilcox/profile_image?size=original">
+			Matt Wilcox responded at
+		<a href="https://twitter.com/MattWilcox/status/703367715856236546">twitter.com</a>
+		<span class="wm-summary">			@sil stuff as simple as importing standard reset and standard typography partials helps authoring by removing that from actual styling file.
+</span></li>
+		<li><img src="https://twitter.com/MattWilcox/profile_image?size=original">
+			Matt Wilcox responded at
+		<a href="https://twitter.com/MattWilcox/status/703367969003446272">twitter.com</a>
+		<span class="wm-summary">			@sil yeah I would agree if I wasn’t also outputting sass source maps. Inspector shows the proper rules regardless, and scss line numbers.
+</span></li>
+		<li><img src="https://twitter.com/MattWilcox/profile_image?size=original">
+			Matt Wilcox responded at
+		<a href="https://twitter.com/MattWilcox/status/703368334415368192">twitter.com</a>
+		<span class="wm-summary">			@sil heck looking at a bare CSS file even unminified is impractical to learners when inspector tools do a better job of that these days.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/675381240128602112/hqOTM9i3.jpg">
+			xnoɹǝʃ uɐıɹq responded at
+		<a href="https://twitter.com/brianleroux/status/743214618437255168">twitter.com</a>
+		<span class="wm-summary">			@sil def feel the same but want better labeling. most of these projects say they are JS or worse 'standard' when truly something… else
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/743214855310671872">twitter.com</a>
+		<span class="wm-summary">			@brianleroux I hate it when I go looking for a module to do a thing I need and then see it's coffee and walk away
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/675381240128602112/hqOTM9i3.jpg">
+			xnoɹǝʃ uɐıɹq responded at
+		<a href="https://twitter.com/brianleroux/status/743215591746469888">twitter.com</a>
+		<span class="wm-summary">			@sil happened to me twice today and a colleague once. its a problem.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/743215756679254016">twitter.com</a>
+		<span class="wm-summary">			@brianleroux it totally is. Hence blog post :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/675381240128602112/hqOTM9i3.jpg">
+			xnoɹǝʃ uɐıɹq responded at
+		<a href="https://twitter.com/sil/status/743213821548957697#favorited-by-676363">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3520510122/b0fa61f3cf6834a3da4b0cddd10d78dc.png">
+			Andrew Hutchings responded at
+		<a href="https://twitter.com/sil/status/828682820939870208#favorited-by-30284263">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2764252223/162435e2847f5df91ff8367e446693bb.jpeg">
+			Sebastian Lenton responded at
+		<a href="https://twitter.com/sebastianlenton/status/834436199892807681">twitter.com</a>
+		<span class="wm-summary">			I’ll stop minifying code if you agree to stop using cursive as a fallback in your font stack 😅😉
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/671836657059012609/K8EjTkxN.jpg">
+			Matt Andrews responded at
+		<a href="https://twitter.com/mattpointblank/status/834437066045939712">twitter.com</a>
+		<span class="wm-summary">			... I may regret initiating this flamewar.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/834437197193428995">twitter.com</a>
+		<span class="wm-summary">			hmm. The font itself is cursive, sorta; handwriting. But I take your point. I should do something about that :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/793267182624993280/5inLt7WR.jpg">
+			Eric Bailey responded at
+		<a href="https://twitter.com/ericwbailey/status/885597248670904321">twitter.com</a>
+		<span class="wm-summary">			This is a great article, thanks for sharing it.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/885237782117052417/1ic5y8M0.jpg">
+			Jude Gibbons responded at
+		<a href="https://twitter.com/sil/status/885593941776715776#favorited-by-59450500">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/793267182624993280/5inLt7WR.jpg">
+			Eric Bailey responded at
+		<a href="https://twitter.com/sil/status/885593941776715776#favorited-by-59969976">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/544034757730779136/-jOL7GnN.jpeg">
+			Javascript Digest responded at
+		<a href="https://twitter.com/javascriptd/status/966059865054502912">twitter.com</a>
+		<span class="wm-summary">			@jennschiffer agreed. I don't think my view has changed much since I wrote kryogenix.org/days/2012/05/2… years ago; moving from "you can learn fro
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1486676576150429696/jQv9KnH5.jpg">
+			Jonathan Schofield responded at
+		<a href="https://twitter.com/schofeld/status/1517614705195556865">twitter.com</a>
+		<span class="wm-summary">			This is exactly it. I’m sure that lots of professional web devs these days did most of their learning by cloning JS GitHub repos on their brand new Ma&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/850437555942240256/eqpVysRi.jpg">
+			Rodney 💚🌹☯ responded at
+		<a href="https://twitter.com/dohbee/status/1517618780221882368">twitter.com</a>
+		<span class="wm-summary">			This is exactly it. I’m sure that lots of professional web devs these days did most of their learning by cloning JS GitHub repos on their brand new Ma&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1298224766130757634/UdD4OCdS.jpg">
+			Nehemiah will fight for Um-Helat responded at
+		<a href="https://twitter.com/sil/status/1517613364167458816#favorited-by-919183149439049734">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1486676576150429696/jQv9KnH5.jpg">
+			Jonathan Schofield responded at
+		<a href="https://twitter.com/sil/status/1517613364167458816#favorited-by-14300833">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1309840564192456705/i3UYgKEc.jpg">
+			John Godsland responded at
+		<a href="https://twitter.com/sil/status/1517613364167458816#favorited-by-25668786">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1516530505101021196/qOk0yhlQ.jpg">
+			Mellon responded at
+		<a href="https://twitter.com/sil/status/1517613364167458816#favorited-by-1062644123730100224">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1512820502787772426/202Qx7NN.jpg">
+			Sara Soueidan responded at
+		<a href="https://twitter.com/sil/status/1517613364167458816#favorited-by-717654410">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1514222670656995328/QzFzoZDT.jpg">
+			isha 🏳️‍⚧️ responded at
+		<a href="https://twitter.com/sil/status/1517613364167458816#favorited-by-1494624564071915521">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/454536950/ken2.jpg">
+			Dusan Bosnjak responded at
+		<a href="https://twitter.com/pailhead011/status/1517768385479974912">twitter.com</a>
+		<span class="wm-summary">			What if you just make utilitarian uninteresting sites? Compiled JS will be small, efficient and such. I’d rather deliver something like Wikipedia to m&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1517780302172725249">twitter.com</a>
+		<span class="wm-summary">			That seems a strange example? Because Wikipedia don't ruin their scripts; they're mildly minified to remove whitespace, but they're not all compressed&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1316781583790153729/GcIPnfXe.jpg">
+			James Vickery responded at
+		<a href="https://twitter.com/sil/status/1517613364167458816#favorited-by-2160332200">twitter.com</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2012/05/29/things-that-compile-to-javascript/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/05/29/things-that-compile-to-javascript/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

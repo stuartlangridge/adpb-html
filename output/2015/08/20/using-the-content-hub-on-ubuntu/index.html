@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Using the content hub on Ubuntu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Using the content hub on Ubuntu">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2015/08/20/using-the-content-hub-on-ubuntu/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2015/08/20/using-the-content-hub-on-ubuntu/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2015/08/20/using-the-content-hub-on-ubuntu/"><time 
+			class="dt-published" datetime="2015-08-20T02:19:00+01:00">Aug 20 2015</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2015/08/20/using-the-content-hub-on-ubuntu/">Using the content hub on Ubuntu</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>On an Ubuntu phone, apps are<sup id="sf-using-the-content-hub-on-ubuntu-1-back"><a href="#sf-using-the-content-hub-on-ubuntu-1" class="simple-footnote" title="correctly">1</a></sup> isolated from one another; each app has its own little folder where <em>its</em> files go, and no other app can intrude. This, obviously, requires some way to exchange files between apps, because frankly there are times when my epub ebook is in my file downloader app and I need it in my ebook reader app. And so on.</p>
+<p>To deal with this, Ubuntu provides the Content Hub: a way for an app to say "I need a photo" and all the other apps on your phone which have photos to say "I have photos! Ask me! Me!".</p>
+<p>This is, at a high level, the right thing to do. If my app wants to use a picture of you as an avatar, it should not be able to snarf your whole photo gallery and do what it wants with it. More troubling yet, adding some new social network app should not give it access to your whole address book so that it can hassle your friends to join, or worse just snaffle that information and store it away on its own server for future reference. So when some new app needs a photo of you to be an avatar, it asks the content hub; you, the punter, choose an app to provide that photo, and then a photo from within that app, and our avatar demander gets that photo, and none of the pictures of your kids or your holiday or whatever you take photos of. This is, big picture<sup id="sf-using-the-content-hub-on-ubuntu-2-back"><a href="#sf-using-the-content-hub-on-ubuntu-2" class="simple-footnote" title="ha!">2</a></sup> a good idea.</p>
+<p>Sadly, the content hub is spectacularly under-documented, so actually <em>using</em> it in your Ubuntu apps is jolly hard work. However, with an assist<sup id="sf-using-the-content-hub-on-ubuntu-3-back"><a href="#sf-using-the-content-hub-on-ubuntu-3" class="simple-footnote" title="a bit more than that, if I'm honest">3</a></sup> from Michael Zanetti, I now understand how to offer files you have to others via the content hub. So I come to explain this to you.</p>
+<p>First, you need permission to access the content hub at all. So, in your <code>appname.apparmor</code> file<sup id="sf-using-the-content-hub-on-ubuntu-4-back"><a href="#sf-using-the-content-hub-on-ubuntu-4" class="simple-footnote" title="or whatever you called it; hooks.$APPNAME.apparmor in manifest.json">4</a></sup>, add <code>content_exchange_source</code>.<sup id="sf-using-the-content-hub-on-ubuntu-5-back"><a href="#sf-using-the-content-hub-on-ubuntu-5" class="simple-footnote" title="This is more confusing than it should be. If you're using Ubuntu SDK as your editor, then clicking the big &quot;+&quot; button will load a list of possible apparmor permissions. Don't double-click a permission; this will just show you what it means in code terms, rather irrelevantly. Instead, choose your permission (content_exchange_source in this case) and then say Add">5</a></sup> This tells Ubuntu that you're prepared to provide files for others (you are a "source" of data). You then need to, also in <code>manifest.json</code>, configure what you're allowed to do with the content hub; add a <code>hooks.content-hub</code> key which names a file (<code>myappname.content-hub</code> or whatever you prefer). That file that you just named needs to also be json, and looks something like <code>{"source": ["all"]}</code>, which dictates which sorts of files you want to be a source <em>for</em>.<sup id="sf-using-the-content-hub-on-ubuntu-6-back"><a href="#sf-using-the-content-hub-on-ubuntu-6" class="simple-footnote" title='you can also do `{"source":["pictures"]}. There may be other things you can write in there instead of "all" or "pictures", but the documentation is surlily silent on such things.'>6</a></sup> Once you've done all this, you're allowed to use the content hub. So now we explore how.</p>
+<p>In your QML app, you need to add a <code>ContentPeerPicker</code>. This is a normal QML Item; specifically, showing it to the user is <em>your</em> responsibility. So you might want to drop it in a Dialog, or a Page, or you might just put it at top level with <code>visible:hidden</code> and then show it when appropriate (such as when your user taps a file or image or whatever that they want to open in another app).</p>
+<p>Your <code>ContentPeerPicker</code> should look, at minimum, like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ContentPeerPicker</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">handler</span><span class="p">:</span><span class="w"> </span><span class="n">ContentHandler</span><span class="o">.</span><span class="n">Destination</span>
+<span class="w">    </span><span class="n">contentType</span><span class="p">:</span><span class="w"> </span><span class="n">ContentType</span><span class="o">.</span><span class="n">All</span>
+<span class="w">    </span><span class="n">onPeerSelected</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">var</span><span class="w"> </span><span class="n">transfer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">peer</span><span class="o">.</span><span class="n">request</span><span class="p">();</span>
+<span class="w">        </span><span class="k">var</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="nb nb-Type">Array</span><span class="p">();</span>
+<span class="w">        </span><span class="n">exportItem</span><span class="o">.</span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">/*</span><span class="w"> </span><span class="n">whatever</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">share</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="o">*/</span><span class="p">;</span>
+<span class="w">        </span><span class="n">items</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">exportItem</span><span class="p">);</span>
+<span class="w">        </span><span class="n">transfer</span><span class="o">.</span><span class="n">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">items</span><span class="p">;</span>
+<span class="w">        </span><span class="n">transfer</span><span class="o">.</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentTransfer</span><span class="o">.</span><span class="n">Charged</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cpp</span><span class="o">.</span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">onCancelPressed</span><span class="p">:</span><span class="w"> </span><span class="n">cpp</span><span class="o">.</span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The important parts here are <code>handler: ContentHandler.Destination</code> (which means "I am a source for files which need to be opened in some other app"), and <code>contentType: ContentType.All</code> (which means "I am a source for all types of file").<sup id="sf-using-the-content-hub-on-ubuntu-7-back"><a href="#sf-using-the-content-hub-on-ubuntu-7" class="simple-footnote" title="You can see all the possible content types in the Ubuntu SDK ContentType documentation (https://developer.ubuntu.com/api/apps/qml/sdk-15.04/Ubuntu.Content.ContentType/), with misleading typos and all">7</a></sup> After that<sup id="sf-using-the-content-hub-on-ubuntu-8-back"><a href="#sf-using-the-content-hub-on-ubuntu-8" class="simple-footnote" title="as mzanetti excellently described it">8</a></sup> show it to the user somehow and connect to its <code>onPeerSelected</code> method. When the user picks some other app to export to from this new Item, <code>onPeerSelected</code> will be called; when the callback <code>onPeerSelected</code> is called, the <code>peer</code> property is valid. Get a transfer object to this peer: <code>var transfer = peer.request();</code>, and then you need to fill in <code>transfer.items</code>. This is a JavaScript list of <code>ContentItem</code>s; specifically, define <code>ContentItem { id: exportItem }</code> in your app, and then make a "list" of one item with <code>var items = new Array(); exportItem.url = PATH_TO_FILE_YOU_ARE_EXPORTING; items.push(exportItem); transfer.items = items;</code>.<sup id="sf-using-the-content-hub-on-ubuntu-9-back"><a href="#sf-using-the-content-hub-on-ubuntu-9" class="simple-footnote" title="You can transfer more than one item, here.">9</a></sup> After that, set <code>transfer.state = ContentTransfer.Charged</code> and your transfer begins; you can hide the <code>ContentPeerPicker</code> by setting <code>cpp.visible=false</code> at this point.</p>
+<p>And that's how to export files over the Content Hub so that your app can make files available to others. There's a second half of this (other apps export the files; your app wants to retrieve them, so let's say they're an app which needs a photo, and you're an app with photos), which I'll come to in a future blog post.</p>
+<p>As you can see from the large number of footnotes<sup id="sf-using-the-content-hub-on-ubuntu-10-back"><a href="#sf-using-the-content-hub-on-ubuntu-10" class="simple-footnote" title="not this one, though">10</a></sup> there are a number of caveats with this whole process, in particular that a bunch of it isn't documented. It will, I'm sure, over time, get better. Meanwhile, the above gives you the basics. Have fun.</p><ol class="simple-footnotes"><li id="sf-using-the-content-hub-on-ubuntu-1">correctly <a href="#sf-using-the-content-hub-on-ubuntu-1-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-2">ha! <a href="#sf-using-the-content-hub-on-ubuntu-2-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-3">a bit more than that, if I'm honest <a href="#sf-using-the-content-hub-on-ubuntu-3-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-4">or whatever you called it; <code>hooks.$APPNAME.apparmor</code> in <code>manifest.json</code> <a href="#sf-using-the-content-hub-on-ubuntu-4-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-5">This is more confusing than it should be. If you're using Ubuntu SDK as your editor, then clicking the big "+" button will load a list of possible apparmor permissions. Don't double-click a permission; this will just show you what it means in code terms, rather irrelevantly. Instead, choose your permission (<code>content_exchange_source</code> in this case) and then say Add <a href="#sf-using-the-content-hub-on-ubuntu-5-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-6">you can also do `{"source":["pictures"]}. There may be other things you can write in there instead of "all" or "pictures", but the documentation is surlily silent on such things. <a href="#sf-using-the-content-hub-on-ubuntu-6-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-7">You can see all the possible content types in the Ubuntu SDK ContentType documentation (https://developer.ubuntu.com/api/apps/qml/sdk-15.04/Ubuntu.Content.ContentType/), with misleading typos and all <a href="#sf-using-the-content-hub-on-ubuntu-7-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-8">as mzanetti excellently described it <a href="#sf-using-the-content-hub-on-ubuntu-8-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-9">You can transfer more than one item, here. <a href="#sf-using-the-content-hub-on-ubuntu-9-back" class="simple-footnote-back">↩</a></li><li id="sf-using-the-content-hub-on-ubuntu-10">not this one, though <a href="#sf-using-the-content-hub-on-ubuntu-10-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2015/08/14/fooling-the-natives/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2015/09/23/the-platform-is-just-another-library/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50">
+			Michael Zanetti responded at
+		<a href="https://plus.google.com/105839534016416729197/posts/daw3WSWmNWc">plus.google.com</a>
+		<span class="wm-summary">			Troubles with adding Content Hub support? Check out this tutorial!http://www.kryogenix.org/days/2015/08/20/using-the-content-hub-on-ubuntu/﻿ as day&hellip;
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-x0S-5QktM2Y/AAAAAAAAAAI/AAAAAAAAAEk/SjdPF1ddtno/photo.jpg?sz=50">
+			Bob Looter responded at
+		<a href="https://plus.google.com/posts/daw3WSWmNWc">plus.google.com</a>
+		<span class="wm-summary">			Troubles with adding Content Hub support? Check out this tutorial!http://www.kryogenix.org/days/2015/08/20/using-the-content-hub-on-ubuntu/
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2015/08/20/using-the-content-hub-on-ubuntu/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2015/08/20/using-the-content-hub-on-ubuntu/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

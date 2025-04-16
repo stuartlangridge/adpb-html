@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; OwnTracks and a map</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; OwnTracks and a map">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2017/12/28/owntracks-and-a-map/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2017/12/28/owntracks-and-a-map/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2017/12/28/owntracks-and-a-map/"><time 
+			class="dt-published" datetime="2017-12-28T11:33:00+00:00">Dec 28 2017</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/12/28/owntracks-and-a-map/">OwnTracks and a map</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Every year we do a bit of a pub crawl in Birmingham between Christmas and New Year; a chance to get away from the turkey risotto, and hang out with people and talk about techie things after a few days away with family and so on. It's all rather loosely organised -- I tried putting exact times on every pub once and it didn't work out very well. So this year, 2017, I wanted a map which showed where we were so people can come and find us -- it's a twelve-hour all-day-and-evening thing but nobody does the whole thing<sup id="sf-owntracks-and-a-map-1-back"><a href="#sf-owntracks-and-a-map-1" class="simple-footnote" title="well, except me. And hero of the revolution Andy Yates.">1</a></sup> so the idea is that you can drop in at some point, have a couple of drinks, and then head off again. For that, you need to know where we all are.</p>
+<p>Clearly, the solution here is technology; I carry a device in my pocket<sup id="sf-owntracks-and-a-map-2-back"><a href="#sf-owntracks-and-a-map-2" class="simple-footnote" title="and you do too">2</a></sup> which knows where I am and can display that on a map. There are a few services that do this, or used to -- Google Latitude, FB messenger does it, Apple find-my-friends -- but they're all "only people with the Magic Software can see this", and "you have to use our servers", and that's not very web-ish, is it? What I wanted was a thing which sat there in the background on my phone and reported my location to <em>my</em> server when I moved around, and didn't eat battery. That wouldn't be tricky to write but I bet there's a load of annoying corner cases, which is why I was very glad to discover that <a href="http://owntracks.org/">OwnTracks</a> have done it for me.</p>
+<p>You install their mobile app (for Android or iOS) and then configure it with the URL of your server and every now and again it reports your location by posting JSON to that URL saying what your location is. Only one word for that: magic darts. Exactly what I wanted.</p>
+<p>It's a little tricky because of that "don't use lots of battery" requirement. Apple heavily restrict background location sniffing, for lots of good reasons. If your app is the active app and the screen's unlocked, it can read your location as often as it wants, but that's impractical. If you want to get notified of location changes in the <em>background</em> on iOS then you only get told if you've moved more than 500 metres in less than five minutes<sup id="sf-owntracks-and-a-map-3-back"><a href="#sf-owntracks-and-a-map-3" class="simple-footnote" title="the OwnTracks docs explain this in more detail">3</a></sup> which is fine if you're on the motorway but less fine if you're walking around town and won't move that far. However, you can nominate certain locations as "waypoints" and then the app gets notified whenever it enters or leaves a waypoint, even if it's in the background and set to "manual mode". So, I added all the pubs we're planning on going to as waypoints, which is a bit annoying to do manually but works fine.</p>
+<p>OwnTracks then posts my location to a tiny PHP file which just dumps it in a big JSON list. The <a href="https://kryogenix.org/brumtechxmas17/">#brumtechxmas 2017 map</a> then reads that JSON file and plots the walk on the map (or it will do once we're doing it; as I write this, the event isn't until tomorrow, Friday 29th December, but I have tested it out).</p>
+<p>The map is an SVG, embedded in the page. This has the nice property that I can change it with CSS. In particular, the page looks at the list of locations we've been in and works out whether any of them were close enough to a pub on the map that we probably went in there... and then uses CSS to colour the pub we're <em>in</em> green, and ones we've been in grey. So it's dynamic! Nice and easy to find us wherever we are. If it works, which is a bit handwavy at this point.</p>
+<p>If you're coming, see you tomorrow. If you're not coming: you should come. :-)</p>
+<p><img src="/images/brumtechxmas2017.png" alt="A static version of the map: you'll want the website for the real dynamic clever one" title="A static version of the map: you'll want the website for the real dynamic clever one"></p><ol class="simple-footnotes"><li id="sf-owntracks-and-a-map-1">well, except me. And hero of the revolution Andy Yates. <a href="#sf-owntracks-and-a-map-1-back" class="simple-footnote-back">↩</a></li><li id="sf-owntracks-and-a-map-2">and you do too <a href="#sf-owntracks-and-a-map-2-back" class="simple-footnote-back">↩</a></li><li id="sf-owntracks-and-a-map-3">the <a href="http://owntracks.org/booklet/features/location/#ios">OwnTracks docs</a> explain this in more detail <a href="#sf-owntracks-and-a-map-3-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2017/11/12/i-wrote-a-web-component/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2018/01/06/happy-anniversary/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/520210109842993152/PE7Uo7Yc.jpeg">
+			Jumptwenty4 responded at
+		<a href="https://twitter.com/jumptwenty4/status/946353751614517248">twitter.com</a>
+		<span class="wm-summary">			those of you interested in how the magic dynamic map works may find kryogenix.org/days/2017/12/2… interesting -- the short answer is @OwnTracks pl
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/891094279564607488/56dDc7Vq.jpg">
+			Mike Elsmore responded at
+		<a href="https://twitter.com/ukmadlz/status/946353885995814912">twitter.com</a>
+		<span class="wm-summary">			Nice write up by @sil on how he's automated tomorrows #brumtechxmas map kryogenix.org/days/2017/12/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/946354319187525633">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: OwnTracks and a map kryogenix.org/days/2017/12/2…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2627489858/fe7hm2ounpuu2qfe5akj.jpeg">
+			Andrew Yates responded at
+		<a href="https://twitter.com/ay8s/status/946356661438083072">twitter.com</a>
+		<span class="wm-summary">			those of you interested in how the magic dynamic map works may find kryogenix.org/days/2017/12/2… interesting -- the short answer is @OwnTracks pl
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1315700871/nick_cropped.png">
+			Nick Morrott responded at
+		<a href="https://twitter.com/sil/status/946349784251731968#favorited-by-283892690">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2017/12/28/owntracks-and-a-map/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2017/12/28/owntracks-and-a-map/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

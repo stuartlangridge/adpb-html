@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Numeric Pangrams</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Numeric Pangrams">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2023/08/06/numeric-pangrams/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2023/08/06/numeric-pangrams/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2023/08/06/numeric-pangrams/"><time 
+			class="dt-published" datetime="2023-08-06T14:11:00+01:00">Aug 06 2023</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2023/08/06/numeric-pangrams/">Numeric Pangrams</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A few days ago I had an interesting maths thought which I dropped <a href="https://mastodon.social/@sil/110833073093233760">on Mastodon</a>:</p>
+<iframe src="https://mastodon.social/@sil/110833073093233760/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen">
+<p>Today’s interesting maths problem to think about: what is the largest total from a correct maths equation which uses any number of +*\- symbols, one =, and the digits from 0-9 once each?</p>
+
+<p>For example, if we’re doing it for digits 0-4, then 40-12=3 isn’t valid (answer is wrong), 1+3=4 isn’t valid (correct but doesn’t use 0 or 2), 12/4+0=3 is good, and 4*3+0=12 is better (because 12 is higher than 3).</p>
+
+<p>Is there an interesting way to solve this which isn’t “have a computer check all possibilities”?</p>
+</iframe>
+<script src="https://mastodon.social/embed.js" async="async"></script>
+
+<p>Disappointingly, I couldn't think of an interesting way to solve it which wasn't "have a computer check all the possibilities", so I had a computer check all the possibilities.</p>
+<p>I'm not publishing the script, because it's not very good; in particular, I'm sure this is the sort of thing that someone could make run in a few seconds if they were clever. I wasn't feeling clever, so I brute-forced it and just left it to run for a few hours.</p>
+<p>These are numeric pangrams, I suppose you might call them. A pangram is a sentence which uses all the letters in the alphabet at least once: there are a bunch of famous English examples, starting with "The quick brown fox jumps over a lazy dog" and getting less and less comprehensible as they get shorter. Vexing quizzes show up a lot. Anyway, after I thought up the term "numeric pangrams" I checked to see if anybody else had already done so and of course Greg Ross at <a href="https://www.futilitycloset.com/2007/10/11/numerical-pangrams/">Futility Closet</a> did sixteen years ago. His examples are the digits from 1-9, though (his biggest example is <code>4 × 1963 = 7852</code>), and my 0-9 suggestion allows for much larger total values.</p>
+<p>Anyway, the best equations I could come up with which use all the digits from 0-9 were:</p>
+<ul>
+<li><code>42 × 8 × 91 = 30576</code></li>
+<li><code>46 × 715 = 32890</code></li>
+<li><code>4 × 9127 = 36508</code></li>
+<li><code>63 × 927 = 58401</code></li>
+<li><code>7 × 9403 = 65821</code></li>
+</ul>
+<p>This is the sort of thing that <a href="https://www.kryogenix.org/days/2018/02/08/sorry-henry/">Henry Dudeney</a> would have cleverly done by hand. Python is the way forward, of course.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2023/04/04/dungeons-dragons-honour-among-thieves-a-review/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2023/10/05/a-software-matter-device-that-alexa-can-talk-to/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/108/225/165/746/403/606/original/c8c1983acbff20fb.png">
+			Uwe Trenkner responded at
+		<a href="https://mastodon.social/@sil/110842889783345061#favorited-by-108225165746403606">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/253/704/original/94d9e7d3766e853a.jpg">
+			Nick F responded at
+		<a href="https://mastodon.social/@sil/110842889783345061#favorited-by-253704">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			An unnamed person responded at
+		<a href="https://zerobytes.monster/post/570915">zerobytes.monster</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/296/503/014/137/125/original/8a748c3ba7ce61b0.jpg">
+			Eugene Alvin Villar responded at
+		<a href="https://mastodon.social/@sil/110842889783345061#favorited-by-109296503014137125">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/194/998/original/d29181b871b001b0.png">
+			John Colagioia responded at
+		<a href="https://mastodon.social/@sil/110842889783345061#favorited-by-194998">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2023/08/06/numeric-pangrams/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2023/08/06/numeric-pangrams/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

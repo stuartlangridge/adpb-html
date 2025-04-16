@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Playing system sounds from Python programs on Ubuntu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Playing system sounds from Python programs on Ubuntu">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/"><time 
+			class="dt-published" datetime="2010-12-21T09:13:00+00:00">Dec 21 2010</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/">Playing system sounds from Python programs on Ubuntu</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p><a href="http://www.jonobacon.org/">Jono</a> asked me yesterday how you play a system beep from a Python
+program on Ubuntu. Now, the way you're meant to play system sounds is by
+using <a href="http://0pointer.de/lennart/projects/libcanberra/">libcanberra</a>; it's the standard platform library for playing a
+sound. Sounds come from your <em>sound theme</em>.</p>
+<h4>A sidebar: themes in Ubuntu</h4>
+<p>The icons used by your desktop are part of an <em>icon theme</em>. This means
+that there are a set of names defined for particular things -- there's
+an icon name for "sound at maximum volume", another name for "sound at
+minimum volume", another for "wireless network connected", and so on.
+Then the applications on the desktop use those icons by name, so the
+Sound indicator displays the "sound at maximum volume" icon in the panel
+at the top of the screen when your sound's at maximum volume. This means
+that you can change the look of your desktop by providing a different
+icon theme (a whole set of icons, named after the specified names), and
+all your applications use your new icons so they all look consistent. A
+sound theme works on the same principle; there are a <a href="http://freedesktop.org/wiki/Specifications/sound-theme-spec">defined</a> set of
+sounds (there's one for "your battery is low", one for "a window has
+been maximised", one for "you have logged in", and so on), and your
+sound theme defines what those sounds are. So you can switch in a
+different sound theme, and now all your applications will change to use
+the sounds from your sound theme. End of sidebar.</p>
+<p>What all this boils down to is that you ought to be able to play the
+standard warning sound by telling libcanberra to "play a sound named
+<code>dialog-warning</code>", and it'll play the correct sound.</p>
+<p>However, there isn't a Python version of libcanberra, sad to say. I
+<a href="http://twitter.com/sil/status/16998483579904001">complained about this on twitter</a>, and psykoyiko brilliantly
+responded with <a href="http://twitter.com/#!/psykoyiko/status/17142647932067840">a pointer</a> to a Python libcanberra library he wrote:
+<a href="https://github.com/psykoyiko/pycanberra/raw/master/pycanberra.py">pycanberra.py</a>. So, you can now play system sounds from your Python
+program, because this is basically a set of Python bindings for
+libcanberra.</p>
+<p>To play a sound:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pycanberra</span>
+<span class="n">canberra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pycanberra</span><span class="o">.</span><span class="n">Canberra</span><span class="p">()</span>
+<span class="n">canberra</span><span class="o">.</span><span class="n">easy_play_sync</span><span class="p">(</span><span class="s2">&quot;dialog-warning&quot;</span><span class="p">)</span>
+<span class="n">canberra</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Hooray! Good job psykoyiko! Someone should get this into Ubuntu.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2010/12/02/send-us-to-the-world-cup/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2010/12/30/first-steps-with-a-nexus-s/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2010/12/21/playing-system-sounds-from-python-programs-on-ubuntu/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

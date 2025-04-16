@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Tracking bugs for sorttable</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Tracking bugs for sorttable">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/"><time 
+			class="dt-published" datetime="2007-09-14T00:23:00+01:00">Sep 14 2007</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/">Tracking bugs for sorttable</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I get lots of people mailing me for help with things I've written, and
+<a href="http://www.kryogenix.org/code/browser/sorttable">sorttable</a> is way up at the top of the list. People find it useful,
+which is good, and they mail me to say thanks. I like that. On the other
+hand, they also mail me to say that there are a few things it doesn't
+do. Now, they're right; there are a couple of bugs that slipped through,
+and more importantly there are a couple of things that never crossed my
+mind until people started asking whether sorttable could handle them --
+loading tables with Ajax, tables with zebra stripes, that sort of thing.
+I'm now at the stage where in my "sorttable unprocessed" folder I've got
+over 150 emails, and an awful lot of them are about the same things. So,
+a bug tracker seemed like a good idea. However, I don't want one where
+everyone can submit bugs into it. I get little enough time to hack on
+projects as it is, without having to triage bugs as well. So, I wanted
+something which was basically read-only; a place where I could point
+people to say "look, here, the problem you have identified is a known
+issue, and I am planning on fixing it, and you can subscribe to this and
+get notified when I <em>do</em> fix it". So: <a href="http://www.kryogenix.org/bugs/sorttable">the sorttable bug tracker</a>.
+It's shamelessly borrowed from the <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/">PuTTY wishlist</a> in almost all
+particulars, right down to the differing levels of priority. Simon
+Tatham actually pointed me, when I asked, at the code they use to run
+that wishlist. I had a couple of extra wrinkles I wanted to add, though,
+and their code is in Perl and I'm not much cop at Perl, so I built my
+own very similar thing. You can read my <a href="http://www.kryogenix.org/wiki/Read-onlybugtracker">spec for a read-only bug
+tracker</a> if you like; essentially, the bugs themselves are in a
+(secured) folder in my Subversion repository as RFC822-style files, and
+then there's a little collection of scripts which know how to build a
+static HTML collection of bugs for the project. I'd like to make the
+scripts available so other people can do the same thing, but they've got
+passwords hardcoded into them (because the bug area in svn is secured,
+because there are bugs in projects that I can't make public). If I can
+think of a way of making the code available, I'll do it, but it's
+relatively trivial anyway. At the moment I'm only tracking sorttable
+bugs in here, but I'm gradually going to bring all my other projects
+that are me-develop-you-use things into it. It's not suitable for
+something like Jackfield, which will eventually develop more of a
+community around it (and will therefore be a lot more collaborative);
+sorttable isn't a big enough deal to be a community-maintained project,
+but I do need somewhere I can point people at when they say "why doesn't
+it handle Ajax-created tables?", and now I have that somewhere.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2007/09/10/which-video-card-should-i-buy/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2007/09/14/couchdb/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2007/09/14/tracking-bugs-for-sorttable/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2007/09/14/tracking-bugs-for-sorttable/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

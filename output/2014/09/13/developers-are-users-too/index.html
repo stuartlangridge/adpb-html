@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Developers are users too</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Developers are users too">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/09/13/developers-are-users-too/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/09/13/developers-are-users-too/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/09/13/developers-are-users-too/"><time 
+			class="dt-published" datetime="2014-09-13T16:51:00+01:00">Sep 13 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/09/13/developers-are-users-too/">Developers are users too</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>When you talk about the "user experience" of the thing you're building, remember that developers who use your APIs are users too. And you need to think about their experience.</p>
+<p>We seem to have created a world centred on github where everyone has to manage dependencies by hand, like we had to in 1997. This problem was completely solved by <code>apt</code> twenty years ago, but the new cool github world is, it seems, too cool to care about that. Go off to get some new project by <code>git clone</code>ing it and it's quite likely to say "oh, and it depends on $SOME_OTHER_PROJECT (here's a link to that project's github repo)". And then you have to go fetch both and set them up yourself. Which is really annoying.</p>
+<p>Now, there are good reasons why to not care about existing dependency package management systems such as <code>apt</code>. Getting stuff into Ubuntu is hard, laborious work and most projects don't want to do it. PPAs make it easier, but not much easier; if you're building a thing and not specifically targeting Ubuntu with it, you don't want to have to learn about Launchpad and PPAs and build recipes and whatnot. This sort of problem is also solves neatly <em>for packages in a specific language</em> by that language's own packaging system; Python stuff is installable with <code>pip install whatever</code> and a virtualenv; Node stuff is installable with <code>npm install whatever</code>; all these take care of fetching any dependent stuff. But this rush for each language to have its own "app store" for its apps and libraries means that combining things from <em>different</em> languages is still the same 20th century nightmare. Take, for example, Mozilla's new <a href="https://hacks.mozilla.org/2014/09/firefox-tools-adapter/">Firefox Tools Adaptor</a>. I'm not picking on Mozilla here; the FTA is new, and it's pretty cool, and it's not finished yet. This is just the latest in a long line of things which exhibit the problem. The FTA allows you to use the Firefox devtools to debug web things running in other browsers. Including, excitingly, debugging things running in iOS Safari on the iPhone. Now, doing that's a pain in the ringpiece at the moment; you have to install Google's <a href="https://github.com/google/ios-webkit-debug-proxy"><code>ios-webkit-debug-proxy</code></a>, which needs to be compiled, and Apple break compatibility with it all the time and so you have to fetch and build new versions of <code>libimobiledevice</code> or something. I was eager to see that the new Firefox Tools Adaptor promises to allow debugging on iOS Safari just by installing a Firefox extension. </p>
+<p>And then I read about it, and it <a href="https://developer.mozilla.org/en-US/docs/Tools/Firefox_Tools_Adapter">says</a>, "The Adapter's iOS support uses Google's ios-webkit-debug-proxy. Until that support is built directly into the add-on, you'll need to install and run the <code>ios-webkit-debug-proxy</code> binary yourself". Sigh. That's the hard part. And it's not any easier here.</p>
+<p>Again, I'm not blaming Mozilla here -- they plan to fix this, but they'll have to fix it by essentially bundling <code>ios-webkit-debug-proxy</code> <em>with</em> the FTA. That'll work, and that's an important thing for them to do in order to provide a slick user experience for developers using this tool (because "download and compile this other thing first" is not ever ever a nice user experience). </p>
+<p>It is made worse by people using a language packaging system (designed for people developing libraries for a given language) to do app distribution. See, for example, <a href="http://tmux.me/">tmuxme</a>, which is an app for sharing a terminal session with many people (think of it like screen sharing, but for a terminal). And how do you install it? <code>gem install tmuxme</code>. No. Ruby's <code>gem</code> command is for developers to download a Ruby <em>library</em> that their Ruby package needs. I, as someone who wants to use this tool, should not have to care that it's written in Ruby. I should not have to have a Ruby development environment set up in order to use an app. See <a href="https://talk.birmingham.io/t/can-anyone-help-sil-with-his-ruby-issues/275">the birmingham.io forum thread</a> for much much more about this, and why it <em>doesn't even work</em>. New rather cool app <a href="https://github.com/EricChiang/pup"><code>pup</code></a> is the same -- it's a little app, inspired by the excellent <code>jq</code>, into which I can pipe HTML and give it a CSS selector, and <code>pup</code> will then print just the elements which match the selector. But how do I install it? <code>go get github.com/ericchiang/pup</code>. No. I don't have go. I don't have a go environment set up. I don't have <code>$GOPATH</code> set. I shouldn't even have to care that this little util is even <em>written</em> in Go. It's a utility. What's worse about this is that, unlike Ruby or Python, Go creates <em>actual executables</em>; I don't even need the Go system around to run it! Why should I need to install all of Go just to get your app? Don't use a language-specific library packaging system for distribution of applications. Don't make me identify and download dependencies myself just because <em>you</em> already have them.</p>
+<p>This is sorta kinda solved by <code>brew</code> for Mac users, but there's a lot of stuff not in <code>brew</code> either. Still, there <em>is</em> willingness to solve it that way by having a packaging system. But it's annoying that Ubuntu <em>already has one</em> and people are loath to use it. Using it makes for a better developer user experience. That's important.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2014/08/18/do-you-do-it-anyway/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/09/15/brum-tech-scene-interviews/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/09/13/developers-are-users-too/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/09/13/developers-are-users-too/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

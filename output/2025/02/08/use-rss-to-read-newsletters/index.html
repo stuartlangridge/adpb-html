@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Use RSS to read newsletters</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Use RSS to read newsletters">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2025/02/08/use-rss-to-read-newsletters/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2025/02/08/use-rss-to-read-newsletters/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2025/02/08/use-rss-to-read-newsletters/"><time 
+			class="dt-published" datetime="2025-02-08T15:09:00+00:00">Feb 08 2025</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2025/02/08/use-rss-to-read-newsletters/">Use RSS to read newsletters</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Everyone's got a newsletter these days (like everyone's got a podcast). In general, I think this is OK: instead of going through a middleman publisher, have a direct connection from you to the people who want to read what you say, so that that audience can't be taken away from you.</p>
+<p>On the other hand, I don't actually <em>like</em> newsletters. I don't really like giving my email address to random people<sup id="sf-use-rss-to-read-newsletters-1-back"><a href="#sf-use-rss-to-read-newsletters-1" class="simple-footnote" title="despite how it's my business to do so and it's right there on the front page of the website, I know, I know">1</a></sup>, and frankly an email app is not a great way to read long-form text! There are many apps which are a lot better at this.</p>
+<p>There is a solution to this and the solution is called RSS. <a href="https://bell.bz/love-newsletters-youre-gonna-love-rss/">Andy Bell explains RSS</a> and this is exactly how I read newsletters. If I want to read someone's newsletter and it's on Substack, or ghost.io, or buttondown.email, what I actually do is subscribe to their newsletter <em>but</em> what I'm actually subscribing to is their RSS feed. This sections off newsletter stuff into a completely separate app that I can catch up on when I've got the time, it means that the newsletter owner (or the site they're using) can't decide to "upsell" me on other stuff they do that I'm not interested in, and it's a better, nicer reading experience than my mail app.<sup id="sf-use-rss-to-read-newsletters-2-back"><a href="#sf-use-rss-to-read-newsletters-2" class="simple-footnote" title="Is all of this doable in my mail client? Sure. I could set up filters, put newsletters into their own folders/labels, etc. But that's working around a problem rather than solving it">2</a></sup></p>
+<p>I use <a href="https://netnewswire.com/">NetNewsWire</a> on my iOS phone, but there are a bunch of other newsreader apps for every platform and you should choose whichever one you want. Andy lists a bunch, above.</p>
+<p>The question, of course, then becomes: how do you find the RSS feed for a thing you want to read?<sup id="sf-use-rss-to-read-newsletters-3-back"><a href="#sf-use-rss-to-read-newsletters-3" class="simple-footnote" title="I suggested to Andy that he ought to write this post explaining how to do this and then realised that I should do it myself and stop being such a lazy snipe, so here it is">3</a></sup> Well, it turns out... you don't have to.</p>
+<p>When you want to subscribe to a newsletter, you literally just put the web address of the newsletter itself into your RSS reader, and that reader will take care of finding the feed and subscribing to it, for you. It's magic. Hooray! I've tested this with substack, with ghost.io, with buttondown.email, and it works with all of them. You don't need to do anything.</p>
+<p>If that <em>doesn't</em> work, then there is one neat alternative you can try, though. <a href="https://kill-the-newsletter.com/">Kill The Newsletter</a> will give you an email address for any site you name, and provide the incoming emails to that <em>as an RSS feed</em>. So, if you've found a newsletter which <em>doesn't</em> exist on the web (boo hiss!) and doesn't provide an RSS feed, then you go to KTN, it gives you some randomly-generated email address, you subscribe to the intransigent newsletter <em>with that email address</em>, and then you can subscribe to the resultant feed in your RSS reader. It's dead handy.</p>
+<p>If you run a newsletter and it <em>doesn't</em> have an RSS feed and you want it to have, then have a look at whatever newsletter software you use; it will almost certainly provide a way to create one, and you might have to tick a box. (You might also want to complain to the software creators that that box wasn't ticked by default.) If you've got an RSS feed for the newsletter that you write, but putting your site's address into an RSS reader doesn't <em>find</em> that RSS feed, then what you need is <a href="https://www.rssboard.org/rss-autodiscovery">RSS autodiscovery</a>, which is the "magic" alluded to above; you add a line to your site's HTML in the <code>&lt;head&gt;</code> section which reads <code>&lt;link rel="alternate" type="application/rss+xml" title="RSS" href="https://URL/of/your/feed"&gt;</code> and then it'll work.</p>
+<p>I like this. Read newsletters at my pace, in my choice of app, on my terms. More of that sort of thing.</p><ol class="simple-footnotes"><li id="sf-use-rss-to-read-newsletters-1">despite how it's my business to do so and it's right there on the front page of the website, I know, I know <a href="#sf-use-rss-to-read-newsletters-1-back" class="simple-footnote-back">↩</a></li><li id="sf-use-rss-to-read-newsletters-2">Is all of this doable in my mail client? Sure. I could set up filters, put newsletters into their own folders/labels, etc. But that's working around a problem rather than solving it <a href="#sf-use-rss-to-read-newsletters-2-back" class="simple-footnote-back">↩</a></li><li id="sf-use-rss-to-read-newsletters-3">I <a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhnuv42cqk2e">suggested to Andy</a> that he ought to write this post explaining how to do this and then realised that I should do it myself and stop being such a lazy snipe, so here it is <a href="#sf-use-rss-to-read-newsletters-3-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2025/02/03/blog-questions-challenge/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2025/04/16/serving-streaming-video-that-adapts-to-bandwidth-from-your-own-website/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:a64baelxsmvy6aonnbfhbirv/bafkreigcjhsxk6uz4plibvdto6t23vicadmispnvgq2hlpj23x2fyilngy@jpeg">
+			Tobias Fedder responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:a64baelxsmvy6aonnbfhbirv">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:pzgvqg4ihnaihkrpmxqz5pu6/bafkreigbmyyuepweci37i3edl2av4gubjhupgxu2e7n7a7nhgkxgoakmru@jpeg">
+			Andy Bell responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogff4c4k2e#liked_by_did:plc:pzgvqg4ihnaihkrpmxqz5pu6">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:iu44srjogcxrpmao5c3gk5jl/bafkreigua4lkfqsylemb23f2mrsofzigwap72l3vgtwgf6ob6kpdc4h5uy@jpeg">
+			Richard Kendall responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogff4c4k2e#liked_by_did:plc:iu44srjogcxrpmao5c3gk5jl">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:pzgvqg4ihnaihkrpmxqz5pu6/bafkreigbmyyuepweci37i3edl2av4gubjhupgxu2e7n7a7nhgkxgoakmru@jpeg">
+			Andy Bell responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogff4c4k2e#reposted_by_did:plc:pzgvqg4ihnaihkrpmxqz5pu6">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:iwbfzqrxrvsv7zfbn6mczxl3/bafkreif7aamafdsngx55mqsewqbzaydfmo6qlekh7ggtq67j6gugqvci5u@jpeg">
+			Sean Davis responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:iwbfzqrxrvsv7zfbn6mczxl3">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:glib2jvqhde2tat43rs3jv3t/bafkreif3ophxtet6r4hcaaeyrwdkvyzsaftgca2dwoc6fkbs4gqnuyxhpy@jpeg">
+			205TF responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:glib2jvqhde2tat43rs3jv3t">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:j7sjnjtcskng5g5et4yt3myk/bafkreignahrn2c2xi7hedsycc4ksukm3he4ks6lhcv2gjvuliwspzdqy44@jpeg">
+			Glenn responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:j7sjnjtcskng5g5et4yt3myk">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:62ke44vyxeycttdifpj2jnke/bafkreifrcfma6zifd3fp32eiwycfyl6ix4mxwxqapzxjoh2guio5rp3bne@jpeg">
+			George responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogff4c4k2e#liked_by_did:plc:62ke44vyxeycttdifpj2jnke">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:qzarepovyzzkt7jpw5lvcare/bafkreie5pfghwydnky5fp2343o2ehw3duyo5nx3vi7uqofyii5tn5zi5li@jpeg">
+			Zach Craft responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogff4c4k2e#liked_by_did:plc:qzarepovyzzkt7jpw5lvcare">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:ckdbwcbutpkuznqlviq3jbxw/bafkreibx6nqgzuj2ojsbkc24imeubp7mssnpykxme2gi7t7v3vl4nyxkka@jpeg">
+			Thudfactor responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:ckdbwcbutpkuznqlviq3jbxw">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:zyxd2zeccavoekxkczz2qtor/bafkreib2b2czhwm2jpote52hllz7vmuyaznevakre55zxwxyotmtbwlaja@jpeg">
+			Roderick Gadellaa responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogff4c4k2e#liked_by_did:plc:zyxd2zeccavoekxkczz2qtor">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:g5dhqer5l7f2hrmmxnjqicds/bafkreignydexaelg3pdxpxcqz336zjxpimb3esjkuuvfpnfkpfweechxhy@jpeg">
+			Brett Evans responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:g5dhqer5l7f2hrmmxnjqicds">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:rqt6e7f7c66kx5dw3ekqluwc/bafkreigsz6xi5ruwtccwrhb7w5kpiokn2l6l4e2pzd3zr4klr47mahtcgu@jpeg">
+			bsky.app/profile/codeof... codeofrobin.bsky.social responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:rqt6e7f7c66kx5dw3ekqluwc">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:mhxpq5l26e2semtvb6bpqolt/bafkreia2dbiz4pfnssp54vv3jmbbmwra2o5mlgxo4ws2velmnakfdeksda@jpeg">
+			yō responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:mhxpq5l26e2semtvb6bpqolt">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:mhxpq5l26e2semtvb6bpqolt/bafkreia2dbiz4pfnssp54vv3jmbbmwra2o5mlgxo4ws2velmnakfdeksda@jpeg">
+			yō responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#reposted_by_did:plc:mhxpq5l26e2semtvb6bpqolt">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:ubudpurydqvit3dhdnx4v6sv/bafkreibjcvdsldtqg3tgzabaocbgaftbu57cjztrisrvlffebmi4qxgn5y@jpeg">
+			Erik ❤️ responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#reposted_by_did:plc:ubudpurydqvit3dhdnx4v6sv">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:26nbhowh3glpqbr5qo3jtcai/bafkreicx44flxbd3sszbeb7d5evtikle6apldypz2yqpuogr2hxtwnbuoy@jpeg">
+			Will Salas responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:26nbhowh3glpqbr5qo3jtcai">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:2mer56zc6pkjjpvqlan2zkku/bafkreicfy4hc6fk3dkjm7qzn6m3uft7gkur7bl2zzonzv4z3nbnjkxgpmu@jpeg">
+			Tim Wuyts responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogff4c4k2e#liked_by_did:plc:2mer56zc6pkjjpvqlan2zkku">bsky.app</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://cdn.bsky.app/img/avatar/plain/did:plc:lkjf2tfzsnzjhgejmnrn76pr/bafkreiepwbhiaxbnajpbjx4yzmbhsfzunrtkge5xpldnekmgc22ia4vglu@jpeg">
+			𝕸𝖔𝖑𝖑𝖆𝖌𝖚𝖘🌶 responded at
+		<a href="https://bsky.app/profile/sil.kryogenix.org/post/3lhogh23ce22e#liked_by_did:plc:lkjf2tfzsnzjhgejmnrn76pr">bsky.app</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2025/02/08/use-rss-to-read-newsletters/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2025/02/08/use-rss-to-read-newsletters/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

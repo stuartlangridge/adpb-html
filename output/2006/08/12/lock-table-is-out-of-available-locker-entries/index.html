@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Lock table is out of available locker entries</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Lock table is out of available locker entries">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2006/08/12/lock-table-is-out-of-available-locker-entries/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2006/08/12/lock-table-is-out-of-available-locker-entries/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2006/08/12/lock-table-is-out-of-available-locker-entries/"><time 
+			class="dt-published" datetime="2006-08-12T21:36:00+01:00">Aug 12 2006</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/08/12/lock-table-is-out-of-available-locker-entries/">Lock table is out of available locker entries</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I managed to shaft my Subversion repository today. No idea how it
+happened, and fixing it was a bit problematic. The error was: svn: bdb:
+Lock table is out of available locker entries If I accessed the repos
+directly through the web (Apache), it just said "couldn't open the
+requested svn filesystem". WebSVN gave the above error, as did using
+svnlook on the repository itself. The problem is that the Berkeley DB
+database<span title="Yes, yes, redundant acronym">*</span> underlying
+the repository has run out of locks. To fix this, there's the short-term
+fix and the long-term fix. You should do both: you have to do the
+short-term fix first because until you do nothing else works, but then
+you should really do the long term fix as well; it'll stop this ever
+recurring again.</p>
+<h3>The short term fix</h3>
+<p>What we have to do is increase the number of lockers in the database.
+There are two steps to this. First, edit
+<code>/path/to/your/repos/db/DB_CONFIG</code>. Buried in there there will be some
+of the following lines:</p>
+<div class="highlight"><pre><span></span><code>set_lk_max_locks   2000
+set_lk_max_lockers 2000
+set_lk_max_objects 2000
+set_lg_bsize     262144
+set_lg_max      1048576
+</code></pre></div>
+
+<p>I'm not sure exactly which to change, so I changed lots of them, as
+follows:</p>
+<div class="highlight"><pre><span></span><code>set_lk_max_locks   3000
+set_lk_max_lockers 3000
+set_lk_max_objects 3000
+set_lg_bsize    2097152
+set_lg_max      8388608
+</code></pre></div>
+
+<p>However, that alone won't work. Berkeley DB seems to cache the settings.
+To fix this, you need to remove the cached environment. In
+<code>/path/to/your/repos/db/</code> there will be files called <code>__db.001</code>,
+<code>__db.002</code>, etc. You need to remove these files. <em>I strongly recommend
+that you move them somewhere, not delete them.</em> Once you've removed
+them, try re-accessing the repository the way you normally do and it
+should work. If it didn't work, move the files back before you try
+anything. Now do the long-term fix, below.  </p>
+<h3>The long-term fix</h3>
+<p>The real problem here is that Berkeley DB isn't very good. The svn
+people advise you to not use it now in favour of their own format, fsfs.
+I'm sure that BDB is a great and powerful program, but it does seem to
+get lots of locking errors and so forth. So, you should <a href="http://subversion.tigris.org/faq.html#bdb-fsfs-convert">convert your repository to fsfs format</a>. Do this like so:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mv</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span><span class="o">.</span><span class="n">old</span>
+<span class="n">svnadmin</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="o">-</span><span class="n">fs</span><span class="o">-</span><span class="n">type</span><span class="w"> </span><span class="n">fsfs</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span>
+<span class="n">svnadmin</span><span class="w"> </span><span class="n">dump</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span><span class="o">.</span><span class="n">old</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">svnadmin</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span>
+</code></pre></div>
+
+<p>That renames your existing repository to <em>repos</em>.old and then creates a
+new fsfs repository where the old one was. Finally, it transfers all
+your data from the old one to the new one. You can delete the old one
+once you've done this, but it wouldn't hurt to keep it lying around in
+case something goes wrong. Once you've done this, everything should
+continue working, and you'll never get locking errors again.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2006/08/10/jokbot/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2006/08/13/simon-tathams-portable-puzzle-collection-launcher/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2006/08/12/lock-table-is-out-of-available-locker-entries/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2006/08/12/lock-table-is-out-of-available-locker-entries/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

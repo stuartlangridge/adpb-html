@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Programmatic Progressiveness</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Programmatic Progressiveness">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2016/06/02/programmatic-progressiveness/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2016/06/02/programmatic-progressiveness/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2016/06/02/programmatic-progressiveness/"><time 
+			class="dt-published" datetime="2016-06-02T13:34:00+01:00">Jun 02 2016</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2016/06/02/programmatic-progressiveness/">Programmatic Progressiveness</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>The Chrome team have put together a thing called <a href="https://github.com/GoogleChrome/lighthouse">Lighthouse</a>, a programmatic checker for whether a website is a progressive web app. It's a nice structure; it goes through a big list of checks on whether you've got a manifest, whether performance is good, if the site's HTTPS, if you've got icons defined, so on and so forth, and it's possible to add more (many more!) checks to the list. You can think of it as the list of criteria that a browser should use to tell whether it should put up the "add to home screen" button.</p>
+<p>However, as has been <a href="http://www.kryogenix.org/days/2016/05/24/the-importance-of-urls/">previously mentioned</a> by me and <a href="https://www.christianheilmann.com/2016/05/31/progressive-web-apps-and-our-regressive-approach/">others</a>, there is a bit of a worry that we're missing out on the Progressive part of Progressive Web Apps; that in the rush to check that you support exciting new features such as manifests and service workers, we're not also checking that your web site provides content to everyone, that it progressively uses those new features where they're available rather than <em>requiring</em> them to be present, that you're <a href="http://www.kryogenix.org/days/2015/06/28/availability/">available</a> to everyone and not just to the hippest.</p>
+<p>A brief diversion, here: I have occasionally probably strayed over the line from "why aren't we doing better at this" (which I do think) into "why don't the Chrome team care about this", and that's not fair. Sorry, Chrome people. Accusation not justified.</p>
+<p>Anyway, what I'd like to see is Lighthouse actually checking that your app is progressive as well as featureful. This is harder than it looks; progressive enhancement, like accessibility, is difficult to check programmatically. It's easy for a human to confirm that this site can still perform its basic actions if its scripts are blocked; it's a lot more difficult for a computer to do so. I don't think we'll ever be able to say "yes, you have definitely done everything right", here, much like we can't with accessibility. But we <em>can</em> flag that you've done things wrong.</p>
+<p>So, I've now got some code in Lighthouse which is a place we can build programmatic checks for progressiveness. At the moment it literally only checks whether there is any content at all if your <a href="http://kryogenix.org/code/browser/everyonehasjs.html">scripts don't load</a>, and complains if you do not. That will catch sites which just serve <code>&lt;body&gt;&lt;/body&gt;</code> and create their whole entire UI in JavaScript; such sites are (thankfully) rare now, after a spate of them existing a few years ago. But we can do better than this. Yes, it's difficult to adequately create such tests, but if we can land a man on the moon we can come up with checks here, too. So, I'd like to start a discussion around how we can programmatically check for signs that a website <em>isn't</em> doing progressive enhancement. What should we look for to show you're doing it right; what should we look for to show you're doing it wrong? If you have ideas, a good place to discuss them may be by <a href="https://github.com/GoogleChrome/lighthouse/issues">filing issues against Lighthouse</a>; there, we can hash out details of whether a check makes sense, whether it's a good idea, how it can be made better. And then someone can build that check; if you're a developer, you can add an <a href="https://github.com/GoogleChrome/lighthouse/tree/master/src/audits/javascript">"audit"</a> to Lighthouse which has access to the page text and HTML and checks for warning signs or good signs and adds them to the report that Lighthouse creates. This is our chance to help stamp out sites that don't do things right, and help define that a progressive web app should actually be progressive. I'd love you to help.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2016/05/24/the-importance-of-urls/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2016/07/05/making-a-better-ubuntu-app-scope-not-very-successfully/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/606506860175323136/2yaeR2AC.jpg">
+			Daniel Newns responded at
+		<a href="https://twitter.com/dnewns/status/738353820913242112">twitter.com</a>
+		<span class="wm-summary">			@sil i think you broke the bottom of your blog!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/738354127470796801">twitter.com</a>
+		<span class="wm-summary">			@dnewns I don't know what you're talking about, that never happened
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/738354352969121792">twitter.com</a>
+		<span class="wm-summary">			@dnewns I really need a thing which checks that at publish time ;)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/737044348538347520/-c_iFXzp.jpg">
+			Slippers Ex Machina responded at
+		<a href="https://twitter.com/MegaSlippers/status/738363681696829440">twitter.com</a>
+		<span class="wm-summary">			RT @sil: Let's add checks to Lighthouse to ensure progressive web apps are progressive, and help define what a PWA should be. kryogenix.org/days/2016/&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/738508514105143296">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Programmatic Progressiveness by @sil buff.ly/1TRn5ne #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/738508514105143296">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Programmatic Progressiveness by @sil buff.ly/1TRn5ne #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/491494058292809728/oGSxtt0o.jpeg">
+			Adactio Links responded at
+		<a href="https://twitter.com/adactioLinks/status/740216386987958272">twitter.com</a>
+		<span class="wm-summary">			as days pass by — Programmatic Progressiveness kryogenix.org/days/2016/06/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/733873586381803520/UmK-lmzN.jpg">
+			Matt Gaunt responded at
+		<a href="https://twitter.com/sil/status/766297632356569092#favorited-by-16210390">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2016/06/02/programmatic-progressiveness/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2016/06/02/programmatic-progressiveness/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

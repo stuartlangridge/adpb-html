@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; The Niamh prime</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; The Niamh prime">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2017/09/10/the-niamh-prime/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2017/09/10/the-niamh-prime/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2017/09/10/the-niamh-prime/"><time 
+			class="dt-published" datetime="2017-09-10T20:32:00+01:00">Sep 10 2017</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/09/10/the-niamh-prime/">The Niamh prime</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A bit of maths-y fiddling around on a Sunday afternoon.</p>
+<p>Fascinating video on <a href="https://www.youtube.com/watch?v=fQQ8IiTWHhg">the Trinity Hall prime</a> at Numberphile:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fQQ8IiTWHhg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<p>Apparently, Professor James McKee found a prime number which, when written out as ASCII art, looks like the crest of Trinity Hall college. Jack Hodkinson at Cambridge then searched for and found <a href="https://friendlyfieldsandopenmaps.com/2017/09/08/the-corpus-christi-prime/">a prime which looks like a picture of Corpus Christi college</a> (via <a href="https://www.futilitycloset.com/">Futility Closet</a>). That seems like a cool idea. So, with a bit of help from <a href="http://mir3z.github.io/aalib.js/">aalib in JavaScript</a> and the <a href="https://rosettacode.org/wiki/Miller%E2%80%93Rabin_primality_test">Miller-Rabin primality test</a>, plus a bit of scaling images up and down in Gimp, I found this 2,850-digit prime:</p>
+<p>777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,577,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;752,385,356,&shy;867,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;775,352,235,&shy;666,688,668,&shy;667,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,776,765,&shy;555,556,666,&shy;856,868,667,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;222,335,666,&shy;666,866,686,&shy;666,665,777,&shy;777,777,777,&shy;777,777,777,&shy;777,355,336,&shy;358,866,556,&shy;666,655,665,&shy;655,777,777,&shy;777,777,777,&shy;777,777,733,&shy;552,236,666,&shy;666,655,665,&shy;665,666,555,&shy;777,777,777,&shy;777,777,777,&shy;777,276,265,&shy;666,666,656,&shy;655,555,555,&shy;555,533,777,&shy;777,777,777,&shy;777,777,253,&shy;252,566,666,&shy;665,555,556,&shy;555,555,565,&shy;557,777,777,&shy;777,777,777,&shy;725,222,236,&shy;666,565,555,&shy;555,556,555,&shy;535,355,237,&shy;777,777,777,&shy;777,772,266,&shy;725,366,535,&shy;555,355,555,&shy;555,553,553,&shy;533,577,777,&shy;777,777,777,&shy;272,637,356,&shy;655,555,555,&shy;353,535,556,&shy;655,355,332,&shy;277,777,777,&shy;777,772,235,&shy;775,355,665,&shy;553,355,353,&shy;535,533,555,&shy;555,223,777,&shy;777,777,777,&shy;322,222,255,&shy;555,556,353,&shy;555,355,336,&shy;355,653,533,&shy;537,777,777,&shy;777,772,222,&shy;225,555,565,&shy;555,355,335,&shy;355,356,555,&shy;655,353,237,&shy;777,777,777,&shy;772,272,355,&shy;553,553,355,&shy;535,353,365,&shy;355,355,553,&shy;523,577,777,&shy;777,777,332,&shy;333,566,333,&shy;553,555,533,&shy;355,355,555,&shy;555,353,555,&shy;677,777,777,&shy;777,332,355,&shy;555,555,555,&shy;555,555,553,&shy;555,535,555,&shy;666,556,777,&shy;777,777,775,&shy;533,355,535,&shy;355,553,565,&shy;535,353,655,&shy;655,555,565,&shy;557,777,777,&shy;777,756,533,&shy;555,533,335,&shy;353,566,655,&shy;353,566,535,&shy;656,655,577,&shy;777,777,777,&shy;565,353,535,&shy;535,553,335,&shy;566,666,555,&shy;666,568,566,&shy;665,777,777,&shy;777,775,633,&shy;535,555,555,&shy;555,535,565,&shy;556,555,666,&shy;566,666,677,&shy;777,777,777,&shy;758,333,333,&shy;355,555,656,&shy;556,565,866,&shy;666,866,658,&shy;667,777,777,&shy;777,777,582,&shy;233,333,333,&shy;355,565,555,&shy;566,666,666,&shy;868,666,677,&shy;777,777,777,&shy;775,822,333,&shy;333,333,535,&shy;555,556,666,&shy;666,668,688,&shy;586,777,777,&shy;777,777,736,&shy;355,333,333,&shy;355,556,555,&shy;636,666,686,&shy;688,888,557,&shy;777,777,777,&shy;777,565,555,&shy;555,333,555,&shy;566,666,565,&shy;686,666,886,&shy;886,777,777,&shy;777,777,776,&shy;656,888,853,&shy;335,556,686,&shy;556,666,666,&shy;868,886,887,&shy;777,777,777,&shy;777,775,356,&shy;368,532,355,&shy;555,688,666,&shy;866,666,668,&shy;668,877,777,&shy;777,777,777,&shy;732,233,553,&shy;223,323,335,&shy;533,556,666,&shy;686,686,686,&shy;777,777,777,&shy;777,777,323,&shy;333,332,222,&shy;233,332,233,&shy;568,665,666,&shy;656,337,777,&shy;777,777,777,&shy;773,233,333,&shy;322,222,223,&shy;222,223,566,&shy;556,655,533,&shy;777,777,777,&shy;777,777,722,&shy;333,232,222,&shy;222,233,222,&shy;225,665,555,&shy;632,277,777,&shy;777,777,777,&shy;777,323,333,&shy;322,222,223,&shy;222,222,236,&shy;553,553,222,&shy;777,777,777,&shy;777,777,777,&shy;233,232,222,&shy;223,232,222,&shy;223,355,533,&shy;552,277,777,&shy;777,777,777,&shy;777,772,333,&shy;333,222,233,&shy;322,222,223,&shy;353,233,355,&shy;777,777,777,&shy;777,777,777,&shy;723,333,355,&shy;665,533,233,&shy;333,333,322,&shy;335,677,777,&shy;777,777,777,&shy;777,777,735,&shy;533,333,222,&shy;233,333,333,&shy;332,223,356,&shy;777,777,777,&shy;777,777,777,&shy;777,555,333,&shy;232,222,333,&shy;333,333,222,&shy;233,677,777,&shy;777,777,777,&shy;777,777,772,&shy;533,332,222,&shy;222,333,333,&shy;322,222,255,&shy;777,777,777,&shy;777,777,777,&shy;777,775,356,&shy;566,665,553,&shy;333,333,222,&shy;223,557,777,&shy;777,777,777,&shy;777,777,777,&shy;733,335,333,&shy;332,223,333,&shy;332,222,233,&shy;577,777,777,&shy;777,777,777,&shy;777,777,233,&shy;335,332,222,&shy;223,332,322,&shy;222,233,777,&shy;777,777,777,&shy;777,777,777,&shy;777,333,232,&shy;222,222,223,&shy;332,222,222,&shy;237,777,777,&shy;777,777,777,&shy;777,777,773,&shy;222,222,222,&shy;222,223,222,&shy;322,222,377,&shy;777,777,777,&shy;777,777,777,&shy;777,777,222,&shy;222,222,222,&shy;323,332,222,&shy;223,777,777,&shy;777,777,777,&shy;777,777,777,&shy;773,232,222,&shy;222,333,353,&shy;222,222,227,&shy;777,777,777,&shy;777,777,777,&shy;777,777,733,&shy;332,222,223,&shy;355,322,222,&shy;222,277,777,&shy;777,777,777,&shy;777,777,777,&shy;777,755,333,&shy;333,555,533,&shy;222,222,222,&shy;277,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,775,555,&shy;555,322,222,&shy;222,222,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;755,555,533,&shy;222,222,222,&shy;227,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,755,&shy;553,332,222,&shy;222,222,227,&shy;777,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,555,533,&shy;322,222,222,&shy;222,227,777,&shy;777,777,777,&shy;777,777,777,&shy;777,777,773,&shy;553,332,222,&shy;222,222,222,&shy;277,777,777,&shy;777,777,777,&shy;777,777,777,&shy;777,735,533,&shy;322,222,222,&shy;222,222,277,&shy;779,769</p>
+<p>although it looks rather better when properly formatted.</p>
+<pre style="font-size: 6px; line-height: 3px; letter-spacing: -1px; text-align: center">77777777777777777777777777777777777777777777777777
+77777777777777777777777777777777777777777777777777
+77777777777777777777777577777777777777777777777777
+77777777777777777777775238535686777777777777777777
+77777777777777777753522356666886686677777777777777
+77777777777777776765555556666856868667777777777777
+77777777777777722233566666686668666666577777777777
+77777777777773553363588665566666556656557777777777
+77777777777733552236666666655665665666555777777777
+77777777777727626566666665665555555555553377777777
+77777777772532525666666655555565555555655577777777
+77777777725222236666565555555556555535355237777777
+77777777226672536653555535555555555355353357777777
+77777772726373566555555553535355566553553322777777
+77777772235775355665553355353535533555555223777777
+77777732222225555555635355535533635565353353777777
+77777722222255555655553553353553565556553532377777
+77777772272355553553355535353365355355553523577777
+77777733233356633355355553335535555555535355567777
+77777773323555555555555555555535555355556665567777
+77777775533355535355553565535353655655555565557777
+77777775653355553333535356665535356653565665557777
+77777775653535355355533355666665556665685666657777
+77777775633535555555555535565556555666566666677777
+77777775833333335555565655656586666686665866777777
+77777775822333333333555655555666666668686666777777
+77777775822333333333535555556666666668688586777777
+77777773635533333335555655563666668668888855777777
+77777775655555553335555666665656866668868867777777
+77777776656888853335556686556666666868886887777777
+77777777535636853235555568866686666666866887777777
+77777777322335532233233355335566666866866867777777
+77777777323333332222233332233568665666656337777777
+77777777323333332222222322222356655665553377777777
+77777777223332322222222332222256655556322777777777
+77777777323333322222223222222236553553222777777777
+77777777723323222222323222222335553355227777777777
+77777777723333332222333222222233532333557777777777
+77777777723333355665533233333333322335677777777777
+77777777773553333322223333333333222335677777777777
+77777777775553332322223333333332222336777777777777
+77777777772533332222222333333322222255777777777777
+77777777777535656666555333333322222355777777777777
+77777777777333353333322233333322222335777777777777
+77777777777233335332222223332322222233777777777777
+77777777777733323222222222333222222223777777777777
+77777777777732222222222222232223222223777777777777
+77777777777777222222222222323332222223777777777777
+77777777777777323222222233335322222222777777777777
+77777777777777333322222233553222222222777777777777
+77777777777777755333333555533222222222277777777777
+77777777777777777777555555532222222222277777777777
+77777777777777777777555555332222222222277777777777
+77777777777777777777755553332222222222227777777777
+77777777777777777777755553332222222222222777777777
+77777777777777777777735533322222222222222777777777
+77777777777777777777735533322222222222222277779769</pre>
+
+<p>I think I'll call it the Niamh Prime.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2017/08/24/double-oh-seven/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2017/10/15/charles-paget-wade-and-the-underthing/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/885460940933795840/Q7PZKQIT.jpg">
+			Fiona C responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2201198522">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/464747515653259264/M6VDjCds.jpeg">
+			Alex Balhatchet responded at
+		<a href="https://twitter.com/kaokun/status/906976523277803521">twitter.com</a>
+		<span class="wm-summary">			That's amazing!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/906977511107592192">twitter.com</a>
+		<span class="wm-summary">			cool idea from McKee. I would not have thought of it without that or @numberphile and @_FutilityCloset telling me about it :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/843862236/face.png">
+			Drew Fitzsimmons responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-15248427">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/464747515653259264/M6VDjCds.jpeg">
+			Alex Balhatchet responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-8631222">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1595076588/dice.jpg">
+			Numberphile responded at
+		<a href="https://twitter.com/numberphile/status/906981052366905344">twitter.com</a>
+		<span class="wm-summary">			This is escalating.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/869396199748456448/Qw8u13kX.jpg">
+			Jonathan Fischoff responded at
+		<a href="https://twitter.com/jfischoff/status/906981493041451008">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/900244436659130369/RrqJ1OH8.jpg">
+			mount -v /dev/sam responded at
+		<a href="https://twitter.com/Samahiel/status/906981844389953536">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/905993455914033152/llP2iIoo.jpg">
+			eco responded at
+		<a href="https://twitter.com/EcoShaymin/status/906981856075239424">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1333012089/BlueOne.JPG">
+			Dan Hagon responded at
+		<a href="https://twitter.com/axiomsofchoice/status/906982072702656513">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/660906399157874690/YBQpApdq.jpg">
+			Chris Smith responded at
+		<a href="https://twitter.com/aap03102/status/906982339397472257">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/847835066965381123/St8pUDLW.jpg">
+			Λογόρροια responded at
+		<a href="https://twitter.com/logor_rhoia/status/906982923223621632">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/763418519937613824/hS6hfhHI.jpg">
+			Mathematical_A responded at
+		<a href="https://twitter.com/Mathematical_A/status/906984100233449472">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/832079521566191616/Yaiq5HpG.jpg">
+			冗談 responded at
+		<a href="https://twitter.com/DarksunGoodbi/status/906984330018168832">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/899501691405520896/ukZ-cL0m.jpg">
+			Mathias Ference responded at
+		<a href="https://twitter.com/cheap_versace/status/906984399463383040">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/507248236038336513/CzAb-fb2.jpeg">
+			Matthew Strawbridge responded at
+		<a href="https://twitter.com/maddax/status/906984591487053824">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/641882643093680128/RwuzkTtU.jpg">
+			(((Itzik))) responded at
+		<a href="https://twitter.com/lamdeinu/status/906985226131398658">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/899501691405520896/ukZ-cL0m.jpg">
+			Mathias Ference responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2779830294">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/899096032629334017/FpgRM0IL.jpg">
+			Timothy Deng responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-314353705">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/594618877956329472/pOb35vX7.jpg">
+			TopCatMath responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-3229155100">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/259782851/mikepokesstickxp2hj0.jpg">
+			Mike Purvis responded at
+		<a href="https://twitter.com/mikedotexe/status/906987626011385856">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			ioui haas responded at
+		<a href="https://twitter.com/iouihaas/status/906988173351419906">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/900244436659130369/RrqJ1OH8.jpg">
+			mount -v /dev/sam responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-1872339228">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644580612540661760/KBMmAHco.jpg">
+			Jens Klingenstein responded at
+		<a href="https://twitter.com/griphuseducatio/status/906988230804955144">twitter.com</a>
+		<span class="wm-summary">			Awesome!!!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/894238360759406592/idePeDC8.jpg">
+			Yoav Shati responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-869981824902156288">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/793564640194269184/KDU63cb-.jpg">
+			Martin Korolczuk responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-793562708931207168">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/847835066965381123/St8pUDLW.jpg">
+			Λογόρροια responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-719177801241346049">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/873190925320802304/YhxLK_BJ.jpg">
+			Bedir HALCI responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-3183164207">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/675304755716034560/ezlhdTtk.jpg">
+			Planar responded at
+		<a href="https://twitter.com/planarek/status/906989846492839942">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/665526209485279232/kSdBiISV.jpg">
+			smashing memories responded at
+		<a href="https://twitter.com/smashingmemory/status/906989902608326656">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/660906399157874690/YBQpApdq.jpg">
+			Chris Smith responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-482357994">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			Zachary Bills responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-607355986">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/645259889581948928/rDYgS98K.png">
+			Julian responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2363098285">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/641882643093680128/RwuzkTtU.jpg">
+			(((Itzik))) responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-19486712">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/685709550905868288/hq3M-5dT.jpg">
+			Tamra responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-1541701352">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/624303462071857152/SNjcAw0A.jpg">
+			Nicolaj Baramsky responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-144653107">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/622553561315061760/rAlLGMxA.jpg">
+			benjamim responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-10477522">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/905993455914033152/llP2iIoo.jpg">
+			eco responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-726966895992295424">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1849099636/avatar.jpg">
+			Peter Collingridge responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-13486252">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/458535252382580736/t8E3OYF1.jpeg">
+			Matthew McKeever responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-73180473">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/665526209485279232/kSdBiISV.jpg">
+			smashing memories responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-3310704902">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/540993929512902656/ayf9GYQy.jpeg">
+			Mauri responded at
+		<a href="https://twitter.com/maurimauri747/status/906996033594335233">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/675304755716034560/ezlhdTtk.jpg">
+			Planar responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-4127423655">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/887032041379950593/AQhlYCoD.jpg">
+			Befedo responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-609192436">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			schana responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-564864621">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/906997016688975872">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/906906224045821952/pgMh-jBR.jpg">
+			Diego responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-295662566">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/877802455127515136/HGqjIixG.jpg">
+			Vivien Parkhouse responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-84539704">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/459257489851047936/9jNlNI5Q.jpeg">
+			Roger Shepherd responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-12769">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/876795132187742208/aKaoGhzX.jpg">
+			Andy Durdin responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-14214388">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/899921671376830464/tvjakH-D.jpg">
+			Maki my Angel responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-726927416388665345">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/433653826839539712/X1f5f7iY.jpeg">
+			LukasDanielKlausner responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-263647843">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/683341615247790081/mvHwb-tH.jpg">
+			Eilidh Troup responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-1146362072">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644580612540661760/KBMmAHco.jpg">
+			Jens Klingenstein responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-3685995615">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/904125619394498561/YQ3jQBqb.jpg">
+			Akhilesh Srikanth responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2773973772">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/787750551693975552/Z8X94jfE.jpg">
+			Doppelgänger responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-784942878615343104">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/841114881097007104/fKZG-NjP.jpg">
+			Pedro Suazo responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-1540386096">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/869766036064743424/N_9GMck5.jpg">
+			Edgar Sánchez Gordón responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-9571502">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/431066759337357312/3RQ_MHKr.jpeg">
+			M.Zorzy responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-467361179">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/888754591965167622/EPVlCaUF.jpg">
+			Deen John uzumaki responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-363464865">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3320459444/28b889b51ad583d19a6cc255e66c9470.jpeg">
+			ＤＯＮ'Ｔ-ＧＥＴ-ＭＥ-ＲＩＧＨＴ responded at
+		<a href="https://twitter.com/JoinReturn/status/907018436609441792">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/907018865883967488">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime by @sil buff.ly/2wTotNm #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/907019682552487937">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/752620124176314368/nuee8OSz.jpg">
+			Grandpa Gravy responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-1884015584">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2490910689/v6dhuitqxi4wede6rgb5.png">
+			Benjamin Slade responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-267839261">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-4zHs0HYxFJc/AAAAAAAAAAI/AAAAAAAAAAA/9LHHqeEl1os/photo.jpg?sz=50">
+			Ingolf Schaefer responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-110668837635668616170">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-XtMsh90I_A0/AAAAAAAAAAI/AAAAAAAAAAA/tApEDnajY3M/photo.jpg?sz=50">
+			Ade Oshineye responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-105037104815911535953">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-8ZECvjtVSfs/AAAAAAAAAAI/AAAAAAAAAAA/Ky3FRAyE8KU/photo.jpg?sz=50">
+			Jan Moren responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-105059362788808645801">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-6C3MZz4TqT8/AAAAAAAAAAI/AAAAAAAAAAA/QuRVXkxBO08/photo.jpg?sz=50">
+			Craig Maloney responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-117777908934895049975">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-7lCXIB5xKHU/AAAAAAAAAAI/AAAAAAAAAAA/wKjMKdKJKnI/photo.jpg?sz=50">
+			Kienan Vella responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-101222772040856480450">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3768498373/df6864aba83034d942f7cffa7c9bdc5a.png">
+			Jason Frey responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-38213520">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/577327082335797249/uV6geQKW.jpeg">
+			Gastón Avila responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-1856031655">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/880584872913489922/u51AzsEW.jpg">
+			Yeye responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-570423894">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/907095201230942208">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/850182828184805376/zJ1YH-lA.jpg">
+			Iykury responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2804791951">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/654286441648914432/-bTKw9r3.png">
+			the Eluminator 🌐 responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-3956007316">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/776757463727022081/WLJCtMXk.jpg">
+			Øbliviøn responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-702463779901014016">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/--WVpcMEq-qM/AAAAAAAAAAI/AAAAAAAAAAA/or4uqYbQqMs/photo.jpg?sz=50">
+			John Garside responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-118036104165764517905">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/867980186054152197/g12LJBde.jpg">
+			Jstar Valentine responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-205595077">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/495602233921134592/Wj-CWcaA.jpeg">
+			Natálie Kaňáková responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2700705788">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/907125366824747008">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/906697096610308096/bThcUYNx.jpg">
+			محمد فرحان responded at
+		<a href="https://twitter.com/farhanrazak21/status/907137174675406848">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/832979543950577665/2AS9-hQQ.jpg">
+			Ad Brouwer responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2873726182">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/739553263805161472/SrB7XARS.jpg">
+			Olivier Campagne responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-48997852">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/907155557173170177">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/829932792448376832/18EWw49U.jpg">
+			Jose F. Morales responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2841140583">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/879357580937756672/MCEXVkgZ.jpg">
+			Maths Ed responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-877507352915832834">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/534771836538859520/2bhekg5P.jpeg">
+			Mr Gray responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2882871113">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/835063096603455489/nqq1UY_b.jpg">
+			Bmouth School Maths responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-818775693672718336">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/88802439/dc_jump_quan2.JPG">
+			donald clemmey responded at
+		<a href="https://twitter.com/dcphoto202/status/907218792215744513">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/88802439/dc_jump_quan2.JPG">
+			donald clemmey responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-22735884">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2202262893/SHRDLU.gif">
+			W.D. Sparling responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-227108575">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/907276365849751552">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/658723533845954560/noXJEv_a.jpg">
+			Jono Bacon responded at
+		<a href="https://twitter.com/jonobacon/status/907287428540403714">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/658723533845954560/noXJEv_a.jpg">
+			Jono Bacon responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-14816103">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/907291439826006016">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/890396831561248768/HnB_2ram.jpg">
+			Decepção responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-2966696757">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/900954144751484928/ZCkkMbLE.jpg">
+			Corrie Strydom responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-55614706">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/536188544/digihood.png">
+			pip010 responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-18722852">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-rmSpnvC_vcw/AAAAAAAAAAI/AAAAAAAAAAA/A9c9BbdZsww/photo.jpg?sz=50">
+			Martin Wimpress responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-103917631499285627130">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-CuFtCMG7Dxw/AAAAAAAAAAI/AAAAAAAAAAA/XUDgD9l2e_k/photo.jpg?sz=50">
+			Richard Gaskin responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-101713075260440430143">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh4.googleusercontent.com/-BYryANJ7Q-E/AAAAAAAAAAI/AAAAAAAACfs/pEvSqHRrXHg/photo.jpg?sz=50">
+			Mirco Müller responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#z120cdjyutuidldaa04cevdb1pvbfzvpkpc0k%231505155742995632">plus.google.com</a>
+		<span class="wm-summary">			It's obvious what you'll have to get your daughter for her next birthday :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644340336/toxic_low.png">
+			Lucio Torre responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-106814704">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/786693644547940353/-gyJn7sJ.jpg">
+			Himadri Barman responded at
+		<a href="https://twitter.com/hbarspage/status/907392863817707520">twitter.com</a>
+		<span class="wm-summary">			Some maths fiddling around for a Sunday afternoon: a prime that looks like my daughter. kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/621028507368431617/G3yeitct.jpg">
+			Stephen Smoogen responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-1581348222">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/907480175285170176">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/905677546989076480/2zarL360.jpg">
+			Robert Cooper-Ritter responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-795538605779271680">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/660043696579198976/aGQN4DnV.png">
+			Izmar 🔥 responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-188665612">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-dC7uriaj5P0/AAAAAAAAAAI/AAAAAAAAAAA/kWKYDRyxvag/photo.jpg?sz=50">
+			Robert Collins responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-105660309458564946897">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/647835528/darkthone.jpeg">
+			aldonogueira responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-17834632">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/907668830654042112">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: The Niamh prime kryogenix.org/days/2017/09/1…
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-OULwO61mNf4/AAAAAAAAAAI/AAAAAAAAAAA/ip6uwoQ-G8Y/photo.jpg?sz=50">
+			Tarus BALOG responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#liked-by-114835305606981163109">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			Henry W McLaughlin responded at
+		<a href="https://twitter.com/hankmcljr/status/908333551329927168">twitter.com</a>
+		<span class="wm-summary">			Pictopriming
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-B2_jwFYgJ5U/AAAAAAAAAAI/AAAAAAAAErs/TuFTwapBsxU/photo.jpg?sz=50">
+			John Meinel responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#z120cdjyutuidldaa04cevdb1pvbfzvpkpc0k%231505450823480798">plus.google.com</a>
+		<span class="wm-summary">			I can't read any of those digits, please bigger pic :)
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/6z99Wy1MJnU/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/aAbGc2KdjGK#z120cdjyutuidldaa04cevdb1pvbfzvpkpc0k%231505450871898411">plus.google.com</a>
+		<span class="wm-summary">			See the page for all the digit detail you could ever want.
+</span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			Cristian Tapus responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-532471599">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/684045317797449729/TgNKj7x_.jpg">
+			John Read responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-35864383">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/888542748843933696/2GEjdtmK.jpg">
+			wallyhort responded at
+		<a href="https://twitter.com/sil/status/906969454340341766#favorited-by-833349841321332739">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/807277326539046912/EZR6qL-S.jpg">
+			Bruce Lawson responded at
+		<a href="https://twitter.com/brucel/status/915962413408714753">twitter.com</a>
+		<span class="wm-summary">			The Niamh prime: flame-haired Adonis @sil finds a prime number that when printed, makes an image of his daughter kryogenix.org/days/2017/09/1…
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2017/09/10/the-niamh-prime/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2017/09/10/the-niamh-prime/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

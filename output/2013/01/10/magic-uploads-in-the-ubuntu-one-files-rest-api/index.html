@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Magic uploads in the Ubuntu One files REST API</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Magic uploads in the Ubuntu One files REST API">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/"><time 
+			class="dt-published" datetime="2013-01-10T14:58:00+00:00">Jan 10 2013</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/">Magic uploads in the Ubuntu One files REST API</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Finally I've had a chance to document "magic uploads" in the Ubuntu One
+REST API. The documentation isn't published yet, but it's a neat little
+feature -- when uploading a file to U1, you can pass a couple of hashes
+calculated from the file content instead of the actual file content, and
+if that file's already in U1, it'll "upload" without you having to send
+all the content on the wire, which is a lot quicker. I can't do better
+in describing it than <a href="http://webm0nk3y.wordpress.com/2011/12/02/introducing-magic-uploads-via-ubuntu-one-rest-api/">jdo did when he first wrote about it</a> (a year
+ago. I know, I know, sorry.) We've had this for ages, and the U1 apps on
+mobile and so on use it, but I haven't had a chance to document it so
+everyone can use it. Docs will be at
+<a href="https://one.ubuntu.com/developer/files/store_files/cloud">https://one.ubuntu.com/developer/files/store_files/cloud</a> fairly soon,
+but I thought it might be useful to add a little test Python script I
+wrote to confirm that I understood the thing properly.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+<span class="k">try</span><span class="p">:</span>
+<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">ubuntuone.platform.credentials</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">CredentialsManagementTool</span>
+<span class="k">except</span><span class="w"> </span><span class="n">ImportError</span><span class="p">:</span>
+<span class="w">    </span><span class="n">CredentialsManagementTool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">None</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urlparse</span><span class="o">,</span><span class="w"> </span><span class="nn">urllib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hashlib</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">sha1</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ubuntuone.couch</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">auth</span>
+
+<span class="n">CONTENT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is the content of the file.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="n">_u1creds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_ubuntuone_credentials_synchronous</span><span class="p">():</span>
+<span class="w">    </span><span class="s2">&quot;find_credentials is async, but be sync here with a temporary mainloop&quot;</span>
+<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">gi.repository</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">GObject</span>
+<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">dbus.mainloop.glib</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">DBusGMainLoop</span>
+<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">ubuntuone.platform.credentials</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">CredentialsManagementTool</span>
+
+<span class="w">    </span><span class="k">global</span><span class="w"> </span><span class="n">_u1creds</span>
+
+<span class="w">    </span><span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="w">    </span><span class="n">loop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GObject</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">def</span><span class="w"> </span><span class="nf">quit</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+<span class="w">        </span><span class="k">global</span><span class="w"> </span><span class="n">_u1creds</span>
+<span class="w">        </span><span class="n">loop</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">result</span><span class="p">:</span>
+<span class="w">            </span><span class="n">_u1creds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span>
+
+<span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CredentialsManagementTool</span><span class="p">()</span>
+<span class="w">    </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cd</span><span class="o">.</span><span class="n">find_credentials</span><span class="p">()</span>
+<span class="w">    </span><span class="n">d</span><span class="o">.</span><span class="n">addCallbacks</span><span class="p">(</span><span class="n">quit</span><span class="p">)</span>
+<span class="w">    </span><span class="n">loop</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_u1creds</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_rest_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">creds</span><span class="p">):</span>
+<span class="w">    </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s2">&quot;https://one.ubuntu.com/api/file_storage/v1/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">urllib</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">safe</span><span class="o">=</span><span class="s2">&quot;~/&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="c1"># First, create file</span>
+<span class="w">    </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="p">}</span>
+<span class="w">    </span><span class="n">result_header</span><span class="p">,</span><span class="w"> </span><span class="n">result_body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">sigmeth</span><span class="o">=</span><span class="s2">&quot;HMAC_SHA1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">http_method</span><span class="o">=</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">request_body</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">token_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;token_secret&quot;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">        </span><span class="n">consumer_key</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;consumer_key&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="n">consumer_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;consumer_secret&quot;</span><span class="p">])</span>
+<span class="w">    </span><span class="n">result_body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result_body</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># now, PUT the body of the file</span>
+<span class="w">    </span><span class="n">content_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://files.one.ubuntu.com/&quot;</span>
+<span class="w">    </span><span class="n">put_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">content_root</span><span class="p">,</span><span class="w"> </span><span class="n">urllib</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span>
+<span class="w">        </span><span class="n">result_body</span><span class="p">[</span><span class="s2">&quot;content_path&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">safe</span><span class="o">=</span><span class="s2">&quot;~/&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="n">put_result_header</span><span class="p">,</span><span class="w"> </span><span class="n">put_result_body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">put_url</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">sigmeth</span><span class="o">=</span><span class="s2">&quot;PLAINTEXT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">http_method</span><span class="o">=</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">request_body</span><span class="o">=</span><span class="n">CONTENT</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">token_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;token_secret&quot;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">        </span><span class="n">consumer_key</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;consumer_key&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="n">consumer_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;consumer_secret&quot;</span><span class="p">])</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">put_result_header</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;200&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;201&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_rest_file_by_magic</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">creds</span><span class="p">):</span>
+<span class="w">    </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="s2">&quot;https://one.ubuntu.com/api/file_storage/v1/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">urllib</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">safe</span><span class="o">=</span><span class="s2">&quot;~/&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="c1"># Note that we do not actually include the CONTENT of the file </span>
+<span class="w">    </span><span class="c1"># here in the PUT.</span>
+<span class="w">    </span><span class="c1"># We just upload by passing the hash and magic_hash.</span>
+<span class="w">    </span><span class="n">file_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sha1</span><span class="p">()</span>
+<span class="w">    </span><span class="n">magic_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sha1</span><span class="p">(</span><span class="s2">&quot;Ubuntu One&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">file_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="w">    </span><span class="n">magic_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="w">    </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha1:</span><span class="si">%s</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">file_hash</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span>
+<span class="w">        </span><span class="s2">&quot;magic_hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;magic_hash:</span><span class="si">%s</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">magic_hash</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">result_header</span><span class="p">,</span><span class="w"> </span><span class="n">result_body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">sigmeth</span><span class="o">=</span><span class="s2">&quot;HMAC_SHA1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">http_method</span><span class="o">=</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">request_body</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="n">token_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;token_secret&quot;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">        </span><span class="n">consumer_key</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;consumer_key&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="n">consumer_secret</span><span class="o">=</span><span class="n">creds</span><span class="p">[</span><span class="s2">&quot;consumer_secret&quot;</span><span class="p">])</span>
+<span class="w">    </span><span class="n">result_body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result_body</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># if failed, will be a 400 Bad Request with body </span>
+<span class="w">    </span><span class="c1"># {u&#39;error&#39;: u&#39;The content could not be reused.&#39;}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result_header</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;200&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;201&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ubuntuone_credentials_synchronous</span><span class="p">()</span>
+<span class="w">    </span><span class="c1"># real strings, not dbus</span>
+<span class="w">    </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dict</span><span class="p">([(</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">credentials</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+
+<span class="w">    </span><span class="nb">print</span><span class="w"> </span><span class="s2">&quot;Creating a file with the REST API&quot;</span>
+<span class="w">    </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make_rest_file</span><span class="p">(</span><span class="s2">&quot;~/Ubuntu One/u1-test-magic-uploads.txt&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">CONTENT</span><span class="p">,</span><span class="w"> </span><span class="n">credentials</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">success</span><span class="p">:</span>
+<span class="w">        </span><span class="nb">print</span><span class="w"> </span><span class="s2">&quot;Failed, somehow&quot;</span>
+<span class="w">        </span><span class="k">return</span>
+<span class="w">    </span><span class="nb">print</span><span class="w"> </span><span class="s2">&quot;Succeeded.&quot;</span>
+<span class="w">    </span><span class="nb">print</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;Now, try uploading a new file, but by magic, &quot;</span>
+<span class="w">        </span><span class="s2">&quot;so we will not actually upload it.&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make_rest_file_by_magic</span><span class="p">(</span>
+<span class="w">        </span><span class="s2">&quot;~/Ubuntu One/u1-test-magic-uploads-magic-2.txt&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">CONTENT</span><span class="p">,</span><span class="w"> </span><span class="n">credentials</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">success</span><span class="p">:</span>
+<span class="w">        </span><span class="nb">print</span><span class="w"> </span><span class="s2">&quot;Successful magic upload!&quot;</span>
+<span class="w">    </span><span class="k">else</span><span class="p">:</span>
+<span class="w">        </span><span class="nb">print</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;Magic upload didn&#39;t succeed; you have to &quot;</span>
+<span class="w">            </span><span class="s2">&quot;upload in the normal way.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span><span class="w"> </span><span class="vm">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2012/12/30/simple-svg-sparklines/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2013/01/21/fuel-pump-arrows/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2013/01/10/magic-uploads-in-the-ubuntu-one-files-rest-api/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

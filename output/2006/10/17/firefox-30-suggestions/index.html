@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Firefox 3.0 suggestions</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Firefox 3.0 suggestions">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2006/10/17/firefox-30-suggestions/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2006/10/17/firefox-30-suggestions/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2006/10/17/firefox-30-suggestions/"><time 
+			class="dt-published" datetime="2006-10-17T10:24:00+01:00">Oct 17 2006</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2006/10/17/firefox-30-suggestions/">Firefox 3.0 suggestions</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>The Firefox people, just about to release version 2.0 of the browser,
+have put up <a href="http://wiki.mozilla.org./Firefox/Feature_Brainstorming">a wiki page asking for feature requests and suggestions for future Firefoxes</a>. Now, that to me sounds like a great idea. And then
+I looked at the list. There are already about four hundred suggestions
+on the list. As far as I can tell, damned nearly every one of them is
+useless. Let's examine the reasons for uselessness.</p>
+<dl>
+<dt>Things that already exist</dt>
+<dd>
+<ul>
+<li>"I would like to see an option that would allow me to click on a
+    link and it open in a new window or tab and not leave the page
+    I'm on until the new window/tab has fully loaded." That's
+    load-tabs-in-the-background, which I have turned on right now.</li>
+<li>"When a numeric portion of the URL in the address bar is
+    highlighted, allow it to be incremented/decremented using the
+    mouse wheel." If you want <a href="http://www.squarefree.com/pornzilla/">Pornzilla</a>, you know where to find
+    it.</li>
+<li>"Or a variant that could be run from an usb stick, that you
+    could use your personalised browser anywhere." <a href="http://portableapps.com/apps/internet/firefox_portable">Portable Firefox</a>.</li>
+<li>"Make it possible to have firefox started as a new process with
+    a switch (firefox.exe -np) to be able to have two instances
+    running in case you are testing something that crashes the
+    browser." Just create a second profile and launch with it.</li>
+<li>"Tab Exposé". <a href="http://viamatic.com/blogs/index.php/firefox">Foxpose</a>.</li>
+</ul>
+</dd>
+<dt>Things that clearly belong in an extension</dt>
+<dd>
+<ul>
+<li>"These days, we seem to be only allowed to "save as" in HTML or
+    text. This then means we have to use time-consuming external
+    programs instead of it being a quick and easy drop-down
+    selection. Please give us back our old "save as" options <em>[ed:
+    as PDF, etc]</em>and also include a new ODF "save as" option." This
+    sort of thing is operating system level, not Firefox level.
+    Install CutePDF on Windows; Macs can already print to PDF;
+    everything can already print to PostScript. I can vaguely see
+    the use of some of these, but "I want to save this as
+    PostScript" is such a geek edge-case anyway that doing it
+    through Print To File is hardly a barrier.</li>
+<li>"I found a plug-in for Firefox that colored your tabs, but it
+    was random. I would like to see user-picked colors for specific
+    domains." Interesting use-case (a synaesthete), and he says
+    he'll write it himself, so that's good; it's an extension,
+    though. Not Firefox core.</li>
+</ul>
+</dd>
+<dt>Things that are basically impossible to do</dt>
+<dd>
+<ul>
+<li>"Sessions/Tabs Isolation: Make sure sessions from other tabs do
+    not leak between tabs. This is a major security hazard." What
+    this means is that every tab is an independent browser.
+    Firefox's memory usage would go through the roof. This goes
+    double for people who say "one tab crashing shouldn't crash
+    anything else", which means that every tab is a separate
+    <em>process</em>.</li>
+<li>"Make the browser open faster; that is the number one reason
+    that I have heard for people not using Firefox or switching from
+    Firefox." I love this. As if they could easily do this but have
+    deliberately made it slow to annoy people.</li>
+<li>"Use heuristics to try and avoid caching sensitive data for
+    autocompletion. For example, if something looks like a credit
+    card number or social security number, don't cache it." I assume
+    that means "like a <em>US</em> Social Security number", right? Or will
+    you not mind if you enter what you think is a phone number and
+    it refuses to cache it because it looks like a Russian SSN?</li>
+</ul>
+</dd>
+<dt>Make Firefox into Internet Explorer</dt>
+<dd>
+<ul>
+<li>"Allow an option run a downloaded setup file (in the place of
+    "open") instead of saving it, like in Internet Explorer." There
+    is a <em>reason</em> it doesn't do this. It should not be easy to click
+    a web exe and have it run!</li>
+<li>"Add fallback mode to support non-standards based rendering when
+    "IE only" features are present in a web page so that the page
+    will render correctly." This means: completely implement total
+    compatibility with IE. As if it were made easy by saying it. Let
+    alone that Firefox policy is generally, when faced with a
+    choice, to do it right rather than to emulate IE.</li>
+<li>"I know it might be heretical, but it would make life easier for
+    some of us Ajaxy types if Firefox bit the bullet and supported
+    IE style drag and drop." I'm sure it would.</li>
+<li>There are quite a few "turn Firefox into Opera" requests, too.
+    Why not just use Opera if that's what you want?</li>
+</ul>
+</dd>
+<dt>Things that are moronic</dt>
+<dd>
+<ul>
+<li>"Allow us to specify which order each plugin will sit in." Why?
+    WHy is this even remotely useful?</li>
+<li>"Send Theme name and version currently in use in the HTTP
+    headers."</li>
+<li>"dual screened tabs. two tabs showing in the same window pane,
+    almost like frames. with ability to drag and resize viewing area
+    between the two tabs." Just open a second window!</li>
+<li>"Make proprietary Anchor mode: Make possible custom anchors like
+    this:url#custom(0,555), this would make firefox scroll 0pixel
+    to left and 555pixel down." Why is it a good idea to make only
+    Firefox understand these? Did we learn nothing at all from the
+    mid-nineties?</li>
+<li>"Show the MD5 Checksum of each download after its finishied."
+    Why? What's the point? If you even understand the <em>word</em> MD5
+    you're quite capable of running md5sum, and if the website
+    doesn't publish md5s then it's useless information anyway!</li>
+<li>"Move all MPL code to GPL." Yes! Make that suggestion to
+    Microsoft for IE as well!</li>
+<li>"Rather than pop up annoying dialogs when a site has a bad
+    security certificate, simply perform the encryption without
+    showing the lock icon." What do you think certificates are
+    <em>for</em>? Yes, it's a pain to see the window, and yes, the window's
+    not brilliantly designed, but the answer isn't just to turn it
+    off!</li>
+<li>"I think the possibility to setup and use a socket connection
+    for client-server communications would be a great improvement
+    for Firefox to use it in Web2.0 / intranet-webapplications. I
+    know it's already possible, but it requires 'signed/secure
+    javascript' through a plugin to deploy the possibilities, but it
+    would (and should) be a lot easier if a could just setup a
+    javascript object." You want JavaScript to be unrestrictedly
+    allowed to open socket connections? Ahahaha. No.</li>
+</ul>
+</dd>
+</dl>
+<p>If you strip out all of those, then you're left with barely anything.
+More importantly, there's nothing actually <em>good</em> left in the list; it's
+all little incremental improvements. Is Firefox really so good that
+no-one can think of anything it might do differently? It's the perfect
+execution of the web browser concept? It surely isn't. I intend to lay
+out a few thoughts on what I'd like to see happen in a future post, but
+for now I'll just say: can't we do better than this? To be honest, I'm
+being unfair. There are some good suggestions in the list. What
+disappoints me is the lack of decent solutions, the lack of vision. Most
+of the ones that are in my "it already exists" category above (and there
+are <em>many</em> that I didn't highlight; the above is just a selection) are
+things where I happen to know that it exists but I can understand that
+users do not. I need to go through the Firefox list and update it with
+some of these complaints or pointers to existing implementation, so that
+people can know. The moronic suggestions, by contrast, tend to be things
+that fall foul of Raymond Chen's "what would happen if it actually did
+this?" thought experiment.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2006/10/15/fusion-confusion/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2006/10/22/i-hate-sharp/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2006/10/17/firefox-30-suggestions/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2006/10/17/firefox-30-suggestions/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

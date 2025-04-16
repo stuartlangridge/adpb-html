@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Cutting down on spam (part XXXVII)</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Cutting down on spam (part XXXVII)">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/"><time 
+			class="dt-published" datetime="2007-03-23T13:43:00+00:00">Mar 23 2007</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/">Cutting down on spam (part XXXVII)</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>It occurs to me that I very rarely get useful comments on older posts,
+but I do occasionally (so just turning off comments isn't the answer).
+On the other hand, I don't want to put any road blocks in the way of
+most commenters. So what I decided to do was add a little bit of extra
+spam-avoidance to older posts. The <a href="http://sw-guide.de/wordpress/math-comment-spam-protection-plugin/">Math s Comment Spam Protection</a>
+plugin for Wordpress is ideal for this, but it adds the question (a
+simple one, like "Add 3 and 4") to every post. I didn't want that, so a
+tiny bit of hacking. After installing the plugin into WP, I edited my
+comments.php file in my theme and added this below the existing comment
+entry boxes:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1"># For old posts, display math-comment-spam-protection&#39;s &quot;add these</span>
+<span class="c1"># numbers&quot; question.</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nb">function_exists</span><span class="p">(</span><span class="s1">&#39;math_comment_spam_protection&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$mcsp_info</span> <span class="o">=</span> <span class="nx">math_comment_spam_protection</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">((</span><span class="nb">date</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">get_the_time</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">2592000</span><span class="p">)</span> <span class="p">{</span> <span class="c1"># 30 days ?&gt;</span>
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;mcspvalue&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;mcspvalue&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nx">size</span><span class="o">=</span><span class="s2">&quot;22&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">&quot;mcspvalue&quot;</span><span class="o">&gt;&lt;</span><span class="nx">small</span><span class="o">&gt;</span><span class="nx">Spam</span> <span class="nx">protection</span> <span class="k">for</span> <span class="nx">older</span> <span class="nx">posts</span><span class="o">:</span> <span class="nx">Add</span>
+<span class="nx">together</span>
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;operand1&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39; and &#39;</span><span class="o">.</span><span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;operand2&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&#39;</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;/small&gt;&lt;/label&gt;</span><span class="w"> </span><span class="cp">&lt;?php</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1"># it&#39;s not an old comment, so write the answer ourselves!</span>
+    <span class="nv">$vv</span> <span class="o">=</span> <span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;operand1&#39;</span><span class="p">]</span><span class="o">+</span><span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;operand2&#39;</span><span class="p">];</span>
+    <span class="k">echo</span> <span class="s1">&#39;&lt;input type=&quot;hidden&quot; name=&quot;mcspvalue&quot; value=&quot;&#39;</span> <span class="o">.</span> <span class="nv">$vv</span> <span class="o">.</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;input</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;hidden&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mcspinfo&quot;</span>
+<span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$mcsp_info</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div>
+
+<p>Basically, what this does is work out whether a post is over 30 days
+old, and then if it is display the maths question. Since the plugin
+assumes it's on every post, it checks for the answer being correct on
+every post. So on posts that *aren't* more than 30 days old, we
+calculate the answer ourselves and fill it in! Seems to work so far. If
+I've got something wrong and it's stopping you commenting, please <a href="http://www.kryogenix.org/contact">let
+me know</a> through some non-commenty means :)</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2007/03/21/this-is-not-the-way-the-web-works/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2007/03/24/what-if-google-crashed/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2007/03/23/cutting-down-on-spam-part-xxxvii/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2007/03/23/cutting-down-on-spam-part-xxxvii/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

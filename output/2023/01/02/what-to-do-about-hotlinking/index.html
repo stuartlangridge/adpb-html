@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; What to do about hotlinking</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; What to do about hotlinking">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/"><time 
+			class="dt-published" datetime="2023-01-02T18:10:00+00:00">Jan 02 2023</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/">What to do about hotlinking</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Hotlinking, in the context I want to discuss here, is the act of using a resource on your website by linking to it on someone else's website. This might be any resource: a script, an image, anything that is referenced by URL.</p>
+<p>It's a bit of an anti-social practice, to be honest. Essentially, you're offloading the responsibility for the bandwidth of serving that resource to someone else, but it's your site and your users who get the benefit of that. That's not all that nice.</p>
+<p>Now, if the "other person's website" is a CDN -- that is, a site deliberately set up <em>in order</em> to serve resources to someone else -- then that's different. There are many CDNs, and using resources served from them is not a bad thing. That's not what I'm talking about. But if you're including something direct from someone else's not-a-CDN site, then... what, if anything, should the owner of that site do about it?</p>
+<p>I've got a fairly popular, small, piece of JavaScript: <a href="https://kryogenix.org/code/browser/sorttable">sorttable.js</a>, which makes an HTML table be sortable by clicking on the headers. It's existed for a <em>long</em> time now (the very first version was written twenty years ago!) and I get an email about it once a week or so from people looking to customise how it works or ask questions about how to do a thing they want. It's open source, and I encourage people to use it; it's deliberately designed to be simple<sup id="sf-what-to-do-about-hotlinking-1-back"><a href="#sf-what-to-do-about-hotlinking-1" class="simple-footnote" title="and will stay simple; I'd rather sorttable were simple and relatively bulletproof than comprehensive and complicated. This also explains why it's not written in very &quot;modern&quot; JS style; the best assurance I have that it works in old browsers that are hard to test in now is that it DID work in them and I haven't changed it much">1</a></sup>, because the target audience is really people who aren't hugely experienced with web development and who can add sortability to their HTML tables with a couple of lines of code. </p>
+<p>The instructions for sorttable are pretty clear: download the library, then put it in your web space and include it. However, some sites skip that first step, and instead just link directly to the copy on my website with a <code>&lt;script&gt;</code> element. Having looked at my bandwidth usage recently, this happens quite a lot<sup id="sf-what-to-do-about-hotlinking-2-back"><a href="#sf-what-to-do-about-hotlinking-2" class="simple-footnote" title="in the last two weeks I've had about 200,000 hits on sorttable.js from sites that hotlink it, which ain't nothin'">2</a></sup>, and on some quite high-profile sites. I'm not going to name and shame anyone<sup id="sf-what-to-do-about-hotlinking-3-back"><a href="#sf-what-to-do-about-hotlinking-3" class="simple-footnote" title="yet, at least, so don't ask">3</a></sup>, but I'd quite like to encourage people to not do that, if there's a way to do it. So I've been thinking about ways that I might discourage hotlinking the script directly, while doing so in a reasonable and humane fashion. I'm also interested in suggestions: hit me up on Mastodon at <a href="https://mastodon.social/@sil">@sil@mastodon.social</a> or Twitter<sup id="sf-what-to-do-about-hotlinking-4-back"><a href="#sf-what-to-do-about-hotlinking-4" class="simple-footnote" title="if you must">4</a></sup> as @sil.</p>
+<h2>Move the script to a different URL</h2>
+<p>This is the obvious thing to do: I move the script and update my page to link to the new location, so anyone coming to my page to get the script will be wholly unaffected and unaware I did it. I do not want to do this, for two big reasons: it's kicking the can down the road, and it's unfriendly.</p>
+<p>It's can-kicking because it doesn't actually solve the problem: if I do nothing else to discourage the practice of hotlinking, then a few years from now I'll have people hotlinking to the new location and I'll have to do it again. OK, that's not exactly a lot of work, but it's still not a great answer.</p>
+<p>But more importantly, it's unfriendly. If I do that, I'll be deliberately breaking everyone who's hotlinking the script. You might think that they deserve it, but it's not actually them who feel the effect; it's their users. And their users didn't do it. One of the big motives behind the web's general underlying principle of "don't break the web" is that it's not reasonable to punish a site's users for the bad actions of the site's creators. This applies to browsers, to libraries, to websites, the whole lot. I would like to find a less harsh method than this.</p>
+<h2>Move the script to a different <em>dynamic</em> URL</h2>
+<p>That is: do the above, but link to a URL which changes automatically every month or every minute or something. The reason that I don't want to do this (apart from the unfriendly one from above, which still applies even though this fixes the can-kicking) is that this requires server collusion; I'd need to make my main page be dynamic in some way, so that links to the script also update along with the script name change. This involves faffery with cron jobs, or turning the existing static HTML page into a server-generated page, both of which are annoying. I know how to do this, but it feels like an inelegant solution; this isn't really a technical problem, it's a social one, where developers are doing an anti-social thing. Attempting to solve social problems with technical measures is pretty much always a bad idea, and so it is in this case.</p>
+<h2>Contact the highest-profile site developers about it</h2>
+<p>I'm leaning in this direction. I'm OK with smaller sites hotlinking (well, I'm not really, but I'm prepared to handwave it; I made the script and made it easy to use exactly to help people, and if a small part of that general donation to the universe includes me providing bandwidth for it, then I can live with that). The issue here is that it's not always easy to tell who those heavy-bandwidth-consuming sites <em>are</em>. It relies on the referrer being provided, which it isn't always. It's also a bit more work on my part, because I would want to send an email saying "hey, Site X developers, you're hotlinking my script as you can see on page sitex.example.com/sometable.html and it would be nice if you didn't do that", but I have no good way of identifying those pages; the document referrer isn't always that specific. If I send an email saying "you're hotlinking my script somewhere, who knows where, please don't do that" then the site developers are quite likely to put this request at the very bottom of their list, and I don't blame them.</p>
+<h2>Move the script and maliciously break the old one</h2>
+<p>This is: I move the script somewhere else and update my links, and then I change the previous URL to be the same script but it does something like barf a complaint into the console log, or (in extreme cases based on suggestions I've had) pops up an alert box or does something equally obnoxious. Obviously, I don't wanna do this.</p>
+<h2>Legal-ish things</h2>
+<p>That is: contact the highest profile users, but instead of being conciliatory, be threatening. "You're hotlinking this, stop doing it, or pay the Hotlink Licence Fee which is one cent per user per day" or similar. I think the people who suggest this sort of thing (and the previous malicious approach) must have had another website do something terrible to them in a previous life or something and now are out for revenge. I liked John Wick as much as the next poorly-socialised revenge-fantasy tech nerd, but he's not a good model for collaborative software development, y'know?</p>
+<h2>Put the page (or whole site) behind a CDN</h2>
+<p>I could put the site behind Cloudflare (or perhaps a better, less troubling CDN) and then not worry about it; it's not <em>my</em> bandwidth then, it's theirs, and they're fine with it. This used to be the case, but recently I moved web hosts<sup id="sf-what-to-do-about-hotlinking-5-back"><a href="#sf-what-to-do-about-hotlinking-5" class="simple-footnote" title="to the excellent Mythic Beasts, who are way better than the previous hosts">5</a></sup> and stepped away from Cloudflare in so doing. While this would work... it feels like giving up, a bit. I'm not actually solving the problem, I'm just giving it to someone else who is OK with it.</p>
+<h2>Live with it</h2>
+<p>This isn't overrunning my bandwidth allocation or anything. I'm not actually <em>affected</em> by this. My complaint isn't important; it's more a sort of distaste for the process. I'd like to make this better, rather than ignoring it, even if ignoring it doesn't mean much, as long as I'm not put to more inconvenience by fixing it. We want things to be better, after all, not simply tolerable.</p>
+<p>So... what do you think, gentle reader? What would you do about it? Answers on a postcard.</p><ol class="simple-footnotes"><li id="sf-what-to-do-about-hotlinking-1">and will stay simple; I'd rather sorttable were simple and relatively bulletproof than comprehensive and complicated. This also explains why it's not written in very "modern" JS style; the best assurance I have that it works in old browsers that are hard to test in now is that it DID work in them and I haven't changed it much <a href="#sf-what-to-do-about-hotlinking-1-back" class="simple-footnote-back">↩</a></li><li id="sf-what-to-do-about-hotlinking-2">in the last two weeks I've had about 200,000 hits on sorttable.js from sites that hotlink it, which ain't nothin' <a href="#sf-what-to-do-about-hotlinking-2-back" class="simple-footnote-back">↩</a></li><li id="sf-what-to-do-about-hotlinking-3">yet, at least, so don't ask <a href="#sf-what-to-do-about-hotlinking-3-back" class="simple-footnote-back">↩</a></li><li id="sf-what-to-do-about-hotlinking-4">if you must <a href="#sf-what-to-do-about-hotlinking-4-back" class="simple-footnote-back">↩</a></li><li id="sf-what-to-do-about-hotlinking-5">to the excellent <a href="https://www.mythic-beasts.com/hosting">Mythic Beasts</a>, who are way better than the previous hosts <a href="#sf-what-to-do-about-hotlinking-5-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2022/12/19/how-i-set-up-a-twitter-archive-with-tweetback/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2023/01/30/ronin/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/917080328400814080/NVFfU2GQ.jpg">
+			Lobsters responded at
+		<a href="https://twitter.com/lobsters/status/1609986670350274561">twitter.com</a>
+		<span class="wm-summary">			What to do about hotlinking via @popey lobste.rs/s/fcmgjj #web kryogenix.org/days/2023/01/0…
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			popey responded at
+		<a href="https://lobste.rs/s/fcmgjj">2 What to...</a>
+(lobste.rs)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1534873946243596289/p4UcpIA4.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/DataAugmented/status/1610002924536737798">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: What to do about hotlinking kryogenix.org/days/2023/01/0… Hotlinking, in the context I want to discuss here, is the act of using a r&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1529578035736870913/VCbIB_my.jpg">
+			Webdev Weekly responded at
+		<a href="https://twitter.com/WebdevDiscu/status/1610131797194543105">twitter.com</a>
+		<span class="wm-summary">			What to do about hotlinking kryogenix.org/days/2023/01/0… Discussions: discu.eu/q/https://www.… #webdev
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/258/296/808/168/417/original/8f8d988249c4afea.png">
+			Ben Thorp responded at
+		<a href="https://mastodon.social/@benthorp/109624427913183659">mastodon.social</a>
+		<span class="wm-summary">			@sil I think the problem here (having read most of the responses) is that for a big site to actually take notice, you are going to have to break it fo&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/109624547660056729">mastodon.social</a>
+		<span class="wm-summary">			@benthorp I think it’s worth giving them a chance to take notice and fix it first rather than preemptively assuming that they won’t and breaking them&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/258/296/808/168/417/original/8f8d988249c4afea.png">
+			Ben Thorp responded at
+		<a href="https://mastodon.social/@benthorp/109624608745855505">mastodon.social</a>
+		<span class="wm-summary">			@sil This isn't breaking anything. Functionality intact. No noticeable speed issue. Just an extra row on the table that they can easily remove by edit&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1584586023799066626/xisL9L2A.jpg">
+			Aquarion/Nicholas responded at
+		<a href="https://twitter.com/Aquarion/status/1610318496247709698">twitter.com</a>
+		<span class="wm-summary">			@sil kryogenix.org/days/2023/01/0… Breaking URLs bad (Better might be add CORS headers so it only works from your domain); slightly less dickish might&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1532125442504724481/sOJrJD-K.jpg">
+			Joshua Hoover responded at
+		<a href="https://twitter.com/sil/status/1610334928146661376#favorited-by-8491482">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/190102781/cookie.png">
+			Avi Greenbury responded at
+		<a href="https://twitter.com/big_red_s/status/1610409401789079554">twitter.com</a>
+		<span class="wm-summary">			My first thought is to add a delay to responses so it takes an extra 0.5 or 1s to download. Probably unnoticed by people downloading, no great pain fo&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/682260813906747392/NrEeD1Q9.png">
+			HN Front Page responded at
+		<a href="https://twitter.com/hn_frontpage/status/1610426261339242496">twitter.com</a>
+		<span class="wm-summary">			Wondering what to do (if anything) about hotlinking L: kryogenix.org/days/2023/01/0… C: news.ycombinator.com/item?id=342219…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1397259639511687171/E7OGwyb_.jpg">
+			Winson Tang responded at
+		<a href="https://twitter.com/winsontang/status/1610428053381054465">twitter.com</a>
+		<span class="wm-summary">			Wondering what to do (if anything) about hotlinking kryogenix.org/days/2023/01/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3025237318/1d08a308d4c8581ab30cd9a3755e13b2.png">
+			Hacker News responded at
+		<a href="https://twitter.com/HNTweets/status/1610428305576017920">twitter.com</a>
+		<span class="wm-summary">			Wondering what to do (if anything) about hotlinking: kryogenix.org/days/2023/01/0… Comments: news.ycombinator.com/item?id=342219…
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/108/211/532/022/598/001/original/5c2a70017fa6e912.png">
+			An :sparkles: responded at
+		<a href="https://mastodon.social/@sil/109621101876310641#favorited-by-108211532022598001">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://www.jvt.me/img/profile.png">
+			Jamie Tanna responded at
+		<a href="https://www.jvt.me/mf2/2023/01/wootc/">Liked as...</a>
+(www.jvt.me)		<span class="wm-summary">			{'value': 'Liked\nas days pass by — What to do about\xa0hotlinking\nPost detailsA post by Stuart Langridge (sil)', 'html': 'Liked\nas days pass by — What to do about hotlinking\nPost detailsA post by Stuart Langridge (sil)'}
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			An unnamed person responded at
+		<a href="https://lemmy.ml/post/691036">lemmy.ml</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1277969371885793280/4lAdCuw0.jpg">
+			🇺🇦 Fuck Brexit, Fuck Putin. #SlavaUkraini 🇺🇦 responded at
+		<a href="https://twitter.com/sil/status/1610334928146661376#favorited-by-132566924">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1518525557536813056/D3j-gXXh.jpg">
+			Angsuman Chakraborty responded at
+		<a href="https://twitter.com/angsuman/status/1611139042405675008">twitter.com</a>
+		<span class="wm-summary">			Wondering what to do (if anything) about hotlinking kryogenix.org/days/2023/01/0…
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/291/851/967/894/475/original/6e0f393ab6845270.jpg">
+			Stefan Bohacek responded at
+		<a href="https://stefanbohacek.online/@stefan/110249032228516616">stefanbohacek.online</a>
+		<span class="wm-summary">			@sil @Edent Very interesting perspective, and I like how you considered each option. Thank you for sharing this!
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/291/851/967/894/475/original/6e0f393ab6845270.jpg">
+			Stefan Bohacek responded at
+		<a href="https://mastodon.social/@sil/110249009097708679#favorited-by-109291851967894475">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/107/891/841/633/676/534/original/f3071c1bf83a4b5c.jpg">
+			Nils Andresen responded at
+		<a href="https://mastodon.social/@sil/110249009097708679#favorited-by-107891841633676534">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/337/698/700/359/270/original/e3a556ef674294d7.png">
+			Lutrulo@chitter.xyz responded at
+		<a href="https://mastodon.social/@sil/110249009097708679#favorited-by-109337698700359270">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/522/119/142/336/783/original/231c4fe9271ff844.jpg">
+			HeadPlug responded at
+		<a href="https://mastodon.social/@sil/110249009097708679#favorited-by-109522119142336783">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/522/119/142/336/783/original/231c4fe9271ff844.jpg">
+			HeadPlug responded at
+		<a href="https://mastodon.social/@sil/110249009097708679#reblogged-by-109522119142336783">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2023/01/02/what-to-do-about-hotlinking/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2023/01/02/what-to-do-about-hotlinking/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Enabling Webmentions</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Enabling Webmentions">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/11/29/enabling-webmentions/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/11/29/enabling-webmentions/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/11/29/enabling-webmentions/"><time 
+			class="dt-published" datetime="2014-11-29T17:02:00+00:00">Nov 29 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/11/29/enabling-webmentions/">Enabling Webmentions</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Well, everyone's doing <a href="http://indiewebcamp.com/webmention">Webmentions</a> these days. So, there's a bandwagon here to jump on.</p>
+<p>All this is really my fault. It is a good idea that, when I write a post which links elsewhere, that the elsewhere gets told that I linked to it. This way, the web stays connected -- obviously, a link from A to B is one-directional, and these notifications allow links to be <em>two</em>-directional.</p>
+<p>So, 12 years ago, <a href="http://www.kryogenix.org/days/2002/07/07/automatically/">I invented Pingback</a>. Sorry.</p>
+<p>Pingback uses XMLRPC because that was the cool thing at the time and because I was young and foolish and had a peanut for a brain. Ian Hickson took my vague spec and kicked it in the arse to make it a proper spec, and it got adopted really quickly. Back then, when the world was young, <em>everything</em> got adopted really quickly; there was so much new ground to be broken that coming up with a reasonable way to do something (permalinks, RSS autodiscovery, pingbacks) meant that it got picked up by everybody.</p>
+<p>However, XMLRPC is considerably less popular than it was, and is really heavyweight for this sort of thing. We've learned since then that HTTP can actually do all this stuff for us way more simply<sup id="sf-enabling-webmentions-1-back"><a href="#sf-enabling-webmentions-1" class="simple-footnote" title="ok, ok, Roy Fielding, you knew already">1</a></sup> and we've learned how best to use HTTP to express the whole bunch of loosely-defined agreements and protocols that we now call the Open Web. Hooray! And I should get on board, partially as penance and partially because it's just a jolly good idea.</p>
+<p><a href="http://adactio.com">Jeremy</a> implemented this for his stuff <a href="https://adactio.com/journal/6495">ages ago</a> (and I defer to his post for a more detailed explanation of what webmentions are), but the thing which prompted me to actually get off my arse and make this happen was <a href="http://aaron-gustafson.com/notebook/2014/enabling-webmentions-in-jekyll/">Aaron</a> writing up how he did it<sup id="sf-enabling-webmentions-2-back"><a href="#sf-enabling-webmentions-2" class="simple-footnote" title="because Aaron and I were having a blog-to-blog conversation, and that sort of thing is the perfect environment for webmentions to thrive and prove their worth">2</a></sup> with Jekyll, a static site generator. Now, <em>adpb</em> is also a static site (with <a href="http://getpelican.com">Pelican</a>, a Python site generator), and I really liked Aaron's idea of baking one's incoming webmentions into the page at build time and then re-fetching them live with JavaScript at run-time to display any webmentions which have come in since the last time I regenerated the site. Also like Aaron, I didn't want to run my own webmentions endpoint (because databases are hassle), and so looked at <a href="http://voxpelli.com/">Pelle Wessman's</a> <a href="https://webmention.herokuapp.com/">webmention endpoint</a> which he's spun up on Heroku. One quick signup and I was good; I could send webmentions and Pelle's app tracked them for me. Nice.</p>
+<p>I then, of course, needed to fetch the webmentions for my whole site at build time -- the initial version of the endpoint didn't do this and instead required requesting the webmentions for each individual URL, but I have about eighteen hundred posts on this site and so <a href="https://github.com/voxpelli/webpage-webmentions/issues/12">a quick patch submission later</a> and I could grab all the webmentions for kryogenix.org in one request. Pelle graciously fixed, merged, and deployed said patch, and now we were off to the races.</p>
+<p>I put together something approximating a Pelican plugin for webmentions<sup id="sf-enabling-webmentions-3-back"><a href="#sf-enabling-webmentions-3" class="simple-footnote" title="code is in a gist on github rather than a nicely submitted plugin project, because it's got too much stuff in it which is hardcoded rather than generic, but it would be a useful start for someone wanting to build something proper">3</a></sup> and wrote some JavaScript to do the live fetching, and also pinched Jeremy's idea of being able to manually submit an incoming link. And there we have it. I'm part of the Indie Web.</p>
+<p>It would be nice if this stuff were in core WordPress, I'd say. Also, people have started thinking about webmention spam and how to avoid it; <a href="http://indiewebcamp.com/Vouch">Vouch</a> seems a reasonable approach, and it'd be interesting to see where that discussion goes and whether we can fix this before it becomes a problem. Also, I have added myself to the <a href="http://indiewebcamp.com/IRC_People">indieweb IRC people</a> list and am hanging out on freenode IRC in #indiewebcamp.</p><ol class="simple-footnotes"><li id="sf-enabling-webmentions-1">ok, ok, Roy Fielding, <em>you</em> knew already <a href="#sf-enabling-webmentions-1-back" class="simple-footnote-back">↩</a></li><li id="sf-enabling-webmentions-2">because Aaron and I were having a blog-to-blog conversation, and that sort of thing is the perfect environment for webmentions to thrive and prove their worth <a href="#sf-enabling-webmentions-2-back" class="simple-footnote-back">↩</a></li><li id="sf-enabling-webmentions-3">code is in a <a href="https://gist.github.com/stuartlangridge/ef08d5e1737181e2bee7">gist on github</a> rather than a nicely submitted plugin project, because it's got too much stuff in it which is hardcoded rather than generic, but it would be a useful start for someone wanting to build something proper <a href="#sf-enabling-webmentions-3-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2014/11/18/making-a-static-build-of-sox/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/11/30/vouching-for-webmentions-hashing-for-vouches/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="http://tantek.com/logo.jpg">
+			Tantek Çelik responded at
+		<a href="http://tantek.com/2014/333/t2/welcome-inventor-pingback-support-webmention">tantek.com</a>
+		<span class="wm-summary">			@sil welcome! As inventor of #pingback your support is a huge milestone for #webmention. Let's see how soon this shows up. Posted 17:32-0800.
+</span></li>
+		<li><img src="https://aaronparecki.com/images/aaronpk.png">
+			Aaron Parecki responded at
+		<a href="https://aaronparecki.com/replies/2014/11/29/1/indieweb">aaronparecki.com</a>
+		<span class="wm-summary">			@sil Congrats! This is exciting to see! #indieweb
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3657148842/934fb225b84b8fd3effe5ab95bb18005.jpeg">
+			Aaron Parecki responded at
+		<a href="https://twitter.com/aaronpk/status/538755296324096001">twitter.com</a>
+		<span class="wm-summary">			@sil Congrats! This is exciting to see! #indieweb (aaron.pk/r4ZP1)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/477375893183033344/xPth0Xgn.png">
+			Jeremy Keith responded at
+		<a href="https://twitter.com/adactio/status/538755302699843586">twitter.com</a>
+		<span class="wm-summary">			@sil @voxpelli @AaronGustafson Woo-hoo! Nice one!
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="https://aaronparecki.com/bookmarks/2014/11/29/1/webmention-indieweb">Enabling Webmentions</a>
+(aaronparecki.com)		<span class="wm-summary">			“So, 12 years ago, I invented Pingback. Sorry. Pingback uses XMLRPC because that was the cool thing at the time and because I was young and foolish an&hellip;
+</span></li>
+		<li><img src="https://michielbdejong.com/file/1165c08bec3abb1c249f51225310f204/thumb.jpg">
+			Michiel de Jong responded at
+		<a href="https://michielbdejong.com/2014/cool-inventor-of-pingback-jumps-on-the-webmention-bandwaggon-hadnt">michielbdejong.com</a>
+		<span class="wm-summary">			Cool! Inventor of pingback jumps on the webmention bandwaggon. Hadn't heard about Vouch yet, that's smart as well. Totally agree WordPress and other C&hellip;
+</span></li>
+		<li><img src="https://secure.gravatar.com/avatar/947b5f3f323da0ef785b6f02d9c265d6?s=96&d=blank&r=G">
+			Ryan Barrett responded at
+		<a href="https://snarfed.org/2014-11-29_as-days-pass-by-enabling-webmentions">as days...</a>
+(snarfed.org)		<span class="wm-summary">			awesome! now that you accept webmentions, feel free to try brid.gy next to pull back comments, retweets, +1s, etc. too!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3657148842/934fb225b84b8fd3effe5ab95bb18005.jpeg">
+			Aaron Parecki responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">Aaron...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/503266037052502019/sLKqxlMP.jpeg">
+			jason responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">jason...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/391831398/peter_opie.png">
+			Peter Gasston responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">Peter...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/473135457975283712/41oMFXBB.jpeg">
+			Bret Comnes responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">Bret Comnes...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2926539957/7f026993de121da7e095c3646e3bd4b8.jpeg">
+			Kris Noble responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">Kris Noble...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/423350922408767488/nlA_m2WH.jpeg">
+			Tantek Çelik responded at
+		<a href="https://twitter.com/t/status/538868025509023744">twitter.com</a>
+		<span class="wm-summary">			@sil welcome! As inventor of #pingback your support is a huge milestone for #webmention. Let's see how soon this ... tantek.com/t4ZP2
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/423350922408767488/nlA_m2WH.jpeg">
+			Tantek Çelik responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">Tantek...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000072331588/3c144be50e362a69d2410d759503c04c.png">
+			Pelle Wessman responded at
+		<a href="https://twitter.com/voxpelli/status/539033716572815361">twitter.com</a>
+		<span class="wm-summary">			@t @sil Full CRUD is unfortunately still on my todo :/
+</span></li>
+		<li><img src="http://xtof.withknown.com/file/9d476776666b94ca5e6a0c758929e41d">
+			Christophe Ducamp responded at
+		<a href="http://xtof.withknown.com/2014/via-t-sil-linventeur-du-pingback-active-les-webmentions-days20141129enabling-webmentions">xtof.withknown.com</a>
+		<span class="wm-summary">			via @t : @sil l'inventeur du #Pingback active les #webmentions > http://www.kryogenix.org/days/2014/11/29/enabling-webmentions/ ...) when I write a po&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3585902892/c841be488b34741d25cf1d470903c3a4.png">
+			Christophe Ducamp responded at
+		<a href="https://twitter.com/xtof_fr/status/539048556800114689">twitter.com</a>
+		<span class="wm-summary">			via @t : @sil l'inventeur du #Pingback active les #webmentions > kryogenix.org/days/2014/11/2… ...) when I write a post .. xtof.withknown.com/2014/via&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/529610252745191425/O-5c-rmk.jpeg">
+			Aaron Gustafson responded at
+		<a href="https://twitter.com/AaronGustafson/status/539050341275557888">twitter.com</a>
+		<span class="wm-summary">			@sil This is great! Congrats and thank you! I may implement the submission idea too.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/529610252745191425/O-5c-rmk.jpeg">
+			Aaron Gustafson responded at
+		<a href="https://twitter.com/AaronGustafson/status/539050370992205824">Aaron...</a>
+(twitter.com)		<span class="wm-summary">			retweeted this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/529610252745191425/O-5c-rmk.jpeg">
+			Aaron Gustafson responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">Aaron...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/478438764914565121/jF7tXwAH.jpeg">
+			Joschi Kuphal 吉 responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">Joschi...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			Webrocker responded at
+		<a href="http://www.webrocker.de/2014/11/30/fiddling-with-the-indie-web-pt4/">Fiddling...</a>
+(www.webrocker.de)		<span class="wm-summary">			Wow, Steward Langridge, inventor of the pingback mechanism, has enabled webmentions on his blog, as he tweetedjust a couple of hours ago. I think this&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/531531666771410944/QiMABYxH.jpeg">
+			Vedran Rudelj ≠ ☃ responded at
+		<a href="https://twitter.com/sil/status/538752647067475968">Vedran...</a>
+(twitter.com)		<span class="wm-summary">			favorited this.
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="https://adactio.com/links/7909">as days...</a>
+(adactio.com)		<span class="wm-summary">			Stuart has implemented webmentions on his site, which is great. It’s also fitting, as he is the inventor of pingback (of which webmention is a simpler&hellip;
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			An unnamed person responded at
+		<a href="http://vacilando.org/link/days-pass">vacilando.org</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://s.gravatar.com/avatar/1915b220dfe0cc56209cb4d11b389383?s=64">
+			Peter Molnar responded at
+		<a href="https://petermolnar.eu/linux-tech-coding/wordpress-retouch/">WordPress,...</a>
+(petermolnar.eu)		<span class="wm-summary">			A long time ago, as many still does, I had my own CMS. It was fun and it was needed since the ones available that time - like PHP-Nuke – were pretty t&hellip;
+</span></li>
+		<li><img src="https://jeena.net/avatar.jpg">
+			Jeena responded at
+		<a href="https://jeena.net/likes/12">Jeena ♥...</a>
+(jeena.net)		<span class="wm-summary"></span></li>
+		<li><img src="http://voxpelli.com/avatar.jpg">
+			Pelle Wessman responded at
+		<a href="http://voxpelli.com/2015/09/oberoende-sociala-webben-2015/">Den...</a>
+(voxpelli.com)		<span class="wm-summary">			Sociala medier. Synonymt med Facebook, Twitter, Instagram. Vad händer när en av dem försvinner? Är det game over då? Jaiku i repris, fast denna gång u&hellip;
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/646709032280018944">twitter.com</a>
+		<span class="wm-summary">			@slicknet I did, for the same reason. kryogenix.org/days/2014/02/1… (and I have webmentions, kryogenix.org/days/2014/11/2… for blog-to-blog conversati&hellip;
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			An unnamed person responded at
+		<a href="http://imaginationeverywhere.info/trackbacks-vs-pingbacks-vs-webmentions-for-wordpress/">imaginationeverywhere.info</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1042741924149518336">twitter.com</a>
+		<span class="wm-summary">			Webmentions might also have a spam problem; that's discussed more in kryogenix.org/days/2014/11/3… along with one potential way to help solve.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/878320308561649664/7UfMOQzm.jpg">
+			Jonathan Dowland responded at
+		<a href="https://twitter.com/jmtd/status/1042742307978657793">twitter.com</a>
+		<span class="wm-summary">			Thanks. I guess Wordpress was the biggest adopter. I’ve just realised my bug/wishlist/todo item for pingbacks in ikiwiki is approaching 10 years old.&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1042745812688756738">twitter.com</a>
+		<span class="wm-summary">			yup. That's exactly what webmentions are trying to be :)
+</span></li>
+		<li><img src="https://oliodigest.com/profilepic_200x200.jpg">
+			Drei aka Bitcoin Master responded at
+		<a href="https://oliodigest.com/replies/Its-2019-What-happened-to-Webmentions-Vouch/">It’s 2019 -...</a>
+(oliodigest.com)		<span class="wm-summary">			So I was browsing around for more information about Webmentions, its implementation and popularity. I happened to land onStuart Langridge’s old post a&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1590614757572165632">twitter.com</a>
+		<span class="wm-summary">			Adopting the concept, yes. Better would have been for them to use Webmentions, which are what Pingback should be; that is, not using XML-RPC, I think&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1208910080722079744/YGLFCno9.jpg">
+			David Sasaki responded at
+		<a href="https://twitter.com/oso/status/1590624905196105728">twitter.com</a>
+		<span class="wm-summary">			Ooh, it *would* be nice if @wordpress adopted webmentions in the core code — maybe with @akismet integration to deal with the inevitable spam? Well, S&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/985268467132661760/UqasbGCs.jpg">
+			Barnaby Walters (waterpigs.co.uk) responded at
+		<a href="https://twitter.com/sil/status/1590614757572165632#favorited-by-507922769">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1477113672803622912/ljLUwFLP.jpg">
+			Aaron Parecki responded at
+		<a href="https://twitter.com/sil/status/1590614757572165632#favorited-by-14447132">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1208910080722079744/YGLFCno9.jpg">
+			David Sasaki responded at
+		<a href="https://twitter.com/sil/status/1590614757572165632#favorited-by-754973">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/247/025/527/949/675/original/55ff9a538644cbe3.png">
+			Pelle Wessman responded at
+		<a href="https://mastodon.social/@sil/109659387195741052#favorited-by-109247025527949675">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/247/025/527/949/675/original/55ff9a538644cbe3.png">
+			Pelle Wessman responded at
+		<a href="https://mastodon.social/@sil/109659387195741052#reblogged-by-109247025527949675">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/257/825/959/602/663/original/68bef5b6443bc21f.jpeg">
+			doug responded at
+		<a href="https://mastodon.social/@sil/109659387195741052#favorited-by-109257825959602663">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/320/206/822/983/443/original/36a427c4a6cbff4e.png">
+			Josh Dick responded at
+		<a href="https://mastodon.social/@sil/109659387195741052#favorited-by-109320206822983443">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/000/062/502/original/d4b1954a344f3fd7.jpeg">
+			Oliver responded at
+		<a href="https://mastodon.social/@sil/109682115425030816#favorited-by-62502">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/304/295/021/215/750/original/f52f13ac1d1d43d0.jpg">
+			Charles Roper responded at
+		<a href="https://mastodon.social/@sil/109682115425030816#reblogged-by-109304295021215750">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/000/062/502/original/d4b1954a344f3fd7.jpeg">
+			Oliver responded at
+		<a href="https://mastodon.social/@sil/109682115425030816#reblogged-by-62502">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/977/020/original/2470b5a10e694f78.jpg">
+			ge ricci responded at
+		<a href="https://mastodon.social/@sil/109682115425030816#favorited-by-977020">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/306/283/152/901/918/original/f22ff1a53c7a06b8.png">
+			Stephen Kellat responded at
+		<a href="https://mastodon.social/@sil/109682115425030816#favorited-by-109306283152901918">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/306/283/152/901/918/original/f22ff1a53c7a06b8.png">
+			Stephen Kellat responded at
+		<a href="https://mastodon.social/@sil/109682115425030816#reblogged-by-109306283152901918">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/000/276/730/original/aa98dfb64e5c129a.jpg">
+			Bruno Girin responded at
+		<a href="https://mastodon.social/@sil/109682115425030816#reblogged-by-276730">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/285/983/490/689/505/original/141c0aee0d74b77c.jpeg">
+			axemonkey responded at
+		<a href="https://mastodon.social/@sil/109682115425030816#favorited-by-109285983490689505">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/247/025/527/949/675/original/55ff9a538644cbe3.png">
+			Pelle Wessman responded at
+		<a href="https://mastodon.social/@voxpelli/110101667688448562">mastodon.social</a>
+		<span class="wm-summary">			@sil @jacob Worth mentioning that I’ll soon be giving that service some much needed love 🙂 And hopefully open up some new accounts for signup (and may&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/247/296/575/485/928/original/54f1b0528382e334.jpg">
+			jacobian responded at
+		<a href="https://social.jacobian.org/@jacob/110101703932944733">social.jacobian.org</a>
+		<span class="wm-summary">			@sil @voxpelli oh interesting! I sort of assumed webmention was gonna require a dynamic site, so hadn’t even considered it. I’ll take a look, thanks!
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/247/025/527/949/675/original/55ff9a538644cbe3.png">
+			Pelle Wessman responded at
+		<a href="https://mastodon.social/@sil/110101656605142471#favorited-by-109247025527949675">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/110101720908884849">mastodon.social</a>
+		<span class="wm-summary">			@jacob @voxpelli that's what I thought too, and was terribly pleased to discover that you can do webmentions on a static site with a little bit of thi&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/247/296/575/485/928/original/54f1b0528382e334.jpg">
+			jacobian responded at
+		<a href="https://mastodon.social/@sil/110101656605142471#reblogged-by-109247296575485928">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/247/296/575/485/928/original/54f1b0528382e334.jpg">
+			jacobian responded at
+		<a href="https://mastodon.social/@sil/110101656605142471#favorited-by-109247296575485928">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/247/025/527/949/675/original/55ff9a538644cbe3.png">
+			Pelle Wessman responded at
+		<a href="https://mastodon.social/@voxpelli/110101730480287707">mastodon.social</a>
+		<span class="wm-summary">			@sil If you want an account @jacob, then ping me and we can sync up :)
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/486/559/211/329/033/original/b4c122929a83f421.jpeg">
+			Laura Lis Scott responded at
+		<a href="https://mastodon.social/@sil/110101656605142471#favorited-by-109486559211329033">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/362/542/660/934/732/original/ed93134855f06a4e.jpg">
+			Tim Smith responded at
+		<a href="https://mastodon.social/@sil/110101656605142471#favorited-by-109362542660934732">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/288/640/580/556/230/original/d4d5c8947ff0f120.jpeg">
+			Andy Freeland responded at
+		<a href="https://mastodon.social/@sil/110101656605142471#favorited-by-109288640580556230">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://mastodon.social/avatars/original/missing.png">
+			kratos_a_go@fosstodon.org responded at
+		<a href="https://mastodon.social/@sil/110101656605142471#favorited-by-109325222067792933">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/247/025/527/949/675/original/55ff9a538644cbe3.png">
+			Pelle Wessman responded at
+		<a href="https://mastodon.social/@voxpelli/110866409169143462">mastodon.social</a>
+		<span class="wm-summary">			@sil @marcjenkins @dmje @snarfed.org Soon it may be available to more people 😉
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/109/247/025/527/949/675/original/55ff9a538644cbe3.png">
+			Pelle Wessman responded at
+		<a href="https://mastodon.social/@sil/110866379181091967#favorited-by-109247025527949675">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/110/723/109/251/560/958/original/c38365e3c68d73cf.jpeg">
+			Mike Ellis responded at
+		<a href="https://mastodon.variousbits.net/@dmje/110866631902664407">mastodon.variousbits.net</a>
+		<span class="wm-summary">			@sil @marcjenkins @snarfed.org @voxpelli ace, thanks, I will read / look!
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/110/723/109/251/560/958/original/c38365e3c68d73cf.jpeg">
+			Mike Ellis responded at
+		<a href="https://mastodon.social/@sil/110866379181091967#favorited-by-110723109251560958">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/222/993/original/1fe0fb57992784ac.jpeg">
+			Ryan Barrett responded at
+		<a href="https://mastodon.social/@sil/110866379181091967#favorited-by-222993">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/11/29/enabling-webmentions/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/11/29/enabling-webmentions/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

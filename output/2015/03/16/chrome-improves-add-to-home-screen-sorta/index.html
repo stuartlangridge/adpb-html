@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Chrome improves Add To Home Screen. Sorta</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Chrome improves Add To Home Screen. Sorta">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2015/03/16/chrome-improves-add-to-home-screen-sorta/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2015/03/16/chrome-improves-add-to-home-screen-sorta/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2015/03/16/chrome-improves-add-to-home-screen-sorta/"><time 
+			class="dt-published" datetime="2015-03-16T22:38:00+00:00">Mar 16 2015</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2015/03/16/chrome-improves-add-to-home-screen-sorta/">Chrome improves Add To Home Screen. Sorta</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>So, Chrome <a href="http://updates.html5rocks.com/2015/03/increasing-engagement-with-app-install-banners-in-chrome-for-android">improve their add to home screen</a> feature. Yay! Finally! This is great!</p>
+<p>Well. It's <em>sorta</em> great. </p>
+<p>There are two ways of viewing the point of "add to home screen". The first is as a sort of super-powered bookmark. It's a favourite which you can get at really easily, without having to open the browser and go fishing around in your bookmarks menu. The second way is that it's essentially "install this app", but for web apps rather than native apps. And nobody's very sure what it's supposed to mean.</p>
+<p>This causes tension. </p>
+<p>Native apps get to say "install our app" without providing a link, a QR code, whatever: people <em>know</em> how to do that. You can write it on posters or TV adverts: "StuartApp is the greatest new thing! Install from the App Store or Google Play". And everyone knows what that means: open up the App Store or Google Play app and search for StuartApp, and touch Install. How do you install my web app? Well, the poster could say "install our web app: StuartApp.com", and I think people would get that they type that into the browser. No problem there. But then installation is a problem, because it's browser-specific and it's a pain in the arse. It's quite difficult to install a web app (by which I mean "bookmark it to the home screen"<sup id="sf-chrome-improves-add-to-home-screen-sorta-1-back"><a href="#sf-chrome-improves-add-to-home-screen-sorta-1" class="simple-footnote" title="although Matteo Spinelli's brilliant add to home screen iOS Safari library makes it easier">1</a></sup>) in iOS Safari<sup id="sf-chrome-improves-add-to-home-screen-sorta-2-back"><a href="#sf-chrome-improves-add-to-home-screen-sorta-2" class="simple-footnote" title="other iOS browsers can't do it at all; it's a secret Safari-only feature">2</a></sup>, and it's <em>really</em> difficult in Android Chrome. what Chrome have done now supposedly makes it easier. If your web app is prepared to be installed (it's got an icon, a manifest, and so forth), Chrome will offer your users the chance to install it when they use it. This is great. </p>
+<p>Well. It's <em>sorta</em> great.</p>
+<p>You see, the Chrome team don't want to hassle users to install apps when they don't want to. So the automatic "install this" prompt won't appear until the second day you're using that web app. This is good from the point of view of not hassling people, and not hassling people is important. But it is no improvement at all for people who want to deliver an app (which is what people have been conditioned to want) but do it on the web (which is the best way to do it, if you can). Before this release, I couldn't say "install our app: StuartApp.com" (because doing so was too hard), and now I <em>still</em> can't say it, because you have to come back twice over two days. </p>
+<p>How popular would Clash of Clans be if you couldn't install it until the second day you played it, I wonder?</p>
+<p>I get that there are constraints here. What the Chrome team are trying to avoid is having every site you visit say "install me as an app! Install me! DO IT! INSTAAAAAAAALL!" every time you go there, and they are wholly right with this concern. But from a practical perspective, "install my app" when I want to deliver it on the web is no better now than it was a month ago. Which is not forward progress. </p>
+<p>There are a couple of pernicious ideas here which should be nipped in the bud. The first is that I've seen it suggested that perhaps if you prove to be a <em>good</em> app developer who doesn't hassle people, maybe those restrictions will be relaxed. But who decides whether you've been bad or good? The Google Chrome team. I do not want them to be gatekeepers. I really don't. The web is a better way at least partially <em>because</em> we're not praying that a big corporation will let us play in their sandbox. Bringing the iOS/Android approval model to the web defeats the point. If it's possible to build a web app which provides a better-than-native install experience but only if Google permit it? Not useful. (And Apple are hardly going to implement that.)</p>
+<p>The second pernicious thing is people who believe that "bookmark to home screen" means "grant extra privileges". Specifically, there's a whole bunch of "aha! They added this to the home screen! That means they <em>trust</em> it! So now we don't have to do geolocation permission popups!" thinking. This is wrong thinking. Android, which demands all possible permissions up front, is the most eloquent demonstration imaginable of why this is a dreadful idea. And the sausage machine works in reverse here too: if you start with the idea that web apps on the home screen are privileged, then you will instinctively want to make adding to home screen be <em>hard</em>, because it's an implicit grant of privilege. And so someone who wants <em>discoverability</em> and doesn't care about free access to the address book gets screwed. </p>
+<p>Adding to home screen is not a declaration of trust. It's a declaration of interest. I want this thing in my life more. I don't want more of my life in it. </p>
+<p>Apple have this right: ask for permissions when you need them, not when the user first uses the app. </p>
+<p>So. It is, at least in theory, a good idea to change and incrementally improve the add-to-home-screen experience, and it's great that the Chrome team are working on this. But I think that as an attempt to make the web install experience easier than the native one, which it really could be... this hasn't made as much forward progress as we might hope. </p><ol class="simple-footnotes"><li id="sf-chrome-improves-add-to-home-screen-sorta-1">although Matteo Spinelli's brilliant <a href="http://cubiq.org/add-to-home-screen">add to home screen iOS Safari library</a> makes it easier <a href="#sf-chrome-improves-add-to-home-screen-sorta-1-back" class="simple-footnote-back">↩</a></li><li id="sf-chrome-improves-add-to-home-screen-sorta-2">other iOS browsers can't do it at all; it's a secret Safari-only feature <a href="#sf-chrome-improves-add-to-home-screen-sorta-2-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2015/02/25/bad-voltage-live-2015/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2015/04/03/send-a-url-to-your-ubuntu-phone-with-caxton/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://twitter.com/BrendanEich/profile_image?size=original">
+			BrendanEich responded at
+		<a href="https://twitter.com/BrendanEich/status/577602875292925952">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/rdrake98/profile_image?size=original">
+			Richard Drake responded at
+		<a href="https://twitter.com/rdrake98/status/577603763248214016">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/577604109940989953">twitter.com</a>
+		<span class="wm-summary">			@sil @Paul_Kinlan thoughts on add to home screen as promised. :)
+</span></li>
+		<li><img src="https://twitter.com/ericlaw/profile_image?size=original">
+			Eric Lawrence responded at
+		<a href="https://twitter.com/ericlaw/status/577606048632086528">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/justmarkup/profile_image?size=original">
+			Michael responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/WooTube/profile_image?size=original">
+			Andy Wootton responded at
+		<a href="https://twitter.com/WooTube/status/577607617452838912">twitter.com</a>
+		<span class="wm-summary">			@sil Is Google 'apps to home screen' compatible with the way Firefox does it or do we have browser-specific web app icons now?
+</span></li>
+		<li><img src="https://twitter.com/maboa/profile_image?size=original">
+			Mark Boas responded at
+		<a href="https://twitter.com/maboa/status/577608284800172033">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/matthewfabb/profile_image?size=original">
+			Matthew Fabb responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/harry_waters/profile_image?size=original">
+			Harry Waters responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/julio_ody/profile_image?size=original">
+			Julio Cesar Ody responded at
+		<a href="https://twitter.com/julio_ody/status/577609313847365632">twitter.com</a>
+		<span class="wm-summary">			@sil Very much agreed. Paul responded to this same concerned I raised here -> twitter.com/paul_irish/sta… +@maboa
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/577609612553240576">twitter.com</a>
+		<span class="wm-summary">			@WooTube not sure how firefox does it. Ios Safari looks for tags in head. Chrome can do that but prefers a manifest. How does fx work?
+</span></li>
+		<li><img src="https://twitter.com/kennethrohde/profile_image?size=original">
+			Kenneth Christiansen responded at
+		<a href="https://twitter.com/kennethrohde/status/577610853148712961">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/lmedinas/profile_image?size=original">
+			Luis Medinas responded at
+		<a href="https://twitter.com/lmedinas/status/577611420512182272">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/joegaffey/profile_image?size=original">
+			Joe Gaffey responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/domrein/profile_image?size=original">
+			domrein responded at
+		<a href="https://twitter.com/domrein/status/577616039044734976">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/netlabsorg/profile_image?size=original">
+			Adrian Gschwend responded at
+		<a href="https://twitter.com/netlabsorg/status/577619280000344065">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/ostjh/profile_image?size=original">
+			Jorge Rubiano responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/FlorianvdWielen/profile_image?size=original">
+			Florian v d Wielen responded at
+		<a href="https://twitter.com/FlorianvdWielen/status/577621357292351488">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAAA/m9l8zMTQoZo/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/fjKdULoKFWe">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-qm2UFIupixE/AAAAAAAAAAI/AAAAAAAAAAA/yCmsu-FVU9c/photo.jpg?sz=50">
+			Martin Albisetti responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/fjKdULoKFWe">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/Paul_Kinlan/profile_image?size=original">
+			Paul Kinlan responded at
+		<a href="https://twitter.com/Paul_Kinlan/status/577633892754186240">twitter.com</a>
+		<span class="wm-summary">			@sil interesting. Point 2 reads like we implemented "you get extra perms with this", you don't we are still grant on first access.
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/577634040771149824">twitter.com</a>
+		<span class="wm-summary">			@Paul_Kinlan agreed you have not, and that's great. That point wasn't really directed at you, but at people who still think that.
+</span></li>
+		<li><img src="https://twitter.com/Paul_Kinlan/profile_image?size=original">
+			Paul Kinlan responded at
+		<a href="https://twitter.com/Paul_Kinlan/status/577635113309175808">twitter.com</a>
+		<span class="wm-summary">			@sil on point 1, you can still add to Homescreen. I presume you looking for a first run add to Homescreen experience that you can control.
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/577635375776186369">twitter.com</a>
+		<span class="wm-summary">			@Paul_Kinlan well. Yes. But I get that that’s not doable because not everyone is nice like me. :)
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-8ZECvjtVSfs/AAAAAAAAAAI/AAAAAAAAAAA/Ky3FRAyE8KU/photo.jpg?sz=50">
+			Jan Moren responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/fjKdULoKFWe">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/waddlesplash/profile_image?size=original">
+			Augustin Cavalier responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/mileselam/profile_image?size=original">
+			Miles Elam responded at
+		<a href="https://twitter.com/mileselam/status/577654709940535296">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/simevidas/profile_image?size=original">
+			Šime Vidas responded at
+		<a href="https://twitter.com/simevidas/status/577668631879905280">twitter.com</a>
+		<span class="wm-summary">			@sil I think the optimal solution would involve letting the app trigger the banner via API, but only after user interaction cc @Paul_Kinlan
+</span></li>
+		<li><img src="https://twitter.com/fbeuret/profile_image?size=original">
+			Fabien Beuret responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/AndreJaenisch/profile_image?size=original">
+			André Jaenisch responded at
+		<a href="https://twitter.com/AndreJaenisch/status/577729495777611776">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/LeptienM/profile_image?size=original">
+			Markus Leptien responded at
+		<a href="https://twitter.com/LeptienM/status/577735021383041024">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Some thoughts on Chrome’s improved “add to home screen”, and why it hasn’t improved the way I’d like kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/voxpelli/profile_image?size=original">
+			Pelle Wessman responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-_gWyySWhbsQ/AAAAAAAAAAI/AAAAAAAAAAA/QiV1phXzpZ8/photo.jpg?sz=50">
+			Didier Roche responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/fjKdULoKFWe">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/mixed80/profile_image?size=original">
+			yong woo jeon(mixed) responded at
+		<a href="https://twitter.com/sil/status/577602726252539904">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://twitter.com/erikdahlstrom/profile_image?size=original">
+			Erik Dahlström responded at
+		<a href="https://twitter.com/erikdahlstrom/status/719573065844318208">twitter.com</a>
+		<span class="wm-summary">			"Adding to home screen is not a declaration of trust" - kryogenix.org/days/2015/03/1…
+</span></li>
+		<li><img src="https://twitter.com/rem/profile_image?size=original">
+			rem responded at
+		<a href="https://twitter.com/rem/status/719577177101103104">twitter.com</a>
+		<span class="wm-summary">			@sil not sure. Auto prompt requires coming back in a day, but I think user can initiate the add to home prompt. +@Paul_Kinlan is that right?
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/719577494106583040">twitter.com</a>
+		<span class="wm-summary">			@rem @Paul_Kinlan you can explicitly add to HS yourself, but I don't wanna encourage people to do that because almost all sites won't be pwa
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/719577747467726848">twitter.com</a>
+		<span class="wm-summary">			@rem @Paul_Kinlan which means that everyone will quickly learn that add-to-HS is just "bookmark", and you need to be online to use it.
+</span></li>
+		<li><img src="https://twitter.com/Paul_Kinlan/profile_image?size=original">
+			Paul Kinlan responded at
+		<a href="https://twitter.com/Paul_Kinlan/status/719578150674526208">twitter.com</a>
+		<span class="wm-summary">			@rem @sil coming back within 5 minutes now iirc.
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/719578276377833472">twitter.com</a>
+		<span class="wm-summary">			@Paul_Kinlan @rem ya, but that's only temporary, as I understand it? And it still means coming back :(
+</span></li>
+		<li><img src="https://twitter.com/Paul_Kinlan/profile_image?size=original">
+			Paul Kinlan responded at
+		<a href="https://twitter.com/Paul_Kinlan/status/719578448944107520">twitter.com</a>
+		<span class="wm-summary">			@sil @rem not quite, it can be in one session. wrt: a2h as bookmark, I am not sure I follow the logic...
+</span></li>
+		<li><img src="https://twitter.com/rem/profile_image?size=original">
+			rem responded at
+		<a href="https://twitter.com/rem/status/719578679412699136">twitter.com</a>
+		<span class="wm-summary">			@sil indeed, but I'm just talking about discoverability of the installable. Prompted add to home is the gold though.
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/719579671608848385">twitter.com</a>
+		<span class="wm-summary">			@Paul_Kinlan @rem we want to say: PWAs are great! A2H, and they work like apps; no network needed. Ironically, obscureness of A2H helps(1/2)
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/719579878505521152">twitter.com</a>
+		<span class="wm-summary">			@Paul_Kinlan @rem because nobody uses it, and so we can set a new expectation: added to HS stuff works like an app. (2/3)
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/719580637951340545">twitter.com</a>
+		<span class="wm-summary">			@rem it is! I don't know how to solve this though; prompt every time is annoying; prompt after 2 visits breaks "go to XX to install our app"
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/752215291208368133">twitter.com</a>
+		<span class="wm-summary">			@sil @jaffathecake if a site I use lots can't ask for persistent store but an A2HS one can, people will hassle for A2HS because it's a prize
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2015/03/16/chrome-improves-add-to-home-screen-sorta/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2015/03/16/chrome-improves-add-to-home-screen-sorta/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

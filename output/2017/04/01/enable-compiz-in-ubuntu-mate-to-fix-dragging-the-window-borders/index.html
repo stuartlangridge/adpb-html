@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Enable Compiz in Ubuntu MATE to fix dragging the window borders</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Enable Compiz in Ubuntu MATE to fix dragging the window borders">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/"><time 
+			class="dt-published" datetime="2017-04-01T13:44:00+01:00">Apr 01 2017</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/">Enable Compiz in Ubuntu MATE to fix dragging the window borders</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>If you use <a href="https://ubuntu-mate.org/">Ubuntu MATE</a> you may have found that it's really difficult to resize windows; you can move your mouse pointer over the edge of a window to drag the window bigger or smaller, but the "grab area" is only one pixel wide. This is alaarmingly irritating.</p>
+<p>It's a long-standing bug (people were complaining about this <a href="http://askubuntu.com/questions/4109/how-do-i-increase-the-resize-margin-on-windows">in 2010</a>, seven years ago!), which has been fixed in Ubuntu proper for a long time, but has resurfaced in Ubuntu MATE. Anyway, to fix resizing of windows, you need to enable Compiz in Ubuntu MATE; that replaces Ubuntu MATE's standard "window manager", which is named "Marco", with the Compiz window manager, and Compiz doesn't have this daft problem. Yes, it is annoying that this doesn't just work, and apparently they're working on fixing it so it doesn't become our problem as users to fix the deficiencies, but in the interim you can at least fix it for yourself even though you shouldn't have to.</p>
+<p>So, open MATE Tweak, which is in the <strong>System</strong> menu (<strong>Preferences</strong> &gt; <strong>Look and Feel</strong> &gt; <strong>MATE Tweak</strong>), and under <em>Windows</em>, choose <em>Compiz (Advanced GPU accelerated desktop effects)</em> under <em>Window Manager</em>.</p>
+<p><img src="https://kryogenix.org/random/ubuntu-mate-enable-compiz.png" alt="the MATE config window"></p>
+<p>Technically, Compiz requires a 3d accelerated graphics card. However, unless your machine is very, very, very old indeed, it will have enough 3d acceleration to do this; this is not like playing games or similar. My ancient Dell laptop copes with it fine, so it should not be a worry.</p>
+<p>Ubuntu MATE will then switch to Compiz (you don't need to reboot or anything) and will show you a window saying "Keep this window manager?" If you see that window, you can click "Yes, OK" in it. (If for some reason this hasn't worked, then you won't see that window and so it will automatically switch back, so your computer isn't broken.) Now, resizing Ubuntu MATE windows should be a lot easier, because the resize grab area will not be one single pixel.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2017/02/25/lets-encrypt-and-tsohost/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2017/04/02/a-walk-along-the-arches/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/848166084603674625">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Enable Compiz in Ubuntu MATE to fix dragging the window borders by @sil buff.ly/2om2nl7 #PlanetBirmingham
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2017/04/01/enable-compiz-in-ubuntu-mate-to-fix-dragging-the-window-borders/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

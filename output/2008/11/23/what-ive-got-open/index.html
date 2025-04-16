@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; What I've got open</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; What I've got open">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2008/11/23/what-ive-got-open/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2008/11/23/what-ive-got-open/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2008/11/23/what-ive-got-open/"><time 
+			class="dt-published" datetime="2008-11-23T19:12:00+00:00">Nov 23 2008</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/11/23/what-ive-got-open/">What I've got open</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Rather a lot, I find myself having to save a file somewhere temporary
+like my desktop just in order that I can immediately upload it to some
+website, or attach it to an email, or something similar. It's
+irritating. I have to explicitly save it; I have to think up a name for
+it; then I have to switch to my mail client or my web browser and browse
+back to the file I've just saved and choose it by name to upload/attach
+it; then I have to browse to it <em>again</em> in the file manager and delete
+it. Now, there's lots of talk about draggable icons for files and so
+forth, so I can just drag the save icon out of, say, the Gimp directly
+into the browser. The ROX apps do this; Risc OS did it too. That's a
+nice long-term goal, but it requires touching every app in the universe,
+and it's hard. I had a thought about a workaround. It'd be quite cool to
+have a folder called "Open Documents" which, when opened, showed an icon
+for each document available in each application. Then, when you pick a
+"file" from this "folder", it tells the relevant application "save it as
+<em>some random temporary name</em>" and then attaches/uploads <em>some random
+temporary name</em>. So you don't ever have to manually do the save/delete
+thing. I only really strictly need this for the Gimp, to be honest; I
+don't upload textual files, I cut-and-paste them. So, a rather crufty
+approach:</p>
+<ol>
+<li>Download <a href="http://www.kryogenix.org/code/gimpdbusapi.py">gimpdbusapi.py</a> and put it in
+    <code>$HOME/.gimp-2.6/plug-ins/</code> and mark it executable. It's a Gimp
+    extension which makes two functions available over D-Bus:
+    <code>image_list</code> and <code>save_as</code>. (This could be the starter for making
+    <em>all</em> Gimp functions available over D-Bus, with a <code>__getattr__</code>
+    hook, the <code>gimp.pdb</code> object, and a bit of introspection.)</li>
+<li>Download <a href="http://www.kryogenix.org/code/gimpfs.py">gimpfs.py</a>, a Fuse filesystem in Python, which talks to
+    the Gimp extension via D-Bus to get the list of currently open
+    images in the Gimp (even if they haven't been saved).</li>
+<li>Create an empty folder (<code>$HOME/Open</code>?) and
+    <code>python gimpfs.py $HOME/Open</code> to mount the view of Gimp open
+    documents on that folder.</li>
+</ol>
+<p>There might be better ways to do this, with gvfs and so on, and it would
+be way better if it didn't have to use tempfiles, and so forth, but this
+is a proof of concept. What would need to happen to have all Gnome apps'
+currently open documents automatically appear in a folder ready for
+choosing?</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2008/11/21/behave/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2008/11/24/14-minutes-12-seconds-of-fame-to-go/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2008/11/23/what-ive-got-open/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2008/11/23/what-ive-got-open/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

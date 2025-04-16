@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Guy Fawkes and Ubuntu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Guy Fawkes and Ubuntu">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2004/11/05/fawkes/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/11/05/fawkes/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2004/11/05/fawkes/"><time 
+			class="dt-published" datetime="2004-11-05T11:00:00+00:00">Nov 05 2004</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/11/05/fawkes/">Guy Fawkes and Ubuntu</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>
+Today is Guy Fawkes Day, also known as Bonfire Night, the day in which
+we, the citizens of the UK, celebrate the life and death of the only man
+in history to enter Parliament with completely honest intentions. Guy
+Fawkes: tried to blow up the House of Commons. Now, that sort of thing
+is, admittedly, Not Cricket, but you’ve gotta admire the largeness of
+the bloke’s thoughts.  
+
+
+> “This thrice-damnéd Government perpetuates itself at the expense of
+> the people! What say you, Alcazar?”  
+>  “Verily, I cannot but agree, Tobias. How shall we, as True Catholic
+> Men of England, put an end to their villany?”  
+>  “Mayhaps we should rouse the common Man to our cause? With silvered
+> words might we not educate those beneath us to a more depthful
+> understanding of their lot? How say you, Guy?”  
+>  “No.”  
+>  “But Guy! What manner of persuasion propose you to use to shew the
+> men of Parliament their errors?”  
+>  “Gunpowder. A shitload of it, too; I’ve got 36 barrels lying around
+> here someplace. Incidentally, don’t tell King James that I said that.”
+> </p>
+
+<p>...and the rest, as the man said, is history. I wonder what dear old
+perfidious Albion would be like if he’d succeeded? The view from
+Westminster Bridge would be quite a bit crapper, I expect, as would the
+opening credits of News at Ten. Still, we can’t have everything. Can’t
+even have anything, some days.<br>
+Which is a neat segue away from the topic of politics (of which
+everyone is bored anyway) and into Ubuntu Linux, which has also been
+failing me recently (much as did Fawkes 399 years ago: big celebrations
+next year!). In particular, while I’ve been impressed with Ubuntu’s
+looks and easy installation and basic stuff, I recently actually tried
+to <em>do</em> something with it. Two things, in fact: plug in a
+<span class="caps">USB</span> pen drive, and browse to a Windows share.
+Neither worked. Plugging in teh pen drive did, apparently, nothing.
+Reading @/var/log/messages@ made it clear that the kernel had recognised
+it and identified it as @/dev/sda@, but Ubuntu utterly failed to then
+mount this device. The “Removable Storage” applet (which is actually
+<code>gnome-volume-manager</code>, as far as I’m aware) has “mount removable media
+when inserted” and so on, and it didn’t happen. What I’d expect to
+happen is for a mount point to be created for the drive and the drive to
+be mounted on that mount point, and then (at base) for a new drive to
+appear in “Drives“, or (better) that <em>and</em> an icon appear on the
+desktop, and (best of all) the drive to be called “USB Pen Drive” or the
+name of the manufacturer or something rather than “sda” or
+“hal-disk-3-1” or something equally meaningless. In fact, none of these
+things happened. That’s not very good, and it’s obviously not a fault
+with the kernel setup because that <em>worked</em>. Yes, it might be a fault
+with hotplug or something, but Ubuntu and Gnome 2.8 are meant to make
+this sort of thing Just Work, and they failed dismally. In the end I had
+to create a mount point and mount it myself from the command line, which
+is pretty alarmingly arse. Perhaps I didn’t have something installed,
+but I can’t see why this shouldn’t work as part of the install,
+especially since I was upgraded to the Warty release.<br>
+Secondly, browsing to Windows shares in Nautilus doesn’t work. Not even
+a little bit. It doesn’t even seem to understand smb:// URLs, let alone
+show anything under “Windows Network” in “Network“. This is also very
+pants indeed. PLus it means that I can’t print anything from my laptop,
+because I can’t find the printer (which is connected to a Windows box).
+Again, maybe I’ve not installed something (smbfs wasn’t installed, and I
+wondered if installing that would fix it, but it didn’t) but I shouldn’t
+have to; isn’t this sort of thing pretty basic functionality?<br>
+So, Ubuntu fails on the “actually do something” test rather than the
+“start it up and browse the web a bit” test, which isn’t good. Plus,
+there seems to be something wrong with the applet that lets me configure
+my network cards; half the time it locks up, and it refused to configure
+the wireless card to come up at boot, so I had to edit
+@/etc/network/interfaces@. Now, I’m aware that warty is an early
+release, and I have no major problem with stuff not working; it just
+means that (and the Ubuntu team might well entirely agree here) that
+it’s perhaps not as ready for prime-time just yet as I have been
+thinking it was.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2004/11/05/supported/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2004/11/07/fireworks/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2004/11/05/fawkes/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/11/05/fawkes/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Pretending to type like a Hollywood hacker in Sublime Text 2</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Pretending to type like a Hollywood hacker in Sublime Text 2">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/"><time 
+			class="dt-published" datetime="2014-01-09T16:34:00+00:00">Jan 09 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/">Pretending to type like a Hollywood hacker in Sublime Text 2</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Christian Heilmann has just drawn my attention to <a href="http://christianheilmann.com/2014/01/09/autmating-typing-in-screencasts-with-applescript-or-how-to-look-like-a-hollywood-hacker/">a neat trick for
+automating typing into a text editor</a>, from <a href="https://wiki.mozilla.org/Evangelism_Reps_Training_Program/How_to_prepare_a_screencast#Typing">William Bamberg at
+Mozilla</a>. Basically, when you're doing a screencast, popping up a
+screen full of code is disorienting and hard for your users to take in,
+but if you actually type the stuff live on air then everyone gets to see
+all your typos and your mic makes it sound like a herd of wildebeest
+sweeping majestically across your keyboard.</p>
+<p>Bamberg's solution is to have an AppleScript which reads the file of
+your choice and then sends keypresses to your editor to "type" the file
+in, and it's a neat idea. However, that's Mac-specific so I can't use
+it, and it doesn't (as Chris notes) work in Sublime Text 2 (my editor,
+and his) because ST2 does autoindenting and so on and that sods you up.</p>
+<p>Conveniently, I needed a script to do precisely this for some
+screencasts I'm about to work on, so I thought: I shall write it as an
+ST2 plugin. And lo, I have done so. It's only about 30 lines: in ST2, do
+<code>Tools &gt; New Plugin</code>, then paste the Python from
+<a href="https://gist.github.com/stuartlangridge/8336771">https://gist.github.com/stuartlangridge/8336771</a> and save it as
+<code>TypeFileOut.py</code> in the ST2 User folder (which should be default).</p>
+<p>You then need a way of running it: I added a keybinding for it in
+<code>Preferences &gt; Key Bindings -- User</code> so that file now looks like</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;ctrl+shift+.&quot;</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;type_file_out&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p>so I can press ctrl-shift-fullstop.</p>
+<p>What it actually <em>does</em> is: when you run it, it removes all the text in
+<em>the current editing tab</em>, waits two seconds, and then types it back in,
+character by character. The two second wait is to give you a cut point
+for the screencast, so you enter or load the code you want into ST2,
+then start your screencast showing slides or whatever, switch to ST2,
+then press ctrl-shift-. and it'll type the text back in. When you're
+editing your screencast, cut the part between switching to ST2 and the 2
+second break.</p>
+<p>http://www.youtube.com/watch?v=vO5y3CtEGtc</p>
+<p>There's probably a way of packaging this up so other people can download
+it with a click, but I don't think I know how to do that.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2013/12/19/searching-my-email/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/01/16/posting-to-discourse-via-the-discourse-rest-api-from-python/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="http://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/">Pretending...</a>
+(www.kryogenix.org)		<span class="wm-summary">			Christian Heilmann has just drawn my attention to a neat trick for automating typing into a text editor, from William Bamberg at Mozilla. Basically, w&hellip;
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="http://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/">Pretending...</a>
+(www.kryogenix.org)		<span class="wm-summary">			Christian Heilmann has just drawn my attention to a neat trick for automating typing into a text editor, from William Bamberg at Mozilla. Basically, w&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/LeaVerou/status/1532375671971921931">twitter.com</a>
+		<span class="wm-summary">			I feel that's a bit *too* automated, regular live demos are not about linearly typing code from start to end. My approach is to record a "script" that&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/LeaVerou/status/1532375671971921931">twitter.com</a>
+		<span class="wm-summary">			I feel that's a bit *too* automated, regular live demos are not about linearly typing code from start to end. My approach is to record a "script" that&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1532427928994193409">twitter.com</a>
+		<span class="wm-summary">			That sounds like a good idea. The thing I did was actually for creating a video, if I remember rightly. Being able to trigger the next bit to happen f&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1532427928994193409">twitter.com</a>
+		<span class="wm-summary">			That sounds like a good idea. The thing I did was actually for creating a video, if I remember rightly. Being able to trigger the next bit to happen f&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1421475609503539214/i5Lq8qRo.jpg">
+			Erik Vorhes responded at
+		<a href="https://twitter.com/sil/status/1532363127190323205#favorited-by-14059222">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1421475609503539214/i5Lq8qRo.jpg">
+			Erik Vorhes responded at
+		<a href="https://twitter.com/sil/status/1532363127190323205#favorited-by-14059222">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/sil/status/1532363127190323205#favorited-by-22199970">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/sil/status/1532363127190323205#favorited-by-22199970">twitter.com</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/01/09/pretending-to-type-like-a-hollywood-hacker-in-sublime-text-2/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

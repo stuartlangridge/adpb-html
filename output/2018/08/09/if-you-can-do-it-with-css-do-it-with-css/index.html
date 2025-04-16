@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; If you can do it with CSS do it with CSS</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; If you can do it with CSS do it with CSS">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/"><time 
+			class="dt-published" datetime="2018-08-09T00:19:00+01:00">Aug 09 2018</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/">If you can do it with CSS do it with CSS</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I read Twitter with Tweetdeck. And I use the excellent <a href="https://better.tw/">Better Tweetdeck</a> to improve my Tweetdeck experience. And I had an idea.</p>
+<p>You see, emoji, much as they're the way we communicate now, they're actually quite hard to read. And Slack does this rather neat thing where if you respond to a message with an emoji, it displays that emoji bigger than normal text so you can see it clearly. And some people just write tweets which are, like, two emoji and that's it, and it would be really handy if they were large enough to read.</p>
+<p><img src="https://kryogenix.org/images/tweet-emoji-only.png" alt="a tweet with big emoji"></p>
+<p>So I thought, here's an idea; how about, if there's a tweet which is just emoji, then display those emoji larger so they're easier to see? Only if there are, say, four or less; you don't want those people who write a whole huge tweet as emoji to get enlarged. Just the ones where someone responds with two little pictures and that's it; let's make that nice and visible, like Slack does.</p>
+<p>This is clearly a thing for Better Tweetdeck to do. (They already provide a config option to make emoji a little bigger, which I appreciate.) So... how do we do this?</p>
+<p>Well, one obvious way is to do it with JavaScript. Every time we read a new tweet, look to see whether it contains nothing but emoji, and if it does and there are less than four of them, add inline styles to make them larger. Job done.</p>
+<p>But... that's not very efficient, is it? You have to do that every time a new tweet appears, in any column, and that happens a lot. What would actually be better is to write some CSS which does this, and add that CSS one time, when you load up, and then you're done. Have the browser do the heavy lifting, not us. It is a principle with me that if you <em>can</em> do a thing with CSS, then you <em>should</em> do it with CSS. JavaScript is there for things that CSS <em>can't</em> do. Don't use JavaScript, which makes you do the work, when you can use CSS and make the browser do it instead. The browser is better than you at it.</p>
+<p>So... what you want to do is this. In pure CSS, if there's a tweet (which in Tweetdeck is a <code>&lt;p&gt;</code> element) which contains <code>&lt;img class="emoji"&gt;</code> <em>and nothing else</em>, and there are four or fewer of these <code>img.emoji</code> elements, then make those images larger.</p>
+<p>In pure CSS. No JavaScript. This is harder than it looks. Go and try to work it out, if you don't believe me.</p>
+<p>Well, the key insight here is that if you are an element, and you are <code>:last-child(X)</code>, and you are <em>also</em> <code>last-of-type(X)</code>, then there can't be any elements after you which are not the same as you. So, if an <code>img.emoji</code> is the first of its type, and also the first element, and it's the third last of its type, and also the third last element, then we know that it is element 1 of three identical elements. So an <code>img:nth-child(1)</code> which is also an <code>img:nth-of-type(1)</code> and which is also an <code>img:nth-last-of-type(3)</code> and also an <code>img:nth-last-child(3)</code> <em>must be</em> the first <code>&lt;img&gt;</code> in a group of three <code>&lt;img&gt;</code> elements. So that solves our problem! All we need is a selector which matches an img which is:</p>
+<ul>
+    <li>img 1 in a group of 1 image, or</li>
+    <li>img 1 in a group of 2 images, or</li>
+    <li>img 2 in a group of 2 images, or</li>
+    <li>img 1 in a group of 3 images, or</li>
+    <li>img 2 in a group of 3 images, or</li>
+    <li>img 3 in a group of 3 images, or</li>
+    <li>img 1 in a group of 4 images, or</li>
+    <li>...etc</li>
+</ul>
+
+<p>...and that's pretty easy, although long, to express as a CSS selector. So, to resize all <code>img.emoji</code> elements where (a) there are <em>only</em> <code>img.emoji</code> elements in this tweet and no text, <em>and</em> (b) there are four or fewer <code>img.emoji</code> in the tweet, we need a selector like this:</p>
+<pre><code>p > .emoji:nth-child(1):nth-of-type(1):nth-last-child(1):nth-last-of-type(1), /* 1 of 1 */
+p > .emoji:nth-child(1):nth-of-type(1):nth-last-child(2):nth-last-of-type(2), /* 1 of 2 */
+p > .emoji:nth-child(2):nth-of-type(2):nth-last-child(1):nth-last-of-type(1), /* 2 of 2 */
+p > .emoji:nth-child(1):nth-of-type(1):nth-last-child(3):nth-last-of-type(3), /* 1 of 3 */
+p > .emoji:nth-child(2):nth-of-type(2):nth-last-child(2):nth-last-of-type(2), /* 2 of 3 */
+p > .emoji:nth-child(3):nth-of-type(3):nth-last-child(1):nth-last-of-type(1), /* 3 of 3 */
+p > .emoji:nth-child(1):nth-of-type(1):nth-last-child(4):nth-last-of-type(4), /* 1 of 4 */
+p > .emoji:nth-child(2):nth-of-type(2):nth-last-child(3):nth-last-of-type(3), /* 2 of 4 */
+p > .emoji:nth-child(3):nth-of-type(3):nth-last-child(2):nth-last-of-type(2), /* 3 of 4 */
+p > .emoji:nth-child(4):nth-of-type(4):nth-last-child(1):nth-last-of-type(1) {/* 4 of 4 */
+    styles here
+}</code></pre>
+
+<p>It looks long and cryptic and mystic, but actually it's not that complicated at all. And, importantly, this is all the work you have to do. Add that CSS, and then any new tweets that come along which match our criteria get <em>automatically</em> styled to match. You don't have to inspect every tweet and tweak it. The browser does the work, which is what the browser is designed for. If you <em>can</em> do a thing with CSS, then <em>do</em> it with CSS. Job done. </p>
+<p>I'm quite proud of this. There's an increasing, and depressing, movement to add more JavaScript to web pages, to write more code client side, to deal with huge JS downloads by improving compression rather than by just <em>doing less JavaScript</em>. I, myself, I'm in favour of having CSS do the things it can do, even if you have to be creative to solve that problem. Falling back to JavaScript to do styling is a failure. Use CSS where you can; being clever in how you do that CSS is part of the fun. You don't need JS for this, really you don't. CSS actually <em>is</em> awesome.</p>
+<p><a href="https://github.com/eramdam/BetterTweetDeck/pull/369">My pull request at Better Tweetdeck</a> is, at time of writing, still pending. Proof that this technique works <a href="http://jsbin.com/yosasol/edit?html,css,output">is in jsbin</a>. Fingers crossed my PR gets accepted, and we can solve another problem with pure CSS.</p>
+<p>Purity is great. And if you're thinking, CSS can't solve real problems... check out <a href="https://twitter.com/finnhvman/status/1020243884079763456">Bence Szabó</a>'s <em>amazing</em> <a href="https://codepen.io/finnhvman/full/xJRMJp/">pure CSS stacking game</a>. I was open mouthed with awe. If you aren't, maybe you should spend some time going back over how the web works, and then you will be too.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2018/07/23/inside-out/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2018/08/26/lowrezjam-2018/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/1027348699687600130">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: If you can do it with CSS do it with CSS kryogenix.org/days/2018/08/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/557675475460300800/FdBqB8nW.jpeg">
+			Russell Dickenson responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-312302197">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/1027422219973156864">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: If you can do it with CSS do it with CSS by @sil buff.ly/2OqbFWD #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/901694495246438400/_jWecvQY.jpg">
+			Garrett LeSage responded at
+		<a href="https://twitter.com/garrett/status/1027432233882333184">twitter.com</a>
+		<span class="wm-summary">			I solved a problem in @BetterTDeck with CSS and didn't use any JS at all because that's clearly best. If you CAN solve a problem with pure
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/911654016198864897/TiV4tYkE.jpg">
+			Bence Szabó responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-911653293969018880">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/911654016198864897/TiV4tYkE.jpg">
+			Bence Szabó responded at
+		<a href="https://twitter.com/finnhvman/status/1027436871301906432">twitter.com</a>
+		<span class="wm-summary">			Thanks for the shoutout! Interesting problem, reminds me of this article: lea.verou.me/2011/01/stylin… I see your case is slightly different, but stil&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/901694495246438400/_jWecvQY.jpg">
+			Garrett LeSage responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-335523">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1027464328428048384">twitter.com</a>
+		<span class="wm-summary">			if it can be shortened I'm interested in how :) I don't think it can; @LeaVerou's approach is indeed similar, but mine requires that all the children&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/LeaVerou/status/1027506818677919744">twitter.com</a>
+		<span class="wm-summary">			What about img.emoji:nth-child(1):nth-last-child(-n+4):nth-last-of-type(-n+4), img.emoji:nth-child(1):nth-last-child(-n+4):nth-last-of-type(-n+4) ~ im&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/LeaVerou/status/1027507157284085760">twitter.com</a>
+		<span class="wm-summary">			Btw "If you CAN solve a problem with pure CSS, then that's the way you SHOULD solve it." is wrong. CSS is Turing complete, so you can implement any pr&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/LeaVerou/status/1027507305921871872">twitter.com</a>
+		<span class="wm-summary">			That said, I do agree that for the case you describe, CSS is the best way to do it. But I disagree with the general aphorism.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1827858799/netawards-contemplative-sq.jpg">
+			Alastair Campbell responded at
+		<a href="https://twitter.com/alastc/status/1027509552797962240">twitter.com</a>
+		<span class="wm-summary">			There are a few things that aren’t best done with just CSS. For example, if you display new content (e.g. popover) with interactive elements (e.g. lin&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1827858799/netawards-contemplative-sq.jpg">
+			Alastair Campbell responded at
+		<a href="https://twitter.com/alastc/status/1027509795950088197">twitter.com</a>
+		<span class="wm-summary">			Or anything where the dom needs to be re-structrured, like converting data-tables to lists for responsive sites.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/911654016198864897/TiV4tYkE.jpg">
+			Bence Szabó responded at
+		<a href="https://twitter.com/finnhvman/status/1027511730291793921">twitter.com</a>
+		<span class="wm-summary">			Nice, Thank You! 🙂
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1027513831021535232">twitter.com</a>
+		<span class="wm-summary">			Interesting! I'll test that out; nice pointer.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1027514278029484032">twitter.com</a>
+		<span class="wm-summary">			Mm... I take your point, but I think there are waaaaay more people doing things in JS that should be done with styles than there are people implementi&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1027514474381668353">twitter.com</a>
+		<span class="wm-summary">			Fair comment!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/886183218558361600/VuZNv2nV.jpg">
+			hermaproditus responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-291021480">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/783180514379309057/DYbOIEgU.jpg">
+			Mary Pieroszkiewicz responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-96316430">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1013245805824827392/W6ulV94F.jpg">
+			Robert Ivan responded at
+		<a href="https://twitter.com/metaprinter/status/1027521050316300288">twitter.com</a>
+		<span class="wm-summary">			I wanna see a CSS calculator now
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/LeaVerou/status/1027521470971424768">twitter.com</a>
+		<span class="wm-summary">			Still, that doesn't mean you have to do *everything* with JS. You can only do the focus management with JS, and everything else with CSS+HTML.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/584963092120899586/TxkxQ7Y5.png">
+			Lea Verou responded at
+		<a href="https://twitter.com/LeaVerou/status/1027522509426622465">twitter.com</a>
+		<span class="wm-summary">			Googling "Pure CSS calculator" will work wonders towards curing that affliction.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/911654016198864897/TiV4tYkE.jpg">
+			Bence Szabó responded at
+		<a href="https://twitter.com/finnhvman/status/1027522533485170688">twitter.com</a>
+		<span class="wm-summary">			experiments.hertzen.com/css3calculator/
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1827858799/netawards-contemplative-sq.jpg">
+			Alastair Campbell responded at
+		<a href="https://twitter.com/alastc/status/1027522712028278784">twitter.com</a>
+		<span class="wm-summary">			Yep, I’m sure we’re all on board with the ‘right tool for the job’ thing, it’s just figuring out what the right tool for different jobs is :-)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1013245805824827392/W6ulV94F.jpg">
+			Robert Ivan responded at
+		<a href="https://twitter.com/metaprinter/status/1027524260267520000">twitter.com</a>
+		<span class="wm-summary">			Ok I’m over it 😂
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1013245805824827392/W6ulV94F.jpg">
+			Robert Ivan responded at
+		<a href="https://twitter.com/metaprinter/status/1027525155617169409">twitter.com</a>
+		<span class="wm-summary">			That doesn’t work on my iphone
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/796987033059135488/CHyr73bv.jpg">
+			SkipZero responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-65390232">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2131273818/image.jpg">
+			qheolet responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-15272235">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1008886772800122881/FUBsB1a4.jpg">
+			Catherine_db responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-769485238271639552">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/986094141435097088/34uzjfY-.jpg">
+			Erik Vorhes responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-14059222">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/773544183625756673/XnJoPOGL.jpg">
+			John Coenen responded at
+		<a href="https://twitter.com/sil/status/1027343520171024385#favorited-by-763512161347833856">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1404245782/igeek.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/GamerGeekNews/status/1028197322486894593">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: If you can do it with CSS do it with CSS kryogenix.org/days/2018/08/0…
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2018/08/09/if-you-can-do-it-with-css-do-it-with-css/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2018/08/09/if-you-can-do-it-with-css-do-it-with-css/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Three HomeSignal femtocell for bad coverage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Three HomeSignal femtocell for bad coverage">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2019/04/29/three-homesignal-femtocell-for-bad-coverage/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2019/04/29/three-homesignal-femtocell-for-bad-coverage/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2019/04/29/three-homesignal-femtocell-for-bad-coverage/"><time 
+			class="dt-published" datetime="2019-04-29T09:46:00+01:00">Apr 29 2019</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2019/04/29/three-homesignal-femtocell-for-bad-coverage/">Three HomeSignal femtocell for bad coverage</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>My flat has terrible mobile coverage. It's okaaaay-ish in the living room and dead in the bedrooms, and it's infuriating. You might be thinking, <em>but Stuart! you live right in the centre of Birmingham! surely coverage in a city centre would be amazing!</em> at which point you will get a look like this</p>
+<p><img src="/images/john-oliver-look-to-camera.gif" alt=":|"></p>
+<p>and then I will say, <em>yeah, it's something to do with the buildings or concrete or something, it's fine when you're outside. It's an old building. Maybe they put copper in the walls like in the Rookery or something.</em> Anyway, whatever, it never worked, regardless of which operator you're on. So, when I moved in, I contacted <em>my</em> operator, Three, and said: this sucks, do something about it. They said, sure thing, install our Wi-Fi Calling app, Three in-Touch. Which I did, and managed for two years.</p>
+<p>I say "managed" because that app is <em>terrible</em>. The UI is clunky, it doesn't handle picture messages, there's no way to mark a message read, the phone call quality cuts out and breaks all the time, and most annoyingly when you get an SMS it shows a notification but doesn't play a sound, so I have no idea that I <em>got</em> a notification<sup id="sf-three-homesignal-femtocell-for-bad-coverage-1-back"><a href="#sf-three-homesignal-femtocell-for-bad-coverage-1" class="simple-footnote" title="They have had, looking at the internet, this reported to them about six hundred billion times">1</a></sup>. I've missed <em>loads</em> of SMSes over the last couple of years because of that.</p>
+<p>Anyway, the Three In-Touch<sup id="sf-three-homesignal-femtocell-for-bad-coverage-2-back"><a href="#sf-three-homesignal-femtocell-for-bad-coverage-2" class="simple-footnote" title="they don't seem to be anything like consistent about the spelling and punctuation of the name of this app, so I don't see why I should be either">2</a></sup> app popped up a little dialogue box last week:</p>
+<p><img src="/images/threeintouchdialog.png" alt="We are updating our network. From 15 May 2019, the Three inTouch app will no longer be supported. Your call history and SMS sent or received will remain visible but you will no longer be able to make calls or send or receive SMS through the app. If you delete the app, your call and SMS history will be lost. WiFi calling is already built into most handsets these days and will continue to work in any enabled handset without need of the app"></p>
+<p>Ah, thought I. WiFi calling is already built in, is it?</p>
+<p>You see, there's a problem with that. On iOS it's built in. On Android, on a <em>lot</em> of phones, it's built in <em>only if you bought the phone from your carrier</em>, which I never do. It needs some special bit of config built into the firmware for wifi calling to work.<sup id="sf-three-homesignal-femtocell-for-bad-coverage-3-back"><a href="#sf-three-homesignal-femtocell-for-bad-coverage-3" class="simple-footnote" title="It seems like this might be fixed in very recent versions of Android? It's not at all clear. This problem is of course exacerbated by not getting system updates unless your phone is less than a week old.">3</a></sup> So I thought, well, I'm screwed then. Because Three won't update my Z5 Compact to have whatever firmware it needs to do wifi calling, they've killed the (execrable, but functional) app, and I'm not buying a new phone until the phone industry stops making them the size of a football pitch.<sup id="sf-three-homesignal-femtocell-for-bad-coverage-4-back"><a href="#sf-three-homesignal-femtocell-for-bad-coverage-4" class="simple-footnote" title="I saw a bloke on Twitter the other day say rather sneerily, I bet all the people who are mocking folding phones like the Samsung Fold now also mocked the Samsung Note until they realised they like big screens after all. No, sneery bloke. I mock the folding phones now for being a (terribly clever technical) solution in search of a problem, I hated the huge Note when it first came out, and I hate all huge phones now. For god's sake, phone industry, make a small flagship phone. Just one. I suppose it'll have to be an Xperia Compact again, but it'd be good if there were competition for it.">4</a></sup> I got on the live chat thing with Three, who (predictably) said, yeah, we're not sending you the firmware, pull the other one, son, it's got bells on.<sup id="sf-three-homesignal-femtocell-for-bad-coverage-5-back"><a href="#sf-three-homesignal-femtocell-for-bad-coverage-5" class="simple-footnote" title="They also said that they're rebuilding the Three inTouch app to be good and work with 5G. Apparently. At some unknown point in the future. I carefully did not point out that if you're building a replacement for something then there needs to be overlap between the two things rather than an interregnum during which every user is screwed, because that information needs to go to their project manager rather than their support team, but to be clear: to whichever project manager thinks this is an acceptable way to do deployments, I hope someone hides snakes in your car.">5</a></sup></p>
+<p>And then, a surprise. Because they said, howsabout we send you a <a href="https://three.co.uk/homesignal">Three HomeSignal</a> device? It's a box that plugs into your wifi and then your phone sees it as a phone antenna and you get good coverage.</p>
+<p>And my brain went, what, a femtocell? A femtocell like I asked you about when I first started having coverage problems and you swore blind didn't exist because everyone has wifi calling now? One of those femtocells?</p>
+<p>Having been taught to never look a gift femtocell in the mouth, though, I didn't say anything except "yes please I'd like that, cheers very much". And so it arrived in the post two days later. Result.</p>
+<p>However, the user guide leaves a bit to be desired.</p>
+<p><img src="/images/threehomesignaluserguide.png" alt="The Three HomeSignal user guide, which says to plug in the ethernet cable and the power, and does not at all mention that it also needs a SIM card"></p>
+<p>I do not know why the user guide completely ignores that you need to also plug a SIM card into the HomeSignal device, but it does in fact ignore that. You should not ignore it: you need to do it, otherwise it doesn't work; you'll get an error, which is the LED flashing red five times, which means (in the only mention of a SIM anywhere in the user guide) "SIM card problem". At which point you think: what bloody SIM card?</p>
+<p>More confusingly still, Three include <em>two</em> SIM cards in the package. One is a Pay as you Go SIM. This is <em>not</em> the one you want. I don't know why the hell they put that in; fine, if you wanna sell me on your products, go for it, but you made the HomeSignal process a billion times more confusing. The SIM card that goes into the HomeSignal device is on a special green card, and it says "HomeSignal device only" on it. Put that one in the HomeSignal box. The other one, the Pay as you Go one, you should sellotape it to a brick and then send it back to Three, postage on delivery.</p>
+<p>Once you've done that, it works. So, Three, if you're listening: one bonus point for finally deciding to update the awful Three in Touch app. Minus twenty points for not having a replacement for people who didn't buy phones from you. Plus another twenty points for offering me the Three HomeSignal femtocell which fixes my problem. Minus a little bit for the bad instructions which don't say that I have to put a SIM card in, and then minus quite a lot more for putting <em>two</em> SIM cards in the box when I do finally work that out! So, on balance, this is probably about neutral; they have fixed a problem I shouldn't have and which is partially caused by phone manufacturers, using a technically very clever solution which was confusingly explained. Business as usual in the mobile phone world, I suppose, unless you're using an Apple phone at which point everything works really smoothly until it suddenly doesn't. One day someone will get all of this right, surely?</p><ol class="simple-footnotes"><li id="sf-three-homesignal-femtocell-for-bad-coverage-1">They have had, looking at the internet, this reported to them about six hundred billion times <a href="#sf-three-homesignal-femtocell-for-bad-coverage-1-back" class="simple-footnote-back">↩</a></li><li id="sf-three-homesignal-femtocell-for-bad-coverage-2">they don't seem to be anything like consistent about the spelling and punctuation of the name of this app, so I don't see why I should be either <a href="#sf-three-homesignal-femtocell-for-bad-coverage-2-back" class="simple-footnote-back">↩</a></li><li id="sf-three-homesignal-femtocell-for-bad-coverage-3">It seems like this might be fixed in very recent versions of Android? It's not at all clear. This problem is of course exacerbated by not getting system updates unless your phone is less than a week old. <a href="#sf-three-homesignal-femtocell-for-bad-coverage-3-back" class="simple-footnote-back">↩</a></li><li id="sf-three-homesignal-femtocell-for-bad-coverage-4">I saw a bloke on Twitter the other day say rather sneerily, I bet all the people who are mocking folding phones like the Samsung Fold now also mocked the Samsung Note until they realised they like big screens after all. No, sneery bloke. I mock the folding phones now for being a (terribly clever technical) solution in search of a problem, I hated the huge Note when it first came out, and I hate all huge phones now. For god's sake, phone industry, make a small flagship phone. Just one. I suppose it'll have to be an Xperia Compact again, but it'd be good if there were competition for it. <a href="#sf-three-homesignal-femtocell-for-bad-coverage-4-back" class="simple-footnote-back">↩</a></li><li id="sf-three-homesignal-femtocell-for-bad-coverage-5">They also said that they're rebuilding the Three inTouch app to be good and work with 5G. Apparently. At some unknown point in the future. I carefully did not point out that if you're building a replacement for something then there needs to be overlap between the two things rather than an interregnum during which every user is screwed, because that information needs to go to their project manager rather than their support team, but to be clear: to whichever project manager thinks this is an acceptable way to do deployments, I hope someone hides snakes in your car. <a href="#sf-three-homesignal-femtocell-for-bad-coverage-5-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2019/04/01/the-ray-traced-pictures/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2019/12/15/pyramid/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/701186995/12448_189366166916_695091916_3530548_970068_n.jpg">
+			Ross Burton responded at
+		<a href="https://twitter.com/rossburton/status/1122802032367239169">twitter.com</a>
+		<span class="wm-summary">			Curious about those, partly as a way to get my inlaws to have signal. Does it literally appear to be a mast to the phone so calls/sms/etc are transpar&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1122802712381394946">twitter.com</a>
+		<span class="wm-summary">			As far as I can tell, yes, that's exactly what it does!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/701186995/12448_189366166916_695091916_3530548_970068_n.jpg">
+			Ross Burton responded at
+		<a href="https://twitter.com/rossburton/status/1122803282563485696">twitter.com</a>
+		<span class="wm-summary">			
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1122803637892333568">twitter.com</a>
+		<span class="wm-summary">			Ikr! It's a really good idea! My parents don't need it because they both bought new Samsung phones from Three, so WiFi calling works for them, and my&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1052547501994254336/lsmjuQai.jpg">
+			ThreeUKSupport responded at
+		<a href="https://twitter.com/ThreeUKSupport/status/1122804719565586432">twitter.com</a>
+		<span class="wm-summary">			we're glad that we got this sorted, Stuart 😀👍 is the signal in your house a lot better now? >RG
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1122804944858419200">twitter.com</a>
+		<span class="wm-summary">			it is, so far, based on my testing. I do have a question: it should still work and give me good phone coverage even if my phone is connected to wifi,&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/785312424031293440/ilDkJR5W.jpg">
+			Terence Eden responded at
+		<a href="https://twitter.com/sil/status/1122797494704975873#favorited-by-14054507">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/701186995/12448_189366166916_695091916_3530548_970068_n.jpg">
+			Ross Burton responded at
+		<a href="https://twitter.com/rossburton/status/1122811270909054977">twitter.com</a>
+		<span class="wm-summary">			MIL has a Nokia Windows phone so hahahahah wifi calling 🤣
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/786986251538862080/H8rWKiN4.jpg">
+			Paul Freeman responded at
+		<a href="https://twitter.com/sil/status/1122797494704975873#favorited-by-107830959">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/644586981691912192/93ZDhdKG.png">
+			Birmingham.IO responded at
+		<a href="https://twitter.com/BirminghamIO/status/1122856059264278530">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Three HomeSignal femtocell for bad coverage by @sil buff.ly/2GRDhTB #PlanetBirmingham
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1043647758169722881/kncjFyBp.jpg">
+			Martin Alderson responded at
+		<a href="https://twitter.com/martinald/status/1122894744047239168">twitter.com</a>
+		<span class="wm-summary">			the issue you have is your phone doesn't support Three's 800MHz 4G band. Or more accurately three doesn't support use of the 800MHz bands for phones t&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1043647758169722881/kncjFyBp.jpg">
+			Martin Alderson responded at
+		<a href="https://twitter.com/martinald/status/1122895109983539201">twitter.com</a>
+		<span class="wm-summary">			or switch to @VodafoneUKComms or @O2 which allow access to 800MHz without VoLTE (as they have 3G @ 900MHz for CSFB, whereas 3 and EE only have 1800MHz&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1122947647499849728">twitter.com</a>
+		<span class="wm-summary">			Thank you! That's useful information; something to bear in mind if and when I do look at switching.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2446100132/27PR88pJ_normal">
+			Leaky responded at
+		<a href="https://twitter.com/Leaky_Beaky/status/1122952679804887041">twitter.com</a>
+		<span class="wm-summary">			This isn't the answer... Android does support WiFi calling, three need to work with the device manufacturers to get their network config mapped to the&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1122974823087595521">twitter.com</a>
+		<span class="wm-summary">			There doesn't appear to be any way on my Z5 Compact to turn wifi calling on, with the stock firmware. It's not that I've got it but it doesn't work. I&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/955975806/Ward_S60.60.JPG">
+			Stuart Ward #LeadNotLeave responded at
+		<a href="https://twitter.com/stuartward/status/1123192522505904134">twitter.com</a>
+		<span class="wm-summary">			So why not just use Signal or whatsapp that work over the data connection? Do you still call real phone numbers?
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1123211434790412293">twitter.com</a>
+		<span class="wm-summary">			Yes. All the time. And real numbers call me.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2119580994/eddy.png">
+			Edward Millen responded at
+		<a href="https://twitter.com/sil/status/1122797494704975873#favorited-by-211227633">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://oliodigest.com/profilepic_200x200.jpg">
+			Drei aka Bitcoin Master responded at
+		<a href="https://oliodigest.com/replies/Folding-phones-Plantry-Code-is-Law-npm-modules-Unbound/">Folding...</a>
+(oliodigest.com)		<span class="wm-summary">			I lol’d when Stuart said folding phones are a solutionin search of a problem.
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2019/04/29/three-homesignal-femtocell-for-bad-coverage/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2019/04/29/three-homesignal-femtocell-for-bad-coverage/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

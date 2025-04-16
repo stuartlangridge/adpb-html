@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; DVD slideshows under Linux</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; DVD slideshows under Linux">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2008/01/16/dvd-slideshows-under-linux/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2008/01/16/dvd-slideshows-under-linux/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2008/01/16/dvd-slideshows-under-linux/"><time 
+			class="dt-published" datetime="2008-01-16T14:10:00+00:00">Jan 16 2008</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/01/16/dvd-slideshows-under-linux/">DVD slideshows under Linux</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Philip Newborough <a href="http://crunchbang.org/archives/2008/01/15/tinkering-and-secret-software/">notes</a> that in the <a href="http://lugradio.org/episodes/92">last LugRadio episode</a> I said
+that I planned to release more odd bits of software. (He also
+illustrated this with a snippet of audio from the show; since we're
+trying to relax our licence to allow this sort of thing, it's great that
+people are taking advantage of that!) The problem I outlined on the show
+itself is that I write lots of little bits of software for me, but I
+don't release them. They're not generally applicable or easy to install:
+they're not designed to be polished, public-friendly software in any
+way. Now, I'm a huge opponent of this. There's a pervasive myth among
+non-Linux users that all the software on the free desktop is complicated
+and thorny and command-line driven, and it requires you to edit
+configuration files and compile it yourself. It's not like that, not at
+all, if you don't want it to be. However, these little bits of software
+I write purely for myself <em>are</em> like that; they're not for general
+distribution. So, I don't release them, because I don't want to add more
+fuel to the fire for the sneering hordes who say that Linux is hard to
+use. Over pizza earlier this year, it was brought home to me that that
+might not be the best idea; even though these little hacks aren't useful
+to the general population, they might be useful to someone. So, my
+resolution, if I have one for this year, is to get more of this stuff
+out there. Update: <a href="http://konsilience.wordpress.com/2008/01/19/my-daily-backup-script/">Greg Grossmeier is doing the same thing after I talked about releasing scripts on LugRadio.</a> That's really cool; it's
+lovely to hear when people go with a suggestion! The first one is a
+thing to create DVD slideshows under Linux. My dad said to me over
+Christmas that a friend of his would, on return from holiday, give out
+DVDs with all the photos from the holiday on in a nice little slideshow
+that you could watch in your DVD player. Was it possible, he asked, for
+him to do the same thing on his (Ubuntu) desktop? Of course, said I, and
+then started looking into how to do it. The base way that everyone does
+this on Linux is with the <a href="http://dvd-slideshow.sourceforge.net/">dvd-slideshow shell script</a>, which uses
+tools like mplayer and so forth to do the work. There are GUI clients
+for it but they're all really complicated; what you want ideally is
+something where you just drag photos into it, select transitions if you
+want to, and click the "go" button. There's also an extension for
+F-Spot, but it's not actually distributed with F-Spot yet and my dad
+doesn't use F-Spot anyway. (There isn't an extension that does this in a
+sane way for digikam, as far as I can tell.) I at first sat down to my
+keyboard thinking that I'd write a nice PyGTK + GStreamer application
+that would do this right, before discovering that you can't really take
+a load of photos and make a nice slideshow out of them with GStreamer.
+(You <em>sort of</em> can, with <a href="http://gstreamer.freedesktop.org/wiki/MultiFileSrc">multifilesrc</a>, but not really; you can't
+feed it arbitrary files, it doesn't do transitions, etc.) Then I
+thought: I'll do a nice application that wraps dvd-slideshow, and then I
+couldn't be arsed. So instead, I wrote a script for my dad:
+<a href="http://www.kryogenix.org/code/make-dvd-slideshow">make-dvd-slideshow</a>. The way this script works is that you hardcode
+the name of a folder into it. It looks in that folder, makes all the
+images in that folder into a slideshow, adds an mp3 as a soundtrack if
+it finds one in the folder, and then drops the resulting .iso file onto
+your desktop ready for burning. You'll need to change at least
+<code>FOL="/home/aquarius/Desktop/Olivia Party 2"</code> to be the location of the
+magic folder (I put one on my dad's desktop, called "DVD Slideshow", and
+hardcoded it into the script) and then run the script (I put a launcher
+on his desktop, in that folder, which launches the script in an xterm).
+Enjoy this: if you think it sucks then I'd love to see someone write
+something better, and tell me about it when you do; if you want to write
+something better but aren't sure how to do it then I'll happily write
+you a spec of how <em>I</em> think it should work :-)</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2008/01/16/odds-and-sods-again/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2008/01/26/making-the-arrow-keys-work-in-vlc/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2008/01/16/dvd-slideshows-under-linux/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2008/01/16/dvd-slideshows-under-linux/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

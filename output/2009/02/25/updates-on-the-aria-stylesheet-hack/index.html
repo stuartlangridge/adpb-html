@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Updates on the "ARIA stylesheet" hack</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Updates on the "ARIA stylesheet" hack">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2009/02/25/updates-on-the-aria-stylesheet-hack/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/02/25/updates-on-the-aria-stylesheet-hack/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2009/02/25/updates-on-the-aria-stylesheet-hack/"><time 
+			class="dt-published" datetime="2009-02-25T10:51:00+00:00">Feb 25 2009</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/02/25/updates-on-the-aria-stylesheet-hack/">Updates on the "ARIA stylesheet" hack</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>My <a href="http://www.kryogenix.org/days/2009/02/22/a-wai-aria-stylesheet">ARIA "stylesheet" hack</a> came up on the <a href="http://lists.w3.org/Archives/Public/wai-xtech/2009Feb/0076.html">WAI-XTech</a> mailing list.
+Some of my commenters here, and some of the people on the list, seem to
+have misapprehended what the proposal was designed to do; I've mailed
+the list, but it seems useful to post these clarifications here too.</p>
+<ol>
+<li>I am not proposing adding ARIA to CSS. An "ARIA stylesheet" looks
+    like a CSS stylesheet because that's a convenient way to apply
+    properties to elements, but they aren't the same thing.</li>
+<li>I'm not proposing that the technique requires JavaScript. My
+    suggestion is that browsers natively understand how to retrieve an
+    "ARIA stylesheet" and apply the ARIA attributes defined therein to
+    elements, as per the selectors in the "stylesheet". The JavaScript
+    implementation was just to demonstrate how it would work, and a
+    prototype for how people might support older browsers which don't
+    have this native "ARIA parsing", in the same way that there are
+    JavaScript libraries which mimic HTML5 WebForms handling for older
+    browsers that don't yet support <code>&lt;input type="range"&gt;</code>.</li>
+<li>The "ARIA stylesheet" only dictates the initial setup of a page, in
+    much the same way that a CSS stylesheet does for presentation. If I
+    use JavaScript to alter the style of an element, that change is not
+    reflected in the CSS stylesheet text, but it is obtainable through
+    <code>element.style</code> or <code>getComputedStyle()</code>. In the same way, altering
+    an ARIA attribute on an element through JavaScript would work
+    perfectly well, and the current value is obtainable through
+    <code>element.getAttribute("aria-role")</code> or similar.</li>
+<li>I understand that ARIA is semantic and therefore belongs more
+    directly in the HTML than mere presentation does. However, distinct
+    advantages to moving ARIA information out into a separate document
+    do exist:<ol>
+<li>It allows me to "ARIAify" an entire website very easily, much as
+    having CSS in a separate stylesheet allows me to change the
+    design of a site very easily. At the moment, to "ARIAify" a
+    website I have to edit every single page in great detail. If a
+    site is already properly marked up and relatively consistent in
+    the way it uses that markup, adding ARIA roles and attributes
+    could be done relatively easily by adding one file, the ARIA
+    stylesheet, and a <code>&lt;link rel="aria" href="..."&gt;</code> element to the
+    <code>head</code> of each page.</li>
+<li>It avoids the validation problem, that ARIA attributes will
+    currently cause a document to fail validation</li>
+<li>It reduces bandwidth required to serve a site, meaning that
+    sites load faster and servers work faster and cheaper, in two
+    ways:<ol>
+<li>The "ARIA stylesheet" can be cached by browsers, meaning
+    that it needs only be served once per site; embedding
+    attributes in the markup means that every page gets larger
+    and the attributes are not cached</li>
+<li>User agents that are not tied into native accessiblity APIs
+    (for example, users who do not have the accessibility APIs
+    switched on because they don't need them) do not need to
+    fetch the ARIA stylesheet at all, saving even more bandwidth</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>Hope this helps clarify my thinking. Comments are welcomed.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2009/02/25/jif-lemon-day-2/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2009/03/13/roman-dates/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2009/02/25/updates-on-the-aria-stylesheet-hack/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2009/02/25/updates-on-the-aria-stylesheet-hack/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

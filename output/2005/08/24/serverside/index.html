@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; CSS hacks and server-side code</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; CSS hacks and server-side code">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2005/08/24/serverside/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/08/24/serverside/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2005/08/24/serverside/"><time 
+			class="dt-published" datetime="2005-08-24T11:00:00+01:00">Aug 24 2005</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/08/24/serverside/">CSS hacks and server-side code</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Scott Isaacs, one of the Microsoft web chaps, is <a href="http://spaces.msn.com/members/siteexperts/Blog/cns%211pNcL8JwTfkkjv4gg6LkVCpw%211805.entry">complaining about
+<span class="caps">CSS</span> hacks</a>. His proposed solution is to,
+instead of applying <span class="caps">CSS</span> hacks to make a
+browser do what you want, instead have details of the users browser
+inserted into the <span class="caps">HTML</span> element either by
+server-side or client-side script. So, if you visit a page using
+<span class="caps">IE6</span>.0, it would add <code>class="ie m6 d0 win"</code> to
+the <span class="caps">HTML</span> element; using Firefox 1.06 on Linux
+it would add <code>class="firefox m1 d06 linux"</code>, and so on. Then, in your
+stylesheet, use these hooks to apply style for specific browsers.<br>
+I think that this is not a good idea, and here’s why.<br>
+Firstly, it requires absolutely that every page be server-parsed, since
+you can’t rely on client-side scripting being there. Well, unless you’re
+prepared to make your styling depend on JavaScript, which rather defeats
+the point of <span class="caps">CSS</span>. In some places it seems like
+the norm is to make all pages, even ones with plain
+<span class="caps">HTML</span> and no dynamic content at all, be
+server-parsed by making them <span class="caps">ASP</span> or
+<span class="caps">PHP</span>, but I don’t like to do that for pages
+that don’t need it. If you’re thinking “but every page needs a header
+and that’s normally dynamically included!“, think about automatically
+generated pages which are generated dynamically when required and then
+cached, like blog archives. Or think about mailing list archives, or
+pages where the header and footer are added by your web editing tool
+like Frontpage or Dreamweaver rather than by the server.<br>
+Secondly, it clutters the <span class="caps">HTML</span> a bit. Not
+much, but a bit. This isn’t much of an objection.<br>
+Thirdly, how do you establish the platform and short-name-for-a-browser
+and major and minor versions? Parse the userAgent string? That takes us
+back to the days of browscap.ini and The World’s Biggest List Of
+Browsers, which you have to rely on someone to maintain.<br>
+In short, I don’t like the idea. I’d be interested in hearing
+dissenting opinions, though.</p>
+<p>(Incidentally, you may be thinking that this should have been a comment
+over at Scott’s rather than a post here: I agree with you, but to post
+there <a href="http://www.kryogenix.org/days/microsoftPassport">you need an <span class="caps">MSN</span> passport</a> and I don’t
+want to get one.)</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2005/08/15/againback/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2005/08/24/googletalk/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2005/08/24/serverside/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/08/24/serverside/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Saving the current state of your Ubuntu SDK app, with no effort</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Saving the current state of your Ubuntu SDK app, with no effort">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/01/23/saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/01/23/saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/01/23/saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort/"><time 
+			class="dt-published" datetime="2014-01-23T18:14:00+00:00">Jan 23 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/01/23/saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort/">Saving the current state of your Ubuntu SDK app, with no effort</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Earlier today I gave an example of <a href="http://kryogenix.org/days/2014/01/23/a-simple-u1db-example-for-ubuntu-sdk-apps">how to use U1DB to save the state of
+your Ubuntu app</a>. Now, U1DB is useful for actually storing actual
+data, right enough. But if you want to save <strong>state</strong> -- which tab was
+showing, what was being typed into a text field, what was chosen in a
+dropdown, where a list was scrolled to -- then that's built right
+in<sup id="sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1-back"><a href="#sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1" class="simple-footnote" title="how did I not know this existed! Big thanks to Florian for cueing me in">1</a></sup> to the Ubuntu SDK.</p>
+<p>It's called <strong><a href="http://developer.ubuntu.com/api/devel/ubuntu-13.04/qml/ui-toolkit/qml-ubuntu-components0-statesaver.html">StateSaver</a></strong>.</p>
+<p>This isn't used to store data, long term. It's used to make your app
+automatically remember what position things were in. So quitting the app
+and restarting it, or switching to another and then switching back,
+means the app doesn't reset to the front screen, doesn't forget what you
+were halfway through typing in, doesn't forget where you'd scrolled to.</p>
+<p>To use it, just add <code>StateSaver.properties</code> to the Item you want to save
+things for. So, for example, if you want your ListView to remember the
+position it was scrolled to, do this:</p>
+<div class="highlight"><pre><span></span><code>ListView {
+  id: mylistview
+  model: someModel
+  delegate: ListItem.Standard { text: "row " + model.index }
+  StateSaver.properties: "contentY"
+}
+</code></pre></div>
+
+<p>Just that one thing. Now your ListView remembers where it was scrolled
+to after a restart. You can do the same with a set of <code>Tabs</code> (just add
+<code>StateSaver.properties: "selectedTabIndex"</code>) or a <code>TextField</code>
+(<code>StateSaver.properties: "text"</code>).</p>
+<p>NB: this isn't really for <em>data</em> saving. It might, or might not, be
+appropriate to use it for whether a switch is flipped or not. That's a
+setting; when the switch is changed, you ought to be doing something
+with that information. Ideally you could drive everything,
+declaratively, off of whether the <code>switch.checked</code> is <code>true</code>, and if you
+can do that then <code>StateSaver</code> is the ideal place to have that info. But
+if you run a <code>function</code> when a switch is changed, then don't use
+<code>StateSaver</code> to remember its state: use U1DB, and store the other stuff
+that changed alongside it. It's about saving <em>state</em>, hence the name.</p>
+<p>Saving the state of your app like this is an idea so good that other
+ideas gather at its feet to pray. I think that this should be turned on
+<em>automatically</em> for the "relevant" properties of each type of Ubuntu SDK
+widget, and if for some reason you don't like it you can turn it <em>off</em>.
+Not for every single property, but for the ones where state makes sense:
+the scroll position for a ListView, the entered text for a TextField,
+the visible tab for Tabs. Small things like this are what make the
+difference between great apps and merely good ones. Any one individual
+app isn't particularly harmed by not remembering this stuff; so many
+apps do not, on other platforms, that people are used to the idea of
+having their state thrown away. But if almost all the apps <em>do</em> do this,
+then the ones that don't get called out on it and then it gets fixed,
+and that makes the whole platform better. It's really important that we
+create a culture of desire for finished, polished apps for Ubuntu. If
+your app throws away where I was scrolled to, I want the developer to
+feel a bit embarrassed about that and immediately go to fix it. That's
+what will make our platform feel consistent, feel tight, feel together,
+feel fun to use; the culture of pushing back on unfinished and
+unpolished and half-ready apps. Open source has historically not had
+that culture, but I'd really like to use a platform which <em>does</em>.</p>
+<p>Importantly, though, for it to be reasonable for we users to require
+this of app developers, it has to not be really hard for app developers
+to do. This, taking complicated things and making them easy for app
+developers to implement, is what the platform is for. And StateSaver is
+a great example of it; the platform provides! I'm really impressed that
+this exists and is part of the SDK. (I'd be even more impressed if it
+did it automatically, as noted.) Good work, Ubuntu SDK team. This stuff
+needs more publicity!</p>
+<p>Longer code example, which remembers which tab you were looking at,
+where the list is scrolled to, and what was typed in the text field:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">QtQuick</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Ubuntu.Components</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Ubuntu.Components.ListItems</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ListItem</span>
+
+<span class="n">MainView</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">id</span><span class="p">:</span><span class="w"> </span><span class="n">root</span>
+<span class="w">    </span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="w">    </span><span class="n">height</span><span class="p">:</span><span class="w"> </span><span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">Tabs</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nb">id</span><span class="p">:</span><span class="w"> </span><span class="n">tabs</span>
+<span class="w">        </span><span class="n">StateSaver</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span><span class="w"> </span><span class="s2">"selectedTabIndex"</span>
+
+<span class="w">        </span><span class="n">Tab</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nb">id</span><span class="p">:</span><span class="w"> </span><span class="n">t1</span>
+<span class="w">            </span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="s2">"StateSaver, 1"</span>
+
+<span class="w">            </span><span class="n">page</span><span class="p">:</span><span class="w"> </span><span class="n">Page</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nb">id</span><span class="p">:</span><span class="w"> </span><span class="n">pg</span>
+<span class="w">                </span><span class="n">ListView</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nb">id</span><span class="p">:</span><span class="w"> </span><span class="n">lv</span>
+<span class="w">                    </span><span class="n">model</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span>
+<span class="w">                    </span><span class="n">clip</span><span class="p">:</span><span class="w"> </span><span class="n">true</span>
+<span class="w">                    </span><span class="n">anchors</span><span class="o">.</span><span class="n">fill</span><span class="p">:</span><span class="w"> </span><span class="n">parent</span>
+<span class="w">                    </span><span class="n">StateSaver</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span><span class="w"> </span><span class="s2">"contentY"</span>
+<span class="w">                    </span><span class="n">delegate</span><span class="p">:</span><span class="w"> </span><span class="n">ListItem</span><span class="o">.</span><span class="n">Standard</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is row "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">model</span><span class="o">.</span><span class="n">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">". Scroll to wherever."</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Tab</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nb">id</span><span class="p">:</span><span class="w"> </span><span class="n">t2</span>
+<span class="w">            </span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="s2">"StateSaver, 2"</span>
+
+<span class="w">            </span><span class="n">Column</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="n">parent</span><span class="o">.</span><span class="n">width</span>
+<span class="w">                </span><span class="nb">id</span><span class="p">:</span><span class="w"> </span><span class="n">col2</span>
+<span class="w">                </span><span class="n">spacing</span><span class="p">:</span><span class="w"> </span><span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">                </span><span class="n">anchors</span><span class="o">.</span><span class="n">centerIn</span><span class="p">:</span><span class="w"> </span><span class="n">parent</span>
+
+<span class="w">                </span><span class="n">Label</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enter your favourite pie"</span>
+<span class="w">                    </span><span class="n">horizontalAlignment</span><span class="p">:</span><span class="w"> </span><span class="n">Text</span><span class="o">.</span><span class="n">AlignHCenter</span>
+<span class="w">                    </span><span class="n">anchors</span><span class="o">.</span><span class="n">horizontalCenter</span><span class="p">:</span><span class="w"> </span><span class="n">parent</span><span class="o">.</span><span class="n">horizontalCenter</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">TextField</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nb">id</span><span class="p">:</span><span class="w"> </span><span class="n">tf</span>
+<span class="w">                    </span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="n">parent</span><span class="o">.</span><span class="n">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">units</span><span class="o">.</span><span class="n">gu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">                    </span><span class="n">StateSaver</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span>
+<span class="w">                    </span><span class="n">anchors</span><span class="o">.</span><span class="n">horizontalCenter</span><span class="p">:</span><span class="w"> </span><span class="n">parent</span><span class="o">.</span><span class="n">horizontalCenter</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><ol class="simple-footnotes"><li id="sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1">how did I not know this existed! Big thanks to Florian for cueing
+me in <a href="#sf-saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort-1-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2014/01/23/using-u1db-in-listviews-in-ubuntu-sdk-apps/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/01/29/thoughts-on-planet-ubuntu/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/01/23/saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/01/23/saving-the-current-state-of-your-ubuntu-sdk-app-with-no-effort/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

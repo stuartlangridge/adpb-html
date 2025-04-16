@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Using CouchDB to store contacts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Using CouchDB to store contacts">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/"><time 
+			class="dt-published" datetime="2009-06-19T11:51:00+01:00">Jun 19 2009</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/">Using CouchDB to store contacts</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>One of the things I'm looking at is using CouchDB to store data for
+applications on your desktop as part of the <a href="http://blogs.gnome.org/rodrigo/2009/06/03/desktop-datasettings-replication/">desktop data/settings</a>
+idea that Rodrigo's already written about. Obviously one of the great
+things here is that applications can collaborate on data stored in
+there; obviously one of the pre-requisites for collaboration is that
+everyone's speaking the same language! So various people working on a
+number of different mail clients for the Linux desktop and so on are
+working out what the schema for contact records in CouchDB should look
+like. Being able to browse around your database with a web browser is
+dead handy for writing this sort of thing, I have to say :-) At the
+moment, this is the sort of direction we're heading in. A CouchDB
+document is JSON, and an example contact looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">   </span><span class="s">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;362cbeae5f408d6863bb70892d5ba345&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s">&quot;_rev&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1-182987891&quot;</span><span class="p">,</span>
+
+<span class="w">   </span><span class="s">&quot;record_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example.com/contact-record&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s">&quot;record_type_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span><span class="p">,</span>
+
+<span class="w">   </span><span class="s">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Joshua&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Molby&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s">&quot;birth_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1945-07-04&quot;</span><span class="p">,</span>
+
+<span class="w">   </span><span class="s">&quot;addresses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="s">&quot;85cf156f-fcf6-4901-9201-82ee90859213&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Bedford&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;home&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Scotland&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;postalcode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cw12 3hi&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;address1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Nicol Street&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;address2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;pobox&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">       </span><span class="p">},</span>
+<span class="w">       </span><span class="s">&quot;d20f7364-e80b-47a2-a7e7-0677cb293745&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Bedford&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;work&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;England&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;postalcode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dk12 3av&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;address1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Rush Street&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;address2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;pobox&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">   </span><span class="p">},</span>
+<span class="w">   </span><span class="s">&quot;phone_numbers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="s">&quot;f0bac2a0-83a3-46f9-b079-d41533b87391&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+84 63 6220 9178&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;work&quot;</span>
+<span class="w">       </span><span class="p">},</span>
+<span class="w">       </span><span class="s">&quot;cf01fc9c-703b-4ae4-b303-fcc6f8ce5a53&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+91 99 6920 2837&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;home&quot;</span>
+<span class="w">       </span><span class="p">},</span>
+<span class="w">       </span><span class="s">&quot;f0c05bf4-de4a-48f2-bbaf-f9698e52d491&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+97 52 9211 6455&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;other&quot;</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">   </span><span class="p">},</span>
+<span class="w">   </span><span class="s">&quot;email_addresses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="s">&quot;6e3178d8-fee6-45b1-b95a-2c76be090e2b&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;home&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Joshua1.Molby@uck.com&quot;</span>
+<span class="w">       </span><span class="p">},</span>
+<span class="w">       </span><span class="s">&quot;adb1fc2a-0468-4deb-bb6c-974db23ef7fd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;work&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Joshua1.Molby@vkc.com&quot;</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">   </span><span class="p">},</span>
+<span class="w">   </span><span class="s">&quot;application_annotations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="s">&quot;Funambol&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="s">&quot;jobTitle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Director&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="s">&quot;company&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ACME Ltd&quot;</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Fields in this are as follows:</p>
+<dl>
+<dt>CouchDB fields</dt>
+<dd>
+<dl>
+<dt><code>_id</code></dt>
+<dd>Unique document ID, provided by CouchDB (or you can choose it
+explicitly if you want)</dd>
+<dt><code>_rev</code></dt>
+<dd>revision number for this document. Managed by CouchDB.</dd>
+</dl>
+</dd>
+<dt>Contact schema fields</dt>
+<dd>The contact schema is the list of fields that are stored for a
+contact. Since this is a shared schema, everyone can rely on it.
+Fields that aren't in this list can be stored by applications in
+<code>application_annotations</code>, if an application cares about extra
+stuff.</dd>
+<dd>
+<ul>
+<li><code>first_name</code> (string)</li>
+<li><code>last_name</code> (string)</li>
+<li><code>birth_date</code> (string, "YYYY-MM-DD")</li>
+<li>
+<p><code>addresses</code> (MergeableSet of "address" dictionaries)</p>
+<ul>
+<li><code>city</code> (string)</li>
+<li><code>address1</code> (string)</li>
+<li><code>address2</code> (string)</li>
+<li><code>pobox</code> (string)</li>
+<li><code>state</code> (string)</li>
+<li><code>country</code> (string)</li>
+<li><code>postalcode</code> (string)</li>
+<li><code>description</code> (string, e.g., "Home")</li>
+</ul>
+</li>
+<li>
+<p><code>email_addresses</code> (MergeableSet of "emailaddress" dictionaries)</p>
+<ul>
+<li><code>address</code> (string),</li>
+<li><code>description</code> (string)</li>
+</ul>
+</li>
+<li>
+<p><code>phone_numbers</code> (MergeableSet of "phone number" dictionaries)</p>
+<ul>
+<li><code>number</code> (string)</li>
+<li><code>description</code> (string)</li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt>Basic "record schema" fields</dt>
+<dd>The record schema is the basic format we're talking about for
+storing <em>any</em> data in CouchDB; it's a couple of fields that are in
+every record that everyone can rely on.</dd>
+<dd>
+<dl>
+<dt><code>record_type</code></dt>
+<dd>A URL which is a unique identifier for this type of record. It
+would be good if that URL had a page at it describing the record
+schema, but (importantly) this is not a reference to some sort
+of JSON DTD or anything</dd>
+<dt><code>record_type_version</code></dt>
+<dd>Version of this record type schema (so you can make updated
+versions if you want to make changes to field names, etc)</dd>
+<dt><code>application_annotations</code></dt>
+<dd>The <code>application_annotations</code> section of the document is where
+apps put their own data that isn't part of the schema. For
+example, Funambol knows about "company" for a contact, but the
+contact schema doesn't directly include that field. So Funambol
+stores it on the contact record in a Funambol-specific section,
+so it can happily get it back later. If it turns out that
+everyone's storing their own version of the same field, then
+that field is probably a good candidate for being in the schema
+(making this sort of change is what the <code>record_type_version</code>
+field is for :))</dd>
+</dl>
+</dd>
+</dl>
+<p>Quick script to drop contacts in this schema into a CouchDB database:
+<a href="http://www.kryogenix.org/code/createCouchContacts.py.txt">createCouchContacts.py</a>. Requires python-couchdb (and Couch,
+obviously).</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2009/06/11/filmage/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2009/06/26/why-not-to-use-domain-sockets-for-a-desktop-couchdb/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2009/06/19/using-couchdb-to-store-contacts/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2009/06/19/using-couchdb-to-store-contacts/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

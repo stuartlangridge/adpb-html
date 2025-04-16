@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; A tale of UI chains</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; A tale of UI chains">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/"><time 
+			class="dt-published" datetime="2011-12-14T08:57:00+00:00">Dec 14 2011</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/">A tale of UI chains</a>
+		</h2>
+		<div class="entry-content e-content">
+			<h3 style="display:block">or, big UI oaks do from little tech decisions grow</h3>
+<h3 style="display:block">or, how Thunderbird screwed me a bit, although it might be my own fault</h3>
+<p>I have five levels of caring about
+email.<span style="color:red" title="Those of you who have one level which is 'email? who uses email?' are cordially invited to bugger off and check your Facebook">*</span>
+They are:</p>
+<ol>
+<li>Don't care</li>
+<li>I've dealt with this</li>
+<li>I probably ought to deal with this, or it prompts a thought, or
+    something</li>
+<li>I need to deal with this</li>
+<li>I really, really need to deal with this</li>
+</ol>
+<p>These levels get mapped to my inbox in the following ways:</p>
+<ol>
+<li>Deleted</li>
+<li>Archived (in an Archive folder)</li>
+<li>In the inbox, read</li>
+<li>In the inbox, unread</li>
+<li>In the inbox, flagged Important (and probably marked unread too)</li>
+</ol>
+<p>In four years of dealing with my work inbox through Evolution, this
+scheme has stood me in good stead. However, at the weekend I moved to
+Thunderbird 9, and two days later it screwed me. Or I screwed myself
+while it stood by and laughed. Or something. And it's all because my
+work IMAP account doesn't seem to have a Trash folder. Follow the
+bouncing ball...</p>
+<p>When you set up a new IMAP account in Thunderbird, it asks where you
+want deleted messages to go. The default setting is "Move it to this
+folder: Deleted", which is what I have set for my gmail account.</p>
+<p><img alt="thunderbird settings" src="http://www.kryogenix.org/images/thunderbird-delete-email.png"></p>
+<p>However, for my work account, this complained that there was no such
+folder. Now, there's a Deleted folder, with little green rubbish bin
+icon<span style="color:red" title="that's an icon of a rubbish bin, not a bin icon that's rubbish">*</span>,
+in the left-hand sidebar under my work account as well. Clicking on that
+also says that "The current operation on 'Deleted' did not succeed. The
+mail server for account (myworkemail) responded: Mailbox doesn't exist:
+Trash."</p>
+<p>OK, thought I... maybe that's not meant to work. Perhaps Canonical IS
+don't want me storing all my deleted emails on the server or something.
+However, I can't find a way of specifying a local folder as the Deleted
+folder for my IMAP account.</p>
+<p>Now, I delete mail by accident all the time. So I was rather too scared
+to set "Remove [the mail] immediately" as my
+what-happens-when-I-press-delete-by-accident thing. Hence, the other
+option is to "just mark [the email] as deleted". What this does is it
+~~strikes through~~ the line describing the email in my inbox, so I can
+later on "undelete" it if I want. That seemed OK for a couple of days.
+However (this is the second level of however), what that actually means
+is that you end up with the list of emails you can see in the window all
+being struck through, which is annoying. So I need a way of saying
+"fine, all those deleted emails are actually deleted and not just me
+hitting delete by accident", and that's "Compact" on the folder context
+menu.</p>
+<p><img alt="thunderbird context menu" src="http://www.kryogenix.org/images/thunderbird-context-menu.png"></p>
+<p>However (third however level), immediately below "Compact" is "Mark
+Folder Read". So you can see that an inept person might accidentally
+click on the wrong menu item, and that's exactly what I did. And now I
+can't tell the difference between the 200 emails that I need to deal
+with and the other 200 that I might want to think about at some point,
+which is extremely irritating. All because I don't understand why my
+work email doesn't have a Trash folder.</p>
+<p>I can't really <em>blame</em> the Thunderbird team for this. (Not that that
+stopped me when I did it, but I calmed down.) "Mark Folder Read" and
+"Compact" are both <em>destructive</em>, <em>non-reversible</em> actions. They're both
+hidden on a folder context menu, a place for experts. If I bitch that I
+ought to be able to undo making a folder read, then I should also bitch
+that I ought to be able to undo compacting, and that defeats the point:
+compacting is itself the undo mechanism for deleting! So I'm screwed and
+it's no-one else's fault, which normally means (reluctantly) that it's
+my fault.</p>
+<p>Some of you will now be thinking: that's what you get for indicating a
+permanent state ("I need to deal with this") with an ephemeral marker
+(read status). And you're right, I suppose. However, email has an
+Important flag and that's it. There isn't an Important and a Very
+Important flag. Oh, there might be extensions to add that, but I'd want
+the status to show up, and be changeable, from the folder list (not just
+from an individual email). So clearly I need to change my habits.
+Perhaps there's an extension which colours the lines in the folder list
+differently depending on a flag I add? If I can change that colour from
+the folder list then that might be a good approach. How do you deal with
+differing levels of importance in email? Your thoughts are invited.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2011/11/08/an-ubuntu-one-printer/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2012/01/15/collaborative-photo-blogs/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2011/12/14/a-tale-of-ui-chains/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/12/14/a-tale-of-ui-chains/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

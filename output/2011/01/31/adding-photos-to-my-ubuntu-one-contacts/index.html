@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Adding photos to my Ubuntu One contacts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Adding photos to my Ubuntu One contacts">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2011/01/31/adding-photos-to-my-ubuntu-one-contacts/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2011/01/31/adding-photos-to-my-ubuntu-one-contacts/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2011/01/31/adding-photos-to-my-ubuntu-one-contacts/"><time 
+			class="dt-published" datetime="2011-01-31T13:55:00+00:00">Jan 31 2011</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2011/01/31/adding-photos-to-my-ubuntu-one-contacts/">Adding photos to my Ubuntu One contacts</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>We've recently added display of contact images to the Ubuntu One
+website, in preparation for starting to have images for all your
+contacts. Over the weekend, Andy Mabbett <a href="http://twitter.com/pigsonthewing/status/31450144087998464">tweeted</a> "I really, really,
+really wish @GoogleContacts would fetch Gravatars for all my contacts",
+and I thought: yeah, Ubuntu One should do that too. So, hopefully we'll
+be able to look at that on the U1 server so you automagically get images
+for all your contacts who have gravatars. (Obviously, the set of people
+who have friends with gravatars is fairly closely aligned with the set
+of people who are techies, but, well, I <em>am</em>, so worth a try.)</p>
+<p>Anyway, we don't have the Ubuntu One servers doing this (yet? the bloke
+you want to convince that this is a good idea is <a href="http://twitter.com/beuno">beuno</a>), but Ubuntu
+One contacts have the advantage that they're all synced down to your
+machine as well (hooray), so it's easy to do this on your computer now
+rather than wait for the Ubuntu One servers to do it. So, a quick
+script.</p>
+<p><em>Note: this script uses the new undeprecated desktopcouch APIs in Ubuntu
+11.04, which is not yet released. So it likely won't work for you right
+now unless you're already running Ubuntu natty.</em></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">desktopcouch.application.server</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">DesktopDatabase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">desktopcouch.records.record</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">Record</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib</span><span class="o">,</span><span class="w"> </span><span class="nn">md5</span>
+<span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DesktopDatabase</span><span class="p">(</span><span class="s2">&quot;contacts&quot;</span><span class="p">)</span>
+<span class="k">for</span><span class="w"> </span><span class="n">contact</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">db</span><span class="o">.</span><span class="n">get_records</span><span class="p">(</span><span class="n">create_view</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="w"> </span><span class="n">record_type</span><span class="o">=</span><span class="s2">&quot;http://www.freedesktop.org/wiki/Specifications/desktopcouch/contact&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="c1"># sigh, db.get_records doesn&#39;t get Records at all, it gets a ViewResult. And</span>
+<span class="w">    </span><span class="c1"># we can&#39;t just wrap row.value in a Record because that doesn&#39;t get attachments.</span>
+<span class="w">    </span><span class="c1"># So re-fetch the Record from the database.</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="o">.</span><span class="n">get_record</span><span class="p">(</span><span class="n">contact</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;_id&#39;</span><span class="p">])</span>
+<span class="w">    </span><span class="n">emails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;email_addresses&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">None</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">emails</span><span class="p">:</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">emails</span><span class="p">:</span>
+<span class="w">            </span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">email</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">None</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">addr</span><span class="p">:</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="s2">&quot;photo&quot;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">r</span><span class="o">.</span><span class="n">list_attachments</span><span class="p">():</span>
+<span class="w">                    </span><span class="nb">print</span><span class="w"> </span><span class="s2">&quot;Email </span><span class="si">%s</span><span class="s2"> already has photo in contact record&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">addr</span>
+<span class="w">                    </span><span class="k">continue</span>
+<span class="w">                </span><span class="nb">print</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;Checking addr </span><span class="si">%s</span><span class="s2"> in record id </span><span class="si">%s</span><span class="s2">:&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="o">.</span><span class="n">record_id</span><span class="p">)),</span>
+<span class="w">                </span><span class="n">hsh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">md5</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">addr</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="w">                </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://www.gravatar.com/avatar/</span><span class="si">%s</span><span class="s2">?d=404&amp;s=50&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">hsh</span><span class="p">)</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">fp</span><span class="o">.</span><span class="n">getcode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">404</span><span class="p">:</span>
+<span class="w">                    </span><span class="nb">print</span><span class="w"> </span><span class="s2">&quot;not found.&quot;</span>
+<span class="w">                </span><span class="k">else</span><span class="p">:</span>
+<span class="w">                    </span><span class="n">r</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span><span class="w"> </span><span class="s2">&quot;photo&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;image/jpeg&quot;</span><span class="p">))</span>
+<span class="w">                    </span><span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="w">                    </span><span class="n">db</span><span class="o">.</span><span class="n">put_record</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="w">                    </span><span class="nb">print</span><span class="w"> </span><span class="s2">&quot;found!&quot;</span>
+</code></pre></div>
+
+<p>And now I have little pictures next to 123 out of 939 of my contacts on
+the Ubuntu One website (and hopefully soon in Evolution and on my phone
+as well).</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2011/01/31/brave-new-age/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2011/02/01/selling-houses-with-online-estate-agents/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2011/01/31/adding-photos-to-my-ubuntu-one-contacts/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/01/31/adding-photos-to-my-ubuntu-one-contacts/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; On vendor prefixes in CSS and vendors implementing them</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; On vendor prefixes in CSS and vendors implementing them">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/"><time 
+			class="dt-published" datetime="2012-02-09T11:18:00+00:00">Feb 09 2012</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/">On vendor prefixes in CSS and vendors implementing them</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>On Monday at the CSS Working Group, Microsoft, Mozilla and Opera
+announced that each are considering supporting some <code>-webkit-</code> prefixed
+CSS properties.</p>
+<p>I include here <a href="http://www.brucelawson.co.uk/2012/on-the-vendor-prefixes-problem/">Bruce Lawson's excellent summary</a>:</p>
+<blockquote>
+<p>Lots of developers, despite evidence to the contrary, have assumed
+that mobile Web = WebKit browsers, because that’s the rendering engine
+in Android and iThings. Suppose the site was made a while ago and used
+the experimental, pre-standardised code <code>-webkit-border-radius</code> and
+<strong>didn’t use the cross-browser future-proof method</strong>. The real CSS
+property <code>border-radius</code> has been long been standardised and supported
+without prefixes in all the major browsers. But the <code>-webkit-</code>
+prefixed version still lingers on in Safari and Chrome, so that legacy
+code looks fine in the webkit browsers, but broken in Opera, Firefox
+and Internet Explorer.</p>
+</blockquote>
+<p>We've been through this fight before. A few years back, Internet
+Explorer proposed the <code>X-UA-Compatible</code> header, <a href="http://www.rachelandrew.co.uk/archives/2008/01/22/ie8-and-the-future-of-the-web/">which would mean that IE8 would act like IE7 unless you specifically told it to act like IE8</a>. The proposed solutions back then were similar to what we're
+seeing today in response to <code>-webkit-*</code> CSS in non-WebKit browsers:
+developers shouldn't be lazy; developers should do it right; sites
+should break if they use WebKit-only CSS in order to punish the
+developer; use this library to help you do it right (<a href="http://lesscss.org/">LESS</a> for CSS
+pre-processing on the server side, <a href="http://leaverou.github.com/prefixfree/">prefixfree</a> on the client-side);
+WebKit should stop supporting a prefixed CSS property once it supports
+the unprefixed version; vendor prefixes are a broken concept and should
+be abandoned.</p>
+<p>None of these approaches will work.</p>
+<p>Expecting developers to just Do It Right To Begin With™ is a noble goal,
+but it doesn't work like that. Everyone has deadline pressures; most
+people are not on the bleeding edge of the web standards community; the
+tension between "make it work today" and "make it right for the future"
+is never going to go away, no matter that we wish it would. The way to
+success is to align the right way to do it with the easiest way to do
+it; the way to success is to make correctness the path of least
+resistance. This is what informs the HTML5 "pave the cowpaths" approach,
+and it's that way for a reason; if correctness requires extra work, then
+at least some people will be incorrect through lack of time or lack of
+knowledge.</p>
+<p>Breaking websites, by having WebKit deliberately stop supporting a
+<code>-webkit</code> property once it supports the unprefixed property, is not
+going to happen. The WebKit team have explicitly stated that they won't
+do that, for "backwards compatibility reasons". Also, frankly, expecting
+them to is naive; they should make websites break just in order to teach
+developers the Right Way To Do Things, when those websites currently
+work? Remember, it's not developers who are punished by this; it's the
+users of the sites, because those users get a new phone or a phone OS
+upgrade and suddenly half the sites they use don't work. This hurts
+them, and they're who we're doing this for. The WebKit team are looking
+out for WebKit, but they can't be blamed for that; stuff works for them,
+after all.</p>
+<p>There's an argument that users who find their sites broken will blame
+the sites, and then the site developers will fix the problem. I
+disagree. If I decide to try Opera Mobile or Firefox on my phone and
+half the sites I use don't work, I'll say: oh well, can't move to that,
+then, and I'll go back to the built-in browser. This is the Microsoft
+argument: one broken program will prevent an upgrade, and they're right.
+What we get is de-facto lock-in, just the same as all those businesses
+which couldn't migrate away from IE6 because of their intranet.</p>
+<p>Using a server-side preprocessor or a client-side JS patch to turn
+<code>some-property</code> into
+<code>-webkit-some-property, -moz-some-property, -o-some-property, -ms-some-property</code>
+is a useful tool for <em>developers who know what they're doing but can't
+be bothered to type it all in</em>. Think about it: if I just use the
+unprefixed standardised property right now, then eventually (when the
+browsers all implement it) my site will work! I don't have to do
+anything to make that happen; I'm out in front and waiting for
+technology to catch up with <em>me</em>. It does not help the developers who
+are actually affected here, the ones building sites with only <code>-webkit</code>
+CSS properties in them, the sites that Bruce calls "legacy code" above.
+And it's those legacy sites which are compelling Mozilla and Microsoft
+and Opera to debate supporting that WebKit-only CSS.</p>
+<p>So, then, smart-arse, what's the solution, if it's none of those?</p>
+<p>Well, obviously, the evangelism efforts should continue. Progress is
+made. People do learn. It's slow, but we get there in the end. What
+we're talking about is an interim solution in addition to that.</p>
+<p>I think @<a href="http://lea.verou.me/">leaverou</a>'s <a href="http://leaverou.github.com/prefixfree/">prefixfree</a> JS library has the right idea,
+it's just backwards. Prefixfree takes proper CSS (an unprefixed
+property) and turns it into all the vendor-specific prefixed properties,
+so that you write CSS-of-the-future and the library turns it into
+CSS-of-today. It's a polyfill. What's wanted here, I think, is something
+like prefixfree but which takes CSS-of-the-past (<code>-webkit-some-property</code>
+and turns it into CSS-of-today
+(<code>-webkit-some-property, -moz-some-property, -o-some-property, -ms-some-property, some-property</code>).
+This wouldn't be a hard polyfill to build (it's just prefixfree,
+tweaked), but then of course you have the problem that no-one knows
+about it. So here's the second part of the proposal: common JS libraries
+should do this sort of thing by default. Imagine if jQuery fixed this
+stuff for you. I think, without wishing to sound snobbish, that most
+reasonably-complex websites include some JS (progressively enhanced,
+ideally), and most of those use a library. The developers we're talking
+about (and this is the snobbish part), the people writing legacy
+WebKit-only code, will have that WebKit-only code automatically patched
+to work with all other browsers without having to know that it's even
+happening. The ones who are short of time get that time back; the ones
+short of knowledge can learn on their own time and are helped to not
+screw their users in the meantime.</p>
+<p>This sort of view is problematic. I'm proposing giving a man a fish, not
+teaching a man to fish, and that's wrong. I agree. In this instance,
+given the choice between not educating a developer or not screwing some
+of his users, I'm choosing the users. I don't know a way to choose both.
+It's also problematic because I'm suggesting that library developers do
+all the work, and everyone using that library takes a performance hit
+even if they don't need to. So, I'm sure there will be other
+suggestions, and I'd love to hear them. I'd just like to stop hearing
+all the ones above that don't help the problem get fixed.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2012/02/04/it-s-cold-outside/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2012/02/19/there-is-a-lesson-here/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/02/09/on-vendor-prefixes-in-css-and-vendors-implementing-them/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

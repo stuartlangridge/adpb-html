@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Some thoughts on soonsnap and little big details</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Some thoughts on soonsnap and little big details">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/"><time 
+			class="dt-published" datetime="2014-05-13T14:29:00+01:00">May 13 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/">Some thoughts on soonsnap and little big details</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I built a thing called <a href="http://soonsnap.com">soonsnap</a>, and various people said that I should write up how and why.</p>
+<p><img alt="Soonsnap" src="http://kryogenix.org/images/soonsnap.png" title="How Soonsnap looks"></p>
+<p>First, what it's for.</p>
+<p>Here's the use case. You're there in the pub, Friday night, and there's a group of people squeezing themselves together behind a table while one of their number takes a photo of them. So you step up, helpful, and say "hey, let me take that, then you can be in it!" and whip your phone from your pocket and snap a picture of them all pulling faces and drinking cocktails.</p>
+<p>Great. You've got a picture of them. How do you give that picture to the people in it?</p>
+<p>Here are the constraints:</p>
+<ul>
+<li>You don't know these people. This is not a surreptitious excuse to obtain the phone number of the attractive one in the group. So you can't ask for a phone number, or add them as a Facebook friend</li>
+<li>You're all in the pub having fun; you're not at a computer class. You want to get this photo to them as quickly and easily as possible. So if you ask them to do anything complicated to get the photo, such as "install this app", or "turn on Bluetooth and then tell me your phone's Bluetooth name", they'll just shrug and say "whatever" and ignore you like the sad techie lunatic that you are</li>
+<li>Either you or they might not have an iPhone, so no AirDrop for you</li>
+<li>You're in the pub. So this is primarily for mobile. Obviously it should work on a big wide screen, but that's not what it's aimed at</li>
+<li>Me, the person running the server, does not want to pay for lots of hosting, and people in the pub don't want photos of them stored forever in someone else's cloud. Images are not stored on the server; they're transferred as much as possible device-to-device</li>
+</ul>
+<p>Sometimes, the people asking for a photo will hand you a phone to take it with. At that point, you don't need any technology to assist; take the picture, give the phone back, done. But if they don't... you need to get that picture to them.</p>
+<p>The one huge overriding goal here is complete ease of use. Anything at all which can be construed as a barrier will mean that you're unsuccessful. "To get the picture, install this app" takes too long and is too annoying. "Turn on Bluetooth" is too annoying. "Turn on Android Beam" is too annoying. This means the solution needs to be on the web, because everybody has that.</p>
+<p>But it should feel like an app, because people are accustomed to that and so the sense of familiarity is important. It's a very simple set of actions: either "take a photo" or "receive a photo". So the thing I came up with, soonsnap, is this:</p>
+<ol>
+<li>You hit this website and it tells you to pick or take a photo</li>
+<li>It gives you a simple four-letter code and gives you instructions to read out to them: go to this website, enter the four letters of the code</li>
+<li>They do it: it gives them the photo</li>
+<li>You say "there you go", they say "thank you!", and another little human interaction is improved with technology without getting in the way</li>
+</ol>
+<p>So there are two paths through it: the photo taker, and the photo getter. The taker needs to say "take a photo", then take the photo, then get a nice clear set of instructions and a code to tell to the getter. The getter needs to get to the website itself, say "receive a photo", type in the code. That's it.</p>
+<p>To this end, all the thinking went into making soonsnap so it's really hard to screw the interaction up. Take the codes as an example. They're four characters -- long enough that a code isn't reasonably guessable, short enough that you can say it to someone else in a crowded bar and they'll hear you. The code does not repeat any characters. This is done so that when tapping a letter of the code, that letter disappears and can't be used again -- this prevents someone accidentally tapping a letter twice. The characters used for the code could have been all 36 letters and numbers, but it's actually only 20: 0123456789ACFHNRUWXY. This is so that all letters which sound the same are removed; this stops someone saying "did you say <strong>B</strong> zero one two or <strong>P</strong> zero one two?", especially if you're shouting over the music in a crowded pub. </p>
+<p>And it looks simple but colourful and clear to make it easy to see what's going on even if your vision's a bit blurry. I wanted it to be attractive partially because of the aesthetic usability effect, and partially just because, well, things should be pretty. I knew I couldn't do that, so I talked to <a href="http://snwh.org">Sam Hewitt</a> who put together a great visual design for soonsnap. Thank you, Sam!</p>
+<p>Technologically, soonsnap is designed so that images aren't stored on the server. Partially this is for security -- there's no big archive there, and your photos aren't being kept around by a service you don't trust -- and partially for cost, because it's not supposed to be a big photo archive. It's used to send photos. Soonsnap uses <a href="http://socket.io/">socket.io</a>, which is basically a self-hosted version of something like <a href="http://www.pubnub.com/">pubnub</a>. So the images go <em>through</em> the soonsnap server, but they're transmitted from sender to receiver and aren't kept around on the server. I'd have liked to do that with WebRTC so that it's genuinely peer-to-peer and doesn't involve the server at all, but firstly you need to set up a STUN server to do that and that's complicated, and secondly iPhones don't do WebRTC yet.</p>
+<p>Update, May 2020: as a result of <a href="https://github.com/stuartlangridge/pubphoto/issues/4">issue #4</a> I should explain, in addition to the above technical information, why Soonsnap scales images down to 500px before sending them. Soonsnap's overriding goal, which takes precedence over everything else, is making the transaction as quick and unobtrusive as possible. We shrink the image to minimise the amount of time taken for the transfer, and to reduce the bandwidth that has to be shipped through the back end, and the screens are all as basic as is possible to avoid confusion. I don't think that the benefits from sending a larger image (that you get a higher-quality image) outweigh the deficits (the sending screen is mildly more confusing; transfer takes longer), which is why we shrink the image. If someone else were to wish to deploy soonsnap themselves, getting <a href="https://github.com/stuartlangridge/pubphoto/">the code from github</a> to do so, and they want to relax that restriction, then the 500x500 box for scaling is configured <a href="https://github.com/stuartlangridge/pubphoto/blob/master/index.html#L963">in index.html</a> and can be changed to whatever the deployer prefers.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2014/05/12/nomad-chargekey-chargecard-review/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/05/15/mozilla-add-html5-drm-sadly-but-inevitably/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://twitter.com/talideon/profile_image?size=original">
+			Keith Gaughan responded at
+		<a href="https://twitter.com/talideon/status/611541988878512129">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Agreed. Bittorrent Shoot requires everyone to download an app and so is useless. See kryogenix.org/days/2014/05/1… for why. twitter.com/stops&hellip;
+</span></li>
+		<li><img src="https://twitter.com/Idl3/profile_image?size=original">
+			Luca Vinci responded at
+		<a href="https://twitter.com/Idl3/status/611544135674253312">reposts this.</a>
+(twitter.com)		<span class="wm-summary">			RT @sil: Agreed. Bittorrent Shoot requires everyone to download an app and so is useless. See kryogenix.org/days/2014/05/1… for why. twitter.com/stops&hellip;
+</span></li>
+		<li><img src="https://twitter.com/DOitApps/profile_image?size=original">
+			DOit Apps responded at
+		<a href="https://twitter.com/sil/status/611541117063045120">likes this.</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-q__Dh_47Efc/AAAAAAAAAAI/AAAAAAAAApw/5pv_-vwA0Kc/photo.jpg?sz=50">
+			Oliver Grawert (ogra) responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/XXHN7uqMwoD">plus.google.com</a>
+		<span class="wm-summary">			Soonsnap.com by me and +Sam Hewitt was featured on the BBC's Click programme: I snaffled the clip and put it on YouTube, or you can see it at http://&hellip;
+</span></li>
+		<li><img src="https://lh6.googleusercontent.com/-Lfd1FcDX0tI/AAAAAAAAAAI/AAAAAAAAD_o/HkNPom1XopI/photo.jpg?sz=50">
+			Jason DeRose responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/XXHN7uqMwoD">plus.google.com</a>
+		<span class="wm-summary">			Soonsnap.com by me and +Sam Hewitt was featured on the BBC's Click programme: I snaffled the clip and put it on YouTube, or you can see it at http://&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/110235390364972422">mastodon.social</a>
+		<span class="wm-summary">			I've also got the DNS at tsohost, so killing it is one fewer thing I have there, which is also good. That's not the determining thing because I could&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/007/112/original/37df032a5951b96c.jpg">
+			Terence Eden responded at
+		<a href="https://mastodon.social/@Edent/110235435941693542">mastodon.social</a>
+		<span class="wm-summary">			@silIt is hard, but take comfort from this https://www.youtube.com/watch?v=L0MK7qz13bU FROZEN | Let It Go Sing-along | Official Disney UK
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/326/643/815/506/880/original/91bc67e313d5cf08.png">
+			Wimpy responded at
+		<a href="https://fosstodon.org/@wimpy/110235440154154759">fosstodon.org</a>
+		<span class="wm-summary">			@sil Use Cloudflare for DNS (free) and fly.io free allowances to run the app?
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/110235442968742462">mastodon.social</a>
+		<span class="wm-summary">			@wimpy I certainly could do, yup. What I'm trying to work out is whether I want to spend the effort :)
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/326/643/815/506/880/original/91bc67e313d5cf08.png">
+			Wimpy responded at
+		<a href="https://fosstodon.org/@wimpy/110235460071858377">fosstodon.org</a>
+		<span class="wm-summary">			@sil Ah. I thought is was the cost of hosting it.
+</span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/110/231/085/701/062/327/original/f91ab1e1d91b6ecf.jpg">
+			God Will Stop the War responded at
+		<a href="https://mastodon.social/@sil/110235384047622235#favorited-by-110231085701062327">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/296/829/412/914/160/original/ef1b4701171e4867.png">
+			Roger Light responded at
+		<a href="https://fosstodon.org/@ralight/110235593875712723">fosstodon.org</a>
+		<span class="wm-summary">			@sil it's a shame, it's an elegant solution. That doesn't change the fact I'd never use it though.
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/110235671421467210">mastodon.social</a>
+		<span class="wm-summary">			A page glows white in my email tonightDNS time: payment dueA website of age a decadeUserless since 22Should I renew despite reluctance deep within?Dut&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/110235678350832577">mastodon.social</a>
+		<span class="wm-summary">			@wimpy that was a part of it, and I didn't know that cloudflare do free DNS registrations (really? why wouldn't I use it to renew a million domains?)
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/194/998/original/d29181b871b001b0.png">
+			John Colagioia responded at
+		<a href="https://mastodon.social/@sil/110235384047622235#favorited-by-194998">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/111478912981121985">mastodon.social</a>
+		<span class="wm-summary">			@dc602003 maybe I ought to rebuild it so that it uses webrtc (everybody does that now) and you show a QR code (everybody supports that now).
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/111478917659310201">mastodon.social</a>
+		<span class="wm-summary">			@dc602003 also see discussion from earlier in the year when I let it die :) https://mastodon.social/@sil/110235384047622235
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/05/13/some-thoughts-on-soonsnap-and-little-big-details/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

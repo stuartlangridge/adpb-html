@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Sorttable v2: making your tables even more sortable</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Sorttable v2: making your tables even more sortable">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2007/04/07/sorttable-v2-making-your-tables-even-more-sortable/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/04/07/sorttable-v2-making-your-tables-even-more-sortable/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2007/04/07/sorttable-v2-making-your-tables-even-more-sortable/"><time 
+			class="dt-published" datetime="2007-04-07T18:17:00+01:00">Apr 07 2007</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/04/07/sorttable-v2-making-your-tables-even-more-sortable/">Sorttable v2: making your tables even more sortable</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p><a href="http://www.kryogenix.org/code/browser/sorttable/">Sorttable</a>, the JavaScript table sorting library, is pretty much the
+most popular thing I've ever written. (Top hit for "<a href="http://www.google.co.uk/search?q=javascript+sort+table">javascript sort
+table</a>" on Google, too.) Over the four years or so since I first
+released it, there's been a steady trickle of thanks, feature requests,
+and bug fixes to it. I've finally got around to releasing a new version
+of the script that hopefully covers everything that people were looking
+for. You can get it at the same place as it ever was, <a href="http://www.kryogenix.org/code/browser/sorttable/">sorttable: Make
+all your tables sortable</a>.  </p>
+<h3>What's changed in version 2</h3>
+<p>The most important thing that's changed is that sorttable now has a much
+much clever automatic column typer. You still can just drop sorttable in
+place and not have to do any configuration, but it's quite a bit
+cleverer about working out whether your columns are numeric or dates or
+currency or text. It skips blank lines, it can tell the difference
+between English and American format dates, it understands numbers with
+commas in and negative numbers. This is the number one feature request.
+Secondly, you can now use custom sort keys for those columns that
+sorttable can't work out for itself. See the page for details, but this
+should allow anyone to make anything work with sorttable v2. It's also a
+bit more compliant with HTML standards. To add a "totals" row you should
+add the row to a <code>&lt;tfoot&gt;</code> section in your table. Sorttable v1 used a
+class of "sortbottom" on totals rows; for backwards compatibility this
+is still supported, but you really should be using <code>&lt;tfoot&gt;</code> instead. In
+a similar way, sorttable now uses <code>&lt;thead&gt;</code> as your column headers if
+you have it. If you do not have it then it will create a <code>&lt;thead&gt;</code> and
+put the first row of your table in it. This is a <strong>backwards
+incompatible change</strong>: to apply style to your table headers, you should
+now style <code>table.sortable thead</code>, not <code>table.sortable a.sortheader</code> as
+in v1. Input elements are now supported in table cells! If your table
+cells contain input elements then sorttable will use the value in the
+input element. Sorttable is now quite a lot faster than it used to be,
+owing to various little tweaks. It's especially fast at resorting the
+table by the column you've already sorted by (but reversed), because now
+it just reverses the table rather than doing the sort. Stable sorting is
+supported but commented out in the code (because the stable sort is
+implemented in JavaScript, not using the native list sorter, and so it's
+a lot slower). You can change this by editing one line in sorttable.js
+if stable sorting is important; see the page for details.  </p>
+<h3>Thanks</h3>
+<p>Lots of people (really, really lots) have contributed code suggestions,
+feature requests, bug reports, and compliments about sorttable. Here's
+my chance to say thankyou. So: thankyou to... Eric Chang, Mehmet Kut,
+Dan Synder, Jeff Bradley, Eric Holstege, Victor Kryukov, Nikola Ivanov,
+Geoff Clevenger, Mikko Suniala, Scott Reynen, Justin Meyer, Leonardo
+Kenji Shikida, Ben Ostrowsky, Daniel Berlin, Richard Snazell, Mark
+James, Eric Rizzo, Garve, Andreas Rehm, Scott Kingdon, Marcus Månsson,
+Bill Barry, Michael Rumpler, Avi Rogers, Kevin Wu, Espen Hovlands,
+Petronel Laviniu Malutan, John M. Pierre, opus27, Brendan Bowles, Marty
+O'Brien, Alex Rubin, Chris Gay, Jack Vanhan, Guy Rosen, John Dawson,
+Ryan Korczykowski, Carl Forde, Pete K, Glenn Haser, Richard Grassy,
+Olivier Briat, Bob Hanson, Alex Z, Narayana Rao Kankipati, Rey
+Hernandez, Eric Moriztz, Marco Valk, Marcus Daniel, David Dockhorn,
+Angela Weise, Aneel Nazareth, Jeremy Hulford, Thomas K. Weinstock,
+Edward, Matthew Egbers, Anton Berezin, Moustafa Elqabbany, Justin
+Williams, Daniel Chace, Inigo Surguy, Vladimir Kornea, John Mund, Pablo,
+David Golden, Brad Kemper, Brian Schott, Christian Robottom Reis, Justin
+Haygood, C. David Eagle, Simon Willison, and Dean Edwards. Phew! All
+those people have contacted me asking for new features or have sent me
+patches or have provided code that I was able to reuse in v2 of
+sorttable. Thankyou: for those of you who wanted sorttable to do
+something new, I hope you like it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2007/04/01/lugradio-live-2007-call-for-papers-closed/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2007/04/08/ies4linux/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2007/04/07/sorttable-v2-making-your-tables-even-more-sortable/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2007/04/07/sorttable-v2-making-your-tables-even-more-sortable/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

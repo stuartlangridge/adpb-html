@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; More on web testing</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; More on web testing">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2004/01/31/testingmore/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/01/31/testingmore/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2004/01/31/testingmore/"><time 
+			class="dt-published" datetime="2004-01-31T11:00:00+00:00">Jan 31 2004</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/01/31/testingmore/">More on web testing</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I’m fairly convinced that it should be possible to set up something that
+“records” you testing a web page. In a world without security
+restrictions, it’d work. Basically, you have a bookmarklet which creates
+a sidebar, and then the sidebar watches what you do in the main frame
+and stores a script.<br>
+In a bit more detail:<br>
+The bookmarklet would be called something like “Record a macro on this
+page“. When you click it, it creates a link in the body of the page,
+which looks something like this:  </p>
+<p><code>&lt;a href="http://webtest.kryogenix.org/" onclick="if (window.sidebar.addPanel) { window.sidebar.addPanel(this.href);" rel="sidebar" target="_search"&gt;test&lt;/a&gt;</code><br>
+(The very useful <a href="http://zombie.codewalkers.com/2003/11/10/sidebars_in_firebird_mozilla_opera_and_ie">sidebars in firebird, mozilla, opera and IE</a>
+details at <a href="http://zombie.codewalkers.com/">unescaped beta</a> helped immeasurably here.) The
+<code>rel="sidebar"</code> creates a sidebar in Opera. The <code>target="_search"</code>
+creates a sidebar in IE. The JavaScript <code>addPanel</code> stuff creates a
+sidebar in Mozilla and Mozilla Firebird. Then the code clicks on the
+link. Pow, sidebar.<br>
+The sidebar then, when it loads, attaches a shedload of handlers to the
+code in the main page—an onclick to everything, onchange to form
+elements, all that sort of thing. So when you <em>do</em> anything on the page,
+it gets told about it. When it gets told about something, it stores that
+away in a script. You should then be able to save that script and replay
+it, and the automated system will mimic all your clicks and form
+typing.  </p>
+<h4>Why this won’t work</h4>
+<p>Well, there are three reasons. The first is that the sidebar won’t be
+able to read the contents of your page, because it comes from a
+different domain, and the security model (which exists for good reasons)
+won’t let it. I <em>think</em> you could get around this by having the
+bookmarklet construct your whole sidebar page with <code>document.write</code>
+statements, but firstly this would make it a very, very complex
+bookmarklet indeed, and secondly there are limitations on the size of a
+bookmarklet, especially in IE.<br>
+The second reason is that the sidebar won’t be able to access the local
+filesystem to save the script, again because of the security model. You
+might be able to fix this with signed scripts, but then I suspect what
+you will get is ugly confusing security dialogs. It’s possible that
+pages loaded from the local filesystem can save back to it, but that
+doesn’t appear to always be the case—Mozilla will, I think, need chrome
+URLs, and that then means that the test environment has to be
+<em>installed</em> and then it’s not an easy-to-use cross-browser thing, it’s a
+Moz <span class="caps">XUL</span> application.<br>
+The third reason is that when you submit a form, or follow a link, you
+stop tracking what’s happening in the page. That’s silly in a test
+environment; you need some way of saying “this thing here on page 2,
+that has to be there” so that you have some conditions for knowing
+whether your test has passed. I can’t think of a way around this,
+either—there’s no way that the security model will ever let you put a
+page in the sidebar that can watch what’s in the main content window,
+since that sidebar page could then tell someone nasty on the internet
+what you were browsing all the time. I’ve seen proxy applications, where
+the proxy seamlessly inserts stuff into your page—the ones designed for
+web testing, though, don’t do any JavaScript stuff, so they can only
+test form submissions and so on. I don’t want that—I want to be able to
+track what a user does the whole time they’re testing, including whether
+any interactive stuff on the page works.<br>
+Perhaps someone has already solved this. Is there anything that is
+cross-browser (it’s allowed to demand a <em>modern</em> browser, but at a flat
+minimum it must work in IE and Mozilla on Windows and Linux) and lets me
+do this sort of testing?</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2004/01/29/snowed/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2004/01/31/birthdays/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2004/01/31/testingmore/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/01/31/testingmore/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

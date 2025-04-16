@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; External link icons the CSS way</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; External link icons the CSS way">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2002/08/30/external/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2002/08/30/external/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2002/08/30/external/"><time 
+			class="dt-published" datetime="2002-08-30T11:00:00+01:00">Aug 30 2002</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2002/08/30/external/">External link icons the CSS way</a>
+		</h2>
+		<div class="entry-content e-content">
+			<!--timestamp:1030709841.0:-->
+<p>A few days ago, Mark Pilgrim wrote up some details on how to
+<a href="http://diveintomark.org/archives/2002/08/22.html#automatically_inserting_images_before_offsite_links">automatically insert an image before off-site links</a>, using Movable
+Type macros. I don't like doing it that way; it's possible with pure CSS
+(assuming you have a browser that supports CSS3 selectors -- this means
+Mozilla, in case you hadn't guessed). If you <em>are</em> using Mozilla, you'll
+see a little world icon (<img alt="(ext)" src="/images/remote.gif">) after each external link. Read on
+for a description of how the technique works.</p>
+<p>Mark's method works by using MT macros to assign a class of "offsite" to
+off site links, and then styling those links accordingly. Using CSS3
+selectors, we can style off-site links directly without having to assign
+them a class or run any server-side code. Here's the code to do it, and
+then we'll discuss how it works.</p>
+<!--category::--><!--author:sil:--><p>
+    /* Add an external-link icon to absolute links */
+
+    div.blogbody a[href^="http:"] {
+            background: url(/images/remote.gif) right center no-repeat;
+            padding-right: 12px;
+    }
+
+    div.blogbody a[href^="http:"]:hover {
+            background: url(/images/remote_a.gif) right center no-repeat;
+    }
+
+    /* ...but not to absolute links in this domain... */
+
+    div.blogbody a[href^="http://www.kryogenix.org"] {
+            background: transparent;
+            padding-right: 0px;
+    }
+
+    div.blogbody a[href^="http://www.kryogenix.org"]:hover {
+            background: transparent;
+    }
+
+    /* ...or to the "google for $postTitle" link for each entry */
+
+    div.blogbody a[href^="http:"].googlelink {
+            background: transparent;
+            padding-right: 0px;
+    }
+
+    div.blogbody a[href^="http:"].googlelink:hover {
+            background: transparent;
+    }
+
+</p>
+<p>This all works by using the CSS3 "starts-with" selector, <strong>\^=</strong>, on
+attributes. Where we have a selector <code>a[href^="http:"]</code>, that means
+"select all <strong>a</strong> tags where the <strong>href</strong> attribute <strong>starts with</strong> the
+string <strong>http:</strong>". This will select all absolute links, i.e., those that
+are not given as a link relative to where the current page is. That's
+our first selector: it says "add this background image and a bit of
+right padding to all absolute links". (Note that the technique of adding
+a little bit of padding and then putting an icon <em>inside</em> that padding
+as a background image, to make it look as though the icon is part of the
+flow of the page, is one that I got from <a href="http://www.ericmeyeroncss.com">Eric Meyer on CSS</a>.)</p>
+<p>(Ignore the second rule for the moment.)</p>
+<p>Now, all outside links are absolute links (because they're not on the
+same server as the current page), but some internal site links may also
+be absolute (for instance, permalinks often are). So our third rule
+removes the background and padding we applied above for absolute links
+that point to my domain. (You'll have to customise this bit for your own
+domain.)</p>
+<p>Ignoring the fourth rule for a little bit, the fifth rule does the same
+as the third rule, for absolute links with class "googlelink". This is
+because posts here have a "search Google for the post title" link, which
+is itself a small icon; it looks a bit daft to have a small
+representative icon (the magnifying glass) followed up by another small
+icon! So this suppresses the "external link" indicator for that
+particular link (which is defined as class "googlelink" in the MT
+templates).</p>
+<p>Note that flashy people could have defined the third and fifth rules as
+one rule, because you can add multiple selectors on a rule; this should
+work:</p>
+<div class="highlight"><pre><span></span><code>div.blogbody a[href^=&quot;http://www.kryogenix.org&quot;], div.blogbody a[href^=&quot;http:&quot;].googlelink {
+    etc etc etc
+}
+</code></pre></div>
+
+<p>but I wanted to take my time over this, because CSS3 selectors aren't
+all that widely supported.</p>
+<p>What about those rules that we ignored, the second, fourth, and sixth?
+Well, they apply to the absolute external links in exactly the same way
+as rules 1, 3, and 5, but they add the pseudo-class <strong>:hover</strong>. So when
+you mouseover one of our external links, these new styles apply. All
+this does is switch in a new version of the background image (in this
+case, an animated spinning version of the world image).</p>
+<p>The images come from Matterform's excellent <a href="http://www.matterform.com/index.php?page=/qbullets/index.php">QBullets</a> collection.</p>
+<p>So, there you have it. Fortunately, Internet Explorer, which doesn't
+support CSS3 selectors, doesn't partially apply them or anything; our
+selectors above just don't match anything and hence the view in IE is
+unchanged (you just don't get the neat icons).</p>
+<p>For those of you who are Mozillaless and remain unclear on what this
+should all look like, here's a screenshot. See how the "Show, Don't
+Sell" link, which is external, has the icon, whereas the "more detailed
+writeup" link, which is a link to somewhere else on kryogenix.org, does
+not.</p>
+<p><img alt="How the external link icons look in Mozilla" src="/images/external-link-demo.gif"></p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2002/08/28/douglas/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2002/08/30/designers/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/074/943/original/d743fc4128a05a96.jpeg">
+			bkardell responded at
+		<a href="https://mastodon.social/@sil/110231539314231052#favorited-by-74943">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2002/08/30/external/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2002/08/30/external/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

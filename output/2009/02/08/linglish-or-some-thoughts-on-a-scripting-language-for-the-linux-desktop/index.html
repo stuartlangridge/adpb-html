@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Linglish, or, some thoughts on a scripting language for the Linux desktop</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Linglish, or, some thoughts on a scripting language for the Linux desktop">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2009/02/08/linglish-or-some-thoughts-on-a-scripting-language-for-the-linux-desktop/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2009/02/08/linglish-or-some-thoughts-on-a-scripting-language-for-the-linux-desktop/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2009/02/08/linglish-or-some-thoughts-on-a-scripting-language-for-the-linux-desktop/"><time 
+			class="dt-published" datetime="2009-02-08T22:19:00+00:00">Feb 08 2009</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/02/08/linglish-or-some-thoughts-on-a-scripting-language-for-the-linux-desktop/">Linglish, or, some thoughts on a scripting language for the Linux desktop</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>After a few hours of fiddling around, I've come up with a thing I'm
+calling "Linglish": it's a very simple scripting language for the Linux
+desktop. It looks a lot like AppleScript, and it's nowhere near
+finished. It basically allows you to write in a sort of bastardised
+English which then calls D-Bus functions, so you can say things like:</p>
+<ul>
+<li><strong>tell</strong> <span style="color: green">screensaver</span> <strong>to</strong>
+    <span style="color: green">lock</span></li>
+<li><strong>tell</strong> <span style="color: green">banshee</span>'s
+    <span style="color: green">window</span> <strong>to</strong>
+    <span style="color: green">present</span></li>
+<li><strong>tell</strong> <span style="color: green">banshee</span>'s
+    <span style="color: green">playerengine</span> <strong>to</strong>
+    <span style="color: green">pause</span></li>
+<li><strong>tell</strong> <span style="color: green">tomboy</span> <strong>to</strong>
+    <span style="color: green">createnamednote</span> <strong>with</strong> '<em>My
+    Named Note</em>'</li>
+<li><strong>tell</strong> <span style="color: green">guake</span> <strong>to</strong>
+    <span style="color: green">add_tab</span></li>
+<li><strong>wait for</strong> <span style="color: green">tomboy</span>'s
+    <span style="color: green">noteadded</span> <strong>then tell</strong>
+    <span style="color: green">banshee</span>'s
+    <span style="color: green">playerengine</span> <strong>to</strong>
+    <span style="color: green">toggleplaying</span></li>
+<li><strong>wait repeatedly for</strong> <span style="color: green">tomboy</span>'s
+    <span style="color: green">noteadded</span> <strong>then tell</strong>
+    <span style="color: green">banshee</span>'s
+    <span style="color: green">playerengine</span> <strong>to</strong>
+    <span style="color: green">toggleplaying</span></li>
+<li><strong>wait</strong> <span style="color: green">6</span> <strong>times for</strong>
+    <span style="color: green">tomboy</span>'s
+    <span style="color: green">noteadded</span> <strong>then tell</strong>
+    <span style="color: green">banshee</span>'s
+    <span style="color: green">playerengine</span> <strong>to</strong>
+    <span style="color: green">toggleplaying</span></li>
+</ul>
+<p>Like I say, it isn't finished yet (the above all works, but there's lots
+more that needs to happen). At the moment, for example, there's no way
+to run more than one command, or to get a return value from any function
+and react on it. The question is, is this a good idea that's worth
+pursuing? This will never be (and is obviously never intended to be) a
+replacement for a proper language; if you want to do something
+semi-complicated, drop into Python or JavaScript or Vala or C and make
+the D-Bus calls yourself. However, I can see it being useful to help
+people who don't want to get to grips with proper programming but still
+want to control their applications. If you think it's a bad idea, please
+let me know why and what you think should happen instead. If you think
+it's a good idea, then here are a couple of other thoughts that I've had
+on how it might evolve:</p>
+<ul>
+<li>A script editor program would be nice, which could dynamically
+    inspect D-Bus to help you write scripts. It could compile a script
+    to an executable that wouldn't need the script runtime either
+    without too much difficulty (one big Python script, perhaps, or
+    using glick to make an actual executable).</li>
+<li>Obviously it needs to be able to run multiple commands, and have
+    later ones react to what happened in earlier ones. I'm imagining an
+    <code>ask banshee's engine for position</code> sort of sentence, which would
+    get the <code>Position</code> property and then stash it in an invisible
+    <code>result</code> variable, meaning that the next command could be
+    <code>tell banshee's playerengine to seek to the result + 20</code> or
+    something similar.</li>
+</ul>
+<p>Key question is: is this worth pursuing? Or is it reasonable to demand
+that people who want to script our desktop should learn a more real
+programming language? Code (written in Python) in svn at
+<a href="http://svn.kryogenix.org/svn/linglish/">http://svn.kryogenix.org/svn/linglish/</a>; it's only half a dozen files.
+If you want to fiddle with the grammar to add new ways of parsing
+commands you'll need <a href="http://theory.stanford.edu/~amitp/yapps/">yapps2</a> (in Ubuntu as <a href="apt:yapps2">yapps2</a>), and you'll
+need the yapps2 runtime to actually run any commands (in Ubuntu as
+<a href="apt:yapps2-runtime">yapps2-runtime</a>). Syntax:
+<code>python linglish/runner.py -c "tell tomboy to createnamednote with 'named note'"</code></p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2009/02/08/lugradio-live-uk-2008-videos-coming-online/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2009/02/11/more-thoughts-on-linglish/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/1030022158779592705/EDR4Rsl4.jpg">
+			Christian Kruse responded at
+		<a href="https://twitter.com/cjk101010/status/1301821925275185152">twitter.com</a>
+		<span class="wm-summary">			Well, I wish you success. An easy to use scripting language for writing simple automation for the Linux desktop would be nice.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1301824218473156608">twitter.com</a>
+		<span class="wm-summary">			Cabin isn't AppleScript -- it's a proposal for a way to write new (simple) apps, not to automate existing ones. (I too would like something AppleScrip&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/867956085545590785/-yUCGjhG.jpg">
+			Monica Ayhens-Madon responded at
+		<a href="https://twitter.com/sil/status/1301819825258459137#favorited-by-236729679">twitter.com</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2009/02/08/linglish-or-some-thoughts-on-a-scripting-language-for-the-linux-desktop/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2009/02/08/linglish-or-some-thoughts-on-a-scripting-language-for-the-linux-desktop/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

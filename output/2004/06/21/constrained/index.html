@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Free choice and constrained choices</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Free choice and constrained choices">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2004/06/21/constrained/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2004/06/21/constrained/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2004/06/21/constrained/"><time 
+			class="dt-published" datetime="2004-06-21T11:00:00+01:00">Jun 21 2004</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2004/06/21/constrained/">Free choice and constrained choices</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Matt <a href="http://www.webeditorblog.com/cgi-bin/blosxom.cgi/2004/06/21#linux_arguments_are_boring_part_2">responded</a> to <a href="http://www.kryogenix.org/days/2004/06/21/boringDoing">my thoughts on Gnome’s approach</a> with a
+discussion of the nature of choice:  </p>
+<blockquote>
+<p>Gnome is free to innovate and show the world that there are better
+ways of doing things, but at the same time, exercise some of their own
+community’s rhetoric and give people a choice. The idea that it’s okay
+for Gnome to deprive their users of choice over the way they use their
+computer, is another reason that the Linux world is annoying me at the
+moment…Why should it be an all or nothing decision, for a user to
+make? ... If Gnome is the best system for a person, corporation or
+whatever, except that the extra training required because of the
+spatial approach makes it unviable, why do people have to ditch an
+entire, very well developed desktop environment?</p>
+</blockquote>
+<p>The notion of choice, that you can combine different bits into a desktop
+of your choice, custom-built by you for you, has been the war-cry of
+Linux since there first <em>was</em> a Linux desktop. I think, though, that
+it’s a pipe-dream, and the quest for this pipe-dream has hurt the
+development of the Linux desktop beyond measure. In an ideal world, a
+utopia of development, we’d have open and defined standards that
+everyone implemented, and those standards would define how individual
+components could slot together to form the perfect desktop.
+<span class="caps">KDE</span> applications would work on a Gnome
+desktop; Gnome applications would work on a
+<span class="caps">KDE</span> desktop. Currently, they do not—while you
+can <em>run</em> them, they use different UI guidelines, different
+configuration databases, different inter-application
+<span class="caps">RPC</span> methods. The pipe-dream is that
+organisations like <a href="http://freedesktop.org/">freedesktop.org</a> can define these interoperability
+standards and give us our utopia. But I can’t see how that’s going to
+happen. Let’s take the example of a <span class="caps">KDE</span>
+application which needs to interoperate perfectly with a Gnome desktop.
+It should, when a <span class="caps">URL</span> is clicked, start up the
+browser that the user has configured as their browser. Now, it can
+either ask the <span class="caps">KDE</span> configuration mechanism (as
+it currently does), it can ask the Gnome mechanism, it can ask the
+<span class="caps">KDE</span> mechanism which (under the covers) asks
+the Gnome mechanism, or it can ask some kind of abstraction layer which
+knows how to ask both the <span class="caps">KDE</span> and Gnome
+mechanisms. If the freedesktop people specify a One True Config
+Approach, and it’s gconf (which it looks to me like they’re gearing up
+to do), how likely is it that the <span class="caps">KDE</span> people
+will start using it? And that’s just “how to find a web browser“. This
+is why I suggested, in <a href="http://www.lugradio.org/guide.php">LugRadio episode five</a>, that we should abandon
+<span class="caps">KDE</span> and concentrate our development work on
+Gnome. While the ideal of infinitely-pluggable desktop components would
+be great, I really can’t see it ever happening. To put it another way,
+if <span class="caps">KDE</span> applications and Gnome applications and
+non-desktop-integrated-applications all work the same way, to the same
+UI guidelines, using the same configuration databases and the same
+<span class="caps">RPC</span> technology, haven’t we then essentially
+created one desktop environment anyway?<br>
+Further, <a href="http://www.jonobacon.org/viewcomments.php?id=353">Jono has also weighed in on the debate</a> with some ideas on
+Gnome’s status as a framework:  </p>
+<blockquote>
+<p><span class="caps">GNOME</span> is not written to be installed by the
+regular Joe – it is intended as a framework that distributors assemble
+to target their audience. This may mean tweaking the magic GConf key
+and turning the spatial Nautilus off, but that is the choice of the
+distributor…This is an area where <span class="caps">GNOME</span> and
+<span class="caps">KDE</span> are distinctly different – the
+<span class="caps">GNOME</span> guys are pushing for real and
+different innovative features, whereas the
+<span class="caps">KDE</span> folks are simply taking any feature and
+providing an off switch in the Control Center. I would love to see
+<span class="caps">KDE</span> become more framework orientated such as
+<span class="caps">GNOME</span>…The greatest sound engineers never add
+more bass/mid/treble to a sound, they simply take the other
+frequencies out.</p>
+</blockquote>
+<p>I’m not sure that I view Gnome as a framework in quite the way Jono is
+describing, but I’m in wholehearted agreement about Gnome’s innovative
+approach as opposed to (an apparent) stagnation in
+<span class="caps">KDE</span>.<br>
+I can’t imagine how a preference to turn on and turn off the spatial
+Nautilus, as an example, would be anything other than confusing. (I
+appreciate that Matt isn’t talking about this specific example but more
+the general problem, but the point still stands.) Where would such a
+preference be? It would be confusing if you don’t know what it means,
+and it would encourage people to turn it off without trying it. Jono
+himself has <a href="http://www.jonobacon.org/viewcomments.php?id=347">been complimentary about the spatial Nautilus</a>,
+suggesting off-line that he didn’t think it would be a good idea but has
+since found it to be a better system. This all boils down to the
+problem: if you know better than the users, how much do you enforce
+that? If you enforce it <em>too</em> much, then you’re restricting choice, and
+god help you if you’re wrong. If you don’t enforce it enough, then
+you’re missing a chance to really <em>help</em> your users even though they
+don’t know that they need help.</p>
+<hr>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2004/06/21/evolution/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2004/06/21/boringdoing/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2004/06/21/constrained/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2004/06/21/constrained/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; New photo gallery at LiveJournal</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; New photo gallery at LiveJournal">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2007/04/28/new-photo-gallery-at-livejournal/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2007/04/28/new-photo-gallery-at-livejournal/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2007/04/28/new-photo-gallery-at-livejournal/"><time 
+			class="dt-published" datetime="2007-04-28T16:06:00+01:00">Apr 28 2007</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2007/04/28/new-photo-gallery-at-livejournal/">New photo gallery at LiveJournal</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>For some time now, I've been trying to work out where best to store my
+photos. You see, I'd like a gallery on line, so people can view it, and
+I'd like to be able to do simple photo editing -- rotations,
+reflections, red-eye removal, that sort of thing. I was therefore caught
+between the idea of a local photo program, on my computer, and
+publishing those photos to an online gallery, and the idea of <em>just</em>
+having the online gallery and making sure that it's one that can handle
+the editing requirements I've got. For some time I went backwards and
+forwards on this, thinking one way way best and then the other. I even
+toyed with the idea of writing some sort of web-based photo management
+app. I don't like keeping things in two places -- it's an invitation to
+them getting unsynchronised. On the other hand, most of the existing
+web-based photo management (as opposed to photo <em>display</em>, for which you
+need nothing more than HTML) apps are shit. So, between a rock and a
+hard place. One night I had an epiphany, which is: bandwidth is not
+infinite. Doing all my photo management online is unacceptably slow and
+annoying in a world where one photo might be 2MB in size. I couldn't
+bear it. Of course, here, I'd fallen foul of one of the <a href="http://en.wikipedia.org/wiki/Fallacies_of_Distributed_Computing">Eight Fallacies
+of Distributed Computing</a>. Much as people would like to claim it,
+remote resources and local resources are not equivalent, at least not
+until we get a decent fast internet. That being the case, I needed to
+plump for a photo management app on my machine and then simply publish
+the photos online. Now, the choice of photo management app was fairly
+obvious: <a href="http://f-spot.org/">F-Spot</a>. It's nice, it integrates with Gnome. Its main
+competitor on the Linux desktop is <a href="http://www.digikam.org/">Digikam</a>, which is pretty good but
+which I just don't like. No particular reason, and no discredit to the
+digikam team; it's just not my sort of thing. One big download later and
+I'd imported all my existing gallery photos into F-Spot. It also made it
+easier to import new photos from my camera, which was nice. Next step,
+then: putting these photos on the web so people can see them. F-Spot
+supports exporting to a number of existing photo sites (Flickr, smugmug,
+etc), to Gallery, the PHP online photo gallery thing, and to its own
+HTML layout and jimmac's <a href="http://jimmac.musichall.cz/original.php">Original</a> gallery. I was all geared up to
+use the HTML layout, at which point I found that it can't be customised.
+I want my gallery (eventually) to fit in with the look of my site. So, I
+thought to myself: I'll write something that parses that HTML, grabs all
+the info out of it, and then creates my own static HTML gallery. That's
+a good idea. Two months pass and I've done fuck all. What this actually
+means, when this happens, is that I'll never get round to it. After
+three decades I know my own mind, even if it takes steps to hide what
+it's thinking from me occasionally. In the interim, something important
+happened: Jono posted a few images on his website, they got syndicated
+onto various planets, and as everyone pulled up the image it drove our
+poor server to its knees. After some experimentation with ImageShack for
+this sort of thing, we came to the conclusion that off-site image
+hosting is what we need. So Jono went to Flickr, because he hates
+freedom. Flickr's pretty good, I'm not going to deny it, but, as has
+been related in these pages before, I'd like to try hard to use free
+software only where possible. I've got no problem with paying a
+subscription to someone who's doing the hosting for me, but I'd like to
+use someone who's got open source running their site. Flickr might use
+lots of free software under the covers, but it itself isn't free. Other
+photo sites seem to be the same; Smugmug are very proud of how they use
+free software, and they contribute changes and extra code back to the
+community in a good way, but the software for the site itself isn't
+Free, so I was loath to use it. Those of you saying "I bet you use
+Google!", yes, yes I do. I didn't say I'd succeeded in every way in not
+using non-free software, but two wrongs don't make a right; just because
+I'd given in in certain areas doesn't mean I should give in in all
+areas, does it? And then I had a brainwave. LiveJournal is built on free
+software, and it's released and available. And they do photo hosting.
+After a bit of looking around, I established that yes, indeed, they do,
+<a href="http://www.picpix.com/site/tech/source.bml">the code is open source</a>, and so off I went to LJ. And now I have <a href="http://pics.livejournal.com/stuartlangridge/">my
+photo gallery</a> online. Well done, Brad and LiveJournal. I said before,
+a long time ago, that <a href="http://www.kryogenix.org/days/2005/01/30/semanticMuch">if the Semantic Web works then it’ll work on LJ
+first</a>; looks like running a public profitable service without hiding
+your source away is working first there too. It needs theming to look
+like the rest of my site and just generally not look horrific. I am
+aware of this, but I haven't had a chance yet to properly understand the
+LJ "S2" theming engine. I'll get to it. I am also aware that by not
+being on flickr I miss out on being part of that community; my photos
+won't show up in tag searches, that sort of thing. That is a shame, and
+I am indeed missing out; still, there you go. This also means that I
+have finally got <a href="http://pics.livejournal.com/stuartlangridge/gallery/0003pf8h">photos of the 2007 SOCPA mass lone protest</a>
+available. Enjoy the site of Bill, Ginny, and I holding up signs in
+front of Westminster landmarks! And if you think we look daft then,
+well, where were you when we were protesting, eh?</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2007/04/27/speaking-at-guadec/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2007/04/28/fotobilder-livejournal-photo-gallery-python-bindings/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2007/04/28/new-photo-gallery-at-livejournal/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2007/04/28/new-photo-gallery-at-livejournal/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

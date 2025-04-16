@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Reconnecting</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Reconnecting">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/09/22/reconnecting/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/09/22/reconnecting/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/09/22/reconnecting/"><time 
+			class="dt-published" datetime="2014-09-22T11:38:00+01:00">Sep 22 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/09/22/reconnecting/">Reconnecting</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>After I <a href="http://www.kryogenix.org/days/2014/09/19/fundamentally-connected/">took issue</a> with some <a href="http://aaron-gustafson.com/notebook/2014/a-fundamental-disconnect/">thoughts of Aaron Gustafson</a> regarding JavaScript, Aaron has <a href="http://aaron-gustafson.com/notebook/2014/missed-connections/">clarified his thoughts</a> elegantly.</p>
+<p>His key issue here is summed up by one sentence from his post: "The fact is that you can’t build a robust Web experience that relies solely on client-side JavaScript." Now, I could nit-pick various details about the argument he provides (I've had as many buggy modules from npm or PyPI as I've had from the Google jQuery CDN, and if you specify exact version numbers that's less of a problem; writing software specifically for one client might allow you to run a carbon copy of their server, but server software for wide distribution, especially open source, doesn't and shouldn't have that luxury) but those sorts of pettifogging nit-picks are, I hope, beneath us. In short, I'll say this: I agree with Aaron. He is right. However, this discussion uncovers some wider issues.</p>
+<p>Now, I've built pure client-side apps. The <a href="https://github.com/WebUtils/Platform/wiki/WebUtils">WebUtils</a> are a suite of small apps which one would expect to find on a particular platform (a calculator, a compass, a currency converter, that sort of thing), but built to be pure web apps in order that someone deciding to use the web <em>as</em> their platform has access to these things. (If you're interested in this idea, get involved in the project.) I built two of them; a <a href="http://stuartlangridge.github.io/webutils-calculator/">calculator</a> and a <a href="http://stuartlangridge.github.io/webutils-currencyconverter/">currency converter</a>. Both are pure-client-side, JavaScript-requiring, Angular-using apps. I am, in general and in total agreement with Aaron, opposed to the idea that without JavaScript a web app doesn't work. (And here by "without JavaScript" we must also include being <em>with</em> JavaScript but JavaScript which gets screwed up by your mobile carrier injecting extra scripts, or your ISP blocking CDNs, or your social media buttons throwing errors, or your ads stomping on your variables. All of these are real problems which go unacknowledged and Aaron is entirely right to bring them up.) However, the policy that apps should be robust to JS not working, by being server apps which are progressively enhanced, does ignore an elephant in the room.</p>
+<p>It is this. I should not need an internet connection in order to make my calculator add 4 and 5.</p>
+<p>A web app which does not require its client-side scripting, which works on the server and then is progressively enhanced, <em>does not work</em> in an offline environment. It doesn't work when you're in and out of train tunnels, or at a conference with bad wifi, or on a metered data connection. The <a href="http://offlinefirst.org/">offline first</a> concept, which should be informing how we build apps, is right about this.</p>
+<p>So, what to do? It is in <em>theory</em> possible to write a web app which does processing on the server and is entirely robust against its client-side scripting being broken or missing, <em>and</em> which does processing on the client so that it works when the server's unavailable or uncontactable or expensive or slow. But let's be honest here. That's not an app. That's two apps. They might share a bit of code (the server being node.js and using JavaScript might help here, but that's not what I was talking about last time), but in practice you're building the same app twice in two different environments and then delivering both through one URL.</p>
+<p>This is a problem. I am not sure how to square this circle. Aaron is right that you can't build a robust Web experience that relies solely on client-side JavaScript, but the word <em>robust</em> is doing an awful lot of work in that sentence. In particular, it means "you can't build a thing which you can be sure will work for everybody". Most of the time, for most of the people, your experience <em>can</em> be robust -- fine, it'll break if your ad JavaScript sods you up, or if your ISP blocks your jQuery download, and these are problems. But going the other direction -- explicitly <em>not</em> relying on your client-side JS -- means that you'll be robust until you're somewhere without a good internet connection. Both of these approaches end up breaking in certain situations. And making something which handles <em>both</em> these camps is a serious amount of work, and we don't really know how to do it. (I'd be interested in hearing examples of a web app which will work if I run it in an environment with a flaky internet connection <em>and</em> having redefined <code>window.Array</code> to be something else on the client. I bet there isn't one.)</p>
+<p>This needs to be a larger conversation. It needs discussion from both JavaScript people and server people. These two camps should not be separate, not be balkanised; there is an attitude still among "real programmers" that JavaScript is not a real language. Now, I will be abundantly clear here: Aaron is not one of the people who thinks this. But I worry that perpetuating the idea that JavaScript is an unstable environment will cause JS people to wall themselves off and stop listening to reasoned debate, which won't help. As I say, I don't know how to square this circle. The Web is an environment unlike any other, and as Aaron says, "building the Web requires more of us than traditional software development". We get huge benefits from doing so -- you build for the Web, and do it right, and your thing is available to everybody everywhere -- but to "do it right" is a pretty big task, and it gets bigger every day. We need to be talking about that more so we can work out how to do it.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2014/09/19/fundamentally-connected/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/09/30/the-next-big-thing-is-privacy/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="https://adactio.com/journal/7706">Be progressive</a>
+(adactio.com)		<span class="wm-summary">			Aaron wrote a great post a little while back called A Fundamental Disconnect. In it, he points to a worldview amongst many modern web developers, who&hellip;
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/09/22/reconnecting/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/09/22/reconnecting/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

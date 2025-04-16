@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Hammer and nails</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Hammer and nails">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2020/05/06/hammer-and-nails/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2020/05/06/hammer-and-nails/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2020/05/06/hammer-and-nails/"><time 
+			class="dt-published" datetime="2020-05-06T11:41:00+01:00">May 06 2020</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2020/05/06/hammer-and-nails/">Hammer and nails</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>There is a Linux distribution called Gentoo, named after a type of penguin (of <em>course</em> it's named after a penguin), where installing an app doesn't mean that you download a working app. Instead, when you say "install this app", it downloads the source code for that app and then compiles it on your computer. This apparently gives you the freedom to make changes to exactly how that app is built, even as it requires you to have a full set of build tools and compilers and linkers just to get a calculator. I think it's clear that the world at large has decided that this is not the way to do things, as evidenced by how almost no other OSes take this approach -- you download a compiled binary of an app and run it, no compiling involved -- but it's nice that it exists, so that the few people who really want to take this approach can choose to do so.</p>
+<p>This sort of thing gets a lot of sneering from people who think that all Linux OSes are like that, that people who run Linux think that it's about compiling your own kernels and using the Terminal all the time. <em>Why would you want to do that sort of thing, you neckbeard,</em> is the underlying message, and I largely agree with it; to me (and most people) it seems complicated and harder work for the end user, and mostly a waste of time -- the small amount of power I get from being able to tweak how a thing is built is vastly outweighed by the annoyance of <em>having</em> to build it if I want it. Now, a Gentoo user doesn't actually have to know anything about compilation and build tools, of course; it's all handled quietly and seamlessly by the install command, and the compilers and linkers and build tools are run for you without you needing to understand. But it's still a bunch of things that my computer has to do that I'm just not interested in it doing, and I imagine you feel the same.</p>
+<p>So I find it disappointing that this is how half the web industry have decided to make websites these days.</p>
+<p>We don't give people a website any more: something that already works, just HTML and CSS and JavaScript ready to show them what they want. Instead, we give them the bits from which a website is made and then have <em>them</em> compile it.</p>
+<p>Instead of an HTML page, you get some templates and some JSON data and some build tools, and then that compiler runs in your browser and assembles a website out of the component parts. That's what a "framework" <em>does</em>… it builds the website, in real time, from separate machine-readable pieces, on the user's computer, every time they visit the website. Just like Gentoo does when you install an app. Sure, you could make the case that the browser is always assembling a website from parts -- HTML, CSS, some JS -- but this is another step beyond that; we ship a bunch of stuff in a made-up framework and a set of build tools, the build tools assemble HTML and CSS and JavaScript, and <em>then</em> the browser still has to do its bit to build that into a website. Things that should be a long way from the user are now being done much closer to them. And why? "<a href="https://macwright.org/2020/05/10/spa-fatigue.html">We're layering optimizations upon optimizations in order to get the SPA-like pattern to fit every use case</a>, and I’m not sure that it is, well, worth it." says Tom MacWright.</p>
+<p>Old joke: someone walks into a cheap-looking hotel and asks for a room. You'll have to make your own bed, says the receptionist. The visitor agrees, and is told: you'll find a hammer and nails behind the door.</p>
+<blockquote class="twitter-tweet" data-conversation="none" data-theme="dark"><p lang="en" dir="ltr">What about the About page? That is just static text, surely that’s quicker? No, it is worse. (Of course, all the JS/CSS would be cached, but so to on mine, and you still don’t have to wait for JS to construct your HTML if you just give it HTML.) <a href="https://t.co/Rxyz322ngt">pic.twitter.com/Rxyz322ngt</a></p>&mdash; Matthew Somerville (@dracos) <a href="https://twitter.com/dracos/status/1251836599421329410?ref_src=twsrc%5Etfw">April 19, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Almost all of us don't want this for our native apps, and think it would be ridiculous; why have we decided that our users have to have it on their websites? Web developers: maybe stop insisting that your users compile your apps for you? Or admit that you'll put them through an experience that you certainly don't tolerate on your own desktops, where you expect to download an app, not to be forced to compile it every time you run it? <em>You're</em> not neckbeards… you just demand that your users have to be. You're neckbeard <em>creators</em>. You want to browse this website? Here's a hammer and nails.</p>
+<p>Unless you run Gentoo already, of course! In which case… compile away. <img src="https://kryogenix.org/images/penguin.png"
+alt="a penguin" style="display:inline;box-shadow:none;vertical-align:text-top"></p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2020/04/27/remote-applause/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2020/05/14/remediating-sites/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://pbs.twimg.com/profile_images/807277326539046912/EZR6qL-S.jpg">
+			Bruce Lawson. At home. responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-409823">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1253611309700132864/e62PG2hl.jpg">
+			Jonathan Beckett responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-55063">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1253720267999924229/xPp_aCxD.png">
+			Seán Doherty responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-1253708338317197314">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1200330815386861575/MX06nup-.jpg">
+			Gamer Geek responded at
+		<a href="https://twitter.com/DataAugmented/status/1259768579492200449">twitter.com</a>
+		<span class="wm-summary">			Stuart Langridge: Hammer and nails kryogenix.org/days/2020/05/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/807277326539046912/EZR6qL-S.jpg">
+			Bruce Lawson. At home. responded at
+		<a href="https://twitter.com/brucel/status/1259768778583420929">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1246922079758409730/2lns-z_0.jpg">
+			Luke Armstrong responded at
+		<a href="https://twitter.com/6c61/status/1259771974676553729">twitter.com</a>
+		<span class="wm-summary">			The thing is, React et al do support Server-side Rendering, just that people don't do it because it's hard and means they have to get into DevOps to g&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1246922079758409730/2lns-z_0.jpg">
+			Luke Armstrong responded at
+		<a href="https://twitter.com/6c61/status/1259772300456529920">twitter.com</a>
+		<span class="wm-summary">			SPA with SSR is very fast. (See Gatsby)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1701895352/tink-twitter-avatar.png">
+			Léonie responded at
+		<a href="https://twitter.com/LeonieWatson/status/1259772863000842241">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/631750330519150592/O_AV7CBX.png">
+			Petros Amiridis responded at
+		<a href="https://twitter.com/amiridis/status/1259774178741366794">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1013864782234046472/tYpa2MoZ.jpg">
+			Simon Everest responded at
+		<a href="https://twitter.com/simoneverest/status/1259774218033602560">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			André Jaenisch responded at
+		<a href="https://twitter.com/AndreJaenisch/status/1259775841577377793">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1137852807095017472/MWzG9GwT.png">
+			Rob Connolly responded at
+		<a href="https://twitter.com/robconnolly/status/1259776020036505606">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/563726395403014145/C2XOSm9R.png">
+			Rik Arends responded at
+		<a href="https://twitter.com/rikarends/status/1259776998458744834">twitter.com</a>
+		<span class="wm-summary">			This is a bit of an oversimplification, since most browsers compile your 'site' with personalised datafeeds. Either have a server do this or your clie&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1071858806567653379/nxapdLm0.jpg">
+			Ian Pouncey responded at
+		<a href="https://twitter.com/IanPouncey/status/1259777946111356928">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3350834783/3e19b737b1459c0862720185655c19a2.jpeg">
+			Niaccurshi responded at
+		<a href="https://twitter.com/Niaccurshi/status/1259780126302183424">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1030701339662147585/OMC4VHLT.jpg">
+			Luke responded at
+		<a href="https://twitter.com/lmcdo_/status/1259782345072144385">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1259783567447658496">twitter.com</a>
+		<span class="wm-summary">			step 1: enable server-side rendering step 2: render the page to plain HTML on the server step 3: serve the plain HTML :-)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1246922079758409730/2lns-z_0.jpg">
+			Luke Armstrong responded at
+		<a href="https://twitter.com/6c61/status/1259784336112525313">twitter.com</a>
+		<span class="wm-summary">			Look at the React docs to do that, then consider wtf you have to do if your team is deploying to a LAMP stack as the application used to be PHP but th&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/845508335/me.jpg">
+			Tina Holmboe responded at
+		<a href="https://twitter.com/TinaHolmboe/status/1259789779224473601">twitter.com</a>
+		<span class="wm-summary">			Stratic HTML without SPA plus CSS for layout and JS for a touch of interaction is even faster.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1195550862615207937/NUQm8sTb.jpg">
+			Al XP Home Edition 🦑🌹 responded at
+		<a href="https://twitter.com/alxp/status/1259803995515826178">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2175756811/1334759569_slackware-icon.png">
+			mase - meat popsicle responded at
+		<a href="https://twitter.com/mase_nocturnal/status/1259814037799366658">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1071858806567653379/nxapdLm0.jpg">
+			Ian Pouncey responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-13676512">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2175756811/1334759569_slackware-icon.png">
+			mase - meat popsicle responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-543161612">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1156295356310622208/lm2Q0ucV.jpg">
+			Joshua Hoover responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-8491482">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/661490082075967488/SuoBjs8z.jpg">
+			Kristian Glass responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-153051767">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1173623509957742592/QW9lpg0S.jpg">
+			Joyce Park responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-37114816">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000006339326/b27e918451c61beaf7f97146431bae96.jpeg">
+			devolute responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-17054342">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1214661528072474625/HjJ6Uv5v.jpg">
+			Nicholas/Aquarion responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-70333">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1241507283030478850/NDcszDSG.jpg">
+			heapwolf responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-95938827">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1030701339662147585/OMC4VHLT.jpg">
+			Luke responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-405248611">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3350834783/3e19b737b1459c0862720185655c19a2.jpeg">
+			Niaccurshi responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-22352341">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1244888044504633344/2uCDbFT5.jpg">
+			Karan Ganesan responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-1369182355">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1150432577/speakhdr.jpg">
+			Mahemoff @ 🏡 responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-1112431">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1137852807095017472/MWzG9GwT.png">
+			Rob Connolly responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-16024865">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			André Jaenisch responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-1319912101">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/640977882903379968/_BXwqHD7.jpg">
+			Romaric Pascal responded at
+		<a href="https://twitter.com/romaricpascal/status/1259821079650078721">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/631750330519150592/O_AV7CBX.png">
+			Petros Amiridis responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-14192255">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1701895352/tink-twitter-avatar.png">
+			Léonie responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-23833666">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/949876331373912066/3LMmV3i3.jpg">
+			Sam Giles responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-408751616">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/774324493799993344/1q9aAd3H.jpg">
+			Tim Chase responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-20667366">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1097355875407327232/GKt1tnD6.png">
+			Marius Quabeck responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-146861661">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1183970974112219136/lOI2VxrV.jpg">
+			Dale Reardon responded at
+		<a href="https://twitter.com/DaleReardon/status/1259838134524805120">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/754738201231814656/DbyUOeMS.jpg">
+			вкαя∂εℓℓ responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-288892765">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1564753537/Wii_Foiles.png">
+			RvLeshrac responded at
+		<a href="https://twitter.com/RvLeshrac/status/1259843938829185025">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/754738201231814656/DbyUOeMS.jpg">
+			вкαя∂εℓℓ responded at
+		<a href="https://twitter.com/briankardell/status/1259854482797744128">twitter.com</a>
+		<span class="wm-summary">			kryogenix.org/days/2020/05/0… is an interesting read. Similar to @sil's previous post about not having JavaScript it's bound to illicit strong reactio&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/2441718490/omrhb47p1j0ysgpr1wxd.jpeg">
+			Craig Buckler responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-18670151">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1205179658028732416/txnQRtkT.png">
+			Andrew Hedges responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-14824675">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/477425031593488384/95qvvrzD.jpeg">
+			ppk 🇪🇺 responded at
+		<a href="https://twitter.com/ppk/status/1259856977892708355">twitter.com</a>
+		<span class="wm-summary">			And here's @sil saying something similar: he feels we shouldn't require all users to compile our website, as we do when we just send them oodles of JS&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1246296511886921728/YFp81Eoa.jpg">
+			This Miss Molly responded at
+		<a href="https://twitter.com/mholzschlag/status/1259869820612313089">twitter.com</a>
+		<span class="wm-summary">			no, thx!!!
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1189194552378216448/K1wpIbT4.jpg">
+			Wolfram ⪡JS-- HTML++ CSS++⪢ Kriesing responded at
+		<a href="https://twitter.com/wolframkriesing/status/1259874517612204039">twitter.com</a>
+		<span class="wm-summary">			We don’t give people a website any more The headline is a quote from Hammer and Nails [1] by @sil where he states how we make every user's browser a&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75.jpeg">
+			Simon Willison responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-12497">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/977415989745811456/nXAQkeP6.jpg">
+			Baldur Bjarnason @baldur@toot.cafe responded at
+		<a href="https://twitter.com/fakebaldur/status/1259875767342764032">twitter.com</a>
+		<span class="wm-summary">			“Hammer and Nails” This post frames the SPA problem in a way that makes a lot of sense. kryogenix.org/days/2020/05/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1083235168381370368/zV0syvr7.jpg">
+			Carlos Molina responded at
+		<a href="https://twitter.com/camolin3/status/1259879774266130433">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/AaronGustafson/status/1259869054208290817#favorited-by-1389781">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1246296511886921728/YFp81Eoa.jpg">
+			This Miss Molly responded at
+		<a href="https://twitter.com/AaronGustafson/status/1259869054208290817#favorited-by-5827">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1083235168381370368/zV0syvr7.jpg">
+			Carlos Molina responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-2745712609">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1436565667/267835_10150234306102413_677307412_7753510_5237669_n.jpg">
+			Ben Thorp responded at
+		<a href="https://twitter.com/benthorp/status/1259896973244739584">twitter.com</a>
+		<span class="wm-summary">			Personally, I also struggle with anything that requires Node... My own site now runs Grav, and the last "work" I did was html with skeleton, JS (sadly&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1259900139327586304">twitter.com</a>
+		<span class="wm-summary">			I quite like node, myself, although I'm a JS type. I mostly use it for APIs, though; if I'm building something that stores data and presents a UI, I'l&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/493758930925809664/L4Gxro20.jpeg">
+			Derek Pennycuff responded at
+		<a href="https://twitter.com/AaronGustafson/status/1259869054208290817#favorited-by-20437262">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/783186403/100_0500.JPG">
+			David Walker responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-54925817">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1156295356310622208/lm2Q0ucV.jpg">
+			Joshua Hoover responded at
+		<a href="https://twitter.com/joshuahoover/status/1259917173025173510">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1056026063657230336/ICavTUb4.jpg">
+			Christian Hammond responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-796465">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1211049874524983303/zq7Q1QX6.jpg">
+			Slippers Ex Machina responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-1062644123730100224">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1175656218205065216/djhZlovP.jpg">
+			Dr. Roy Schestowitz (罗伊) responded at
+		<a href="https://twitter.com/schestowitz/status/1259948651327246339">twitter.com</a>
+		<span class="wm-summary">			"here is a Linux distribution called Gentoo, named after a type of penguin (of course it’s named after a penguin), where installing an app doesn’t mea&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/955494838488764416/ovLOLPw7.jpg">
+			sheilaellen responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-25903">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/905397593810849792/jWKl_L9d.jpg">
+			Olly Hodgson responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-38033">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			Aaron Gustafson responded at
+		<a href="https://www.aaron-gustafson.com/notebook/links/hammer-and-nails/">Hammer And nails</a>
+(www.aaron-gustafson.com)		<span class="wm-summary">			Love this analogy from Stuart: Front-end frameworks are essentially compilers that you require your users to run on their own machines to access your&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/977415989745811456/nXAQkeP6.jpg">
+			Baldur Bjarnason @baldur@toot.cafe responded at
+		<a href="https://twitter.com/fakebaldur/status/1260011989947936768">twitter.com</a>
+		<span class="wm-summary">			“as days pass by — Hammer and nails” kryogenix.org/days/2020/05/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/975051567727546369/l7yqr_ne.jpg">
+			Bridget Stewart responded at
+		<a href="https://twitter.com/bridgetstewart/status/1260019737204977669">twitter.com</a>
+		<span class="wm-summary">			Do you download source and build tools and run the compiler every time you run an app on your desktop? No? Then why is it fine to make web
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/975051567727546369/l7yqr_ne.jpg">
+			Bridget Stewart responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-8411162">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1036905807735136256/r_9GQod9.jpg">
+			Etienne Posthumus responded at
+		<a href="https://twitter.com/sil/status/1259763737998868480#favorited-by-2453021">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1102627609735684097/fpzXKJLq.jpg">
+			Aaron Gustafson responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058">twitter.com</a>
+		<span class="wm-summary">			🔖 Love this analogy from @sil: Front-end frameworks are essentially compilers that you require your users to run on their own machines to access your&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1235187971663548417/JzV6ILx3.jpg">
+			Bolaji Ayodeji responded at
+		<a href="https://twitter.com/iambolajiayo/status/1260276996942311425">twitter.com</a>
+		<span class="wm-summary">			🔖 Love this analogy from @sil: Front-end frameworks are essentially compilers that you require your users to run on their own machines to ac
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1256306618104459265/ume5Y8OT.jpg">
+			Kevwe Ochuko responded at
+		<a href="https://twitter.com/mz__kev/status/1260279018915614724">twitter.com</a>
+		<span class="wm-summary">			🔖 Love this analogy from @sil: Front-end frameworks are essentially compilers that you require your users to run on their own machines to ac
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1182048114435411968/HbA3TNpU.jpg">
+			𝕊𝕚𝕣 𝕊𝕒𝕣𝕒𝕙 responded at
+		<a href="https://twitter.com/seh/status/1260280832553619456">twitter.com</a>
+		<span class="wm-summary">			🔖 Love this analogy from @sil: Front-end frameworks are essentially compilers that you require your users to run on their own machines to ac
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1172922412029136897/gFRmgn1W.jpg">
+			Arlene Andrews responded at
+		<a href="https://twitter.com/ArleneAndrews_1/status/1260281037126434816">twitter.com</a>
+		<span class="wm-summary">			🔖 Love this analogy from @sil: Front-end frameworks are essentially compilers that you require your users to run on their own machines to ac
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/491494058292809728/oGSxtt0o.jpeg">
+			Adactio Links responded at
+		<a href="https://twitter.com/adactioLinks/status/1260289250945380358">twitter.com</a>
+		<span class="wm-summary">			as days pass by — Hammer and nails kryogenix.org/days/2020/05/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-1389781">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1172922412029136897/gFRmgn1W.jpg">
+			Arlene Andrews responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-935540366752620544">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1182048114435411968/HbA3TNpU.jpg">
+			𝕊𝕚𝕣 𝕊𝕒𝕣𝕒𝕙 responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-8295852">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1232647576710717441/MZb7Oga_.jpg">
+			jalbertbowdenii responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-14465889">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1235187971663548417/JzV6ILx3.jpg">
+			Bolaji Ayodeji responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-890634172716527616">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1240156505585958914/NuNK25eT.jpg">
+			Kyle Pflug responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-18642786">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1250382449256935426/mkNsFt8-.jpg">
+			Tobias Schächtelin responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-13288542">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1239529138144198656/MwAFrBaU.jpg">
+			Damien Buckley responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-38365659">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1168213678367420416/M6WQsZtg.jpg">
+			Matt Derocher responded at
+		<a href="https://twitter.com/mjamesderocher/status/1260392093652062209">twitter.com</a>
+		<span class="wm-summary">			I still agree with this sentiment: “We don’t give people a website any more: something that already works, HTML and CSS and JS ready to show them what&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1249098262033780738/Pn-R5Hj4.jpg">
+			Maye Edwin responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-2457971843">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1212887450709905409/L4GQQqD3.jpg">
+			AMD_ responded at
+		<a href="https://twitter.com/AaronGustafson/status/1260276558029357058#favorited-by-1284380419">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/936510134808924160/bH0CcGMq.jpg">
+			Michael Scharnagl responded at
+		<a href="https://twitter.com/justmarkup/status/1260819839976865794">twitter.com</a>
+		<span class="wm-summary">			Hammer and nails kryogenix.org/days/2020/05/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1666904408/codepo8.png">
+			Chris Heilmann responded at
+		<a href="https://twitter.com/codepo8/status/1262772478994235392">twitter.com</a>
+		<span class="wm-summary">			👉🏻 “Hammer and nails” 🔗 kryogenix.org/days/2020/05/0… The always insightful @sil with a sensible comparison as web frameworks forcing your end users&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1255521352343261186/HncMhw1T.jpg">
+			Kim 🇪🇺️ responded at
+		<a href="https://twitter.com/kimpegasus/status/1262775383985922049">twitter.com</a>
+		<span class="wm-summary">			Always be riding for progressive enhancement and not dumping copious amounts of JS on a user just so they can read some text. kryogenix.org/days/2020/&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1142533844924608514/yKw8rgZL.png">
+			Scott responded at
+		<a href="https://twitter.com/nonsponsored/status/1266885268507889664">twitter.com</a>
+		<span class="wm-summary">			Such a great analogy by @sil Hammer and Nails, kryogenix.org/days/2020/05/0…
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/1573024957457653761">twitter.com</a>
+		<span class="wm-summary">			It’s the short pithy version of kryogenix.org/days/2020/05/0… :-)
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2020/05/06/hammer-and-nails/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2020/05/06/hammer-and-nails/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

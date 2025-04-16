@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Collecting user data while protecting user privacy</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Collecting user data while protecting user privacy">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/"><time 
+			class="dt-published" datetime="2018-02-20T23:58:00+00:00">Feb 20 2018</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/">Collecting user data while protecting user privacy</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Lots of companies want to collect data about their users. This is a good thing, generally; being data-driven is important, and it's jolly hard to know where best to focus your efforts if you don't know what your people are like. However, this sort of data collection also gives people a sense of disquiet; what are you going to do with that data about me? How do I get you to stop using it? What conclusions are you drawing from it? I've spoken about <a href="https://kryogenix.org/code/privacy-could-be-the-next-big-thing-hackference/">this sense of disquiet</a> in the past, and you can watch (or read) that talk for a lot more detail about how and why people don't like it.</p>
+<p>So, what can we do about it? As I said, being data-driven is a good thing, and you can't be data-driven if you haven't got any data to be driven by. How do we enable people to collect data about you without compromising your privacy?</p>
+<p>Well, there are some ways. Before I dive into them, though, a couple of brief asides: there are some people who believe that you shouldn't be allowed to collect any data on your users whatsoever; that the mere act of wanting to do so is in itself a compromise of privacy. This is not addressed to those people. What I want is a way that both sides can get what they want: companies and projects can be data-driven, <em>and</em> users don't get their privacy compromised. If what you want is that companies are banned from collecting anything... this is not for you. Most people are basically OK with the idea of data collection, they just don't want to be victimised by it, now or in the future, and it's that property that we want to protect.</p>
+<p>Similarly, if you're a company who <em>wants</em> to know everything about each individual one of your users so you can sell that data for money, or exploit it on a user-by-user basis, this isn't for you either. Stop doing that.</p>
+<h3>Aggregation</h3>
+<p>The key point here is that, if you're collecting data about a load of users, you're usually doing so in order to look at it in <em>aggregate</em>; to draw conclusions about the general trends and the general distribution of your user base. And it's possible to do that data collection in ways that maintain the aggregate properties of it while making it hard or impossible for the company to use it to target individual users. That's what we want here: some way that the company can still draw correct conclusions from all the data when collected together, while preventing them from targeting individuals or knowing what a specific person said.</p>
+<p>In the 1960s, Warner and Greenberg put together the <a href="https://en.wikipedia.org/wiki/Randomized_response">randomised response technique</a> for social science interviews. Basically, the idea here is that if you want to ask people questions about sensitive topics -- have they committed a crime? what are their sexual preferences? -- then you need to be able to draw aggregate conclusions about what percentages of people have done various things, but any one individual's ballot shouldn't be a confession that can be used against them. The technique varies a lot in exactly how it's applied, but the basic concept is that for any question, there's a random chance that the answerer should <em>lie</em> in their response. If some people lie in one direction (saying that they did a thing, when they didn't), and the same proportion of people lie in the other direction (saying they didn't do the thing when they did), then if you've got enough answerers, all the lies pretty much cancel out. So your aggregate statistics are still pretty much accurate -- you know that X percent of people did the thing -- but any one individual person's response isn't incriminating, because they might have been lying. This gives us the privacy protection we need for people, while preserving the aggregate properties that allow the survey-analysers to draw accurate conclusions.</p>
+<p>It's something like whether you'll find a ticket inspector on a train. Train companies realised a long time ago that you don't need to put a ticket inspector on every single train. Instead, you can put inspectors on <em>enough</em> trains that the chance of fare-dodgers being caught is high enough that they don't want to take the risk. This randomised response is similar; if you get a ballot from someone saying that they smoked marijuana, then you can't know whether they were one of those who were randomly selected to lie about their answer, and therefore that answer isn't incriminating, but the overall percentage of people who <em>say</em> they smoked will be roughly equal to the percentage of people who actually <em>did</em>.</p>
+<h3>A worked example</h3>
+<p>Let's imagine you're, say, an operating system vendor. You'd like to know what sorts of machines your users are installing on (Ubuntu are <a href="https://www.omgubuntu.co.uk/2018/02/ubuntu-data-collection-opt-out">looking</a> to do this as most other OSes already do), and so how much RAM those machines have would be a useful figure to know. (Lots of other stats would also be useful, of course, but we'll just look at one for now while we're explaining the process. And remember this all applies to any statistic you want to collect; it's not particular to OS vendors, or RAM. If you want to know how often your users open your app, or what country they're in, this process works too.)</p>
+<p>So, we assume that the <em>actual truth</em> about how much RAM the users' computers have looks something like this graph. Remember, the company does not know this. They <em>want</em> to know it, but they currently don't.</p>
+<canvas id="graph_truth" class="lie_graphs" width="750" height="350"></canvas>
+
+<p>So, how can they collect data to know this graph, without being able to tell how much RAM any one specific user has?</p>
+<p>As described above, the way to do this is to randomise the responses. Let's say that we tell 20% of users to lie about their answer, one category up or down. So if you've really got 8GB of RAM, then there's an 80% chance you tell the truth, and a 20% chance you lie; 10% of users lie in a "downwards" direction, so they claim to have 4GB of RAM when they've actually got 8GB, and 10% of users lie in an "upwards" direction and claim to have 16GB. Obviously, we wouldn't actually have the users lie -- the software that collects this info would randomly either produce the correct information or not with the above probabilities, and people wouldn't even know it was doing it; the deliberately incorrect data is only provided to the survey. (Your computer doesn't lie to <em>you</em> about how much RAM it's got, just the company.) What does that do to the graph data?</p>
+<canvas id="graph_lies" class="lie_graphs" width="750" height="350"></canvas>
+
+<p>We show in this graph the users that gave accurate information in green, and inaccurate lies in red. And the graph looks pretty much the same! Any one given user's answers are unreliable and can't be trusted, but the overall shape of the graph is pretty similar to the actual truth. There are still peaks at the most popular points, and still troughs at the unpopular ones. Each bar in the graph is reasonably accurate (accuracy figures are shown below each bar, and they'll normally be around 90-95%, although because it's random it may fluctuate a little for you.) So our company can draw conclusions from this data, and they'll be generally correct. They'll have to take those conclusions with a small pinch of salt, because we've deliberately introduced inaccuracy into them, but the trends and the overall shape of the data will be good.</p>
+<p>The key point here is that, although <em>you</em> can see in the graph which answers are truth and which are incorrect, the company <em>can't</em>. They don't get told whether an answer is truth or lies; they just get the information and no indication of how true it is. They'll know the percentage chance that an answer is untrue, but they won't know whether any one given answer is.</p>
+<p>Can we be more inaccurate? Well, here's a graph to play with. You can adjust what percentage of users' computers lie about their survey results by dragging the slider, and see what that does to the data.</p>
+<canvas id="graph_both" class="lie_graphs" width="750" height="700"></canvas>
+<div id="tweak">
+    <p>0% <input id="lie_range" type="range" min="0" max="0.5" step="0.05" onchange="move_range(this)" value="0.1"> 100%</p>
+    <p><output id="lie_output">20%</output> of submissions are deliberately incorrect</p>
+</div>
+
+<p>Even if you make <em>every single user</em> lie about their values, the graph shape isn't <em>too</em> bad. Lying tends to "flatten out" the graph; it makes tall peaks less tall, and short troughs more tall, and every single person lying probably flattens out things so much that conclusions you draw are probably now going to be wrong. But you can see from this that it ought to be possible to run the numbers and come up with a "lie" percentage which accurately balances the company's need for accurate information with the user's need to not provide accuracy.</p>
+<p>It is of course critical to this whole procedure that the lies cancel out, which means that they need to be evenly distributed. If everyone just makes up random answers then obviously this doesn't work; answers have to start with the truth and then (maybe) lie in one direction or another.</p>
+<p>This is a fairly simple description of this whole process of introducing noise into the data, and data scientists would be able to bring much more learning to bear on this. For example, how much does it affect accuracy if user information can lie by more than one "step" in every direction? Do we make it so instead of n% truth and 100-n% lies, we distribute the lies normally across the graph with the centrepoint being the truth? Is it possible to do this data collection without flattening out the graph to such an extent? And the state of the data art has moved on since the 1960s, too: Dwork wrote an influential 2006 paper on <a href="https://en.wikipedia.org/wiki/Differential_privacy">differential privacy</a> which goes into this in more detail. Obviously we'll be collecting data on more than one number -- someone looking for data on computers on which their OS is installed will want for example version info, network connectivity, lots of hardware stats, device vendor, and so on. And that's OK, because it's safe to collect this data now... so how do our accuracy figures change when there are lots of stats and not just one? There will be better statistical ways to quantify <em>how</em> inaccurate the results are than my simple single-bar percentage measure, and how to tweak the percentage-of-lying to give the best results for everyone. This whole topic seems like something that data scientists in various communities could really get their teeth into and provide great suggestions and help to companies who want to collect data in a responsible way.</p>
+<p>Of course, this applies to <em>any</em> data you want to collect. Do you want analytics on how often your users open your app? What times of day they do that? Which OS version they're on? How long do they spend using it? All your data still works in aggregate, but the things you're collecting aren't so personally invasive, because you don't know if a user's records are lies. This needs careful thought -- there has been plenty of research on deanonymising data and similar things, and the EFF's <a href="https://panopticlick.eff.org/">Panopticlick</a> project shows how a combination of data can be cross-referenced and that needs protecting against too, but that's what data science is for; to tune the parameters used here so that individual privacy isn't compromised while aggregate properties are preserved.</p>
+<p>If a company is collecting info about you and they're not actually interested in tying your submitted records <em>to</em> you (see previous point about how this doesn't apply to companies who <em>do</em> want to do this, who are a whole different problem), then this in theory isn't needed. They don't have to collect IP addresses or usernames and record them against each submission, and indeed if they don't want that information then they probably don't do that. But there's always a concern: what if they're really doing that and lying about it? Well, this is how we alleviate that problem. Even if a company actually are trying to collect personally-identifiable data and they're lying to us about doing that it doesn't matter, because we protect ourselves by -- with a specific probability -- lying back to them. And then everyone gets what they want. There's a certain sense of justice in that.</p>
+<style>
+canvas.lie_graphs {
+    width: 100%;
+}
+#tweak {
+    text-align: center;
+    background: #dedadf;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    padding: 0.5em;
+    font-size: 80%;
+}
+#tweak p {
+    margin: 0.3em;
+}
+#tweak input[type=range] {
+  -webkit-appearance: none;
+  width: 60%;
+  margin: 7px 0;
+}
+#tweak input[type=range]:focus {
+  outline: none;
+}
+#tweak input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #6b00bd;
+  border-radius: 6px;
+  border: 0px solid #010101;
+}
+#tweak input[type=range]::-webkit-slider-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+#tweak input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #8200e6;
+}
+#tweak input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #6b00bd;
+  border-radius: 6px;
+  border: 0px solid #010101;
+}
+#tweak input[type=range]::-moz-range-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+}
+#tweak input[type=range]::-ms-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+#tweak input[type=range]::-ms-fill-lower {
+  background: #540094;
+  border: 0px solid #010101;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#tweak input[type=range]::-ms-fill-upper {
+  background: #6b00bd;
+  border: 0px solid #010101;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#tweak input[type=range]::-ms-thumb {
+  box-shadow: 2.2px 2.2px 2px rgba(0, 0, 0, 0.7), 0px 0px 2.2px rgba(13, 13, 13, 0.7);
+  border: 0px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #868686;
+  cursor: pointer;
+  height: 6px;
+}
+#tweak input[type=range]:focus::-ms-fill-lower {
+  background: #6b00bd;
+}
+#tweak input[type=range]:focus::-ms-fill-upper {
+  background: #8200e6;
+}
+
+</style>
+<script>
+
+var BAR_WIDTH = 50;
+var BAR_GAP = 10;
+var LEFT_MARGIN = 125;
+var BOTTOM_MARGIN = 50;
+var ram_options_weights = [
+    ["<1GB", 20],
+    ["1GB", 30],
+    ["2GB", 50],
+    ["4GB", 150],
+    ["8GB", 300],
+    ["16GB", 250],
+    ["32GB", 100],
+    ["64GB", 50],
+    ["128GB", 30],
+    ["128GB+", 20]
+];
+var machines = [];
+var ram_key_offsets = {};
+for (var i=0; i<ram_options_weights.length; i++) {
+    ram_key_offsets[ram_options_weights[i][0]] = i;
+}
+while (ram_options_weights.length > 0) {
+    var nxt = ram_options_weights.shift();
+    for (var i=0; i<nxt[1]; i++) {
+        machines.push({true_value: nxt[0]});
+    }
+}
+
+function draw_axis(ctx, yoffset, keys, title1, title2) {
+    ctx.fillStyle = "black";
+    ctx.font = "14px sans-serif";
+    var ax_x = 0;
+    for (var k in keys) {
+        ctx.fillText(k, (ax_x * (BAR_WIDTH + BAR_GAP)) + LEFT_MARGIN, 350 + 350 * yoffset - 30);
+        ax_x += 1;
+    }
+    ctx.fillText(title1, 0, 350 + (350 * yoffset) - 30);
+    ctx.fillText(title2, 0, 350 + (350 * yoffset) - 15);
+}
+
+function draw_accuracy(ctx, yoffset, keys, real_counts, false_counts) {
+    ctx.fillStyle = "black";
+    ctx.font = "14px sans-serif";
+    var ax_x = 0;
+    for (var k in keys) {
+        var real_v = real_counts[k];
+        var false_v = false_counts[k];
+        var diff = Math.abs(false_v - real_v);
+        var accuracy = Math.round(100 - (100 * diff / real_v));
+        ctx.fillText(accuracy + "%", (ax_x * (BAR_WIDTH + BAR_GAP)) + LEFT_MARGIN, 350 + 350 * yoffset - 15);
+        ax_x += 1;
+    }
+}
+
+function draw_detail(ctx, yoffset, text, text2) {
+    ctx.fillStyle = "black";
+    ctx.font = "bold 16px sans-serif";
+    ctx.fillText(text, 0, 350 * yoffset + 20);
+    ctx.fillText(text2, 0 , 350 * yoffset + 40);
+}
+
+function clear_graph(ctx, yoffset) {
+    // clear the graph rectangle
+    ctx.fillStyle = "#eff2f2";
+    ctx.fillRect(0, yoffset * 350, 750, 350);
+}
+
+function draw_graph(canvas_id, yoffset, machines, keys) {
+    var c = document.getElementById(canvas_id);
+    var ctx = c.getContext("2d");
+    clear_graph(ctx, yoffset);
+
+    var counts = {};
+
+    draw_axis(ctx, yoffset, keys, "Actual RAM", "");
+    draw_detail(ctx, yoffset, "True distribution of machines", "");
+
+    ctx.fillStyle = "#6b00bd";
+    machines.forEach(function(m) {
+        var xidx = keys[m.true_value];
+        var xposition = (xidx * (BAR_WIDTH + BAR_GAP)) + LEFT_MARGIN;
+        if (!counts[m.true_value]) counts[m.true_value] = 0;
+        counts[m.true_value] += 1;
+        var yposition = 350 - (counts[m.true_value] + BOTTOM_MARGIN);
+        ctx.fillRect(xposition, yposition, BAR_WIDTH, 1);
+        m.xposition = xposition;
+        m.yposition = yposition;
+    });
+}
+
+function move_graph(canvas_id, yoffset, machines, keys, lie_chance, has_parent) {
+    // this time, we flash each line on the original graph before drawing it
+    // and we draw lines in green for truth, or red for lies, on the new graph
+    var c = document.getElementById(canvas_id);
+    var ctx = c.getContext("2d");
+    clear_graph(ctx, yoffset);
+
+    var counts = {};
+
+    draw_axis(ctx, yoffset, keys, "Reported RAM", "Accuracy");
+    draw_detail(ctx, yoffset, "Distribution of machines with " + (lie_chance * 2 * 100) + "%", "of submissions deliberately incorrect");
+
+    var real_counts = {};
+    machines.forEach(function(m) {
+        if (!real_counts[m.true_value]) real_counts[m.true_value] = 0;
+        real_counts[m.true_value] += 1;
+    })
+
+    var machines_copy = JSON.parse(JSON.stringify(machines));
+    var idx_to_keys = {};
+    for (var k in keys) { idx_to_keys[keys[k]] = k; }
+    function process_one_machine(count) {
+        var m = machines_copy.shift();
+        if (!m) {
+            draw_accuracy(ctx, yoffset, keys, real_counts, counts);
+            return;
+        }
+
+        var xidx = keys[m.true_value];
+        // now, lie about the value, with a lie_chance chance of lying downwards
+        // and the same for lying upwards
+        var r = Math.random();
+        var lied = false;
+        if (r <= lie_chance) {
+            // lie downwards
+            xidx -= 1;
+            lied = true;
+        } else if (r >= 1.0 - lie_chance) {
+            xidx += 1;
+            lied = true;
+        }
+        xidx = xidx % Object.keys(keys).length;
+        if (xidx < 0) xidx = Object.keys(keys).length + xidx;
+        var new_value = idx_to_keys[xidx];
+
+        var new_xposition = (xidx * (BAR_WIDTH + BAR_GAP)) + LEFT_MARGIN;
+        if (!counts[new_value]) counts[new_value] = 0;
+        counts[new_value] += 1;
+        var new_yposition = yoffset * 350 + (350 - (counts[new_value] + BOTTOM_MARGIN));
+
+        // Fill our new one in its new position, in red or green for lied or not
+        ctx.fillStyle = lied ? "#ec4137" : "#52bd00";
+        ctx.fillRect(new_xposition, new_yposition, BAR_WIDTH, 1);
+
+        // Flash the line it came from, then unflash it
+        if (has_parent) {
+            ctx.fillRect(m.xposition, m.yposition, BAR_WIDTH, 1);
+            (function(last_line_xposition, last_line_yposition) {
+                setTimeout(function() {
+                    ctx.fillStyle = "#6b00bd";
+                    ctx.fillRect(last_line_xposition, last_line_yposition, BAR_WIDTH, 1);
+                }, 150);
+            })(m.xposition, m.yposition)
+        }
+
+        // and run the loop again
+        if (count < 20) {
+            process_one_machine(count + 1); 
+        } else {
+            requestAnimationFrame(function() { process_one_machine(0); });
+        }
+    };
+
+    // kick it all off
+    process_one_machine(0);
+}
+
+function move_range(el) {
+    document.getElementById("lie_output").textContent = (el.valueAsNumber * 100 * 2) + "%";
+    move_graph("graph_both", 1, machines, ram_key_offsets, el.valueAsNumber, true);
+}
+
+function main() {
+    draw_graph("graph_truth", 0, machines, ram_key_offsets);
+    move_graph("graph_lies", 0, machines, ram_key_offsets, 0.1, false);
+    draw_graph("graph_both", 0, machines, ram_key_offsets);
+    move_graph("graph_both", 1, machines, ram_key_offsets, 0.1, true);
+}
+main();
+</script>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2018/02/08/sorry-henry/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2018/03/25/squares-and-prettier-graphs/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://lh3.googleusercontent.com/-sDkEKd2_Tn0/AAAAAAAAAAI/AAAAAAAAAaQ/FIGJ7htxLwc/photo.jpg?sz=50">
+			Richard Hughes responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/7GNuRbHjQ72#z13oupoowxrovril522qudshituzyxg5e04%231519222551617119">plus.google.com</a>
+		<span class="wm-summary">			Out of interest, what do you think of https://fwupd.org/privacy
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/6z99Wy1MJnU/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/7GNuRbHjQ72#z13oupoowxrovril522qudshituzyxg5e04%231519223441591621">plus.google.com</a>
+		<span class="wm-summary">			+Richard Hughes I think that that's commendably, extremely transparent about what data you do collect and what you do with it, and that's to be applau&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-COiWnL-R2XQ/AAAAAAAAAAI/AAAAAAAAAt8/vlrP_fOAnhI/photo.jpg?sz=50">
+			Rodney responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/7GNuRbHjQ72#z13oupoowxrovril522qudshituzyxg5e04%231519224182926719">plus.google.com</a>
+		<span class="wm-summary">			+Stuart Langridge I guess part of the reason people retain whom did something, is because it makes it much easier to figure out how many of those peop&hellip;
+</span></li>
+		<li><img src="https://lh4.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/6z99Wy1MJnU/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/7GNuRbHjQ72#z13oupoowxrovril522qudshituzyxg5e04%231519224305601553">plus.google.com</a>
+		<span class="wm-summary">			Sure thing. That seems plausible, and lvfs hashes IPs which is presumedly for that reason, indeed.
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-COiWnL-R2XQ/AAAAAAAAAAI/AAAAAAAAAt8/vlrP_fOAnhI/photo.jpg?sz=50">
+			Rodney responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/7GNuRbHjQ72#z13oupoowxrovril522qudshituzyxg5e04%231519224775939216">plus.google.com</a>
+		<span class="wm-summary">			Yeah, not that it's how things should work, but the easy road is easy, as they say. :)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/807277326539046912/EZR6qL-S.jpg">
+			Bruce Lawson responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-409823">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-EjAzFHfaWkw/AAAAAAAAAAI/AAAAAAAAAAA/Q_635LgAoeI/photo.jpg?sz=50">
+			Jed Reynolds responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/7GNuRbHjQ72#liked-by-118249672028075460819">tag:plus.goo...</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/616270495340695552/AFtSPmQH.jpg">
+			Paul Grenier ᕕ( ᐛ )ᕗ responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-15004179">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="https://unrelenting.technology/likes/2018-02-21-17-48-28">unrelenting....</a>
+(unrelenting.technology)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/554446036563816448/ZH5ws5pm.png">
+			Jason Karns responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-14139806">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/966405227711578114">twitter.com</a>
+		<span class="wm-summary">			RTing for the USA timezone audience :-)
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/797662861011144704/0eUGNJem.jpg">
+			Dr. Roy Schestowitz (罗伊) responded at
+		<a href="https://twitter.com/schestowitz/status/966408410609733632">twitter.com</a>
+		<span class="wm-summary">			Collecting user data while protecting #canonical brand name kryogenix.org/days/2018/02/2… #ubuntu #privacy
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/658723533845954560/noXJEv_a.jpg">
+			Jono Bacon responded at
+		<a href="https://twitter.com/jonobacon/status/966491582357684224">twitter.com</a>
+		<span class="wm-summary">			As always, interesting thoughts from @sil, this time on user data and privacy.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/535195644890480642/6cWCHpLI.png">
+			Luke Gaudreau responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-20801194">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/744340602/kfrooster_160x160.jpg">
+			Jason Boyer responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-121751530">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/860473569502998533/Gk0u5oVa.jpg">
+			Daniel Smith responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-22346018">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/706168082662690816/mO5DpuR9.jpg">
+			Sravan Kumar responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-220984107">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/919643447472152579/lsibRMaH.jpg">
+			Joseph David Borġ responded at
+		<a href="https://twitter.com/joedborg/status/966629848075722752">twitter.com</a>
+		<span class="wm-summary">			ah, they're nice (as is the article). are you calling the .topng() method on the canvas (or whatever the method's called), or do browsers just repres&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/966632742652923904">twitter.com</a>
+		<span class="wm-summary">			I just draw a canvas. The browser normally gives you a right-click "download as image" option on canvases; I didn't do that, it's automatic.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/919643447472152579/lsibRMaH.jpg">
+			Joseph David Borġ responded at
+		<a href="https://twitter.com/joedborg/status/966633013328138240">twitter.com</a>
+		<span class="wm-summary">			That’s cool! That wasn’t the case a couple of years ago, you had to call a method on the canvas to render it into an image
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/966633242488172545">twitter.com</a>
+		<span class="wm-summary">			It renders in the browser automatically (that's what canvases are for :)) If you want to get the content of the canvas as an image programmatically, y&hellip;
+</span></li>
+		<li><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile.png">
+			Lars Westman responded at
+		<a href="https://twitter.com/sil/status/966415623826919424#favorited-by-861461443">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/919643447472152579/lsibRMaH.jpg">
+			Joseph David Borġ responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-35435164">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/849329434242973696/ksd1gEtJ.jpg">
+			BoraCo responded at
+		<a href="https://twitter.com/sil/status/966636927150641152#favorited-by-847887775277998080">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/948977977362210822/sAGm8cY6.jpg">
+			Jon Spriggs responded at
+		<a href="https://twitter.com/jontheniceguy/status/966742055174262784">twitter.com</a>
+		<span class="wm-summary">			Collecting useful user data without compromising our privacy: how carefully controlled lying could be the way forward https://t.co/Dg34aoTaC
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/948977977362210822/sAGm8cY6.jpg">
+			Jon Spriggs responded at
+		<a href="https://twitter.com/sil/status/966306927474106370#favorited-by-2139291">tag:twitter....</a>
+(twitter.com)		<span class="wm-summary"></span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			An unnamed person responded at
+		<a href="https://plus.google.com/+JimCampbell/posts/jVULanniGXd">plus.google.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="https://adactio.com/links/13494">as days...</a>
+(adactio.com)		<span class="wm-summary">			as days pass by — Collecting user data while protecting user privacy February 26th, 2018 Really smart thinking from Stuart on how the randomise&hellip;
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			An unnamed person responded at
+		<a href="https://www.quirksmode.org/blog/archives/2018/02/linkbait_38.html">www.quirksmode.org</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			Aaron Gustafson responded at
+		<a href="https://www.aaron-gustafson.com/notebook/links/collecting-user-data-while-protecting-user-privacy/">Collecting...</a>
+(www.aaron-gustafson.com)		<span class="wm-summary">			What I want is a way that both sides can get what they want: companies and projects can be data-driven, and users don’t get their privacy compromised.&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/1200195675/refresh-logo-twitter2.gif">
+			Refresh Detroit responded at
+		<a href="https://twitter.com/refreshdetroit/status/969296262368518144">twitter.com</a>
+		<span class="wm-summary">			RT @AaronGustafson: 🔖 “What I want is a way that both sides can get what they want: companies and projects can be data-driven, and users kryogenix.or&hellip;
+</span></li>
+		<li><img src="https://lh5.googleusercontent.com/-hJPKQzFoLZU/AAAAAAAAAAI/AAAAAAAAAX0/konQT18vFCI/photo.jpg?sz=50">
+			James Henstridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/QwBCGrN4Du4#z12lw50i2w2mip2wj04cevdb1pvbfzvpkpc0k%231519953515150722">plus.google.com</a>
+		<span class="wm-summary">			Maybe I'm missing something here, but how does encryption improve privacy in this particular case? The response from this service is purely based on&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/55108762/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/970043997723951104">twitter.com</a>
+		<span class="wm-summary">			Cheers for that. I think the Tweet is truncated though, from the post at github.com/aarongustafson… -- posting to your github repo is a neat trick tha&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/936801569844051968/rHW3x9uP.jpg">
+			Aaron Gustafson 🚀🕸 responded at
+		<a href="https://twitter.com/AaronGustafson/status/970076278379474944">twitter.com</a>
+		<span class="wm-summary">			Yeah, I've been doing that a bit. I have the code to Buffer it too. I think I need to update it for longer tweets now.
+</span></li>
+		<li><img src="https://mastodon.sdf.org/system/accounts/avatars/000/020/851/original/4280bce979f3fbaa.jpg">
+			Stephen Michael Kellat responded at
+		<a href="https://mastodon.sdf.org/@skellat/99632645897603366">mastodon.sdf.org</a>
+		<span class="wm-summary">			@sil wrote a nice piece talking about collecting machine data in Ubuntu: https://kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-u&hellip;
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/3225251296/9086fe05b5f100903dc8fef85af6cf0e.jpeg">
+			Colin Haynes responded at
+		<a href="https://twitter.com/colinperth64/status/975507386474684417">twitter.com</a>
+		<span class="wm-summary">			Perhaps more accurately Facebook want to monetise everything about you.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/736651890663010305/QGn0znSO.jpg">
+			Robert Barat 🌹 responded at
+		<a href="https://twitter.com/sil/status/975506733073403904#favorited-by-14209841">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/947918917493776385/OGLEPAjr.jpg">
+			Ethan Marcotte responded at
+		<a href="https://twitter.com/beep/status/994381279801102337">twitter.com</a>
+		<span class="wm-summary">			Oh, fantastic. Thanks, Stuart! Looking forward to checking these out tomorrow.
+</span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/947918917493776385/OGLEPAjr.jpg">
+			Ethan Marcotte responded at
+		<a href="https://twitter.com/sil/status/994380266281033730#favorited-by-12534">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/986094141435097088/34uzjfY-.jpg">
+			Erik Vorhes responded at
+		<a href="https://twitter.com/sil/status/994380266281033730#favorited-by-14059222">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://pbs.twimg.com/profile_images/615225133003898880/bfcC6RMf.jpg">
+			Ade responded at
+		<a href="https://twitter.com/sil/status/1139494043098988547#favorited-by-23231293">twitter.com</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			sil responded at
+		<a href="https://lobste.rs/s/xg7tb4">3...</a>
+(lobste.rs)		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2018/02/20/collecting-user-data-while-protecting-user-privacy/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2018/02/20/collecting-user-data-while-protecting-user-privacy/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

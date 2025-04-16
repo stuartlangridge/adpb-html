@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Hosting this website</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Hosting this website">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2012/08/05/hosting-this-website/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2012/08/05/hosting-this-website/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2012/08/05/hosting-this-website/"><time 
+			class="dt-published" datetime="2012-08-05T19:29:00+01:00">Aug 05 2012</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2012/08/05/hosting-this-website/">Hosting this website</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>At the moment this website is hosted on a dedicated machine leased from
+<a href="http://www.bytemark.co.uk">Bytemark</a>. The Bytemark team are superb, and their service is great;
+if you're looking to run machines (virtual or physical) that aren't in
+your house or company, go and see them. However, if there's one thing
+that I've learned in the last fifteen years of running a website, it's
+that I hate being a sysadmin (and <a href="http://www.jonobacon.org">Jono</a>, with whom I share the
+dedicated machine, is if possible even worse than me). If the site goes
+down I just bury my head in my hands, and I hate, hate, hate having to
+fix it. Whether it's because Apache's crashed or the backups have
+stopped working or the machine's out of disc space or there was a kernel
+panic or we've been slashdotted again or it's not responding or... man,
+I just don't <strong>care</strong>. I used to find this sort of thing fascinating --
+having my own server, being able to fiddle with it and tweak it and
+deploy what I liked -- and now I just want it to go away. So I've been
+looking for alternatives.</p>
+<p>This site, what with having been running for fifteen years and all, has
+built up a pretty large collection of both stuff and infrastructure. So,
+here are the things that I want, that I need, to preserve.</p>
+<h3>A blog</h3>
+<p>This blog. Lives at kryogenix.org/days. Permalinks at /days/YYYY/MM/DD.
+Can be themed.</p>
+<h3>Comments on the blog</h3>
+<p>People can comment here. The commenting requires JavaScript already, so
+I'm not averse to continuing to require that for a new thing.</p>
+<h3>Arbitrary files at arbitrary URLs</h3>
+<p>Over these many years, I have written and uploaded a whole bunch of
+stuff here. There are images and random little uploaded things and HTML
+and CSS and JavaScript files which are not part of the blog. Take, for
+example, <a href="http://www.kryogenix.org/code/browser/sorttable/">sorttable</a>, probably the most popular thing I've ever
+written. So, these things are not part of the blog at all. I have them
+already: I do not want to have to manually type them all back in again
+to make them "static pages" controlled by the blogging engine.</p>
+<h3>Redirect farms</h3>
+<p>Back in the early days, before we (that is: mpt and Mark Pilgrim, both
+of whom have since killed their sites so I'm not sure how to link to
+them, and others) thought up stable permalink URLs in a standard format
+(/blog/YYYY/MM/DD), and by virtue of this place having been run by about
+six different blogging engines (ones I wrote myself, Moveable Type,
+pyblosxom, Wordpress, the list goes on) posts here have had many, many,
+many different permalinks. Also, the RSS feed has moved around a number
+of times. I have a forest of redirect rules to make sure that all those
+old links keep working (and 302 redirect to the newest link), and I do
+not want to give that up. (Nor do I want to publish a given thing in all
+possible places.)</p>
+<hr>
+<p>So, how can I host this site with no sysadmin overhead and still do all
+the above? I'll list the options I've looked at, and whether there's
+some sort of a problem with each (hint: there is) and then you clever
+people can tell me about ways I can fix that or options I've missed.
+<em>Nota bene:</em> I am prepared to pay for whatever I come up with, as long
+as it's not too expensive; I get some money back by no longer having the
+server, anyway.</p>
+<h3>Completely static hosting on S3/Rackspace Cloud Files/similar</h3>
+<p>It is possible to host a static website entirely on Amazon S3 and its
+competition, and this seems like a good idea. It would involve using
+Disqus for comments (which I am not keen on: anyone who remembers
+e-net-ation or netcomments should know why (they were disqus, and went
+bust taking everyone's comments with them)), but I can live with that if
+I have to. The big problem here is <strong>redirects</strong>: you <em>cannot</em> do them,
+as far as I can tell. So any old links to my site or my resources or my
+RSS feeds will just break, or I have to multiply-publish everything that
+needs redirecting, which is lame and wrong.</p>
+<h3>Completely managed site, on WordPress.com/SquareSpace/Tumblr/similar</h3>
+<p>I quite like this idea: it overcomes one of the other big weaknesses I
+have, which is that I'm horseshit at design, by allowing me to
+one-click-choose a new design, yay! However, this is a big problem
+because of arbitrary files. I quite often write a new little JavaScript
+experiment or something -- one HTML file, with a CSS file and a
+JavaScript file, in its own folder and scp'ed to my server. This is
+fourteen million times harder and more annoying if I have to manage
+those pages as "Pages" controlled by the CMS. I don't want that. I want
+to be able to store static content by just ftp'ing it up or something
+similar. As far as I can tell, none of the full-site-management stuff
+lets me do this -- understandable, since they are full-site-management
+and what I'm asking for is an unmanaged bit, but a problem nonetheless.</p>
+<p>(Extra bonus deficit for SquareSpace: their blog URLs are wrong! They're
+/YYYY/M/D, so 2012/8/5, rather than with the 0s in place, which will
+break every URL on this blog. WTF, SquareSpace? Why would you do that?
+Huge disappointment.)</p>
+<p>However, I'm keen on this method if someone does it in a way I can use.</p>
+<h3>Old-sk00l web hosting</h3>
+<p>You know, a company which gives you a cPanel control panel and FTP
+access and so on. My annoyance here is that suddenly I'm a sysadmin
+again, but one level up; when a new version of WordPress comes out, I
+have to upgrade it myself. It would be nice to avoid that.</p>
+<h3>PaaS-style hosting, like Google App Engine/heroku/dotcloud/appfog</h3>
+<p>Also under consideration. I'd have to be a bit of a sysadmin again --
+that is, I'd need to write (or maybe use an existing) blog engine
+designed for these things, and publishing's a bit harder (I likely have
+to use their command line app, rather than just FTP or similar, although
+dotcloud do SSH, which makes it much harder to do from someone else's
+machine), and I'd need a bunch of complicated redirection to handle all
+the static content, but it's doable. One thing here is that they tend to
+be oriented around "let's make it trivially easy for you to horizontally
+or vertically scale your site by spinning up new instances", which is
+nice but my site ain't gmail. I don't need that, really, and so it
+suggests that if they're devoting their attention to making that great,
+they're not doing other stuff that I do care about.</p>
+<h3>Just have a server, man! it's easy, really!</h3>
+<p>Go away.</p>
+<hr>
+<p>So, LazyWeb, here's your chance. Fill me with your knowledge and ideas!</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2012/08/04/minor-updates-to-ubuntu-one-for-n9/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2012/08/22/minimal-community/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2012/08/05/hosting-this-website/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2012/08/05/hosting-this-website/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

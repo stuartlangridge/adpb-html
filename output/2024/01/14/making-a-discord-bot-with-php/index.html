@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Making a Discord bot with PHP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Making a Discord bot with PHP">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/"><time 
+			class="dt-published" datetime="2024-01-14T21:57:00+00:00">Jan 14 2024</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/">Making a Discord bot with PHP</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>Discord have changed the way bots work quite a few times. Recently, though, they built a system that lets you create and register "slash commands" -- commands that you can type into the Discord chat and which do things, like <code>/hello</code> -- and which are powered by "webhooks". That is: when someone uses your command, it sends an HTTP request to a URL of your choice, and your URL then responds, and that process powers what your users see in Discord. Importantly, this means that operating a Discord bot does not require a long-running server process. You don't need to host it somewhere where you worry about the bot process crashing, how you're going to recover from that, all that stuff. No daemon required. In fact, you can make a complete Discord bot in one single PHP file. You don't even need any PHP libraries. One file, which you upload to your completely-standard shared hosting webspace, the same way you might upload any other simple PHP thing. Here's some notes on how I did that.</p>
+<p>The <a href="https://discord.com/developers/docs/getting-started">Discord documentation</a> is pretty annoying and difficult to follow; all the stuff you need is in there, somewhere, but it's often hard to find where, and there's very little that explains <em>why</em> a thing is the way it is. It's tough to grasp the "Zen" of how Discord <em>wants</em> you to work with their stuff. But in essence, you'll need to create a Discord app: <a href="https://discord.com/developers/docs/getting-started#step-1-creating-an-app">follow their instructions</a> to do that. Then, we'll write our small PHP file, and upload it; finally, fill in the URL of that PHP file as the "interactive endpoint URL" in your newly-created app's general information page in the Discord developer admin. You can then add the bot to a server by visiting the URL from the "URL generator" for your app in the Discord dev admin.</p>
+<p>The PHP file will get sent blocks of JSON, which describe what a user is doing -- a command they've typed, parameters to that command, or whatever -- and respond with something which is shown to the user -- the text of a message which is your bot's reply, or a command to alter the text of a previous message, or add a clickable button to it, and the like. I won't go into detail about all the things you can do here (if that would be interesting, let me know and maybe I'll write a followup or two), but the basic structure of your bot needs to be that it <strong>authenticates</strong> the incoming request from Discord, it <strong>interprets</strong> that request, and it <strong>responds</strong> to that request.</p>
+<p>Authentication first. When you create your app, you get a <code>client_public_key</code> value, a big long string of hex digits that will look like <code>c78c32c3c7871369fa67</code> or whatever. Your PHP file needs to know this value somehow. (How you do that is up to you; think of this like a MySQL username and password, and handle this the same way you do those.) Then, every request that comes in will have two important HTTP headers: <code>X-Signature-ED25519</code> and <code>X-Signature-Timestamp</code>. You use a combination of these (which provide a signature for the incoming request) and your public key to check whether the request is legitimate. There are PHP libraries to do this, but fortunately we don't need them; PHP has the relevant <a href="https://www.php.net/manual/en/function.sodium-crypto-sign-verify-detached.php">signature verification</a> stuff built in, these days. So, to read the content of the incoming post and verify the signature on it:</p>
+<div class="highlight"><pre><span></span><code><span class="x">/* read the incoming request data */</span>
+<span class="x">$postData = file_get_contents(&#39;php://input&#39;);</span>
+<span class="x">/* get the signature and timestamp header values */</span>
+<span class="x">$signature = isset($_SERVER[&#39;HTTP_X_SIGNATURE_ED25519&#39;]) ? </span>
+<span class="x">    $_SERVER[&#39;HTTP_X_SIGNATURE_ED25519&#39;] : &quot;&quot;;</span>
+<span class="x">$timestamp = isset($_SERVER[&#39;HTTP_X_SIGNATURE_TIMESTAMP&#39;]) ? </span>
+<span class="x">    $_SERVER[&#39;HTTP_X_SIGNATURE_TIMESTAMP&#39;] : &quot;&quot;;</span>
+<span class="x">/* check the signature */</span>
+<span class="x">$sigok = sodium_crypto_sign_verify_detached(</span>
+<span class="x">    hex2bin($signature), </span>
+<span class="x">    $timestamp . $postData,</span>
+<span class="x">    hex2bin($client_public_key));</span>
+<span class="x">/* If signature is not OK, reject the request */</span>
+<span class="x">if (!$sigok) {</span>
+<span class="x">    http_response_code(401);</span>
+<span class="x">    die();</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>We need to correctly reject invalidly signed requests, because Discord will check that we do -- they will occasionally send test requests with bad signatures to confirm that you're doing the check. (They do this when you first add the URL to the Discord admin screens; if it won't let you save the settings, then it's because Discord thinks your URL returned the wrong thing. This is annoying, because you have no idea <em>why</em> Discord didn't like it; best bet is to add lots of <code>error_log()</code> logging of inputs and outputs to your PHP file and inspect the results carefully.)</p>
+<p>Next, interpret the incoming request and do things with it. The only thing we have to respond to here is a <code>ping</code> message; Discord will send them as part of their irregular testing, and expects to get back a correctly-formatted <code>pong</code> message.</p>
+<div class="highlight"><pre><span></span><code><span class="x">$data = json_decode($postData);</span>
+<span class="x">if ($data-&gt;type == 1) { // this is a ping message</span>
+<span class="x">    echo json_encode(array(&#39;type&#39; =&gt; 1)); // response: pong</span>
+<span class="x">    die();</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>The magic numbers there (1 for a <code>ping</code>, 1 for a <code>pong</code>) are both defined in the Discord docs (incoming values being the <a href="https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-type">"Interaction Type" field</a> and outgoing values the <a href="https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-type">"Interaction Callback Type"</a>.)</p>
+<p>After that, the world's approximately your oyster. You check the incoming <code>type</code> field for the type of incoming thing this is -- a slash command, a button click in a message, whatever -- and respond appropriately. This is all stuff for future posts if there's interest, but the docs (in particular the <a href="https://discord.com/developers/docs/interactions/receiving-and-responding">"receiving and responding</a> and <a href="https://discord.com/developers/docs/interactions/message-components">"message components"</a> sections) have all the detail. For your bot to provide a slash command, you have to <a href="https://discord.com/developers/docs/interactions/application-commands#registering-a-command">register it first</a>, which is a faff; I wrote a little Python script to do that. You only have to do it once. The script looks approximately like this; you'll need your APP_ID and your BOT_TOKEN from the Discord dashboard.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
+<span class="n">MY_COMMAND</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;doit&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s1">&#39;Do the thing&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="n">discord_endpoint</span> <span class="o">=</span> <span class="n">_</span>
+    <span class="sa">f</span><span class="s2">&quot;https://discord.com/api/v10/applications/</span><span class="si">{</span><span class="n">APP_ID</span><span class="si">}</span><span class="s2">/commands&quot;</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="n">discord_endpoint</span><span class="p">,</span> 
+    <span class="n">json</span><span class="o">=</span><span class="p">[</span><span class="n">MY_COMMAND</span><span class="p">],</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bot </span><span class="si">{</span><span class="n">BOT_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s1">&#39;mybotname (myboturl, 1.0.0)&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</code></pre></div>
+
+<p>Once you've done that, you can use <code>/doit</code> in a channel with your bot in, and your PHP bot URL will receive the incoming request for you to process.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2023/10/05/a-software-matter-device-that-alexa-can-talk-to/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2024/01/30/somewhere-between-silver-and-tin/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/276/878/896/762/751/original/52a44185e012a8c3.jpg">
+			Simon Willison responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109276878896762751">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/110/194/080/716/050/462/original/891aecc261e9c2ce.png">
+			le Pétomane Ancien responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-110194080716050462">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/734/809/120/163/714/original/cef877be71046ec2.jpg">
+			Matt Round responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109734809120163714">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/000/771/906/original/5188caf0935710f2.jpeg">
+			David :ubuntu: :android: :php: responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-771906">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/108/195/071/273/053/901/original/0e49ce27d0d1aebf.jpg">
+			Symfony Station :symfony: responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#reblogged-by-108195071273053901">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/460/194/original/78d98982db50e2d9.jpg">
+			Matthew responded at
+		<a href="https://mastodon.social/@dracos/111756801638629568">mastodon.social</a>
+		<span class="wm-summary">			@sil I do like this way of doing it. My Slack slash bot – https://dracos.co.uk/made/slack-away-plus/ – has 3 PHP files, due to auth:1. Linked from Sla&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/004/198/original/hackergotchi-simpler.png">
+			Stuart Langridge responded at
+		<a href="https://mastodon.social/@sil/111756809379245166">mastodon.social</a>
+		<span class="wm-summary">			@dracos it's so much better than having to run a daemon which hangs on a socket, isn't it? And I quite like Discord's signature approach rather than O&hellip;
+</span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/072/575/original/45a5935b21e813de.gif">
+			how now responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-72575">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/059/543/original/91e39dc731c82fbc.png">
+			Alex Russell responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-59543">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/059/543/original/91e39dc731c82fbc.png">
+			Alex Russell responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#reblogged-by-59543">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/304/380/925/592/572/original/532c91e269a07814.png">
+			RezzedUp responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109304380925592572">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/379/387/347/385/148/original/bfed3a41b5ccca8f.jpg">
+			Dion Williams responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109379387347385148">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/387/058/original/761719e6a4afb476.png">
+			FXBOY4EVA responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-387058">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/287/020/799/261/295/original/0d5d5abbdeb19098.jpg">
+			Caleb Albritton 🏍️ responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109287020799261295">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/000/058/398/original/cdc75cd5234110f1.jpg">
+			Kevin Spencer responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-58398">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/538/965/078/311/220/original/384200d5365e9d16.png">
+			Julien Mercier-Rojas responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109538965078311220">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/110/653/478/651/637/697/original/f04244b8668f8fa4.jpg">
+			jonathan responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-110653478651637697">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/297/157/071/442/258/original/f84918ac9399c90e.jpg">
+			Flamekebab responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109297157071442258">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/297/157/071/442/258/original/f84918ac9399c90e.jpg">
+			Flamekebab responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#reblogged-by-109297157071442258">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/accounts/avatars/000/194/998/original/d29181b871b001b0.png">
+			John Colagioia responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-194998">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://mastodon.social/avatars/original/missing.png">
+			rundgs responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-111726649996438847">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/281/917/263/791/490/original/41f24e685b68570e.png">
+			PythagoRascal responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109281917263791490">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/108/203/272/715/223/168/original/e156234bc424cd90.png">
+			Philip Newborough responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-108203272715223168">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+		<li><img src="https://files.mastodon.social/cache/accounts/avatars/109/156/326/742/386/874/original/49ffa1c560ce9df3.jpg">
+			Timo Tijhof responded at
+		<a href="https://mastodon.social/@sil/111756707673740628#favorited-by-109156326742386874">mastodon.social</a>
+		<span class="wm-summary"></span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2024/01/14/making-a-discord-bot-with-php/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2024/01/14/making-a-discord-bot-with-php/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Reverse SSH tunnels</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Reverse SSH tunnels">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/"><time 
+			class="dt-published" datetime="2014-08-10T23:49:00+01:00">Aug 10 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/">Reverse SSH tunnels</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>My dad's got a computer. Infrequently, it goes wrong and I need to fix it. Slightly more frequently, it doesn't go wrong but it does something which is confusing, and I need to try to fix it until I realise what the confusing thing was and then either fix <em>that</em> or explain it. So, being able to connect to his machine is useful.</p>
+<p>His ADSL router, from TalkTalk<sup id="sf-reverse-ssh-tunnels-1-back"><a href="#sf-reverse-ssh-tunnels-1" class="simple-footnote" title="a Huawei HG533 with the most annoying web config UI I've ever seen ever, which gets even more annoying if you try and control it from curl because it's all JavaScript-dependent. Why? You are a router, not gmail! Grrrr!">1</a></sup>, allows one to set up a port forward<sup id="sf-reverse-ssh-tunnels-2-back"><a href="#sf-reverse-ssh-tunnels-2" class="simple-footnote" title="hooray">2</a></sup> so that I can connect to his external IP and have that routed to port 22 on his machine, thus allowing me SSH access, and with SSH I can do everything else<sup id="sf-reverse-ssh-tunnels-3-back"><a href="#sf-reverse-ssh-tunnels-3" class="simple-footnote" title="hooray">3</a></sup>. However, that router also controls the DHCP addresses for things on the network, and it does not always give the same address out to the same machine. So, every now and again, it'll give his machine a different IP, and then the port forward stops working.<sup id="sf-reverse-ssh-tunnels-4-back"><a href="#sf-reverse-ssh-tunnels-4" class="simple-footnote" title="Also, I really really don't like static IPs, so I don't want to configure it with one.">4</a></sup></p>
+<p>So, after mithering about this a bit, Daviey Walker suggested<sup id="sf-reverse-ssh-tunnels-5-back"><a href="#sf-reverse-ssh-tunnels-5" class="simple-footnote" title="that is, I was mithering about it. Not Daviey.">5</a></sup> that I use a reverse SSH tunnel. That is to say: I have his machine ssh into one of mine, and then port forward a port on my machine back along the SSH tunnel to port 22 on his machine, meaning that I can ssh into it and don't have to care about IPs or anything.</p>
+<p>This was a dead clever idea. It relies on me having a machine which is sshable from the outside world, but I <em>do</em>, so that's OK.</p>
+<p>Obviously, something needs to set the tunnel up. So, first I set things up so that his machine could ssh into mine with key authentication and without a password needed (see <code>ssh-copy-id</code> or <a href="http://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">a guide</a> for that), and then I wrote this little script:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+createTunnel<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span>date
+<span class="w">  </span>ssh<span class="w"> </span>-N<span class="w"> </span>-o<span class="w"> </span><span class="nv">BatchMode</span><span class="o">=</span>yes<span class="w"> </span>-R<span class="w"> </span><span class="m">9102</span>:localhost:22<span class="w"> </span>mylogin@mysshablemachine
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>Tunnel<span class="w"> </span>created<span class="w"> </span>successfully
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>An<span class="w"> </span>error<span class="w"> </span>occurred<span class="w"> </span>creating<span class="w"> </span>a<span class="w"> </span>tunnel.<span class="w"> </span>RC<span class="w"> </span>was<span class="w"> </span><span class="nv">$?</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="o">}</span>
+/bin/pidof<span class="w"> </span>ssh<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span>Creating<span class="w"> </span>new<span class="w"> </span>tunnel<span class="w"> </span>connection
+<span class="w">  </span>createTunnel
+<span class="k">fi</span>
+</code></pre></div>
+
+<p>which creates this ssh tunnel connection. There's a hack there: it assumes that if there's an ssh process, it's our ssh process. If you regularly ssh from the box you're doing this on, you'll want to do something cleverer. In this case I don't, so I keep it easy. Couple of little tricks in the script: there's a <code>date</code> command, so the output mentions when this happened, which is useful for the log file in the next bit (and this is also why the script generates no output if the tunnel is already up). Secondly, <code>-o BatchMode=yes</code> in the ssh options means that it'll instantly fail if you haven't got key auth set up right, rather than hanging forever waiting for a password, and it'll send server keepalives every 300 seconds and kill the connection if they break, which means that if the connection hangs but doesn't terminate, it'll get terminated. This is what we want, because we want some monitoring process to restart the tunnel if it dies. There are all sorts of clever ways to do this: upstart, systemd, whatever<sup id="sf-reverse-ssh-tunnels-6-back"><a href="#sf-reverse-ssh-tunnels-6" class="simple-footnote" title="not /etc/init.d though. This is a user-level process. It should not be being run by system-level stuff. System level belongs to apt.">6</a></sup>, but I just put this line in the crontab<sup id="sf-reverse-ssh-tunnels-7-back"><a href="#sf-reverse-ssh-tunnels-7" class="simple-footnote" title="a file which defines jobs to be run at specific times; it's like a super-techie Scheduled Tasks wizard, and it usefully will run things even when you're not logged in. You can edit yours from the command line with crontab -e.">7</a></sup>:</p>
+<pre><code>*/1 * * * * /path/to/above/script.sh &gt;&gt; /path/to/tunnel.log 2&gt;&amp;1</code></pre>
+
+<p>which just reruns the above script every minute and sticks any output into a logfile so if it's not working I can, at a push, ask dad to read the logfile. Inefficient and low-budget, but it works. So once all this is set up, I can, from my sshable machine, do <code>ssh -p 9012 dadlogin@localhost</code> and I then get to log in to his machine. Then I can fix it. And never deal with his horrid router's horrid web UI ever again.</p><ol class="simple-footnotes"><li id="sf-reverse-ssh-tunnels-1">a Huawei HG533 with the most annoying web config UI I've ever seen ever, which gets even more annoying if you try and control it from curl because it's all JavaScript-dependent. Why? You are a router, not gmail! Grrrr! <a href="#sf-reverse-ssh-tunnels-1-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-2">hooray <a href="#sf-reverse-ssh-tunnels-2-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-3">hooray <a href="#sf-reverse-ssh-tunnels-3-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-4">Also, I really really don't like static IPs, so I don't want to configure it with one. <a href="#sf-reverse-ssh-tunnels-4-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-5">that is, I was mithering about it. Not Daviey. <a href="#sf-reverse-ssh-tunnels-5-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-6">not <code>/etc/init.d</code> though. This is a user-level process. It should not be being run by system-level stuff. System level belongs to apt. <a href="#sf-reverse-ssh-tunnels-6-back" class="simple-footnote-back">↩</a></li><li id="sf-reverse-ssh-tunnels-7">a file which defines jobs to be run at specific times; it's like a super-techie Scheduled Tasks wizard, and it usefully will run things even when you're not logged in. You can edit yours from the command line with <code>crontab -e</code>. <a href="#sf-reverse-ssh-tunnels-7-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2014/06/30/facebook-and-the-button-of-happiness/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/08/18/do-you-do-it-anyway/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://lh3.googleusercontent.com/-xc9DMTKxHf0/AAAAAAAAAAI/AAAAAAAABEI/LYLQU3NxquM/photo.jpg?sz=50">
+			Alessandro Alfonsi responded at
+		<a href="https://plus.google.com/+AlessandroAlfonsi/posts/PD7nvSAqvan">plus.google.com</a>
+		<span class="wm-summary">			Stuart Langridge: Reverse SSH tunnels http://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/﻿
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/08/10/reverse-ssh-tunnels/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/08/10/reverse-ssh-tunnels/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

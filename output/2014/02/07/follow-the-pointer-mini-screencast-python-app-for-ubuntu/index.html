@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Follow-the-pointer mini screencast Python app for Ubuntu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Follow-the-pointer mini screencast Python app for Ubuntu">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/"><time 
+			class="dt-published" datetime="2014-02-07T18:10:00+00:00">Feb 07 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/">Follow-the-pointer mini screencast Python app for Ubuntu</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I had this idea for a "screencast" which follows the mouse pointer
+around, rather than making you nominate a fixed screen area; ideal for
+little demo animated GIFs of how to do a thing on websites. No existing
+screencast app seems to do this, so I threw a quick thing together to do
+it for me. Python (because that's what I use for native apps that can't
+be done in pure QML) and Gtk (because there's no point in using Qt for
+this since the Python bindings are weird, I use Qt/QML for Ubuntu SDK
+apps but this can't be done there anyway because the phone is Mir rather
+than X and app confinement will prevent screenshots anyway).</p>
+<p>Lots of hardcoded things, so it's not a proper useful app, but it works
+for what I needed it for. Note that it contains a hardcoded mouse
+pointer image, because getting the mouse pointer image is insane and
+requires you to talk directly to X, which is possible with Python but
+needs loads of extra libraries, and look life's just too short what are
+you thinking. Also uses modern Gdk and GI, not pygtk which is ancient
+and yet what all the existing posted code samples are. Probably should
+use Cairo from GI too but <code>cairo.CONTENT_COLOR</code> doesn't seem to exist
+there. Anyway, if you need to take screenshots from Python using modern
+Gtk, or you want to do a little animated gif screencast which follows
+the mouse around, here you go.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gi.repository</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">Gdk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cairo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL.GifImagePlugin</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">getheader</span><span class="p">,</span><span class="w"> </span><span class="n">getdata</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">StringIO</span>
+
+<span class="n">CURSOR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;iVBORw0KGgoAAAANSUhEUgAAAA0AAAAUCAYAAABWMrcvAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI</span>
+<span class="s2">WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gIHETMhphEADwAAAfJJREFUOMuVkztvE1EQhb+b9cq+</span>
+<span class="s2">3s2CIU7hH+GOxpWxoOIhOR1UaTBUQEmFIA1C1BTUceWCyp1Lp7HcpCFVIgpLK0XRyo4Uy3cfuUOz</span>
+<span class="s2">tlDMIxlpym/OvXPmAHwCfGCDG5S4rvsNuHsTUKrVauw4zlfgznVBOT4+lkqlkiilvgC3rwOKtVaO</span>
+<span class="s2">jo4kCIJEKfURuPU/UNI0FUAODw/F9/0EeAcE/wJlsViItVYAGY1GUi6XE+AtsAmoP0IXFxcrNUCG</span>
+<span class="s2">w+ESfJXbsQbKbDYTY8wKAmQwGIjWOgZ2Ae8qKFEUrakB0u/3RWttgGdXQTk9PZXz8/M1NUB6vZ5o</span>
+<span class="s2">rRdAG9BLUMIw/KsaIPv7+1ZrPQceASUFyGQyoVgsrtp1Xer1uj05OZHlc+I4dpRSU2vt4w2ALMvI</span>
+<span class="s2">sowwDOl2u4gInU5HOY4zMca8Mcbsishza+0LYLE6o/F4LLVaLfE8Lz07O5P5fC5BECTAS6CWX0kA</span>
+<span class="s2">aAf4sLOzQ7vdTqMoGiilFq7rbrdaLZWmqRqPx9tpmvaACDBABiBbW1tJoVD4DjwEnvq+H0dRJNPp</span>
+<span class="s2">dGnyk3xzq7KO43SB+3mmNj3PO9jb27vMskwajYYBPuexWfn0Hrj3W5YcoFUqlUyz2TTlcnkOvAYq</span>
+<span class="s2">S0jln7vMt2LzQSXgQd4/gCHwE4gBfgH0ew11MKHjYAAAAABJRU5ErkJggg==&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">shot</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">):</span>
+<span class="w">    </span><span class="c1"># Take a screenshot</span>
+<span class="w">    </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="w">    </span><span class="n">w</span><span class="o">=</span><span class="n">Gdk</span><span class="o">.</span><span class="n">get_default_root_window</span><span class="p">()</span>
+<span class="w">    </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">mousex</span><span class="p">,</span><span class="w"> </span><span class="n">mousey</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="o">.</span><span class="n">get_pointer</span><span class="p">()</span>
+<span class="w">    </span><span class="n">s</span><span class="o">=</span><span class="n">Gdk</span><span class="o">.</span><span class="n">Window</span><span class="o">.</span><span class="n">create_similar_surface</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">cairo</span><span class="o">.</span><span class="n">CONTENT_COLOR</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="w">    </span><span class="n">ctx</span><span class="o">=</span><span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Gdk</span><span class="o">.</span><span class="n">cairo_set_source_window</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="o">-</span><span class="n">mousex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="o">-</span><span class="n">mousey</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="w">    </span><span class="n">ctx</span><span class="o">.</span><span class="n">paint</span><span class="p">()</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">SECONDS_DURATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<span class="n">WIDTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">300</span>
+<span class="n">HEIGHT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span>
+<span class="n">FPS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span>
+<span class="n">surfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SECONDS_DURATION</span><span class="p">:</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">last</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">FPS</span><span class="p">):</span>
+<span class="w">        </span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="w">    </span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="w">    </span><span class="n">surfaces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shot</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span><span class="n">HEIGHT</span><span class="p">))</span>
+
+<span class="c1"># now, convert each surface to a PIL PNG then write as a gif</span>
+
+<span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StringIO</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+<span class="n">buffer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">CURSOR</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;base64&quot;</span><span class="p">))</span>
+<span class="n">buffer</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cursor_image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+<span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;anim.gif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+<span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">None</span>
+<span class="k">for</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">surface</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">surfaces</span><span class="p">:</span>
+<span class="w">    </span><span class="n">sio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StringIO</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+<span class="w">    </span><span class="n">surface</span><span class="o">.</span><span class="n">write_to_png</span><span class="p">(</span><span class="n">sio</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sio</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">im</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">sio</span><span class="p">)</span>
+<span class="w">    </span><span class="n">im</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">cursor_image</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">WIDTH</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">HEIGHT</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="n">cursor_image</span><span class="p">)</span>
+<span class="w">    </span><span class="n">im</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">WEB</span><span class="p">)</span>
+<span class="w">    </span><span class="k">del</span><span class="w"> </span><span class="n">surface</span>
+
+<span class="w">    </span><span class="c1"># Fixme: add specific delay (from t) for each frame, and add looping</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">previous</span><span class="p">:</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">getheader</span><span class="p">(</span><span class="n">im</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getdata</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
+<span class="w">            </span><span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="w">    </span><span class="k">else</span><span class="p">:</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">getdata</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
+<span class="w">            </span><span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="w">    </span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">im</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="w"> </span><span class="s2">&quot;Now optimise with gifsicle -b -O3 anim.gif&quot;</span>
+</code></pre></div>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2014/01/30/fantasy-league-planet-ubuntu/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2014/02/11/building-a-phonegap-ios-app-from-ubuntu-entirely-without-mac-os-x/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="http://www.kryogenix.org/days/2014/02/11/building-a-phonegap-ios-app-from-ubuntu-entirely-without-mac-os-x/">Building a...</a>
+(www.kryogenix.org)		<span class="wm-summary">			The Major: But, Fawlty, how did the starling get in the bar? Basil: No, no, no. You were in the bar. The Major: I was in the bar? Yes! Yes, I was! Bas&hellip;
+</span></li>
+		<li><img src="http://www.gravatar.com/avatar/no?d=mm">
+			A response was written at
+		<a href="http://www.kryogenix.org/days/2014/02/11/building-a-phonegap-ios-app-from-ubuntu-entirely-without-mac-os-x/">Building a...</a>
+(www.kryogenix.org)		<span class="wm-summary">			The Major: But, Fawlty, how did the starling get in the bar? Basil: No, no, no. You were in the bar. The Major: I was in the bar? Yes! Yes, I was! Bas&hellip;
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/02/07/follow-the-pointer-mini-screencast-python-app-for-ubuntu/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

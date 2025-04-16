@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Packaging Flex games for Ubuntu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Packaging Flex games for Ubuntu">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2011/01/03/packaging-flex-games-for-ubuntu/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2011/01/03/packaging-flex-games-for-ubuntu/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2011/01/03/packaging-flex-games-for-ubuntu/"><time 
+			class="dt-published" datetime="2011-01-03T17:42:00+00:00">Jan 03 2011</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2011/01/03/packaging-flex-games-for-ubuntu/">Packaging Flex games for Ubuntu</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>After yesterday's experimentation with <a href="http://kryogenix.org/days/2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10">Adobe Flex</a> to build open
+source games on Ubuntu, I thought: obviously the next step is to make it
+really easy to package those games up. This is what <a href="https://wiki.ubuntu.com/Quickly">Quickly</a> is for,
+and Quickly is capable of having "templates": ways of setting up new
+types of projects.</p>
+<p>So, after <a href="https://code.launchpad.net/~sil/quickly/add-flash-game-template/">a little bit of hacking</a>, and some help from Didier Roche,
+I can now do this:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">aquarius</span><span class="err">@</span><span class="nx">giles</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="nx">wget</span><span class="w"> </span><span class="nx">http</span><span class="p">:</span><span class="c1">//adamatomic.com/mode/Mode.swf</span>
+<span class="o">--</span><span class="mi">2011</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="mi">17</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">54</span><span class="o">--</span><span class="w">  </span><span class="nx">http</span><span class="p">:</span><span class="c1">//adamatomic.com/mode/Mode.swf</span>
+<span class="nx">Saving</span><span class="w"> </span><span class="nx">to</span><span class="p">:</span><span class="w"> </span><span class="err">`</span><span class="nx">Mode</span><span class="p">.</span><span class="nx">swf</span><span class="err">&#39;</span>
+<span class="mi">2011</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="mi">17</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">56</span><span class="w"> </span><span class="p">(</span><span class="mi">201</span><span class="w"> </span><span class="nx">KB</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">`</span><span class="nx">Mode</span><span class="p">.</span><span class="nx">swf</span><span class="err">&#39;</span><span class="w"> </span><span class="nx">saved</span><span class="w"> </span><span class="p">[</span><span class="mi">350603</span><span class="o">/</span><span class="mi">350603</span><span class="p">]</span>
+
+<span class="nx">aquarius</span><span class="err">@</span><span class="nx">giles</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="nx">quickly</span><span class="w"> </span><span class="nx">create</span><span class="w"> </span><span class="nx">flash</span><span class="o">-</span><span class="nx">game</span><span class="w"> </span><span class="nx">mode</span><span class="o">-</span><span class="nx">by</span><span class="o">-</span><span class="nx">adamatomic</span><span class="w"> </span><span class="nx">Mode</span><span class="p">.</span><span class="nx">swf</span><span class="w"> </span>
+<span class="nx">Creating</span><span class="w"> </span><span class="nx">project</span><span class="w"> </span><span class="nx">directory</span><span class="w"> </span><span class="nx">mode</span><span class="o">-</span><span class="nx">by</span><span class="o">-</span><span class="nx">adamatomic</span>
+<span class="nx">Creating</span><span class="w"> </span><span class="nx">bzr</span><span class="w"> </span><span class="nx">repository</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">commiting</span>
+<span class="nx">Launching</span><span class="w"> </span><span class="nx">your</span><span class="w"> </span><span class="nx">newly</span><span class="w"> </span><span class="nx">created</span><span class="w"> </span><span class="nx">project</span><span class="p">!</span>
+<span class="nx">Congratulations</span><span class="p">,</span><span class="w"> </span><span class="nx">your</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="nx">project</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">up</span><span class="p">!</span><span class="w"> </span><span class="nx">cd</span><span class="w"> </span><span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">aquarius</span><span class="o">/</span><span class="nx">mode</span><span class="o">-</span><span class="nx">by</span><span class="o">-</span><span class="nx">adamatomic</span><span class="o">/</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">edit</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">details</span><span class="p">.</span>
+<span class="nx">aquarius</span><span class="err">@</span><span class="nx">giles</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="nx">cd</span><span class="w"> </span><span class="nx">mode</span><span class="o">-</span><span class="nx">by</span><span class="o">-</span><span class="nx">adamatomic</span><span class="o">/</span>
+<span class="nx">aquarius</span><span class="err">@</span><span class="nx">giles</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="nx">quickly</span><span class="w"> </span><span class="kn">package</span>
+<span class="o">......</span><span class="p">.</span><span class="nx">Ubuntu</span><span class="w"> </span><span class="nx">packaging</span><span class="w"> </span><span class="nx">created</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">debian</span><span class="o">/</span>
+<span class="o">.......................................</span><span class="p">.</span>
+<span class="nx">Ubuntu</span><span class="w"> </span><span class="kn">package</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">been</span><span class="w"> </span><span class="nx">successfully</span><span class="w"> </span><span class="nx">created</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="nx">mode</span><span class="o">-</span><span class="nx">by</span><span class="o">-</span><span class="nx">adamatomic_0</span><span class="m m-Double">.1</span><span class="nx">_all</span><span class="p">.</span><span class="nx">deb</span>
+</code></pre></div>
+
+<p>Hooray; package up a Flash game and make it available to Ubuntu users in
+two commands. Quickly really is great.</p>
+<p><img alt="Mode by Adamatomic" src="http://www.kryogenix.org/images/adamatomic-flex.png"></p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2011/01/01/using-flixel-and-adobe-flex-on-ubuntu-10-10/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2011/01/16/working-with-the-ubuntu-messaging-menu/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2011/01/03/packaging-flex-games-for-ubuntu/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2011/01/03/packaging-flex-games-for-ubuntu/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

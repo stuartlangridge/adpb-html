@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; A music thing for my parents</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; A music thing for my parents">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2015/04/06/a-music-thing-for-my-parents/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2015/04/06/a-music-thing-for-my-parents/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2015/04/06/a-music-thing-for-my-parents/"><time 
+			class="dt-published" datetime="2015-04-06T14:03:00+01:00">Apr 06 2015</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2015/04/06/a-music-thing-for-my-parents/">A music thing for my parents</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A while back my parents said: we've got a telly in the dining room now. Could we play music through it so we can put songs on while we're doing things around the house?</p>
+<p>Sure, I said.</p>
+<h2>Dad Music TV</h2>
+<p style="text-align: center"><img style="max-width:100%" src="http://www.kryogenix.org/images/dadmusictv-startup.png" alt="For parents everywhere"></p>
+
+<p>So, we have a set of constraints. We need to find or build a thing which can play music through a telly, and which they can put new music on without my help. I'm sure there are devices out there which can do this, but I thought it might be fun to build something. And I set the biggest constraint of all on the device, which is this: it is not connected to the network. Wifi is annoying to configure, and on the Raspberry Pi it basically requires a powered hub.<sup id="sf-a-music-thing-for-my-parents-1-back"><a href="#sf-a-music-thing-for-my-parents-1" class="simple-footnote" title="you will say, no it doesn't. and I will not believe you. and I've tried. A wifi dongle plugged into a powered hub which is then plugged into the Pi works always. A dongle plugged directly into the Pi works sometimes. At best. No network.">1</a></sup> No ethernet network connection while it's running. Non-negotiable requirement.</p>
+<p>Therefore, there are two complexities here: how do you get music onto this thing? And how do you control it?</p>
+<p>My thought was: we'll base this on a Raspberry Pi, because they're nice and standard and you can buy nice looking cases for them. That way, it needs only two wires: power, and HDMI into the telly, and that's it. How you put music on it is: you unplug it, put the SD card into a computer, copy music onto the SD card, then put the card back in the Pi and turn it on. Ta daaah; easy.<sup id="sf-a-music-thing-for-my-parents-2-back"><a href="#sf-a-music-thing-for-my-parents-2" class="simple-footnote" title="actually, that's probably easier than faffing about copying it over the network, to be honest; no passwords, no hassle, no dodgy wifi">2</a></sup> This requires something on the Pi which knows how to play music, and knows how to look at a folder of mp3s and index them. Sounds like a job for <a href="http://www.musicpd.org/">mpd</a>!</p>
+<p>And indeed that works. We create a folder named <code>MUSIC</code> at the root of the Pi's SD card<sup id="sf-a-music-thing-for-my-parents-3-back"><a href="#sf-a-music-thing-for-my-parents-3" class="simple-footnote" title="it's running Raspbian, obviously; there is now a build of proper Ubuntu (not snappy) for the Pi 2, but Raspbian is fine here and at this level Ubuntu and Debian are pretty much identical">3</a></sup>, and stick <a href="http://askubuntu.com/questions/143315/how-to-hide-files-and-folders-in-nautilus">a file named <code>.hidden</code> in the root</a> to ensure that only the <code>MUSIC</code> folder shows up. Now, when my dad puts the SD card into his machine, it'll pop up a file browser window which only shows the <code>MUSIC</code> folder. Winner. Configure <code>mpd</code> on the Pi to treat <code>/MUSIC</code> as its music root directory, and that all works; whenever the Pi starts up, <code>mpd</code> reindexes all the music in the folder, and you can't add music without taking out the SD card which means that you have to restart the Pi. Now we can put music on the device and there's a daemon which knows how to play it. Step 1: done.</p>
+<p>It should really show something on the screen while it's playing, though, shouldn't it? So, a trivial little Python script which (a) uses SDL to (b) display things on the framebuffer while (c) being an mpd client, so when mpd does anything, the screen display changes. This is pretty easy stuff, thanks to <a href="https://learn.adafruit.com/pi-video-output-using-pygame/pointing-pygame-to-the-framebuffer">an Adafruit writeup about using the framebuffer on the Pi</a>.</p>
+<p style="text-align: center"><img style="max-width:100%" alt="The main screen" src="http://www.kryogenix.org/images/dadmusictv-running.png" title="Santana. Yes."></p>
+
+<p>Now, how do we control it? It has no network. There is a thing named <a href="http://en.wikipedia.org/wiki/HDMI#CEC">HDMI-CEC</a> which allows a TV to pass commands down an HDMI cable to a connected device. This would be the obvious way to do it, and <a href="http://www.instructables.com/id/Raspberry-Pi-Remote-For-Free/">the Pi supports it</a>; just have the TV's remote control buttons for left/right/up/down/whatever get sent to the Pi, which then reacts to them appropriately.</p>
+<p>Sadly, their telly doesn't do CEC. So that's that idea kiboshed. Shame; this would have been a good way to do it.</p>
+<p>So, next step. Bluetooth it is! For that, we need a bluetooth USB dongle for the Pi. I have two, but one of them I couldn't get to work. The one that does work names itself in lsusb as <code>0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)</code>. So now what we need is some way to control <code>mpd</code> on the Pi over Bluetooth. Well... Bluetooth supports what it calls "RFCOMM" connections, which basically are a socket, like telnet, but which goes over Bluetooth. So what if we make a little "proxy" server which listens on a Bluetooth socket and connects to <code>mpd</code>'s socket API? So when someone connects over Bluetooth to it, they can act just like they're connected to <code>mpd</code> normally because they send an <code>mpd</code> command to the Bluetooth socket, the little proxy sends it on to <code>mpd</code>, <code>mpd</code> responds, and the proxy sends the output back? That way, all you need is an <code>mpd</code> client where you can switch out its "use a socket to connect" code with "use a Bluetooth socket to connect" code and Robert's your mother's brother. And indeed, that works; another relatively trivial bit of Python code to just open the two sockets and shuffle data between them.</p>
+<p>Now we need an mpd client which can connect over Bluetooth. Both my parents have Android phones, so that's the obvious place to have the client. I don't like Java, so taking an existing open source Android mpd client and altering it is sadly not on the cards. One way to do this would be something like Cordova/PhoneGap, but nobody seems to have written a Cordova mpd app which makes socket connections itself, sadly.<sup id="sf-a-music-thing-for-my-parents-4-back"><a href="#sf-a-music-thing-for-my-parents-4" class="simple-footnote" title="there are a million billion mpd clients where the &quot;client&quot; running on the web is actually talking to a server which then in turn connects to mpd, but we can't do that here because there's nowhere to run the server, and making a webview use a bluetooth socket rather than a tcp socket sounds really low-level and difficult">4</a></sup> So, time to write a relatively noddy mpd client for Android. The ideal here is <a href="http://kivy.org">Kivy</a>; it's Python, it does all the GUI stuff, and they have both <a href="http://kivy.org/docs/guide/packaging-android.html">good documentation and the "buildozer" utility for packaging a Kivy app for Android</a>. This also has the advantage that, because it's in Python and I understand it, I can write the client with a switchable socket back-end, so on Android it uses Bluetooth, and on my desktop it uses an ordinary socket to connect over the network, so I can test the client in a nice convenient environment. I can also have the client connect to <code>mpd</code> running on my actual computer, so I can use other mpd clients to confirm that it does what it's trying to do, that the screen display thing changes when it's supposed to, and so on: this makes testing really, really easy because I don't have to push any of it to the Pi or the Android phone while I'm working on it or to test it out. Having a test environment like this makes life much nicer.</p>
+<p style="text-align: center"><img style="max-width:100%" alt="The Android client" src="http://www.kryogenix.org/images/dadmusictv-client.png" title="The Beastie Boys!"></p>
+
+<p>And, indeed, all of this works! It's not quite finished yet, but all of this stuff hangs together. I'm quietly pleased with the amount of different stuff that had to come together for this project; Raspbian on a Raspberry Pi, mpd and its pretty-good API, creating Bluetooth server sockets with PyBluez on the Pi, proxying between two sockets, rendering a screen with SDL to the framebuffer, supervisord to ensure that all the server-side stuff gets run and keeps running and reports errors, building apps with Kivy, Android packaging for Kivy, using PyJnius from Python to use the underlying Android Java API, Bluetooth clients... I knew <em>about</em> all of this stuff at a high level, but there's something satisfying about pulling it all together into a working product. </p>
+<p>Code is at <a href="https://github.com/stuartlangridge/dadmusictv">github.com/stuartlangridge/dadmusictv</a> for both the Pi server and the Android client if you're very keen to look at it. I've written down instructions, but they're really for me as reference if I'm honest; setting this up yourself will require some jiggery-pokery, I don't doubt. Nonetheless, this was a fun project to do. Easter hacking time 2015: 10 marks out of 10.</p><ol class="simple-footnotes"><li id="sf-a-music-thing-for-my-parents-1">you will say, no it doesn't. and I will not believe you. and I've tried. A wifi dongle plugged into a powered hub which is then plugged into the Pi works always. A dongle plugged directly into the Pi works sometimes. At best. No network. <a href="#sf-a-music-thing-for-my-parents-1-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-2">actually, that's probably easier than faffing about copying it over the network, to be honest; no passwords, no hassle, no dodgy wifi <a href="#sf-a-music-thing-for-my-parents-2-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-3">it's running Raspbian, obviously; there is now a build of proper Ubuntu (not snappy) for the Pi 2, but Raspbian is fine here and at this level Ubuntu and Debian are pretty much identical <a href="#sf-a-music-thing-for-my-parents-3-back" class="simple-footnote-back">↩</a></li><li id="sf-a-music-thing-for-my-parents-4">there are a million billion mpd clients where the "client" running on the web is actually talking to a server which then in turn connects to mpd, but we can't do that here because there's nowhere to run the server, and making a webview use a bluetooth socket rather than a tcp socket sounds really low-level and difficult <a href="#sf-a-music-thing-for-my-parents-4-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2015/04/03/send-a-url-to-your-ubuntu-phone-with-caxton/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2015/04/19/why-i-play-the-lottery/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://lh3.googleusercontent.com/-qJcUc51gzIs/AAAAAAAAAAI/AAAAAAAAK-c/6MecQUi3VOc/photo.jpg?sz=50">
+			Rich Wareham responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			That's genuinely awesome. Not the end product per se but the collection of existing technologies and software. Also I'm particularly interested that K&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+Rich Wareham yeah, that's what I liked about it -- not that the final product is superb or anything, 'cos it ain't, but the gluing together of many d&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-lfquO4DXjQA/AAAAAAAAAAI/AAAAAAAAAAA/sJi7cfUVZi4/photo.jpg?sz=50">
+			Albert Westra responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-WRvCbfGxTPQ/AAAAAAAAAAI/AAAAAAAAAAA/HEa9wrKL2QM/photo.jpg?sz=50">
+			Adrian Bradshaw responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-qJcUc51gzIs/AAAAAAAAAAI/AAAAAAAAAAA/OrRE3gc4af8/photo.jpg?sz=50">
+			Rich Wareham responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Jw3w0T53N8E/AAAAAAAAAAI/AAAAAAAADYY/Mbsy8G0Y8bw/photo.jpg?sz=50">
+			Matthew Gregg responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			As a project this is cool and awesome, but given the audience(parents), why not something off the shelf, simple and reliable like a Chromecast?
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			Because the wifi in their house is unreliable, I don't want to have to put all their music on both of their phones, they don't want to pay a subscript&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Jw3w0T53N8E/AAAAAAAAAAI/AAAAAAAADYY/Mbsy8G0Y8bw/photo.jpg?sz=50">
+			Matthew Gregg responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			You'd only need reliable wifi in one place, the room with the TV. Also no need to put music on both phones nor a subscription, unless they have more t&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			They really don't get uploading music to the cloud. Sure, I could set that up for them, but then I'm still doing a bunch of setup work, and the wifi n&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-WRvCbfGxTPQ/AAAAAAAAAAI/AAAAAAAALP8/PBInO7QKHXU/photo.jpg?sz=50">
+			Adrian Bradshaw responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			Sir, did you really want the github link to be - ??
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+Adrian Bradshaw gnaah. I did the link and the link text the wrong way around! Will fix when at a machine, cheers. Hopefully you were able to find the&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-WRvCbfGxTPQ/AAAAAAAAAAI/AAAAAAAALP8/PBInO7QKHXU/photo.jpg?sz=50">
+			Adrian Bradshaw responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+Stuart Langridge I hope you are not too surprised when I say I was able to work it out
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-WRvCbfGxTPQ/AAAAAAAAAAI/AAAAAAAALP8/PBInO7QKHXU/photo.jpg?sz=50">
+			Adrian Bradshaw responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+Stuart Langridge I thought you had maybe invented a new protocol github://
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			Fixed it from phone! Woo ssh.
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-SUcFhio5Si8/AAAAAAAAAAI/AAAAAAAAAAA/6G92GqLov80/photo.jpg?sz=50">
+			Will Cooke responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-27LxIS0xero/AAAAAAAAAAI/AAAAAAAAAAA/lbF1A0-ZsJw/photo.jpg?sz=50">
+			Seth Arnold responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-b4j3V9TeCew/AAAAAAAAAAI/AAAAAAAAAAA/vIpiGYXocb8/photo.jpg?sz=50">
+			Vincent Beers responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-MC7M2LSjUWM/AAAAAAAAAAI/AAAAAAAAAAA/W2s-dYlHrzA/photo.jpg?sz=50">
+			David Callé responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-V4GEPf7IBa8/AAAAAAAAAAI/AAAAAAAAAAA/FJdZoSUvYdk/photo.jpg?sz=50">
+			Eric Casteleijn responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-7d2gArTyOyg/AAAAAAAAAAI/AAAAAAAAAAA/lcjRAAkOaW4/photo.jpg?sz=50">
+			Fiona C responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-k_66O2mNex8/AAAAAAAAAAI/AAAAAAAAAAA/GRcv2IO9auA/photo.jpg?sz=50">
+			David Meyer responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-Q5xRFOvZZHk/AAAAAAAAAAI/AAAAAAAAAAA/esU0JSirqY8/photo.jpg?sz=50">
+			Matt Seng responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-PhaAYDyuiXo/AAAAAAAAAAI/AAAAAAAAr20/w7W0LC_0nvE/photo.jpg?sz=50">
+			dieGO González responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			Wow, amazing gluing work +Stuart Langridge​​!The *NIX way, each one doing his own job to get the things done!I'm trying to code/get something that cou&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-hJPKQzFoLZU/AAAAAAAAAAI/AAAAAAAAAX0/p1bLEIE8g78/photo.jpg?sz=50">
+			James Henstridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			So the TV didn't have DLNA support?
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+dieGO González I certainly wouldn't do it with C, but that's because I'm not a C coder. I'd go with whichever language you're most comfortable with;&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-PhaAYDyuiXo/AAAAAAAAAAI/AAAAAAAAAAA/KPn0mCZhf9E/photo.jpg?sz=50">
+			dieGO González responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-xVTzJp9GZGE/AAAAAAAAAAI/AAAAAAAAAAA/39KDflVCl0s/photo.jpg?sz=50">
+			Jan Henkins responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-8z7x6kVWvOI/AAAAAAAAAAI/AAAAAAAAAAA/K_iXkSiEmro/photo.jpg?sz=50">
+			Matt McGraw responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-hJPKQzFoLZU/AAAAAAAAAAI/AAAAAAAAAX0/p1bLEIE8g78/photo.jpg?sz=50">
+			James Henstridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			When I bought my TV set (I think it is a 2008 model) DLNA was somewhat common in the medium-high end, so I guess I assumed it would have filtered down&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-x_ObsdJxOuw/AAAAAAAAAAI/AAAAAAAAAjE/CIpmuM6ivdI/photo.jpg?sz=50">
+			Pierre Equoy responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			I loved that! Having a project, finding existing open source bricks and assembling something, it's just all what I love about open source!I learnt abo&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-x_ObsdJxOuw/AAAAAAAAAAI/AAAAAAAAAAA/yMTf3exjQbo/photo.jpg?sz=50">
+			Pierre Equoy responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">likes this.</a>
+(plus.google.com)		<span class="wm-summary"></span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+James Henstridge interesting idea! It's not applicable in this situation -- the tv definitely does not have an Ethernet port -- but I would not have&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+Pierre Equoy kivy' certainly worth a try, I'd say!
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-hJPKQzFoLZU/AAAAAAAAAAI/AAAAAAAAAX0/p1bLEIE8g78/photo.jpg?sz=50">
+			James Henstridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+Stuart Langridge: fair enough. I've seen some fairly terrible TV UIs, so I can believe that. The one on my set didn't seem too bad: it was a variat&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-x_ObsdJxOuw/AAAAAAAAAAI/AAAAAAAAAjE/CIpmuM6ivdI/photo.jpg?sz=50">
+			Pierre Equoy responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			After +James Henstridge comment, I realized there might have another option for your parents, since you already have a Raspberry Pi: OpenElec [1]. It'&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			Huh. Bluetooth remote for XBMC/OpenElec on the Pi. Did not think of that.That might actually be a better option...
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			+Pierre Equoy have remembered why I rejected kodi. There are indeed bluetooth remote controls, but they're all just up/down/left/right controllers and&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-hJPKQzFoLZU/AAAAAAAAAAI/AAAAAAAAAX0/p1bLEIE8g78/photo.jpg?sz=50">
+			James Henstridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			I wonder if there are any apps to make your phone look like a Bluetooth keyboard?
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-hJPKQzFoLZU/AAAAAAAAAAI/AAAAAAAAAX0/p1bLEIE8g78/photo.jpg?sz=50">
+			James Henstridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			That one seems to require you install a special service on the computer you want to control rather than it just emulating a Bluetooth HID keyboard.Thi&hellip;
+</span></li>
+		<li><img src="https://lh3.googleusercontent.com/-s8UkBe69YK0/AAAAAAAAAAI/AAAAAAAAAqg/5MtJCPJf18Q/photo.jpg?sz=50">
+			Stuart Langridge responded at
+		<a href="https://plus.google.com/+StuartLangridge/posts/BoeK8jVgmKC">plus.google.com</a>
+		<span class="wm-summary">			Yeah, I saw the service, but I'm roughly ok with doing that if need be (probably more ok than rooting my parents' phones :))
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2015/04/06/a-music-thing-for-my-parents/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2015/04/06/a-music-thing-for-my-parents/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

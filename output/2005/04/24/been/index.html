@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Been busy</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Been busy">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2005/04/24/been/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2005/04/24/been/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2005/04/24/been/"><time 
+			class="dt-published" datetime="2005-04-24T11:00:00+01:00">Apr 24 2005</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2005/04/24/been/">Been busy</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>I haven’t written much recently, because I’ve been busy. Work is prety
+hectic, and I’ve been trying to get some hacking done; I am painfully
+aware that I haven’t hacked on anything and released it for a little
+while now, and I don’t like that.</p>
+<p>Unfortunately, the main thing I’ve been hacking on is an attempt to make
+my Zaurus be a media player (and not a <span class="caps">PIM</span>),
+and it hasn’t worked. After lots, and lots, and lots of trying, I have
+reluctantly come to the conclusion that it is not possible to write an
+application on OpenZaurus 3.5.3 which is the only app running on the
+Zaurus (or provides the only UI) and is in Python (because that’s what I
+can write code in). Note that I do not mean “an app running inside Opie
+or inside <span class="caps">GPE</span>“, I mean “it is the app running
+and that’s it; no desktop environment“. There seem to be three potential
+approaches:</p>
+<ul>
+<li>python-qt. To be the only app, you have to get launched instead of
+    Opie. This requires python-quicklauncher to work, and it just
+    doesn’t work at all.</li>
+<li>python-gtk. This involves starting an X server and then running your
+    PyGtk app, so it’s basically the only thing running. This doesn’t
+    work either; I can create a GtkWindow, but if I put any widget in
+    that window, python-gtk segfaults on window.show().</li>
+<li>pygame. Doesn’t work at all; pygame has been patched to do something
+    with the qt libraries which isn’t required any more, so it fails on
+    a symbol import.</li>
+</ul>
+<p>I’m really disappointed in this. I don’t want to rag on the OZ team too
+much, because they do a tough job (I’ve done a little work on the <a href="http://www.openzaurus.org/">OZ
+website</a> in order to make it a bit clearer, but I’m not part of the
+project) but, as far as I can tell, the packages aren’t tested much;
+pygame fails on “import pygame“, which means that it went into the feed
+broken and wasn’t tested. I’m not sure how to get around this without
+having unit tests for every package, mind, but when the alternative is
+“compile a new version myself“, involving setting up a cross-compiling
+toolchain, I’ve just knocked it on the head.</p>
+<p>I have lots of other projects on the go, though. Hopefully some of them
+will happen, although more of them are involved with the Linux end of
+the world rather than the web end of the world, which is probably at
+odds with the relative proportions of people reading this, most of whom
+(I suspect) will be web people rather than Linux people.</p>
+<p>However, whichever you are, you should be attending <a href="http://www.lugradio.org/live/2005/">LugRadio Live
+2005</a> because it’s going to be superb. There’s stuff for Linux people
+<em>and</em> web people and everyone in between. Go and look, you know it makes
+sense.</p>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2005/04/21/approaches/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2005/04/25/linked/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2005/04/24/been/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2005/04/24/been/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>

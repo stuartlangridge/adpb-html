@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Enabling the devtools inspector when using Oxide in an Ubuntu SDK QML app</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Enabling the devtools inspector when using Oxide in an Ubuntu SDK QML app">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2014/12/30/enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2014/12/30/enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2014/12/30/enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app/"><time 
+			class="dt-published" datetime="2014-12-30T13:37:00+00:00">Dec 30 2014</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/12/30/enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app/">Enabling the devtools inspector when using Oxide in an Ubuntu SDK QML app</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>A tiny post for something I've just worked out. If you're using Oxide, the Ubuntu web rendering engine (based on Chrome's Blink) in an Ubuntu SDK QML app, it'd be useful to have access to the devtools inspector so you can debug it. Well, you can, although this doesn't seem to be documented anywhere. Adnane "daker" Belmadiaf wrote a useful post <a href="http://daker.me/2014/05/how-to-use-oxide-in-your-ubuntu-qml-application.html">describing how to use Oxide in your Ubuntu QML application</a> but unaccountably didn't explain how to turn on the dev tools<sup id="sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1-back"><a href="#sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1" class="simple-footnote" title="possibly because you couldn't when he wrote the post :)">1</a></sup> so this is how to do it.</p>
+<p>Give your <code>WebView</code> a <code>WebContext</code> and set its <code>devtoolsEnabled</code> and <code>devtoolsPort</code> properties. That's it.</p>
+<pre><code>import com.canonical.Oxide 1.0
+WebView {
+
+    ...
+
+    context: WebContext {
+        devtoolsEnabled: true
+        devtoolsPort: 9232
+    }
+}</code></pre><ol class="simple-footnotes"><li id="sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1">possibly because you couldn't when he wrote the post :) <a href="#sf-enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app-1-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2014/12/17/the-matasano-crypto-challenges/">Previous post</a></li>
+		<li><a href="https://www.kryogenix.org/days/2015/01/01/ubuntu-component-store-redux-2/">Next post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul>
+		<li><img src="https://twitter.com/chrisccoulson/profile_image?size=original">
+			Chris Coulson responded at
+		<a href="https://twitter.com/chrisccoulson/status/704455775863832576">twitter.com</a>
+		<span class="wm-summary">			@sil That's not changed - it should still work. I just checked with webbrowser-app --inspector, which does basically the same thing
+</span></li>
+		<li><img src="https://twitter.com/sil/profile_image?size=original">
+			Stuart Langridge responded at
+		<a href="https://twitter.com/sil/status/704457681415872512">twitter.com</a>
+		<span class="wm-summary">			@chrisccoulson that's what I thought... but it isn't. Something weird happens on my chosen port, but I can't connect to it :(
+</span></li>
+		<li><img src="https://twitter.com/chrisccoulson/profile_image?size=original">
+			Chris Coulson responded at
+		<a href="https://twitter.com/chrisccoulson/status/704460516341784576">twitter.com</a>
+		<span class="wm-summary">			@sil Interesting. Are you trying to connect from Chrome (and, which version)? Are you connecting from a different device?
+</span></li>
+	</ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2014/12/30/enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2014/12/30/enabling-the-devtools-inspector-when-using-oxide-in-an-ubuntu-sdk-qml-app/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
