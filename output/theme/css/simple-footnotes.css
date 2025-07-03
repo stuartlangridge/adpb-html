@@ -32,3 +32,6 @@ ol.simple-footnotes::before {
     font-weight: bold;
     margin-bottom: 0.5em;
 }
+
+*:has(> sup a.simple-footnote:target) { animation: yellow-flash 2300ms ease-out; }
+@keyframes yellow-flash { from { background-color: yellow } to { background-color: transparent } }
