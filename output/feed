@@ -10,7 +10,7 @@
 &lt;p&gt;If this read:&lt;/p&gt;
 &lt;blockquote&gt;Even the industrial-grade crystal ball was only there as a sop to her customers. Mrs Cake could actually read the future in a bowl of porridge. (It would say, for example, that you would shortly undergo a painful bowel movement.) She could have a revelation in a panful of frying bacon.&lt;/blockquote&gt;
 
-&lt;p&gt;then it's too distracting, isn't it? That's giving the thing too much prominence; it derails the point and then you have to get back on board after reading it. Similarly with making it a long note via &amp;lt;details&amp;gt; or via making it &amp;lt;section role="aside"&amp;gt;, and Jake does make the point that that's for longer notes.&lt;/p&gt;
+&lt;p&gt;then it's too distracting, isn't it? That's giving the thing too much prominence; it derails the point and then you have to get back on board after reading it. Similarly with making it a long note via &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; or via making it &lt;code&gt;&amp;lt;section role="aside"&amp;gt;&lt;/code&gt;, and Jake does make the point that that's for longer notes.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;Even the industrial-grade crystal ball was only there as a sop to her customers. Mrs Cake could actually read the future in a bowl of porridge.&lt;/p&gt;
 &lt;details&gt;&lt;summary&gt;Note&lt;/summary&gt;It would say, for example, that you would shortly undergo a painful bowel movement.&lt;/details&gt;
 &lt;p&gt;She could have a revelation in a panful of frying bacon.&lt;/p&gt;&lt;/blockquote&gt;
