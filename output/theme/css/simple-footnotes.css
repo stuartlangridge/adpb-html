@@ -34,6 +34,6 @@ ol.simple-footnotes::before {
 }
 
 *:has(> :target > a.simple-footnote) { animation: yellow-flash 200ms ease-out; }
-sup:target:has(> a.simple-footnote) { animation: dunlop 500ms ease-out; }
+sup:target:has(> a.simple-footnote) { animation: dunlop 800ms ease-out; }
 @keyframes yellow-flash { from { background-color: yellow } to { background-color: transparent } }
 @keyframes dunlop { from { background-color: green } to { background-color: transparent } }
