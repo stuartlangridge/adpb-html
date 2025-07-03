@@ -33,7 +33,7 @@ ol.simple-footnotes::before {
     margin-bottom: 0.5em;
 }
 
-*:has(> :target > a.simple-footnote) { animation: yellow-flash 200ms ease-out; }
-sup:target:has(> a.simple-footnote) { animation: dunlop 800ms ease-out; }
+*:has(> :target > a.simple-footnote) { animation: yellow-flash 500ms ease-out; }
+sup:target:has(> a.simple-footnote) { animation: dunlop 1000ms ease-out; }
 @keyframes yellow-flash { from { background-color: yellow } to { background-color: transparent } }
-@keyframes dunlop { from { background-color: green } to { background-color: transparent } }
+@keyframes dunlop { from { background-color: #5f5 } to { background-color: transparent } }
