@@ -57,7 +57,7 @@
 		<div class="entry-content e-content">
 			<p>I like having the news headlines on my phone's home screen. (Well, on the screen to the right.) It helps me keep up with what's going on in the world. But it's hard to find a simple headline home screen widget which isn't full of ads or extra frippery or images or tracking; I just want headlines, plain text, not unpleasantly formatted, and high-density. I don't want to see three headlines; I'd rather see ten. I tried a whole bunch of news headline home screen widgets and they're all terrible; not information-dense enough, or they are but they're ugly, or they insist on putting pictures in, or they display a ton of other information I don't want.</p>
 <p>It occurred to me that I don't really need a <em>news</em> reader per se; just an RSS reader, which I then point at Google's "all news" feed (which they move around from time to time but at time of writing in February 2020 is at <a href="https://news.google.com/news/rss">https://news.google.com/news/rss</a>). However, RSS reader widgets are <em>also</em> all terrible.</p>
-<p>Finally, I thought: fine, I'll just do it myself. But I really don't want to write Java and set up Android Studio. So I installed <a href="https://play.google.com/store/apps/details?id=de.dennis_kempf.webwidget">Web Widget</a> which just renders a web page to a home screen widget, and then wrote a simple web page and stuck it at the root of my phone's storage. I can then point Web Widget at <code>file:///sdcard/noos.html</code> and it all works, and I can customise it how I like. Every one's a winner. Nice simple way to create widgets that do what I want. They can't be animated or anything, but if you want something which displays some external data and is happy to be polled every now and again to update, it's perfectly fine. Sadly, there's no continuity of storage (<code>indexedDB</code> exists but doesn't persist and <code>localStorage</code> doesn't exist at all), but it's good for what I needed.</p>
+<p>Finally, I thought: fine, I'll just do it myself. But I really don't want to write Java and set up Android Studio. So I installed <a href="http://web.archive.org/web/20200219194200/https://play.google.com/store/apps/details?id=de.dennis_kempf.webwidget">Web Widget</a> which just renders a web page to a home screen widget, and then wrote a simple web page and stuck it at the root of my phone's storage. I can then point Web Widget at <code>file:///sdcard/noos.html</code> and it all works, and I can customise it how I like. Every one's a winner. Nice simple way to create widgets that do what I want. They can't be animated or anything, but if you want something which displays some external data and is happy to be polled every now and again to update, it's perfectly fine. Sadly, there's no continuity of storage (<code>indexedDB</code> exists but doesn't persist and <code>localStorage</code> doesn't exist at all), but it's good for what I needed.</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2020/02/17/on-the-birmingham-tech-scene/">Previous post</a></li>
@@ -133,7 +133,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

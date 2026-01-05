@@ -74,7 +74,7 @@
 <p><img src="https://kryogenix.org/images/iot-chrome-s4.png" alt="start, connect via LE, AP, device are crossed off, connect via CNA, upload image, done"></p>
 <p>No. Well, we can, but it doesn't help.</p>
 <p>You see, Android shows you the captive portal login page in a special cut-down "browser". This captive portal browser (Apple calls it a CNA, for Captive Network Assistant, so I shall too... but we're not talking about iOS here, which is an entirely different kettle of fish for a different article), this CNA isn't <em>really</em> a browser. Obviously, our IoT device can't provide a route to the internet; it's not that it has one but won't let you see it, like a hotel; it doesn't have one at all. So you can't fill anything into the CNA that will make that happen. If you try to switch back to the real browser in order to access the website being served from the device, Android says "aha, you closed the CNA and there's still no route to the internet!" and disconnects you from the device wifi. That doesn't work.</p>
-<p>You can't open a page in the real browser <em>from</em> the CNA, either. You used to be able to do <a href="https://stackoverflow.com/questions/59585783/open-app-browser-android-using-captive-portal-error-social-login-with-facebook">some shenanigans with a link pointing to an <code>intent://</code> URL</a> but that doesn't work any more.</p>
+<p>You can't open a page in the real browser <em>from</em> the CNA, either. You used to be able to do <a href="http://web.archive.org/web/20200818131300/https://stackoverflow.com/questions/59585783/open-app-browser-android-using-captive-portal-error-social-login-with-facebook">some shenanigans with a link pointing to an <code>intent://</code> URL</a> but that doesn't work any more.</p>
 <p>Maybe we can run the whole web app <em>inside</em> the CNA? I mean, it's a web browser, right? Not an ideal user experience, but it might be OK.</p>
 <p>Nope. The CNA is a browser, but half of the features are turned off. There are a bunch of JavaScript APIs you don't have access to, but the key thing for our purposes is that <code>&lt;input type="file"&gt;</code> elements don't work; you can't open a file picker to allow someone to choose a file to upload to the device. So that's a non-starter too.</p>
 <p><strong>So, what do we do?</strong></p>
@@ -163,7 +163,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

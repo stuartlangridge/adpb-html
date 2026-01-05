@@ -55,7 +55,7 @@
 			<a class="u-url p-name" href="https://www.kryogenix.org/days/2008/11/13/trying-to-understand-yui-3/">Trying to understand YUI 3</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>I've been looking at <a href="http://developer.yahoo.com/yui/3/">YUI 3</a>, because I ought to know about it and I
+			<p>I've been looking at <a href="http://web.archive.org/web/20081113091800/http://developer.yahoo.com/yui/3/">YUI 3</a>, because I ought to know about it and I
 currently don't. I used YUI 2 for a few things and found myself
 perpetually frustrated with the documentation and the general feel of
 it, but I figured that maybe that was just me. (Disclosure: I'm a jQuery
@@ -84,8 +84,8 @@ in a list, so I can look through them and work out which is likely to be
 the one I want. The YUI does not. The jQuery docs also have inline
 executable examples with each function, so I can see working code and
 test it. The YUI reference manual does not. But I shouldn't start with
-the reference manual. The YUI docs specifically say to <a href="http://developer.yahoo.com/yui/3/#start">, so I did so.</a></p>
-<p><a href="http://developer.yahoo.com/yui/3/examples/event/event-simple.html">The very first example</a> is showing how to attach an event
+the reference manual. The YUI docs specifically say to <a href="http://web.archive.org/web/20081113091800/http://web.archive.org/web/20081113091800/http://developer.yahoo.com/yui/3/#start">, so I did so.</a></p>
+<p><a href="http://web.archive.org/web/20081113091800/http://web.archive.org/web/20081113091800/http://developer.yahoo.com/yui/3/examples/event/event-simple.html">The very first example</a> is showing how to attach an event
 handler to a node. Fine as far as it goes (and I like the idea that you
 get passed a full-on event object to your function whether you're in a
 browser that supports that or not), but...the code in the example just
@@ -121,13 +121,13 @@ the extra three milliseconds you get from having the JS in-page without
 DOMContentLoaded may make a big difference. For most of the stuff I
 write, though, I don't like it and try to not use it. So, the first
 example was obviously reliant on that (because it's not hooking any load
-event at all), but didn't say so. Moving on, the <a href="http://developer.yahoo.com/yui/3/examples/node/basic-node.html">next example I read</a>, about nodes, does the same thing. As far as I can tell, nothing
+event at all), but didn't say so. Moving on, the <a href="http://web.archive.org/web/20081113091800/http://web.archive.org/web/20081113091800/http://developer.yahoo.com/yui/3/examples/node/basic-node.html">next example I read</a>, about nodes, does the same thing. As far as I can tell, nothing
 anywhere in these examples has said "make sure you put this example code
 after the things it's referring to". If you don't do that (say, if you
 put it in the head because that's where you've been taught that
 JavaScript should go) then it plain won't work, and you won't know why.
 (Maybe I missed the 72-point red writing which says this? I hope I did.)
-Next example I read (<a href="http://developer.yahoo.com/yui/3/examples/node/node-evt-delegation.html">event delegation</a>, a thing I like very much):
+Next example I read (<a href="http://web.archive.org/web/20081113091800/http://web.archive.org/web/20081113091800/http://developer.yahoo.com/yui/3/examples/node/node-evt-delegation.html">event delegation</a>, a thing I like very much):
 doesn't show why the clicked items turn green (obviously CSS, and indeed
 it doesn't take long to find the link in the source), but also...when I
 click on one of the items and it turns green, there's a subtle animation
@@ -161,7 +161,7 @@ inline functions.) It's be useful to me if YUI 3 could do that, so I
 thought I'd have a look to see if it's possible. I don't <em>think</em> it is,
 but...I can't tell. The docs don't seem to mention the idea of loading
 scripts that call a callback function at all. Instead, I think you're
-supposed to use <a href="http://developer.yahoo.com/yui/3/api/Get.html#method_script">YUI.Get.script</a> and read the JSON out of the nodes
+supposed to use <a href="http://web.archive.org/web/20081113091800/http://web.archive.org/web/20081113091800/http://developer.yahoo.com/yui/3/api/Get.html#method_script">YUI.Get.script</a> and read the JSON out of the nodes
 array that you get passed. Perhaps. Here we come back to my problem with
 the YUI docs: I know what I want to do, but not how to do it, and
 there's no way to answer my question. If there isn't an example dealing
@@ -255,7 +255,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

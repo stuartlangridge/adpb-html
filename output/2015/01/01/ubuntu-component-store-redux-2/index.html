@@ -67,7 +67,7 @@
 <li><code>/ubuntu_component_store/qml/$WHATEVER.qml</code> - any QML files for your component (and any external files that they depend on, such as images) go in <code>qml/</code></li>
 </ul>
 <p>Obviously if your component is only a binary QML plugin then it won't have a <code>qml</code> folder, and if it's pure QML then it won't have a <code>bin</code> folder. Note that <code>bin</code> contains <em>compiled</em> plugins, not source. You should have a way of letting people get the source for your component, especially if they want to change it or improve it, but that's not what this is about: <code>ucs install</code> gets a working binary thing. It does not get the source so that you compile it yourself, because it's aimed at people who don't want to do compilation at all. (In particular, a pure QML project won't have any of the cmake stuff even set up, and it should not have to have.)</p>
-<p>The binary arch stuff is designed to fit in with <a href="http://www.theorangenotebook.com/2014/12/creating-mutli-arch-click-packages.html">fat packages</a> properly.</p>
+<p>The binary arch stuff is designed to fit in with <a href="http://web.archive.org/web/20150101220200/http://www.theorangenotebook.com/2014/12/creating-mutli-arch-click-packages.html">fat packages</a> properly.</p>
 <p>You then submit the component to the server, with <code>ucs submit lp:~username/project/branch</code>, passing the LP URL for the branch you pushed. The server fetches <code>ubuntu_component_store.json</code> from the root of that branch and parses it for metadata; it may also check that the branch looks validly like a component. The server then updates <code>community_components.json</code>, which is a file listing all metadata for all the community components, and uploads it back to Launchpad. (It's a bit like a Debian Packages file.)</p>
 <p>Then a developer decides to use your component, so they <code>ucs install name/yourcomponent</code>. This fetches <code>community_components.json</code> from Launchpad and gets the details of your component from it: in particular, it gets the LP branch URL. It then downloads the <code>ubuntu_component_store/bin</code> and/or <code>ubuntu_component_store/qml</code> folders from your LP branch and puts them somewhere appropriate in the current project folder so that they'll work and can be referenced from your code.</p>
 <p><code>ucs search &amp;lt;something&amp;gt;</code> searches <code>community_components.json</code> <em>locally</em>. </p>
@@ -147,7 +147,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

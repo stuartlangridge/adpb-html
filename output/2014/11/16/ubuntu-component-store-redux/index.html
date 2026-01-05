@@ -61,7 +61,7 @@
 <p><strong>Thing 2</strong>: Some people think that a component store should be composed of basically-complete excellently-written well-documented components which are essentially candidates for direct inclusion in the core SDK. Some people think that a component store should be composed of whatever anyone wants to add, and developers can use or not use components as they choose.</p>
 <p>Specifically, Nekhelesh is in camp 1 (only good components, like the Ubuntu SDK) and I'm in camp 2 (anyone can publish anything and market forces sort things out, like PyPI or NPM). Both of these camps have some pros and cons, which I will <em>attempt</em> to lay out below without bias; I am, as noted, in camp 2, but I'll try to be objective here, and please excuse me if I misrepresent camp 1.</p>
 <p>First, a brief description of how each of these approaches would work, which will help make sense of the benefits and deficits list. </p>
-<p>Nekhelesh proposes that components are part of one single Launchpad branch; to add a component to the store, propose a merge to that source tree with your component source, tests, and documentation. This will be manually reviewed and if suitable, included; a developer can also apply for membership of the component store team, who own the branch and can make changes to it and accept merges. The component is then available from that Launchpad branch. <a href="http://ubuntu-component-store.readthedocs.org/en/latest/">Documentation from the branch is then published to a central location as a manual</a>, similar to <a href="http://developer.ubuntu.com/api/qml/sdk-14.10/">the core Ubuntu SDK documentation</a>.</p>
+<p>Nekhelesh proposes that components are part of one single Launchpad branch; to add a component to the store, propose a merge to that source tree with your component source, tests, and documentation. This will be manually reviewed and if suitable, included; a developer can also apply for membership of the component store team, who own the branch and can make changes to it and accept merges. The component is then available from that Launchpad branch. <a href="http://ubuntu-component-store.readthedocs.org/en/latest/">Documentation from the branch is then published to a central location as a manual</a>, similar to <a href="http://web.archive.org/web/20141116154400/http://developer.ubuntu.com/api/qml/sdk-14.10/">the core Ubuntu SDK documentation</a>.</p>
 <p>I propose that a UCS web API server is set up which accepts submissions of component metadata (name, version, remote URL, and similar), and that server provides this info via an API. Components themselves are not stored on the UCS server; one puts a component wherever one likes (github, launchpad, one's own website) and just tells the UCS server about the component and where it is. Providing good documentation and tests is obviously encouraged and will make your component more attractive than alternatives, but is not required; developers can choose to not publish such things, and other developers can choose to use or not use an ill-documented component as a result.</p>
 <h3>Curated Component Store: benefits</h3>
 <ul>
@@ -213,7 +213,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

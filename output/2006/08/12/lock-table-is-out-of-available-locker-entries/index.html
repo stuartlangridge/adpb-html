@@ -100,7 +100,7 @@ anything. Now do the long-term fix, below.  </p>
 <p>The real problem here is that Berkeley DB isn't very good. The svn
 people advise you to not use it now in favour of their own format, fsfs.
 I'm sure that BDB is a great and powerful program, but it does seem to
-get lots of locking errors and so forth. So, you should <a href="http://subversion.tigris.org/faq.html#bdb-fsfs-convert">convert your repository to fsfs format</a>. Do this like so:</p>
+get lots of locking errors and so forth. So, you should <a href="http://web.archive.org/web/20060812213600/http://subversion.tigris.org/faq.html#bdb-fsfs-convert">convert your repository to fsfs format</a>. Do this like so:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mv</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span><span class="o">.</span><span class="n">old</span>
 <span class="n">svnadmin</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="o">-</span><span class="n">fs</span><span class="o">-</span><span class="n">type</span><span class="w"> </span><span class="n">fsfs</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span>
 <span class="n">svnadmin</span><span class="w"> </span><span class="n">dump</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span><span class="o">.</span><span class="n">old</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">svnadmin</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">repos</span>
@@ -187,7 +187,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

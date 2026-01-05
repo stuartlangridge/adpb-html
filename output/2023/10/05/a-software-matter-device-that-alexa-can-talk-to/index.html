@@ -90,7 +90,7 @@ It's-a not so bad, it's-a nice-a place
 <p>I had not. So I gave it a look.</p>
 <h1 id="matterpart4">Part the fourth: yes it Matters!</h1>
 <p><a href="https://github.com/project-chip/matter.js">Matter.js</a> is an implementation of the Matter suite of protocols in JavaScript. It does not build on the huge complicated Project CHIP SDK; it's its own thing. And it just works.</p>
-<p>If you want to build a Matter device in JavaScript, take a look at <a href="https://github.com/project-chip/matter.js/blob/main/packages/matter-node.js-examples/README.md">the Matter.js Node examples</a> and they work fine. You can do that right now.</p>
+<p>If you want to build a Matter device in JavaScript, take a look at <a href="http://web.archive.org/web/20231005094400/https://github.com/project-chip/matter.js/blob/main/packages/matter-node.js-examples/README.md">the Matter.js Node examples</a> and they work fine. You can do that right now.</p>
 <p>I did something a little tiny bit different. The Matter.js stuff is not actually JS; it's TypeScript. I don't like TypeScript<sup id="sf-a-software-matter-device-that-alexa-can-talk-to-9-back"><a href="#sf-a-software-matter-device-that-alexa-can-talk-to-9" class="simple-footnote" title="feel free to email your long diatribe about why TypeScript is the future to IDontCare@Whatever.Bored">9</a></sup> and so I wanted a plain JS thing. So I did a simple reimplementation of the simplest Matter.js example in plain JS, and made it even simpler; the original correctly lets you pass in a bunch of details on the command line to configure it, but I'm not bothered about that and wanted to keep it as simple as possible. So, <a href="https://github.com/stuartlangridge/simple-js-matter-device">the simplest possible "virtual" Matter device implemented in JavaScript</a>. It's a lightbulb; Alexa, and Matter, do support multiple types of devices (including window blind controllers!) but Matter.js only does lightbulbs and sockets at the moment. I'm probably going to build and contribute the window blind controller device type, if someone else doesn't get there first. Anyway, let's get this code running! Use is pretty easy for a developer:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/stuartlangridge/simple-js-matter-device.git
 Cloning<span class="w"> </span>into<span class="w"> </span><span class="s1">'simple-js-matter-device'</span>...
@@ -223,7 +223,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

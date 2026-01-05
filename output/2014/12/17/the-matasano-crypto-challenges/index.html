@@ -55,7 +55,7 @@
 			<a class="u-url p-name" href="https://www.kryogenix.org/days/2014/12/17/the-matasano-crypto-challenges/">The Matasano crypto challenges</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p><a href="http://cryptopals.com/">The Matasano crypto challenges</a> are a set of increasingly difficult coding challenges in cryptography; not puzzles, but designed to show you how crypto fits together and why all the parts are important. Cheers to <a href="https://blog.pinboard.in/2013/04/the_matasano_crypto_challenges/">Maciej Ceglowski of pinboard.in</a> for bringing them to my attention.</p>
+			<p><a href="http://cryptopals.com/">The Matasano crypto challenges</a> are a set of increasingly difficult coding challenges in cryptography; not puzzles, but designed to show you how crypto fits together and why all the parts are important. Cheers to <a href="http://web.archive.org/web/20141217090100/https://blog.pinboard.in/2013/04/the_matasano_crypto_challenges/">Maciej Ceglowski of pinboard.in</a> for bringing them to my attention.</p>
 <p>I've been playing around with doing the challenges from first principles, in JavaScript. That is: not using any built-in crypto stuff, and implementing things like XOR myself by individually twiddling bits. It's interesting! The thing that Maciej says here, and with which I totally agree, is that a lot of this (certainly the first batch, which is all I've done so far) is stuff that you already <em>know</em> how to do, intellectually, but you've never actually done -- have you ever written a base64 encoder? Rather than just using <code>string.encode('base64')</code> or whatever? Obviously there's no need to write this sort of thing yourself in production code (this is not one of those arguments that kids should learn long division rather than just owning a phone with a calculator on it), but I've found that actually making a thing to implement simple crypto such as XOR with a repeated key to have a few surprising tricks and turns in it. And, in immensely revealing fashion, one then goes on to write code which breaks such a cipher. In microseconds. Obviously intellectually I knew that Viginere ciphers are an old-fashioned thing, and I'd read various books in which they were broken and how they were, but there's something about writing a little function yourself which viscerally demonstrates just how <em>easy</em> it was in a way that a hundred articles cannot.</p>
 <p>Code so far (I'm only up to challenge 6 in set 1!) is in <a href="http://sil.jsbin.com/zoxoye">jsbin</a> if you want to have a look, or have a play yourself!</p>
 		</div> <!--/#entry-content-->
@@ -133,7 +133,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

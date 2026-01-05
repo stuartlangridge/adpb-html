@@ -60,8 +60,8 @@
 exact, to look at stone circles and other examples of weirdness.
 Probably drink a couple of beers too.</p>
 <p>Anyway, the canonical reference on ancient sites and folklore across the
-UK is Julian Cope's <a href="http://www.themodernantiquarian.com/the_book.php">The Modern Antiquarian</a>, which has a very useful
-<a href="http://www.themodernantiquarian.com/">associated website</a>. In particular, <a href="http://www.themodernantiquarian.com/browse.php?site_id=422">the section on Avebury and the
+UK is Julian Cope's <a href="http://web.archive.org/web/20030801110000/http://www.themodernantiquarian.com/the_book.php">The Modern Antiquarian</a>, which has a very useful
+<a href="http://www.themodernantiquarian.com/">associated website</a>. In particular, <a href="http://web.archive.org/web/20030801110000/http://www.themodernantiquarian.com/browse.php?site_id=422">the section on Avebury and the
 Marlborough Downs</a> is just the guide we need. Now, sadly, I don't own
 a copy of <acronym title="The Modern Antiquarian">TMA</acronym>, but the
 website is all the reference guide we need. But we'll be in a caravan,
@@ -70,9 +70,9 @@ on my mobile, but, yeek, it's horribly slow). So I wanted to take the
 relevant bits of the site with me, because it's so useful.</p>
 <p>First we grab a local copy of the <a href="file:///home/aquarius/antiq/browse.php%3Fsite_id=422.html">Avebury page</a> and all the sites it
 points to:</p>
-<p><code>wget --recursive --level=1 --no-host-directories --html-extension --convert-links --accept *browse.php* http://www.themodernantiquarian.com/browse.php?site_id=422</code></p>
+<p><code>wget --recursive --level=1 --no-host-directories --html-extension --convert-links --accept *browse.php* http://web.archive.org/web/20030801110000/http://www.themodernantiquarian.com/browse.php?site_id=422</code></p>
 <p>Then we convert that local copy into something browseable on my Zaurus.
-Since I have <a href="http://www.timwentford.uklinux.net/">Opie-Reader</a>, I can read <a href="http://www.plkr.org/index.plkr">Plucker-format</a> documents.
+Since I have <a href="http://web.archive.org/web/20030801110000/http://www.timwentford.uklinux.net/">Opie-Reader</a>, I can read <a href="http://www.plkr.org/index.plkr">Plucker-format</a> documents.
 So, we build a Plucker document from our downloaded copy:</p>
 <p><code>plucker-build --doc-file=tma-avebury --doc=name='Avebury and the Downs: The Modern Antiquarian' --home-url=file:browse.php?site_id=422.html --maxdepth=2 --noimages --pluckerdir=$HOME --stayonhost</code></p>
 <p>And then transfer the file to my Zaurus (I used my <a href="http://www.kryogenix.org/code/ipkgput.py.html">ipkgput</a>, but do
@@ -157,7 +157,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

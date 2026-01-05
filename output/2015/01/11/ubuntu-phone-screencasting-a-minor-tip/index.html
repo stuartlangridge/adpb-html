@@ -58,7 +58,7 @@
 			<p>An Ubuntu phone has a command-line utility called <code>mirscreencast</code> which dumps screen frames to a file, meaning that in theory it's possible to record a video of your phone's screen. In practice, though, it doesn't work for video; the phone is that busy (a) grabbing frames and (b) writing them to the phone's storage that you can't actually <em>use</em> it for jerkiness, and the resultant video includes about one frame in ten. I can't fix this, but I did come up with a way to make it at least a bit better -- instead of saving the video onto the phone's storage, send it over the network to a real machine.</p>
 <p>On your computer: <code>nc -l -p 1234 &gt; out</code>, which uses netcat to listen to port 1234 and send everything that comes in there to a file named <code>out</code>.</p>
 <p>On the phone: <code>mirscreencast -n 600 -m /var/run/mir_socket -s 360 640 --stdout | nc mycomputer 1234</code>, which uses <code>mirscreencast</code> to record frames (at a particular smaller size) and then send them with netcat to port 1234 on the computer. (You may need to put your computer's IP address instead of <em>mycomputer</em>, especially since Ubuntu phone won't resolve <em>computername.local</em> names.)</p>
-<p>Then, once recording finishes, <code>mencoder -demuxer rawvideo -rawvideo fps=6:w=360:h=640:format=bgra -ovc x264 -o out.mp4 out</code> makes a proper mp4. (Cheers <a href="http://www.whizzy.org/2014/08/">Bill</a> for the <code>mirscreencast</code> info.)</p>
+<p>Then, once recording finishes, <code>mencoder -demuxer rawvideo -rawvideo fps=6:w=360:h=640:format=bgra -ovc x264 -o out.mp4 out</code> makes a proper mp4. (Cheers <a href="http://web.archive.org/web/20150111061400/http://www.whizzy.org/2014/08/">Bill</a> for the <code>mirscreencast</code> info.)</p>
 <p>It still isn't great. But it's a bit better.</p>
 <p><strong>UPDATE</strong>: using <code>mirscreencast</code>'s <code>-s</code> option to shrink the size <em>and</em> <code>--cap-interval</code> option to only grab some frames seems to work even better. A command like <code>mirscreencast -n 60 -m /var/run/mir_socket --stdout --cap-interval 4 -s 384 640</code> will record 1/4 of the frames (<code>--cap-interval 4</code>), which is 15fps (rather than the screen's 60fps), and resize those frames to half their size (my Nexus 4 has a screen resolution of 768x1280, which halved is 384x640, and each frame is only a quarter of the size). Converting like so: <code>mencoder -demuxer rawvideo -rawvideo fps=15:w=384:h=640:format=rgba -ovc x264 -o out.mp4 out</code> (note the <code>format=rgba</code>, the <code>w</code> and <code>h</code> for screen size, and <code>fps=15</code>) and you get pretty much perfectly smooth video.</p>
 		</div> <!--/#entry-content-->
@@ -136,7 +136,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

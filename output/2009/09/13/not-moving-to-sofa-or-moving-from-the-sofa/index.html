@@ -55,7 +55,7 @@
 			<a class="u-url p-name" href="https://www.kryogenix.org/days/2009/09/13/not-moving-to-sofa-or-moving-from-the-sofa/">Not moving to Sofa (or moving from the sofa)</a>
 		</h2>
 		<div class="entry-content e-content">
-			<p>This weekend I've been playing with <a href="http://github.com/jchris/sofa">Sofa</a>, <a href="http://jchrisa.net">jchris</a>'s CouchDB blog
+			<p>This weekend I've been playing with <a href="http://github.com/jchris/sofa">Sofa</a>, <a href="http://web.archive.org/web/20090913102200/http://jchrisa.net">jchris</a>'s CouchDB blog
 software. I like CouchDB, and I'm increasingly starting to thing that
 although Wordpress is pretty good, it's the wrong path; it's serious
 evolution running on a dead-end evolutionary path. Like an
@@ -271,11 +271,11 @@ doesn't recover from errors much, either. Anyway, to run the script:</p>
 <span class="n">python</span><span class="w"> </span><span class="n">wordpress</span><span class="o">-</span><span class="n">import</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">wordpress</span><span class="mf">.2009</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mf">12.</span><span class="n">xml</span><span class="w"> </span><span class="c1"># import all Wordpress posts</span>
 </code></pre></div>
 
-<p>Then, of course, there's a problem. If you look at <a href="http://jchrisa.net/drl/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=5">jchris's blog</a>,
+<p>Then, of course, there's a problem. If you look at <a href="http://web.archive.org/web/20090913102200/http://jchrisa.net/drl/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=5">jchris's blog</a>,
 the URLs are all horrible: the index page is
-<code>http://jchrisa.net/drl/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=5</code>,
+<code>http://web.archive.org/web/20090913102200/http://jchrisa.net/drl/_design/sofa/_list/index/recent-posts?descending=true&amp;limit=5</code>,
 and an individual post is
-<code>http://jchrisa.net/drl/_design/sofa/_show/post/Book-progress</code>. I want
+<code>http://web.archive.org/web/20090913102200/http://jchrisa.net/drl/_design/sofa/_show/post/Book-progress</code>. I want
 my nice Wordpress URLs - <code>/</code> for the index, <code>/2009/09/13/slug-name</code> for
 a post. This is, of course, doable by putting CouchDB behind some sort
 of proxy. Some people would use nginx for this; since I have Apache
@@ -309,7 +309,7 @@ things like the URL that comments are fetched from is harder. You see,
 the Couch JavaScript files assume they are running <em>on</em> Couch, and can
 therefore do things like inspect the current URL to work out which
 database they're in; using one of jchris's URLs, for example, you see
-<code>http://jchrisa.net/drl/_design/sofa/_show/post/Book-progress</code>, with the
+<code>http://web.archive.org/web/20090913102200/http://jchrisa.net/drl/_design/sofa/_show/post/Book-progress</code>, with the
 database name, design document name, and post ID highlighted. If you've
 rewritten your URL to /2009/09/13/book-progress, that doesn't work.
 Fixing this is awkward, because view URLs are calculated by
@@ -395,7 +395,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

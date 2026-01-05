@@ -90,7 +90,7 @@ Aren't they nice!</p>
 <p>Use a <code>sepia(100%)</code> filter to colorise: <span style="filter: contrast(0) sepia(100%)">🚀 🎭 </span></p>
 <p>Set the colour to one of your choice with <code>hue-rotate(180deg)</code>: <span style="filter: contrast(0) sepia(100%) hue-rotate(180deg)">🚀 🎭 </span></p>
 <p>And finally pump up the saturation with <code>saturate(1000%)</code>: <span style="filter: contrast(0) sepia(100%) hue-rotate(180deg) saturate(1000%)">🚀 🎭 </span></p>
-<p>The up-side of this approach is that it's one line of CSS; you don't need to set inline-block, or worry about defining a width on your "emoji" element. The down-side is... well, you may be thinking, "where do we specify that we want the final colour of the emoji to be <code>red</code> in that code above?" And you would be right. You have to do some <em>crazy</em> maths calculations to actually work out how to set your emoji to the colour you <em>want</em>. Barrett Sonntag wrote an <a href="https://codepen.io/sosuke/pen/Pjoqqp">interactive filter generator</a> to calculate the set of <code>filter</code>s required to set your colour to the thing you choose, based on some <a href="https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991">Stack Overflow</a> answers. I think this downside is enough to lean me away from this method, personally, but it's another approach if you prefer it!</p>
+<p>The up-side of this approach is that it's one line of CSS; you don't need to set inline-block, or worry about defining a width on your "emoji" element. The down-side is... well, you may be thinking, "where do we specify that we want the final colour of the emoji to be <code>red</code> in that code above?" And you would be right. You have to do some <em>crazy</em> maths calculations to actually work out how to set your emoji to the colour you <em>want</em>. Barrett Sonntag wrote an <a href="http://web.archive.org/web/20180828222900/https://codepen.io/sosuke/pen/Pjoqqp">interactive filter generator</a> to calculate the set of <code>filter</code>s required to set your colour to the thing you choose, based on some <a href="https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991">Stack Overflow</a> answers. I think this downside is enough to lean me away from this method, personally, but it's another approach if you prefer it!</p>
 		</div> <!--/#entry-content-->
 		<ul class="neighbours-links">
 		<li><a href="https://www.kryogenix.org/days/2018/08/26/lowrezjam-2018/">Previous post</a></li>
@@ -166,7 +166,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>

@@ -56,7 +56,7 @@
 		</h2>
 		<div class="entry-content e-content">
 			<p>It's nice to get updates from your CI system when things build. It's even nicer to do it without having to run any servers to do it. Here's how I send build notifications to a Telegram bot from Jenkins.</p>
-<p>Basically, Jenkins knows how to hit a webhook for every stage of the build, and <a href="https://integram.org">Integram</a> run a Telegram bot which knows how to respond to webhooks. All you need is a little bit of glue code to convert stuff Jenkins sends into stuff Integram receives, and you can put that glue code on any one of fifteen serverless systems. I used <a href="https://webtask.io">webtask.io</a>. </p>
+<p>Basically, Jenkins knows how to hit a webhook for every stage of the build, and <a href="https://integram.org">Integram</a> run a Telegram bot which knows how to respond to webhooks. All you need is a little bit of glue code to convert stuff Jenkins sends into stuff Integram receives, and you can put that glue code on any one of fifteen serverless systems. I used <a href="http://web.archive.org/web/20171027105300/https://webtask.io">webtask.io</a>. </p>
 <p><img src="/images/jenkins-webtask.png" alt="The Webtask.io editor"></p>
 <p>Deploy the following code there, being sure to update the Integram URL in it to be yours:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
@@ -187,7 +187,7 @@ try {
 	console.error("Failed to fetch popular list", e);
 }
 </script>
-<script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
 		</div>
 		
 		<footer>
