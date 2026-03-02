@@ -194,9 +194,9 @@ const out = html
     .replace("&lt;/head&gt;", `&lt;style&gt;\n${css.join("\n")}\n&lt;/style&gt;`)
 
 writeFileSync("combined.html", out);
-</code>
+</code></pre>
 
-WebC reads in our <code>shell.html</code> and all the component definitions in
+<p>WebC reads in our <code>shell.html</code> and all the component definitions in
 their own files, and gives back HTML, CSS, and JS; the HTML is a long string,
 which we can write to a file. The CSS and JS are both arrays of strings,
 each one being the code in a <code>&lt;style&gt;</code> or <code>&lt;script&gt;</code>
@@ -205,10 +205,9 @@ element in a web component (and all together because we turned on
 output page somewhere, we bodge them into place by dropping a new <code>&lt;style&gt;</code> element into the page <code>&lt;head&gt;</code> and similarly for script and
 body. It's certainly possible to be a lot cleverer than this (and if you wanted
 to put the scripts in one separate file here and minify it on the way, this
-is where you'd do it) but for our example here, I don't want any of that cleverness.
-
-And that's all. WebC does quite a lot more than this, but I don't need any of that at
-the moment. If you do, check out the [WebC docs](https://github.com/11ty/webc).</pre><ol class="simple-footnotes"><li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-1">or critique! <a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-1-back" class="simple-footnote-back">↩</a></li><li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-2">Obviously there are many things that I could and will be doing
+is where you'd do it) but for our example here, I don't want any of that cleverness.</p>
+<p>And that's all. WebC does quite a lot more than this, but I don't need any of that at
+the moment. If you do, check out the <a href="https://github.com/11ty/webc">WebC docs</a>.</p><ol class="simple-footnotes"><li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-1">or critique! <a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-1-back" class="simple-footnote-back">↩</a></li><li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-2">Obviously there are many things that I could and will be doing
 to improve the user experience of this whole thing! But that's not what this
 particular writeup is about. <a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-2-back" class="simple-footnote-back">↩</a></li><li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-3">can tides bite arses? we are in mixed metaphor city. Sorry, <a href="https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/#:~:text=The%20Fascist%20octopus%20has%20sung%20its%20swan%20song">Uncle
 George</a>. Jackboots in melting pots all over the place here <a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-3-back" class="simple-footnote-back">↩</a></li><li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-4">OK, tongue-in-cheek yes, but honestly this is quite a good
