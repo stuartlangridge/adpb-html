@@ -180,18 +180,31 @@ let page = new WebC();
 
 // tell it where our components are
 page.defineComponents("*.webc");
-// have it collect style and script elements all together
+// have it collect style and script 
+// elements all together
 page.setBundlerMode(true);
-// this is the page to read and populate with components
+// this is the page to read and 
+// populate with components
 page.setInputPath("shell.html");
 
 // actually do the work
-let { html, css, js, components } = await page.compile();
+let {
+    html, css, js, components
+} = await page.compile();
 
-// haha who needs webpack? not me! just stick the js and css inline
+// haha who needs webpack? not me!
+// just stick the js and css inline
+const out_js = `&lt;script&gt;
+${js.join("\n")}
+&lt;/script&gt;`
+const out_css = `&lt;style&gt;
+${css.join("\n")}
+&lt;/style&gt;`
 const out = html
-    .replace("&lt;/body&gt;", `&lt;script&gt;\n${js.join("\n")}\n&lt;/script&gt;`)
-    .replace("&lt;/head&gt;", `&lt;style&gt;\n${css.join("\n")}\n&lt;/style&gt;`)
+    .replace("&lt;/body&gt;", 
+        out_js + "&lt;/body&gt;")
+    .replace("&lt;/head&gt;", 
+        out_css + "&lt;/head&gt;");
 
 writeFileSync("combined.html", out);
 </code></pre>
