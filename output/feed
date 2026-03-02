@@ -1,5 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>as days pass by</title><link>https://www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><lastBuildDate>Thu, 29 Jan 2026 23:19:00 +0000</lastBuildDate><item><title>fifty</title><link>https://www.kryogenix.org/days/2026/01/29/fifty/</link><description>&lt;p&gt;fifty.&lt;/p&gt;
+<rss version="2.0"><channel><title>as days pass by</title><link>https://www.kryogenix.org/days/</link><description>scratched tallies on the prison wall</description><lastBuildDate>Mon, 02 Mar 2026 05:22:00 +0000</lastBuildDate><item><title>Using 11ty's WebC to separate web components out into separate files</title><link>https://www.kryogenix.org/days/2026/03/02/using-11ty-s-webc-to-separate-web-components-out-into-separate-files/</link><description>&lt;p&gt;For a thing I'm building I'm using web components to give me a convenient
+way to bundle up functionality of different bits of a web page into separate
+units. I'm not doing anything particularly clever here with web components;
+there's no shadow DOM here, the components aren't redistributable or
+particularly reusable anywhere else, and aren't required. They're simply a
+useful way to group "what happens when you click on this thing" into its own
+little section of code. Anyway, what I had was one big page with the styles for
+the components and the scripting for them all intertwined. &lt;/p&gt;
+&lt;h2&gt;A simple example&lt;/h2&gt;
+&lt;p&gt;Here's a simpler example. In this stripped down "page", you've got a 
+&lt;code&gt;&amp;lt;light-bulb&amp;gt;&lt;/code&gt; component which either displays a little coloured
+dot and "on", or a black dot and "off". There are two of them, a green one and
+a yellow one. Then there's a &lt;code&gt;&amp;lt;light-bulb-switch&amp;gt;&lt;/code&gt; component
+with three positions: green one on, both off, yellow one on. These aren't
+intended to be particularly &lt;em&gt;good&lt;/em&gt; examples of web components (and you don't
+need to read or understand&lt;sup id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-1-back"&gt;&lt;a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-1" class="simple-footnote" title="or critique!"&gt;1&lt;/a&gt;&lt;/sup&gt; the code in any detail), but they
+demonstrate the point.&lt;/p&gt;
+&lt;iframe height="300" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/stuartlangridge/embed/preview/gbwaLoj?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true"&gt;
+  See the Pen &lt;a href="https://codepen.io/stuartlangridge/pen/gbwaLoj"&gt;
+  Untitled&lt;/a&gt; by Stuart Langridge (&lt;a href="https://codepen.io/stuartlangridge"&gt;@stuartlangridge&lt;/a&gt;)
+  on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.
+&lt;/iframe&gt;
+
+&lt;p&gt;The HTML there is all one page; CSS and JS to define and style the components all
+inline. What I wanted was the &lt;em&gt;output&lt;/em&gt; to be that, but to be able to split up
+the components into their own separate files, for ease of editing -- it's hard to
+keep track of where you are in a big long page. This isn't any sort of improvement
+to the user experience -- the long page with everything inline was exactly what I
+intend to serve to the user. This is purely a developer experience
+improvement.&lt;sup id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-2-back"&gt;&lt;a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-2" class="simple-footnote" title="Obviously there are many things that I could and will be doing to improve the user experience of this whole thing! But that's not what this particular writeup is about."&gt;2&lt;/a&gt;&lt;/sup&gt; I could have put the web component parts into
+their own CSS and JS files, and then added &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; and
+&lt;code&gt;&amp;lt;link rel=stylesheet&amp;gt;&lt;/code&gt; lines for each, of course, and had the
+browser load them… but I wanted to keep all the code for each component together
+to make it easy for me to think about, but &lt;em&gt;not&lt;/em&gt; have it all in the main file
+which was too confusing to navigate around in while editing it. Clearly there
+ought to be something which can do the purely mechanical task of "break this
+big file up into bits and then glue them back together in a build step of some
+kind". Helper libraries for web components tend to think of themselves as doing
+a lot of stuff to aid you in how you do that, either at build time or at run time;
+stuff like &lt;a href="https://lit.dev/docs/"&gt;Lit&lt;/a&gt; is pretty neat but it does
+six billion things I don't want, and the client-side half of this equation gives
+you React and all its cousins and I didn't need or want any of that either. All
+I needed was something to break a page apart into separate jigsaw pieces and
+mechanically glue them back together. I could probably write this myself in about
+twelve lines of python; it's not hard.&lt;/p&gt;
+&lt;h2&gt;WebC&lt;/h2&gt;
+&lt;p&gt;But then I was reminded by a search for &lt;code&gt;"distributing web components in a
+single file"&lt;/code&gt; that &lt;a href="https://github.com/11ty/webc"&gt;WebC&lt;/a&gt; exists
+as part of the 11ty project. And… it sorta looks like it does this? But it's not
+all that clear; WebC isn't brilliantly documented. (It's fairly clear what the
+API is, at a technical level, but there's not very much about the &lt;em&gt;vibe&lt;/em&gt;: what's
+WebC &lt;em&gt;for&lt;/em&gt;, rather than how it does it.) I am a very big believer indeed in the
+notion of using software in accordance with its vibe; it's possible (and sometimes
+quite fun) to contort a bit of software into doing things that its authors don't
+think that it's for, and would perhaps be horrified to see it used for, but that's
+for hack value projects. When using a thing as a tool, use it the way it's meant
+to be used. If you swim against the tide on this, it will at some point bite you
+in the arse&lt;sup id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-3-back"&gt;&lt;a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-3" class="simple-footnote" title="can tides bite arses? we are in mixed metaphor city. Sorry, Uncle George. Jackboots in melting pots all over the place here"&gt;3&lt;/a&gt;&lt;/sup&gt;
+and then you'll be sad. So, sure, WebC looks like it could do this mechanical
+reassemble-the-jigsaw task; is that what it's for? I needed support.&lt;/p&gt;
+&lt;p&gt;So I got support for WebC in the most scalable and efficient way possible: chat
+to Zach Leatherman in the pub directly and ask him, after State of the Browser 2026.
+Isn't this how everyone gets support for everything, just talk directly to the
+author over a pint?&lt;sup id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-4-back"&gt;&lt;a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-4" class="simple-footnote" title="OK, tongue-in-cheek yes, but honestly this is quite a good way to find out about a piece of software! go to conferences and chat to the author. This isn't going to work if what you want help with is, like, Photoshop or something, but most people in the web community at least, and open source projects more generally, are in my experience not just willing but positively eager to talk to you about how they feel about a project they've built"&gt;4&lt;/a&gt;&lt;/sup&gt; And Zach
+said: yup, that's what it's for. I promised to try it, and maybe write something
+down about it so that future people might not be as confused as I was, and now
+you're reading that very thing.&lt;/p&gt;
+&lt;p&gt;(I'm not sure this is useful &lt;em&gt;documentation&lt;/em&gt;. But I'm basically incapable of
+describing how to do anything without turning it into a short story. Insert that
+Mark Twain(?) quotation about writing a shorter letter here.)&lt;/p&gt;
+&lt;p&gt;So I took my page above and broke it up into separate files. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell.html&lt;/code&gt; is the "main page". The component names stay in place, but
+all their inner code is removed, and so are their styles and scripting:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!doctype html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;title&amp;gt;Combined page&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;light-bulb data-color="orange"&amp;gt;
+&amp;lt;/light-bulb&amp;gt;
+&amp;lt;light-bulb data-color="green"&amp;gt;
+&amp;lt;/light-bulb&amp;gt;
+&amp;lt;light-bulb-switch&amp;gt;
+&amp;lt;/light-bulb-switch&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then each of the components gets put into a separate file. This file
+contains the HTML for the component, including a &lt;code&gt;&amp;lt;style&amp;gt;&lt;/code&gt; and
+&lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; element for its CSS and JS. Here's (a cut-down version
+of) &lt;code&gt;light-bulb-switch.webc&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    &amp;lt;input type="range" min="0" 
+            max="2" value="1" list="bulbs"&amp;gt;
+    &amp;lt;datalist id="bulbs"&amp;gt;
+        &amp;lt;option value="0"&amp;gt;orange&amp;lt;/option&amp;gt;
+        &amp;lt;option value="1"&amp;gt;neither&amp;lt;/option&amp;gt;
+        &amp;lt;option value="2"&amp;gt;green&amp;lt;/option&amp;gt;
+    &amp;lt;/datalist&amp;gt;
+
+&amp;lt;style&amp;gt;
+light-bulb-switch {
+    […css snipped…]
+}
+&amp;lt;/style&amp;gt;
+
+&amp;lt;script&amp;gt;
+window.customElements.define('light-bulb-switch', class extends HTMLElement {
+    […js snipped…]
+});
+
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And there's a similar &lt;code&gt;light-bulb.webc&lt;/code&gt; as well. (You can find all
+the code for this little demo, such as it is, at &lt;a href="https://github.com/stuartlangridge/webc-simple-demonstration"&gt;github&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;Now this separation is done, we need WebC to glue it all back together. And
+this is a matter of a short bit of scripting:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import { WebC } from "@11ty/webc";
+import { writeFileSync } from "node:fs";
+
+// create WebC object
+let page = new WebC();
+
+// tell it where our components are
+page.defineComponents("*.webc");
+// have it collect style and script elements all together
+page.setBundlerMode(true);
+// this is the page to read and populate with components
+page.setInputPath("shell.html");
+
+// actually do the work
+let { html, css, js, components } = await page.compile();
+
+// haha who needs webpack? not me! just stick the js and css inline
+const out = html
+    .replace("&amp;lt;/body&amp;gt;", `&amp;lt;script&amp;gt;\n${js.join("\n")}\n&amp;lt;/script&amp;gt;`)
+    .replace("&amp;lt;/head&amp;gt;", `&amp;lt;style&amp;gt;\n${css.join("\n")}\n&amp;lt;/style&amp;gt;`)
+
+writeFileSync("combined.html", out);
+&lt;/code&gt;
+
+WebC reads in our &lt;code&gt;shell.html&lt;/code&gt; and all the component definitions in
+their own files, and gives back HTML, CSS, and JS; the HTML is a long string,
+which we can write to a file. The CSS and JS are both arrays of strings,
+each one being the code in a &lt;code&gt;&amp;lt;style&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;
+element in a web component (and all together because we turned on 
+&lt;code&gt;bundlerMode&lt;/code&gt;). Since we still need those styles and scripts in the
+output page somewhere, we bodge them into place by dropping a new &lt;code&gt;&amp;lt;style&amp;gt;&lt;/code&gt; element into the page &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; and similarly for script and
+body. It's certainly possible to be a lot cleverer than this (and if you wanted
+to put the scripts in one separate file here and minify it on the way, this
+is where you'd do it) but for our example here, I don't want any of that cleverness.
+
+And that's all. WebC does quite a lot more than this, but I don't need any of that at
+the moment. If you do, check out the [WebC docs](https://github.com/11ty/webc).&lt;/pre&gt;&lt;ol class="simple-footnotes"&gt;&lt;li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-1"&gt;or critique! &lt;a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-1-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-2"&gt;Obviously there are many things that I could and will be doing
+to improve the user experience of this whole thing! But that's not what this
+particular writeup is about. &lt;a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-2-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-3"&gt;can tides bite arses? we are in mixed metaphor city. Sorry, &lt;a href="https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/#:~:text=The%20Fascist%20octopus%20has%20sung%20its%20swan%20song"&gt;Uncle
+George&lt;/a&gt;. Jackboots in melting pots all over the place here &lt;a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-3-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;li id="sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-4"&gt;OK, tongue-in-cheek yes, but honestly this is quite a good
+way to find out about a piece of software! go to conferences and chat to the author.
+This isn't going to work if what you want help with is, like, &lt;em&gt;Photoshop&lt;/em&gt; or
+something, but most people in the web community at least, and open source projects
+more generally, are in my experience not just willing but positively eager to
+talk to you about how they feel about a project they've built &lt;a href="#sf-using-11ty-s-webc-to-separate-web-components-out-into-separate-files-4-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 02 Mar 2026 05:22:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2026-03-02:/days/2026/03/02/using-11ty-s-webc-to-separate-web-components-out-into-separate-files/</guid><category>General musings</category></item><item><title>fifty</title><link>https://www.kryogenix.org/days/2026/01/29/fifty/</link><description>&lt;p&gt;fifty.&lt;/p&gt;
 &lt;p&gt;that can't be right.&lt;sup id="sf-fifty-1-back"&gt;&lt;a href="#sf-fifty-1" class="simple-footnote" title="no big long writeup this time of musings on a year passing like I normally do. I think I did most of that earlier in the month."&gt;1&lt;/a&gt;&lt;/sup&gt; fifty years ago was the war.&lt;/p&gt;&lt;ol class="simple-footnotes"&gt;&lt;li id="sf-fifty-1"&gt;no big long writeup this time of musings on a year passing like I &lt;a href="https://www.kryogenix.org/days/2025/01/30/forty-nine/"&gt;normally&lt;/a&gt; do. I think I did most of that &lt;a href="https://www.kryogenix.org/days/2026/01/04/flipping-the-cube-2025-is-over/"&gt;earlier in the month&lt;/a&gt;. &lt;a href="#sf-fifty-1-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Thu, 29 Jan 2026 23:19:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2026-01-29:/days/2026/01/29/fifty/</guid><category>General musings</category></item><item><title>Flipping the cube: 2025 is over</title><link>https://www.kryogenix.org/days/2026/01/04/flipping-the-cube-2025-is-over/</link><description>&lt;p&gt;You know that optical illusion with a wireframe cube? Where you can't tell which way around it is, but if you concentrate a bit you can make the cube "flip" from being oriented one way to being oriented another?&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://kryogenix.org/images/necker-1.png" alt="a wireframe cube"&gt;&lt;/p&gt;
 &lt;p&gt;So you look at that cube (it's called a &lt;a href="https://en.wikipedia.org/wiki/Necker_cube"&gt;Necker cube&lt;/a&gt; when you're viewing it as an optical illusion) and with a bit of concentration you can change how you perceive it, from pointing in one direction to pointing in another.&lt;/p&gt;
@@ -194,7 +355,4 @@
 &lt;p&gt;&lt;img src="/images/keyring.jpg" alt=""&gt;&lt;/p&gt;
 &lt;p&gt;It's a keyring. It's a solid block of brass with the middle cut out, so it looks like a very shallow "U", or like three sides of a long rectangle. There's a hole drilled in each of the short ends, and a long bolt is threaded through those holes. On one end of the bolt is a nut, tight against the outside of the "U", and the bolt protrudes out about an inch where there's another, locking, nut. All the keys are hung from the bolt. To add a new key, I undo the locking nut on the end, undo the tight nut, pull the bolt out, hang another key from it, and then do everything back up. It's &lt;em&gt;brilliant&lt;/em&gt;. I've not had a single problem with it.&lt;/p&gt;
 &lt;p&gt;Those of you carefully studying the picture will notice that there is writing on the brass "U". (And will also notice that I've blacked out the details of the actual keys, because you can cut a key based on a picture, and I'm not stupid.) That's engraving, which mentions my website, so if I lose my keys (which I am really careful to not do&lt;sup id="sf-my-keys-1-back"&gt;&lt;a href="#sf-my-keys-1" class="simple-footnote" title="the historical version of checking your pockets, as a man, was to feel for &amp;quot;spectacles, testicles, wallet, and watch&amp;quot; -- this was actually a ribald mnemonic for how to cross yourself as a Catholic, but this modern day man checks his pockets for keys, wallet, and phone in the same way to check they're not lost"&gt;1&lt;/a&gt;&lt;/sup&gt;) then whoever finds them can get in touch with me to tell me that happened but my address is not on the keys, so a nefarious finder gets less benefit from it. &lt;/p&gt;
-&lt;p&gt;I love my keyring. It's the best. I do not know why more keyrings are not like this. It works just like a normal keyring (I have non-key things on mine, such as a USB stick and a tiny flashlight, but they would go on a regular split-ring keyring as well), but it doesn't just fail all the time like normal ones do. I surely can't be the only person who experiences this? Anyway, I don't mind, 'cos I have the solution. Cheers, dad. Maybe I should make this a product or something.&lt;/p&gt;&lt;ol class="simple-footnotes"&gt;&lt;li id="sf-my-keys-1"&gt;the historical version of checking your pockets, as a man, was to feel for "spectacles, testicles, wallet, and watch" -- this was actually a ribald mnemonic for how to cross yourself as a Catholic, but this modern day man checks his pockets for keys, wallet, and phone in the same way to check they're not lost &lt;a href="#sf-my-keys-1-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 04 Nov 2024 22:50:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2024-11-04:/days/2024/11/04/my-keys/</guid><category>General musings</category></item><item><title>Two Plumbers</title><link>https://www.kryogenix.org/days/2024/10/22/two-plumbers/</link><description>&lt;p&gt;In a land far away, there were two brothers, two plumbers. To preserve their anonymity, we'll call them... Mario and Luigi. Their mother, a kind and friendly woman, and their father, a man with (by the laws of averages and genetics) a truly gargantuan moustache, raised them both to be kind and friendly (and moustachioed) in their turn. There was enough work in the town to keep both the plumbers busy, and they each grew through apprentice to journeyman to experience and everyone liked them. They both cared about the job, about their clients, and they each did good work, always going the extra mile, doing more than was necessarily asked for, putting in an extra hour to tighten that pipe or fit a better S-bend or clean up the poor workmanship of lesser craftsmen and cowboys. They were happy. Even their rivalry for each job was good-humoured, a friendly source of amusement to them and to the town. Sometimes people would flip a coin to choose which to ring, having no way to choose between them, and Mario would laugh and suggest that he should have two-headed coins made, or Luigi would laugh and say that that ought to make it his turn next.&lt;/p&gt;
-&lt;p&gt;But there came a time of downturn, when the people of the town had to hold tighter to their purses, and fewer called out for plumbers. And Luigi, after much thought, decided to take a job with Bowser's, the big plumbing conglomerate from the city. He was worried: the big company were often slapdash or inexperienced in their work, and discourteous or evasive to their clients, and more interested in bottom lines than hot water lines. But they paid extremely well, and they had the latest tools, and there was security in having a contract and a title and a boss. Besides, Bowser's worked for so many more people that Luigi's own skills could only help that many more. Maybe he could even teach them something about quality, and craftsmanship, and care. He suggested to Mario that they both joined, and Mario thought hard about it, and eventually decided not to, though it was a close-run thing. Both the brothers shook hands on it, respecting one another's decision, although in the silence of their hearts each was a little disappointed in the other.&lt;/p&gt;
-&lt;p&gt;Luigi did well at Bowser's. He was right about the latest tools, and about the pay, and about the security. And he was partially right about teaching the big company something about quality. His work was often better than his colleagues, sometimes through expertise but most often because he tried harder: he loved the work, and wanted to do well, and was kind and friendly when he could be. But sometimes, try though he might, the time wasn't there, or the parts weren't in the van, and these things were not his fault; someone else at the big company had cut corners on their job and that forced Luigi to cut corners on his and make people sad and angry, or put in more time to fix it than he would have spent doing it all correctly himself in the first place. He pushed hard inside the company to fix these things, and he had some successes; a policy was written suggesting that employees work harder to improve customer happiness, and many customers across the land were made a little happier as a result. Luigi won an award. He trained some apprentices, and many of his little ways of making people happier and the job better were adopted into the company training scheme. One time he went home after another argument with his boss about the things that were not adopted, and that night he looked enviously out of their window at his brother's house across the street, thinking that it would be a fine thing to not have a boss who stopped you from doing things right.&lt;/p&gt;
-&lt;p&gt;Mario did well working for himself. The time of downturn ended and things began to pick up again, maybe not quite to where they had been but nearly there for all that, and the phone calls and messages came in once more. Everyone was pleased to see him, and although he maybe took a little longer than the men from the big company, his work was never slapdash, always taking the time to do it right. And he had less money, but he really didn't mind, or begrudge it; he had enough to get by, and he loved the work, and wanted to do well, and was kind and friendly. He did envy his brother's toolbox, though, all the latest gear while Mario himself made do with things a little older, a little rustier, but they were all good quality tools that he understood, and the work was as good and better. In November one year a very expensive plumber's inspection camera was stolen from his brother's van, and Mario thought that it would have been great to have such a thing and maybe he would have taken better care, and then he felt guilty about thinking that of his brother. He felt guiltier still when on Christmas morning he opened the box from Luigi to find an expensive inspection camera in it. But then his brother winked at him and put a finger to his lips, and all was well between them again. One time Mario was up to his waist in the drain outside a house, raindrops rattling on his hat and cursing the god who invented backflow, when he saw his brother drive past all unknowing in his modern van, windows wound up and singing along with the radio, and he looked enviously after the van's lights in the storm, thinking that it would be a fine thing to have just a notch more comfort and influence and two fewer wet knees.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Tue, 22 Oct 2024 21:00:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2024-10-22:/days/2024/10/22/two-plumbers/</guid><category>General musings</category></item></channel></rss>
+&lt;p&gt;I love my keyring. It's the best. I do not know why more keyrings are not like this. It works just like a normal keyring (I have non-key things on mine, such as a USB stick and a tiny flashlight, but they would go on a regular split-ring keyring as well), but it doesn't just fail all the time like normal ones do. I surely can't be the only person who experiences this? Anyway, I don't mind, 'cos I have the solution. Cheers, dad. Maybe I should make this a product or something.&lt;/p&gt;&lt;ol class="simple-footnotes"&gt;&lt;li id="sf-my-keys-1"&gt;the historical version of checking your pockets, as a man, was to feel for "spectacles, testicles, wallet, and watch" -- this was actually a ribald mnemonic for how to cross yourself as a Catholic, but this modern day man checks his pockets for keys, wallet, and phone in the same way to check they're not lost &lt;a href="#sf-my-keys-1-back" class="simple-footnote-back"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Mon, 04 Nov 2024 22:50:00 +0000</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2024-11-04:/days/2024/11/04/my-keys/</guid><category>General musings</category></item></channel></rss>
