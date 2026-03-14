@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>as days pass by &mdash; Calculating a rolling average without keeping all the numbers around</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta name="Description" content="Stuart Langridge of Kryogenix Consulting, for consultancy and custom development on the web and devices">
+        <meta property="og:title" content="as days pass by &mdash; Calculating a rolling average without keeping all the numbers around">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="as days pass by">
+        <meta property="og:description" content="A post by Stuart Langridge (sil)">
+        <meta property="og:image" content="https://www.kryogenix.org/days/2026/03/14/calculating-a-rolling-average-without-keeping-all-the-numbers-around/index.html.og_image.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@sil">
+        <meta name="twitter:image" content="https://www.kryogenix.org/days/2026/03/14/calculating-a-rolling-average-without-keeping-all-the-numbers-around/index.html.og_image.png">
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/adpb.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../theme/css/simple-footnotes.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="alternate" type="application/rss+xml"
+			title="as days pass by"
+			href="https://www.kryogenix.org/days/feed" /> 
+		<meta property="fediverse:creator" content="@sil@mastodon.social" />
+		<link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
+		<link rel="feed" href="https://www.kryogenix.org/days/archives/"> 
+</head>
+
+<body class="home blog custom-background single-author" >
+		<header>
+				<p>A blog by <a href="https://www.kryogenix.org/">Stuart Langridge</a></p>
+				<h1 id="site-title"><a href="https://www.kryogenix.org/days">as days pass by</a></h1>
+<h2 id="site-description">scratched tallies on the prison wall</h2>		</header><!-- /#banner -->
+		
+		<nav>
+			<ul>
+				<li><a href="/">Kryogenix Consulting</a></li>
+				<li><a href="/days/archives">All posts, ever</a></li>
+				<li><a href="/code">Code</a></li>
+			</ul>
+		</nav>
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general h-entry" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://www.kryogenix.org/days/2026/03/14/calculating-a-rolling-average-without-keeping-all-the-numbers-around/"><time 
+			class="dt-published" datetime="2026-03-14T23:23:00+00:00">Mar 14 2026</time></a>
+		</div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a class="u-url p-name" href="https://www.kryogenix.org/days/2026/03/14/calculating-a-rolling-average-without-keeping-all-the-numbers-around/">Calculating a rolling average without keeping all the numbers around</a>
+		</h2>
+		<div class="entry-content e-content">
+			<p>OK, if you know anything about maths you will read this and shake your head in dismay because it's just <em>obvious</em> and why did I even need to think about it? But... I was quite pleased to think this through, so I thought I'd write it down in case anybody else finds it useful.</p>
+<p>So. Your job is to calculate the average of a set of numbers. This is not hard: the average value<sup id="sf-calculating-a-rolling-average-without-keeping-all-the-numbers-around-1-back"><a href="#sf-calculating-a-rolling-average-without-keeping-all-the-numbers-around-1" class="simple-footnote" title="maths people, I mean mean, obvs">1</a></sup> is the sum of the numbers divided by the count of the numbers. So the average of <code>2, 7, 8</code> is</p>
+<div class="highlight"><pre><span></span><code><span class="mf">2</span><span class="o">+</span><span class="mf">7</span><span class="o">+</span><span class="mf">8</span><span class="w">   </span><span class="mf">17</span>
+<span class="o">-----</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.666</span><span class="err">…</span>
+<span class="w">  </span><span class="mf">3</span><span class="w">      </span><span class="mf">3</span>
+</code></pre></div>
+
+<p>You know that bit already. But now I say: ok, here's a new number to add to the end of the list: <code>12</code>. What's the average now?</p>
+<p>One obvious way is to say, well, we know the numbers are <code>2, 7, 8</code>, so I'll just re-do the calculation with <code>2, 7, 8, 12</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="mf">2</span><span class="o">+</span><span class="mf">7</span><span class="o">+</span><span class="mf">8</span><span class="o">+</span><span class="mf">12</span><span class="w">   </span><span class="mf">29</span>
+<span class="o">--------</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7.25</span>
+<span class="w">    </span><span class="mf">4</span><span class="w">       </span><span class="mf">4</span>
+</code></pre></div>
+
+<p>But that means that you have to keep all the numbers around forever. What if the list of numbers is big? That seems like hassle. It would be nice if we were able to calculate the average just from knowing what the <em>previous</em> average was, wouldn't it? So you know <code>5.666…</code> and you get told that the new number to add is 12: how do you get the new average of <code>7.25</code> just from that?</p>
+<p>I needed to do this and didn't know how, so I sat and thought about it for a short time and it's actually not hard, which was good; I'd just never considered it. So, as long as you know the "current" average number, <em>and</em> you know how many numbers there were in the list, you're all good. Consider: we know the current average is <code>5.666…</code> and that there were <code>3</code> numbers in the list that made that up. We don't need to know what the 3 numbers were (<code>2, 7, 8</code>) because if the three numbers we'd been given before were <em>all</em> <code>5.666…</code> -- that is, the list of numbers up to now was <code>5.666…, 5.666…, 5.666…</code> then when we took the average of that list, it would still be <code>5.666…</code>, because that's what an average means. So, even though we don't know what the 3 numbers were, we can pretend that we do, and now say that our new list is <code>5.666…, 5.666…, 5.666…, 12</code>. And we can work out the average of that! Or, put another way, we know that the average is</p>
+<div class="highlight"><pre><span></span><code>         sum of all numbers
+5.666… = ------------------
+          count of numbers
+</code></pre></div>
+
+<p>and because we can pretend that all the numbers were the average, we can say that the sum of all numbers is just the current average multiplied by the count:</p>
+<div class="highlight"><pre><span></span><code>         5.666…, 5.666…, "count" times
+5.666… = -----------------------------
+                   count
+</code></pre></div>
+
+<p>and so the <em>new</em> average is:</p>
+<div class="highlight"><pre><span></span><code>              (5.666…, 5.666…, "count" times) + 12
+new average = -----------------------------
+                       count + 1
+</code></pre></div>
+
+<p>which is</p>
+<div class="highlight"><pre><span></span><code>              (current average × count) + new number
+new average = --------------------------------------
+                          count + 1
+</code></pre></div>
+
+<p>So if you know the current average <code>a</code>, how many numbers there have been so far <code>c</code>, and the new number <code>n</code>, then the new <code>a = ((a*c)+n)/(c+1)</code>. And you only need to keep <code>a</code> and <code>c</code> around, rather than the whole list of numbers.</p>
+<p>Simple? Yes. But it was a useful thought for me that I could actually do this without having to keep the list around, which was handy in order to be able to <a href="https://mastodon.social/@sil/116230077286633335">calculate pi very inefficiently with coin flips on a BBC Micro</a>, a perfectly reasonable thing to do on your Saturday evening in my opinion.</p><ol class="simple-footnotes"><li id="sf-calculating-a-rolling-average-without-keeping-all-the-numbers-around-1">maths people, I mean mean, obvs <a href="#sf-calculating-a-rolling-average-without-keeping-all-the-numbers-around-1-back" class="simple-footnote-back">↩</a></li></ol>
+		</div> <!--/#entry-content-->
+		<ul class="neighbours-links">
+		<li><a href="https://www.kryogenix.org/days/2026/03/02/using-11ty-s-webc-to-separate-web-components-out-into-separate-files/">Previous post</a></li>
+		</ul>
+
+		<div class="hireme">
+			I'm currently available for hire, to help you plan, architect, and build new systems, and for technical writing
+			and articles. You can take a look at <a href="https://kryogenix.org">some projects I've worked on</a> and
+			<a href="https://kryogenix.org/books">some of my writing</a>. If you'd like to talk about your upcoming project,
+			do <a href="https://kryogenix.org/contact">get in touch.</a>
+		</div>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+<div id="webmentions">
+<h4>More in the discussion (powered by <a href="http://indiewebcamp.com/Webmention">webmentions</a>)</h4>
+	<ul><li>(no mentions, yet.)</li></ul>
+<form id="wmform" method="POST" action="https://webmention.herokuapp.com/api/webmention">
+	<label>Did you link to this post? Enter your page's URL:
+	<input type="url" name="source"></label>
+	<input type="hidden" name="target" value="https://www.kryogenix.org/days/2026/03/14/calculating-a-rolling-average-without-keeping-all-the-numbers-around/">
+	<input type="submit" value="Add link">
+</form>
+<script src="https://www.kryogenix.org/days/theme/live-webmentions-cors.js"></script>
+</div>
+
+<p id="oldcomments"></p>
+<script>
+var aurl = '2026/03/14/calculating-a-rolling-average-without-keeping-all-the-numbers-around/';
+var parts = aurl.split('/');
+if (parts[parts.length-1] === "") { parts = parts.slice(0, parts.length-1); }
+var tooNewForOldComments = false;
+if (parts[0].match(/^[0-9]+$/)) {
+	var asnum = parseInt(parts[0], 10);
+	if (!isNaN(asnum) && asnum > 2014) {
+		tooNewForOldComments = true;
+	}
+}
+if (!tooNewForOldComments) {
+	var comurl = "/oldcomments/" + parts.join("-") + ".html";
+	var x = new XMLHttpRequest();
+	x.open("HEAD", comurl, true);
+	x.onreadystatechange = function() {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				document.getElementById("oldcomments").innerHTML = '<a href="' + comurl + '">See pre-2014 comments on this post</a>';
+			}
+		}
+	};
+	x.send();
+}
+</script>
+<script type="module">
+/* jslint esversion: 11 */
+try {
+	const resp = await fetch("/adpb-popular.json");
+	const vals = await resp.json();
+	let popular = vals[location.pathname];
+	if (!popular && location.pathname.endsWith("/")) {
+		popular = vals[location.pathname.replace(/\/$/, "")];
+	}
+	if (popular && popular.recent_idx != null) {
+		let a = document.createElement("a");
+		let p = document.createElement("p");
+		p.className = "trending";
+		a.href = "/adpb-popular.html";
+		a.append(`#${popular.recent_idx + 1} in Trending`);
+		p.append(a);
+		const ec = document.querySelector("div.entry-content");
+		ec.insertBefore(p, ec.firstChild);
+	}
+} catch(e) {
+	console.error("Failed to fetch popular list", e);
+}
+</script>
+<!-- <script src="https://www.kryogenix.org/days/theme/unrot-redirect.js"></script> -->
+		</div>
+		
+		<footer>
+			<p>Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+		</footer>
+
+
+
+
+<div id="loadtimer"></div>
+<script>
+window.onload = function(){
+    setTimeout(function(){
+      window.performance = window.performance || 
+window.mozPerformance || window.msPerformance || 
+window.webkitPerformance || {};
+      var t = performance.timing || {};
+      if (!t) {
+        
+        return;
+      }
+      var start = t.navigationStart,
+          end = t.loadEventEnd
+          loadTime = (end - start) / 1000;
+      var copy = document.getElementById('loadtimer');
+      copy.innerHTML += "This page loaded in " + loadTime + " seconds.";
+    }, 0); 
+}
+
+</script>
+</body> </html>
