@@ -27,7 +27,7 @@
     &lt;tr&gt;&lt;th&gt;Monitor&lt;/th&gt;
         &lt;td&gt;IIYAMA XUB2492HSU-B6 24" LED WIDESCREEN, DP, HDMI 1920x1080&lt;/td&gt;
     &lt;/tr&gt;
-    &lt;tr&gt;&lt;td colspan="3"&gt;&lt;p&gt;a _second_ monitor. So now I have two. Sweet.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td colspan="3"&gt;&lt;p&gt;a &lt;em&gt;second&lt;/em&gt; monitor. So now I have two. Sweet.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;th&gt;Graphics Card&lt;/th&gt;
         &lt;td&gt;12GB ASUS PRIME GEFORCE RTX 5070 OC - HDMI, 3 x DP&lt;/td&gt;
     &lt;/tr&gt;
@@ -44,7 +44,7 @@
     &lt;/tr&gt;
 &lt;/table&gt;
 
-&lt;p&gt;And the third good thing is all the disc space. The thing I really screwed up with the last build was penny-pinching on hard drive space; I was forever deleting stuff in order to have room to download more. I wasn't going to make that mistake again. And indeed I have not; I haven't even used up 25% of the space yet, and I can blithely download whatever I want and not have to worry about tidying it up, emptying the rubbish bin, all that. It's so _freeing_.&lt;/p&gt;
+&lt;p&gt;And the third good thing is all the disc space. The thing I really screwed up with the last build was penny-pinching on hard drive space; I was forever deleting stuff in order to have room to download more. I wasn't going to make that mistake again. And indeed I have not; I haven't even used up 25% of the space yet, and I can blithely download whatever I want and not have to worry about tidying it up, emptying the rubbish bin, all that. It's so &lt;em&gt;freeing&lt;/em&gt;.&lt;/p&gt;
 
 &lt;p&gt;As with last time, I went to &lt;a href="https://www.pcspecialist.co.uk"&gt;PC Specialist&lt;/a&gt;, and they did a good job. Now my lovely machine sits on my desk and looks pretty and does everything I want. Cheers, mum and dad; here's to the next twelve years of it.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sil</dc:creator><pubDate>Fri, 24 Jul 2026 12:46:00 +0100</pubDate><guid isPermaLink="false">tag:www.kryogenix.org,2026-07-24:/days/2026/07/24/i-was-bought-a-new-computer/</guid><category>General musings</category></item><item><title>Calculating a rolling average without keeping all the numbers around</title><link>https://www.kryogenix.org/days/2026/03/14/calculating-a-rolling-average-without-keeping-all-the-numbers-around/</link><description>&lt;p&gt;OK, if you know anything about maths you will read this and shake your head in dismay because it's just &lt;em&gt;obvious&lt;/em&gt; and why did I even need to think about it? But... I was quite pleased to think this through, so I thought I'd write it down in case anybody else finds it useful.&lt;/p&gt;
 &lt;p&gt;So. Your job is to calculate the average of a set of numbers. This is not hard: the average value&lt;sup id="sf-calculating-a-rolling-average-without-keeping-all-the-numbers-around-1-back"&gt;&lt;a href="#sf-calculating-a-rolling-average-without-keeping-all-the-numbers-around-1" class="simple-footnote" title="maths people, I mean mean, obvs"&gt;1&lt;/a&gt;&lt;/sup&gt; is the sum of the numbers divided by the count of the numbers. So the average of &lt;code&gt;2, 7, 8&lt;/code&gt; is&lt;/p&gt;
